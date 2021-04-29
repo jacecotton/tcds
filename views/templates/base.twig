@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>
+    {% if title %}
+      {{ title }} - 
+    {% endif %}
+    Texas Children's Design System
+  </title>
+
+  <link rel="stylesheet" href="/styles/tcds.css">
+  <link rel="stylesheet" href="/styles/site.css">
+
+  {% block head %}{% endblock %}
+</head>
+<body>
+  {% block body %}{% endblock %}
+
+<script src="/scripts/tcds.js"></script>
+<script src="/scripts/site.js"></script>
+</body>
+</html>
