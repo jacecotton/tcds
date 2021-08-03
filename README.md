@@ -4,7 +4,7 @@ This is the monorepo for the Texas Children's Design System and its associated d
 
 Maintainers of the Design System should contribute to this repo.
 
-<div style="background: #eee; color: #333; border-left: 5px solid #777; padding: 1rem"><b>Note:</b> This README is <em>not</em> intended to provide instruction on how to use the Design System, but how to <em>contribute</em> to and <em>maintain</em> it. For how to use the Design System, visit <a href="https://tcds.herokuapp.com/">texaschildrens.design</a></div>
+* **Note:** This README is *not* intended to provide instruction on how to use the Design System, but how to *contribute* to and *maintain* it. For how to use the Design System, visit (texaschildrens.design)[https://tcds.herokuapp.com/]
 
 ## Setting up
 
@@ -25,7 +25,7 @@ The documentation site uses a [Node.js](https://nodejs.org/en/) runtime with [Ex
 
 [Twing](https://github.com/NightlyCommit/twing) is used as a JavaScript port of [Twig](https://twig.symfony.com/), a templating language by [Symfony](https://symfony.com/), the framework behind [Drupal](https://drupal.org/), the CMS behind [Texas Children's](https://www.texaschildrens.org).
 
-<div style="background: #eee; color: #333; border-left: 5px solid #777; padding: 1rem"><b>Note:</b> Using Twing and JavaScript for the documentation site enforces interoporability and platform agnosticism. What works on the documentation site should work in a Drupal environment and vice versa.</div>
+* **Note:** Using Twing and JavaScript for the documentation site enforces interoporability and platform agnosticism. What works on the documentation site should work in a Drupal environment and vice versa.
 
 ### Frontend
 
@@ -49,7 +49,7 @@ All pages should be written in Markdown in the [pages/](./pages) folder.
 
 To create a route and metadata for your page, make an entry in [content.js](./content.js) inside the relevant parent object (or create another). Follow the schema of existing pages.
 
-<div style="background: #eee; color: #333; border-left: 5px solid #777; padding: 1rem"><b>Note:</b> You can use <code>&lt;twig>&lt;/twig></code> tags within markdown files to insert arbitrary Twig code. This allows you to use components from the Design System within pages. Without the tags, the Twig code will be sanitized (useful for displaying example Twig code).</div>
+* **Note:** You can use `<twig></twig>` tags within markdown files to insert arbitrary Twig code. This allows you to use components from the Design System within pages. Without the tags, the Twig code will be sanitized (useful for displaying example Twig code).
 
 ## Project structure
 
