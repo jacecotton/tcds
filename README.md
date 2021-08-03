@@ -4,7 +4,7 @@ This is the monorepo for the Texas Children's Design System and its associated d
 
 Maintainers of the Design System should contribute to this repo.
 
-* **Note:** This README is *not* intended to provide instruction on how to use the Design System, but how to *contribute* to and *maintain* it. For how to use the Design System, visit (texaschildrens.design)[https://tcds.herokuapp.com/]
+* **Note:** This README is *not* intended to provide instruction on how to use the Design System, but how to *contribute* to and *maintain* it. For how to use the Design System, visit [texaschildrens.design](https://tcds.herokuapp.com/)
 
 ## Setting up
 
