@@ -1,0 +1,67 @@
+{# DO NOT EDIT. This file was compiled from Markdown; please edit the source .md
+file and run the gulp process to compile (either `gulp` or `npm run dev` from
+the terminal). #}
+{% extends "templates/base.twig" %}
+{% block lead %}
+  How you write text content has significant accessibility implications. What type of information you convey, and under what context you provide it, can make the difference between an equitable experience for users with disabilities (medical or situational), and one that's frustrating, excluding, or unusable.
+{% endblock %}
+{% block body %}
+
+<h2 id="general-guidance">General guidance</h2>
+<p><strong>Use clear and simple language</strong>. Avoid verbiage that&#39;s overly abstract, lengthy, or technical. Users implicated range from those with cognitive challenges (autism, dyslexia) to situational challenges (time constraints, multitasking).</p>
+<h2 id="headings">Headings</h2>
+<p>Headings, marked up with <code>h1</code> through <code>h6</code> elements, help break up and organize sections of content. It is important to include them to allow:</p>
+<ul>
+<li>Sighted users to more efficiently scan a page.</li>
+<li>Visually impaired users, and other users of screen readers, to skip to relevant content and understand the outline of a page.</li>
+<li>Search engine algorithms to more deeply understand a page&#39;s content.</li>
+</ul>
+<p>Heading elements help <em>outline</em> a page&#39;s landmark regions (navigation, main content, etc.) They should not be thought of as strictly related to their font size.</p>
+<ul>
+<li>Do not use heading elements purely to change font size or emphasize text. If you need large text that doesn&#39;t strictly relate to a web page&#39;s outline, use CSS or a corresponding utility class (see <a href="/design/typography">Typography</a>).</li>
+<li>Inversely, you may sometimes need to use a heading element for its semantic meaning, but reduce its size to fit better within the page&#39;s design.<ul>
+<li>Heading elements may even be visually hidden, and strictly use to convey semantic meaning to screen readers and search engines.</li>
+</ul>
+</li>
+</ul>
+<h3 id="using-h1">Using <code>h1</code></h3>
+<p>There should only ever be one <code>h1</code> element on a page, and it should contain the current page&#39;s name or topic. It should not contain the website name, and it should not be used to simply make the biggest text possible.</p>
+<h3 id="using-h5-and-h6">Using <code>h5</code> and <code>h6</code></h3>
+<p><code>h5</code> and <code>h6</code> elements should generally not be used. If you find yourself needing them, your content is probably too complicated and should be split up between multiple pages or simplified.</p>
+<p>Using them can also make a page&#39;s outline too deep, which can be cumbersome for users of assistive technology. When in doubt, the best course of action is to test your page with an actual screen reader.</p>
+<h2 id="alt-text"><code>alt</code> text</h2>
+<p>The <code>alt</code> attribute contains <strong>alternative text</strong> to images. It is used by:</p>
+<ul>
+<li>Screen readers to communicate the meaning of an image to a visually impaired user.</li>
+<li>Search engine algorithms to more deeply understand a page&#39;s content.</li>
+<li>The browser to visually display to users when an image fails to load, which affords accessibility to situationally disabled users (poor mobile reception, slow internet speeds).</li>
+</ul>
+<p><strong>All images must have an <code>alt</code> attribute.</strong> All images that are not purely decorative must have text in this <code>alt</code> attribute. This is not only an accessibility mandate, but an SEO one.</p>
+<h3 id="how-to-write-alt-text">How to write <code>alt</code> text</h3>
+<p>Alternative text should be a literal description of the image. The goal is to convey the same <em>visual</em> information to a visually impaired user as a sighted user would receive by looking at the image. The text should function as a suitable substitute to the image.</p>
+<p>Avoid contextual, implied, or subjective information:</p>
+<blockquote>
+<p>Dr. Smith giving a patient an annual checkup.</p>
+</blockquote>
+<p>Prefer literal, objective, and visual information:</p>
+<blockquote>
+<p>Woman doctor applying stethoscope to boy patient&#39;s chest in a doctor&#39;s office.</p>
+</blockquote>
+<p>There is a place for descriptions like the former example: <a href="/patterns/image-thumbnails.md">thumbnail captions</a>. These are marked up with <code>figcaption</code> elements, and are visually displayed (usually beneath the image). Their purpose is to provide deeper meaning to the image that places it in context. It should be information given to all users, sighted and visually impaired alike.</p>
+<ul>
+<li>Proper use of headings<ul>
+<li>Don&#39;t skip levels</li>
+<li>One H1 per page only</li>
+<li>Don&#39;t use heading tags just to change font size</li>
+</ul>
+</li>
+<li>Button labels<ul>
+<li>Sentence case<ul>
+<li>All caps can be difficult to read</li>
+</ul>
+</li>
+<li>Clear and simple descriptions of associated functionality</li>
+</ul>
+</li>
+</ul>
+{% endblock %}

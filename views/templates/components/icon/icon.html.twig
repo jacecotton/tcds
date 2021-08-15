@@ -1,0 +1,9 @@
+{% extends "templates/components/component/component.html.twig" %}
+
+{% set component_name = "Icon" %}
+
+{% set root_element = "span" %}
+
+{% block inner_content %}
+  {{ include("templates/icons/#{icon}.svg.twig") }}
+{% endblock %}

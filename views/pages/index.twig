@@ -1,5 +1,74 @@
+{# DO NOT EDIT. This file was compiled from Markdown; please edit the source .md
+file and run the gulp process to compile (either `gulp` or `npm run dev` from
+the terminal). #}
 {% extends "templates/base.twig" %}
-
+{% block lead %}
+  Texas Children's Web Design System (TCDS) is a centralized library of resources to help create high-quality digital properties for the web.
+{% endblock %}
 {% block body %}
-  Hello world
+
+<h2 id="explore">Explore</h2>
+
+  {% set contents = [
+    {
+      title: "Design Resources",
+      subtitle: "Guidelines and reference material for designs.",
+    },
+    {
+      title: "Components",
+      subtitle: "Code and documentation for reusable interface elements.",
+    },
+    {
+      title: "Patterns",
+      subtitle: "Templates and documentation for common design patterns.",
+    },
+    {
+      title: "Primitives",
+      subtitle: "Documentation and guidance for HTML building blocks.",
+    },
+    {
+      title: "Content",
+      subtitle: "Guidelines on writing content for the web.",
+    },
+    {
+      title: "Code Reference",
+      subtitle: "Documentation for the TCDS code base.",
+    },
+    {
+      title: "Style Guide",
+      subtitle: "Guidelines on writing code within the TCDS and across TCH.",
+    },
+  ] %}
+
+  <ul class="row">
+    {% for item in contents %}
+      <li>
+        {{ include("templates/components/tile/tile.html.twig", {
+          title: item.title,
+          subtitle: item.subtitle,
+        }) }}
+      </li>
+    {% endfor %}
+  </ul>
+
+
+<h2 id="principles">Principles</h2>
+<ul>
+<li>Consistent</li>
+<li>Intuitive</li>
+<li>Standardized<ul>
+<li>Accessibility</li>
+<li>Performance</li>
+</ul>
+</li>
+<li>Adaptable</li>
+</ul>
+<h2 id="goals">Goals</h2>
+<ul>
+<li>Improve user experience</li>
+<li>Increase productivity<ul>
+<li>Make it faster and easier to prototype, iterate, and deploy with confidence</li>
+</ul>
+</li>
+</ul>
 {% endblock %}

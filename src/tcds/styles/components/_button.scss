@@ -1,0 +1,127 @@
+.Button {
+  $x-padding: 1em;
+  $y-padding: .5em;
+
+  /**
+   * Base styles.
+   *
+   * 1. Remove excess space from text for more precise padding.
+   * 2. Constrain absolute-positioned elements to within the button.
+   * 3. In the event that the class is used on a link.
+   * 4. Allow child elements to have a relative negative z-index.
+   */
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  background: theme-color("primary");
+  border: 0;
+  color: #fff;
+  font: inherit;
+  line-height: 1; // 1
+  overflow: hidden;
+  padding: $y-padding $x-padding;
+  position: relative; // 2
+  text-decoration: none; // 3
+  transition: transform animation("productive");
+  white-space: nowrap;
+  z-index: 1; // 4
+
+  /** Qualifiers */
+  a#{&} {
+    cursor: pointer;
+  }
+
+  /** States */
+  &:hover {
+    --overlay-color: #{color("dark-2")};
+    text-decoration: none; // 3
+  }
+
+  &:active {
+    --overlay-color: #{color("dark-3")};
+    transform: scale(.98);
+  }
+
+  /** Modifiers */
+  &--small {
+    font-size: font-size("small-1");
+  }
+
+  &--large {
+    font-size: font-size("large-1");
+  }
+
+  &--icon-right {
+    flex-direction: row-reverse;
+  }
+
+  &--round {
+    border-radius: 2em;
+  }
+
+  &--ghost {
+    background: transparent;
+    color: inherit;
+  }
+
+  &--full-width {
+    display: flex;
+    width: 100%;
+  }
+
+  /** Children */
+  &::after {
+    content: "";
+    background: var(--overlay-color, transparent);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: background animation("productive");
+    z-index: -1;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    background: color("dark-2");
+    margin:
+      ($y-padding * -1)
+      $x-padding
+      ($y-padding * -1)
+      ($x-padding * -1);
+    padding: $y-padding;
+  }
+
+  svg {
+    height: 1em;
+    width: 1em;
+  }
+
+  /** Modifier children */
+  &--icon-right &__icon {
+    margin:
+      ($y-padding * -1)
+      ($x-padding * -1)
+      ($y-padding * -1)
+      $x-padding;
+  }
+
+  &--icon-only &__icon {
+    background: none;
+    margin: ($y-padding * -1) ($x-padding * -1);
+  }
+
+  &--ghost &__icon {
+    background: none;
+  }
+
+  &--ghost:not(#{&}--icon-right):not(#{&}--icon-only) &__icon {
+    margin-right: 0;
+  }
+
+  &--ghost#{&}--icon-right &__icon {
+    margin-left: 0;
+  }
+}

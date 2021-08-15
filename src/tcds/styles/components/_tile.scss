@@ -1,0 +1,11 @@
+.Tile {
+  display: inline-flex;
+  align-items: center;
+  padding: 2em;
+  text-decoration: none;
+
+  &__headings {
+    display: flex;
+    flex-direction: column;
+  }
+}

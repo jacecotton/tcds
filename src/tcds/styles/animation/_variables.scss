@@ -1,0 +1,26 @@
+/**
+ * Use Sass variables internally.
+ */
+$animation-properties: (
+  "productive-timing": .15s,
+  "productive-easing": ease-in,
+  "productive": .15s ease-in,
+
+  "expressive-timing": .8s,
+  "expressive-easing": cubic-bezier(0, 1, .4, 1),
+  "expressive": .8s cubic-bezier(0, 1, .4, 1),
+);
+
+/**
+ * Export variables for use by other stylesheets via root-scoped custom
+ * properties.
+ */
+:root {
+  --animation-productive-timing: #{map-get($animation-properties, "productive-timing")};
+  --animation-productive-easing: #{map-get($animation-properties, "productive-easing")};
+  --animation-productive: #{map-get($animation-properties, "productive")};
+
+  --animation-expressive-timing: #{map-get($animation-properties, "expressive-timing")};
+  --animation-expressive-easing: #{map-get($animation-properties, "expressive-easing")};
+  --animation-expressive: #{map-get($animation-properties, "expressive")};
+}

@@ -1,0 +1,74 @@
+{# DO NOT EDIT. This file was compiled from Markdown; please edit the source .md
+file and run the gulp process to compile (either `gulp` or `npm run dev` from
+the terminal). #}
+{% extends "templates/base.twig" %}
+{% block lead %}
+  Buttons allow users to trigger an action with a single tap, click, or keypress. This component is a specific implementation of the <code>&lt;button&gt;</code> HTML element, with a standardized design and API.
+{% endblock %}
+{% block body %}
+
+<p>
+  
+    {{ include("templates/components/button/button.html.twig", {
+      label: "Example button",
+      onclick: "alert('Example button clicked.')",
+    }) }}
+  
+</p>
+
+<p>A button must always:</p>
+<ul>
+<li>Have an associated action, like submitting a form or opening a modal.</li>
+<li>Provide some indication of the action, such as a text label or icon.</li>
+<li>Adhere to and support the overall hierarchy of a page or interface by utilizing scale, color, and proximity.</li>
+</ul>
+<h2 id="style-guide">Style guide</h2>
+<ul>
+<li><strong>Use specific but simple language.</strong> — Buttons have inherent <a href="https://www.nngroup.com/articles/interaction-cost-definition/" title="Interaciton Cost - Nielsen Norman Gorup">interaction cost</a>; users may be reluctant to click a button if they&#39;re not sure about what it will do. Avoid vague and abstract labels like &quot;Click here&quot; or &quot;OK&quot;. Prefer explicit labels instead, like &quot;Sign up&quot; or &quot;Confirm choice&quot;.</li>
+<li><strong>Use sentence case for text labels</strong> — All-caps text is less efficient to read for sighted users, and some screen readers will spell out all-caps text, letter-by-letter.</li>
+</ul>
+<p>When to use:</p>
+<ul>
+<li>To control an interface, such as opening a modal or menu.</li>
+<li>To submit a form.</li>
+</ul>
+<p>When not to use:</p>
+<ul>
+<li>Avoid using buttons for navigation. Prefer <a href="/primitives/links">links</a> instead.</li>
+<li>Do not use this component if all you need is a generic HTML <code>&lt;button&gt;</code> element for its semantic meaning, without the specific styling provided by this component.</li>
+</ul>
+<h2 id="how-to-use">How to use</h2>
+<p>The following instructions apply to Drupal with Site Studio. For instructions on how to use the Button component in Twig or HTML, see <a href="#examples">&sect; Examples</a> and <a href="API">&sect; API</a>.</p>
+<ol>
+<li>While editing a page or component, click the &quot;+&quot; button in the Layout Canvas field.</li>
+<li>In the side menu that appears, scroll to &quot;Interactive Components&quot;.</li>
+<li>Drag the Button component into the Layout Canvas where desired.</li>
+<li>Double-click the Button component to edit its fields as needed.</li>
+</ol>
+<h2 id="examples">Examples</h2>
+<p>Note that the include path may vary depending on the project setup. For instance, within the main site, the templates are accessed via <code>@tch/</code> rather than <code>templates/</code>.</p>
+<h3 id="default-button">Default button</h3>
+
+{% embed "templates/includes/example-box/example-box.html.twig" with {
+  examples: {
+    "Twig": '{{ include("templates/components/button/button.html.twig", {
+  label: "Default button",
+  onclick: "alert(\'Default button clicked.\')",
+}) }}',
+    "HTML": '<button class="Button" data-component="Button" onclick="alert(\'Default button clicked.\')">
+  Default button
+</button>',
+  },
+} %}
+  {% block result %}
+    {{ include("templates/components/button/button.html.twig", {
+      label: "Default button",
+      onclick: "alert('Default button clicked.')",
+    }) }}
+  {% endblock %}
+{% endembed %}
+
+
+<h2 id="accessibility">Accessibility</h2>
+<h2 id="api">API</h2>
+{% endblock %}

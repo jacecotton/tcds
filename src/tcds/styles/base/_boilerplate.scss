@@ -1,0 +1,136 @@
+/**
+ * This file contains many styles traditionally put in "reset" or
+ * "normalization" files. While this file does replace those, its goal is not
+ * (necessarily) to wipe out browser defaults or eliminate differences between
+ * them. Instead, it is to provide universal styles that improve UX and serve as
+ * a guardrail for things like accessibility, maintainability, and
+ * responsiveness.
+ *
+ * Rules for adding to this stylesheet:
+ * 1. Contains as few styles as possible, with no styles that are likely to be
+ *    overridden on a project-by-project basis.
+ * 2. Contains no project-specific defaults, globals, utilities, or resets.
+ *    Should only contain styles that apply universally.
+ * 2. Introduces as few side effects on individual components or other modular
+ *    elements as possible; they should generally still look and function the
+ *    same with or without this stylesheet. (As a result, this file should not
+ *    be treated as a "dependency", but as a progressive enhancement.)
+ * 3. Has no focus on browser compatibility issues (but may still include
+ *    vendor-specific styles).
+ */
+
+/**
+ * 1. Better default box model (`padding` will now not add to an element's
+ *    calculated dimensions, but will instead push content inwards).
+ * 2. Respect motion preferences by turning animations and transitions off
+ *    according to system settings.
+ * 3. Also disable animations and transitions for displays with a low refresh
+ *    rate, which would display them in a way potentially detrimental to UX.
+ * 4. Reduce motion by setting animations and transitions to become
+ *    imperceptibly fast, rather than turn them off completely, so that
+ *    `transitionend` JavaScript events still fire.
+ * 5. Prevent infinite animations, since infinitely-running high-speed
+ *    animations would be intensive and potentially detrimental to UX.
+ * 6. Reduce motion by removing animated scrolling to anchor elements.
+ */
+
+* {
+  box-sizing: border-box; // 1
+  
+  &::before,
+  &::after {
+    box-sizing: border-box; // 1
+  }
+  
+  @media (prefers-reduced-motion: reduce), // 2
+  (update: slow) { // 3
+    animation-duration: .001ms !important; // 4
+    transition-duration: .001ms !important; // 4
+    animation-iteration-count: 1 !important; // 5
+    scroll-behavior: auto !important; // 6
+  }
+}
+
+/**
+ * 1. Remove default viewport margin.
+ * 2. Prevent horizontal overflow and scrolling of viewport.
+ * 3. Animate scrolling to anchor elements to help users better understand the
+ *    direction and relative location of the target element.
+ * 4. Prevent automatic text scaling on orientation change. Both a design and
+ *    performance consideration; changes to `font-size` trigger reflow.
+ */
+
+body {
+  margin: 0; // 1
+  max-width: 100vw; // 2
+  overflow-x: hidden; // 2
+  scroll-behavior: smooth; // 3
+  text-size-adjust: 100%; // 4
+}
+
+/**
+ * 1. Remove touch delay on links, buttons, selects, checkboxes, and radios.
+ *    This delay is an affordance for double-tapping to zoom in, but is
+ *    unnecessary for (and can cause confusion on) elements where deliberate
+ *    interaction is presumable when double-tapped. (Note that `manipulation`
+ *    still affords touch-then-scrolling interaction.)
+ */
+
+a,
+button,
+select,
+summary,
+[type=button],
+[type=checkbox],
+[type=file],
+[type=radio],
+[type=reset],
+[type=submit] {
+  touch-action: manipulation; // 1
+}
+
+/**
+ * 1. Prevent media from expanding beyond the natural size of the parent.
+ * 2. Remove excess bottom space left for descenders on inline elements.
+ */
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  max-width: 100%; // 1
+  vertical-align: middle; // 2
+}
+
+/**
+ * 1. Strengthen the `[hidden]` attribute so that it overrides `display`
+ *    declarations in other rulesets.
+ */
+
+[hidden] {
+  display: none !important; // 1
+}
+
+/**
+ * Hide an element visually while keeping it exposed to assistive technology
+ * (and focusable for keyboard navigation).
+ *
+ * 1. Hide content by "clipping" it away entirely (including borders). Note that
+ *    `clip` is deprecated, but the new `clip-path` lacks sufficient browser
+ *    support to use by itself.
+ * 2. Dimensions need to be at least 1px, otherwise most screen readers will
+ *    skip it.
+ * 3. Remove element from the document flow so that it does not take up a 1px
+ *    space (which even if imperceptible in most instances can still cause
+ *    otherwise nonexistent scrollbars in the containing scrollable area).
+ */
+
+.visually-hidden:not(:focus):not(:active) {
+  clip: rect(0, 0, 0, 0); // 1
+  clip-path: inset(50%); // 1
+  height: 1px; // 2
+  width: 1px; // 2
+  position: absolute; // 3
+}

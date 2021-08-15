@@ -1,0 +1,3 @@
+@function animation($type) {
+  @return map-get($animation-properties, $type);
+}

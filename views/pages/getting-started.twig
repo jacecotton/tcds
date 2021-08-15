@@ -1,0 +1,56 @@
+{# DO NOT EDIT. This file was compiled from Markdown; please edit the source .md
+file and run the gulp process to compile (either `gulp` or `npm run dev` from
+the terminal). #}
+{% extends "templates/base.twig" %}
+
+{% block body %}<h2 id="installation">Installation</h2>
+<p>To install the Design System, you will first need to download and include the static CSS and JavaScript assets (see <a href="#assets">&sect; Assets</a>).</p>
+<p>From there, you can use components and patterns by copying and pasting the example HTML included in the documentation.</p>
+<p>If you would like to use Twig components, you&#39;ll first have to set up an environment with Twig, and then download the Twig component files (see <a href="#twig">&sect; Twig</a>).</p>
+<h3 id="assets">Assets</h3>
+<h4 id="node-package-manager">Node Package Manager</h4>
+<p>Install the Design System via NPM:</p>
+<pre><code class="language-terminal">npm install @tch/tcds
+</code></pre>
+<p>Include in your project:</p>
+<pre><code class="language-html">&lt;head&gt;
+  ...
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;/node_modules/@tch/tcds/tcds.min.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  ...
+  &lt;script async src=&quot;/node_modules/@tch/tcds/tcds.min.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+<h4 id="from-cdn">From CDN</h4>
+<p>You can load the Design System straight from a CDN via UNPKG, powered by Cloudflare:</p>
+<pre><code class="language-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/@tch/tcds/tcds.min.css&quot;&gt;
+&lt;script async src=&quot;https://unpkg.com/@tch/tcds/tcds.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<h4 id="download-archive">Download archive</h4>
+<p>You can download the Design System files and place them in your project as desired.</p>
+<ul>
+<li><a href="/downloads/tcds-assets.zip">Download assets (.zip)</a> (0kb)</li>
+</ul>
+<p>If you wish to include uncompiled assets and compile them yourself, you can download them and the Gulp file, then place them in your project:</p>
+<ul>
+<li><a href="/downloads/tcds-source.zip">Download uncompiled assets (.zip)</a> (0kb)</li>
+<li><a href="/downloads/gulpfile.js">Download Gulp file (.js)</a> (0kb)</li>
+</ul>
+<h3 id="twig">Twig</h3>
+<h4 id="setting-up-an-environment">Setting up an environment</h4>
+<p>There are multiple ways to use Twig in your environment.</p>
+<ul>
+<li><strong>Drupal</strong> — The recommended way is to use <a href="https://www.drupal.org/">Drupal</a> as a CMS, which comes with Twig as the native templating engine.</li>
+<li><strong>Symfony</strong> — You can also set up a plain <a href="https://www.symfony.com/">Symfony</a> project, the framework that powers Drupal. This is the recommended option for a headless PHP-based project.</li>
+<li><strong>Node.js</strong> — If you wish to create a headless JavaScript-based project, you can use a <a href="https://nodejs.org/">Node.js</a> environment with <a href="https://github.com/NightlyCommit/twing">Twing</a>, a JavaScript port of Twig.<ul>
+<li>For convenience, we&#39;ve provided a <a href="https://github.com/jacecotton/tcds-node-starter">Node.js starter template</a> to clone with the TCDS included.</li>
+</ul>
+</li>
+</ul>
+<h4 id="including-the-templates">Including the templates</h4>
+<p>The component Twig files will need to be included directly in your project&#39;s template directory, which you can download an archive of here.</p>
+<ul>
+<li><a href="/downloads/tcds-components.zip">Download components (.zip)</a> (0kb)</li>
+</ul>
+{% endblock %}

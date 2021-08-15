@@ -1,0 +1,128 @@
+{# DO NOT EDIT. This file was compiled from Markdown; please edit the source .md
+file and run the gulp process to compile (either `gulp` or `npm run dev` from
+the terminal). #}
+{% extends "templates/base.twig" %}
+
+{% block body %}<h2 id="typeface">Typeface</h2>
+<p>TCDS uses the <a href="https://fonts.google.com/specimen/Roboto">Roboto</a> specimen from <a href="https://fonts.google.com/">Google Fonts</a>.</p>
+<h2 id="type-scale">Type scale</h2>
+<p>TCDS uses a modular type scale based on a baseline text size of 1 rem (= 16 pixels) and a ratio of 1.25. The resulting sizes larger than the baseline are calculated as <span class="font-slab">1 rem &times; 1.25<sup>n</sup></span> where <span class="font-slab">n = 1..4</span>.</p>
+<table class="type-scale-table">
+  <thead class="visually-hidden">
+    <tr>
+      <th>Example</th>
+      <th>Font and token</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <div>
+          <p class="text-large-4" title="The quick brown fox jumped over the lazy dog">The quick brown fox jumped over the lazy dog</p>
+        </div>
+      </td>
+      <td>
+        ~2.44 rem (≈ 39 px)<br>
+        <code>.text-large-4</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>
+          <p class="text-large-3" title="The quick brown fox jumped over the lazy dog">The quick brown fox jumped over the lazy dog</p>
+        </div>
+      </td>
+      <td>
+        ~1.95 rem (≈ 31.2 px)<br>
+        <code>.text-large-3</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>
+          <p class="text-large-2" title="The quick brown fox jumped over the lazy dog">The quick brown fox jumped over the lazy dog</p>
+        </div>
+      </td>
+      <td>
+        ~1.56rem (≈ 25 px)<br>
+        <code>.text-large-2</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>
+          <p class="text-large-1" title="The quick brown fox jumped over the lazy dog">The quick brown fox jumped over the lazy dog</p>
+        </div>
+      </td>
+      <td>
+        1.25 rem (= 20 px)<br>
+        <code>.text-large-1</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>
+          <p class="text-medium" title="The quick brown fox jumped over the lazy dog">The quick brown fox jumped over the lazy dog</p>
+        </div>
+      </td>
+      <td>
+        1 rem (= 16 px)<br>
+        <code>.text-medium</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>
+          <p class="text-small-2" title="The quick brown fox jumped over the lazy dog">The quick brown fox jumped over the lazy dog</p>
+        </div>
+      </td>
+      <td>
+        0.9 rem (= 14.4 px)<br>
+        <code>.text-small-2</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>
+          <p class="text-small-1" title="The quick brown fox jumped over the lazy dog">The quick brown fox jumped over the lazy dog</p>
+        </div>
+      </td>
+      <td>
+        0.8 rem (= 12.8 px)<br>
+        <code>.text-small-1</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="headings">Headings</h2>
+<p>Heading sizes map to the above type scale, with some extra specifications.</p>
+<p>All headings have a 1 rem top and bottom spacing. If the heading does not directly proceed another heading, it will have a top spacing of 2.5 rem.</p>
+<aside>
+<details>
+  <summary>Technical note</summary>
+    
+<p>  If a heading HTML tag has a <code>class</code> attribute, then no spacing is applied. Heading elements need to also be usable across the code base for their semantic meaning rather than visual styling, and a <code>class</code> attribute indicates specific usage (such as in a component) beyond their default, generic purpose (sectioning main content). This is done to make styling individual components easier and more interoperable.</p>
+<p>  If both the default spacing and a <code>class</code> attribute is needed, then a utility class corresponding to the tag name can be added (e.g. <code>&lt;h1 class=&quot;example h1&quot;&gt;</code>). These utility classes (<code>.h1</code> through <code>.h6</code>) can be added to any element to achieve the visual styling of their indicated heading without the semantic meaning, as exemplified below (the example headings are just <code>p</code> tags).</p>
+</details>
+</aside>
+
+<p class="h1">Heading 1 <span class="visually-hidden">has a</span></p>
+
+<p>700 font weight (bold), secondary theme color (blue), letter spacing -0.02 em.</p>
+<p class="h2">Heading 2 <span class="visually-hidden">has a</span></p>
+
+<p>500 font weight (semi-bold), gray 6 color (see <a href="/design/color">Color</a>).</p>
+<p class="h3">Heading 3 <span class="visually-hidden">has a</span></p>
+
+<p>500 font weight (semi-bold), gray 6 color.</p>
+<p class="h4">Heading 4 <span class="visually-hidden">has a</span></p>
+
+<p>500 font weight (semi-bold), gray 6 color.</p>
+<p class="h5">Heading 5 <span class="visually-hidden">has a</span></p>
+
+<p>500 font weight (semi-bold), gray 6 color.</p>
+<p class="h6">Heading 6 <span class="visually-hidden">has a</span></p>
+
+<p>500 font weight (semi-bold), gray 6 color.</p>
+{% endblock %}

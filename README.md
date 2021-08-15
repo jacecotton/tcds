@@ -23,7 +23,7 @@ This will start a local server on `localhost:3000` and watch for changes.
 
 The documentation site uses a [Node.js](https://nodejs.org/en/) runtime with [Express.js](https://expressjs.com/) as the backend framework.
 
-[Twing](https://github.com/NightlyCommit/twing) is used as a JavaScript port of [Twig](https://twig.symfony.com/), a templating language by [Symfony](https://symfony.com/), the framework behind [Drupal](https://drupal.org/), the CMS behind [Texas Children's](https://www.texaschildrens.org).
+[Twing](https://github.com/NightlyCommit/twing) is used as a JavaScript port of [Twig](https://twig.symfony.com/), a templating language by [Symfony](https://symfony.com/), the framework behind [Drupal](https://drupal.org/), the CMS behind [Texas Children's](https://www.texaschildrens.org). [twing-drupal-filters](https://www.npmjs.com/package/twing-drupal-filters) is also used to enhance compatibility with Drupal-specific Twig features.
 
 * **Note:** Using Twing and JavaScript for the documentation site enforces interoporability and platform agnosticism. What works on the documentation site should work in a Drupal environment and vice versa.
 

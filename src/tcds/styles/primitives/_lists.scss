@@ -1,0 +1,8 @@
+:is(ul, ol, dl) {
+  padding: 0;
+  margin-left: 2em;
+
+  :not(ul, ol, dl, li) > &:not([class]) {
+    margin-bottom: 1em;
+  }
+}

@@ -1,25 +1,38 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <title>
-    {% if title %}
-      {{ title }} - 
-    {% endif %}
-    Texas Children's Design System
-  </title>
 
-  <link rel="stylesheet" href="/styles/tcds.css">
-  <link rel="stylesheet" href="/styles/site.css">
+  <title>{{ title ? "#{title} - " }}Texas Children's Web Design System</title>
+
+  <link href="/dist/tcds/tcds.css" rel="stylesheet">
+  <link href="/styles/main.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.19.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet">
 
   {% block head %}{% endblock %}
 </head>
-<body>
-  {% block body %}{% endblock %}
+<body class="page-{{ title|clean_class }} category-{{ category ? category|clean_class : "top-level" }} line-numbers">
+  
+  {{ include("templates/partials/header.twig") }}
 
-<script src="/scripts/tcds.js"></script>
-<script src="/scripts/site.js"></script>
+  <main>
+    <header class="page-masthead">
+      {% if category is defined and category|length %}
+        <p class="page-category">{{ category }}</p>
+      {% endif %}
+
+      <h1 class="page-title">{{ title }}</h1>
+    </header>
+
+    <p class="lead">{% block lead %}{% endblock %}</p>
+
+    <hr>
+
+    {% block body %}{% endblock %}
+  </main>
+
+<script async src="/dist/tcds/tcds.js"></script>
+<script async src="/scripts/main.js"></script>
 </body>
 </html>

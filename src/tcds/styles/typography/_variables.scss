@@ -1,0 +1,42 @@
+/**
+ * Modular ratio-based font size generation. See:
+ * https://moderncss.dev/generating-font-size-css-rules-and-creating-a-fluid-type-scale/
+ */
+
+// Convert px to rem
+$type-base-size: 1rem;
+$type-level-size: $type-base-size;
+// Major third. See: https://type-scale.com/
+$type-size-ratio: 1.25;
+$type-levels: 1, 2, 3, 4;
+
+$font-sizes: (
+  "small-1": $type-base-size * .8,
+  "small-2": $type-base-size * .9,
+  "medium": $type-base-size,
+);
+
+@each $level in $type-levels {
+  $type-level-size: $type-level-size * $type-size-ratio;
+
+  $font-sizes: map-merge($font-sizes, (
+    "large-#{$level}": $type-level-size,
+  ));
+}
+
+$font-stacks: (
+  "sans-serif": (Roboto, system-ui, sans-serif),
+  "slab": (Roboto Slab, serif),
+);
+
+:root {
+  --font-stack-sans-serif: #{map-get($font-stacks, "sans-serif")};
+
+  --font-size-small-1: #{map-get($font-sizes, "small-1")};
+  --font-size-small-2: #{map-get($font-sizes, "small-2")};
+  --font-size-medium: #{map-get($font-sizes, "medium")};
+  --font-size-large-1: #{map-get($font-sizes, "large-1")};
+  --font-size-large-2: #{map-get($font-sizes, "large-2")};
+  --font-size-large-3: #{map-get($font-sizes, "large-3")};
+  --font-size-large-4: #{map-get($font-sizes, "large-4")};
+}

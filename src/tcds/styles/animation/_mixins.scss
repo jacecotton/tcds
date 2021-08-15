@@ -1,0 +1,22 @@
+@mixin animation($name, $options) {
+  $timing: "";
+  $easing: "";
+
+  @if type-of($options) == "map" {
+    $timing: map-get($animation-properties, "#{map-get($options, "timing")}-timing");
+    $easing: map-get($animation-properties, "#{map-get($options, "easing")}-easing");
+
+    @if not $timing {
+      $timing: map-get($options, "timing");
+    }
+
+    @if not $easing {
+      $easing: map-get($options, "easing");
+    }
+  } @else if $options == "productive" or $options == "expressive" {
+    $timing: map-get($animation-properties, "#{$options}-timing");
+    $easing: map-get($animation-properties, "#{$options}-easing");
+  }
+
+  animation: $name $timing $easing;
+}

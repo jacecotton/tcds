@@ -1,0 +1,16 @@
+body {
+  --boxed-width: 1300px;
+  --outer-gutter: 2rem;
+
+  display: grid;
+  grid-template-columns:
+    minmax(var(--outer-gutter), calc((100vw - var(--boxed-width)) / 2))
+    minmax(200px, 3fr)
+    10fr
+    minmax(var(--outer-gutter), calc((100vw - var(--boxed-width)) / 2));
+  grid-template-rows: 100vh;
+  min-height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: fixed;
+}

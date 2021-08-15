@@ -1,0 +1,35 @@
+<nav class="global-nav">
+  {% for category in nav %}
+    {% set category_route = "" %}
+
+    {% if category.route is defined and category.route is not empty %}
+      {% set category_route = "/#{category.route}/" %}
+    {% elseif category.title is defined and category.title is not empty and category.route is not defined %}
+      {% set category_route = "/" ~ category.title|clean_class ~ "/" %}
+    {% elseif category.title is not defined and category.route is not defined %}
+      {% set category_route = "/" %}
+    {% endif %}
+
+    {% if category.title is defined and category.title is not empty %}
+      <div class="global-nav__category">{{ category.title }}</div>
+    {% endif %}
+
+    <ul class="global-nav__list">
+      {% for page in category.pages %}
+        {% set page_route = "" %}
+        
+        {% if page.route is defined and page.route is not empty %}
+          {% set page_route = page.route %}
+        {% elseif page.title is defined and page.title is not empty and page.route is not defined %}
+          {% set page_route = page.title|clean_class %}
+        {% endif %}
+
+        {% set route = category_route ~ page_route %}
+        
+        <li class="global-nav__item">
+          <a href="{{ route }}" class="global-nav__link" {{ route == href ? 'aria-current="page"' }}>{{ page.displaytitle ? page.displaytitle : page.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
+</nav>

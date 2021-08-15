@@ -1,0 +1,53 @@
+/**
+ * Use Sass variables internally.
+ */
+
+$colors: (
+  "gray-1": hsl(240 20% 98%),
+  "gray-2": hsl(0 0% 85%),
+  "gray-3": hsl(0 0% 70%),
+  "gray-4": hsl(0 0% 55%),
+  "gray-5": hsl(0 0% 40%),
+  "gray-6": hsl(0 0% 25%),
+
+  "dark-1": hsl(0 0% 0% / 5%),
+  "dark-2": hsl(0 0% 0% / 10%),
+  "dark-3": hsl(0 0% 0% / 20%),
+
+  "baby-blue": hsl(214 76% 64%),
+  "blue": hsl(208 71% 46%),
+
+  "red": hsl(356 71% 50%),
+);
+
+$theme-colors: (
+  "primary": map-get($colors, "red"),
+  "secondary": map-get($colors, "blue"),
+  "link": map-get($colors, "blue"),
+);
+
+/**
+ * Export variables for use by other stylesheets via root-scoped custom
+ * properties.
+ */
+:root {
+  --color-gray-1: #{map-get($colors, "gray-1")};
+  --color-gray-2: #{map-get($colors, "gray-2")};
+  --color-gray-3: #{map-get($colors, "gray-3")};
+  --color-gray-4: #{map-get($colors, "gray-4")};
+  --color-gray-5: #{map-get($colors, "gray-5")};
+  --color-gray-6: #{map-get($colors, "gray-6")};
+
+  --color-dark-1: #{map-get($colors, "dark-1")};
+  --color-dark-2: #{map-get($colors, "dark-2")};
+  --color-dark-3: #{map-get($colors, "dark-3")};
+
+  --color-baby-blue: #{map-get($colors, "baby-blue")};
+  --color-blue: #{map-get($colors, "blue")};
+
+  --color-red: #{map-get($colors, "red")};
+
+  --theme-color-primary: #{map-get($theme-colors, "primary")};
+  --theme-color-secondary: #{map-get($theme-colors, "secondary")};
+  --theme-color-link: #{map-get($theme-colors, "link")};
+}

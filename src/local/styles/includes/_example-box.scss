@@ -1,0 +1,15 @@
+.example-box {
+  border: 1px solid color("dark-2");
+  margin-bottom: 1rem;
+  padding: 1rem;
+
+  :root & pre[class*="language-"] {
+    margin: 0;
+  }
+
+  &__frame {
+    border-bottom: 1px solid color("dark-2");
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+  }
+}

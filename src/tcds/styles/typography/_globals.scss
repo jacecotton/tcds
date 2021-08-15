@@ -1,0 +1,102 @@
+body {
+  font-family: font-stack("sans-serif");
+  font-size: font-size("medium");
+  line-height: 1.7;
+}
+
+$hgroup-tags: "h1, h2, h3, h4, h5, h6";
+$hgroup-util: ".h1, .h2, .h3, .h4, .h5, .h6";
+$hgroup-all: $hgroup-tags, $hgroup-util;
+
+:where(#{$hgroup-all}) {
+  color: color("gray-6");
+  margin: 0;
+}
+
+:where(#{$hgroup-tags}):not([class]),
+:where(#{$hgroup-util}) {
+  margin: y-baseline("em") 0;
+}
+
+:not(#{$hgroup-all}) {
+  + :where(#{$hgroup-tags}):not([class]),
+  + :where(#{$hgroup-util}) {
+    margin: (y-baseline("rem") * 2.5) 0 y-baseline("rem");
+  }
+}
+
+:where(#{$hgroup-all}),
+.text-semibold {
+  font-weight: 500;
+}
+
+h1,
+.h1 {
+  color: theme-color("secondary");
+  font-weight: 700;
+  letter-spacing: -.02em;
+
+  @at-root &,
+  .text-large-4 {
+    font-size: font-size("large-4");
+  }
+}
+
+h2,
+.h2,
+.text-large-3 {
+  font-size: font-size("large-3");
+}
+
+h3,
+.h3,
+.text-large-2 {
+  font-size: font-size("large-2");
+}
+
+h4,
+.h4,
+.text-large-1 {
+  font-size: font-size("large-1");
+}
+
+h5,
+.h5,
+.text-medium {
+  font-size: font-size("medium");
+}
+
+h6,
+.h6,
+.text-small-2 {
+  font-size: font-size("small-2");
+}
+
+.text-small,
+.text-small-1 {
+  font-size: font-size("small-1");
+}
+
+.font-slab {
+  font-family: font-stack("slab");
+}
+
+.text-bold {
+  font-weight: 700;
+}
+
+.text-light {
+  font-weight: 300;
+}
+
+p {
+  margin: 0;
+
+  &:not([class]):not(:last-child) {
+    margin: 0 0 1em;
+  }
+}
+
+a {
+  color: var(--theme-color-link);
+}

@@ -1,0 +1,87 @@
+{# DO NOT EDIT. This file was compiled from Markdown; please edit the source .md
+file and run the gulp process to compile (either `gulp` or `npm run dev` from
+the terminal). #}
+{% extends "templates/base.twig" %}
+
+{% block body %}<h2 id="naming">Naming</h2>
+<p>While naming also applies to markup, the stylesheet should be considered the authoritative owner of naming, therefore guidelines are included here.</p>
+<ul>
+<li>All naming (classes, IDs, custom attributes, variables, etc.) should use <code>kebab-case</code> (lowercase, hyphen-separated).<ul>
+<li>One exception to this is the name of components (see <a href="#bem-classes">&sect; BEM Classes</a>), which should use <code>PascalCase</code>.</li>
+</ul>
+</li>
+<li>Names should be as short as possible, but as long as necessary. For example, <code>.main-nav</code> instead of <code>.main-navigation</code>, but <code>.my-button</code> rather than <code>.my-btn</code>.</li>
+<li>Prioritize semantic accuracy; devise classes according to the element&#39;s function or purpose, rather than its presentation or position (e.g. <code>.main-nav</code>, not <code>.top-nav</code>; <code>.Button--primary</code>, not <code>.Button--red</code>).</li>
+<li>Above all, prioritize clarity and reusability.</li>
+</ul>
+<h3 id="bem-classes">BEM Classes</h3>
+<p>Use the <a href="https://sparkbox.com/foundry/bem_by_example" title="BEM by Example - Sparkbox">BEM convention</a> for naming classes of block-level elements (and their children). For instance, all components and template partials should use BEM classes.</p>
+<p>In most cases, try to stick to <em>one class, zero nesting</em>. Leverage Sass and BEM together to <a href="https://css-tricks.com/using-sass-control-scope-bem-naming/" title="Using Sass to Control Scope With BEM Naming - CSS-Tricks">control scope and keep specificity low</a>.</p>
+<details>
+  <summary>Example</summary>
+
+<p>  HTML:</p>
+<pre><code class="language-html">&lt;article class=&quot;Card Card--compact&quot;&gt;
+  &lt;figure class=&quot;Card__media&quot;&gt;
+    &lt;img src=&quot;example.jpg&quot; alt=&quot;Example&quot; class=&quot;Card__image&quot;&gt;
+  &lt;/figure&gt;
+  &lt;div class=&quot;Card__body&quot;&gt;
+    &lt;h3 class=&quot;Card__title&quot;&gt;My card&lt;/h3&gt;
+    &lt;p class=&quot;Card__text&quot;&gt;Lorem ipsum dolor sit amet.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/article&gt;
+</code></pre>
+<p>  Sass:</p>
+<pre><code class="language-scss">.Card {
+  /* base styles go here */
+
+  &amp;--compact {
+    /* compact modifier styles go here */
+  }
+
+  &amp;__media {
+    /* styles for child element goes here */
+  }
+}
+</code></pre>
+<p>  Compiled CSS:</p>
+<pre><code class="language-css">.Card {
+  /* base styles */
+}
+
+.Card--compact {
+  /* modifier styles */
+}
+
+.Card__media {
+  /* child element styles */
+}
+</code></pre>
+</details>
+
+<p>These keeps specificity as low as possible, while still benefitting from implied parent-child relationships between the elements.</p>
+<h2 id="specificity-management">Specificity management</h2>
+<ul>
+<li>Avoid all uses of <code>!important</code>, except in exceedingly rare circumstances, like when accessibility is implicated.</li>
+<li>Avoid using <code>#</code> selectors and compound selectors (<code>div.class</code> or <code>.class-1.class-2</code>). These selectors have a higher specificity than single classes, and can become difficult to manage at scale.<ul>
+<li>If absolutely necessary, wrap these selectors in a <code>:where()</code> pseudo-class function to zero out the specificity.</li>
+<li>Or in the case of IDs, target them with an attribute selector (<code>[id=my-id]</code>), which has the same specificity as a class.</li>
+</ul>
+</li>
+<li>Avoid descendant selectors where possible, which can increase specificity, negatively impact performance, and create brittle styles tied too closely to the markup. Using BEM can help keep selector depth shallow, while still implying parent-child relationships between elements (see above).</li>
+</ul>
+<h2 id="nesting">Nesting</h2>
+<p>Even with BEM, keep ruleset nesting to a reasonable minimum.</p>
+<ul>
+<li>It can generate unintentionally verbose and high-specificity selectors in the compiled CSS that can be difficult to foresee. Particularly if you nest within a group of selectors—consider using the native <code>:is()</code> or <code>:where()</code> for grouping parent selectors before nesting.</li>
+<li>It can become difficult to read and organize as the stylesheet grows. In a deeply nested stylesheet, moving blocks of code has to be done with careful regard for placement within the nesting context, which can be easy to break.</li>
+<li>It can become difficult to group related selectors that don&#39;t necessarily belong to the same nesting context, potentially leading to duplication or unpredictable code placement.</li>
+</ul>
+<h2 id="declaration-order">Declaration order</h2>
+<ul>
+<li>By default or when in doubt, order declarations alphabetically (based on the property name).</li>
+<li>If a group of declarations act in concert to achieve a single effect (e.g. <code>position: sticky; top: 0</code>), group them together regardless of alphabetization.</li>
+<li>In doing so, list declarations by order of dependence or relevance. For instance, <code>align-items</code> is meaningless apart from flex or grid, so list <code>display</code> first.</li>
+</ul>
+<p>In sum, while you should generally list declarations alphabetically, it is more important to help those reading your code understand it in a procedrual and logical order, rather than having them jump around the ruleset just to understand the cumulative effect of each declaration.</p>
+{% endblock %}

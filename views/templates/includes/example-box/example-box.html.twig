@@ -1,0 +1,22 @@
+<section class="example-box">
+  <div class="example-box__frame">
+    {% block result %}{% endblock %}
+  </div>
+  <div class="example-box__tabs">
+    {% set tabs = [] %}
+
+    {% for label, content in examples %}
+      {% set tabs = tabs|merge([{
+        label: label,
+        content: "<pre class='line-numbers language-#{label|clean_class}'><code class='language-#{label|clean_class}'>#{ content|escape }</code></pre>",
+      }]) %}
+    {% endfor %}
+
+    {% embed "templates/components/tabs/tabs.html.twig" with {
+      id: id ?: random(0, 100000),
+      tabs: tabs,
+      modifiers: ["hide-all", "compact"]
+    } %}
+    {% endembed %}
+  </div>
+</section>

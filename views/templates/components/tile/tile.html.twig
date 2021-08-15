@@ -1,0 +1,33 @@
+{% extends "templates/components/component/component.html.twig" %}
+
+{% set component_name = "Tile" %}
+
+{% if link %}
+  {% set root_element = "a" %}
+  {% set custom_attributes = custom_attributes ?: [] %}
+  {% set custom_attributes = custom_attributes|merge({
+    "href": link,
+  }) %}
+{% else %}
+  {% set root_element = "article" %}
+{% endif %}
+
+{% block inner_content %}
+  {% if icon %}
+    {{ include("templates/components/icon/icon.html.twig", {
+      icon: icon,
+      custom_classes: ["Tile__icon"],
+    }, with_context = false) }}
+  {% endif %}
+
+  {% if title or subtitle %}
+    <div class="Tile__headings">
+      {% if title %}
+        <span class="Tile__title">{{ title|raw }}</span>
+      {% endif %}
+      {% if subtitle %}
+        <span class="Tile__subtitle">{{ subtitle|raw }}</span>
+      {% endif %}
+    </div>
+  {% endif %}
+{% endblock %}
