@@ -143,9 +143,9 @@ class Component {
    * result, it is best practice to always reference the current state when
    * manipulating the DOM.
    *
-   * @param {object} newState An object containing only a copy of the changed
+   * @param {object} newState - An object containing only a copy of the changed
    * state properties and their current values.
-   * @param {object} prevState An object containing only a copy of the changed
+   * @param {object} prevState - An object containing only a copy of the changed
    * state properties and their previous values.
    */
   sync(newState, prevState) {

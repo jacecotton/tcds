@@ -13,6 +13,7 @@
   appearance: none;
   display: inline-flex;
   align-items: center;
+  gap: $x-padding * 2;
   background: theme-color("primary");
   border: 0;
   color: #fff;
@@ -27,11 +28,6 @@
   white-space: nowrap;
   z-index: 1; // 4
 
-  /** Qualifiers */
-  @at-root :where(a#{&}) {
-    cursor: pointer;
-  }
-
   /** States */
   &:hover {
     --overlay-color: #{color("dark-2")};
@@ -45,7 +41,7 @@
 
   /** Modifiers */
   &--small {
-    font-size: font-size("min");
+    font-size: font-size("small");
   }
 
   &--large {
@@ -58,37 +54,23 @@
 
   &--full-width {
     display: flex;
+    justify-content: center;
     width: 100%;
-  }
-
-  &--icon-right {
-    flex-direction: row-reverse;
-    --icon-margin-top: #{$y-padding * -1};
-    --icon-margin-right: #{$x-padding * -1};
-    --icon-margin-bottom: #{$y-padding * -1};
-    --icon-margin-left: #{$x-padding};
-  }
-
-  &--icon-only {
-    --icon-background: none;
-    --icon-margin-top: #{$y-padding * -1};
-    --icon-margin-right: #{$x-padding * -1};
-    --icon-margin-bottom: #{$y-padding * -1};
-    --icon-margin-right: #{$x-padding * -1};
   }
 
   &--ghost {
     background: transparent;
     color: inherit;
+    gap: $x-padding;
+    --icon-background: transparent;
+  }
+
+  &--icon-right {
+    flex-direction: row-reverse;
+  }
+
+  &--icon-only {
     --icon-background: none;
-  }
-
-  &--ghost:not(#{&}--icon-right):not(#{&}--icon-only) {
-    --icon-margin-right: 0;
-  }
-
-  &--ghost#{&}--icon-right {
-    --icon-margin-left: 0;
   }
 
   /** Children */
@@ -108,11 +90,7 @@
     display: flex;
     align-items: center;
     background: var(--icon-background, #{color("dark-2")});
-    margin:
-      var(--icon-margin-top, #{$y-padding * -1})
-      var(--icon-margin-right, #{$x-padding})
-      var(--icon-margin-bottom, #{$y-padding * -1})
-      var(--icon-margin-left, #{$x-padding * -1});
+    margin: ($y-padding * -1) ($x-padding * -1);
     padding: $y-padding;
   }
 

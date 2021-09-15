@@ -137,6 +137,27 @@ Use smaller or larger buttons to establish a visual hierarchy, simplify the inte
 {% endembed %}
 </twig>
 
+<twig>
+{% embed "templates/includes/example-box/example-box.html.twig" with {
+  examples: {
+    "Twig": '{{ include("templates/components/button/button.html.twig", {
+  label: "Full-width button",
+  modifiers: ["full-width"],
+}) }}',
+    "HTML": '<button class="Button Button--full-width" data-component="Button">
+  Full-width button
+</button>',
+  },
+} %}
+  {% block result %}
+    {{ include("templates/components/button/button.html.twig", {
+      label: "Full-width button",
+      modifiers: ["full-width"],
+    }) }}
+  {% endblock %}
+{% endembed %}
+</twig>
+
 ### Icons
 
 Use icons as complementary visual aids (see [Icons](/design/icons)).
@@ -154,6 +175,7 @@ Button icons should be left-aligned (default) when:
   icon: "info",
 }) }}',
     "HTML": '<button class="Button" data-component="Button">
+  <!-- Icon code copied from src/tcds/icons/info.svg -->
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="arcs">
     <circle cx="12" cy="12" r="10"/>
     <path d="M12 16v-4m0-4h0"/>
@@ -184,6 +206,7 @@ Button icons should be right-aligned when:
   modifiers: ["icon-right"],
 }) }}',
     "HTML": '<button class="Button Button--icon-right" data-component="Button">
+  <!-- Icon code copied from src/tcds/icons/chevron-right.svg -->
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11.7 17.7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square">
     <path d="M2.8,14.8l6-6l-6-6"/>
   </svg>\n
@@ -212,6 +235,7 @@ To conserve space, icons can be used without text. However, a label should still
   modifiers: ["icon-only"],
 }) }}',
     "HTML": '<button class="Button Button--icon-only" data-component="Button" aria-label="Close" title="Close">
+  <!-- Icon code copied from src/tcds/icons/x.svg -->
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="arcs">
     <line x1="18" y1="6" x2="6" y2="18"></line>
     <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -240,6 +264,7 @@ For icon-only buttons that control the interface (such as a close button for a d
   modifiers: ["icon-only", "round", "ghost"],
 }) }}',
     "HTML": '<button class="Button Button--icon-only Button--round Button--ghost" data-component="Button" aria-label="Close" title="Close">
+  <!-- Icon code copied from src/tcds/icons/x.svg -->
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="arcs">
     <line x1="18" y1="6" x2="6" y2="18"></line>
     <line x1="6" y1="6" x2="18" y2="18"></line>

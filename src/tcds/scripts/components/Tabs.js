@@ -71,7 +71,7 @@ class Tabs extends Component {
   /** Utilities */
 
   /**
-   * Get the next tab after the currently active one.
+   * Get the next tab after the given one.
    *
    * @param {HTMLElement} [relativeTab=this.state.activeTab] - The tab relative
    * to which you want to get the next tab (defaults to the currently active
@@ -88,7 +88,7 @@ class Tabs extends Component {
   }
 
   /**
-   * Get the previous tab before the currently active one.
+   * Get the previous tab before the given one.
    *
    * @param {HTMLElement} [relativeTab=this.state.activeTab] - The tab relative
    * to which you want to get the previous tab (defaults to the currently active
