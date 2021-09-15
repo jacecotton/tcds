@@ -45,6 +45,7 @@ const config = {
     scripts: {
       src: [
         "./src/tcds/scripts/lib/*.js",
+        "./src/tcds/scripts/components/*.js",
         "./src/tcds/scripts/**/*.js",
       ],
       dest: "./public/dist/tcds/",

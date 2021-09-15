@@ -1,7 +1,9 @@
 @import "../../tcds/styles/abstracts/_variables";
 @import "../../tcds/styles/abstracts/_functions";
 
-@import "typography/_variables";
+@import "abstracts/_variables";
+@import "abstracts/_functions";
+
 @import "typography/_fonts";
 
 @import "base/_base";
@@ -13,6 +15,7 @@
 @import "primitives/_code";
 @import "primitives/_tables";
 
+@import "includes/_comparison-box";
 @import "includes/_example-box";
 
 @import "lib/_prism";

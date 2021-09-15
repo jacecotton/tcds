@@ -11,8 +11,8 @@ $type-size-ratio: 1.25;
 $type-levels: 1, 2, 3, 4;
 
 $font-sizes: (
-  "small-1": $type-base-size * .8,
-  "small-2": $type-base-size * .9,
+  "min": $type-base-size * .8,
+  "small": $type-base-size * .9,
   "medium": $type-base-size,
 );
 
@@ -28,15 +28,3 @@ $font-stacks: (
   "sans-serif": (Roboto, system-ui, sans-serif),
   "slab": (Roboto Slab, serif),
 );
-
-:root {
-  --font-stack-sans-serif: #{map-get($font-stacks, "sans-serif")};
-
-  --font-size-small-1: #{map-get($font-sizes, "small-1")};
-  --font-size-small-2: #{map-get($font-sizes, "small-2")};
-  --font-size-medium: #{map-get($font-sizes, "medium")};
-  --font-size-large-1: #{map-get($font-sizes, "large-1")};
-  --font-size-large-2: #{map-get($font-sizes, "large-2")};
-  --font-size-large-3: #{map-get($font-sizes, "large-3")};
-  --font-size-large-4: #{map-get($font-sizes, "large-4")};
-}

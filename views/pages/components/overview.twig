@@ -1,0 +1,23 @@
+{# DO NOT EDIT. This file was compiled from Markdown; please edit the source .md
+file and run the gulp process to compile (either `gulp` or `npm run dev` from
+the terminal). #}
+{% extends "templates/base.twig" %}
+{% block lead %}
+  Components are standardized, reusable elements that help content editors, designers, and developers rapidly prototype and build interfaces.
+{% endblock %}
+{% block body %}
+
+<p>To use a component, copy the example code included in each documentation page, then follow the API for your specific use case. First, make sure you&#39;ve installed the Design System by following the installation instructions on the <a href="/getting-started#installation">Getting Started</a> page. Try the <a href="/components/button">Button</a> as a simple but representative example to get you up to speed.</p>
+<p>Note: You can copy either the Twig code (if you have Twig set up, refer to the Getting Started instructions), or the plain HTML code. While the HTML is most convenient because it requires minimal prior setup and can be freely modified, using the Twig code is recommended instead. By using a Twig include, the markup for a component can be updated from one place and reflected everywhere the component is used. Furthermore, it gives a simplified API for making standardized modifications, and can be easier to read at a glance.</p>
+<p>All components are designed and coded to meet the Design System&#39;s principles and goals as stated on the <a href="/">Introduction</a> page, as well as the standards specified in the <a href="/style-guide/general">coding style guide</a>. Furthermore, components center the following principles in their development:</p>
+<ul>
+<li><strong>Maintainability and scalability</strong> — Ease of iteration and routine maintenance is considered from the beginning, from the project&#39;s overall architecture to the coding practices employed in each component. The intended result is technical debt that&#39;s easy to avoid or pay, as well as requirements that are allowed to change drastically with code that need not.</li>
+<li><strong>Interoperability</strong> — All components are plug-and-play, working independently of any particular technology stack or environment.</li>
+</ul>
+<h2 id="see-also">See also</h2>
+<p>Different from, but sharing superficial similarities to components are:</p>
+<ul>
+<li><a href="/patterns/overview">Patterns</a> — Elements that may be composed of multiple components and other elements, and are not <em>necessarily</em> reusable. They are often highly specific to certain content and contexts, such as the <a href="/patterns/header">Header</a> or <a href="/patterns/hero">Hero</a>.</li>
+<li><a href="/primitives/overview">Primitives</a> — Simpler elements than components, the more basic &quot;building blocks&quot; of the web, such as <a href="/primtives/links">links</a>, <a href="/primitives/headings-and-paragraphs">headings and paragraphs</a>. They are documented in the Design System because they have specific styling associated with them, and in some cases guidelines for their use.</li>
+</ul>
+{% endblock %}

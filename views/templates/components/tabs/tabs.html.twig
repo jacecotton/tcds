@@ -11,19 +11,23 @@
 {% set root_element = "div" %}
 
 {% block inner_content %}
-  <div role="tablist" aria-label="{{ heading ?: "Tabs" }}">
+  <div role="tablist" aria-label="{{ heading ?: "Tabs" }}" class="Tabs__tablist">
+    {% set tab_ids = [] %}
+
     {% for tab in tabs %}
-      {% set tabId = tab.label|clean_id %}
+      {% set tab_id = tab.label|clean_id %}
     
       {% if id %}
-        {% set tabId = tabId ~ "-" ~ id  %}
+        {% set tab_id = tab_id ~ "-" ~ id  %}
       {% endif %}
 
-      {{ heading_level ? "<h#{heading_level} id='#{tabId}' class='Tabs__heading'>" }}
+      {% set tab_ids = tab_ids|merge([tab_id]) %}
+
+      {{ heading_level ? "<h#{heading_level} id='#{tab_id}' class='Tabs__heading'>" }}
         <button
           role="tab"
-          id="{{ tabId }}-button"
-          aria-controls="{{ tabId }}-content"
+          id="{{ tab_id }}-button"
+          aria-controls="{{ tab_id }}-content"
           class="Tabs__tab"
         >
           {{ tab.label|raw }}
@@ -32,24 +36,20 @@
     {% endfor %}
   </div>
 
-  {% for tab in tabs %}
-    {% set tabId = tab.label|clean_id %}
-    
-    {% if id %}
-      {% set tabId = tabId ~ "-" ~ id  %}
-    {% endif %}
+  <div data-tabpanels class="Tabs__panels">
+    {% for index, tab in tabs %}
+      <div
+        role="tabpanel"
+        id="{{ tab_ids[index] }}-content"
+        aria-labelledby="{{ tab_ids[index] }}-button"
+        class="Tabs__panel"
+      >
+        {{ tab.content ? tab.content|raw }}
 
-    <div
-      role="tabpanel"
-      id="{{ tabId }}-content"
-      aria-labelledby="{{ tabId }}-button"
-      class="Tabs__panel"
-    >
-      {{ tab.content ? tab.content|raw }}
-      
-      {% if block(tab.block) is defined %}
-        {{ block(tab.block) }}
-      {% endif %}
-    </div>
-  {% endfor %}
+        {% if block(tab.block) is defined %}
+          {{ block(tab.block) }}
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
 {% endblock %}

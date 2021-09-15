@@ -1,3 +1,7 @@
 @function y-baseline($unit: "px") {
   @return map-get($y-baseline, $unit);
 }
+
+@function layer($layer) {
+  @return map-get($layers, $layer);
+}

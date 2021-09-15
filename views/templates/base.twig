@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>{{ title ? "#{title} - " }}Texas Children's Web Design System</title>
+  <title>{{ title ? "#{title} - " }}Texas Children's Design System</title>
 
   <link href="/dist/tcds/tcds.css" rel="stylesheet">
   <link href="/styles/main.css" rel="stylesheet">
@@ -24,6 +24,17 @@
 
       <h1 class="page-title">{{ title }}</h1>
     </header>
+
+    <details hidden data-toc-disclosure class="toc">
+      <summary class="toc__toggle" title="Table of contents">
+        <span class="visually-hidden" id="toc-label">Table of contents</span>
+        {{ include("templates/components/icon/icon.html.twig", {
+          icon: "list",
+          width: "16",
+        }) }}
+      </summary>
+      <nav data-toc class="toc__nav" aria-labelledby="toc-label"></nav>
+    </details>
 
     <p class="lead">{% block lead %}{% endblock %}</p>
 

@@ -7,19 +7,20 @@
  * needed to create a component.
  *
  * Available variables:
- * - component_name: The name of the component in CamelCase.
- * - component_classes: Other classes to add to the root element.
- * - required_props: Props that must be set to some value when the component
- *   is used.
+ * - component_name: The name of the component in PascalCase.
+ * - component_classes: An array of other classes to add to the root element.
+ * - required_props: Props that must be set to some value when the component is
+ *   used.
  * - root_element: The root-most containing HTML element (default is "div").
  * - modifiers: An array of modifiers to append to the component's class name
  *   (separated by two hyphens, following the BEM convention, e.g.
- *   'modifiers: ["foo", "bar"]' ->
+ *   '{ component_name: "MyComponent", modifiers: ["foo", "bar"] }' ->
  *   'class="MyComponent MyComponent--foo MyComponent--bar"').
- * - custom_classes: An array of arbitrary classes to add to the root element.
+ * - custom_classes: An array of other/non-modifier classes to add to the root
+     element.
  * - custom_attributes: An object of key-value pairs representing arbitrary
  *   attributes to add to the root element, e.g.
- *   'custom_attributes: {"href": "/", "rel": "home"}' ->
+ *   'custom_attributes: { "href": "/", "rel": "home" }' ->
  *   'href="/" rel="home"'.
  *
  * Note that the last three variables are pass-through variables; they are
@@ -31,8 +32,8 @@
  * Available blocks:
  * - root_attributes: A less programmatic way of adding arbitrary attributes to
  *   the root element (than 'custom_attributes'). This opens up a space before
- *   the closing token of the opening root element tag to add additional
- *   attributes as bare HTML.
+ *   the closing token of the opening root tag to add additional attributes as
+ *   bare HTML.
  * - inner_content: The content of the component, added between the opening and
  *   closing root HTML tags.
  */

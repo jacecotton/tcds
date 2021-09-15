@@ -93,6 +93,14 @@ module.exports = [
     title: "Components",
     pages: [
       {
+        // include API with custom_classes and etc.
+        // mention meta component
+        title: "Overview",
+        description: "",
+        audience: [],
+        category: [],
+      },
+      {
         title: "Accordion",
         description: standardDesc.components("Accordion"),
         audience: ["developers", "content editors", "designers"],
@@ -141,8 +149,8 @@ module.exports = [
         category: [],
       },
       {
-        title: "Modal",
-        description: standardDesc.components("Modal"),
+        title: "Dialog",
+        description: standardDesc.components("Dialog"),
         audience: ["developers", "content editors", "designers"],
         category: [],
       },

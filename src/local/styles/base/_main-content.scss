@@ -1,10 +1,13 @@
 main {
   grid-column: 3 / -1;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 5rem max(var(--outer-gutter), calc((100vw - var(--boxed-width)) / 2)) 3rem 3rem;
   max-height: 100vh;
   scroll-behavior: smooth;
   scroll-padding-top: 2rem;
+  color: color("gray-6");
+  line-height: 1.8;
 }
 
 .page-masthead {
@@ -16,7 +19,7 @@ main {
 
 .page-category {
   grid-row: 1 / 2;
-  font-size: font-size("small-2");
+  font-size: font-size("small");
   letter-spacing: .075em;
   line-height: y-baseline() * 2;
   text-transform: uppercase;
@@ -25,6 +28,91 @@ main {
 .page-title {
   grid-row: 2 / 3;
   line-height: y-baseline() * 3;
+}
+
+.toc {
+  $this: &;
+
+  position: fixed;
+  top: 3rem;
+  right: 3rem;
+  z-index: layer("toc");
+  background: #fff;
+  box-shadow: 0 0 1rem hsl(0 0% 0% / 25%);
+  border-radius: 2rem;
+  color: hsl(0 0% 0% / 80%);
+  user-select: none;
+  transition:
+    border-radius animation("expressive"),
+    box-shadow animation("expressive");
+
+  &[open] {
+    border-radius: .5rem;
+    box-shadow: 0 0 1.5rem hsl(0 0% 0% / 5%);
+    --animation: toc-open #{animation("expressive")};
+  }
+
+  &__toggle {
+    list-style: none;
+    display: flex;
+    float: right;
+    padding: .5rem;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+
+  &__nav {
+    --padding: 1.5rem 1.5rem 1.5rem 1rem;
+    --font-size: 1rem;
+
+    padding: var(--padding);
+    font-size: var(--font-size);
+    overflow: hidden;
+    animation: var(--animation, none);
+
+    @keyframes toc-open {
+      0% {
+        padding: 0;
+        font-size: 0;
+        opacity: 0;
+      }
+      
+      30% {
+        padding: var(--padding);
+        font-size: var(--font-size);
+        opacity: 0;
+      }
+      
+      100% {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__list {
+    margin: 0 0 0 1rem;
+    list-style: none;
+  }
+
+  &__link {
+    color: color("gray-5");
+    text-decoration: none;
+    border-left: 4px solid transparent;
+    padding-left: .5rem;
+    margin-left: -.5rem;
+    transition: border animation("expressive");
+
+    &:hover {
+      color: #000;
+      text-decoration: underline;
+    }
+
+    &[aria-current] {
+      border-left: 4px solid color("dark-2");
+    }
+  }
 }
 
 .lead {

@@ -1,0 +1,25 @@
+.comparison-box {
+  &--negative {
+    --color: #{color("darkred")};
+  }
+
+  &--positive {
+    --color: #{color("darkgreen")};
+  }
+
+  &__frame {
+    border-left: 3px solid var(--color, #{color("gray-2")});
+    padding-left: 1rem;
+    margin: 1rem 0;
+  }
+
+  &__label {
+    font-weight: bold;
+    color: var(--color);
+    margin-bottom: .5rem;
+  }
+
+  &__note {
+    color: color("gray-5");
+  }
+}

@@ -25,12 +25,12 @@
  * 2. Respect motion preferences by turning animations and transitions off
  *    according to system settings.
  * 3. Also disable animations and transitions for displays with a low refresh
- *    rate, which would display them in a way potentially detrimental to UX.
+ *    rate, which would potentially display them in a way detrimental to UX.
  * 4. Reduce motion by setting animations and transitions to become
  *    imperceptibly fast, rather than turn them off completely, so that
- *    `transitionend` JavaScript events still fire.
+ *    `transitionend` and `animationend` JavaScript events still fire.
  * 5. Prevent infinite animations, since infinitely-running high-speed
- *    animations would be intensive and potentially detrimental to UX.
+ *    animations would be inefficient and potentially detrimental to UX.
  * 6. Reduce motion by removing animated scrolling to anchor elements.
  */
 
@@ -69,11 +69,11 @@ body {
 }
 
 /**
- * 1. Remove touch delay on links, buttons, selects, checkboxes, and radios.
- *    This delay is an affordance for double-tapping to zoom in, but is
- *    unnecessary for (and can cause confusion on) elements where deliberate
- *    interaction is presumable when double-tapped. (Note that `manipulation`
- *    still affords touch-then-scrolling interaction.)
+ * 1. Remove touch delay on most interactive elements. This delay is an
+ *    affordance for double-tapping to zoom in, but is unnecessary for (and can
+ *    cause confusion on) elements where deliberate interaction is presumable
+ *    when double-tapped. (Note that `manipulation` still affords
+ *    touch-then-scrolling interaction.)
  */
 
 a,
@@ -117,20 +117,22 @@ video {
  * Hide an element visually while keeping it exposed to assistive technology
  * (and focusable for keyboard navigation).
  *
- * 1. Hide content by "clipping" it away entirely (including borders). Note that
+ * 1. Do not apply styles if the element is focused or active (for instance if 
+      clicked after focusing).
+ * 2. Hide content by "clipping" it away entirely (including borders). Note that
  *    `clip` is deprecated, but the new `clip-path` lacks sufficient browser
  *    support to use by itself.
- * 2. Dimensions need to be at least 1px, otherwise most screen readers will
+ * 3. Dimensions need to be at least 1px, otherwise most screen readers will
  *    skip it.
- * 3. Remove element from the document flow so that it does not take up a 1px
+ * 4. Remove element from the document flow so that it does not take up a 1px
  *    space (which even if imperceptible in most instances can still cause
  *    otherwise nonexistent scrollbars in the containing scrollable area).
  */
 
-.visually-hidden:not(:focus):not(:active) {
-  clip: rect(0, 0, 0, 0); // 1
-  clip-path: inset(50%); // 1
-  height: 1px; // 2
-  width: 1px; // 2
-  position: absolute; // 3
+.visually-hidden:not(:focus):not(:active) { // 1
+  clip: rect(0, 0, 0, 0); // 2
+  clip-path: inset(50%); // 2
+  height: 1px; // 3
+  width: 1px; // 3
+  position: absolute; // 4
 }

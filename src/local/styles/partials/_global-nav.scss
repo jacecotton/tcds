@@ -13,7 +13,7 @@
     display: block;
     padding: 0 y-baseline("rem");
     color: color("gray-6");
-    font-size: font-size("small-2");
+    font-size: font-size("small");
     line-height: y-baseline("rem") * 2.5;
     text-decoration: none;
     transition: background var(--animation-productive);
@@ -30,7 +30,7 @@
   &__category {
     margin: 0 0 y-baseline("rem") y-baseline("rem");
     color: color("gray-4");
-    font-size: font-size("small-2");
+    font-size: font-size("small");
     font-weight: 700;
     letter-spacing: .075em;
     line-height: y-baseline("rem");

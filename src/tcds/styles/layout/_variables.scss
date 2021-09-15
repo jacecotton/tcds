@@ -1,19 +1,9 @@
-/**
- * Use Sass variables internally.
- */
 $y-baseline: (
   "px": 16px,
   "em": 1em,
   "rem": 1rem,
 );
 
-/**
- * Export variables for use by other stylesheets via root-scoped custom
- * properties.
- */
-:root {
-  --y-baseline: #{map-get($y-baseline, "px")};
-  --y-baseline-px: var(--y-baseline);
-  --y-baseline-em: #{map-get($y-baseline, "em")};
-  --y-baseline-rem: #{map-get($y-baseline, "rem")};
-}
+$layers: (
+  "dialog": 3,
+);

@@ -4,6 +4,12 @@
 
 {% set root_element = "span" %}
 
+{% if width %}
+  {% set custom_attributes = {
+    "style": "width: #{width}px",
+  } %}
+{% endif %}
+
 {% block inner_content %}
   {{ include("templates/icons/#{icon}.svg.twig") }}
 {% endblock %}

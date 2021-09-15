@@ -18,13 +18,16 @@
 
   {% if link %}
     href="{{ link }}"
-  {% else %}
-    {% if onclick %}
-      onclick="{{ onclick }}"
-    {% endif %}
-    {% if type %}
-      type="{{ type }}"
-    {% endif %}
+  {% endif %}
+  {% if onclick %}
+    onclick="{{ onclick }}"
+  {% endif %}
+  {% if type %}
+    type="{{ type }}"
+  {% endif %}
+
+  {% if controls %}
+    aria-controls="{{ controls }}"
   {% endif %}
 {% endblock %}
 

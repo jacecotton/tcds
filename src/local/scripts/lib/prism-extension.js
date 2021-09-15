@@ -9,7 +9,7 @@ window.setTimeout(function() {
 
         if(language === "terminal") {
           const code = block.querySelector("code");
-          const marker = "<span class=\"line-marker\">$ </span>";
+          const marker = `<span class="line-marker">$ </span>`;
           
           code.childNodes.forEach((child) => {
             if(child.nodeType === 3) {

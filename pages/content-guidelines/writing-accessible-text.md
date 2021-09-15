@@ -17,18 +17,17 @@ Headings, marked up with `h1` through `h6` elements, help break up and organize 
 Heading elements help *outline* a page's landmark regions (navigation, main content, etc.) They should not be thought of as strictly related to their font size.
 
 * Do not use heading elements purely to change font size or emphasize text. If you need large text that doesn't strictly relate to a web page's outline, use CSS or a corresponding utility class (see [Typography](/design/typography)).
-* Inversely, you may sometimes need to use a heading element for its semantic meaning, but reduce its size to fit better within the page's design.
-  * Heading elements may even be visually hidden, and strictly use to convey semantic meaning to screen readers and search engines.
+* Inversely, you may sometimes need to use a heading element for its semantic meaning, but reduce its size to fit better within the page's design. Heading elements may even be visually hidden, and strictly used to convey semantic meaning to screen readers and search engines.
 
-### Using `h1`
+### Using H1
 
 There should only ever be one `h1` element on a page, and it should contain the current page's name or topic. It should not contain the website name, and it should not be used to simply make the biggest text possible.
 
-### Using `h5` and `h6`
+### Using H5 and H6
 
 `h5` and `h6` elements should generally not be used. If you find yourself needing them, your content is probably too complicated and should be split up between multiple pages or simplified.
 
-Using them can also make a page's outline too deep, which can be cumbersome for users of assistive technology. When in doubt, the best course of action is to test your page with an actual screen reader.
+Using them can also make a page's outline too deep, which can be cumbersome for users of assistive technology. When in doubt, the best course of action is always to actually test the content with a screen reader.
 
 ## `alt` text
 

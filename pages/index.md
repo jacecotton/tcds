@@ -2,7 +2,7 @@
   Texas Children's Web Design System (TCDS) is a centralized library of resources to help create high-quality digital properties for the web.
 </lead>
 
-## Explore
+The Design System includes:
 
 <twig>
   {% set contents = [

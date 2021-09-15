@@ -49,7 +49,7 @@ All pages should be written in Markdown in the [pages/](./pages) folder.
 
 To create a route and metadata for your page, make an entry in [content.js](./content.js) inside the relevant parent object (or create another). Follow the schema of existing pages.
 
-* **Note:** You can use `<twig></twig>` tags within markdown files to insert arbitrary Twig code. This allows you to use components from the Design System within pages. Without the tags, the Twig code will be sanitized (useful for displaying example Twig code).
+* **Note:** You can use `<twig></twig>` tags within markdown files to insert arbitrary Twig code. This allows you to use components from the Design System within pages. Without the tags, the Twig code will be escaped (useful for displaying example Twig code).
 
 ## Project structure
 

@@ -1,0 +1,32 @@
+{% extends "templates/components/component/component.html.twig" %}
+
+{% set component_name = "Dialog" %}
+
+{% set required_props = [title] %}
+
+{% set root_element = "div" %}
+
+{% block root_attributes %}
+  role="dialog"
+  id="{{ id ?: title|clean_id }}"
+  tabindex="0"
+  hidden
+{% endblock %}
+
+{% block inner_content %}
+  <div data-dialog-close class="Dialog__backdrop"></div>
+
+  <div class="Dialog__content">
+    {{ include("templates/components/button/button.html.twig", {
+      label: "Close dialog",
+      icon: "x",
+      modifiers: ["icon-only", "round"],
+      custom_classes: ["Dialog__close", "bg-secondary"],
+      custom_attributes: {
+        "data-dialog-close": "true",
+      },
+    }) }}
+
+    <h3>{{ title }}</h3>
+  </div>
+{% endblock %}

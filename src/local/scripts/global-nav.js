@@ -7,12 +7,9 @@
  * Additionally, if the current page isn't within the global nav's scroll
  * window, smooth scroll to it.
  */
-
 (function() {
   // Get global nav.
   const globalNav = document.querySelector(".global-nav");
-  // Get all global nav links.
-  const globalNavLinks = document.querySelectorAll(".global-nav__link");
 
   // When the user scrolls, store the position as a cookie.
   globalNav.addEventListener("scroll", () => {
@@ -22,7 +19,7 @@
   // If the cookie exists on page load...
   if(document.cookie) {
     // Get the position.
-    var navScrollPosition = document.cookie.split("; ").find(row => row.startsWith("navScroll=")).split("=")[1];
+    var navScrollPosition = document.cookie.split("; ").find((row) => row.startsWith("navScroll=")).split("=")[1];
   }
 
   // If we have a position, scroll to it.
@@ -61,11 +58,7 @@
     // covering elements that would otherwise be visible at a 1.0 threshold.
     threshold: .8,
   });
-  
-  globalNavLinks.forEach((link) => {
-    // Observe the active link only.
-    if(link.getAttribute("aria-current") === "page") {
-      observer.observe(link);
-    }
-  });
+
+  // Observe the active link only.
+  observer.observe(document.querySelector(".global-nav [aria-current]"));
 }());

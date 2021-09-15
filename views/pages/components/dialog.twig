@@ -1,0 +1,16 @@
+{# DO NOT EDIT. This file was compiled from Markdown; please edit the source .md
+file and run the gulp process to compile (either `gulp` or `npm run dev` from
+the terminal). #}
+{% extends "templates/base.twig" %}
+
+{% block body %}
+  {{ include("templates/components/button/button.html.twig", {
+    label: "Open dialog",
+    custom_attributes: {
+      "data-dialog-toggle": "my-dialog",
+    },
+  }) }}
+  {{ include("templates/components/dialog/dialog.html.twig", {
+    title: "My dialog",
+  }) }}
+{% endblock %}

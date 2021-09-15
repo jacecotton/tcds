@@ -1,10 +1,10 @@
 /**
  * Open external links in new tabs.
  */
-
 (function() {
-  // Define what counts as "internal".
+  // Create a test for what counts as "internal".
   const internal = new RegExp(location.host.replace("www.", ""), "i");
+
   // Get all links.
   const links = document.querySelectorAll("a");
 

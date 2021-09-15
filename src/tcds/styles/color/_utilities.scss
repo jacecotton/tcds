@@ -1,0 +1,14 @@
+@each $name, $color in $colors {
+  .bg-#{$name} {
+    background: $color;
+  }
+}
+
+$theme-color-list: ("primary", "secondary", "link", "neutral");
+
+@each $theme-color in $theme-color-list {
+  .bg-#{$theme-color} {
+    background: theme-color($theme-color);
+    color: theme-color("text-on-#{$theme-color}");
+  }
+}

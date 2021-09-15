@@ -13,8 +13,9 @@
 
 String.prototype.slugify = function(separator = "-") {
   return this
-    .toString()
+    // Trim beginning and end whitespace.
     .trim()
+    // Lowercase all letters.
     .toLowerCase()
     // Remove accent from base letter.
     .normalize("NFD").replace(/[\u0300-\u036f]/g, "")

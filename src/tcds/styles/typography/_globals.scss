@@ -4,8 +4,12 @@ body {
   line-height: 1.7;
 }
 
+// Get group of heading tag selectors.
 $hgroup-tags: "h1, h2, h3, h4, h5, h6";
+// Define group of utility classes that will emulate the style of heading tags
+// (for use without associated semantics).
 $hgroup-util: ".h1, .h2, .h3, .h4, .h5, .h6";
+// Define grouping for all heading selectors (tags and utility classes).
 $hgroup-all: $hgroup-tags, $hgroup-util;
 
 :where(#{$hgroup-all}) {
@@ -49,9 +53,13 @@ h2,
 }
 
 h3,
-.h3,
-.text-large-2 {
-  font-size: font-size("large-2");
+.h3 {
+  font-weight: 400;
+  
+  @at-root &,
+  .text-large-2 {
+    font-size: font-size("large-2");
+  }
 }
 
 h4,
@@ -68,13 +76,12 @@ h5,
 
 h6,
 .h6,
-.text-small-2 {
-  font-size: font-size("small-2");
+.text-small {
+  font-size: font-size("small");
 }
 
-.text-small,
-.text-small-1 {
-  font-size: font-size("small-1");
+.text-min {
+  font-size: font-size("min");
 }
 
 .font-slab {
@@ -98,5 +105,5 @@ p {
 }
 
 a {
-  color: var(--theme-color-link);
+  color: theme-color("link");
 }

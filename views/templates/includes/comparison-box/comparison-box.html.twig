@@ -1,0 +1,21 @@
+<section class="comparison-box">
+  {% for label, content in examples %}
+    {% if content[0] is defined %}
+      {% for content in content %}
+        {{ _self.comparison_content(label, content) }}
+      {% endfor %}
+    {% else %}
+      {{ _self.comparison_content(label, content) }}
+    {% endif %}
+  {% endfor %}
+</section>
+
+{% macro comparison_content(label, content) %}
+  <div class="comparison-box__frame {% if label == "Avoid" %} comparison-box--negative {% elseif label == "Prefer" %} comparison-box--positive {% endif %}">
+    <p class="comparison-box__label">{{ label }}</p>
+
+    <pre class="line-numbers language-{{ content.code.lang }}"><code class="language-{{ content.code.lang }}">{{ content.code.content|escape }}</code></pre>
+
+    <p class="comparison-box__note">{{ content.content }}</p>
+  </div>
+{% endmacro %}

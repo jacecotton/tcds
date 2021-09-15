@@ -2,8 +2,12 @@
 file and run the gulp process to compile (either `gulp` or `npm run dev` from
 the terminal). #}
 {% extends "templates/base.twig" %}
+{% block lead %}
+  This style guide should inform how to write, structure, and organize CSS. It documents all consistently used conventions and rules of thumb across the codebase, and can help with both creating styles and grokking existing ones.
+{% endblock %}
+{% block body %}
 
-{% block body %}<h2 id="naming">Naming</h2>
+<h2 id="naming">Naming</h2>
 <p>While naming also applies to markup, the stylesheet should be considered the authoritative owner of naming, therefore guidelines are included here.</p>
 <ul>
 <li>All naming (classes, IDs, custom attributes, variables, etc.) should use <code>kebab-case</code> (lowercase, hyphen-separated).<ul>
@@ -11,12 +15,60 @@ the terminal). #}
 </ul>
 </li>
 <li>Names should be as short as possible, but as long as necessary. For example, <code>.main-nav</code> instead of <code>.main-navigation</code>, but <code>.my-button</code> rather than <code>.my-btn</code>.</li>
-<li>Prioritize semantic accuracy; devise classes according to the element&#39;s function or purpose, rather than its presentation or position (e.g. <code>.main-nav</code>, not <code>.top-nav</code>; <code>.Button--primary</code>, not <code>.Button--red</code>).</li>
-<li>Above all, prioritize clarity and reusability.</li>
 </ul>
-<h3 id="bem-classes">BEM Classes</h3>
-<p>Use the <a href="https://sparkbox.com/foundry/bem_by_example" title="BEM by Example - Sparkbox">BEM convention</a> for naming classes of block-level elements (and their children). For instance, all components and template partials should use BEM classes.</p>
-<p>In most cases, try to stick to <em>one class, zero nesting</em>. Leverage Sass and BEM together to <a href="https://css-tricks.com/using-sass-control-scope-bem-naming/" title="Using Sass to Control Scope With BEM Naming - CSS-Tricks">control scope and keep specificity low</a>.</p>
+<h3 id="semantic-vs-functional">Semantic vs. functional</h3>
+<p>Name classes based on the design pattern followed, then the function or purpose. It is best for a design mockup to prescribe the naming of elements, keeping them generic (i.e. content-agnostic), reusable, and consistent. Class names should then be modeled on that established, documented terminology.</p>
+<p>Avoid naming classes based on an element&#39;s appearance (&quot;functional&quot; naming) or content (&quot;semantic&quot; naming). This can create class names that are too dependent on the markup or content, which can violate a clear separation of concerns or reduce reusability, respectively.</p>
+<details>
+  <summary>Examples</summary>
+  
+    {{ include("templates/includes/comparison-box/comparison-box.html.twig", {
+      examples: {
+        "Avoid": [
+          {
+            content: "Semantic naming is too specific to the content and not reusable.",
+            code: {
+              lang: "html",
+              content: '<div class="doctor-info">
+  <img src="dr-smith.jpg" alt="Dr. Smith" class="doctor-info__portrait">
+  <h3 class="doctor-info__name">Dr. John Smith</h3>
+  ...
+</div>'
+            },
+          },
+          {
+            content: "Functional naming is too specific to the markup and violates separation of concerns.",
+            code: {
+              lang: "html",
+              content: '<div class="bg-white rounded shadow-md p-4 text-base">
+  <img src="dr-smith.jpg" alt="Dr. Smith" class="w-full mb-4">
+  <h3 class="text-lg text-gray-500 mb-4">Dr. John Smith</h3>
+  ...
+</div>',
+            },
+          },
+        ],
+        "Prefer": {
+          content: "Names based on established design patterns are reusable and do not prescribe a particular appearance, markup structure, or content.",
+          code: {
+            lang: "html",
+            content: '<div class="Card">
+  <img src="dr-smith.jpg" alt="Dr. Smith" class="Card__media">
+  <h3 class="Card__title">Dr. John Smith</h3>
+  ...
+</div>',
+          },
+        },
+      },
+    }) }}
+  
+</details>
+
+<p>There are some exceptions. Semantic naming may be acceptable if the design pattern is intrinsically related to a certain set or type of content. In these instances, avoiding any reference to content in the class name is not required. However, still aim to be as generic and reusable as possible. For instance, in the above example, the more generic alternatives to <code>portrait</code> and <code>name</code>, which imply a person as the subject, are <code>media</code> and <code>title</code>, which imply only the <em>type</em> of content rather than a subject.</p>
+<p>Functional classes (aka utilities, helpers, or tokens) are acceptable while writing and marking up text content, or constructing one-off pages. They should mainly be avoided within components, page templates, and partials (i.e. anything that&#39;s reused or systematized).</p>
+<h3 id="bem-convention">BEM convention</h3>
+<p>Use the <a href="https://sparkbox.com/foundry/bem_by_example" title="BEM by Example - Sparkbox">BEM convention</a> for naming classes of most block-level elements (and their children), particularly components, templates, and partials.</p>
+<p>When possible, stick to the &quot;one class, zero nesting&quot; principle. Leverage Sass and BEM together to <a href="https://css-tricks.com/using-sass-control-scope-bem-naming/" title="Using Sass to Control Scope With BEM Naming - CSS-Tricks">control scope and keep specificity low</a>.</p>
 <details>
   <summary>Example</summary>
 
@@ -27,7 +79,7 @@ the terminal). #}
   &lt;/figure&gt;
   &lt;div class=&quot;Card__body&quot;&gt;
     &lt;h3 class=&quot;Card__title&quot;&gt;My card&lt;/h3&gt;
-    &lt;p class=&quot;Card__text&quot;&gt;Lorem ipsum dolor sit amet.&lt;/p&gt;
+    &lt;p class=&quot;Card__copy&quot;&gt;Lorem ipsum dolor sit amet.&lt;/p&gt;
   &lt;/div&gt;
 &lt;/article&gt;
 </code></pre>
@@ -36,11 +88,11 @@ the terminal). #}
   /* base styles go here */
 
   &amp;--compact {
-    /* compact modifier styles go here */
+    /* &quot;compact&quot; modifier styles go here */
   }
 
   &amp;__media {
-    /* styles for child element goes here */
+    /* &quot;media&quot; child element styles go here */
   }
 }
 </code></pre>
@@ -59,29 +111,32 @@ the terminal). #}
 </code></pre>
 </details>
 
-<p>These keeps specificity as low as possible, while still benefitting from implied parent-child relationships between the elements.</p>
+<p>This keeps specificity as low as possible, while still benefitting from implied parent-child relationships between the elements.</p>
 <h2 id="specificity-management">Specificity management</h2>
+<p>The general goal with specificity management is to always keep it as low as possible. Higher specificity styles can become difficult to manage and keep track of, especially as a project scales.</p>
 <ul>
-<li>Avoid all uses of <code>!important</code>, except in exceedingly rare circumstances, like when accessibility is implicated.</li>
-<li>Avoid using <code>#</code> selectors and compound selectors (<code>div.class</code> or <code>.class-1.class-2</code>). These selectors have a higher specificity than single classes, and can become difficult to manage at scale.<ul>
+<li>Avoid using <code>!important</code>.</li>
+<li>Generally avoid using <code>#</code> selectors and compound selectors (<code>div.class</code> or <code>.class-1.class-2</code>). These selectors have a higher specificity than single classes.<ul>
 <li>If absolutely necessary, wrap these selectors in a <code>:where()</code> pseudo-class function to zero out the specificity.</li>
 <li>Or in the case of IDs, target them with an attribute selector (<code>[id=my-id]</code>), which has the same specificity as a class.</li>
 </ul>
 </li>
-<li>Avoid descendant selectors where possible, which can increase specificity, negatively impact performance, and create brittle styles tied too closely to the markup. Using BEM can help keep selector depth shallow, while still implying parent-child relationships between elements (see above).</li>
+<li>Avoid descendant selectors where possible, which can increase specificity, impact performance (albeit negligibly), and create brittle styles too dependent on the markup. Using BEM can help keep selector depth shallow, while still implying parent-child relationships between elements (see above).</li>
 </ul>
 <h2 id="nesting">Nesting</h2>
 <p>Even with BEM, keep ruleset nesting to a reasonable minimum.</p>
 <ul>
-<li>It can generate unintentionally verbose and high-specificity selectors in the compiled CSS that can be difficult to foresee. Particularly if you nest within a group of selectors—consider using the native <code>:is()</code> or <code>:where()</code> for grouping parent selectors before nesting.</li>
+<li>It can generate unintentionally verbose and high-specificity selectors in the compiled CSS that can be difficult to foresee, particularly if you nest inside a group selector ruleset. Consider using the native <code>:is()</code> or <code>:where()</code> for grouping parent selectors before nesting.</li>
 <li>It can become difficult to read and organize as the stylesheet grows. In a deeply nested stylesheet, moving blocks of code has to be done with careful regard for placement within the nesting context, which can be easy to break.</li>
-<li>It can become difficult to group related selectors that don&#39;t necessarily belong to the same nesting context, potentially leading to duplication or unpredictable code placement.</li>
+<li>It can become difficult to group related selectors that don&#39;t necessarily belong to the same nesting context, potentially leading to duplication or inconsistent code placement.</li>
 </ul>
 <h2 id="declaration-order">Declaration order</h2>
+<p>By default or when in doubt, order declarations alphabetically (based on the property name).</p>
+<p>If a group of declarations act in concert to achieve a single effect (e.g. <code>position: sticky; top: 0</code>), group them together regardless of alphabetization. In doing so, list declarations by order of dependence or relevance. For instance, <code>align-items</code> is meaningless apart from a flexbox or grid container, so list <code>display</code> first.</p>
+<p>In sum, while you should generally list declarations alphabetically, it is more important to help those reading your code understand it in a procedural and logical order, rather than having them jump around the ruleset just to understand the cumulative effect of each declaration.</p>
+<h2 id="commenting">Commenting</h2>
+<h2 id="syntax-formatting">Syntax formatting</h2>
 <ul>
-<li>By default or when in doubt, order declarations alphabetically (based on the property name).</li>
-<li>If a group of declarations act in concert to achieve a single effect (e.g. <code>position: sticky; top: 0</code>), group them together regardless of alphabetization.</li>
-<li>In doing so, list declarations by order of dependence or relevance. For instance, <code>align-items</code> is meaningless apart from flex or grid, so list <code>display</code> first.</li>
+<li>Use one colon for pseudo-classes (<code>:hover</code>) and two for pseudo-elements (<code>::before</code>).</li>
 </ul>
-<p>In sum, while you should generally list declarations alphabetically, it is more important to help those reading your code understand it in a procedrual and logical order, rather than having them jump around the ruleset just to understand the cumulative effect of each declaration.</p>
 {% endblock %}

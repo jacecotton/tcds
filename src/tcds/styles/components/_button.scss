@@ -22,12 +22,13 @@
   padding: $y-padding $x-padding;
   position: relative; // 2
   text-decoration: none; // 3
+  transform: scale(var(--scale, 1)) translate(var(--translate, 0, 0));
   transition: transform animation("productive");
   white-space: nowrap;
   z-index: 1; // 4
 
   /** Qualifiers */
-  a#{&} {
+  @at-root :where(a#{&}) {
     cursor: pointer;
   }
 
@@ -39,34 +40,55 @@
 
   &:active {
     --overlay-color: #{color("dark-3")};
-    transform: scale(.98);
+    --scale: .98;
   }
 
   /** Modifiers */
   &--small {
-    font-size: font-size("small-1");
+    font-size: font-size("min");
   }
 
   &--large {
     font-size: font-size("large-1");
   }
 
-  &--icon-right {
-    flex-direction: row-reverse;
-  }
-
   &--round {
     border-radius: 2em;
-  }
-
-  &--ghost {
-    background: transparent;
-    color: inherit;
   }
 
   &--full-width {
     display: flex;
     width: 100%;
+  }
+
+  &--icon-right {
+    flex-direction: row-reverse;
+    --icon-margin-top: #{$y-padding * -1};
+    --icon-margin-right: #{$x-padding * -1};
+    --icon-margin-bottom: #{$y-padding * -1};
+    --icon-margin-left: #{$x-padding};
+  }
+
+  &--icon-only {
+    --icon-background: none;
+    --icon-margin-top: #{$y-padding * -1};
+    --icon-margin-right: #{$x-padding * -1};
+    --icon-margin-bottom: #{$y-padding * -1};
+    --icon-margin-right: #{$x-padding * -1};
+  }
+
+  &--ghost {
+    background: transparent;
+    color: inherit;
+    --icon-background: none;
+  }
+
+  &--ghost:not(#{&}--icon-right):not(#{&}--icon-only) {
+    --icon-margin-right: 0;
+  }
+
+  &--ghost#{&}--icon-right {
+    --icon-margin-left: 0;
   }
 
   /** Children */
@@ -85,43 +107,18 @@
   &__icon {
     display: flex;
     align-items: center;
-    background: color("dark-2");
+    background: var(--icon-background, #{color("dark-2")});
     margin:
-      ($y-padding * -1)
-      $x-padding
-      ($y-padding * -1)
-      ($x-padding * -1);
+      var(--icon-margin-top, #{$y-padding * -1})
+      var(--icon-margin-right, #{$x-padding})
+      var(--icon-margin-bottom, #{$y-padding * -1})
+      var(--icon-margin-left, #{$x-padding * -1});
     padding: $y-padding;
   }
 
-  svg {
+  svg,
+  img {
     height: 1em;
     width: 1em;
-  }
-
-  /** Modifier children */
-  &--icon-right &__icon {
-    margin:
-      ($y-padding * -1)
-      ($x-padding * -1)
-      ($y-padding * -1)
-      $x-padding;
-  }
-
-  &--icon-only &__icon {
-    background: none;
-    margin: ($y-padding * -1) ($x-padding * -1);
-  }
-
-  &--ghost &__icon {
-    background: none;
-  }
-
-  &--ghost:not(#{&}--icon-right):not(#{&}--icon-only) &__icon {
-    margin-right: 0;
-  }
-
-  &--ghost#{&}--icon-right &__icon {
-    margin-left: 0;
   }
 }

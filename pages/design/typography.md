@@ -72,23 +72,23 @@ TCDS uses a modular type scale based on a baseline text size of 1 rem (= 16 pixe
     <tr>
       <td>
         <div>
-          <p class="text-small-2" title="The quick brown fox jumped over the lazy dog">The quick brown fox jumped over the lazy dog</p>
+          <p class="text-small" title="The quick brown fox jumped over the lazy dog">The quick brown fox jumped over the lazy dog</p>
         </div>
       </td>
       <td>
         0.9 rem (= 14.4 px)<br>
-        <code>.text-small-2</code>
+        <code>.text-small</code>
       </td>
     </tr>
     <tr>
       <td>
         <div>
-          <p class="text-small-1" title="The quick brown fox jumped over the lazy dog">The quick brown fox jumped over the lazy dog</p>
+          <p class="text-min" title="The quick brown fox jumped over the lazy dog">The quick brown fox jumped over the lazy dog</p>
         </div>
       </td>
       <td>
         0.8 rem (= 12.8 px)<br>
-        <code>.text-small-1</code>
+        <code>.text-min</code>
       </td>
     </tr>
   </tbody>
@@ -96,9 +96,9 @@ TCDS uses a modular type scale based on a baseline text size of 1 rem (= 16 pixe
 
 ## Headings
 
-Heading sizes map to the above type scale, with some extra specifications.
+Heading styles map to the above type scale, with some extra specifications.
 
-All headings have a 1 rem top and bottom spacing. If the heading does not directly proceed another heading, it will have a top spacing of 2.5 rem.
+All headings have a 1 rem/16 pixel top and bottom spacing. If the heading does not directly follow another heading, it will have a top spacing of 2.5 rem/40 pixels.
 
 <aside>
 <details>
