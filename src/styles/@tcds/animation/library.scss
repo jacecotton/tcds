@@ -1,0 +1,53 @@
+/**
+ * Keyframe library for animations.
+ */
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes slide-down {
+  from {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes slide-right-reveal {
+  from {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slide-right-hide {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes slide-left-reveal {
+  from {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes slide-left-hide {
+  to {
+    transform: translateX(-100%);
+  }
+}

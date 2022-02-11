@@ -1,0 +1,25 @@
+/**
+ * Animation and transition variables.
+ */
+
+/**
+ * Easing and timing variables for animations and transitions.
+ *
+ * "Productive" motion is fast and snappy, and is best used for productive user
+ * tasks, or elements that only need subtle animation.
+ *
+ * "Expressive" motion is slower and smoother, and is best used to draw a user's
+ * attention to a different portion of the screen from where they clicked or
+ * where their focus may be.
+ *
+ * This map has a corresponding getter function, `animation` (see _functions).
+ */
+$animation-properties: (
+  "productive-timing": .15s,
+  "productive-easing": ease-in-out,
+  "productive": .15s ease-in-out,
+
+  "expressive-timing": .8s,
+  "expressive-easing": cubic-bezier(0, 1, .4, 1),
+  "expressive": .8s cubic-bezier(0, 1, .4, 1),
+);

@@ -1,0 +1,17 @@
+@use "sass:map";
+@use "_variables" as *;
+
+/**
+ * Utility functions for animations and transitions.
+ */
+
+/**
+ * A getter function for the `$animation-properties` map (see _variables).
+ */
+@function animation($type) {
+  @if map.has-key($animation-properties, $type) {
+    @return map.get($animation-properties, $type);
+  } @else {
+    @warn "#{$type} is not a valid argument for animation function.";
+  }
+}
