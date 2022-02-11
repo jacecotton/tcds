@@ -98,6 +98,9 @@
              },
            ],
          },
+         output: {
+           filename: "tcds.js",
+         },
        }))
        .pipe(sourcemaps.write("."))
        .pipe(dest(config.scripts.dest));
