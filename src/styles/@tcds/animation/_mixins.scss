@@ -1,0 +1,21 @@
+/**
+ * Mixins related to motion (animation or transitions).
+ */
+
+/**
+ * A media query for detecting whether a user prefers reduced motion.
+ */
+@mixin reduced-motion() {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
+/**
+ * A media query for detecting whether the user has not set a motion preference.
+ */
+@mixin motion-ok() {
+  @media (prefers-reduced-motion: no-preference) {
+    @content;
+  }
+}
