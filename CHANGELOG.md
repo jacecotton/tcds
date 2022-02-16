@@ -1,3 +1,12 @@
+# [0.4.0](https://github.com/jacecotton/tcds/compare/v0.3.0...v0.4.0) (2022-02-16)
+
+
+### Features
+
+* Add layout module styles. ([ca5f172](https://github.com/jacecotton/tcds/commit/ca5f172a5aa3e9fba98a148ac6d893920c5668cd))
+
+
+
 # [0.3.0](https://github.com/jacecotton/tcds/compare/v0.2.0...v0.3.0) (2022-02-16)
 
 
