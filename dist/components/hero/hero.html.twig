@@ -20,7 +20,7 @@
       </div>
     {% endif %}
 
-    <div class="column flex-1">
+    <div class="column flex-1 gap-loose">
       {% if headline %} <p class="Hero__headline">{{ headline|raw }}</p> {% endif %}
       {% if tagline %} <p class="Hero__tagline">{{ tagline|raw }}</p> {% endif %}
       {% block content %}{% endblock %}

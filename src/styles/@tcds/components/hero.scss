@@ -68,7 +68,6 @@
   &__headline {
     font-size: font-size("xx-large");
     font-weight: font-weight("semibold");
-    margin-bottom: space("loose");
     letter-spacing: .05em;
     line-height: 1.15;
   }
@@ -76,6 +75,5 @@
   &__tagline {
     font-size: font-size("medium-plus");
     width: 50%;
-    margin-bottom: space("loose");
   }
 }
