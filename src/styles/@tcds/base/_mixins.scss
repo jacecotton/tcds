@@ -1,0 +1,208 @@
+/**
+ * Generic mixins.
+ */
+
+/**
+ * For visually hiding an element while keeping it accessible to screen readers.
+ * This mixin corresponds with the `.visually-hidden` utility class (see
+ * _utilities), but can be applied to any element.
+ */
+@mixin visually-hidden {
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  position: absolute;
+}
+
+/**
+ * A mixin for targeting specific browsers based off of feature or media
+ * queries.
+ *
+ * Except in extreme circumstances, the use of this mixin is NOT recommended.
+ * Instead, opt for progressive enhancement with Feature Queries, or some
+ * graceful degradation strategy. This mixin is only intended to be used to
+ * address specific rendering quirks or known vendor bugs that cannot be
+ * addressed any other way. It should not be used to build parallel stylesheets
+ * for different browsers.
+ *
+ * Be warned that many of these browser-sniffing techniques are unstable, as
+ * they typically test for the (lack of) support of certain features that may
+ * end up becoming supported in the future. In this event, the queries should be
+ * changed to include the version supported, e.g. from "safari" to "lte safari
+ * 15" (less-than or equal-to Safari 15).
+ *
+ * If this happens, conditional styles should be reassessed. If a feature
+ * becomes supported in a new version of a browser, detecting that browser at
+ * all may no longer be necessary. If it is still necessary, a different browser
+ * detection technique will need to be added under the original query.
+ *
+ * Also note that in most cases, browser targeting is done with the `@supports`
+ * query, which is not supported in any version of IE, Edge < 12, Firefox <= 21,
+ * Chrome <= 27, Safari <= 8, or iOS Safari <= 8.4. IE 11 is detected through
+ * separate means. See https://caniuse.com/css-featurequeries.
+ *
+ * @param {string} $browser - The name of the browser or specific query.
+ *   Available options are:
+ *   - "firefox"
+ *   - "not firefox"
+ *   - "chromium" (Chrome, modern Edge, etc.)
+ *   - "not chromium"
+ *   - "sarari" or "any safari" (macOS and iOS)
+ *   - "ios safari" or "mobile safari"
+ *   - "macos safari" or "desktop safari"
+ *   - "not safari"
+ *   - "ie 11" or "gte ie 10"
+ *   - "edge not chromium" or "edgehtml" or "lt edge 79"
+ */
+
+@mixin target-browser($browser) {
+  // https://www.bram.us/2021/06/23/css-at-supports-rules-to-target-only-firefox-safari-chromium/
+
+  $query: "";
+
+  /**
+   * Detects Firefox (Android Firefox not tested).
+   *
+   * Status: Stable
+   * Explanation: `-moz-appearance` will remain in all Firefox browsers for
+   *   backwards compatibility, going back to Firefox 2.
+   * Works: From Firefox 22 (start of Feature Query support).
+   */
+  @if $browser == "firefox" {
+    $query: "-moz-appearance: none";
+  }
+
+  /**
+   * Detects any browser that is not Firefox (Android Firefox not tested).
+   *
+   * Status: Stable
+   * Explanation: Refer to "firefox" comment block.
+   * Works: Refer to "firefox" comment block.
+   */
+  @if $browser == "not firefox" {
+    $query: "not (-moz-appearance: none)";
+  }
+
+  /**
+   * Detects Chromium-based browsers (Chrome, Edge, Brave, etc.) by testing for
+   * CSS Containment (Chromium and Firefox only), and then excluding Firefox.
+   *
+   * Status: Unstable
+   * Explanation: Safari may eventually support CSS Containment.
+   * Implication: This query may eventually target Safari.
+   * Works: From Chrome 52 and Edge 79 (start of CSS Containment support),
+   *   Firefox 22, macOS Safari 9, and iOS Safari 9 (start of Feature Query
+   *   support).
+   * Monitor: https://caniuse.com/css-containment
+   */
+  @if $browser == "chromium" {
+    $query: "(contain: paint) and (not (-moz-appearance: none))"
+  }
+
+  /**
+   * Detects non-Chromium-based browsers by testing for iOS Safari, macOS
+   * Safari, and Firefox.
+   *
+   * Status: Unstable
+   * Explanation: Reliably detects Firefox and iOS Safari only; does not
+   *   reliably detect macOS Safari (refer to respective comment blocks).
+   * Implication: This query may eventually target Chromium-based browsers.
+   * Works: From iOS Safari 9, macOS Safari 9, Firefox 22, Edge 12, Chrome 28
+   *   (start of Feature Query support).
+   * Monitor: https://caniuse.com/css-nth-child-of
+   */
+  @if $browser == "not chromium" {
+    $query: "(-webkit-touch-callout: none) or (selector(:nth-child(1 of x))) or (-moz-appearance: none)";
+  }
+
+  /**
+   * Detects macOS Safari or iOS Safari.
+   *
+   * Status: Unstable
+   * Explanation: Reliably detects iOS Safari only (refer to respective comment
+   *   block); other browsers may one day support `nth-child` "of" clause.
+   * Implication: This query may eventually target non-Safari browsers.
+   * Works: From iOS Safari 9, macOS Safari 9, Firefox 22, Edge 12, Chrome 28
+   *   (start of Feature Query support).
+   * Monitor: https://caniuse.com/css-nth-child-of
+   */
+  @if $browser == "safari" or $browser == "any safari" {
+    $query: "(-webkit-touch-callout: none) or (selector(:nth-child(1 of x)))";
+  }
+
+  /**
+   * Detects iOS Safari.
+   *
+   * Status: Stable
+   * Explanation: `-webkit-touch-callout` will remain in all iOS Safari browsers
+   *   for backwards compatibility, going back to Safari 3.2.
+   * Works: From iOS Safari 9 (start of Feature Query support).
+   */
+  @if $browser == "ios safari" or $browser == "mobile safari" {
+    $query: "-webkit-touch-callout: none";
+  }
+
+  /**
+   * Detects macOS Safari.
+   *
+   * Status: Unstable.
+   * Explanation: Other browsers may one day support `nth-child` "of" clause.
+   * Implication: This query may one day target non-macOS Safari browsers.
+   * Works: From macOS Safari 9 (start of "of" clause support), iOS Safari 9,
+   *   Edge 12, Chrome 28, Firefox 22 (start of Feature Query support).
+   * Monitor: https://caniuse.com/css-nth-child-of
+   */
+  @if $browser == "macos safari" or $browser == "desktop safari" {
+    $query: "selector(:nth-child(1 of x))";
+  }
+
+  /**
+   * Detects non-Safari (macOS or iOS) browsers.
+   *
+   * Status: Unstable
+   * Explanation: Safari may eventually support CSS Containment.
+   * Implication: This query may eventually target Safari.
+   * Works: From macoS Safari 9, iOS Safari 9 (start of Feature Query support),
+   *   Chrome 52, Edge 59, Firefox 69 (start of CSS Containment support).
+   * Monitor: https://caniuse.com/css-containment
+   */
+  @if $browser == "not safari" {
+    $query: "contain: paint";
+  }
+
+  /**
+   * Detects non-Chromium Edge, i.e. EdgeHTML or Edge before version 79.
+   *
+   * Status: Stable
+   * Explanation: `-ms-ime-align` is supported exclusively in pre-Chromium Edge.
+   *   See https://docs.microsoft.com/en-us/previous-versions/dn433242(v=vs.85)
+   */
+  @if $browser == "edge not chromium" or $browser == "edgehtml" or $browser == "lt edge 79" {
+    $query: "-ms-ime-align: auto";
+  }
+
+  /**
+   * Detects IE 10 and 11 by testing whether the user agent's vendor-specific
+   * contrast mode is either "none" or "active".
+   *
+   * Status: Stable
+   * Works: From IE 10 up to IE 11.
+   */
+  @if $browser == "ie 11" or $browser == "gte ie 10" {
+    $query: "all and (-ms-high-contrast: none), (-ms-high-contrast: active)";
+  }
+
+  /**
+   * Construct the final query.
+   */
+  @if $browser != "ie 11" and $browser != "gte ie 10" {
+    @supports (#{$query}) {
+      @content;
+    }
+  } @else if $browser == "ie 11" or $browser == "gte ie 10" {
+    @media #{$query} {
+      @content;
+    }
+  }
+}

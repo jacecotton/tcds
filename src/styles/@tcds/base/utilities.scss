@@ -1,0 +1,11 @@
+@use "../_all" as *;
+
+/**
+ * A utility class to visually hide an element while keeping it accessible to
+ * screen readers. Note that if this class is applied to an interactive element,
+ * and that element receives keyboard focus or a click/tap, it will become
+ * visible for accessibility reasons.
+ */
+.visually-hidden:not(:focus):not(:active) {
+  @include visually-hidden;
+}
