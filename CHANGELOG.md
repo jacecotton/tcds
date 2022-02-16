@@ -1,3 +1,12 @@
+# [0.7.0](https://github.com/jacecotton/tcds/compare/v0.6.0...v0.7.0) (2022-02-16)
+
+
+### Features
+
+* Add Hero component ([c7aba08](https://github.com/jacecotton/tcds/commit/c7aba08763be788c21e9868bb2745842ad83526b))
+
+
+
 # [0.6.0](https://github.com/jacecotton/tcds/compare/v0.5.0...v0.6.0) (2022-02-16)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * Add color module styles ([dc4ec8a](https://github.com/jacecotton/tcds/commit/dc4ec8a1392511350bcca3908ca3f88a186c24ce))
-
-
-
-# [0.2.0](https://github.com/jacecotton/tcds/compare/v0.1.1...v0.2.0) (2022-02-16)
-
-
-### Features
-
-* Add base module styles ([18de566](https://github.com/jacecotton/tcds/commit/18de566d48a29482cba725fa8acd155a089128a1))
 
 
 
