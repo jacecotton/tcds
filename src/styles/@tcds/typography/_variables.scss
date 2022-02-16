@@ -1,0 +1,28 @@
+$theme-font-default: (Inter, system-ui, sans-serif) !default;
+$theme-font-headings: (Inter, system-ui, sans-serif) !default;
+$theme-font-copy: (Inter, system-ui, sans-serif) !default;
+$theme-font-ui: (Inter, system-ui, sans-serif) !default;
+
+$font-stacks: (
+  "default": $theme-font-default,
+  "headings": $theme-font-headings,
+  "copy": $theme-font-copy,
+  "ui": $theme-font-ui,
+);
+
+$font-sizes: (
+  "x-small": .75rem,
+  "small": .875rem,
+  "medium": 1rem,
+  "medium-plus": 1.25rem,
+  "large": 1.5rem,
+  "x-large": 2rem,
+  "xx-large": 2.5rem,
+);
+
+$font-weights: (
+  "light": 300,
+  "normal": 400,
+  "semibold": 600,
+  "bold": 700,
+);

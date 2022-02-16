@@ -1,0 +1,14 @@
+@use "sass:map";
+@use "_variables" as *;
+
+@function font-stack($font-stack) {
+  @return map.get($font-stacks, $font-stack);
+}
+
+@function font-size($font-size) {
+  @return map.get($font-sizes, $font-size);
+}
+
+@function font-weight($font-weight) {
+  @return map.get($font-weights, $font-weight);
+}

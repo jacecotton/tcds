@@ -1,0 +1,124 @@
+@use "../_all" as *;
+
+body {
+  color: color("gray", "400");
+  font-family: font-stack("default");
+  font-size: font-size("medium");
+}
+
+/**
+ * Default heading styles.
+ *
+ * 1. Use `:where` pseduo-function to zero out the specificity and make the
+ *    styles easier to override. Browser support lacks IE, Edge 87-, Firefox
+ *    77-, Chrome 87-, Safari 13.7-, so only include styles in this ruleset that
+ *    are not critical.
+ * 2. Give a base top and bottom margin as a starting point.
+ * 3. Add a much larger top margin to headings that are not directly under a
+ *    heading one level higher.
+ * 4. Not concerned with lowering the specificity of H1 styles, as there should
+ *    only ever be one H1 on a page, and it should always look the same (if
+ *    visible). By contrast, lower level headings may be used inside components,
+ *    etc., and may require different styling while keeping the semantic
+ *    meaning.
+ */
+
+:where(h1, h2, h3, h4, h5, h6),
+.h1, .h2, .h3, .h4, .h5, .h6 { // 1
+  font-family: font-stack("headings");
+}
+
+:where(h2, h3, h4, h5, h6),
+.h2, .h3, .h4, .h5, .h6 { // 1
+  line-height: 1.15;
+  margin: 1rem 0; // 2
+}
+
+:where(:not(h1) + h2),
+:where(:not(h2) + h3) {
+  margin-top: 3.5rem; // 3
+}
+
+:where(:not(h3) + h4) {
+  margin-top: 2rem; // 3
+}
+
+h1,
+.h1 { // 4
+  font-weight: font-weight("semibold");
+  letter-spacing: -.025em;
+  line-height: 1;
+  margin: 0 0 2rem;
+  font-size: font-size("xx-large");
+  letter-spacing: -.0125em;
+}
+
+h2,
+.h2 {
+  font-weight: font-weight("normal");
+  font-size: font-size("x-large");
+  letter-spacing: -.0125em;
+}
+
+h3,
+.h3 {
+  font-weight: font-weight("normal");
+  font-size: font-size("large");
+  letter-spacing: .0125em;
+}
+
+h4,
+.h4 {
+  font-weight: font-weight("normal");
+  font-size: font-size("medium-plus");
+  letter-spacing: .0125em;
+}
+
+h5,
+.h5 {
+  font-weight: font-weight("bold");
+  font-size: font-size("medium");
+  letter-spacing: .0125em;
+}
+
+h6,
+.h6 {
+  font-weight: font-weight("bold");
+  font-size: font-size("small");
+  letter-spacing: .0125em;
+}
+
+/**
+ * Styles for elements that make contained text smaller relative to the
+ * element's parent font size.
+ *
+ * 1. Fallback/base style. Makes these elements' font size 87.5% of the parent
+ *    font size.
+ * 2. If supported, do not allow the font size to go below the absolute
+ *    acceptable minimum font size (`x-small`).
+ */
+
+small,
+sub,
+sup {
+  font-size: 87.5%; // 1
+  font-size: max(#{font-size("x-small"), 87.5%}); // 2
+}
+
+:where(a) {
+  color: theme-color("link");
+  text-decoration: underline;
+}
+
+:where(:visited) {
+  color: theme-color("link", "400");
+}
+
+p {
+  margin: 0;
+  line-height: 1.75;
+
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+}
