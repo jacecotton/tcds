@@ -1,3 +1,12 @@
+## [0.7.1](https://github.com/jacecotton/tcds/compare/v0.7.0...v0.7.1) (2022-02-16)
+
+
+### Bug Fixes
+
+* Compiling styles ([01b12df](https://github.com/jacecotton/tcds/commit/01b12dff4fd98e21b0f72d08c396c9454af7e4b6))
+
+
+
 # [0.7.0](https://github.com/jacecotton/tcds/compare/v0.6.0...v0.7.0) (2022-02-16)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * Add layout module styles. ([ca5f172](https://github.com/jacecotton/tcds/commit/ca5f172a5aa3e9fba98a148ac6d893920c5668cd))
-
-
-
-# [0.3.0](https://github.com/jacecotton/tcds/compare/v0.2.0...v0.3.0) (2022-02-16)
-
-
-### Features
-
-* Add color module styles ([dc4ec8a](https://github.com/jacecotton/tcds/commit/dc4ec8a1392511350bcca3908ca3f88a186c24ce))
 
 
 
