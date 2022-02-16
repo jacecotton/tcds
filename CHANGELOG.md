@@ -1,3 +1,14 @@
+## [0.8.1](https://github.com/jacecotton/tcds/compare/v0.8.0...v0.8.1) (2022-02-16)
+
+
+### Bug Fixes
+
+* Hero style tweak ([e766641](https://github.com/jacecotton/tcds/commit/e76664133c53c14bcf4622ccdb4f63bf64696ee1))
+* IE 11 bug with Hero rotator ([d794633](https://github.com/jacecotton/tcds/commit/d794633e72594c385648b581f658520f5fec513b))
+* Migrate from deprecated Sass division ([c8b8bf6](https://github.com/jacecotton/tcds/commit/c8b8bf6f693c2ef1c3c1b548c528e4049e0fca6a))
+
+
+
 # [0.8.0](https://github.com/jacecotton/tcds/compare/v0.7.7...v0.8.0) (2022-02-16)
 
 
@@ -37,15 +48,6 @@
 ### Bug Fixes
 
 * Trim data-background-image Hero attribute ([257c80e](https://github.com/jacecotton/tcds/commit/257c80eb90f0a29fe4cd9f5091bccde697b3dc3d))
-
-
-
-## [0.7.4](https://github.com/jacecotton/tcds/compare/v0.7.3...v0.7.4) (2022-02-16)
-
-
-### Bug Fixes
-
-* Import typography module styles ([c4b7001](https://github.com/jacecotton/tcds/commit/c4b700186721beb556aeb560f562dfe7444b2fff))
 
 
 
