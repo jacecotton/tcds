@@ -1,3 +1,12 @@
+# [0.2.0](https://github.com/jacecotton/tcds/compare/v0.1.1...v0.2.0) (2022-02-16)
+
+
+### Features
+
+* Add base module styles ([18de566](https://github.com/jacecotton/tcds/commit/18de566d48a29482cba725fa8acd155a089128a1))
+
+
+
 ## [0.1.1](https://github.com/jacecotton/tcds/compare/v0.1.0...v0.1.1) (2022-02-11)
 
 
