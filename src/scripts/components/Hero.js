@@ -3,7 +3,7 @@ export default class Hero {
     this.element = element;
     this.props = props;
 
-    this.backgroundImages = this.element.getAttribute("data-background-images") && this.element.getAttribute("data-background-images").split(" ");
+    this.backgroundImages = this.element.getAttribute("data-background-images") && this.element.getAttribute("data-background-images").trim().split(" ");
     
     if(this.backgroundImages.length) {
       // Preload each image to avoid flashes of white when the background changes.
