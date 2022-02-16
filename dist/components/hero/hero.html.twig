@@ -1,0 +1,29 @@
+{% extends "@tch/components/component/component.html.twig" %}
+
+{% set component_name = "Hero" %}
+
+{% set root_element = "section" %}
+
+{% block root_attributes %}
+  {% if backgrounds|length == 1 %}
+    style="background-image: url('{{ backgrounds[0] }}')"
+  {% elseif backgrounds|length > 1 %}
+    data-background-images="{% for background in backgrounds %}{{ background }} {% endfor %}"
+  {% endif %}
+{% endblock %}
+
+{% block inner_content %}
+  <div class="max-width row">
+    {% if block(start) is defined %}
+      <div class="column">
+        {% block start %}{% endblock %}
+      </div>
+    {% endif %}
+
+    <div class="column flex-1">
+      <p class="Hero__headline">{{ headline|raw }}</p>
+      <p class="Hero__tagline">{{ tagline|raw }}</p>
+      {% block content %}{% endblock %}
+    </div>
+  </div>
+{% endblock %}

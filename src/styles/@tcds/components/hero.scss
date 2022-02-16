@@ -1,0 +1,77 @@
+@use "../_all" as *;
+
+/**
+ * 1. Make padding add to the box's total dimensions, rather than pushing
+ *    content inwards (as in `box-sizing: border-box`).
+ * 2. Set the minimum height to 100% of the viewport height, minus top and
+ *    bottom padding (so the total height isn't 100% plus padding). Then, if
+ *    defined, subtract the height of the site's header, which will be added as
+ *    top padding in [4].
+ * 4. Set the top padding to the height of the site header (to be pulled up by
+ *    the same amount in [5]), plus whatever additional top padding is
+ *    specified.
+ * 5. Pull the hero up with a negative top margin, by the height of the site
+ *    header (so that the header overlays the hero).
+ * 6. If the hero rotates between multiple background images, create a proper
+ *    "crossfade" effect with a "darken" blend mode.
+ */
+
+.Hero {
+  --hero-padding-bottom: 3rem;
+  --hero-padding-top: 3rem;
+
+  display: flex;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  box-sizing: content-box; // 1
+  min-height: calc(
+    var(--hero-base-height, 100vh)
+    - var(--hero-padding-top, 0px)
+    - var(--hero-padding-bottom, 0px)
+    - var(--site-header-height, 0px)
+  ); // 3
+  padding-top: calc(var(--site-header-height, 0px) + var(--hero-padding-top, 0px)); // 4
+  padding-bottom: var(--hero-padding-bottom, 0px);
+  margin-top: calc(var(--site-header-height, 0px) * -1); // 5
+  z-index: 1;
+  position: relative;
+
+  &[data-background-images] {
+    background-blend-mode: darken; // 6
+    transition: background-image 3s;
+  }
+  
+  &--parallax {
+    background-attachment: fixed;
+  }
+
+  /**
+   * For heroes with white text, improve contrast with the background image(s)
+   * by adding a darkened overlay.
+   */
+
+  &.text-white::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    background: color("shade", "100");
+  }
+
+  &__headline {
+    font-size: font-size("x-large");
+    font-weight: font-weight("bold");
+    margin-bottom: space("loose");
+    letter-spacing: .05em;
+  }
+
+  &__tagline {
+    font-size: font-size("medium-plus");
+    width: 50%;
+    margin-bottom: space("loose");
+  }
+}
