@@ -1,0 +1,51 @@
+@use "sass:map";
+@use "_variables" as *;
+
+/**
+ * Utility functions for the color system.
+ */
+
+/**
+ * A getter function for the `$colors` map (see _variables).
+ */
+@function color($color, $grade: "300") {
+  @if map.has-key($colors, $color) {
+    @if map.has-key($colors, $color, $grade) {
+      @return map.get($colors, $color, $grade);
+    } @else {
+      @warn "#{$grade} is not a valid argument for color(#{$color}).";
+    }
+  } @else {
+    @warn "#{$color} is not a valid argument for color().";
+  }
+}
+
+/**
+ * A getter function for the `$interface-colors` map (see _variables).
+ */
+@function interface-color($color, $grade: "300") {
+  @if map.has-key($interface-colors, $color) {
+    @if map.has-key($interface-colors, $color, $grade) {
+      @return map.get($interface-colors, $color, $grade);
+    } @else {
+      @warn "#{$grade} is not a valid argument for interface-color(#{$color}).";
+    }
+  } @else {
+    @warn "#{$color} is not a valid argument for interface-color().";
+  }
+}
+
+/**
+ * A getter function for the `$theme-colors` map (see _variables).
+ */
+@function theme-color($color, $grade: "300") {
+  @if map.has-key($theme-colors, $color) {
+    @if map.has-key($theme-colors, $color, $grade) {
+      @return map.get($theme-colors, $color, $grade);
+    } @else {
+      @warn "#{$grade} is not a valid argument for theme-color(#{$color}).";
+    }
+  } @else {
+    @warn "#{$color} is not a valid argument for theme-color().";
+  }
+}

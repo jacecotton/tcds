@@ -1,0 +1,116 @@
+@use "sass:map";
+
+/**
+ * Color dictionary.
+ *
+ * The following color grades use the CIELUV color model for perceptual
+ * uniformity, and were generated using the HSLuv tool. Using the primary red
+ * brand color (#da2530) as the starting point, all reds have 11deg hue, and all
+ * base colors (grade 300) have 47.6% lightness. Most colors have 87.7%
+ * saturation, except for yellow and green due to having a broader saturation
+ * range (normalized by eye).
+ *
+ * The following hues were used to generate the other colors:
+ * blue = 250
+ * yellow = 78.8
+ * green = 135
+ * gray = 265.9
+ *
+ * Tints and shades of each color were generated in increments of roughly
+ * 10%-20%, and indexed on a scale of 0 to 500 in increments of 100:
+ * 0 = 97.5% (~100%)
+ * 100 = 90%
+ * 200 = 70%
+ * 300: 47.6% (~50%)
+ * 400: 30%
+ * 500: 10%
+ *
+ * Any two colors are accessible together if the difference between their grades
+ * is 300 or greater.
+ */
+
+$colors: (
+  "red": (
+    "0": #fff6f6,
+    "100": #ffdada,
+    "200": #ff888b,
+    "300": #da2530,
+    "400": #93000f,
+    "500": #410003,
+  ),
+
+  "blue": (
+    "0": #f5f8ff,
+    "100": #d5e3ff,
+    "200": #71adff,
+    "300": #2d73bc,
+    "400": #004880,
+    "500": #001c37,
+  ),
+
+  "green": (
+    "0": #e3ffe8,
+    "100": #aff2bd,
+    "200": #4cc16e,
+    "300": #248142,
+    "400": #005322,
+    "500": #002109,
+  ),
+
+  "yellow": (
+    "0": #fff9d4,
+    "100": #fbe090,
+    "200": #c9a900,
+    "300": #886f24,
+    "400": #504400,
+    "500": #211b00,
+  ),
+
+  "gray": (
+    "0": #f8f8f9,
+    "100": #e2e2e7,
+    "200": #aaaab3,
+    "300": #707079,
+    "400": #464652,
+    "500": #1b1b1e,
+  ),
+
+  "shade": (
+    "0": hsl(0 0% 0% / 3%),
+    "100": hsl(0 0% 0% / 10%),
+    "200": hsl(0 0% 0% / 30%),
+    "300": hsl(0 0% 0% / 53.4%),
+    "400": hsl(0 0% 0% / 70%),
+    "500": hsl(0 0% 0% / 90%),
+  ),
+);
+
+/**
+ * Interface aliases are keywords used to reference colors according to the role
+ * they serve in a user interface.
+ */
+$interface-colors: (
+  "positive": map.get($colors, "green"),
+  "negative": map.get($colors, "red"),
+  "attention": map.get($colors, "yellow"),
+  "notice": map.get($colors, "blue"),
+  "neutral": map.get($colors, "gray"),
+);
+
+/**
+ * Theme aliases are keywords used to reference colors according to the role
+ * they serve in the theme and brand scheme. Default colors are set here, but
+ * they are expected to be overridden on a site-by-site basis according to that
+ * site's branding.
+ */
+$theme-color-primary: "red" !default;
+$theme-color-secondary: "blue" !default;
+$theme-color-tertiary: "gray" !default;
+$theme-color-link: "blue" !default;
+
+$theme-colors: (
+  "primary": map.get($colors, $theme-color-primary),
+  "secondary": map.get($colors, $theme-color-secondary),
+  "tertiary": map.get($colors, $theme-color-tertiary),
+  "link": map.get($colors, $theme-color-link),
+);

@@ -1,0 +1,82 @@
+@use "sass:map";
+@use "../_all" as *;
+
+/**
+ * Utility classes for the color system.
+ */
+
+/**
+ * Define which color grades work as text and link colors for each grade when
+ * used as a background color. For instance, a color of grade 0 used as a
+ * background color works with the same color at grade 400 for its text, and
+ * grade 300 for a link.
+ */
+$grade-associations: (
+  "0": (
+    "text": "400",
+    "link": "300",
+  ),
+  "100": (
+    "text": "400",
+    "link": "400",
+  ),
+  "200": (
+    "text": "500",
+    "link": "500",
+  ),
+  "300": (
+    "text": "0",
+    "link": "0",
+  ),
+  "400": (
+    "text": "0",
+    "link": "100",
+  ),
+  "500": (
+    "text": "100",
+    "link": "200",
+  ),
+);
+
+/**
+ * Generate utility classes for setting background, text, and link colors for
+ * each theme color alias.
+ */
+@each $theme-color, $grade-map in $theme-colors {
+  @each $grade, $value in $grade-map {
+    // Construct the class as `.bg-color-grade`, e.g. `.bg-primary-100`.
+    $selector: ".bg-#{$theme-color}-#{$grade}";
+
+    // Unless the grade is 300 (the medium color), in which case, omit the grade
+    // suffix.
+    @if $grade == "300" {
+      $selector: ".bg-#{$theme-color}";
+    }
+
+    // Select the generated class.
+    #{$selector} {
+      // Set the background color.
+      background-color: $value;
+      // Get the appropriate text color from the `$grade-map` above.
+      color: map.get($grade-map, map.get($grade-associations, $grade, "text"));
+    }
+
+    // Get the appropriate link color from the `$grade-map` above.
+    :where(#{$selector} a) {
+      color: theme-color("link", map.get($grade-associations, $grade, "link"));
+    }
+  }
+}
+
+/**
+ * Manually add basic, non-variablized color utilities.
+ */
+
+.bg-white {
+  background-color: #fff;
+  color: color("gray", "400");
+}
+
+.text-white {
+  color: #fff;
+}
