@@ -1,3 +1,12 @@
+# [0.6.0](https://github.com/jacecotton/tcds/compare/v0.5.0...v0.6.0) (2022-02-16)
+
+
+### Features
+
+* Add Component base ([1dc7d94](https://github.com/jacecotton/tcds/commit/1dc7d94ee362365dc745c9abacd54e403c152680))
+
+
+
 # [0.5.0](https://github.com/jacecotton/tcds/compare/v0.4.0...v0.5.0) (2022-02-16)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * Add base module styles ([18de566](https://github.com/jacecotton/tcds/commit/18de566d48a29482cba725fa8acd155a089128a1))
-
-
-
-## [0.1.1](https://github.com/jacecotton/tcds/compare/v0.1.0...v0.1.1) (2022-02-11)
-
-
-### Bug Fixes
-
-* npmignore irrelevant files ([59c3ddb](https://github.com/jacecotton/tcds/commit/59c3ddbfcf999d21d7cc4f00c160212c9992b095))
 
 
 
