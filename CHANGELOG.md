@@ -1,3 +1,17 @@
+# [0.8.0](https://github.com/jacecotton/tcds/compare/v0.7.7...v0.8.0) (2022-02-16)
+
+
+### Bug Fixes
+
+* Darkening Hero overlay ([4fbfdbf](https://github.com/jacecotton/tcds/commit/4fbfdbfad96a8f3d40bfe1e2afbed2ccc6af208a))
+
+
+### Features
+
+* Add layout module styles for IE ([b3dcd96](https://github.com/jacecotton/tcds/commit/b3dcd966aa2acbacff6e75453d1e7efdf0c7ffb5))
+
+
+
 ## [0.7.7](https://github.com/jacecotton/tcds/compare/v0.7.6...v0.7.7) (2022-02-16)
 
 
@@ -32,15 +46,6 @@
 ### Bug Fixes
 
 * Import typography module styles ([c4b7001](https://github.com/jacecotton/tcds/commit/c4b700186721beb556aeb560f562dfe7444b2fff))
-
-
-
-## [0.7.3](https://github.com/jacecotton/tcds/compare/v0.7.2...v0.7.3) (2022-02-16)
-
-
-### Bug Fixes
-
-* Correct import of base component in Hero ([a8d8f1f](https://github.com/jacecotton/tcds/commit/a8d8f1f6e77738b869ee94292c6fb56341af1867))
 
 
 
