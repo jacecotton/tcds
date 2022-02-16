@@ -16,7 +16,7 @@ export default class Hero {
       });
     }
 
-    if(this.props.parallax) {
+    if(this.props.parallax && window.matchMedia("(prefers-reduced-motion: no-preference)").matches === true) {
       window.addEventListener("scroll", () => {
         this.parallax();
       });

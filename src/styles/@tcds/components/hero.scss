@@ -36,6 +36,7 @@
   margin-top: calc(var(--site-header-height, 0px) * -1); // 5
   z-index: 1;
   position: relative;
+  color: #fff;
 
   &[data-background-images] {
     background-blend-mode: darken; // 6
@@ -43,15 +44,17 @@
   }
   
   &--parallax {
-    background-attachment: fixed;
+    @include motion-ok {
+      background-attachment: fixed;
+    }
   }
 
   /**
-   * For heroes with white text, improve contrast with the background image(s)
-   * by adding a darkened overlay.
+   * Increase contrast with the background image(s) by adding a darkened
+   * overlay.
    */
 
-  &.text-white::before {
+  &::before {
     content: "";
     position: absolute;
     top: 0;
@@ -64,9 +67,10 @@
 
   &__headline {
     font-size: font-size("x-large");
-    font-weight: font-weight("bold");
+    font-weight: font-weight("semibold");
     margin-bottom: space("loose");
     letter-spacing: .05em;
+    line-height: 1.15;
   }
 
   &__tagline {
