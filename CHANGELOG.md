@@ -1,3 +1,12 @@
+## [0.7.3](https://github.com/jacecotton/tcds/compare/v0.7.2...v0.7.3) (2022-02-16)
+
+
+### Bug Fixes
+
+* Correct import of base component in Hero ([a8d8f1f](https://github.com/jacecotton/tcds/commit/a8d8f1f6e77738b869ee94292c6fb56341af1867))
+
+
+
 ## [0.7.2](https://github.com/jacecotton/tcds/compare/v0.7.1...v0.7.2) (2022-02-16)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * Add Component base ([1dc7d94](https://github.com/jacecotton/tcds/commit/1dc7d94ee362365dc745c9abacd54e403c152680))
-
-
-
-# [0.5.0](https://github.com/jacecotton/tcds/compare/v0.4.0...v0.5.0) (2022-02-16)
-
-
-### Features
-
-* Add typography module styles ([1d3a946](https://github.com/jacecotton/tcds/commit/1d3a946a623c8f96d08823e6d3ec43c8a5a3608a))
 
 
 
