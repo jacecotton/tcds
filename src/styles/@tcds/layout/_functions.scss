@@ -1,0 +1,35 @@
+@use "sass:map";
+@use "sass:math";
+@use "_variables" as *;
+
+/**
+ * Utility functions for the layout system.
+ */
+
+@function size($size, $unit: "px") {
+  @if $unit == "px" {
+    @return map.get($sizes, $size);
+  } @else if $unit == "em" or $unit == "rem" {
+    @return #{math.div(math.div(map.get($sizes, $size), 1px), 16)}#{$unit};
+  } @else {
+    @error "Unknown value #{$unit} as second argument $unit. Must be \"px\", \"rem\", or \"em\".";
+  }
+}
+
+@function space($space, $unit: "px") {
+  @if $unit == "px" {
+    @return map.get($spaces, $space);
+  } @else if $unit == "em" or $unit == "rem" {
+    @return #{math.div(math.div(map.get($spaces, $space), 1px), 16)}#{$unit};
+  } @else {
+    @error "Unknown value #{$unit} as second argument $unit. Must be \"px\", \"rem\", or \"em\".";
+  }
+}
+
+@function breakpoint($breakpoint) {
+  @return map.get($breakpoints, $breakpoint);
+}
+
+@function layer($layer) {
+  @return map.get($layers, $layer);
+}

@@ -1,0 +1,29 @@
+$base-unit: 4px;
+
+$sizes: (
+  "x-small": $base-unit * 6,
+  "small":   $base-unit * 8,
+  "medium":  $base-unit * 10,
+  "large":   $base-unit * 12,
+  "x-large": $base-unit * 14,
+);
+
+$spaces: (
+  "x-tight": $base-unit * 1,
+  "tight":   $base-unit * 2,
+  "normal":  $base-unit * 4,
+  "loose":   $base-unit * 6,
+  "x-loose": $base-unit * 8,
+);
+
+$breakpoints: (
+  "small": 640px,
+  "medium": 768px,
+  "large": 1024px,
+  "x-large": 1280px,
+);
+
+$layers: (
+  "modal": 4,
+  "sticky-header": 3,
+);

@@ -1,0 +1,27 @@
+@use "sass:map";
+@use "_variables" as *;
+@use "_functions" as *;
+
+@mixin breakpoint-above($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    @media (min-width: breakpoint($breakpoint)) {
+      @content;
+    }
+  } @else {
+    @media (min-width: #{$breakpoint}) {
+      @content;
+    }
+  }
+}
+
+@mixin breakpoint-below($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    @media (max-width: breakpoint($breakpoint)) {
+      @content;
+    }
+  } @else {
+    @media (max-width: #{$breakpoint}) {
+      @content;
+    }
+  }
+}
