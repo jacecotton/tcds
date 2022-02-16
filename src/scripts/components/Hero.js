@@ -24,16 +24,16 @@ export default class Hero {
   }
 
   rotateBackgrounds() {
-    clearTimeout();
+    clearTimeout(this.rotationSchedule);
 
     let cycle = 0;
 
     this.backgroundImages.forEach((image, index) => {
-      setTimeout(() => {
+      this.rotationSchedule = setTimeout(() => {
         this.element.style.backgroundImage = `url(${this.backgroundImages[cycle]})`;
 
         if((cycle + 1) === this.backgroundImages.length) {
-          setTimeout(() => {
+          this.rotationSchedule = setTimeout(() => {
             this.rotateBackgrounds();
           }, this.props.interval);
         } else {
