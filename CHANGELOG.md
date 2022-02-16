@@ -1,3 +1,12 @@
+## [0.7.2](https://github.com/jacecotton/tcds/compare/v0.7.1...v0.7.2) (2022-02-16)
+
+
+### Bug Fixes
+
+* Correct import of all style members in base ([33a6d11](https://github.com/jacecotton/tcds/commit/33a6d11d21df4e03c89803b2e4ba9f4b6b1b431a))
+
+
+
 ## [0.7.1](https://github.com/jacecotton/tcds/compare/v0.7.0...v0.7.1) (2022-02-16)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * Add typography module styles ([1d3a946](https://github.com/jacecotton/tcds/commit/1d3a946a623c8f96d08823e6d3ec43c8a5a3608a))
-
-
-
-# [0.4.0](https://github.com/jacecotton/tcds/compare/v0.3.0...v0.4.0) (2022-02-16)
-
-
-### Features
-
-* Add layout module styles. ([ca5f172](https://github.com/jacecotton/tcds/commit/ca5f172a5aa3e9fba98a148ac6d893920c5668cd))
 
 
 
