@@ -13,16 +13,16 @@
 {% endblock %}
 
 {% block inner_content %}
-  <div class="max-width row">
-    {% if block(start) is defined %}
+  <div class="max-width row gap-loose">
+    {% if block("start") %}
       <div class="column">
         {% block start %}{% endblock %}
       </div>
     {% endif %}
 
     <div class="column flex-1">
-      <p class="Hero__headline">{{ headline|raw }}</p>
-      <p class="Hero__tagline">{{ tagline|raw }}</p>
+      {% if headline %} <p class="Hero__headline">{{ headline|raw }}</p> {% endif %}
+      {% if tagline %} <p class="Hero__tagline">{{ tagline|raw }}</p> {% endif %}
       {% block content %}{% endblock %}
     </div>
   </div>
