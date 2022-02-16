@@ -1,1 +1,10 @@
+@use "base/_base";
+
 @use "animation/library";
+
+@use "components/hero";
+
+@use "base/utilities" as *;
+@use "layout/utilities" as *;
+@use "color/utilities" as *;
+@use "typography/utilities" as *;
