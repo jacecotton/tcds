@@ -1,3 +1,12 @@
+## [0.7.5](https://github.com/jacecotton/tcds/compare/v0.7.4...v0.7.5) (2022-02-16)
+
+
+### Bug Fixes
+
+* Trim data-background-image Hero attribute ([257c80e](https://github.com/jacecotton/tcds/commit/257c80eb90f0a29fe4cd9f5091bccde697b3dc3d))
+
+
+
 ## [0.7.4](https://github.com/jacecotton/tcds/compare/v0.7.3...v0.7.4) (2022-02-16)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * Compiling styles ([01b12df](https://github.com/jacecotton/tcds/commit/01b12dff4fd98e21b0f72d08c396c9454af7e4b6))
-
-
-
-# [0.7.0](https://github.com/jacecotton/tcds/compare/v0.6.0...v0.7.0) (2022-02-16)
-
-
-### Features
-
-* Add Hero component ([c7aba08](https://github.com/jacecotton/tcds/commit/c7aba08763be788c21e9868bb2745842ad83526b))
 
 
 
