@@ -2,6 +2,9 @@
 
 @use "animation/library";
 
+@use "typography/fonts";
+@use "typography/globals";
+
 @use "components/hero";
 
 @use "base/utilities" as *;
