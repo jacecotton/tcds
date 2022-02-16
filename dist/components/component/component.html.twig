@@ -1,0 +1,164 @@
+{% apply spaceless %}
+{#
+/**
+ * The basic scaffolding for all components to extend.
+ *
+ * This meta component takes care of all the basic logic and boilerplate markup
+ * needed to create a component.
+ *
+ * Available variables:
+ * - component_name: The name of the component in PascalCase.
+ * - component_classes: An array of other classes to add to the root element.
+ * - required_props: Props that must be set to some value when the component is
+ *   used.
+ * - root_element: The root-most containing HTML element (default is "div").
+ * - modifiers: An array of modifiers to append to the component's class name
+ *   (separated by two hyphens, following the BEM convention, e.g.
+ *   '{ component_name: "MyComponent", modifiers: ["foo", "bar"] }' ->
+ *   'class="MyComponent MyComponent--foo MyComponent--bar"').
+ * - custom_classes: An array of other/non-modifier classes to add to the root
+     element.
+ * - custom_attributes: An object of key-value pairs representing arbitrary
+ *   attributes to add to the root element, e.g.
+ *   'custom_attributes: { "href": "/", "rel": "home" }' ->
+ *   'href="/" rel="home"'.
+ *
+ * Note that the last three variables are pass-through variables; they are
+ * intended to be set when a component is actually included, not by the
+ * component file which extends this file. They can be used in the latter
+ * instance, but in order to do so safely, they should be merged with themselves
+ * as if they already have data.
+ *
+ * Available blocks:
+ * - root_attributes: A less programmatic way of adding arbitrary attributes to
+ *   the root element (than 'custom_attributes'). This opens up a space before
+ *   the closing token of the opening root tag to add additional attributes as
+ *   bare HTML.
+ * - inner_content: The content of the component, added between the opening and
+ *   closing root HTML tags.
+ */
+#}
+
+{#
+  Define an array of classes to recursively add to the component's root element.
+  This will be pushed to throughout the component logic, but for now it will
+  start with simply the component name as the base class.
+#}
+{% set classes = [component_name] %}
+
+{#
+  Define empty arrays for modifiers, custom classes, and custom attributes if
+  they don't already contain data from a component instance.
+#}
+{% if modifiers is not defined %}
+  {% set modifiers = [] %}
+{% endif %}
+
+{% if custom_classes is not defined %}
+  {% set custom_classes = [] %}
+{% endif %}
+
+{% if custom_attributes is not defined %}
+  {% set custom_attributes = [] %}
+{% endif %}
+
+{#
+  Loop through modifiers array (skipping over first key if "#", which happens if
+  data is passed from Drupal field content).
+#}
+{% for key, modifier in modifiers|filter(key => key|first != "#") %}
+  {#
+    Check if array items come from field data (which will have extra key-values)
+    and if so, drill down to its context value to get the pure string.
+  #}
+  {% if modifier["#context"].value is defined %}
+    {% set modifier = modifier["#context"].value %}
+  {% endif %}
+
+  {#
+    Formulate a BEM modifier class name from each modifier in the modifiers
+    array, then merge these to the classes array.
+  #}
+  {% set classes = classes|merge(["#{component_name}--#{modifier}"]) %}
+{% endfor %}
+
+{# Same basic logic for custom classes as with modifiers above. #}
+{% for key, custom_class in custom_classes|filter(key => key|first != "#") %}
+  {% if custom_class["#context"].value is defined %}
+    {% set custom_class = custom_class["#context"].value %}
+  {% endif %}
+
+  {#
+    Custom classes are not BEM-related, so we can merge them to the classes
+    array without any modification/prefix.
+  #}
+  {% set classes = classes|merge([custom_class]) %}
+{% endfor %}
+
+{# Make sure any required properties are provided. #}
+{% set has_required_props = true %}
+
+{% for prop in required_props %}
+  {% if prop is not defined or prop|length < 1 %}
+    {% set has_required_props = false %}
+  {% endif %}
+{% endfor %}
+
+{# BEGIN COMPONENT MARKUP #}
+
+{%- if has_required_props -%}
+  {#
+    Opening tag for the root HTML element. 'root_element' is specified by the
+    extending component.
+  #}
+  <{{- root_element ?: "div" -}}
+    {#
+      The 'attributes' variable is Drupal's way of controlling all attributes in
+      HTML elements for compatibility purposes, so if it exists (i.e. if using
+      Drupal), we should add them through it.
+    #}
+    {%- if attributes -%}
+      {# Add the 'classes' array. #}
+      {{- attributes.addClass(classes) -}}
+
+      {# Add the 'custom_attributes' array. #}
+      {%- for custom_property, custom_value in custom_attributes -%}
+        {{- attributes.setAttribute(custom_property, custom_value) -}}
+      {%- endfor -%}
+
+      {# Add all other Drupal-controlled attributes. #}
+      {{- attributes -}}
+    {%- else -%}
+      {#
+        If we're not in Drupal, we need to recursively add attributes manually.
+      #}
+      class="
+        {%- for class in classes -%}
+          {#
+            We have to use ~ for white space control instead of - so that
+            newlines aren't removed and the individual class names remain in-
+            tact.
+          #}
+          {{~ class ~}}
+        {% endfor -%}
+      "
+
+      {%- for custom_property, custom_value in custom_attributes -%}
+        {{ custom_property }}="{{ custom_value }}"
+      {%- endfor -%}
+    {%- endif -%}
+
+    {#
+      To isolate CSS from JavaScript functionality, we'll also add the component
+      name as a data-attribute for hooking into in JavaScript.
+    #}
+    data-component="{{ component_name }}"
+
+    {%- block root_attributes %}{% endblock -%}
+  >
+    {# The content for the extending component file to specify. #}
+    {%- block inner_content %}{% endblock -%}
+  </{{ root_element ?: "div" }}>
+{%- endif -%}
+
+{% endapply %}
