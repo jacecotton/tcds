@@ -1,0 +1,1 @@
+{"version":3,"sources":["@tcds/ie/components/hero.scss"],"names":[],"mappings":"AAMA,MACE,OAAA","file":"hero.css","sourcesContent":["/**\n * A flexbox bug in IE 11 makes `align-items: center` not work on elements with\n * only a `min-height`. A workaround is to set a `height` less than the\n * `min-height`.\n */\n\n.Hero {\n  height: 0px; // 1\n}"]}

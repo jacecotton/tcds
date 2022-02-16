@@ -1,0 +1,9 @@
+/**
+ * A flexbox bug in IE 11 makes `align-items: center` not work on elements with
+ * only a `min-height`. A workaround is to set a `height` less than the
+ * `min-height`.
+ */
+
+.Hero {
+  height: 0px; // 1
+}
