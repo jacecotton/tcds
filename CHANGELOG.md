@@ -1,3 +1,12 @@
+## [0.7.7](https://github.com/jacecotton/tcds/compare/v0.7.6...v0.7.7) (2022-02-16)
+
+
+### Bug Fixes
+
+* Improvements to Hero component ([d3d57bb](https://github.com/jacecotton/tcds/commit/d3d57bb3affbd409b623450acc5a336de5aecbb9))
+
+
+
 ## [0.7.6](https://github.com/jacecotton/tcds/compare/v0.7.5...v0.7.6) (2022-02-16)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * Correct import of base component in Hero ([a8d8f1f](https://github.com/jacecotton/tcds/commit/a8d8f1f6e77738b869ee94292c6fb56341af1867))
-
-
-
-## [0.7.2](https://github.com/jacecotton/tcds/compare/v0.7.1...v0.7.2) (2022-02-16)
-
-
-### Bug Fixes
-
-* Correct import of all style members in base ([33a6d11](https://github.com/jacecotton/tcds/commit/33a6d11d21df4e03c89803b2e4ba9f4b6b1b431a))
 
 
 
