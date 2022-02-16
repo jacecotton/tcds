@@ -1,3 +1,13 @@
+## [0.7.6](https://github.com/jacecotton/tcds/compare/v0.7.5...v0.7.6) (2022-02-16)
+
+
+### Bug Fixes
+
+* Change base from partial to compiled file ([2656085](https://github.com/jacecotton/tcds/commit/2656085686176c1903f71474f264ec599883b356))
+* Hero component improvements ([9f94ea5](https://github.com/jacecotton/tcds/commit/9f94ea52731c23f49a1c134494b03e50701dd488))
+
+
+
 ## [0.7.5](https://github.com/jacecotton/tcds/compare/v0.7.4...v0.7.5) (2022-02-16)
 
 
@@ -31,15 +41,6 @@
 ### Bug Fixes
 
 * Correct import of all style members in base ([33a6d11](https://github.com/jacecotton/tcds/commit/33a6d11d21df4e03c89803b2e4ba9f4b6b1b431a))
-
-
-
-## [0.7.1](https://github.com/jacecotton/tcds/compare/v0.7.0...v0.7.1) (2022-02-16)
-
-
-### Bug Fixes
-
-* Compiling styles ([01b12df](https://github.com/jacecotton/tcds/commit/01b12dff4fd98e21b0f72d08c396c9454af7e4b6))
 
 
 
