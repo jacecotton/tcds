@@ -1,4 +1,5 @@
-[![npm version](https://badge.fury.io/js/@txch%2Ftcds.svg)](https://badge.fury.io/js/@txch%2Ftcds)
+[![npm version](https://badge.fury.io/js/@txch%2Ftcds.svg)](https://www.npmjs.com/package/@txch/tcds)
+[![documentation](https://img.shields.io/badge/Documentation-Here-informational)](https://tcds.herokuapp.com/)
 
 # Texas Children's Design System
 
