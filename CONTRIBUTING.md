@@ -1,5 +1,5 @@
 ## Setting up locally
-### Step 1. Clone the repository**
+### Step 1. Clone the repository
 
 First, `cd` into the directory you want your local copy of the repository to be. Then run
 
