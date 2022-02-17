@@ -1,3 +1,12 @@
+## [0.8.7](https://github.com/jacecotton/tcds/compare/v0.8.6...v0.8.7) (2022-02-17)
+
+
+### Bug Fixes
+
+* Hero style tweaks ([5a14e3c](https://github.com/jacecotton/tcds/commit/5a14e3cfb63ffa036732e1e1269b83227ce7aed5))
+
+
+
 ## [0.8.6](https://github.com/jacecotton/tcds/compare/v0.8.5...v0.8.6) (2022-02-17)
 
 
@@ -31,16 +40,6 @@
 ### Bug Fixes
 
 * Hero typography and layout tweaks ([093c1b7](https://github.com/jacecotton/tcds/commit/093c1b7d38d12f74d9b5927faf3f6b448eba2639))
-
-
-
-## [0.8.2](https://github.com/jacecotton/tcds/compare/v0.8.1...v0.8.2) (2022-02-16)
-
-
-### Bug Fixes
-
-* IE Hero bug with align-items ([85af387](https://github.com/jacecotton/tcds/commit/85af387239bc97de5726032645c3b20d470fac6d))
-* Tweak Hero styles ([90da1d1](https://github.com/jacecotton/tcds/commit/90da1d174e57cbd4393425e52c4ac67b335dea1d))
 
 
 
