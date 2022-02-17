@@ -1,3 +1,12 @@
+## [0.8.4](https://github.com/jacecotton/tcds/compare/v0.8.3...v0.8.4) (2022-02-17)
+
+
+### Bug Fixes
+
+* Adding doc badge, plus version bump ([382e901](https://github.com/jacecotton/tcds/commit/382e901f104aa41bb1f6614f6e9fe46f94ee7c98))
+
+
+
 ## [0.8.3](https://github.com/jacecotton/tcds/compare/v0.8.2...v0.8.3) (2022-02-17)
 
 
@@ -39,15 +48,6 @@
 ### Features
 
 * Add layout module styles for IE ([b3dcd96](https://github.com/jacecotton/tcds/commit/b3dcd966aa2acbacff6e75453d1e7efdf0c7ffb5))
-
-
-
-## [0.7.7](https://github.com/jacecotton/tcds/compare/v0.7.6...v0.7.7) (2022-02-16)
-
-
-### Bug Fixes
-
-* Improvements to Hero component ([d3d57bb](https://github.com/jacecotton/tcds/commit/d3d57bb3affbd409b623450acc5a336de5aecbb9))
 
 
 
