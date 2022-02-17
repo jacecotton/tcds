@@ -1,3 +1,12 @@
+## [0.8.5](https://github.com/jacecotton/tcds/compare/v0.8.4...v0.8.5) (2022-02-17)
+
+
+### Bug Fixes
+
+* Version bump ([a1ee232](https://github.com/jacecotton/tcds/commit/a1ee2323e5df475eb0b40c22020b9b72fa58919a))
+
+
+
 ## [0.8.4](https://github.com/jacecotton/tcds/compare/v0.8.3...v0.8.4) (2022-02-17)
 
 
@@ -34,20 +43,6 @@
 * Hero style tweak ([e766641](https://github.com/jacecotton/tcds/commit/e76664133c53c14bcf4622ccdb4f63bf64696ee1))
 * IE 11 bug with Hero rotator ([d794633](https://github.com/jacecotton/tcds/commit/d794633e72594c385648b581f658520f5fec513b))
 * Migrate from deprecated Sass division ([c8b8bf6](https://github.com/jacecotton/tcds/commit/c8b8bf6f693c2ef1c3c1b548c528e4049e0fca6a))
-
-
-
-# [0.8.0](https://github.com/jacecotton/tcds/compare/v0.7.7...v0.8.0) (2022-02-16)
-
-
-### Bug Fixes
-
-* Darkening Hero overlay ([4fbfdbf](https://github.com/jacecotton/tcds/commit/4fbfdbfad96a8f3d40bfe1e2afbed2ccc6af208a))
-
-
-### Features
-
-* Add layout module styles for IE ([b3dcd96](https://github.com/jacecotton/tcds/commit/b3dcd966aa2acbacff6e75453d1e7efdf0c7ffb5))
 
 
 
