@@ -17,8 +17,6 @@
  */
 
 .Hero {
-  --_hero-base-height: 50vh;
-  --_site-header-height: 0px;
   --hero-padding-bottom: 3rem;
   --hero-padding-top: 3rem;
 
@@ -28,14 +26,14 @@
   background-position: center;
   box-sizing: content-box; // 1
   min-height: calc(
-    var(--hero-base-height, var(--_hero-base-height))
+    var(--hero-base-height, 65vh)
     - var(--hero-padding-top)
     - var(--hero-padding-bottom)
-    - var(--site-header-height, var(--_site-header-height))
+    - var(--site-header-height, 0px)
   ); // 3
-  padding-top: calc(var(--site-header-height, var(--_site-header-height)) + var(--hero-padding-top)); // 4
+  padding-top: calc(var(--site-header-height, 0px) + var(--hero-padding-top)); // 4
   padding-bottom: var(--hero-padding-bottom);
-  margin-top: calc(var(--site-header-height, var(--_site-header-height)) * -1); // 5
+  margin-top: calc(var(--site-header-height, 0px) * -1); // 5
   z-index: 1;
   position: relative;
   color: #fff;
@@ -68,7 +66,7 @@
     bottom: 0;
     left: 0;
     z-index: -1;
-    background: color("shade");
+    background: color("shade", "200");
   }
 
   &__headline {
