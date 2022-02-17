@@ -1,3 +1,5 @@
 .github/
 .browserslistrc
+.editorconfig
+CONTRIBUTING.md
 gulpfile.js
