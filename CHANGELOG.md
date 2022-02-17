@@ -1,3 +1,12 @@
+## [0.8.6](https://github.com/jacecotton/tcds/compare/v0.8.5...v0.8.6) (2022-02-17)
+
+
+### Bug Fixes
+
+* Hero default variable value bug fix for IE 11 ([99d13c0](https://github.com/jacecotton/tcds/commit/99d13c038c56664d52bf7b68f36b75f57b113616))
+
+
+
 ## [0.8.5](https://github.com/jacecotton/tcds/compare/v0.8.4...v0.8.5) (2022-02-17)
 
 
@@ -32,17 +41,6 @@
 
 * IE Hero bug with align-items ([85af387](https://github.com/jacecotton/tcds/commit/85af387239bc97de5726032645c3b20d470fac6d))
 * Tweak Hero styles ([90da1d1](https://github.com/jacecotton/tcds/commit/90da1d174e57cbd4393425e52c4ac67b335dea1d))
-
-
-
-## [0.8.1](https://github.com/jacecotton/tcds/compare/v0.8.0...v0.8.1) (2022-02-16)
-
-
-### Bug Fixes
-
-* Hero style tweak ([e766641](https://github.com/jacecotton/tcds/commit/e76664133c53c14bcf4622ccdb4f63bf64696ee1))
-* IE 11 bug with Hero rotator ([d794633](https://github.com/jacecotton/tcds/commit/d794633e72594c385648b581f658520f5fec513b))
-* Migrate from deprecated Sass division ([c8b8bf6](https://github.com/jacecotton/tcds/commit/c8b8bf6f693c2ef1c3c1b548c528e4049e0fca6a))
 
 
 
