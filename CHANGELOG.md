@@ -1,3 +1,12 @@
+## [0.8.3](https://github.com/jacecotton/tcds/compare/v0.8.2...v0.8.3) (2022-02-17)
+
+
+### Bug Fixes
+
+* Hero typography and layout tweaks ([093c1b7](https://github.com/jacecotton/tcds/commit/093c1b7d38d12f74d9b5927faf3f6b448eba2639))
+
+
+
 ## [0.8.2](https://github.com/jacecotton/tcds/compare/v0.8.1...v0.8.2) (2022-02-16)
 
 
@@ -39,16 +48,6 @@
 ### Bug Fixes
 
 * Improvements to Hero component ([d3d57bb](https://github.com/jacecotton/tcds/commit/d3d57bb3affbd409b623450acc5a336de5aecbb9))
-
-
-
-## [0.7.6](https://github.com/jacecotton/tcds/compare/v0.7.5...v0.7.6) (2022-02-16)
-
-
-### Bug Fixes
-
-* Change base from partial to compiled file ([2656085](https://github.com/jacecotton/tcds/commit/2656085686176c1903f71474f264ec599883b356))
-* Hero component improvements ([9f94ea5](https://github.com/jacecotton/tcds/commit/9f94ea52731c23f49a1c134494b03e50701dd488))
 
 
 
