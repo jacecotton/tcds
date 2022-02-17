@@ -17,6 +17,8 @@
  */
 
 .Hero {
+  --_hero-base-height: 50vh;
+  --_site-header-height: 0px;
   --hero-padding-bottom: 3rem;
   --hero-padding-top: 3rem;
 
@@ -26,14 +28,14 @@
   background-position: center;
   box-sizing: content-box; // 1
   min-height: calc(
-    var(--hero-base-height, 100vh)
-    - var(--hero-padding-top, 0px)
-    - var(--hero-padding-bottom, 0px)
-    - var(--site-header-height, 0px)
+    var(--hero-base-height, var(--_hero-base-height))
+    - var(--hero-padding-top)
+    - var(--hero-padding-bottom)
+    - var(--site-header-height, var(--_site-header-height))
   ); // 3
-  padding-top: calc(var(--site-header-height, 0px) + var(--hero-padding-top, 0px)); // 4
-  padding-bottom: var(--hero-padding-bottom, 0px);
-  margin-top: calc(var(--site-header-height, 0px) * -1); // 5
+  padding-top: calc(var(--site-header-height, var(--_site-header-height)) + var(--hero-padding-top)); // 4
+  padding-bottom: var(--hero-padding-bottom);
+  margin-top: calc(var(--site-header-height, var(--_site-header-height)) * -1); // 5
   z-index: 1;
   position: relative;
   color: #fff;
@@ -42,9 +44,13 @@
     background-blend-mode: darken; // 6
     transition: background-image 3s;
   }
+
+  &--full-height {
+    --hero-base-height: 100vh;
+  }
   
-  &--parallax {
-    @include motion-ok {
+  @include motion-ok {
+    &--parallax {
       background-attachment: fixed;
     }
   }
@@ -62,7 +68,7 @@
     bottom: 0;
     left: 0;
     z-index: -1;
-    background: color("shade", "200");
+    background: color("shade");
   }
 
   &__headline {
