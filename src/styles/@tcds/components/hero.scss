@@ -47,6 +47,9 @@
     --hero-base-height: 100vh;
   }
   
+  /**
+   * Only allow parallax if reduced motion preference is not set.
+   */
   @include motion-ok {
     &--parallax {
       background-attachment: fixed;
