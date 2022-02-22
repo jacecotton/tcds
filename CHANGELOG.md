@@ -1,3 +1,12 @@
+# [0.10.0](https://github.com/jacecotton/tcds/compare/v0.9.0...v0.10.0) (2022-02-22)
+
+
+### Features
+
+* Systematized line-height ([2e046d3](https://github.com/jacecotton/tcds/commit/2e046d34d881f56ed355a0bfded7e30446954cf2))
+
+
+
 # [0.9.0](https://github.com/jacecotton/tcds/compare/v0.8.7...v0.9.0) (2022-02-22)
 
 
@@ -36,15 +45,6 @@
 ### Bug Fixes
 
 * Version bump ([a1ee232](https://github.com/jacecotton/tcds/commit/a1ee2323e5df475eb0b40c22020b9b72fa58919a))
-
-
-
-## [0.8.4](https://github.com/jacecotton/tcds/compare/v0.8.3...v0.8.4) (2022-02-17)
-
-
-### Bug Fixes
-
-* Adding doc badge, plus version bump ([382e901](https://github.com/jacecotton/tcds/commit/382e901f104aa41bb1f6614f6e9fe46f94ee7c98))
 
 
 
