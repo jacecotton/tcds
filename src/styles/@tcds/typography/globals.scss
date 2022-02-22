@@ -30,7 +30,6 @@ body {
 
 :where(h2, h3, h4, h5, h6),
 .h2, .h3, .h4, .h5, .h6 { // 1
-  line-height: 1.15;
   margin: 1rem 0; // 2
 }
 
@@ -45,46 +44,44 @@ body {
 
 h1,
 .h1 { // 4
+  @include font-size("xx-large");
   font-weight: font-weight("semibold");
   letter-spacing: -.025em;
-  line-height: 1;
   margin: 0 0 2rem;
-  font-size: font-size("xx-large");
-  letter-spacing: -.0125em;
 }
 
 h2,
 .h2 {
+  @include font-size("x-large");
   font-weight: font-weight("normal");
-  font-size: font-size("x-large");
   letter-spacing: -.0125em;
 }
 
 h3,
 .h3 {
+  @include font-size("large");
   font-weight: font-weight("normal");
-  font-size: font-size("large");
   letter-spacing: .0125em;
 }
 
 h4,
 .h4 {
+  @include font-size("medium-plus");
   font-weight: font-weight("normal");
-  font-size: font-size("medium-plus");
   letter-spacing: .0125em;
 }
 
 h5,
 .h5 {
+  @include font-size("medium");
   font-weight: font-weight("bold");
-  font-size: font-size("medium");
   letter-spacing: .0125em;
 }
 
 h6,
 .h6 {
+  @include font-size("small");
   font-weight: font-weight("bold");
-  font-size: font-size("small");
   letter-spacing: .0125em;
 }
 
@@ -105,12 +102,12 @@ sup {
   font-size: max(#{font-size("x-small"), 87.5%}); // 2
 }
 
-:where(a) {
+a {
   color: theme-color("link");
   text-decoration: underline;
 }
 
-:where(:visited) {
+:visited {
   color: theme-color("link", "400");
 }
 

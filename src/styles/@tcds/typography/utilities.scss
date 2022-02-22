@@ -12,7 +12,7 @@
 
 @each $token, $value in $font-sizes {
   .text-#{$token} {
-    font-size: $value;
+    @include font-size($token);
   }
 }
 

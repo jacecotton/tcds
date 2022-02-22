@@ -1,0 +1,30 @@
+@use "_variables" as *;
+@use "_functions" as *;
+
+@mixin font-size($font-size, $responsive: true) {
+  $negative-offset: 1rem;
+  $flex-factor: 1vw;
+
+  font-size: font-size($font-size);
+
+  @if $responsive != false and $font-size != "x-small" and $font-size != "small" {
+    font-size: clamp(
+      (font-size($font-size) * .66),
+      ((font-size($font-size) * .66) + $flex-factor),
+      font-size($font-size)
+    );
+  }
+
+  @if  $font-size == "xx-large"
+    or $font-size == "x-large"
+    or $font-size == "large"
+    or $font-size == "medium-plus" {
+    line-height: 1.25;
+  }
+
+  @if  $font-size == "medium"
+    or $font-size == "small"
+    or $font-size == "x-small" {
+    line-height: 1.5;
+  }
+} 
