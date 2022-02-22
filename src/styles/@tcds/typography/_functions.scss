@@ -12,3 +12,7 @@
 @function font-weight($font-weight) {
   @return map.get($font-weights, $font-weight);
 }
+
+@function line-height($line-height) {
+  @return map.get($line-heights, $line-height);
+}
