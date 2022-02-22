@@ -73,14 +73,14 @@
   }
 
   &__headline {
-    font-size: font-size("xx-large");
+    @include font-size("xx-large");
     font-weight: font-weight("semibold");
     line-height: 1.15;
     margin: 0;
   }
 
   &__tagline {
-    font-size: font-size("medium-plus");
+    @include font-size("medium-plus");
     width: 50%;
   }
 }
