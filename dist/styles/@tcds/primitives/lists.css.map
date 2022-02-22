@@ -1,0 +1,1 @@
+{"version":3,"sources":["@tcds/primitives/lists.scss"],"names":[],"mappings":"AAAA,GAAA,GACE,aAAA,EACA,oBAAA","file":"lists.css","sourcesContent":["ul, ol {\n  padding-left: 0;\n  list-style-position: inside;\n}"]}
