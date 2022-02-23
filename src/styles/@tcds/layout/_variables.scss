@@ -1,5 +1,26 @@
+/**
+ * Layout design tokens. Each token and its value is stored in a map. Note
+ * that each map has a corresponding getter function (see _functions.scss) for
+ * easier access. For example, rather than `map.get($sizes, "small")`,
+ * you can simply use `size("small")`.
+ */
+
+/**
+ * The global base unit. All layout-related measurements should be an even
+ * multiple of this unit.
+ */
 $base-unit: 4px;
 
+/**
+ * Semantic sizes on a scale of x-small to x-large. Useful for setting widths
+ * and heights at the component/element level (for instance to keep size
+ * modifiers consistent across components). Not as useful for measurements of
+ * larger-scale layouts, which should be flexible and use relative units rather
+ * than absolute/static. For fixed, larger-scale layout measurements to use at
+ * the macro level, consider breakpoint tokens instead.
+ *
+ * See: size()
+ */
 $sizes: (
   "x-small": $base-unit * 6,
   "small":   $base-unit * 8,
@@ -8,6 +29,12 @@ $sizes: (
   "x-large": $base-unit * 14,
 );
 
+/**
+ * Semantic spaces on a scale of x-tight to x-loose. Useful for setting margin,
+ * padding, gap, etc.
+ *
+ * See: space()
+ */
 $spaces: (
   "x-tight": $base-unit * 1,
   "tight":   $base-unit * 2,
@@ -16,6 +43,15 @@ $spaces: (
   "x-loose": $base-unit * 8,
 );
 
+/**
+ * Breakpoints on a scale of small to x-large. Useful for global coordination
+ * between elements. However, it is generally recommended to set breakpoints on
+ * a case-by-case basis according to works best for the element in question.
+ * These are only intended to be optional starting points for when the exact
+ * breakpoint doesn't necessarily matter.
+ *
+ * See: breakpoint()
+ */
 $breakpoints: (
   "small": 640px,
   "medium": 768px,
@@ -23,6 +59,20 @@ $breakpoints: (
   "x-large": 1280px,
 );
 
+/**
+ * Layers for setting z-index. This is to help manage z-indices from a single
+ * source of truth, to ensure elements layer over each other properly, and avoid
+ * arbitrary escalation of z-index values. When a new entry is added here,
+ * consider its relationship to the other elements listed and adjust each as
+ * needed. For instance, a modal should be on top of a sticky header.
+ *
+ * Note that negative values, 1, and 2 are reserved. They are allowed to be used
+ * anywhere and do not need to be systematized, as they are often only useful
+ * for setting z-indices relative to the stacking context of the element in
+ * question.
+ *
+ * See: layer()
+ */
 $layers: (
   "modal": 4,
   "sticky-header": 3,

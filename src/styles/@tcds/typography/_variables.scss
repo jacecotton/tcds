@@ -1,3 +1,16 @@
+/**
+ * Typography design tokens. Each token and its value is stored in a map. Note
+ * that each map has a corresponding getter function (see _functions.scss) for
+ * easier access. For example, rather than `map.get($font-stacks, "default")`,
+ * you can simply use `font-stack("default")`.
+ */
+
+/**
+ * Semantic font stacks. These are first stored as configuration variables for
+ * easier overriding on import (downstream use).
+ *
+ * See: font-stack()
+ */
 $theme-font-default: (Inter, system-ui, sans-serif) !default;
 $theme-font-headings: (Inter, system-ui, sans-serif) !default;
 $theme-font-copy: (Inter, system-ui, sans-serif) !default;
@@ -10,6 +23,14 @@ $font-stacks: (
   "ui": $theme-font-ui,
 );
 
+/**
+ * Semantic font sizes, on a scale of x-small to xx-large. In addition to a
+ * getter function, there is also a mixin for generating responsive font sizes
+ * based on the static values here (as well as automatically providing the
+ * appropriate line-height).
+ *
+ * See: font-size()
+ */
 $font-sizes: (
   "x-small": .75rem,
   "small": .875rem,
@@ -20,6 +41,13 @@ $font-sizes: (
   "xx-large": 2.5rem,
 );
 
+/**
+ * Font weights. These are stored as tokens in the event of a typeface change,
+ * since exact numeric values depend on the type. For example, semibold can mean
+ * 500 or 600 depending on the font.
+ *
+ * See: font-weight()
+ */
 $font-weights: (
   "light": 300,
   "normal": 400,
@@ -27,6 +55,13 @@ $font-weights: (
   "bold": 700,
 );
 
+/**
+ * Semantic line heights, on a scale of x-tight to x-loose. Generally, larger
+ * text should have a tighter line height, medium text should have a looser line
+ * height, and smaller text should have a medium line height.
+ *
+ * See: line-height()
+ */
 $line-heights: (
   "x-tight": 1,
   "tight": 1.25,

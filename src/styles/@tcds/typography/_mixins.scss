@@ -1,27 +1,35 @@
 @use "_variables" as *;
 @use "_functions" as *;
 
+/**
+ * A mixin for generating responsive font sizes and automatically providing the
+ * appropriate line-height based on the font-size.
+ *
+ * 1. A static fallback for browsers that do not support `clamp`.
+ * 2. Only generate a responsive font size if it has not been disabled, and if
+ *    the font size is not x-small or small (which are already at their own
+ *    minimums.
+ * 3. Font sizes will flex with the screen width (1%), with constraints of 66%
+ *    (minimum) and 100% (maximum) of the given font-size.
+ * 4. Set a tight line-height for font sizes xx-large through medium-plus.
+ * 5. Set a normal line-height for font sizes medium through x-small.
+ */
 @mixin font-size($font-size, $responsive: true) {
-  font-size: font-size($font-size);
+  font-size: font-size($font-size); // 1
 
-  @if $responsive != false and $font-size != "x-small" and $font-size != "small" {
+  @if $responsive != false and $font-size != "x-small" and $font-size != "small" { // 2
     font-size: clamp(
       (font-size($font-size) * .66),
       ((font-size($font-size) * .66) + 1vw),
       font-size($font-size)
-    );
+    ); // 3
   }
 
-  @if  $font-size == "xx-large"
-    or $font-size == "x-large"
-    or $font-size == "large"
-    or $font-size == "medium-plus" {
-    line-height: line-height("tight");
+  @if index(("xx-large", "x-large", "large", "medium-plus"), $font-size) {
+    line-height: line-height("tight"); // 4
   }
 
-  @if  $font-size == "medium"
-    or $font-size == "small"
-    or $font-size == "x-small" {
+  @if index(("medium", "small", "x-small"), $font-size) {
     line-height: line-height("normal");
   }
 } 
