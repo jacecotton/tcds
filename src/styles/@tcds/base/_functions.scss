@@ -1,0 +1,14 @@
+@use "sass:map";
+
+/**
+ * A generic getter function for maps. This is not simply to be a shortcut/alias
+ * for `map.get`, but to standardize error handling and prevent null
+ * compilations.
+ */
+@function getter($map, $key) {
+  @if map.has-key($map, $key) {
+    @return map.get($map, $key);
+  } @else {
+    @error "#{$key} is not a valid key.";
+  }
+}
