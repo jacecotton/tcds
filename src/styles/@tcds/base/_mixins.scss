@@ -1,3 +1,5 @@
+@use "../color/_all" as *;
+
 /**
  * Generic mixins.
  */
@@ -13,6 +15,13 @@
   height: 1px;
   width: 1px;
   position: absolute;
+}
+
+/**
+ * For adding a consistent focus style to elements.
+ */
+@mixin focus-style {
+  outline: 3px solid theme-color("link");
 }
 
 /**
