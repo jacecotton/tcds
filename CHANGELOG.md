@@ -1,3 +1,13 @@
+# [0.14.0](https://github.com/jacecotton/tcds/compare/v0.13.1...v0.14.0) (2022-02-28)
+
+
+### Features
+
+* Add Message component ([388eb56](https://github.com/jacecotton/tcds/commit/388eb56828d91a2641334e5b70f9b962ddb16753))
+* Add primitive styles ([441f11b](https://github.com/jacecotton/tcds/commit/441f11bf40bf3c5e1460d1d22cdcaa9133716075))
+
+
+
 ## [0.13.1](https://github.com/jacecotton/tcds/compare/v0.13.0...v0.13.1) (2022-02-28)
 
 
@@ -50,16 +60,6 @@
 * Add container query utility class to layout ([bc7e585](https://github.com/jacecotton/tcds/commit/bc7e5851acefbcb65d9dc91c7f791a9b7929e727))
 * Card component ([d6994b0](https://github.com/jacecotton/tcds/commit/d6994b0a95805dc577c17b4ee1995fb594fb86c0))
 * Responsive font sizes ([e6ed81c](https://github.com/jacecotton/tcds/commit/e6ed81c7493c7e5f0354a87d21819b3ee4825e63))
-
-
-
-## [0.10.1](https://github.com/jacecotton/tcds/compare/v0.10.0...v0.10.1) (2022-02-23)
-
-
-### Bug Fixes
-
-* Compile previous changes from source ([b942db2](https://github.com/jacecotton/tcds/commit/b942db2da5455db2d4a21f3a779943f33df52266))
-* Improve getters ([c89f6d1](https://github.com/jacecotton/tcds/commit/c89f6d1d41c6e6640dffff86eec1ec3dc27f3d51))
 
 
 
