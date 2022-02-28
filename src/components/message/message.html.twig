@@ -1,0 +1,9 @@
+{% extends "@tcds/components/component/component.html.twig" %}
+
+{% set component_name = "Message" %}
+
+{% set required_props = [content] %}
+
+{% block inner_content %}
+  {{ content|raw }}
+{% endblock %}
