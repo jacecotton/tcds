@@ -1,0 +1,123 @@
+@use "../_all" as *;
+
+/**
+ * 1. Since button labels never wrap, we can remove line height to trim excess
+ *    vertical space.
+ * 2. Vertical padding is not added because button height is explicitly set,
+ *    then its contents are vertically centered.
+ * 3. Clip overlays (icons and hover state) when corners are rounded.
+ * 4. Contain absolute-positioned elements (icon and hover overlays).
+ * 5. For link buttons.
+ */
+
+.Button {
+  $button-height: size("medium");
+  $button-font-size: font-size("medium", $responsive: true);
+
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--button-background, #{theme-color("primary")});
+  color: var(--button-text-color, #{theme-color("primary", "0")});
+  font-family: font-stack("ui");
+  font-size: var(--button-font-size, #{$button-font-size});
+  font-weight: font-weight("semibold");
+  line-height: 1; // 1
+  white-space: nowrap; // 1
+  height: var(--button-height, #{$button-height});
+  padding: 0 var(--button-padding, calc((#{$button-height} - var(--button-font-size, #{$button-font-size})) / 1.5)); // 2
+  overflow: hidden; // 3
+  position: relative; // 4
+  text-decoration: none; // 5
+  cursor: pointer;
+  transform: scale(var(--button-scale, 1)) translate(var(--button-translate, 0, 0));
+  transition: transform animation("productive");
+  user-select: none;
+  z-index: 1;
+
+  /** States */
+
+  &:hover {
+    --button-overlay-color: #{color("shade", "100")};
+  }
+
+  &:active {
+    --button-overlay-color: #{color("shade", "200")};
+    --button-scale: .99;
+  }
+
+  /** Modifiers */
+
+  &--small {
+    --button-font-size: #{font-size("small")};
+
+    @media (pointer: fine) {
+      --button-height: #{size("small")};
+    }
+  }
+
+  &--large {
+    --button-height: #{size("large")};
+    --button-font-size: #{font-size("medium-plus")};
+  }
+
+  &--full-width {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  &--round {
+    border-radius: var(--button-height);
+  }
+
+  &--ghost {
+    --button-background: transparent;
+    --button-text-color: inherit;
+    --button-icon-background: transparent;
+  }
+
+  &--ghost#{&}--icon-right {
+    --button-icon-margin-left: 0;
+  }
+
+  &--ghost:not(#{&}--icon-right) {
+    --button-icon-margin-right: 0;
+  }
+
+  &--icon-right {
+    flex-direction: row-reverse;
+    --button-icon-margin-right: calc(var(--button-padding) * -1);
+    --button-icon-margin-left: var(--button-padding);
+  }
+
+  &--icon-only {
+    --button-padding: 0;
+    --button-icon-background: transparent;
+    --button-icon-margin-right: 0;
+    --button-icon-margin-left: 0;
+  }
+
+  /** Children */
+
+  &::after {
+    display: var(--button-overlay, block);
+    content: "";
+    background-color: var(--button-overlay-color, transparent);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: background-color animation("productive");
+    z-index: -1;
+  }
+
+  svg {
+    background-color: var(--button-icon-background, #{color("shade", "100")});
+    height: 100%;
+    margin:
+      0 var(--button-icon-margin-right, var(--button-padding))
+      0 var(--button-icon-margin-left, calc(var(--button-padding) * -1));
+    padding: calc(var(--button-padding) * .65);
+  }
+}
