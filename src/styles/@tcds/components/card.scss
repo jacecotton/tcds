@@ -1,0 +1,151 @@
+@use "../_all" as *;
+
+.Card {
+  --card-media-small: 220px;
+  display: grid;
+  position: relative;
+
+  /**
+   * Vertical orientation styles (applies by default, unless the "horizontal"
+   * modifier is explicitly set).
+   */
+  &:not(#{&}--horizontal) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "media"
+      "body";
+  }
+
+  /**
+   * Horizontal orientation styles.
+   */
+  @mixin horizontal-card {
+    grid-template-columns: var(--card-media-width, 1fr) 3fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+      "media body";
+    --card-body-divider: none;
+  }
+
+  /**
+   * Apply horizontal orientation styles when the "vertical" modifier is not
+   * explicitly set and the card's outer container is sufficiently wide.
+   */
+  &:not(#{&}--vertical) {
+    @container (min-width: 600px) {
+      @include horizontal-card;
+    }
+  }
+
+  /**
+   * Also apply horizontal orientation styles when the "horizontal" modifier is
+   * explicitly set.
+   */
+  &--horizontal {
+    @include horizontal-card;
+  }
+
+  &--compact {
+    --card-media-width: var(--card-media-small);
+    --card-body-padding: #{space("loose")};
+    --card-title-font-size: #{font-size("medium", $responsive: true)};
+    --card-content-font-size: #{font-size("small", $responsive: true)};
+
+    --button-background: transparent;
+    --button-text-color: #{theme-color("secondary")};
+    --button-padding: 0;
+    --button-height: auto;
+    --button-overlay: none;
+  }
+
+  &--no-bg {
+    --card-body-background: transparent;
+  }
+
+  &--no-bg:not(#{&}--horizontal) {
+    @container (max-width: 599px) {
+      --card-body-padding-x: 0;
+    }
+  }
+
+  &--no-bg#{&}--vertical {
+    --card-body-padding-x: 0;
+  }
+
+  &--accent-divider {
+    --card-body-divider: #{space("tight")} solid #{theme-color("primary")};
+  }
+
+  &--contain-media {
+    --card-media-fit: contain;
+  }
+
+  &__media {
+    grid-area: media;
+    min-width: var(--card-media-small);
+
+    > img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: var(--card-media-fit, cover);
+      object-position: center;
+      overflow: hidden;
+    }
+  }
+
+  &__body {
+    grid-area: body;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: var(--card-body-background, #{color("gray", "0")});
+    color: color("gray", "400");
+    border-top: var(--card-body-divider, none);
+    padding:
+      var(--card-body-padding, #{space("x-loose")})
+      var(--card-body-padding-x, var(--card-body-padding, #{space("x-loose")}));
+  }
+
+  &__title {
+    @include font-size("medium-plus", $custom-property: "--card-title-font-size");
+    font-weight: font-weight("semibold");
+    color: inherit;
+    text-decoration: none;
+    margin-bottom: space("tight", "em");
+
+    &[href]::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+  }
+
+  /**
+   * 1. Make other links in the card content clickable by raising it in the
+   *    stacking context.
+   * 2. Because the whole card surface is clickable, links within the card
+   *    should have a larger click target.
+   */
+
+  &__content {
+    @include font-size("medium", $custom-property: "--card-content-font-size");
+    margin-bottom: space("loose", "em");
+    
+    a {
+      position: relative; // 1
+      margin: -.5em; // 2
+      padding: .5em; // 2
+    }
+  }
+
+  &__footer {
+    display: flex;
+    margin-top: auto;
+    width: 100%;
+  }
+}
