@@ -1,0 +1,16 @@
+{% extends "@tcds/components/component/component.html.twig" %}
+
+{% set component_name = "Icon" %}
+
+{% set root_element = "span" %}
+
+{% block root_attributes %}
+  aria-hidden="true"
+  role="presentation"
+{% endblock %}
+
+{% block inner_content %}
+  {% if icon %}
+    {{ include("@tcds/icons/#{icon}.svg.twig") }}
+  {% endif %}
+{% endblock %}
