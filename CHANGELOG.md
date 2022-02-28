@@ -1,3 +1,12 @@
+## [0.14.2](https://github.com/jacecotton/tcds/compare/v0.14.1...v0.14.2) (2022-02-28)
+
+
+### Bug Fixes
+
+* Add line height to definition list primitive ([cfe5306](https://github.com/jacecotton/tcds/commit/cfe53067ca41db7fd10ab325210e474c8f693db7))
+
+
+
 ## [0.14.1](https://github.com/jacecotton/tcds/compare/v0.14.0...v0.14.1) (2022-02-28)
 
 
@@ -38,20 +47,6 @@
 
 * Add Accordion component ([0ce5df1](https://github.com/jacecotton/tcds/commit/0ce5df1a388f8f6016a41de506d0874e8748fb76))
 * Add icon library and component ([9b782ae](https://github.com/jacecotton/tcds/commit/9b782ae66d8951828c4b773be80e4f81374d06fd))
-
-
-
-# [0.12.0](https://github.com/jacecotton/tcds/compare/v0.11.0...v0.12.0) (2022-02-28)
-
-
-### Bug Fixes
-
-* Card focus styles ([bf860d5](https://github.com/jacecotton/tcds/commit/bf860d5610e254f142eebf3eb0772045c78b9937))
-
-
-### Features
-
-* Add focus style mixin to base module ([997d363](https://github.com/jacecotton/tcds/commit/997d363684f48b2f5abdd9df6841f1904639cccc))
 
 
 
