@@ -20,8 +20,14 @@
 /**
  * For adding a consistent focus style to elements.
  */
-@mixin focus-style {
-  outline: 3px solid theme-color("link");
+@mixin focus-style($inverted: false) {
+  $color: theme-color("link");
+
+  @if $inverted == true {
+    $color: color("yellow", "100");
+  }
+
+  outline: 3px solid $color;
 }
 
 /**
