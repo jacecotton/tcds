@@ -12,7 +12,6 @@
  import sass from "gulp-dart-sass";
  import postcss from "gulp-postcss";
  import autoprefixer from "autoprefixer";
- import cleancss from "gulp-clean-css";
   
  // Image utilities
  import imagemin from "gulp-imagemin";
@@ -54,88 +53,86 @@
   * Define tasks.
   */
   
- const tasks = {
-   styles: () => {
-     return src(config.styles.src)
-       // Start sourcemap input.
-       .pipe(sourcemaps.init())
-       // Preprocessing (Sass).
-       .pipe(sass())
-       // Post-processing (PostCSS).
-       .pipe(postcss([
-         autoprefixer({
-           grid: "autoplace",
-         }),
-       ]))
-       // File optimization.
-       .pipe(cleancss({ level: 2}, (details) => {
-         console.log("clean-css report:", details.stats);
-       }))
-       // Write sourcemaps.
-       .pipe(sourcemaps.write("."))
-       // Output final file.
-       .pipe(dest(config.styles.dest));
-   },
+const tasks = {
+  styles: () => {
+    return src(config.styles.src)
+      // Start sourcemap input.
+      .pipe(sourcemaps.init())
+      // Preprocessing (Sass).
+      .pipe(sass({
+        outputStyle: "compressed",
+      }))
+      // Post-processing (PostCSS).
+      .pipe(postcss([
+        autoprefixer({
+          grid: "autoplace",
+        }),
+      ]))
+      // Write sourcemaps.
+      .pipe(sourcemaps.write("."))
+      // Output final file.
+      .pipe(dest(config.styles.dest));
+  },
  
-   scripts: () => {
-     return src(config.scripts.src)
-       .pipe(sourcemaps.init())
-       .pipe(webpack({
-         entry: config.scripts.src,
-         module: {
-           rules: [
-             {
-               test: /\.js$/,
-               exclude: /(node_modules)/,
-               use: [
-                 {
-                   loader: "babel-loader",
-                   options: {
-                     presets: ["@babel/preset-env"],
-                   },
-                 },
-               ],
-             },
-           ],
-         },
-         output: {
-           filename: "tcds.js",
-         },
-       }))
-       .pipe(sourcemaps.write("."))
-       .pipe(dest(config.scripts.dest));
-   },
- 
-   components: () => {
-     return src(config.components.src)
-       .pipe(dest(config.components.dest));
-   },
- 
-   icons: () => {
-     return src(config.icons.src)
-       .pipe(imagemin())
-       .pipe(dest(config.icons.dest))
-       .pipe(rename((path) => {
-         path.extname = ".svg.twig";
-       }))
-       .pipe(dest(config.icons.dest));
-   },
- };
-  
- /**
-  * Register tasks.
-  */
- 
- task("styles", tasks.styles);
- task("scripts", tasks.scripts);
- task("components", tasks.components);
- task("icons", tasks.icons);
-  
- task("watch", function watcher() {
-   watch(`${inputPath}/styles/`, tasks.styles);
-   watch(`${inputPath}/scripts/`, tasks.scripts);
-   watch(`${inputPath}/components/`, tasks.components);
-   watch(`${inputPath}/icons/`, tasks.icons);
- });
- 
- task("default", series(["styles", "scripts", "components", "icons", "watch"]));
+  scripts: () => {
+    return src(config.scripts.src)
+      .pipe(sourcemaps.init())
+      .pipe(webpack({
+        entry: config.scripts.src,
+        module: {
+          rules: [
+            {
+              test: /\.js$/,
+              exclude: /(node_modules)/,
+              use: [
+                {
+                  loader: "babel-loader",
+                  options: {
+                    presets: ["@babel/preset-env"],
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        output: {
+          filename: "tcds.js",
+        },
+      }))
+      .pipe(sourcemaps.write("."))
+      .pipe(dest(config.scripts.dest));
+  },
+
+  components: () => {
+    return src(config.components.src)
+      .pipe(dest(config.components.dest));
+  },
+
+  icons: () => {
+    return src(config.icons.src)
+      .pipe(imagemin())
+      .pipe(dest(config.icons.dest))
+      .pipe(rename((path) => {
+        path.extname = ".svg.twig";
+      }))
+      .pipe(dest(config.icons.dest));
+  },
+};
+
+/**
+ * Register tasks.
+ */
+
+task("styles", tasks.styles);
+task("scripts", tasks.scripts);
+task("components", tasks.components);
+task("icons", tasks.icons);
+
+task("watch", function watcher() {
+  watch(`${inputPath}/styles/`, tasks.styles);
+  watch(`${inputPath}/scripts/`, tasks.scripts);
+  watch(`${inputPath}/components/`, tasks.components);
+  watch(`${inputPath}/icons/`, tasks.icons);
+});
+
+task("default", series(["styles", "scripts", "components", "icons", "watch"]));
