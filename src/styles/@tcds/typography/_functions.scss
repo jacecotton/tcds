@@ -16,8 +16,16 @@
 /**
  * A getter function for the `$font-sizes` map (see _variables).
  */
-@function font-size($font-size) {
-  @return getter($font-sizes, $font-size);
+@function font-size($font-size, $responsive: false) {
+  @if $responsive == true and $font-size != "x-small" and $font-size != "small" {
+    @return clamp(
+      (getter($font-sizes, $font-size) * .66),
+      ((getter($font-sizes, $font-size) * .66) + 1vw),
+      getter($font-sizes, $font-size)
+    );
+  } @else {
+    @return getter($font-sizes, $font-size);
+  }
 }
 
 /**
