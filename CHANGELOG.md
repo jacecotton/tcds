@@ -1,3 +1,20 @@
+# [0.11.0](https://github.com/jacecotton/tcds/compare/v0.10.1...v0.11.0) (2022-02-28)
+
+
+### Bug Fixes
+
+* Adjust Hero padding API ([5bde6b2](https://github.com/jacecotton/tcds/commit/5bde6b2960615e4c42a61d1707edb973af8b9f29))
+
+
+### Features
+
+* Add Button component ([9697b94](https://github.com/jacecotton/tcds/commit/9697b94302dc1ded9fd1024efe9b88b83080ef00))
+* Add container query utility class to layout ([bc7e585](https://github.com/jacecotton/tcds/commit/bc7e5851acefbcb65d9dc91c7f791a9b7929e727))
+* Card component ([d6994b0](https://github.com/jacecotton/tcds/commit/d6994b0a95805dc577c17b4ee1995fb594fb86c0))
+* Responsive font sizes ([e6ed81c](https://github.com/jacecotton/tcds/commit/e6ed81c7493c7e5f0354a87d21819b3ee4825e63))
+
+
+
 ## [0.10.1](https://github.com/jacecotton/tcds/compare/v0.10.0...v0.10.1) (2022-02-23)
 
 
@@ -37,15 +54,6 @@
 ### Bug Fixes
 
 * Hero style tweaks ([5a14e3c](https://github.com/jacecotton/tcds/commit/5a14e3cfb63ffa036732e1e1269b83227ce7aed5))
-
-
-
-## [0.8.6](https://github.com/jacecotton/tcds/compare/v0.8.5...v0.8.6) (2022-02-17)
-
-
-### Bug Fixes
-
-* Hero default variable value bug fix for IE 11 ([99d13c0](https://github.com/jacecotton/tcds/commit/99d13c038c56664d52bf7b68f36b75f57b113616))
 
 
 
