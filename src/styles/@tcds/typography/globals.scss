@@ -113,7 +113,7 @@ a {
 }
 
 p {
-  margin: 0 0 1rem;
+  margin: 0 0 space("normal", "rem");
   line-height: line-height("loose");
 
   &:last-child {

@@ -1,0 +1,12 @@
+@use "../_all" as *;
+
+hr {
+  border: 0;
+  border-top: 6px solid color("shade", "100");
+  clear: both;
+  margin: 0 0 space("loose");
+}
+
+.hr--small {
+  border-top-width: 1px;
+}

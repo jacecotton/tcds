@@ -1,0 +1,40 @@
+@use "../_all" as *;
+
+/**
+ * Note this file is NOT for styles for the Button component, but instead for
+ * global styles of generic button elements.
+ */
+
+button,
+[type=button],
+[type=file],
+[type=reset],
+[type=submit] {
+  appearance: none;
+  -webkit-appearance: button; // Needed for Safari.
+  border: none;
+  font: inherit;
+  cursor: pointer;
+
+  &:not([class]) {
+    padding: space("tight") space("normal");
+    color: color("gray", "400");
+    background-color: color("gray", "100");
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: transparent;
+      transition: background-color animation("productive");
+    }
+
+    &:hover::after {
+      background-color: color("shade", "0");
+    }
+  }
+}

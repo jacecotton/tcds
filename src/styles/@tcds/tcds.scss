@@ -5,11 +5,16 @@
 
 @use "animation/library";
 
+@use "primitives/buttons";
+@use "primitives/lists";
+@use "primitives/horizontal-rule";
+
 @use "components/icon";
 @use "components/button";
 @use "components/accordion";
 @use "components/card";
 @use "components/hero";
+@use "components/message";
 
 @use "base/utilities" as *;
 @use "layout/utilities" as *;

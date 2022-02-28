@@ -1,4 +1,27 @@
+@use "../_all" as *;
+
 ul, ol {
   padding-left: 0;
   list-style-position: inside;
+  line-height: line-height("normal");
+
+  &:not(:last-child) {
+    margin: 0 0 space("normal", "rem");
+  }
+}
+
+dl {
+  &:not(:last-child) {
+    margin: 0 0 space("normal", "rem");
+  }
+
+  div {
+    &:not(:last-child) {
+      margin-bottom: space("normal", "rem");
+    }
+  }
+}
+
+dt {
+  font-weight: font-weight("bold");
 }
