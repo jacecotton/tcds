@@ -1,3 +1,17 @@
+# [0.12.0](https://github.com/jacecotton/tcds/compare/v0.11.0...v0.12.0) (2022-02-28)
+
+
+### Bug Fixes
+
+* Card focus styles ([bf860d5](https://github.com/jacecotton/tcds/commit/bf860d5610e254f142eebf3eb0772045c78b9937))
+
+
+### Features
+
+* Add focus style mixin to base module ([997d363](https://github.com/jacecotton/tcds/commit/997d363684f48b2f5abdd9df6841f1904639cccc))
+
+
+
 # [0.11.0](https://github.com/jacecotton/tcds/compare/v0.10.1...v0.11.0) (2022-02-28)
 
 
@@ -45,15 +59,6 @@
 ### Features
 
 * Add responsive font sizing ([9274c69](https://github.com/jacecotton/tcds/commit/9274c6944ce36ae531c8d99ff1d97679fab2221d))
-
-
-
-## [0.8.7](https://github.com/jacecotton/tcds/compare/v0.8.6...v0.8.7) (2022-02-17)
-
-
-### Bug Fixes
-
-* Hero style tweaks ([5a14e3c](https://github.com/jacecotton/tcds/commit/5a14e3cfb63ffa036732e1e1269b83227ce7aed5))
 
 
 
