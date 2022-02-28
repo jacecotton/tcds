@@ -1,9 +1,17 @@
 @use "../_all" as *;
 
+/**
+ * 1. Define the "small" size of the media area (e.g. image). By default, the
+ *    media area will be 1/4th the width of the card. However, this variable
+ *    will both be used as the minimum width of the media element for all cards,
+ *    and the maximum width for cards with the `compact` modifier.
+ */
+
 .Card {
-  --card-media-small: 220px;
   display: grid;
   position: relative;
+  
+  --card-media-small: 220px; // 1
 
   /**
    * Vertical orientation styles (applies by default, unless the "horizontal"
@@ -81,6 +89,10 @@
     --card-media-fit: contain;
   }
 
+  &:focus-within {
+    @include focus-style;
+  }
+
   &__media {
     grid-area: media;
     min-width: var(--card-media-small);
@@ -114,6 +126,10 @@
     color: inherit;
     text-decoration: none;
     margin-bottom: space("tight", "em");
+
+    &:focus {
+      outline: none;
+    }
 
     &[href]::before {
       content: "";
