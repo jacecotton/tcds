@@ -1,5 +1,4 @@
-@use "../typography/_variables" as *;
-@use "../typography/_mixins" as *;
+@use "../_all" as *;
 
 .text-center {
   text-align: center;

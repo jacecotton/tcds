@@ -1,6 +1,5 @@
 @use "sass:map";
-@use "_variables" as *;
-@use "_functions" as *;
+@use "../_all" as *;
 
 /**
  * Utility classes for the color system.

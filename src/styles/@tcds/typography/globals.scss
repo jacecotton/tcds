@@ -1,5 +1,4 @@
-@use "../color/_all" as *;
-@use "../typography/_all" as *;
+@use "../_all" as *;
 
 body {
   color: color("gray", "400");
