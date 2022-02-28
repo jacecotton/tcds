@@ -1,3 +1,12 @@
+## [0.13.1](https://github.com/jacecotton/tcds/compare/v0.13.0...v0.13.1) (2022-02-28)
+
+
+### Bug Fixes
+
+* Correct import load ([13e2027](https://github.com/jacecotton/tcds/commit/13e2027a70bbcf18151b4fe6672e126e9da18581))
+
+
+
 # [0.13.0](https://github.com/jacecotton/tcds/compare/v0.12.0...v0.13.0) (2022-02-28)
 
 
@@ -51,15 +60,6 @@
 
 * Compile previous changes from source ([b942db2](https://github.com/jacecotton/tcds/commit/b942db2da5455db2d4a21f3a779943f33df52266))
 * Improve getters ([c89f6d1](https://github.com/jacecotton/tcds/commit/c89f6d1d41c6e6640dffff86eec1ec3dc27f3d51))
-
-
-
-# [0.10.0](https://github.com/jacecotton/tcds/compare/v0.9.0...v0.10.0) (2022-02-22)
-
-
-### Features
-
-* Systematized line-height ([2e046d3](https://github.com/jacecotton/tcds/commit/2e046d34d881f56ed355a0bfded7e30446954cf2))
 
 
 
