@@ -1,0 +1,70 @@
+@use "../_all" as *;
+
+.Accordion {
+  &__controls {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    margin: 0;
+  }
+
+  &__section {
+    margin-bottom: 3px;
+  }
+
+  &__heading {
+    margin: 0;
+  }
+
+  &__button {
+    appearance: none;
+    border: 0;
+    background: color("gray", "0");
+    color: color("gray", "400");
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    font-family: font-stack("ui");
+    font-size: font-size("medium");
+    font-weight: font-weight("semibold");
+    line-height: 1;
+    padding: space("normal") space("loose");
+    width: 100%;
+    transition:
+      background animation("productive"),
+      color animation("productive");
+
+    &:hover {
+      background: theme-color("secondary");
+      color: theme-color("secondary", "0");
+    }
+
+    &:focus-visible {
+      @include focus-style;
+    }
+
+    &:focus-visible:hover {
+      @include focus-style($inverted: true);
+    }
+
+    &[aria-expanded="true"] {
+      --icon-rotate: 180deg;
+    }
+  }
+
+  &__icon {
+    height: 1em;
+    pointer-events: none;
+    transform: rotateZ(var(--icon-rotate, 0));
+    transition: transform animation("productive");
+  }
+
+  &__panel {
+    overflow: hidden;
+    transition: height animation("expressive");
+  }
+  
+  &__content {
+    padding: space("normal");
+  }
+}
