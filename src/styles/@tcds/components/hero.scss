@@ -17,8 +17,9 @@
  */
 
 .Hero {
-  --hero-padding-bottom: 3rem;
-  --hero-padding-top: 3rem;
+  $hero-padding-bottom: 3rem;
+  $hero-padding-top: 3rem;
+  $hero-base-height: 65vh;
 
   display: flex;
   align-items: center;
@@ -26,13 +27,13 @@
   background-position: center;
   box-sizing: content-box; // 1
   min-height: calc(
-    var(--hero-base-height, 65vh)
-    - var(--hero-padding-top)
-    - var(--hero-padding-bottom)
+    var(--hero-base-height, #{$hero-base-height})
+    - var(--hero-padding-top, #{$hero-padding-top})
+    - var(--hero-padding-bottom, #{$hero-padding-bottom})
     - var(--site-header-height, 0px)
   ); // 3
-  padding-top: calc(var(--site-header-height, 0px) + var(--hero-padding-top)); // 4
-  padding-bottom: var(--hero-padding-bottom);
+  padding-top: calc(var(--site-header-height, 0px) + var(--hero-padding-top, #{$hero-padding-top})); // 4
+  padding-bottom: var(--hero-padding-bottom, #{$hero-padding-bottom});
   margin-top: calc(var(--site-header-height, 0px) * -1); // 5
   z-index: 1;
   position: relative;
