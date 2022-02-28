@@ -11,6 +11,8 @@ ul, ol {
 }
 
 dl {
+  line-height: line-height("normal");
+  
   &:not(:last-child) {
     margin: 0 0 space("normal", "rem");
   }
