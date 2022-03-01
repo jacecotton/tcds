@@ -1,8 +1,7 @@
 @use "../_all" as *;
 
 ul, ol {
-  padding-left: 0;
-  list-style-position: inside;
+  padding-left: space("normal", "rem");
   line-height: line-height("normal");
 
   &:not(:last-child) {
@@ -10,9 +9,14 @@ ul, ol {
   }
 }
 
+ul[class]:not(.ul),
+ol[class]:not(.ol) {
+  list-style: none;
+}
+
 dl {
   line-height: line-height("normal");
-  
+
   &:not(:last-child) {
     margin: 0 0 space("normal", "rem");
   }
