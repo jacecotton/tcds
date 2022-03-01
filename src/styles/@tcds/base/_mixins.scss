@@ -1,5 +1,3 @@
-@use "../color/_all" as *;
-
 /**
  * Generic mixins.
  */
@@ -21,10 +19,10 @@
  * For adding a consistent focus style to elements.
  */
 @mixin focus-style($inverted: false) {
-  $color: theme-color("link");
+  $color: blue;
 
   @if $inverted == true {
-    $color: color("yellow", "100");
+    $color: yellow;
   }
 
   outline: 3px solid $color;
