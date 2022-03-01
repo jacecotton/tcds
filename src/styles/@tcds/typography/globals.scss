@@ -102,12 +102,12 @@ sup {
   font-size: max(#{font-size("x-small"), 87.5%}); // 2
 }
 
-a {
+:where(a) {
   color: theme-color("link");
   text-decoration: underline;
 }
 
-:visited {
+:where(:visited) {
   color: theme-color("link", "400");
 }
 
