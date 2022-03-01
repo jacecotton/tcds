@@ -67,7 +67,7 @@
   }
 
   &--round {
-    border-radius: var(--button-height);
+    border-radius: var(--button-height, #{$button-height});
   }
 
   &--ghost {
