@@ -1,9 +1,7 @@
 @use "../_all" as *;
 
 .max-width {
-  margin: 0 auto;
-  width: calc(100% - space("x-loose"));
-  max-width: breakpoint("x-large");
+  @include max-width;
 }
 
 .row {

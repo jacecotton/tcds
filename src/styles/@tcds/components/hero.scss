@@ -73,6 +73,18 @@
     background: color("shade", "200");
   }
 
+  &__content {
+    @include max-width;
+    display: flex;
+    align-items: center;
+    gap: space("x-loose");
+
+    .column:last-of-type {
+      flex: 1;
+      gap: space("normal");
+    }
+  }
+
   &__headline {
     @include font-size("xx-large");
     font-weight: font-weight("semibold");
