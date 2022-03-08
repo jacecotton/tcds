@@ -1,3 +1,12 @@
+## [0.15.1](https://github.com/jacecotton/tcds/compare/v0.15.0...v0.15.1) (2022-03-08)
+
+
+### Bug Fixes
+
+* Restructuring distributed and legacy files ([2e8b1f6](https://github.com/jacecotton/tcds/commit/2e8b1f66ec6e76e3898b613629b823cf6b401daf))
+
+
+
 # [0.15.0](https://github.com/jacecotton/tcds/compare/v0.14.5...v0.15.0) (2022-03-01)
 
 
@@ -38,15 +47,6 @@
 ### Bug Fixes
 
 * Re-fix import load ([ed657d4](https://github.com/jacecotton/tcds/commit/ed657d498b6cbe18dcd31498c0c1a5f10090b730))
-
-
-
-## [0.14.2](https://github.com/jacecotton/tcds/compare/v0.14.1...v0.14.2) (2022-02-28)
-
-
-### Bug Fixes
-
-* Add line height to definition list primitive ([cfe5306](https://github.com/jacecotton/tcds/commit/cfe53067ca41db7fd10ab325210e474c8f693db7))
 
 
 
