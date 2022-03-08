@@ -89,6 +89,11 @@
     --card-media-fit: contain;
   }
 
+  &--fill {
+    width: 100%;
+    height: 100%;
+  }
+
   &:focus-within {
     @include focus-style;
   }
@@ -111,7 +116,6 @@
     grid-area: body;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     background-color: var(--card-body-background, #{color("gray", "0")});
     color: color("gray", "400");
     border-top: var(--card-body-divider, none);
@@ -125,6 +129,7 @@
     font-weight: font-weight("semibold");
     color: inherit;
     text-decoration: none;
+    display: block;
     margin-bottom: space("tight", "em");
 
     &:focus {

@@ -13,7 +13,8 @@ body {
  *    styles easier to override. Browser support lacks IE, Edge 87-, Firefox
  *    77-, Chrome 87-, Safari 13.7-, so only include styles in this ruleset that
  *    are not critical.
- * 2. Give a base top and bottom margin as a starting point.
+ * 2. Give a base vertical margin as a starting point (only give a top margin if
+ *    the heading is not the first child).
  * 3. Add a much larger top margin to headings that are not directly under a
  *    heading one level higher.
  * 4. Not concerned with lowering the specificity of H1 styles, as there should
@@ -23,14 +24,18 @@ body {
  *    meaning.
  */
 
-:where(h1, h2, h3, h4, h5, h6),
-.h1, .h2, .h3, .h4, .h5, .h6 { // 1
+:where(h1, h2, h3, h4, h5, h6), // 1
+.h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: font-stack("headings");
 }
 
-:where(h2, h3, h4, h5, h6),
-.h2, .h3, .h4, .h5, .h6 { // 1
-  margin: 1rem 0; // 2
+:where(h2, h3, h4, h5, h6), // 1
+.h2, .h3, .h4, .h5, .h6 {
+  margin: 0 0 1rem; // 2
+
+  &:not(:first-child) {
+    margin-top: 1rem; // 2
+  }
 }
 
 :where(:not(h1) + h2),
@@ -86,8 +91,8 @@ h6,
 }
 
 /**
- * Styles for elements that make contained text smaller relative to the
- * element's parent font size.
+ * Styles for elements that make text smaller relative to the element's parent
+ * font size.
  *
  * 1. Fallback/base style. Makes these elements' font size 87.5% of the parent
  *    font size.
@@ -102,12 +107,19 @@ sup {
   font-size: max(#{font-size("x-small"), 87.5%}); // 2
 }
 
+/**
+ * 1. Use `:where` pseduo-function to zero out the specificity and make the
+ *    styles easier to override. Note that browsers that do not support `:where`
+ *    will use the default browser link styles.
+ */
 :where(a) {
   color: theme-color("link");
   text-decoration: underline;
+  transition: color animation("productive");
 }
 
-:where(:visited) {
+:where(a:hover),
+:where(a:visited) {
   color: theme-color("link", "400");
 }
 

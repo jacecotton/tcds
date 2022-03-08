@@ -29,7 +29,7 @@
   
  const config = {
    styles: {
-     src: `${inputPath}/styles/**/*.scss`,
+     src: `${inputPath}/styles/@tcds/**/*.scss`,
      dest: `${outputPath}/styles/`,
    },
  
