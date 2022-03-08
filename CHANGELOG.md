@@ -1,3 +1,18 @@
+# [0.16.0](https://github.com/jacecotton/tcds/compare/v0.15.1...v0.16.0) (2022-03-08)
+
+
+### Bug Fixes
+
+* Abstracting utility classes in Hero component ([3140013](https://github.com/jacecotton/tcds/commit/3140013fec6f493e934caba1ae950ff7795891eb))
+* Improving browser compatibility for Card ([f64eae3](https://github.com/jacecotton/tcds/commit/f64eae3477c781806bd341f8c41671b409e02851))
+
+
+### Features
+
+* Add details primitive styles ([4cc778c](https://github.com/jacecotton/tcds/commit/4cc778c49592335c22d6a1623141d86eba0999c5))
+
+
+
 ## [0.15.1](https://github.com/jacecotton/tcds/compare/v0.15.0...v0.15.1) (2022-03-08)
 
 
@@ -38,15 +53,6 @@
 ### Bug Fixes
 
 * Test mixin focus style ([26f277d](https://github.com/jacecotton/tcds/commit/26f277de44ae9ae2eb45dae55b52fd2dcdceeb4c))
-
-
-
-## [0.14.3](https://github.com/jacecotton/tcds/compare/v0.14.2...v0.14.3) (2022-03-01)
-
-
-### Bug Fixes
-
-* Re-fix import load ([ed657d4](https://github.com/jacecotton/tcds/commit/ed657d498b6cbe18dcd31498c0c1a5f10090b730))
 
 
 
