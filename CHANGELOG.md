@@ -1,3 +1,14 @@
+## [0.16.1](https://github.com/jacecotton/tcds/compare/v0.16.0...v0.16.1) (2022-03-16)
+
+
+### Bug Fixes
+
+* Moving table styles from base to primitives ([0e49ca5](https://github.com/jacecotton/tcds/commit/0e49ca54da2179deeecf854658c647e45d6f2e0b))
+* Style adjustments for Accordion ([7cc2e3b](https://github.com/jacecotton/tcds/commit/7cc2e3b78e789722cacfc7feed768da9f9831816))
+* Style adjustments for horizontal rule ([9aec587](https://github.com/jacecotton/tcds/commit/9aec58717c8d085b517740904de4cca6e32c7acb))
+
+
+
 # [0.16.0](https://github.com/jacecotton/tcds/compare/v0.15.1...v0.16.0) (2022-03-08)
 
 
@@ -44,15 +55,6 @@
 ### Bug Fixes
 
 * Fixing layout module imports ([7f8f82f](https://github.com/jacecotton/tcds/commit/7f8f82f92b2a9fcfb9baa0a97a0d5c06c2be7f24))
-
-
-
-## [0.14.4](https://github.com/jacecotton/tcds/compare/v0.14.3...v0.14.4) (2022-03-01)
-
-
-### Bug Fixes
-
-* Test mixin focus style ([26f277d](https://github.com/jacecotton/tcds/commit/26f277de44ae9ae2eb45dae55b52fd2dcdceeb4c))
 
 
 
