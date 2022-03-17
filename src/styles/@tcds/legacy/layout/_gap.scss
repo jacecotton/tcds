@@ -15,21 +15,27 @@
  */
 
 @each $token, $value in $spaces {
-  .gap-#{$token}.row > :not(:first-child),
-  .row-gap-#{$token} > :not(:first-child) {
-    margin-left: $value;
-  }
-
-  .gap-#{$token}.column > :not(:first-child),
-  .column-gap-#{$token} > :not(:first-child) {
-    margin-top: $value;
-  }
-
-  .gap-#{$token}.grid {
+  .gap-#{$token} {
     margin: $value * -1;
 
     > * {
       margin: math.div($value, 2);
+    }
+  }
+
+  .row-gap-#{$token} {
+    margin: 0 ($value * -1);
+
+    > * {
+      margin: 0 math.div($value, 2);
+    }
+  }
+
+  .column-gap-#{$token} {
+    margin: ($value * -1) 0;
+
+    > * {
+      margin: math.div($value, 2) 0;
     }
   }
 }
