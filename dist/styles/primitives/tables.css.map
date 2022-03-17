@@ -1,0 +1,1 @@
+{"version":3,"sources":["primitives/tables.scss"],"names":[],"mappings":"AAAA,GACE,kBAAA","file":"tables.css","sourcesContent":["td {\n  vertical-align: top;\n}"]}
