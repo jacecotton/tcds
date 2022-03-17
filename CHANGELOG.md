@@ -1,3 +1,12 @@
+## [0.16.2](https://github.com/jacecotton/tcds/compare/v0.16.1...v0.16.2) (2022-03-17)
+
+
+### Bug Fixes
+
+* Push previously uncompiled changes to dist ([f555372](https://github.com/jacecotton/tcds/commit/f5553724257201b4ad549596c5c0cc939f1422d5))
+
+
+
 ## [0.16.1](https://github.com/jacecotton/tcds/compare/v0.16.0...v0.16.1) (2022-03-16)
 
 
@@ -46,15 +55,6 @@
 ### Features
 
 * Add color to palette ([f7ab3ce](https://github.com/jacecotton/tcds/commit/f7ab3cead7f654d946d5d22e1d62062f965a7ac1))
-
-
-
-## [0.14.5](https://github.com/jacecotton/tcds/compare/v0.14.4...v0.14.5) (2022-03-01)
-
-
-### Bug Fixes
-
-* Fixing layout module imports ([7f8f82f](https://github.com/jacecotton/tcds/commit/7f8f82f92b2a9fcfb9baa0a97a0d5c06c2be7f24))
 
 
 
