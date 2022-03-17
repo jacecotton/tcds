@@ -1,3 +1,12 @@
+## [0.17.1](https://github.com/jacecotton/tcds/compare/v0.17.0...v0.17.1) (2022-03-17)
+
+
+### Bug Fixes
+
+* Add Accordion to script bundle ([9e84dc9](https://github.com/jacecotton/tcds/commit/9e84dc9d735026290cbced6cfc9e1a7171433cf8))
+
+
+
 # [0.17.0](https://github.com/jacecotton/tcds/compare/v0.16.2...v0.17.0) (2022-03-17)
 
 
@@ -44,15 +53,6 @@
 ### Features
 
 * Add details primitive styles ([4cc778c](https://github.com/jacecotton/tcds/commit/4cc778c49592335c22d6a1623141d86eba0999c5))
-
-
-
-## [0.15.1](https://github.com/jacecotton/tcds/compare/v0.15.0...v0.15.1) (2022-03-08)
-
-
-### Bug Fixes
-
-* Restructuring distributed and legacy files ([2e8b1f6](https://github.com/jacecotton/tcds/commit/2e8b1f66ec6e76e3898b613629b823cf6b401daf))
 
 
 
