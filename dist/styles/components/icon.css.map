@@ -1,1 +1,0 @@
-{"version":3,"sources":["components/icon.scss"],"names":[],"mappings":"AAEA,MACE,mBAAA,CACA,UAAA,CACA,qBAAA,CAEA,UACE,WAAA","file":"icon.css","sourcesContent":["@use \"../_all\" as *;\n\n.Icon {\n  display: inline-flex;\n  height: 1em;\n  vertical-align: middle;\n\n  svg {\n    height: 100%;\n  }\n}"]}
