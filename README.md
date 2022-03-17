@@ -5,6 +5,8 @@
 
 [Texas Children's Design System](https://tcds.herokuapp.com/) (TCDS) is a centralized library of web components, design patterns, and design resources. It aims to improve standardization, efficiency, and scalability by providing a single, custom front-end framework for building websites at scale.
 
+**Note:** The Design System is currently in **pre-release**. Not all features currently documented are available or ready for production. You can track progress for the release of **v1.0.0** at the [official release milestone](https://github.com/jacecotton/tcds/milestone/1).
+
 ## Getting started
 
 To install the Design System in a project, run the following from your project's directory:
