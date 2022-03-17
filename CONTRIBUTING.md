@@ -1,3 +1,5 @@
+**Work in progress.** See #5
+
 ## Setting up locally
 ### Step 1. Clone the repository
 
