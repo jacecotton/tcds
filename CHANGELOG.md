@@ -1,3 +1,12 @@
+## [0.16.2](https://github.com/jacecotton/tcds/compare/v0.16.1...v0.16.2) (2022-03-17)
+
+
+### Bug Fixes
+
+* Push previously uncompiled changes to dist ([f555372](https://github.com/jacecotton/tcds/commit/f5553724257201b4ad549596c5c0cc939f1422d5))
+
+
+
 ## [0.16.1](https://github.com/jacecotton/tcds/compare/v0.16.0...v0.16.1) (2022-03-16)
 
 
