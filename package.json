@@ -1,7 +1,7 @@
 {
   "name": "@txch/tcds",
   "version": "0.16.2",
-  "description": "",
+  "description": "Texas Children's Design System (TCDS) is a centralized library of web components, design patterns, and design resources. It aims to improve standardization, efficiency, and scalability by providing a single, custom front-end framework for building websites at scale.",
   "main": "index.js",
   "type": "module",
   "scripts": {
