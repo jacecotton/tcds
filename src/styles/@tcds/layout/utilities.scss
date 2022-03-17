@@ -25,9 +25,22 @@
   }
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(var(--grid-columns, 1), minmax(var(--grid-column-min-width, 0px), 1fr));
+.flex-full {
+  flex-basis: 100%;
+}
+
+@each $breakpoint-name, $breakpoint-value in $breakpoints {
+  @media (min-width: #{$breakpoint-value}) {
+    @for $flex from 1 through 12 {
+      .above-#{$breakpoint-name}\:flex-#{$flex} {
+        flex: $flex;
+      }
+    }
+
+    .above-#{$breakpoint-name}\:flex-full {
+      flex-basis: 100%;
+    }
+  }
 }
 
 .justify-space-between {
