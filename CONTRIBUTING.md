@@ -1,6 +1,6 @@
 **Work in progress.** See #5
 
-## Setting up locally
+## Developing locally
 ### Step 1. Clone the repository
 
 First, `cd` into the directory you want your local copy of the repository to be. Then run
@@ -32,3 +32,13 @@ npm run build
 ```
 
 This will build `src/` files to `dist/` and continuously watch for changes, rebuilding on every save.
+
+## Contributing back
+
+* Branching, pull requests (add template?), etc.
+
+TBD
+
+## Editor settings
+
+* EditorConfig plugin for desired code editor (see https://editorconfig.org/#download)
