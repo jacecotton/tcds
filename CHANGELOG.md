@@ -1,3 +1,17 @@
+# [0.17.0](https://github.com/jacecotton/tcds/compare/v0.16.2...v0.17.0) (2022-03-17)
+
+
+### Bug Fixes
+
+* Adjust method for gap utility class fallbacks ([403c551](https://github.com/jacecotton/tcds/commit/403c5517cdb724a00605901d13c6c4e81c0328a7))
+
+
+### Features
+
+* Remove grid utility, add responsive flex ([ce43e44](https://github.com/jacecotton/tcds/commit/ce43e44b6725dd920ffe3a5bd00395aa02887ed7))
+
+
+
 ## [0.16.2](https://github.com/jacecotton/tcds/compare/v0.16.1...v0.16.2) (2022-03-17)
 
 
@@ -39,31 +53,6 @@
 ### Bug Fixes
 
 * Restructuring distributed and legacy files ([2e8b1f6](https://github.com/jacecotton/tcds/commit/2e8b1f66ec6e76e3898b613629b823cf6b401daf))
-
-
-
-# [0.15.0](https://github.com/jacecotton/tcds/compare/v0.14.5...v0.15.0) (2022-03-01)
-
-
-### Bug Fixes
-
-* Adjust list primitive styles ([0875cf9](https://github.com/jacecotton/tcds/commit/0875cf9d8d62c079ebcca7a0d2aebad50b2ee1ac))
-* Button variable API fix ([75d80c6](https://github.com/jacecotton/tcds/commit/75d80c67250647318e94528c5e354f1ee2efbae7))
-* Lowering specificity of default link colors ([8396a97](https://github.com/jacecotton/tcds/commit/8396a9763f4c177a8c2a68427adf433914201d1c))
-
-
-### Features
-
-* Add color to palette ([f7ab3ce](https://github.com/jacecotton/tcds/commit/f7ab3cead7f654d946d5d22e1d62062f965a7ac1))
-
-
-
-## [0.14.5](https://github.com/jacecotton/tcds/compare/v0.14.4...v0.14.5) (2022-03-01)
-
-
-### Bug Fixes
-
-* Fixing layout module imports ([7f8f82f](https://github.com/jacecotton/tcds/commit/7f8f82f92b2a9fcfb9baa0a97a0d5c06c2be7f24))
 
 
 
