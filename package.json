@@ -1,8 +1,7 @@
 {
   "name": "@txch/tcds",
   "version": "0.17.1",
-  "description": "A centralized library of web components, design patterns, and design resources, custom made for web projects at Texas Children's Hospital.",
-  "main": "index.js",
+  "description": "Texas Children's Design System",
   "type": "module",
   "scripts": {
     "dev": "gulp"
