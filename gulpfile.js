@@ -2,57 +2,59 @@
  * Dependencies.
  */
 
- import gulp from "gulp";
- const { task, watch, src, dest, series } = gulp;
- 
- // Script utilities
- import webpack from "webpack-stream";
- 
- // Style utilities
- import sass from "gulp-dart-sass";
- import postcss from "gulp-postcss";
- import autoprefixer from "autoprefixer";
-  
- // Image utilities
- import imagemin from "gulp-imagemin";
- 
- // General utilities
- import sourcemaps from "gulp-sourcemaps";
- import rename from "gulp-rename";
-   
- /**
-  * Configuration.
-  */
-   
- const inputPath = "./src";
- const outputPath = "./dist";
-  
- const config = {
-   styles: {
-     src: `${inputPath}/styles/@tcds/**/*.scss`,
-     dest: `${outputPath}/styles/`,
-   },
- 
-   scripts: {
-     src: `${inputPath}/scripts/index.js`,
-     dest: `${outputPath}/scripts/`,
-   },
- 
-   components: {
-     src: `${inputPath}/components/**/*.twig`,
-     dest: `${outputPath}/components/`,
-   },
- 
-   icons: {
-     src: `${inputPath}/icons/**/*.svg`,
-     dest: `${outputPath}/icons/`,
-   },
- };
-  
- /**
-  * Define tasks.
-  */
-  
+import gulp from "gulp";
+const { task, watch, src, dest, series } = gulp;
+
+// Script utilities
+import webpack from "webpack-stream";
+
+// Style utilities
+import postcss from "gulp-postcss";
+import autoprefixer from "autoprefixer";
+import dartSass from "sass";
+import gulpSass from "gulp-sass";
+const sass = gulpSass(dartSass);
+
+// Image utilities
+import imagemin from "gulp-imagemin";
+
+// General utilities
+import sourcemaps from "gulp-sourcemaps";
+import rename from "gulp-rename";
+
+/**
+ * Configuration.
+ */
+
+const inputPath = "./src";
+const outputPath = "./dist";
+
+const config = {
+  styles: {
+    src: `${inputPath}/styles/@tcds/**/*.scss`,
+    dest: `${outputPath}/styles/`,
+  },
+
+  scripts: {
+    src: `${inputPath}/scripts/index.js`,
+    dest: `${outputPath}/scripts/`,
+  },
+
+  components: {
+    src: `${inputPath}/components/**/*.twig`,
+    dest: `${outputPath}/components/`,
+  },
+
+  icons: {
+    src: `${inputPath}/icons/**/*.svg`,
+    dest: `${outputPath}/icons/`,
+  },
+};
+
+/**
+ * Define tasks.
+ */
+
 const tasks = {
   styles: () => {
     return src(config.styles.src)
@@ -61,7 +63,7 @@ const tasks = {
       // Preprocessing (Sass).
       .pipe(sass({
         outputStyle: "compressed",
-      }))
+      }).on("error", sass.logError))
       // Post-processing (PostCSS).
       .pipe(postcss([
         autoprefixer({
@@ -73,7 +75,7 @@ const tasks = {
       // Output final file.
       .pipe(dest(config.styles.dest));
   },
- 
+
   scripts: () => {
     return src(config.scripts.src)
       .pipe(sourcemaps.init())
