@@ -4,3 +4,4 @@
 .stylelintrc.json
 CONTRIBUTING.md
 gulpfile.js
+src/**/README.md
