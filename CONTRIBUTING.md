@@ -23,15 +23,15 @@ First, make sure you have Node.js installed on your machine. Then install projec
 npm install
 ```
 
-### Step 3. Build and watch for changes
+### Step 3. Compile and watch for changes
 
 Next, run
 
 ```bash
-npm run build
+npm run dev
 ```
 
-This will build `src/` files to `dist/` and continuously watch for changes, rebuilding on every save.
+This will compile `src/` code to `dist/`, and continuously watch for changes, rebuilding on every save.
 
 ## Contributing back
 
