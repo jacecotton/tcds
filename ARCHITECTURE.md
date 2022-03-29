@@ -4,18 +4,27 @@
 
 This document describes the high-level architecture of Texas Children's Design System.
 
+### Overview
 The Design System is ultimately just a collection of scripts, styles, templates, and SVG icons.
 
 These assets are delivered in two options:
 
-* `src/` — The *uncompiled* assets, installable as a dependency.
-* `dist/` — The *precompiled* assets, linkable from a CDN.
+* [`src/`](https://github.com/jacecotton/tcds/tree/main/src) — The *uncompiled* assets, installable as a dependency.
+* [`dist/`](https://github.com/jacecotton/tcds/tree/main/dist) — The *precompiled* assets, linkable from a CDN.
 
-Using the former requires a build system to compile the Design System along with a project's other code (see [Getting Started &sect; Local installation](http://tcds.herokuapp.com/getting-started#local-installation)). This is the best option for larger projects that require configuration (theming, extension, granular inclusion, etc.) or deeper integration with the Design System's tools (Sass utilities, JavaScript module exports, etc.)
+Using the former in a project requires a build process to compile the Design System along with a project's other code (see [Getting Started &sect; Local installation](http://tcds.herokuapp.com/getting-started#local-installation)). This is the best option for larger projects that require configuration (theming, extension, granular inclusion, etc.) or deeper integration with the Design System's tools (Sass utilities, JavaScript module exports, etc.)
 
-The latter simply provides a single JavaScript bundle, a master stylesheet, and a collection of SVG icons. This is the best option for a simple project that has no build system or need for configuration, and only needs for the documented HTML snippets to have the proper styling and functionality.
+The latter simply provides a single JavaScript bundle, a master stylesheet, and a collection of SVG icons. This is the best option for a simple project that has no build system or need for configuration, and only needs for the documented HTML elements and snippets to have the proper styling and functionality (with the default theming).
 
-* gulp.js for build process
-* webpack.js for module bundling
-* src/ for uncompiled assets to import, compile, and bundle with downstream project's other assets
-* dist/ for precompiled assets to link from a CDN
+### Building
+`dist/` files are compiled from `src/` files in a similar way to a downstream project. We use [gulp.js](https://gulpjs.com/) as the build process (see [gulpfile.js](https://github.com/jacecotton/tcds/blob/main/gulpfile.js)). The Design System can be built with the `dev` npm command or `gulp`. The tasks and their dependencies are as follows:
+
+* `styles` — `src/styles/@tcds/` to `dist/styles/`
+  * [sass](https://www.npmjs.com/package/sass), [gulp-sass](https://www.npmjs.com/package/gulp-sass) (style pre-processing)
+  * [postcss](https://www.npmjs.com/package/gulp-postcss) (style post-processing)
+    * [autoprefixer](https://www.npmjs.com/package/autoprefixer) (browser compatibility)
+* `scripts` — `src/scripts/` to `dist/scripts/`
+  * [webpack](https://www.npmjs.com/package/webpack-stream) (module bundling)
+    * [babel-loader](https://www.npmjs.com/package/babel-loader), [@babel/core](https://www.npmjs.com/package/@babel/core), [@babel/preset-env](https://www.npmjs.com/package/@babel/preset-env) (browser compatibility)
+* `icons` — `src/icons/` to `dist/icons/`
+  * [imagemin](https://www.npmjs.com/package/gulp-imagemin) (file minimization)
