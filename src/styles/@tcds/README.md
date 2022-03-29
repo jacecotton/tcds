@@ -11,7 +11,7 @@ In a downstream project, the path `./node_modules/@txch/tcds/src/styles/` should
 Each module bundles its own styles to be compiled to CSS in an `_index.scss` file. Files named as such can simply be referred to by their folder name, so
 
 ```css
-@use "layout";
+@use "@tcds/layout";
 ```
 
 will bring in all styles for the layout module.
