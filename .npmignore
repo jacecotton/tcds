@@ -3,5 +3,6 @@
 .editorconfig
 .stylelintrc.json
 CONTRIBUTING.md
+ARCHITECTURE.md
 gulpfile.js
 src/**/README.md
