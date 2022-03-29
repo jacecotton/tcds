@@ -11,7 +11,7 @@ In a downstream project, the path `./node_modules/@txch/tcds/src/styles/` should
 Every style module has an `_all.scss` file, which `@forward`s all members (variables, mixins, functions) that belong to the module. You can import and use these members with `@use`:
 
 ```css
-@use "@tcds/layoute/_all" as *;
+@use "@tcds/layout/_all" as *;
 ```
 
 The root [`_all.scss`](https://github.com/jacecotton/tcds/blob/main/src/styles/%40tcds/_all.scss) file `@forward`s each style module's `_all.scss` file, so in most cases it's useful to just `@use` this "master" file. So from any file in the styles folder, you can
