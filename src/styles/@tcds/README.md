@@ -6,6 +6,16 @@ We place all styles in a `@tcds` directory to fake a path namespace. When `@use`
 
 In a downstream project, the path `./node_modules/@txch/tcds/src/styles/` should be provided in the `sass` callback's `includePaths` configuration option. Then, TCDS style modules can be imported as `@use "@tcds/..."`.
 
+### Granular module imports
+
+Each module bundles its own styles to be compiled to CSS in an `_index.scss` file. Files named as such can simply be referred to by their folder name, so
+
+```css
+@use "layout";
+```
+
+will bring in all styles for the layout module.
+
 ### Forwarding members
 
 Every style module has an `_all.scss` file, which `@forward`s all members (variables, mixins, functions) that belong to the module. You can import and use these members with `@use`:

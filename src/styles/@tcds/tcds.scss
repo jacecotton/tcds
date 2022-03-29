@@ -1,23 +1,13 @@
-@use "base/base";
+/**
+ * This file is the entrypoint for building the entire Design System stylesheet.
+ */
 
-@use "typography/fonts";
-@use "typography/globals";
+/** Bring in the index files from each module. */
+@use "base";
+@use "typography";
+@use "animation";
+@use "primitives";
+@use "components";
 
-@use "animation/library";
-
-@use "primitives/buttons";
-@use "primitives/lists";
-@use "primitives/horizontal-rule";
-@use "primitives/tables";
-
-@use "components/icon";
-@use "components/button";
-@use "components/accordion";
-@use "components/card";
-@use "components/hero";
-@use "components/message";
-
-@use "base/utilities" as *;
-@use "layout/utilities" as *;
-@use "color/utilities" as *;
-@use "typography/utilities" as *;
+/** Import utilities last so they have higher specificity */
+@use "utilities";
