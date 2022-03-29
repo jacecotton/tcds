@@ -1,3 +1,12 @@
+# [0.18.0](https://github.com/jacecotton/tcds/compare/v0.17.1...v0.18.0) (2022-03-29)
+
+
+### Features
+
+* Remove Twig from dist bundle ([954b872](https://github.com/jacecotton/tcds/commit/954b87267a3076ec6d968a4fb52481673b71ef95))
+
+
+
 ## [0.17.1](https://github.com/jacecotton/tcds/compare/v0.17.0...v0.17.1) (2022-03-17)
 
 
@@ -38,21 +47,6 @@
 * Moving table styles from base to primitives ([0e49ca5](https://github.com/jacecotton/tcds/commit/0e49ca54da2179deeecf854658c647e45d6f2e0b))
 * Style adjustments for Accordion ([7cc2e3b](https://github.com/jacecotton/tcds/commit/7cc2e3b78e789722cacfc7feed768da9f9831816))
 * Style adjustments for horizontal rule ([9aec587](https://github.com/jacecotton/tcds/commit/9aec58717c8d085b517740904de4cca6e32c7acb))
-
-
-
-# [0.16.0](https://github.com/jacecotton/tcds/compare/v0.15.1...v0.16.0) (2022-03-08)
-
-
-### Bug Fixes
-
-* Abstracting utility classes in Hero component ([3140013](https://github.com/jacecotton/tcds/commit/3140013fec6f493e934caba1ae950ff7795891eb))
-* Improving browser compatibility for Card ([f64eae3](https://github.com/jacecotton/tcds/commit/f64eae3477c781806bd341f8c41671b409e02851))
-
-
-### Features
-
-* Add details primitive styles ([4cc778c](https://github.com/jacecotton/tcds/commit/4cc778c49592335c22d6a1623141d86eba0999c5))
 
 
 
