@@ -1,4 +1,4 @@
-@use "../_all" as *;
+@use "@tcds/_all" as *;
 
 details {
   &:where(:not(:last-child)) {
@@ -50,7 +50,7 @@ details {
       filter: var(--icon-filter, none);
       transform: rotateZ(var(--icon-rotate, 0));
     }
-    
+
     + div {
       padding: space("normal");
       border-left: 3px solid color("gray", "0");

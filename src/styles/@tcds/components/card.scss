@@ -1,4 +1,4 @@
-@use "../_all" as *;
+@use "@tcds/_all" as *;
 
 /**
  * 1. Define the "small" size of the media area (e.g. image). By default, the
@@ -10,7 +10,7 @@
 .Card {
   display: grid;
   position: relative;
-  
+
   --card-media-small: 220px; // 1
 
   /**
@@ -156,7 +156,7 @@
   &__content {
     @include font-size("medium", $custom-property: "--card-content-font-size");
     margin-bottom: space("loose", "em");
-    
+
     a {
       position: relative; // 1
       margin: -.5em; // 2

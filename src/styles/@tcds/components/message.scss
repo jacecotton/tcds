@@ -1,4 +1,4 @@
-@use "../_all" as *;
+@use "@tcds/_all" as *;
 
 .Message {
   --message-background-color: #{interface-color("neutral", "0")};

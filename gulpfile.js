@@ -52,6 +52,7 @@ const tasks = {
       // Preprocessing (Sass).
       .pipe(sass({
         outputStyle: "compressed",
+        includePaths: ["./src/styles"],
       }).on("error", sass.logError))
       // Post-processing (PostCSS).
       .pipe(postcss([

@@ -1,4 +1,4 @@
-@use "../_all" as *;
+@use "@tcds/_all" as *;
 
 /**
  * 1. Make padding add to the box's total dimensions, rather than pushing
@@ -47,7 +47,7 @@
   &--full-height {
     --hero-base-height: 100vh;
   }
-  
+
   /**
    * Only allow parallax if reduced motion preference is not set.
    */
