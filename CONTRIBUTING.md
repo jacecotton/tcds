@@ -36,6 +36,7 @@ This will compile `src/` code to `dist/`, and continuously watch for changes, re
 ## Contributing back
 
 * Branching, pull requests (add template?), etc.
+* Release flow, github workflow, npm publish, etc.
 
 TBD
 
