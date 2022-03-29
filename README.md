@@ -58,10 +58,10 @@ import Tabs from "@tcds/components/Tabs.js";
 
 ## Contributing
 
-**Developers:** For guidance on how to contribute to this repository, see [CONTRIBUTING.md](CONTRIBUTING.md).
+**Developers:** For guidance on how to contribute to this repository, see [CONTRIBUTING.md](CONTRIBUTING.md). To familiarize yourself with the repository, see [ARCHITECTURE.md](ARCHITECTURE.md).
 
 **Designers, editors, and feedback:** For guidance on how to contribute to the Design System as a whole, see the [Contributing](https://tcds.herokuapp.com/contributing) page on the documentation site.
 
 ## See also
 
-* [tcds-site](https://github.com/jacecotton/tcds-site) — A repo for the documentation site
+* [tcds-site](https://github.com/jacecotton/tcds-site) — Repository for the documentation site
