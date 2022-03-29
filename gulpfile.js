@@ -20,7 +20,6 @@ import imagemin from "gulp-imagemin";
 
 // General utilities
 import sourcemaps from "gulp-sourcemaps";
-import rename from "gulp-rename";
 
 /**
  * Configuration.
@@ -38,11 +37,6 @@ const config = {
   scripts: {
     src: `${inputPath}/scripts/index.js`,
     dest: `${outputPath}/scripts/`,
-  },
-
-  components: {
-    src: `${inputPath}/components/**/*.twig`,
-    dest: `${outputPath}/components/`,
   },
 
   icons: {
@@ -110,22 +104,10 @@ const tasks = {
       .pipe(dest(config.scripts.dest));
   },
 
-  components: () => {
-    return src(config.components.src)
-      // Simply output unmodified template files to destination folder.
-      .pipe(dest(config.components.dest));
-  },
-
   icons: () => {
     return src(config.icons.src)
       // File optimization.
       .pipe(imagemin())
-      // Output to destination folder.
-      .pipe(dest(config.icons.dest))
-      // Create copies with `.twig` extension for use in templating.
-      .pipe(rename((path) => {
-        path.extname = ".svg.twig";
-      }))
       // Output to destination folder.
       .pipe(dest(config.icons.dest));
   },
@@ -137,14 +119,12 @@ const tasks = {
 
 task("styles", tasks.styles);
 task("scripts", tasks.scripts);
-task("components", tasks.components);
 task("icons", tasks.icons);
 
 task("watch", function watcher() {
   watch(`${inputPath}/styles/`, tasks.styles);
   watch(`${inputPath}/scripts/`, tasks.scripts);
-  watch(`${inputPath}/components/`, tasks.components);
   watch(`${inputPath}/icons/`, tasks.icons);
 });
 
-task("default", series(["styles", "scripts", "components", "icons", "watch"]));
+task("default", series(["styles", "scripts", "icons", "watch"]));
