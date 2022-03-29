@@ -18,9 +18,6 @@ const sass = gulpSass(dartSass);
 // Image utilities
 import imagemin from "gulp-imagemin";
 
-// General utilities
-import sourcemaps from "gulp-sourcemaps";
-
 /**
  * Configuration.
  */
@@ -52,8 +49,6 @@ const config = {
 const tasks = {
   styles: () => {
     return src(config.styles.src)
-      // Start sourcemap input.
-      .pipe(sourcemaps.init())
       // Preprocessing (Sass).
       .pipe(sass({
         outputStyle: "compressed",
@@ -64,16 +59,12 @@ const tasks = {
           grid: "autoplace",
         }),
       ]))
-      // Write sourcemaps.
-      .pipe(sourcemaps.write("."))
       // Output to destination folder.
       .pipe(dest(config.styles.dest));
   },
 
   scripts: () => {
     return src(config.scripts.src)
-      // Start sourcemap input.
-      .pipe(sourcemaps.init())
       // Module bundling.
       .pipe(webpack({
         entry: config.scripts.src,
@@ -98,8 +89,6 @@ const tasks = {
           filename: "tcds.js",
         },
       }))
-      // Write sourcemaps.
-      .pipe(sourcemaps.write("."))
       // Output to destination folder.
       .pipe(dest(config.scripts.dest));
   },
