@@ -35,9 +35,13 @@ After that, you will be able to bring in Design System assets and bundle it with
 // classes, etc.)
 @use "@tcds/tcds";
 
-// Alternatively, you can choose to only bring in specific packages.
+// Alternatively, you can choose to only bring in specific modules.
+@use "@tcds/components";
+@use "@tcds/typography";
+
+// Or even specific packages within a module.
 @use "@tcds/components/button";
-@use "@tcds/typography/utilities";
+@use "@tcds/typography/fonts";
 ```
 
 \[_all.scss\]
