@@ -72,13 +72,15 @@ const tasks = {
       ]))
       // Write sourcemaps.
       .pipe(sourcemaps.write("."))
-      // Output final file.
+      // Output to destination folder.
       .pipe(dest(config.styles.dest));
   },
 
   scripts: () => {
     return src(config.scripts.src)
+      // Start sourcemap input.
       .pipe(sourcemaps.init())
+      // Module bundling.
       .pipe(webpack({
         entry: config.scripts.src,
         module: {
@@ -87,6 +89,7 @@ const tasks = {
               test: /\.js$/,
               exclude: /(node_modules)/,
               use: [
+                // Use Babel for transpiling to older syntax.
                 {
                   loader: "babel-loader",
                   options: {
@@ -101,22 +104,29 @@ const tasks = {
           filename: "tcds.js",
         },
       }))
+      // Write sourcemaps.
       .pipe(sourcemaps.write("."))
+      // Output to destination folder.
       .pipe(dest(config.scripts.dest));
   },
 
   components: () => {
     return src(config.components.src)
+      // Simply output unmodified template files to destination folder.
       .pipe(dest(config.components.dest));
   },
 
   icons: () => {
     return src(config.icons.src)
+      // File optimization.
       .pipe(imagemin())
+      // Output to destination folder.
       .pipe(dest(config.icons.dest))
+      // Create copies with `.twig` extension for use in templating.
       .pipe(rename((path) => {
         path.extname = ".svg.twig";
       }))
+      // Output to destination folder.
       .pipe(dest(config.icons.dest));
   },
 };
