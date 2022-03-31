@@ -117,6 +117,9 @@
 
   &__slides {
     grid-area: slides;
+  }
+
+  &[data-playing] &__slides {
     display: flex;
     flex-direction: var(--carousel-slides-direction, row);
   }

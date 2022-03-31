@@ -242,6 +242,8 @@ export default class Carousel extends Tabs {
 
       // Handler for `playing` state change.
       playing: () => {
+        this.element.setAttribute("data-playing", this.state.playing);
+
         // Change ARIA label and tooltip of the play/pause button according to
         // current state.
         this.controls.playPause.setAttribute("aria-label", (this.state.playing ? "Pause carousel" : "Play carousel"));
