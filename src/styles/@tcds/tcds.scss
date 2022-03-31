@@ -9,5 +9,5 @@
 @use "primitives";
 @use "components";
 
-/** Import utilities last so they have higher specificity */
+/** Import utilities last so they have higher precedence. */
 @use "utilities";
