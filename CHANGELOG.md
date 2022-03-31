@@ -1,3 +1,12 @@
+## [0.21.1](https://github.com/jacecotton/tcds/compare/v0.21.0...v0.21.1) (2022-03-31)
+
+
+### Bug Fixes
+
+* Debounce scroll on Carousel navigation ([4bdf713](https://github.com/jacecotton/tcds/commit/4bdf713383e829b616afe5f0a772235b2f1fc81f))
+
+
+
 # [0.21.0](https://github.com/jacecotton/tcds/compare/v0.20.0...v0.21.0) (2022-03-31)
 
 
@@ -36,15 +45,6 @@
 ### Features
 
 * Build gap legacy fix as distributed file ([4d87c72](https://github.com/jacecotton/tcds/commit/4d87c72b6c80d4f0dc96024f55304383fe8a19ff))
-
-
-
-# [0.18.0](https://github.com/jacecotton/tcds/compare/v0.17.1...v0.18.0) (2022-03-29)
-
-
-### Features
-
-* Remove Twig from dist bundle ([954b872](https://github.com/jacecotton/tcds/commit/954b87267a3076ec6d968a4fb52481673b71ef95))
 
 
 
