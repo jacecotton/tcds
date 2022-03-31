@@ -85,13 +85,13 @@
     }
   }
 
-  &__headline {
+  &__heading {
     @include font-size("xx-large");
     font-weight: font-weight("semibold");
     margin: 0;
   }
 
-  &__tagline {
+  &__subheading {
     @include font-size("medium-plus");
     width: 50%;
   }

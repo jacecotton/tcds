@@ -21,8 +21,8 @@
     {% endif %}
 
     <div class="column">
-      {% if headline %} <p class="Hero__headline">{{ headline|raw }}</p> {% endif %}
-      {% if tagline %} <p class="Hero__tagline">{{ tagline|raw }}</p> {% endif %}
+      {% if heading %} <p class="Hero__heading">{{ heading|raw }}</p> {% endif %}
+      {% if subheading %} <p class="Hero__subheading">{{ subheading|raw }}</p> {% endif %}
       {% block content %}{% endblock %}
     </div>
   </div>
