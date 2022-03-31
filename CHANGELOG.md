@@ -1,3 +1,17 @@
+# [0.21.0](https://github.com/jacecotton/tcds/compare/v0.20.0...v0.21.0) (2022-03-31)
+
+
+### Bug Fixes
+
+* Adjust Button padding API ([acad6ec](https://github.com/jacecotton/tcds/commit/acad6ec65d5a98157b5936bad38429815a7685e3))
+
+
+### Features
+
+* [#3](https://github.com/jacecotton/tcds/issues/3) Add Carousel component ([75ace57](https://github.com/jacecotton/tcds/commit/75ace5741e6a85e07e87d4ee2b5ea5aa41ef1790))
+
+
+
 # [0.20.0](https://github.com/jacecotton/tcds/compare/v0.19.1...v0.20.0) (2022-03-31)
 
 
@@ -31,15 +45,6 @@
 ### Features
 
 * Remove Twig from dist bundle ([954b872](https://github.com/jacecotton/tcds/commit/954b87267a3076ec6d968a4fb52481673b71ef95))
-
-
-
-## [0.17.1](https://github.com/jacecotton/tcds/compare/v0.17.0...v0.17.1) (2022-03-17)
-
-
-### Bug Fixes
-
-* Add Accordion to script bundle ([9e84dc9](https://github.com/jacecotton/tcds/commit/9e84dc9d735026290cbced6cfc9e1a7171433cf8))
 
 
 
