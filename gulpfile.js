@@ -18,6 +18,9 @@ const sass = gulpSass(dartSass);
 // Image utilities
 import imagemin from "gulp-imagemin";
 
+// Miscellaneous utilities
+import rename from "gulp-rename";
+
 /**
  * Configuration.
  */
@@ -38,7 +41,10 @@ const config = {
 
   icons: {
     src: `${inputPath}/icons/**/*.svg`,
-    dest: `${outputPath}/icons/`,
+    dest: {
+      images: `${outputPath}/icons/`,
+      templates: `${inputPath}/templates/icons/`,
+    },
   },
 };
 
@@ -99,7 +105,13 @@ const tasks = {
       // File optimization.
       .pipe(imagemin())
       // Output to destination folder.
-      .pipe(dest(config.icons.dest));
+      .pipe(dest(config.icons.dest.images))
+      // Convert to Twig template for transclusion.
+      .pipe(rename((path) => {
+        path.extname = ".svg.twig";
+      }))
+      // Output to source directory.
+      .pipe(dest(config.icons.dest.templates));
   },
 };
 
