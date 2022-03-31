@@ -1,3 +1,12 @@
+## [0.19.1](https://github.com/jacecotton/tcds/compare/v0.19.0...v0.19.1) (2022-03-31)
+
+
+### Bug Fixes
+
+* Responsive bug with row utility, remove wrap ([8b25614](https://github.com/jacecotton/tcds/commit/8b256141b5e4c4fe41b4039249aefaa13a5b7731))
+
+
+
 # [0.19.0](https://github.com/jacecotton/tcds/compare/v0.18.0...v0.19.0) (2022-03-29)
 
 
@@ -36,15 +45,6 @@
 ### Features
 
 * Remove grid utility, add responsive flex ([ce43e44](https://github.com/jacecotton/tcds/commit/ce43e44b6725dd920ffe3a5bd00395aa02887ed7))
-
-
-
-## [0.16.2](https://github.com/jacecotton/tcds/compare/v0.16.1...v0.16.2) (2022-03-17)
-
-
-### Bug Fixes
-
-* Push previously uncompiled changes to dist ([f555372](https://github.com/jacecotton/tcds/commit/f5553724257201b4ad549596c5c0cc939f1422d5))
 
 
 
