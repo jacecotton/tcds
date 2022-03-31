@@ -1,0 +1,95 @@
+{% extends "@tcds/components/component/component.html.twig" %}
+
+{% set component_name = "Carousel" %}
+
+{% set required_props = [slides, heading] %}
+
+{% set root_element = "section" %}
+
+{% block root_attributes %}
+  aria-roledescription="carousel"
+  data-autoplay="{{ autoplay ?: "true" }}"
+  {# Sets the amount of time (milliseconds) between slide changes #}
+  {{ interval ? "data-interval=#{interval}" }}
+{% endblock %}
+
+{% block inner_content %}
+  <header class="Carousel__header">
+    <h{{ heading_level ?: "2" }} class="Carousel__heading">
+      {% if heading_link %} <a href="{{ heading_link }}"> {% endif %}
+        {{ heading }}
+      {% if heading_link %} </a> {% endif %}
+    </h{{ heading_level ?: "2" }}>
+
+    {{ include("@tcds/components/button/button.html.twig", {
+      label: "Expand carousel",
+      icon: "chevron-down",
+      controls: heading|clean_id ~ "-carousel-slides",
+      custom_attributes: { "data-action": "expand-collapse" },
+      modifiers: ["icon-only", "small", "round"],
+    }) }}
+  </header>
+
+  <div role="tablist" class="Carousel__indicators">
+    {% set slide_ids = [] %}
+
+    {% for index, slide in slides %}
+      {% set slide_id = "#{heading|clean_id}-slide-#{index + 1}" %}
+
+      {% if id %}
+        {% set slide_id = slide_id ~ "-" ~ id  %}
+      {% endif %}
+
+      {% set slide_ids = slide_ids|merge([slide_id]) %}
+
+      <button
+        role="tab"
+        id="{{ slide_id }}-button"
+        aria-controls="{{ slide_id }}-content"
+        class="Carousel__indicator"
+        aria-label="Slide {{ index + 1 }} of {{ slides|length }}"
+        title="Slide {{ index + 1 }} of {{ slides|length }}"
+      ></button>
+    {% endfor %}
+  </div>
+
+  <div data-component-part="tabpanels" id="{{ heading|clean_id }}-carousel-slides" class="Carousel__slides">
+    {% for index, slide in slides %}
+      <div
+        role="tabpanel"
+        id="{{ slide_ids[index] }}-content"
+        aria-labelledby="{{ slide_ids[index] }}-button"
+        aria-roledescription="slide"
+        class="Carousel__slide"
+      >
+        {{ slide.content ? slide.content|raw }}
+
+        {% if block(slide.block) is defined %}
+          {{ block(slide.block) }}
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+
+  {{ include("@tcds/components/button/button.html.twig", {
+    label: "Play carousel",
+    icon: "play",
+    controls: heading|clean_id ~ "-carousel-slides",
+    modifiers: ["icon-only", "small", "round", "ghost"],
+    custom_attributes: { "data-action": "play-pause" },
+  }) }}
+  {{ include("@tcds/components/button/button.html.twig", {
+    label: "Previous slide",
+    icon: "chevron-left",
+    controls: heading|clean_id ~ "-carousel-slides",
+    modifiers: ["icon-only", "small", "round"],
+    custom_attributes: { "data-action": "previous" },
+  }) }}
+  {{ include("@tcds/components/button/button.html.twig", {
+    label: "Next slide",
+    icon: "chevron-right",
+    controls: heading|clean_id ~ "-carousel-slides",
+    modifiers: ["icon-only", "small", "round"],
+    custom_attributes: { "data-action": "next" },
+  }) }}
+{% endblock %}
