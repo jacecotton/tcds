@@ -1,3 +1,12 @@
+## [0.21.2](https://github.com/jacecotton/tcds/compare/v0.21.1...v0.21.2) (2022-03-31)
+
+
+### Bug Fixes
+
+* Carousel graceful degradation ([f3313df](https://github.com/jacecotton/tcds/commit/f3313dffe6c7913c23b701fedaf7039c0c53b980))
+
+
+
 ## [0.21.1](https://github.com/jacecotton/tcds/compare/v0.21.0...v0.21.1) (2022-03-31)
 
 
@@ -36,15 +45,6 @@
 ### Bug Fixes
 
 * Responsive bug with row utility, remove wrap ([8b25614](https://github.com/jacecotton/tcds/commit/8b256141b5e4c4fe41b4039249aefaa13a5b7731))
-
-
-
-# [0.19.0](https://github.com/jacecotton/tcds/compare/v0.18.0...v0.19.0) (2022-03-29)
-
-
-### Features
-
-* Build gap legacy fix as distributed file ([4d87c72](https://github.com/jacecotton/tcds/commit/4d87c72b6c80d4f0dc96024f55304383fe8a19ff))
 
 
 
