@@ -1,0 +1,59 @@
+{% extends "@tcds/components/component/component.html.twig" %}
+
+{% set component_name = "Tabs" %}
+
+{% set required_props = [tabs] %}
+
+{% for tab in tabs %}
+  {% set required_props = required_props|merge([tab.heading]) %}
+{% endfor %}
+
+{% set root_element = "div" %}
+
+{% block inner_content %}
+  <div role="tablist" aria-label="{{ heading ?: "Tabs" }}" class="Tabs__tablist">
+    {% set tab_ids = [] %}
+
+    {% for tab in tabs %}
+      {% set tab_id = tab.heading|clean_id %}
+
+      {% if id %}
+        {% set tab_id = tab_id ~ "-" ~ id  %}
+      {% endif %}
+
+      {% set tab_ids = tab_ids|merge([tab_id]) %}
+
+      {% if heading_level %}
+        <h{{heading_level}} id="{{ tab_id }}" class="Tabs__heading">
+      {% endif %}
+        <button
+          role="tab"
+          id="{{ tab_id }}-button"
+          aria-controls="{{ tab_id }}-content"
+          class="Tabs__tab"
+        >
+          {{- tab.heading|raw -}}
+        </button>
+      {% if heading_level %}
+        </h{{ heading_level }}>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <div data-component-part="tabpanels" class="Tabs__panels">
+    {% for index, tab in tabs %}
+      <div
+        role="tabpanel"
+        id="{{ tab_ids[index] }}-content"
+        aria-labelledby="{{ tab_ids[index] }}-button"
+        class="Tabs__panel"
+      >
+        {{ tab.content ? tab.content|raw }}
+
+        {% if block(tab.block) is defined %}
+          {{ block(tab.block) }}
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
