@@ -1,38 +1,30 @@
 @use "@tcds/_all" as *;
 
-.Message {
-  --message-background-color: #{interface-color("neutral", "0")};
-  --message-border-color: #{interface-color("neutral")};
-  --message-text-color: #{interface-color("neutral", "400")};
+@mixin -theme($color) {
+  background-color: #{interface-color($color, "0")};
+  border-left: 4px solid #{interface-color($color)};
+  color: #{interface-color($color, "400")};
+}
 
-  background-color: var(--message-background-color);
-  border-left: 4px solid var(--message-border-color);
-  color: var(--message-text-color);
+.Message {
+  @include -theme("neutral");
   padding: space("normal") space("loose");
   margin: space("loose") 0;
 
   &--positive {
-    --message-background-color: #{interface-color("positive", "0")};
-    --message-border-color: #{interface-color("positive")};
-    --message-text-color: #{interface-color("positive", "400")};
+    @include -theme("positive");
   }
 
   &--negative {
-    --message-background-color: #{interface-color("negative", "0")};
-    --message-border-color: #{interface-color("negative")};
-    --message-text-color: #{interface-color("negative", "400")};
+    @include -theme("negative");
   }
 
   &--attention {
-    --message-background-color: #{interface-color("attention", "0")};
-    --message-border-color: #{interface-color("attention")};
-    --message-text-color: #{interface-color("attention", "400")};
+    @include -theme("attention");
   }
 
   &--notice {
-    --message-background-color: #{interface-color("notice", "0")};
-    --message-border-color: #{interface-color("notice")};
-    --message-text-color: #{interface-color("notice", "400")};
+    @include -theme("notice");
   }
 
   &--small {
