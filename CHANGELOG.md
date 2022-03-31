@@ -1,3 +1,12 @@
+# [0.20.0](https://github.com/jacecotton/tcds/compare/v0.19.1...v0.20.0) (2022-03-31)
+
+
+### Features
+
+* [#3](https://github.com/jacecotton/tcds/issues/3) Add Tabs component ([0f07dc3](https://github.com/jacecotton/tcds/commit/0f07dc3eab6535e41e35054b8c59ed99c60294e0))
+
+
+
 ## [0.19.1](https://github.com/jacecotton/tcds/compare/v0.19.0...v0.19.1) (2022-03-31)
 
 
@@ -31,20 +40,6 @@
 ### Bug Fixes
 
 * Add Accordion to script bundle ([9e84dc9](https://github.com/jacecotton/tcds/commit/9e84dc9d735026290cbced6cfc9e1a7171433cf8))
-
-
-
-# [0.17.0](https://github.com/jacecotton/tcds/compare/v0.16.2...v0.17.0) (2022-03-17)
-
-
-### Bug Fixes
-
-* Adjust method for gap utility class fallbacks ([403c551](https://github.com/jacecotton/tcds/commit/403c5517cdb724a00605901d13c6c4e81c0328a7))
-
-
-### Features
-
-* Remove grid utility, add responsive flex ([ce43e44](https://github.com/jacecotton/tcds/commit/ce43e44b6725dd920ffe3a5bd00395aa02887ed7))
 
 
 
