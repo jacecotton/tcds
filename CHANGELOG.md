@@ -1,3 +1,12 @@
+# [0.22.0](https://github.com/jacecotton/tcds/compare/v0.21.2...v0.22.0) (2022-03-31)
+
+
+### Features
+
+* [#3](https://github.com/jacecotton/tcds/issues/3) Add Tile component ([d799e8f](https://github.com/jacecotton/tcds/commit/d799e8fb0061e5a2ccb7fa141592c986ab56161b))
+
+
+
 ## [0.21.2](https://github.com/jacecotton/tcds/compare/v0.21.1...v0.21.2) (2022-03-31)
 
 
@@ -36,15 +45,6 @@
 ### Features
 
 * [#3](https://github.com/jacecotton/tcds/issues/3) Add Tabs component ([0f07dc3](https://github.com/jacecotton/tcds/commit/0f07dc3eab6535e41e35054b8c59ed99c60294e0))
-
-
-
-## [0.19.1](https://github.com/jacecotton/tcds/compare/v0.19.0...v0.19.1) (2022-03-31)
-
-
-### Bug Fixes
-
-* Responsive bug with row utility, remove wrap ([8b25614](https://github.com/jacecotton/tcds/commit/8b256141b5e4c4fe41b4039249aefaa13a5b7731))
 
 
 
