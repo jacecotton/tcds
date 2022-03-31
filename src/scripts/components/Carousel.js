@@ -63,12 +63,18 @@ export default class Carousel extends Tabs {
     this.controls.next.addEventListener("click", () => {
       this.state.activeTab = this.getNextTab();
       this.state.playing = false;
+      // Prevent scroll detection-based tab activation while scroll is in
+      // progress.
+      this.debounceScroll = true;
     });
 
     // Go to previous tab and pause on previous button click.
     this.controls.previous.addEventListener("click", () => {
       this.state.activeTab = this.getPreviousTab();
       this.state.playing = false;
+      // Prevent scroll detection-based tab activation while scroll is in
+      // progress.
+      this.debounceScroll = true;
     });
 
     // Toggle play state on play/pause button click.
