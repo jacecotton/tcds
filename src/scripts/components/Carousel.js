@@ -25,9 +25,6 @@ import Tabs from "./Tabs.js";
  * Carousel as soon as it becomes visible.
  * @property {number} [props.interval=5000] - The time (in milliseconds) between
  * slide changes.
- *
- * @todo Get expand/collapse working.
- * @todo Final styling.
  */
 export default class Carousel extends Tabs {
   constructor(element, props) {
