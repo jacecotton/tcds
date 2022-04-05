@@ -21,9 +21,11 @@ To understand the structure of the project, check out [ARCHITECTURE](ARCHITECTUR
 
 ## Best practices
 
-We use [editorconfig](https://editorconfig.org/) for basic formatting configuration, as well as [stylelint](https://stylelint.io/) and [eslint](https://eslint.org/) for linting CSS and JavaScript, respectively. We recommend using [Visual Studio Code](https://code.visualstudio.com/) as a code editor, with [respective plugins for editorconfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig), [stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint), and [eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint). This will automatically preconfigure your editor, fix issues on-save when possible, and display in-editor warnings and errors for manual fixes.
+We use [editorconfig](https://editorconfig.org/) for basic formatting configuration, as well as [stylelint](https://stylelint.io/) and [eslint](https://eslint.org/) for linting CSS and JavaScript, respectively. This enforces the basic formatting rules of our [coding style guide](https://tcds.herokuapp.com/style-guide).
 
-If you don't want to install editor plugins, you can lint your code in the terminal by running:
+We recommend using [Visual Studio Code](https://code.visualstudio.com/) as a code editor, with [respective plugins for editorconfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig), [stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint), and [eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint). This will automatically preconfigure your editor, fix issues on-save when possible, and display in-editor warnings and errors for manual fixes.
+
+If you use a different editor, there are likely equivalent plugins. If you don't want to install any plugins, you can lint your code in the terminal by running:
 
 ```
 npm run lint
