@@ -21,7 +21,8 @@
       "error",
       "double",
       {
-        "allowTemplateLiterals": true
+        "allowTemplateLiterals": true,
+        "avoidEscape": true
       }
     ],
     "semi": [
