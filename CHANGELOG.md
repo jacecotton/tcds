@@ -1,3 +1,12 @@
+## [0.22.2](https://github.com/jacecotton/tcds/compare/v0.22.1...v0.22.2) (2022-04-05)
+
+
+### Performance Improvements
+
+* Check condition before loop in Tabs script ([3104366](https://github.com/jacecotton/tcds/commit/3104366b6970ad87434373fac26476fc9f3a33f0))
+
+
+
 ## [0.22.1](https://github.com/jacecotton/tcds/compare/v0.22.0...v0.22.1) (2022-03-31)
 
 
@@ -31,20 +40,6 @@
 ### Bug Fixes
 
 * Debounce scroll on Carousel navigation ([4bdf713](https://github.com/jacecotton/tcds/commit/4bdf713383e829b616afe5f0a772235b2f1fc81f))
-
-
-
-# [0.21.0](https://github.com/jacecotton/tcds/compare/v0.20.0...v0.21.0) (2022-03-31)
-
-
-### Bug Fixes
-
-* Adjust Button padding API ([acad6ec](https://github.com/jacecotton/tcds/commit/acad6ec65d5a98157b5936bad38429815a7685e3))
-
-
-### Features
-
-* [#3](https://github.com/jacecotton/tcds/issues/3) Add Carousel component ([75ace57](https://github.com/jacecotton/tcds/commit/75ace5741e6a85e07e87d4ee2b5ea5aa41ef1790))
 
 
 
