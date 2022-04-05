@@ -317,7 +317,7 @@ export default class Carousel extends Tabs {
 window.addEventListener("load", () => {
   // Attach component.
   document.querySelectorAll("[data-component=Carousel]").forEach((instance) => {
-    instance && new Carousel(instance, {
+    instance && Carousel(instance, {
       interval: parseInt(instance.getAttribute("data-interval")) || 5000,
       // Returns a boolean based on the how the string value compares to the
       // equality condition.
