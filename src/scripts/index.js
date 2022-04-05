@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /**
  * Brings in each module for bundling. No configuration or scripting happens
  * here.

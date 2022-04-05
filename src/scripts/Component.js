@@ -76,7 +76,7 @@ export default class Component {
         // corresponding to changed state values, and values set to handler
         // functions to run when those state keys are mutated).
         const stateChangeHandlers = this.sync(this.#stateBatch.newState, this.#stateBatch.prevState);
-        
+
         // Loop through the handlers of the returned object.
         for(let handler in stateChangeHandlers) {
           // If the key corresponding to the handler is in the newly changed
@@ -101,7 +101,7 @@ export default class Component {
    * A callback for a proxy on `this.state` to intercept changes. Will check
    * that the new value is actually different, then fires a custom event to
    * notify listeners of the change, with details about that change.
-   * 
+   *
    * @fires Component#state-change
    */
   #stateHandler() {
@@ -219,11 +219,11 @@ export default class Component {
    * these will run as callbacks only when the corresponding state property is
    * changed.
    */
-  sync(newState, prevState) {
+  sync() {
     // The subclass's `sync` method will override this one. If one is not
     // present, this method will fire instead, so a warning should be logged.
     console.warn("No local sync method provided in component subclass.");
 
     return {};
   }
-};
+}
