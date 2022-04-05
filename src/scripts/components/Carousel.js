@@ -135,7 +135,7 @@ export default class Carousel extends Tabs {
       if(document.hidden === true) {
         // Temporarily pause.
         temporaryPause.call(this);
-      } else if(document.hidden === false && this.temporaryPause === true && this.isIntersecting != false) {
+      } else if(document.hidden === false && this.temporaryPause === true && this.isIntersecting !== false) {
         // If the window returns to active, the last pause was temporary, and
         // the carousel is not scrolled out of view, resume the carousel.
         requestAnimationFrame(() => {
@@ -168,7 +168,7 @@ export default class Carousel extends Tabs {
     const switchSlideOnSwipe = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         // If the current slide was scrolled to...
-        if(entry.isIntersecting && this.state.expanded !== true && !this.debounceScroll) {
+        if(entry.isIntersecting && this.state.expanded !== true && this.debounceScroll !== true) {
           // Set the associated tab (indicator) as active.
           this.state.activeTab = this.element.querySelector(`[role=tab][aria-controls=${entry.target.id}]`);
         }
@@ -217,36 +217,33 @@ export default class Carousel extends Tabs {
         // Scroll the panel container to the active slide.
         this.panelsContainer.scrollLeft += panelOffset - panelsContainerOffset;
 
+        // Arbitrary for now. 500 is a guess.
+        // @todo Determine better scroll-detection method.
         setTimeout(() => {
           this.debounceScroll = false;
         }, 500);
 
         this.panels.forEach((panel) => {
-          if(panel === activePanel) {
-            // Now that it's in view, remove attributes from the active panel
-            // that are intended to hide it from screen readers when it's out of
-            // view.
-            panel.removeAttribute("aria-hidden");
-            panel.removeAttribute("tabindex");
-          } else {
-            // Since they're scrolled out of view, hide the inactive panels from
-            // screen readers.
-            panel.setAttribute("aria-hidden", "true");
-            panel.setAttribute("tabindex", "-1");
-          }
+          // Set attributes to communicate to screen readers based on whether
+          // the panel is in view of the scrollport.
+          panel.ariaHidden = panel === activePanel ? null : "true";
+          panel.tabIndex = panel === activePanel ? null : "-1";
         });
       },
 
       // Handler for `playing` state change.
       playing: () => {
+        // Indicate state for styling hook.
         this.element.setAttribute("data-playing", this.state.playing);
 
         // Change ARIA label and tooltip of the play/pause button according to
         // current state.
-        this.controls.playPause.setAttribute("aria-label", (this.state.playing ? "Pause carousel" : "Play carousel"));
-        this.controls.playPause.setAttribute("title", (this.state.playing ? "Pause carousel" : "Play carousel"));
+        this.controls.playPause.setAttribute("aria-label", this.state.playing ? "Pause carousel" : "Play carousel");
+        this.controls.playPause.setAttribute("title", this.state.playing ? "Pause carousel" : "Play carousel");
 
         // Change the icon of the play/pause button according to current state.
+        // @todo Don't hardcode the SVG here. Think of a way to pull it in from
+        //   the icon library.
         this.controls.playPause.innerHTML = this.state.playing
           ? `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>`
           : `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>`;
@@ -255,12 +252,12 @@ export default class Carousel extends Tabs {
         // current play state. Due to several interface elements having the
         // ability to change a panel (next/previous buttons, indicator dots,
         // scrolling, etc.), screen readers should announce slide changes
-        // (polite) when the user triggers them. However, if the carousel is
-        // playing, screen readers should not announce changes (off), as the
+        // (`polite`) when the user triggers them. However, if the carousel is
+        // playing, screen readers should not announce changes (`off`), as the
         // user is not triggering them and therefore not asking for updates.
         this.panelsContainer.setAttribute("aria-live", this.state.playing ? "off" : "polite");
 
-        // If the Carousel should be playing...
+        // If the carousel should be playing...
         if(this.state.playing === true) {
           // Initialize recursive cycle.
           this.playTimer = setTimeout(this.play.bind(this), this.props.interval);
@@ -273,10 +270,10 @@ export default class Carousel extends Tabs {
       // Handler for `expanded` state change.
       expanded: () => {
         // Indicate state.
+        const label = this.state.expanded ? "Collapse carousel" : "Expand carousel";
+        this.controls.expandCollapse.setAttribute("title", label);
+        this.controls.expandCollapse.setAttribute("aria-label", label);
         this.controls.expandCollapse.setAttribute("aria-expanded", this.state.expanded);
-        this.controls.expandCollapse.setAttribute("title", this.state.expanded ? "Collapse carousel" : "Expand carousel");
-        this.controls.expandCollapse.setAttribute("aria-label", this.state.expanded ? "Collapse carousel" : "Expand carousel");
-        this.element.setAttribute("data-expanded", this.state.expanded);
         this.element.setAttribute("aria-roledescription", this.state.expanded ? "" : "carousel");
 
         // Hide all controls and indicators when expanded.
