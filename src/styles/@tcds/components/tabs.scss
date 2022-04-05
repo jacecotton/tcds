@@ -47,18 +47,20 @@
     @media (any-hover: hover) {
       &:hover {
         --indicator-color: #{color("gray", "200")};
+
         color: color("gray", "400");
       }
     }
 
     @media (hover: none) {
       &:active {
-        opacity: .5;
+        opacity: 0.5;
       }
     }
 
-    &[aria-expanded=true] {
+    &[aria-expanded="true"] {
       --indicator-color: #{theme-color("secondary")};
+
       color: color("gray", "500");
     }
   }

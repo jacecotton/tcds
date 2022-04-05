@@ -57,6 +57,7 @@ $grade-associations: (
     #{$selector} {
       // Set the background color.
       background-color: $value;
+
       // Get the appropriate text color from the `$grade-map` above.
       color: map.get($grade-map, map.get($grade-associations, $grade, "text"));
     }

@@ -31,8 +31,8 @@
   @mixin horizontal-card {
     grid-template-columns: var(--card-media-width, 1fr) 3fr;
     grid-template-rows: 1fr;
-    grid-template-areas:
-      "media body";
+    grid-template-areas: "media body";
+
     --card-body-divider: none;
   }
 
@@ -59,7 +59,6 @@
     --card-body-padding: #{space("loose")};
     --card-title-font-size: #{font-size("medium", $responsive: true)};
     --card-content-font-size: #{font-size("small", $responsive: true)};
-
     --button-background: transparent;
     --button-text-color: #{theme-color("secondary")};
     --button-padding: 0;
@@ -126,6 +125,7 @@
 
   &__title {
     @include font-size("medium-plus", $custom-property: "--card-title-font-size");
+
     font-weight: font-weight("semibold");
     color: inherit;
     text-decoration: none;
@@ -155,12 +155,13 @@
 
   &__content {
     @include font-size("medium", $custom-property: "--card-content-font-size");
+
     margin-bottom: space("loose", "em");
 
     a {
       position: relative; // 1
-      margin: -.5em; // 2
-      padding: .5em; // 2
+      margin: -0.5em; // 2
+      padding: 0.5em; // 2
     }
   }
 

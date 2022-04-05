@@ -10,7 +10,7 @@
  * A getter function for the `$font-stacks` map (see _variables).
  */
 @function font-stack($font-stack) {
-  @return getter($font-stacks, $font-stack); 
+  @return getter($font-stacks, $font-stack);
 }
 
 /**
@@ -19,8 +19,8 @@
 @function font-size($font-size, $responsive: false) {
   @if $responsive == true and $font-size != "x-small" and $font-size != "small" {
     @return clamp(
-      (getter($font-sizes, $font-size) * .66),
-      ((getter($font-sizes, $font-size) * .66) + 1vw),
+      (getter($font-sizes, $font-size) * 0.66),
+      ((getter($font-sizes, $font-size) * 0.66) + 1vw),
       getter($font-sizes, $font-size)
     );
   } @else {

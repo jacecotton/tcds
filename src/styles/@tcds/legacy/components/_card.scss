@@ -13,8 +13,8 @@
     @include breakpoint-above("large") {
       grid-template-columns: var(--card-media-width, 1fr) 3fr;
       grid-template-rows: 1fr;
-      grid-template-areas:
-        "media body";
+      grid-template-areas: "media body";
+
       --card-body-divider: none;
     }
   }

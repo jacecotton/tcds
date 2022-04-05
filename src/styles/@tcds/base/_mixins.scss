@@ -110,7 +110,7 @@
    * Monitor: https://caniuse.com/css-containment
    */
   @if $browser == "chromium" {
-    $query: "(contain: paint) and (not (-moz-appearance: none))"
+    $query: "(contain: paint) and (not (-moz-appearance: none))";
   }
 
   /**

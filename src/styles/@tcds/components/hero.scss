@@ -26,12 +26,14 @@
   background-size: cover;
   background-position: center;
   box-sizing: content-box; // 1
-  min-height: calc(
-    var(--hero-base-height, #{$hero-base-height})
-    - var(--hero-padding-top, #{$hero-padding-top})
-    - var(--hero-padding-bottom, #{$hero-padding-bottom})
-    - var(--site-header-height, 0px)
-  ); // 3
+  min-height:
+    calc(
+      var(--hero-base-height, #{$hero-base-height})
+      - var(--hero-padding-top, #{$hero-padding-top})
+      - var(--hero-padding-bottom, #{$hero-padding-bottom})
+      - var(--site-header-height, 0px)
+    ); // 3
+
   padding-top: calc(var(--site-header-height, 0px) + var(--hero-padding-top, #{$hero-padding-top})); // 4
   padding-bottom: var(--hero-padding-bottom, #{$hero-padding-bottom});
   margin-top: calc(var(--site-header-height, 0px) * -1); // 5
@@ -75,6 +77,7 @@
 
   &__content {
     @include max-width;
+
     display: flex;
     align-items: center;
     gap: space("x-loose");
@@ -87,12 +90,14 @@
 
   &__heading {
     @include font-size("xx-large");
+
     font-weight: font-weight("semibold");
     margin: 0;
   }
 
   &__subheading {
     @include font-size("medium-plus");
+
     width: 50%;
   }
 }

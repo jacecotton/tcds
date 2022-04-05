@@ -4,56 +4,56 @@ details {
   &:where(:not(:last-child)) {
     margin-bottom: 1em;
   }
+}
 
-  &[open] > summary {
+summary {
+  display: flex;
+  gap: space("tight");
+  align-items: center;
+  list-style: none;
+  background: color("gray", "0");
+  color: color("gray", "400");
+  font-size: font-size("small");
+  font-weight: font-weight("semibold");
+  padding: space("tight") space("normal");
+  user-select: none;
+  width: 100%;
+  cursor: pointer;
+  transition:
+    background animation("productive"),
+    color animation("productive");
+
+  &:hover {
+    background: theme-color("secondary");
+    color: theme-color("secondary", "0");
+
+    --icon-filter: invert(1);
+  }
+
+  [open] > & {
     --icon-rotate: 90deg;
   }
 
-  summary {
-    display: flex;
-    gap: space("tight");
-    align-items: center;
-    list-style: none;
-    background: color("gray", "0");
-    color: color("gray", "400");
-    font-size: font-size("small");
-    font-weight: font-weight("semibold");
-    padding: space("tight") space("normal");
-    user-select: none;
-    width: 100%;
-    cursor: pointer;
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  &::before {
+    content: "";
+    width: 1em;
+    height: 1em;
+    background-image: url("../images/icons/chevron-right.svg");
+    background-size: 100%;
+    display: block;
     transition:
-      background animation("productive"),
-      color animation("productive");
+      transform animation("productive"),
+      filter animation("productive");
+    filter: var(--icon-filter, none);
+    transform: rotateZ(var(--icon-rotate, 0));
+  }
 
-    &:hover {
-      background: theme-color("secondary");
-      color: theme-color("secondary", "0");
-
-      --icon-filter: invert(1);
-    }
-
-    &::-webkit-details-marker {
-      display: none;
-    }
-
-    &::before {
-      content: "";
-      width: 1em;
-      height: 1em;
-      background-image: url("../images/icons/chevron-right.svg");
-      background-size: 100%;
-      display: block;
-      transition:
-        transform animation("productive"),
-        filter animation("productive");
-      filter: var(--icon-filter, none);
-      transform: rotateZ(var(--icon-rotate, 0));
-    }
-
-    + div {
-      padding: space("normal");
-      border-left: 3px solid color("gray", "0");
-    }
+  + div {
+    padding: space("normal");
+    border-left: 3px solid color("gray", "0");
   }
 }

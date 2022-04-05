@@ -6,11 +6,12 @@
  */
 
 button,
-[type=button],
-[type=file],
-[type=reset],
-[type=submit] {
+[type="button"],
+[type="file"],
+[type="reset"],
+[type="submit"] {
   appearance: none;
+  /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-appearance: button; // Needed for Safari.
   border: none;
   font: inherit;

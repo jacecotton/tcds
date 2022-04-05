@@ -22,7 +22,6 @@ $colors: (
     "400": #93000f,
     "500": #410003,
   ),
-
   "blue": (
     "0": #f5f8ff,
     "100": #d5e3ff,
@@ -31,7 +30,6 @@ $colors: (
     "400": #004880,
     "500": #001c37,
   ),
-
   "green": (
     "0": #e3ffe8,
     "100": #aff2bd,
@@ -40,7 +38,6 @@ $colors: (
     "400": #005322,
     "500": #002109,
   ),
-
   "yellow": (
     "0": #fff9d4,
     "100": #fbe090,
@@ -49,7 +46,6 @@ $colors: (
     "400": #504400,
     "500": #211b00,
   ),
-
   "purple": (
     "0": #f9f7ff,
     "100": #e7defb,
@@ -58,7 +54,6 @@ $colors: (
     "400": #5f23a2,
     "500": #280a48,
   ),
-
   "gray": (
     "0": #f8f8f9,
     "100": #e2e2e7,
@@ -67,14 +62,13 @@ $colors: (
     "400": #464652,
     "500": #1b1b1e,
   ),
-
   "shade": (
-    "0": hsl(0 0% 0% / 3%),
-    "100": hsl(0 0% 0% / 10%),
-    "200": hsl(0 0% 0% / 30%),
-    "300": hsl(0 0% 0% / 53.4%),
-    "400": hsl(0 0% 0% / 70%),
-    "500": hsl(0 0% 0% / 90%),
+    "0": hsl(0deg 0% 0% / 3%),
+    "100": hsl(0deg 0% 0% / 10%),
+    "200": hsl(0deg 0% 0% / 30%),
+    "300": hsl(0deg 0% 0% / 53.4%),
+    "400": hsl(0deg 0% 0% / 70%),
+    "500": hsl(0deg 0% 0% / 90%),
   ),
 );
 
@@ -104,7 +98,6 @@ $theme-color-primary: "red" !default;
 $theme-color-secondary: "blue" !default;
 $theme-color-tertiary: "gray" !default;
 $theme-color-link: "blue" !default;
-
 $theme-colors: (
   "primary": map.get($colors, $theme-color-primary),
   "secondary": map.get($colors, $theme-color-secondary),

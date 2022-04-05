@@ -18,11 +18,10 @@
  * See: animation()
  */
 $animation-properties: (
-  "productive-timing": .15s,
+  "productive-timing": 0.15s,
   "productive-easing": ease-in-out,
-  "productive": .15s ease-in-out,
-
-  "expressive-timing": .8s,
-  "expressive-easing": cubic-bezier(0, 1, .4, 1),
-  "expressive": .8s cubic-bezier(0, 1, .4, 1),
+  "productive": 0.15s ease-in-out,
+  "expressive-timing": 0.8s,
+  "expressive-easing": cubic-bezier(0, 1, 0.4, 1),
+  "expressive": 0.8s cubic-bezier(0, 1, 0.4, 1),
 );

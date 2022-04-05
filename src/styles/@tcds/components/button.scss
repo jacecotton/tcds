@@ -44,7 +44,7 @@
 
   &:active {
     --button-overlay-color: #{color("shade", "200")};
-    --button-scale: .99;
+    --button-scale: 0.99;
   }
 
   /** Modifiers */
@@ -88,6 +88,7 @@
 
   &--icon-right {
     flex-direction: row-reverse;
+
     --button-icon-margin-right: calc(var(--button-padding) * -1);
     --button-icon-margin-left: var(--button-padding);
   }
@@ -120,6 +121,6 @@
     margin:
       0 var(--button-icon-margin-right, var(--default-button-padding))
       0 var(--button-icon-margin-left, calc(var(--default-button-padding) * -1));
-    padding: calc(var(--default-button-padding) * .4);
+    padding: calc(var(--default-button-padding) * 0.4);
   }
 }

@@ -19,6 +19,7 @@
     --tile-icon-size: 3ch;
     --tile-heading-size: #{font-size("medium")};
     --tile-subheading-size: #{font-size("small")};
+
     gap: space("normal");
     padding: space("normal");
   }
@@ -31,7 +32,7 @@
   &--filled-icon {
     --tile-icon-background: #{theme-color("secondary")};
     --tile-icon-color: #{theme-color("secondary", "0")};
-    --tile-icon-padding: .45em;
+    --tile-icon-padding: 0.45em;
   }
 
   &::after {

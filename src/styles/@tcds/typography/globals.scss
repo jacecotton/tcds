@@ -7,6 +7,22 @@ body {
 }
 
 /**
+ * 1. Use `:where` pseduo-function to zero out the specificity and make the
+ *    styles easier to override. Note that browsers that do not support `:where`
+ *    will use the default browser link styles.
+ */
+:where(a) {
+  color: theme-color("link");
+  text-decoration: underline;
+  transition: color animation("productive");
+}
+
+:where(a:hover),
+:where(a:visited) {
+  color: theme-color("link", "400");
+}
+
+/**
  * Default heading styles.
  *
  * 1. Use `:where` pseduo-function to zero out the specificity and make the
@@ -17,20 +33,73 @@ body {
  *    the heading is not the first child).
  * 3. Add a much larger top margin to headings that are not directly under a
  *    heading one level higher.
- * 4. Not concerned with lowering the specificity of H1 styles, as there should
- *    only ever be one H1 on a page, and it should always look the same (if
- *    visible). By contrast, lower level headings may be used inside components,
- *    etc., and may require different styling while keeping the semantic
- *    meaning.
  */
 
+h1,
+.h1 {
+  @include font-size("xx-large");
+
+  font-weight: font-weight("semibold");
+  letter-spacing: -0.025em;
+  margin: 0 0 2rem;
+}
+
+h2,
+.h2 {
+  @include font-size("x-large");
+
+  font-weight: font-weight("normal");
+  letter-spacing: -0.0125em;
+}
+
+h3,
+.h3 {
+  @include font-size("large");
+
+  font-weight: font-weight("normal");
+  letter-spacing: 0.0125em;
+}
+
+h4,
+.h4 {
+  @include font-size("medium-plus");
+
+  font-weight: font-weight("normal");
+  letter-spacing: 0.0125em;
+}
+
+h5,
+.h5 {
+  @include font-size("medium");
+
+  font-weight: font-weight("bold");
+  letter-spacing: 0.0125em;
+}
+
+h6,
+.h6 {
+  @include font-size("small");
+
+  font-weight: font-weight("bold");
+  letter-spacing: 0.0125em;
+}
+
 :where(h1, h2, h3, h4, h5, h6), // 1
-.h1, .h2, .h3, .h4, .h5, .h6 {
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
   font-family: font-stack("headings");
 }
 
 :where(h2, h3, h4, h5, h6), // 1
-.h2, .h3, .h4, .h5, .h6 {
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
   margin: 0 0 1rem; // 2
 
   &:not(:first-child) {
@@ -45,49 +114,6 @@ body {
 
 :where(:not(h3) + h4) {
   margin-top: 2rem; // 3
-}
-
-h1,
-.h1 { // 4
-  @include font-size("xx-large");
-  font-weight: font-weight("semibold");
-  letter-spacing: -.025em;
-  margin: 0 0 2rem;
-}
-
-h2,
-.h2 {
-  @include font-size("x-large");
-  font-weight: font-weight("normal");
-  letter-spacing: -.0125em;
-}
-
-h3,
-.h3 {
-  @include font-size("large");
-  font-weight: font-weight("normal");
-  letter-spacing: .0125em;
-}
-
-h4,
-.h4 {
-  @include font-size("medium-plus");
-  font-weight: font-weight("normal");
-  letter-spacing: .0125em;
-}
-
-h5,
-.h5 {
-  @include font-size("medium");
-  font-weight: font-weight("bold");
-  letter-spacing: .0125em;
-}
-
-h6,
-.h6 {
-  @include font-size("small");
-  font-weight: font-weight("bold");
-  letter-spacing: .0125em;
 }
 
 /**
@@ -105,22 +131,6 @@ sub,
 sup {
   font-size: 87.5%; // 1
   font-size: max(#{font-size("x-small"), 87.5%}); // 2
-}
-
-/**
- * 1. Use `:where` pseduo-function to zero out the specificity and make the
- *    styles easier to override. Note that browsers that do not support `:where`
- *    will use the default browser link styles.
- */
-:where(a) {
-  color: theme-color("link");
-  text-decoration: underline;
-  transition: color animation("productive");
-}
-
-:where(a:hover),
-:where(a:visited) {
-  color: theme-color("link", "400");
 }
 
 p {

@@ -8,6 +8,7 @@
 
 .Message {
   @include -theme("neutral");
+
   padding: space("normal") space("loose");
   margin: space("loose") 0;
 

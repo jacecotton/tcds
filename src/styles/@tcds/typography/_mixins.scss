@@ -26,4 +26,4 @@
   @if index(("medium", "small", "x-small"), $font-size) {
     line-height: line-height("normal"); // 3
   }
-} 
+}
