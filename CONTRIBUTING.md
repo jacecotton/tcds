@@ -40,7 +40,7 @@ This should be done before committing any changes back to the repository.
 <details>
 <summary>Details</summary>
 
-You can lint and fix granually by specifying `scss` for styles or `js` for scripts:
+You can lint and fix granularly by specifying `scss` for styles or `js` for scripts:
 * `lint:scss`
 * `lint:js`
 * `fix:scss`
