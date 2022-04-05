@@ -30,7 +30,7 @@
     --control-opacity: 1;
   }
 
-  &[data-expanded="true"] {
+  &[aria-expanded="true"] {
     --carousel-expand-button-rotate: 180deg;
     --carousel-slides-direction: column;
   }
@@ -126,7 +126,7 @@
     flex-direction: var(--carousel-slides-direction, row);
   }
 
-  &:not([data-expanded="true"]) > &__slides {
+  &:not([aria-expanded="true"]) > &__slides {
     align-items: center;
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
