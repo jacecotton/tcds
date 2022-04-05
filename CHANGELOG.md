@@ -1,3 +1,12 @@
+## [0.22.1](https://github.com/jacecotton/tcds/compare/v0.22.0...v0.22.1) (2022-03-31)
+
+
+### Bug Fixes
+
+* Unifying Hero terminology with other cpts ([d852fd4](https://github.com/jacecotton/tcds/commit/d852fd4f85bd315fbe3ec81cb426b6577f728d0a))
+
+
+
 # [0.22.0](https://github.com/jacecotton/tcds/compare/v0.21.2...v0.22.0) (2022-03-31)
 
 
@@ -36,15 +45,6 @@
 ### Features
 
 * [#3](https://github.com/jacecotton/tcds/issues/3) Add Carousel component ([75ace57](https://github.com/jacecotton/tcds/commit/75ace5741e6a85e07e87d4ee2b5ea5aa41ef1790))
-
-
-
-# [0.20.0](https://github.com/jacecotton/tcds/compare/v0.19.1...v0.20.0) (2022-03-31)
-
-
-### Features
-
-* [#3](https://github.com/jacecotton/tcds/issues/3) Add Tabs component ([0f07dc3](https://github.com/jacecotton/tcds/commit/0f07dc3eab6535e41e35054b8c59ed99c60294e0))
 
 
 
