@@ -1,7 +1,7 @@
 .github/
 .browserslistrc
 .editorconfig
-.stylelintrc.json
+.stylelintrc
 CONTRIBUTING.md
 ARCHITECTURE.md
 gulpfile.js
