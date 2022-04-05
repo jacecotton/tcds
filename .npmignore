@@ -2,6 +2,7 @@
 .browserslistrc
 .editorconfig
 .stylelintrc
+.eslintrc
 CONTRIBUTING.md
 ARCHITECTURE.md
 gulpfile.js

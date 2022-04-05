@@ -5,8 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "gulp",
-    "lint:scss": "stylelint '**/*.scss'",
-    "fix:scss": "stylelint '**/*.scss' --fix"
+    "lint:scss": "stylelint 'src/**/*.scss'",
+    "fix:scss": "stylelint 'src/**/*.scss' --fix",
+    "lint:js": "eslint 'src/**/*.js'",
+    "fix:js": "eslint 'src/**/*.js' --fix"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,7 @@
     "@babel/preset-env": "^7.16.11",
     "autoprefixer": "^10.4.2",
     "babel-loader": "^8.2.3",
+    "eslint": "^8.12.0",
     "gulp": "^4.0.2",
     "gulp-imagemin": "^8.0.0",
     "gulp-postcss": "^9.0.1",
