@@ -33,13 +33,12 @@ npm run dev
 
 This will compile `src/` code to `dist/`, and continuously watch for changes, rebuilding on every save.
 
+## Best practices
+
+* EditorConfig plugin for desired code editor (see https://editorconfig.org/#download)
+* Linting commands
+
 ## Contributing back
 
 * Branching, pull requests (add template?), etc.
 * Semantic versioning, conventional commits, npm publish, etc.
-
-TBD
-
-## Editor settings
-
-* EditorConfig plugin for desired code editor (see https://editorconfig.org/#download)
