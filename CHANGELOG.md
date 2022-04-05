@@ -1,3 +1,12 @@
+## [0.22.3](https://github.com/jacecotton/tcds/compare/v0.22.2...v0.22.3) (2022-04-05)
+
+
+### Bug Fixes
+
+* Remove white space on Carousel expand ([c1b065b](https://github.com/jacecotton/tcds/commit/c1b065bac7f66e914a90abc4df36c02fd2c4b6d7))
+
+
+
 ## [0.22.2](https://github.com/jacecotton/tcds/compare/v0.22.1...v0.22.2) (2022-04-05)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * Carousel graceful degradation ([f3313df](https://github.com/jacecotton/tcds/commit/f3313dffe6c7913c23b701fedaf7039c0c53b980))
-
-
-
-## [0.21.1](https://github.com/jacecotton/tcds/compare/v0.21.0...v0.21.1) (2022-03-31)
-
-
-### Bug Fixes
-
-* Debounce scroll on Carousel navigation ([4bdf713](https://github.com/jacecotton/tcds/commit/4bdf713383e829b616afe5f0a772235b2f1fc81f))
 
 
 
