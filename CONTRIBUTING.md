@@ -9,7 +9,11 @@ git clone git@github.com:jacecotton/tcds.git
 cd tcds && npm install
 ```
 
-Alternatively you can provide the path to your own fork of the project.
+Before making any changes, it's a good idea to create and switch to a new branch now by running the following:
+
+```
+git checkout -b my-new-branch
+```
 
 To watch for changes and build on every save, run:
 
@@ -49,7 +53,13 @@ You can lint and fix granularly by specifying `scss` for styles or `js` for scri
 * `fix:js`
 </details>
 
-## Contributing back
+## Submitting your changes
+
+Before submitting a pull request, make sure your branch is up to date with `main`. **Do not merge `main` into your branch.** Rather, rebase your local `main` with the remote. This is to ensure a cleaner history by always listing your local changes after those on `main`, regardless of the actual chronology.
+
+```
+git pull --rebase origin main
+```
 
 * Branching, pull requests (add template?), etc.
 * Semantic versioning, conventional commits, npm publish, etc.
