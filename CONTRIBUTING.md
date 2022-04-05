@@ -1,42 +1,41 @@
 **Work in progress.** See #5
 
 ## Developing locally
-### Step 1. Clone the repository
 
-First, `cd` into the directory you want your local copy of the repository to be. Then run
-
-```bash
-git clone https://github.com/jacecotton/tcds.git
-```
-
-Now `cd` into the newly created directory by running
+First, ensure you have installed [Node.js](https://nodejs.org/). Then, clone the repository and install dependencies by running the following:
 
 ```bash
-cd tcds
+git clone git@github.com:jacecotton/tcds.git
+cd tcds && npm install
 ```
 
-### Step 2. Install dependencies
+Alternatively you can provide the path to your own fork of the project.
 
-First, make sure you have Node.js installed on your machine. Then install project dependencies by running
-
-```bash
-npm install
-```
-
-### Step 3. Compile and watch for changes
-
-Next, run
+To watch for changes and build on every save, run:
 
 ```bash
 npm run dev
 ```
 
-This will compile `src/` code to `dist/`, and continuously watch for changes, rebuilding on every save.
+To understand the structure of the project, check out [ARCHITECTURE](ARCHITECTURE.md).
 
 ## Best practices
 
-* EditorConfig plugin for desired code editor (see https://editorconfig.org/#download)
-* Linting commands
+We use [editorconfig](https://editorconfig.org/) for basic formatting configuration, as well as [stylelint](https://stylelint.io/) and [eslint](https://eslint.org/) for linting CSS and JavaScript, respectively. We recommend using [Visual Studio Code](https://code.visualstudio.com/) as a code editor, with [respective plugins for editorconfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig), [stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint), and [eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint). This will automatically preconfigure your editor, fix issues on-save when possible, and display in-editor warnings and errors for manual fixes.
+
+If you don't want to install editor plugins, you can lint your code in the terminal by running:
+
+```
+npm run lint
+```
+
+You can allow the linters to automatically fix what issues it can by running:
+
+```
+npm run fix
+```
+
+This should be done before committing any changes back to the repository.
 
 ## Contributing back
 
