@@ -274,6 +274,7 @@ export default class Carousel extends Tabs {
         this.controls.expandCollapse.setAttribute("title", label);
         this.controls.expandCollapse.setAttribute("aria-label", label);
         this.controls.expandCollapse.setAttribute("aria-expanded", this.state.expanded);
+        this.element.setAttribute("data-expanded", this.state.expanded);
         this.element.setAttribute("aria-roledescription", this.state.expanded ? "" : "carousel");
 
         // Hide all controls and indicators when expanded.
