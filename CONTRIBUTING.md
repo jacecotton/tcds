@@ -1,6 +1,6 @@
 **Work in progress.** See #5
 
-## Developing locally
+## Setting up
 
 First, ensure you have installed [Node.js](https://nodejs.org/). Then, clone the repository and install dependencies by running the following:
 
@@ -36,6 +36,16 @@ npm run fix
 ```
 
 This should be done before committing any changes back to the repository.
+
+<details>
+<summary>Details</summary>
+
+You can lint and fix granually by specifying `scss` for styles or `js` for scripts:
+* `lint:scss`
+* `lint:js`
+* `fix:scss`
+* `fix:js`
+</details>
 
 ## Contributing back
 
