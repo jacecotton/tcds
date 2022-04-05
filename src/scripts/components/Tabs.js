@@ -95,14 +95,14 @@ export default class Tabs extends Component {
           tab.setAttribute("tabindex", (tab === this.state.activeTab || !this.state.activeTab) ? "0" : "-1");
         });
 
-        this.panels.forEach((panel) => {
-          if(!this.props.keepPanelVisibility) {
+        if(!this.props.keepPanelVisibility) {
+          this.panels.forEach((panel) => {
             // Hide panel if it is not the active panel (and vice versa).
             panel.hidden = !(panel === this.getPanelByTab(this.state.activeTab));
-          }
-        });
+          });
+        }
 
-        // Fire a noop scroll event to trigger lazy-loading if it exists.
+        // Fire a noop scroll event to trigger lazy-loading (in case it exists).
         window.dispatchEvent(new Event("scroll"));
       },
     };
