@@ -9,10 +9,12 @@
     "build:scripts": "gulp scripts",
     "build:styles": "gulp styles",
     "build:icons": "gulp icons",
-    "lint:scss": "stylelint 'src/**/*.scss'",
-    "fix:scss": "stylelint 'src/**/*.scss' --fix",
-    "lint:js": "eslint 'src/**/*.js'",
-    "fix:js": "eslint 'src/**/*.js' --fix",
+    "lint": "npm run lint:styles && npm run lint:scripts",
+    "lint:styles": "stylelint 'src/**/*.scss'",
+    "lint:scripts": "eslint 'src/**/*.js'",
+    "fix": "npm run fix:styles && npm run fix:scripts",
+    "fix:styles": "stylelint 'src/**/*.scss' --fix",
+    "fix:scripts": "eslint 'src/**/*.js' --fix",
     "version": "cat package.json | grep -e '^  \"version\": ' | awk '{print $2}' | sed 's/[\",]//g'"
   },
   "repository": {
