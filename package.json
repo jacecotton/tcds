@@ -5,6 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "gulp",
+    "build": "gulp build",
+    "build:scripts": "gulp scripts",
+    "build:styles": "gulp styles",
+    "build:icons": "gulp icons",
     "lint:scss": "stylelint 'src/**/*.scss'",
     "fix:scss": "stylelint 'src/**/*.scss' --fix",
     "lint:js": "eslint 'src/**/*.js'",

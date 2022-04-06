@@ -129,4 +129,5 @@ task("watch", function watcher() {
   watch(`${inputPath}/icons/`, tasks.icons);
 });
 
+task("build", series(["styles", "scripts", "icons"]));
 task("default", series(["styles", "scripts", "icons", "watch"]));
