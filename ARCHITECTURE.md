@@ -17,7 +17,7 @@ Using the former in a project requires a build process to compile the Design Sys
 The latter simply provides a single JavaScript bundle, a master stylesheet, and a collection of SVG icons. This is the best option for a simple project that has no build system or need for configuration, and only needs for the documented HTML elements and snippets to have the proper styling and functionality (with the default theming).
 
 ### Building
-`dist/` files are compiled from `src/` files in a similar way to a downstream project. We use [gulp.js](https://gulpjs.com/) as the build process (see [gulpfile.js](https://github.com/jacecotton/tcds/blob/main/gulpfile.js)). The Design System can be built with the `dev` npm command or `gulp`. The tasks and their dependencies are as follows:
+`dist/` files are compiled from `src/` files in a similar way to a downstream project. We use [gulp.js](https://gulpjs.com/) as the build process (see [gulpfile.js](https://github.com/jacecotton/tcds/blob/main/gulpfile.js)). The Design System can be built with the `build` npm command (or `dev` to watch for changes and rebuild on-save). The tasks and their dependencies are as follows:
 
 * `styles` — `src/styles/@tcds/` to `dist/styles/`
   * [sass](https://www.npmjs.com/package/sass), [gulp-sass](https://www.npmjs.com/package/gulp-sass) (style pre-processing)
