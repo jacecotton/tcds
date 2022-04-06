@@ -8,7 +8,8 @@
     "lint:scss": "stylelint 'src/**/*.scss'",
     "fix:scss": "stylelint 'src/**/*.scss' --fix",
     "lint:js": "eslint 'src/**/*.js'",
-    "fix:js": "eslint 'src/**/*.js' --fix"
+    "fix:js": "eslint 'src/**/*.js' --fix",
+    "version": "cat package.json | grep -e '^  \"version\": ' | awk '{print $2}' | sed 's/[\",]//g'"
   },
   "repository": {
     "type": "git",
