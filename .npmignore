@@ -3,7 +3,8 @@
 .editorconfig
 .stylelintrc
 .eslintrc
+gulpfile.js
 CONTRIBUTING.md
 ARCHITECTURE.md
-gulpfile.js
+dist/
 src/**/README.md
