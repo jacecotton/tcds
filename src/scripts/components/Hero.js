@@ -69,7 +69,7 @@ export default class Hero {
 }
 
 document.querySelectorAll("[data-component=Hero]").forEach((instance) => {
-  instance && Hero(instance, {
+  instance && new Hero(instance, {
     interval: instance.getAttribute("data-interval") || 10000,
     parallax: instance.classList.contains("Hero--parallax"),
   });

@@ -115,7 +115,7 @@ export default class Accordion extends Component {
 // accurate.
 window.addEventListener("load", () => {
   document.querySelectorAll("[data-component=Accordion]").forEach((instance) => {
-    instance && Accordion(instance, {
+    instance && new Accordion(instance, {
       multiselectable: instance.classList.contains("Accordion--multiselectable"),
     });
   });
