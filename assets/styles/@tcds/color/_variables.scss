@@ -94,10 +94,12 @@ $interface-colors: (
  *
  * See: theme-color()
  */
+
 $theme-color-primary: "red" !default;
 $theme-color-secondary: "blue" !default;
 $theme-color-tertiary: "gray" !default;
 $theme-color-link: "blue" !default;
+
 $theme-colors: (
   "primary": map.get($colors, $theme-color-primary),
   "secondary": map.get($colors, $theme-color-secondary),

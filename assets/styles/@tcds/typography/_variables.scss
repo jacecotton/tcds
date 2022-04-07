@@ -12,9 +12,10 @@
  * See: font-stack()
  */
 $theme-font-default: (inter, system-ui, sans-serif) !default;
-$theme-font-headings: (inter, system-ui, sans-serif) !default;
-$theme-font-copy: (inter, system-ui, sans-serif) !default;
-$theme-font-ui: (inter, system-ui, sans-serif) !default;
+$theme-font-headings: $theme-font-default !default;
+$theme-font-copy: $theme-font-default !default;
+$theme-font-ui: $theme-font-default !default;
+
 $font-stacks: (
   "default": $theme-font-default,
   "headings": $theme-font-headings,
@@ -30,14 +31,23 @@ $font-stacks: (
  *
  * See: font-size()
  */
+
+$theme-font-size-x-small: 0.75rem !default;
+$theme-font-size-small: 0.875rem !default;
+$theme-font-size-medium: 1rem !default;
+$theme-font-size-medium-plus: 1.25rem !default;
+$theme-font-size-large: 1.5rem !default;
+$theme-font-size-x-large: 2rem !default;
+$theme-font-size-xx-large: 2.5rem !default;
+
 $font-sizes: (
-  "x-small": 0.75rem,
-  "small": 0.875rem,
-  "medium": 1rem,
-  "medium-plus": 1.25rem,
-  "large": 1.5rem,
-  "x-large": 2rem,
-  "xx-large": 2.5rem,
+  "x-small": $theme-font-size-x-small,
+  "small": $theme-font-size-small,
+  "medium": $theme-font-size-medium,
+  "medium-plus": $theme-font-size-medium-plus,
+  "large": $theme-font-size-large,
+  "x-large": $theme-font-size-x-large,
+  "xx-large": $theme-font-size-xx-large,
 );
 
 /**
@@ -47,11 +57,17 @@ $font-sizes: (
  *
  * See: font-weight()
  */
+
+$theme-font-weight-light: 300 !default;
+$theme-font-weight-normal: 400 !default;
+$theme-font-weight-semibold: 600 !default;
+$theme-font-weight-bold: 700 !default;
+
 $font-weights: (
-  "light": 300,
-  "normal": 400,
-  "semibold": 600,
-  "bold": 700,
+  "light": $theme-font-weight-light,
+  "normal": $theme-font-weight-normal,
+  "semibold": $theme-font-weight-semibold,
+  "bold": $theme-font-weight-bold,
 );
 
 /**
@@ -61,10 +77,17 @@ $font-weights: (
  *
  * See: line-height()
  */
+
+$theme-line-height-x-tight: 1 !default;
+$theme-line-height-tight: 1.25 !default;
+$theme-line-height-normal: 1.5 !default;
+$theme-line-height-loose: 1.75 !default;
+$theme-line-height-x-loose: 2 !default;
+
 $line-heights: (
-  "x-tight": 1,
-  "tight": 1.25,
-  "normal": 1.5,
-  "loose": 1.75,
-  "x-loose": 2,
+  "x-tight": $theme-line-height-x-tight,
+  "tight": $theme-line-height-tight,
+  "normal": $theme-line-height-normal,
+  "loose": $theme-line-height-loose,
+  "x-loose": $theme-line-height-x-loose,
 );
