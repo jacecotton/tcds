@@ -53,12 +53,9 @@ You can lint and fix granularly by specifying `styles` or `scripts`:
 
 ## Submitting your changes
 
+When opening a pull request, use the provided template, ensure you follow the [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) standard in the title, and link to related issues in the description using [supported keywords](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue).
 
-
-* Conventional commits info
-* Submitting a pull request (template?)
-  * Try to limit the scope of each pull request.
-  * If the changes are broad in scope or high in number, provide a high-level overview to help reviewers understand the motivation and implications of the changes.
+While pull requests should include some information about the motivation and context behind the changes, they should generally always correspond to at least one issue. Issues should be used to describe motivation in greater detail, while pull request descriptions should focus on the actual changes and their implications.
 
 Before submitting a pull request, make sure your branch is up to date with `main`. **Do not merge `main` into your branch.** Rather, rebase your local `main` with the remote. This is to ensure a cleaner history by always listing your local changes after those on `main`, regardless of the actual chronology.
 
