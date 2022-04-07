@@ -1,3 +1,12 @@
+## [0.23.2](https://github.com/jacecotton/tcds/compare/v0.23.1...v0.23.2) (2022-04-07)
+
+
+### Bug Fixes
+
+* Rename src to assets ([61ea651](https://github.com/jacecotton/tcds/commit/61ea651a6d07ce4951d91f2a362fe1b17ecd8db4))
+
+
+
 ## [0.23.1](https://github.com/jacecotton/tcds/compare/v0.23.0...v0.23.1) (2022-04-07)
 
 
@@ -32,15 +41,6 @@
 ### Performance Improvements
 
 * Check condition before loop in Tabs script ([3104366](https://github.com/jacecotton/tcds/commit/3104366b6970ad87434373fac26476fc9f3a33f0))
-
-
-
-## [0.22.1](https://github.com/jacecotton/tcds/compare/v0.22.0...v0.22.1) (2022-03-31)
-
-
-### Bug Fixes
-
-* Unifying Hero terminology with other cpts ([d852fd4](https://github.com/jacecotton/tcds/commit/d852fd4f85bd315fbe3ec81cb426b6577f728d0a))
 
 
 
