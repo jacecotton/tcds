@@ -1,5 +1,3 @@
-**Work in progress.** See #5
-
 ## Setting up
 
 First, ensure you have installed [Node.js](https://nodejs.org/). Then, clone the repository and install dependencies by running the following:
@@ -46,17 +44,21 @@ This should be done before committing any changes back to the repository.
 <details>
 <summary>Details</summary>
 
-You can lint and fix granularly by specifying `scss` for styles or `js` for scripts:
-* `lint:scss`
-* `lint:js`
-* `fix:scss`
-* `fix:js`
+You can lint and fix granularly by specifying `styles` or `scripts`:
+* `lint:styles`
+* `lint:scripts`
+* `fix:styles`
+* `fix:scripts`
 </details>
 
 ## Submitting your changes
 
+
+
 * Conventional commits info
 * Submitting a pull request (template?)
+  * Try to limit the scope of each pull request.
+  * If the changes are broad in scope or high in number, provide a high-level overview to help reviewers understand the motivation and implications of the changes.
 
 Before submitting a pull request, make sure your branch is up to date with `main`. **Do not merge `main` into your branch.** Rather, rebase your local `main` with the remote. This is to ensure a cleaner history by always listing your local changes after those on `main`, regardless of the actual chronology.
 
