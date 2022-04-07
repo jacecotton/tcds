@@ -1,3 +1,13 @@
+## [0.23.1](https://github.com/jacecotton/tcds/compare/v0.23.0...v0.23.1) (2022-04-07)
+
+
+### Bug Fixes
+
+* **components:** Fix component initialization bug ([5b04abe](https://github.com/jacecotton/tcds/commit/5b04abe03584a9e34410636971f0e1f7417f50c9))
+* **primitives:** Flesh out table styles ([#4](https://github.com/jacecotton/tcds/issues/4)) ([5b3c0cd](https://github.com/jacecotton/tcds/commit/5b3c0cd9aed3c1c2d368275b3952eaf5c21bd8ed))
+
+
+
 # [0.23.0](https://github.com/jacecotton/tcds/compare/v0.22.3...v0.23.0) (2022-04-07)
 
 
@@ -31,15 +41,6 @@
 ### Bug Fixes
 
 * Unifying Hero terminology with other cpts ([d852fd4](https://github.com/jacecotton/tcds/commit/d852fd4f85bd315fbe3ec81cb426b6577f728d0a))
-
-
-
-# [0.22.0](https://github.com/jacecotton/tcds/compare/v0.21.2...v0.22.0) (2022-03-31)
-
-
-### Features
-
-* [#3](https://github.com/jacecotton/tcds/issues/3) Add Tile component ([d799e8f](https://github.com/jacecotton/tcds/commit/d799e8fb0061e5a2ccb7fa141592c986ab56161b))
 
 
 
