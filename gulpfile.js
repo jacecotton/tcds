@@ -25,7 +25,7 @@ import rename from "gulp-rename";
  * Configuration.
  */
 
-const inputPath = "./src";
+const inputPath = "./assets";
 const outputPath = "./dist";
 
 const config = {
@@ -58,7 +58,7 @@ const tasks = {
       // Preprocessing (Sass).
       .pipe(sass({
         outputStyle: "compressed",
-        includePaths: ["./src/styles"],
+        includePaths: [`${inputPath}/styles`],
       }).on("error", sass.logError))
       // Post-processing (PostCSS).
       .pipe(postcss([

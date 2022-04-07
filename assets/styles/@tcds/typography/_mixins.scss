@@ -10,7 +10,7 @@
  * 2. Set a tight line-height for font sizes xx-large through medium-plus.
  * 3. Set a normal line-height for font sizes medium through x-small.
  */
-@mixin font-size($font-size, $responsive: true, $custom-property: false) {
+@mixin font-size($font-size, $responsive: true, $custom-property: false, $line-height: true) {
   font-size: font-size($font-size); // 1
 
   @if $custom-property {
@@ -19,11 +19,11 @@
     font-size: font-size($font-size, $responsive: true);
   }
 
-  @if index(("xx-large", "x-large", "large", "medium-plus"), $font-size) {
+  @if index(("xx-large", "x-large", "large", "medium-plus"), $font-size) and $line-height == true {
     line-height: line-height("tight"); // 2
   }
 
-  @if index(("medium", "small", "x-small"), $font-size) {
+  @if index(("medium", "small", "x-small"), $font-size) and $line-height == true {
     line-height: line-height("normal"); // 3
   }
 }

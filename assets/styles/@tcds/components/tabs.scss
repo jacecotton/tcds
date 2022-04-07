@@ -9,7 +9,7 @@
 
   &--large {
     --tab-flex-grow: 1;
-    --tab-font-size: #{font-size("medium-plus")};
+    --tab-font-size: #{font-size("medium-plus", $responsive: true)};
     --tab-height: #{size("large")};
     --tab-x-padding: #{space("x-loose")};
     --tabpanel-y-padding: #{space("loose")};
@@ -26,13 +26,14 @@
   }
 
   &__tab {
+    @include font-size("medium", $custom-property: "--tab-font-size");
+
     appearance: none;
     background: none;
     border: none;
     border-bottom: 5px solid var(--indicator-color, #{color("gray", "100")});
     color: color("gray", "300");
     font-family: font-stack("ui");
-    font-size: var(--tab-font-size, #{font-size("medium")});
     font-weight: font-weight("semibold");
     flex: var(--tab-flex-grow, 0);
     padding: 0 space("loose"); // fallback

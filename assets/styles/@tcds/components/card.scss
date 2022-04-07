@@ -11,7 +11,7 @@
   display: grid;
   position: relative;
 
-  --card-media-small: 220px; // 1
+  $card-media-small: 220px; // 1
 
   /**
    * Vertical orientation styles (applies by default, unless the "horizontal"
@@ -29,7 +29,7 @@
    * Horizontal orientation styles.
    */
   @mixin horizontal-card {
-    grid-template-columns: var(--card-media-width, 1fr) 3fr;
+    grid-template-columns: $card-media-small 3fr;
     grid-template-rows: 1fr;
     grid-template-areas: "media body";
 
@@ -55,7 +55,7 @@
   }
 
   &--compact {
-    --card-media-width: var(--card-media-small);
+    --card-media-width: #{$card-media-small};
     --card-body-padding: #{space("loose")};
     --card-title-font-size: #{font-size("medium", $responsive: true)};
     --card-content-font-size: #{font-size("small", $responsive: true)};
@@ -99,7 +99,10 @@
 
   &__media {
     grid-area: media;
-    min-width: var(--card-media-small);
+
+    @include breakpoint-above($card-media-small) {
+      min-width: $card-media-small;
+    }
 
     > img {
       display: block;
