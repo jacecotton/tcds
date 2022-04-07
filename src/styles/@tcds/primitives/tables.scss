@@ -1,5 +1,9 @@
 @use "@tcds/_all" as *;
 
+table {
+  border-collapse: collapse;
+}
+
 td {
   vertical-align: top;
 }
