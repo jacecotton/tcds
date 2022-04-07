@@ -1,1 +1,1 @@
-table{border-collapse:collapse}td{vertical-align:top}
+table{border-collapse:collapse}table:where(:not(:last-child)){margin-bottom:1em}:not(thead)>tr:nth-of-type(odd){background-color:#f8f8f9}td{vertical-align:top}td,th{padding:8px 16px;border-bottom:1px solid #e2e2e7}

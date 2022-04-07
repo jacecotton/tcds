@@ -2,8 +2,22 @@
 
 table {
   border-collapse: collapse;
+
+  &:where(:not(:last-child)) {
+    margin-bottom: 1em;
+  }
+}
+
+:not(thead) > tr:nth-of-type(odd) {
+  background-color: color("gray", "0");
 }
 
 td {
   vertical-align: top;
+}
+
+td,
+th {
+  padding: space("tight") space("normal");
+  border-bottom: 1px solid color("gray", "100");
 }
