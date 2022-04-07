@@ -1,3 +1,12 @@
+# [0.23.0](https://github.com/jacecotton/tcds/compare/v0.22.3...v0.23.0) (2022-04-07)
+
+
+### Features
+
+* **primitives:** Add table styles ([#8](https://github.com/jacecotton/tcds/issues/8)) ([38031e5](https://github.com/jacecotton/tcds/commit/38031e5a78c6f8240bfa3a90b3504872a5fddecc))
+
+
+
 ## [0.22.3](https://github.com/jacecotton/tcds/compare/v0.22.2...v0.22.3) (2022-04-05)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * [#3](https://github.com/jacecotton/tcds/issues/3) Add Tile component ([d799e8f](https://github.com/jacecotton/tcds/commit/d799e8fb0061e5a2ccb7fa141592c986ab56161b))
-
-
-
-## [0.21.2](https://github.com/jacecotton/tcds/compare/v0.21.1...v0.21.2) (2022-03-31)
-
-
-### Bug Fixes
-
-* Carousel graceful degradation ([f3313df](https://github.com/jacecotton/tcds/commit/f3313dffe6c7913c23b701fedaf7039c0c53b980))
 
 
 
