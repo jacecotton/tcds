@@ -30,10 +30,10 @@ $theme-size-multiplier-x-large: 14 !default;
 
 $sizes: (
   "x-small": $base-unit * $theme-size-multiplier-x-small,
-  "small":   $base-unit * $theme-size-multipler-small,
-  "medium":  $base-unit * $theme-size-multipler-medium,
-  "large":   $base-unit * $theme-size-multipler-large,
-  "x-large": $base-unit * $theme-size-multipler-x-large,
+  "small":   $base-unit * $theme-size-multiplier-small,
+  "medium":  $base-unit * $theme-size-multiplier-medium,
+  "large":   $base-unit * $theme-size-multiplier-large,
+  "x-large": $base-unit * $theme-size-multiplier-x-large,
 );
 
 /**
