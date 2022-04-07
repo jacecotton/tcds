@@ -1,3 +1,12 @@
+# [0.24.0](https://github.com/jacecotton/tcds/compare/v0.23.2...v0.24.0) (2022-04-07)
+
+
+### Features
+
+* Add configuration options to Sass modules ([372aa4d](https://github.com/jacecotton/tcds/commit/372aa4d97562bf9af729677aa86de5a236373131))
+
+
+
 ## [0.23.2](https://github.com/jacecotton/tcds/compare/v0.23.1...v0.23.2) (2022-04-07)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * Remove white space on Carousel expand ([c1b065b](https://github.com/jacecotton/tcds/commit/c1b065bac7f66e914a90abc4df36c02fd2c4b6d7))
-
-
-
-## [0.22.2](https://github.com/jacecotton/tcds/compare/v0.22.1...v0.22.2) (2022-04-05)
-
-
-### Performance Improvements
-
-* Check condition before loop in Tabs script ([3104366](https://github.com/jacecotton/tcds/commit/3104366b6970ad87434373fac26476fc9f3a33f0))
 
 
 
