@@ -7,4 +7,4 @@ gulpfile.js
 CONTRIBUTING.md
 ARCHITECTURE.md
 dist/
-src/**/README.md
+assets/**/README.md
