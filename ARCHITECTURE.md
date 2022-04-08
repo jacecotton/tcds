@@ -6,8 +6,8 @@ The Design System is ultimately just a collection of scripts, styles, templates,
 
 These assets are delivered in two options:
 
-* [`assets/`](https://github.com/jacecotton/tcds/tree/main/assets) — Uncompiled assets, [installable as a dependency](https://www.npmjs.com/package/@txch/tcds).
-* [`dist/`](https://github.com/jacecotton/tcds/tree/main/dist) — Precompiled packages, [linkable from a CDN](https://unpkg.com/).
+* [`assets/`](https://github.com/jacecotton/tcds/tree/main/assets) — Uncompiled code, [installable as a dependency](https://www.npmjs.com/package/@txch/tcds).
+* [`dist/`](https://github.com/jacecotton/tcds/tree/main/dist) — Precompiled code, [linkable from a CDN](https://unpkg.com/).
 
 Using the former in a project requires a build process to compile the Design System along with a project's other code (see [Getting Started &sect; Local installation](http://tcds.herokuapp.com/getting-started#local-installation)). This is the best option for larger projects that require configuration (theming, extension, granular inclusion, etc.) or deeper integration with the Design System's tools (Sass utilities, JavaScript module exports, Twig templates, etc.)
 
