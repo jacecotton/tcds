@@ -11,22 +11,23 @@
  */
 
 .Button {
-  $button-height: size("medium");
-  $button-font-size: font-size("medium", $responsive: true);
+  --button-background: #{theme-color("primary")};
+  --button-text-color: #{theme-color("primary", "0")};
+  --button-padding: #{space("normal", "em")};
+  --button-height: #{size("medium")};
 
-  --default-button-padding: calc((#{$button-height} - var(--button-font-size, #{$button-font-size})) / 1.5);
+  @include font-size("medium", $custom-property: "--button-font-size", $line-height: false);
 
   display: inline-flex;
   align-items: center;
-  background-color: var(--button-background, #{theme-color("primary")});
-  color: var(--button-text-color, #{theme-color("primary", "0")});
+  background-color: var(--button-background);
+  color: var(--button-text-color);
   font-family: font-stack("ui");
-  font-size: var(--button-font-size, #{$button-font-size});
   font-weight: font-weight("semibold");
   line-height: 1; // 1
   white-space: nowrap; // 1
-  height: var(--button-height, #{$button-height});
-  padding: 0 var(--button-padding, var(--default-button-padding)); // 2
+  height: var(--button-height);
+  padding: 0 var(--button-padding); // 2
   overflow: hidden; // 3
   position: relative; // 4
   text-decoration: none; // 5
@@ -39,11 +40,11 @@
   /** States */
 
   &:hover {
-    --button-overlay-color: #{color("shade", "100")};
+    --button-overlay: #{color("shade", "100")};
   }
 
   &:active {
-    --button-overlay-color: #{color("shade", "200")};
+    --button-overlay: #{color("shade", "200")};
     --button-scale: 0.99;
   }
 
@@ -69,7 +70,7 @@
   }
 
   &--round {
-    border-radius: var(--button-height, #{$button-height});
+    border-radius: var(--button-height);
   }
 
   &--ghost {
@@ -94,7 +95,8 @@
   }
 
   &--icon-only {
-    --button-padding: 0;
+    padding: 0;
+
     --button-icon-background: transparent;
     --button-icon-margin-right: 0;
     --button-icon-margin-left: 0;
@@ -103,9 +105,9 @@
   /** Children */
 
   &::after {
-    display: var(--button-overlay, block);
+    display: block;
     content: "";
-    background-color: var(--button-overlay-color, transparent);
+    background-color: var(--button-overlay, transparent);
     position: absolute;
     top: 0;
     right: 0;
@@ -119,8 +121,8 @@
     background-color: var(--button-icon-background, #{color("shade", "100")});
     height: 100%;
     margin:
-      0 var(--button-icon-margin-right, var(--default-button-padding))
-      0 var(--button-icon-margin-left, calc(var(--default-button-padding) * -1));
-    padding: calc(var(--default-button-padding) * 0.4);
+      0 var(--button-icon-margin-right, var(--button-padding))
+      0 var(--button-icon-margin-left, calc(var(--button-padding) * -1));
+    padding: calc(var(--button-padding) * 0.4);
   }
 }

@@ -59,11 +59,6 @@
     --card-body-padding: #{space("loose")};
     --card-title-font-size: #{font-size("medium", $responsive: true)};
     --card-content-font-size: #{font-size("small", $responsive: true)};
-    --button-background: transparent;
-    --button-text-color: #{theme-color("secondary")};
-    --button-padding: 0;
-    --button-height: auto;
-    --button-overlay: none;
   }
 
   &--no-bg {

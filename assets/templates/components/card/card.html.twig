@@ -7,9 +7,7 @@
     {% block inner_content %}
       {% if image.url %}
         <figure class="Card__media">
-          <img src="{{ image.url }}" alt="{{ image.alt ?: '' }}" class="Card__image"
-            {% if "image-max-220" in modifiers %} height="220" {% endif %}
-          >
+          <img src="{{ image.url }}" alt="{{ image.alt ?: '' }}" class="Card__image">
         </figure>
       {% endif %}
 
@@ -28,7 +26,14 @@
           {% block card_end %}
             {% if link %}
               <a
-                class="Button Button--small {{ "full-width-button" in modifiers ? "Button--full-width" }}"
+                class="
+                  {% if "compact" not in modifiers %}
+                    Button Button--small
+                    {% if "full-width-button" in modifiers %} Button--full-width {% endif %}
+                  {% else %}
+                    text-bold text-small
+                  {% endif %}
+                "
                 href="{{ link }}"
                 aria-hidden="true"
                 tabindex="-1"
