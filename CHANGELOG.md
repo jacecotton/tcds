@@ -1,3 +1,12 @@
+## [0.24.2](https://github.com/jacecotton/tcds/compare/v0.24.1...v0.24.2) (2022-04-12)
+
+
+### Bug Fixes
+
+* **components:** Card accessibility markup ([573a8c0](https://github.com/jacecotton/tcds/commit/573a8c018b9af1c8d849d848189625b9912cf344))
+
+
+
 ## [0.24.1](https://github.com/jacecotton/tcds/compare/v0.24.0...v0.24.1) (2022-04-07)
 
 
@@ -32,15 +41,6 @@
 
 * **components:** Fix component initialization bug ([5b04abe](https://github.com/jacecotton/tcds/commit/5b04abe03584a9e34410636971f0e1f7417f50c9))
 * **primitives:** Flesh out table styles ([#4](https://github.com/jacecotton/tcds/issues/4)) ([5b3c0cd](https://github.com/jacecotton/tcds/commit/5b3c0cd9aed3c1c2d368275b3952eaf5c21bd8ed))
-
-
-
-# [0.23.0](https://github.com/jacecotton/tcds/compare/v0.22.3...v0.23.0) (2022-04-07)
-
-
-### Features
-
-* **primitives:** Add table styles ([#8](https://github.com/jacecotton/tcds/issues/8)) ([38031e5](https://github.com/jacecotton/tcds/commit/38031e5a78c6f8240bfa3a90b3504872a5fddecc))
 
 
 
