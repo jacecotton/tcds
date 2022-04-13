@@ -1,3 +1,12 @@
+## [0.24.3](https://github.com/jacecotton/tcds/compare/v0.24.2...v0.24.3) (2022-04-13)
+
+
+### Bug Fixes
+
+* **components:** Fix Card responsivity ([d71499d](https://github.com/jacecotton/tcds/commit/d71499dcdf2d48c905b3f1daec3eb5c735f6a7c9))
+
+
+
 ## [0.24.2](https://github.com/jacecotton/tcds/compare/v0.24.1...v0.24.2) (2022-04-12)
 
 
@@ -31,16 +40,6 @@
 ### Bug Fixes
 
 * Rename src to assets ([61ea651](https://github.com/jacecotton/tcds/commit/61ea651a6d07ce4951d91f2a362fe1b17ecd8db4))
-
-
-
-## [0.23.1](https://github.com/jacecotton/tcds/compare/v0.23.0...v0.23.1) (2022-04-07)
-
-
-### Bug Fixes
-
-* **components:** Fix component initialization bug ([5b04abe](https://github.com/jacecotton/tcds/commit/5b04abe03584a9e34410636971f0e1f7417f50c9))
-* **primitives:** Flesh out table styles ([#4](https://github.com/jacecotton/tcds/issues/4)) ([5b3c0cd](https://github.com/jacecotton/tcds/commit/5b3c0cd9aed3c1c2d368275b3952eaf5c21bd8ed))
 
 
 
