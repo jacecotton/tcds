@@ -29,7 +29,7 @@
    * Horizontal orientation styles.
    */
   @mixin horizontal-card {
-    grid-template-columns: $card-media-small 3fr;
+    grid-template-columns: var(--card-media-width, minmax(#{$card-media-small}, 1fr)) 3fr;
     grid-template-rows: 1fr;
     grid-template-areas: "media body";
 
@@ -55,7 +55,7 @@
   }
 
   &--compact {
-    --card-media-width: #{$card-media-small};
+    --card-media-width: minmax(auto, #{$card-media-small});
     --card-body-padding: #{space("loose")};
     --card-title-font-size: #{font-size("medium", $responsive: true)};
     --card-content-font-size: #{font-size("small", $responsive: true)};
@@ -94,10 +94,6 @@
 
   &__media {
     grid-area: media;
-
-    @include breakpoint-above($card-media-small) {
-      min-width: $card-media-small;
-    }
 
     > img {
       display: block;
