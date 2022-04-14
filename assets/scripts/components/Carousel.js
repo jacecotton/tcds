@@ -60,18 +60,12 @@ export default class Carousel extends Tabs {
     this.controls.next.addEventListener("click", () => {
       this.state.activeTab = this.getNextTab();
       this.state.playing = false;
-      // Prevent scroll detection-based tab activation while scroll is in
-      // progress.
-      this.debounceScroll = true;
     });
 
     // Go to previous tab and pause on previous button click.
     this.controls.previous.addEventListener("click", () => {
       this.state.activeTab = this.getPreviousTab();
       this.state.playing = false;
-      // Prevent scroll detection-based tab activation while scroll is in
-      // progress.
-      this.debounceScroll = true;
     });
 
     // Toggle play state on play/pause button click.
@@ -83,9 +77,6 @@ export default class Carousel extends Tabs {
       tab.addEventListener("click", () => {
         // Pause on tab button click.
         this.state.playing = false;
-        // Prevent scroll detection-based tab activation while scroll is in
-        // progress.
-        this.debounceScroll = true;
       });
 
       // Pause on tab button key press.
@@ -168,7 +159,7 @@ export default class Carousel extends Tabs {
     const switchSlideOnSwipe = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         // If the current slide was scrolled to...
-        if(entry.isIntersecting && this.state.expanded !== true && this.debounceScroll !== true) {
+        if(entry.isIntersecting && this.state.expanded !== true) {
           // Set the associated tab (indicator) as active.
           this.state.activeTab = this.element.querySelector(`[role=tab][aria-controls=${entry.target.id}]`);
         }
@@ -181,9 +172,17 @@ export default class Carousel extends Tabs {
       rootMargin: "1px",
     });
 
-    // Attach intersection observer on each slide (panel).
-    this.panels.forEach((panel) => {
-      switchSlideOnSwipe.observe(panel);
+    this.panelsContainer.addEventListener("mouseenter", () => {
+      // Attach intersection observer on each slide (panel).
+      this.panels.forEach((panel) => {
+        switchSlideOnSwipe.observe(panel);
+      });
+    });
+
+    this.panelsContainer.addEventListener("mouseleave", () => {
+      this.panels.forEach((panel) => {
+        switchSlideOnSwipe.unobserve(panel);
+      });
     });
 
     // Expand/collapse carousel on expand/collapse button click.
@@ -216,12 +215,6 @@ export default class Carousel extends Tabs {
 
         // Scroll the panel container to the active slide.
         this.panelsContainer.scrollLeft += panelOffset - panelsContainerOffset;
-
-        // Arbitrary for now. 500 is a guess.
-        // @todo Determine better scroll-detection method.
-        setTimeout(() => {
-          this.debounceScroll = false;
-        }, 500);
 
         this.panels.forEach((panel) => {
           // Set attributes to communicate to screen readers based on whether
