@@ -322,8 +322,8 @@ window.addEventListener("load", () => {
       // Returns a boolean based on the how the string value compares to the
       // equality condition.
       autoplay: instance.getAttribute("data-autoplay") === "true",
-      // We'll handle visibility separately, so disable `[hidden]` attribute from
-      // being added by the parent Tabs script.
+      // We'll handle visibility separately, so disable `[hidden]` attribute
+      // from being added by the parent Tabs script.
       keepPanelVisibility: true,
     });
   });
