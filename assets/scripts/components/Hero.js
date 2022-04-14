@@ -1,3 +1,16 @@
+/**
+ * Hero component.
+ *
+ * Cycles between multiple background images (if used) at a given interval, and
+ * adds a parallax effect (if modifier is specified and reduced motion is not
+ * set).
+ *
+ * @property {object} props - Hero settings.
+ * @property {number} [props.interval=10000] - Timing between background images
+ *   (in milliseconds).
+ * @property {boolean} props.parallax - Whether to use parallax scrolling
+ *   effect.
+ */
 export default class Hero {
   constructor(element, props) {
     this.element = element;
