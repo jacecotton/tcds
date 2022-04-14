@@ -6,10 +6,9 @@
  * 2. Set the minimum height to 100% of the viewport height, minus top and
  *    bottom padding (so the total height isn't 100% plus padding). Then, if
  *    defined, subtract the height of the site's header, which will be added as
- *    top padding in [4].
+ *    top padding in 4.
  * 4. Set the top padding to the height of the site header (to be pulled up by
- *    the same amount in [5]), plus whatever additional top padding is
- *    specified.
+ *    the same amount in 5), plus whatever additional top padding is specified.
  * 5. Pull the hero up with a negative top margin, by the height of the site
  *    header (so that the header overlays the hero).
  * 6. If the hero rotates between multiple background images, create a proper
@@ -17,6 +16,7 @@
  */
 
 .Hero {
+  /** Custom property defaults */
   $hero-padding-bottom: 3rem;
   $hero-padding-top: 3rem;
   $hero-base-height: 65vh;
@@ -41,17 +41,29 @@
   position: relative;
   color: #fff;
 
+  /** Modifiers */
+
+  /**
+   * Enable cross-fade effect between images if there are multiple.
+   */
   &[data-background-images] {
     background-blend-mode: darken; // 6
     transition: background-image 3s;
   }
 
+  /**
+   * Make hero fill the full height of the window. Note the minimum height will
+   * still be the height of the inner content plus top and bottom padding (even
+   * if the window height scales below that).
+   */
   &--full-height {
     --hero-base-height: 100vh;
   }
 
   /**
-   * Only allow parallax if reduced motion preference is not set.
+   * Only allow parallax if reduced motion preference is not set. Note this
+   * property is not necessary for the parallax effect, but serves as a decent
+   * fallback if the JavaScript effect fails.
    */
   @include motion-ok {
     &--parallax {
@@ -59,11 +71,12 @@
     }
   }
 
+  /** Children */
+
   /**
    * Increase contrast with the background image(s) by adding a darkened
    * overlay.
    */
-
   &::before {
     content: "";
     position: absolute;
@@ -72,7 +85,8 @@
     bottom: 0;
     left: 0;
     z-index: -1;
-    background: color("shade", "200");
+    background-color: rgb(0 0 0 / 20%);
+    background-color: rgb(0 0 0 / var(--hero-overlay-opacity, 20%));
   }
 
   &__content {
