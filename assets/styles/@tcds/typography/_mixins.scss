@@ -15,7 +15,7 @@
 
   @if $custom-property {
     font-size: var(#{string.unquote($custom-property)}, #{font-size($font-size, $responsive: true)});
-  } @else {
+  } @else if $font-size != "x-small" and $font-size != "small" {
     font-size: font-size($font-size, $responsive: true);
   }
 
