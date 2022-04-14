@@ -144,6 +144,7 @@
    *    above via `:focus-within`.
    * 3. Make the link clickable from the entire card's surface.
    */
+
   &__title {
     @include font-size("medium-plus", $custom-property: "--card-title-font-size");
 
