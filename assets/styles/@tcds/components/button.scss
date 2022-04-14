@@ -1,36 +1,38 @@
 @use "@tcds/_all" as *;
 
 /**
- * 1. Since button labels never wrap, we can remove line height to trim excess
- *    vertical space.
- * 2. Vertical padding is not added because button height is explicitly set,
+ * 1. These properties are variablized because they're used in the calculation
+ *    of other properties. For instance, the `padding` property shouldn't be
+ *    changed outright, because the value is used in the calculation of
+ *    `margin-right` of button icons.
+ * 2. Since button labels never wrap, we can remove line height to trim excess
+ *    vertical space and make padding more exact.
+ * 3. Vertical padding is not added because button height is explicitly set,
  *    then its contents are vertically centered.
- * 3. Clip overlays (icons and hover state) when corners are rounded.
- * 4. Contain absolute-positioned elements (icon and hover overlays).
- * 5. For link buttons.
+ * 4. Clip overlays (icons and hover state) when corners are rounded.
+ * 5. Contain absolute-positioned elements (icon and hover overlays).
+ * 6. For link buttons.
  */
 
 .Button {
-  --button-background: #{theme-color("primary")};
-  --button-text-color: #{theme-color("primary", "0")};
-  --button-padding: #{space("normal", "em")};
-  --button-height: #{size("medium")};
+  --button-padding: #{space("normal", "em")}; // 1
+  --button-height: #{size("medium")}; // 1
 
-  @include font-size("medium", $custom-property: "--button-font-size", $line-height: false);
+  @include font-size("medium", $line-height: false);
 
   display: inline-flex;
   align-items: center;
-  background-color: var(--button-background);
-  color: var(--button-text-color);
+  background-color: theme-color("primary");
+  color: theme-color("primary", "0");
   font-family: font-stack("ui");
   font-weight: font-weight("semibold");
-  line-height: 1; // 1
-  white-space: nowrap; // 1
+  line-height: 1; // 2
+  white-space: nowrap; // 2
   height: var(--button-height);
-  padding: 0 var(--button-padding); // 2
-  overflow: hidden; // 3
-  position: relative; // 4
-  text-decoration: none; // 5
+  padding: 0 var(--button-padding); // 3
+  overflow: hidden; // 4
+  position: relative; // 5
+  text-decoration: none; // 6
   cursor: pointer;
   transform: scale(var(--button-scale, 1)) translate(var(--button-translate, 0, 0));
   transition: transform animation("productive");
@@ -51,7 +53,7 @@
   /** Modifiers */
 
   &--small {
-    --button-font-size: #{font-size("small")};
+    @include font-size("small", $line-height: false);
 
     @media (pointer: fine) {
       --button-height: #{size("small")};
@@ -60,7 +62,8 @@
 
   &--large {
     --button-height: #{size("large")};
-    --button-font-size: #{font-size("medium-plus")};
+
+    @include font-size("medium-plus", $line-height: false);
   }
 
   &--full-width {
@@ -74,8 +77,9 @@
   }
 
   &--ghost {
-    --button-background: transparent;
-    --button-text-color: "inherit";
+    background-color: transparent;
+    color: inherit;
+
     --button-icon-background: transparent;
   }
 
