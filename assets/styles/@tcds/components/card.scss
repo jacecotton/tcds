@@ -190,4 +190,10 @@
     display: flex;
     margin-top: auto;
   }
+
+  &__action {
+    font-size: font-size("small");
+    font-weight: font-weight("bold");
+    text-decoration: none;
+  }
 }
