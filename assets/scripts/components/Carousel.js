@@ -91,12 +91,12 @@ export default class Carousel extends Tabs {
     });
 
     // Temporarily pause on "enter" (hover or focus).
-    this.panelsContainer.addEventListener("mouseenter", temporaryPause.bind(this));
-    this.panelsContainer.addEventListener("focusin", temporaryPause.bind(this));
+    this.panelsContainer.addEventListener("mouseenter", this.temporarilyPause.bind(this));
+    this.panelsContainer.addEventListener("focusin", this.temporarilyPause.bind(this));
 
     // Resume on "exit".
-    this.panelsContainer.addEventListener("mouseleave", resumeFromTemporaryPause.bind(this));
-    this.panelsContainer.addEventListener("focusout", resumeFromTemporaryPause.bind(this));
+    this.panelsContainer.addEventListener("mouseleave", this.resumeFromTemporaryPause.bind(this));
+    this.panelsContainer.addEventListener("focusout", this.resumeFromTemporaryPause.bind(this));
 
     // Set up an intersection observer to pause the carousel when it's scrolled
     // out of view.
@@ -105,11 +105,11 @@ export default class Carousel extends Tabs {
         // If the carousel is out of view and was playing...
         if(!entry.isIntersecting) {
           // Temporarily pause.
-          temporaryPause.call(this);
+          this.temporarilyPause();
           this.isIntersecting = false;
         } else {
           // Otherwise, resume if pause was temporary.
-          resumeFromTemporaryPause.call(this);
+          this.resumeFromTemporaryPause();
           this.isIntersecting = true;
         }
       });
@@ -125,34 +125,15 @@ export default class Carousel extends Tabs {
       // If window is hidden...
       if(document.hidden === true) {
         // Temporarily pause.
-        temporaryPause.call(this);
+        this.temporarilyPause();
       } else if(document.hidden === false && this.temporaryPause === true && this.isIntersecting !== false) {
         // If the window returns to active, the last pause was temporary, and
         // the carousel is not scrolled out of view, resume the carousel.
         requestAnimationFrame(() => {
-          resumeFromTemporaryPause.call(this);
+          this.resumeFromTemporaryPause();
         });
       }
     }, false);
-
-    // Temporarily pause the carousel due to some navigation event (hovering,
-    // focusing, scrolling away, clicking off the browser window, etc.)
-    function temporaryPause() {
-      if(this.state.playing === true) {
-        this.state.playing = false;
-        // Flag pause as temporary.
-        this.temporaryPause = true;
-      }
-    }
-
-    // Resume the carousel if the last pause was temporary.
-    function resumeFromTemporaryPause() {
-      if(this.temporaryPause === true) {
-        this.state.playing = true;
-        // Reset "temporary" flag.
-        this.temporaryPause = null;
-      }
-    }
 
     // Support swiping between slides (horizontal scrolling with scroll
     // snapping).
@@ -303,6 +284,25 @@ export default class Carousel extends Tabs {
     if(this.state.playing === true) {
       this.state.activeTab = this.getNextTab();
       this.playTimer = setTimeout(this.play.bind(this), this.props.interval);
+    }
+  }
+
+  // Temporarily pause the carousel due to some navigation event (hovering,
+  // focusing, scrolling away, clicking off the browser window, etc.)
+  temporarilyPause() {
+    if(this.state.playing === true) {
+      this.state.playing = false;
+      // Flag pause as temporary.
+      this.temporaryPause = true;
+    }
+  }
+
+  // Resume the carousel if the last pause was temporary.
+  resumeFromTemporaryPause() {
+    if(this.temporaryPause === true) {
+      this.state.playing = true;
+      // Reset "temporary" flag.
+      this.temporaryPause = null;
     }
   }
 }
