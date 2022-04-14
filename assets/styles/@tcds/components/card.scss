@@ -18,7 +18,6 @@
    * modifier is explicitly set).
    */
   &:not(#{&}--horizontal) {
-    grid-template-columns: 1fr;
     grid-template-areas:
       "media"
       "body";
