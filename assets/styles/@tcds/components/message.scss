@@ -2,15 +2,23 @@
 
 @mixin -theme($color) {
   background-color: #{interface-color($color, "0")};
-  border-left: 4px solid #{interface-color($color)};
+  border-left-color: #{interface-color($color)};
   color: #{interface-color($color, "400")};
 }
 
 .Message {
   @include -theme("neutral");
 
+  border-left: 4px solid;
   padding: space("normal") space("loose");
-  margin: space("loose") 0;
+
+  &:not(:first-child) {
+    margin-top: space("loose");
+  }
+
+  &:not(:last-child) {
+    margin-bottom: space("loose");
+  }
 
   &--positive {
     @include -theme("positive");
