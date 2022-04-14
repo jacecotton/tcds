@@ -19,13 +19,9 @@ export default class Accordion extends Component {
     this.buttons.forEach((button) => {
       button.addEventListener("click", () => {
         // We're going to add each clicked button to an array (`activeButtons`),
-        // then remove that button when clicked again. First we need to check
-        // whether the clicked button is already in the array.
-        const buttonIndex = this.state.activeButtons.indexOf(button);
-        const isActive = buttonIndex > -1;
-
-        // If it isn't...
-        if(!isActive) {
+        // then remove that button when clicked again. If the clicked button
+        // isn't already in the array...
+        if(this.state.activeButtons.indexOf(button) === -1) {
           // If not multiselectable, make the clicked button the only active one
           // in state.
           if(this.props.multiselectable === false) {
@@ -38,7 +34,7 @@ export default class Accordion extends Component {
         } else {
           // If the button is currently active and it's clicked again, remove it
           // from the array.
-          this.state.activeButtons.splice(buttonIndex, 1);
+          this.state.activeButtons.splice(this.state.activeButtons.indexOf(button), 1);
         }
       });
     });
