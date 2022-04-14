@@ -130,4 +130,4 @@ task("watch", function watcher() {
 });
 
 task("build", series(["styles", "scripts", "icons"]));
-task("default", series(["styles", "scripts", "icons", "watch"]));
+task("default", series(["build", "watch"]));
