@@ -19,7 +19,6 @@
    */
   &:not(#{&}--horizontal) {
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
     grid-template-areas:
       "media"
       "body";
@@ -40,8 +39,8 @@
    * Apply horizontal orientation styles when the "vertical" modifier is not
    * explicitly set and the card's outer container is sufficiently wide.
    */
-  &:not(#{&}--vertical) {
-    @container (min-width: 600px) {
+  @container (min-width: 600px) {
+    &:not(#{&}--vertical) {
       @include horizontal-card;
     }
   }
