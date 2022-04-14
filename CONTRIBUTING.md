@@ -1,3 +1,5 @@
+This guide is for setting up and contributing to the Texas Children's Design System project. It is not a guide for using the Design System in a project. For that, refer to the [documentation site](https://tcds.herokuapp.com/).
+
 ## Setting up
 
 First, ensure you have installed [Node.js](https://nodejs.org/). Then, clone the repository and install dependencies by running the following:
