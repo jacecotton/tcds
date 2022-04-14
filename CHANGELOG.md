@@ -1,3 +1,12 @@
+## [0.24.4](https://github.com/jacecotton/tcds/compare/v0.24.3...v0.24.4) (2022-04-14)
+
+
+### Bug Fixes
+
+* **typography:** Prevent redundant font-sizes ([596e732](https://github.com/jacecotton/tcds/commit/596e732980825a7bc6eb7398b62c2f8b2a4a9d0f))
+
+
+
 ## [0.24.3](https://github.com/jacecotton/tcds/compare/v0.24.2...v0.24.3) (2022-04-13)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * Add configuration options to Sass modules ([372aa4d](https://github.com/jacecotton/tcds/commit/372aa4d97562bf9af729677aa86de5a236373131))
-
-
-
-## [0.23.2](https://github.com/jacecotton/tcds/compare/v0.23.1...v0.23.2) (2022-04-07)
-
-
-### Bug Fixes
-
-* Rename src to assets ([61ea651](https://github.com/jacecotton/tcds/commit/61ea651a6d07ce4951d91f2a362fe1b17ecd8db4))
 
 
 
