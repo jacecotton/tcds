@@ -1,11 +1,11 @@
-.github/
-.gitignore
-.browserslistrc
-.editorconfig
-.stylelintrc
-.eslintrc
-gulpfile.js
-CONTRIBUTING.md
-ARCHITECTURE.md
-dist/
-assets/**/README.md
+.github/              export-ignore
+.gitignore            export-ignore
+.browserslistrc       export-ignore
+.editorconfig         export-ignore
+.stylelintrc          export-ignore
+.eslintrc             export-ignore
+gulpfile.js           export-ignore
+CONTRIBUTING.md       export-ignore
+ARCHITECTURE.md       export-ignore
+dist/                 export-ignore
+assets/**/README.md   export-ignore
