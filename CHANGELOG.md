@@ -1,3 +1,12 @@
+## [0.24.6](https://github.com/jacecotton/tcds/compare/v0.24.5...v0.24.6) (2022-04-19)
+
+
+### Bug Fixes
+
+* Ignore files in release ([bd8b245](https://github.com/jacecotton/tcds/commit/bd8b245cf95846319dff9e7343010069302d6161))
+
+
+
 ## [0.24.5](https://github.com/jacecotton/tcds/compare/v0.24.4...v0.24.5) (2022-04-19)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Card accessibility markup ([573a8c0](https://github.com/jacecotton/tcds/commit/573a8c018b9af1c8d849d848189625b9912cf344))
-
-
-
-## [0.24.1](https://github.com/jacecotton/tcds/compare/v0.24.0...v0.24.1) (2022-04-07)
-
-
-### Bug Fixes
-
-* Correct typos ([f03a6eb](https://github.com/jacecotton/tcds/commit/f03a6ebd7cb779756e6079219f12292bc96776f0))
 
 
 
