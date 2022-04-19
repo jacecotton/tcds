@@ -1,5 +1,7 @@
 .github/              export-ignore
 .gitignore            export-ignore
+.gitattributes        export-ignore
+.npmignore            export-ignore
 .browserslistrc       export-ignore
 .editorconfig         export-ignore
 .stylelintrc          export-ignore
