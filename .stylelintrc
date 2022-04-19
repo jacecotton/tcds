@@ -1,6 +1,6 @@
 {
   "extends": "stylelint-config-standard-scss",
-  "ignoreFiles": ["dist/**/*"],
+  "ignoreFiles": ["dist/**"],
   "rules": {
     "property-no-unknown": [true, {
       "ignoreProperties": ["container-type"]
