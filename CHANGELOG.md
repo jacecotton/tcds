@@ -1,3 +1,12 @@
+## [0.24.5](https://github.com/jacecotton/tcds/compare/v0.24.4...v0.24.5) (2022-04-19)
+
+
+### Bug Fixes
+
+* **components:** Disable Twig ctx in nested cpts ([2c08198](https://github.com/jacecotton/tcds/commit/2c08198dd06fb67567d51439a8bf88baeec48197))
+
+
+
 ## [0.24.4](https://github.com/jacecotton/tcds/compare/v0.24.3...v0.24.4) (2022-04-14)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * Correct typos ([f03a6eb](https://github.com/jacecotton/tcds/commit/f03a6ebd7cb779756e6079219f12292bc96776f0))
-
-
-
-# [0.24.0](https://github.com/jacecotton/tcds/compare/v0.23.2...v0.24.0) (2022-04-07)
-
-
-### Features
-
-* Add configuration options to Sass modules ([372aa4d](https://github.com/jacecotton/tcds/commit/372aa4d97562bf9af729677aa86de5a236373131))
 
 
 
