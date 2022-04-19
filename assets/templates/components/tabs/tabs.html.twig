@@ -49,10 +49,7 @@
         class="Tabs__panel"
       >
         {{ tab.content ? tab.content|raw }}
-
-        {% if block(tab.block) is defined %}
-          {{ block(tab.block) }}
-        {% endif %}
+        {{ block(tab.block) is defined ? block(tab.block) }}
       </div>
     {% endfor %}
   </div>

@@ -27,7 +27,7 @@
       controls: heading|clean_id ~ "-carousel-slides",
       custom_attributes: { "data-action": "expand-collapse" },
       modifiers: ["icon-only", "small", "round"],
-    }) }}
+    }, with_context = false) }}
   </header>
 
   <div role="tablist" class="Carousel__indicators">
@@ -63,10 +63,7 @@
         class="Carousel__slide"
       >
         {{ slide.content ? slide.content|raw }}
-
-        {% if block(slide.block) is defined %}
-          {{ block(slide.block) }}
-        {% endif %}
+        {{ block(slide.block) is defined ? block(slide.block) }}
       </div>
     {% endfor %}
   </div>
@@ -77,19 +74,19 @@
     controls: heading|clean_id ~ "-carousel-slides",
     modifiers: ["icon-only", "small", "round", "ghost"],
     custom_attributes: { "data-action": "play-pause" },
-  }) }}
+  }, with_context = false) }}
   {{ include("@tcds/components/button/button.html.twig", {
     label: "Previous slide",
     icon: "chevron-left",
     controls: heading|clean_id ~ "-carousel-slides",
     modifiers: ["icon-only", "small", "round"],
     custom_attributes: { "data-action": "previous" },
-  }) }}
+  }, with_context = false) }}
   {{ include("@tcds/components/button/button.html.twig", {
     label: "Next slide",
     icon: "chevron-right",
     controls: heading|clean_id ~ "-carousel-slides",
     modifiers: ["icon-only", "small", "round"],
     custom_attributes: { "data-action": "next" },
-  }) }}
+  }, with_context = false) }}
 {% endblock %}

@@ -13,7 +13,7 @@
           custom_attributes: {
             "data-component-part": "expand-all",
           },
-        }) }}
+        }, with_context = false) }}
       </li>
       <li>
         {{ include("@tcds/components/button/button.html.twig", {
@@ -23,7 +23,7 @@
           custom_attributes: {
             "data-component-part": "collapse-all",
           },
-        }) }}
+        }, with_context = false) }}
       </li>
     </ul>
   {% endif %}
@@ -43,16 +43,14 @@
           {{ include("@tcds/components/icon/icon.html.twig", {
             icon: "chevron-down",
             custom_classes: ["Accordion__icon"],
-          }) }}
+          }, with_context = false) }}
         </button>
       {% if heading_level %} </h{{ heading_level }}> {% endif %}
 
       <div data-component-part="panel" class="Accordion__panel" id="{{ section_id }}-panel" aria-labelledby="{{ section_id }}-button">
         <div class="Accordion__content">
           {{ section.content ? section.content|raw }}
-          {% if block(section.block) is defined %}
-            {{ block(section.block) }}
-          {% endif %}
+          {{ block(section.block) is defined ? block(section.block) }}
         </div>
       </div>
     </section>
