@@ -1,3 +1,12 @@
+## [0.26.1](https://github.com/jacecotton/tcds/compare/v0.26.0...v0.26.1) (2022-04-25)
+
+
+### Bug Fixes
+
+* Push compiled changes ([6670731](https://github.com/jacecotton/tcds/commit/66707317c3273b4a2d22865dc671004242d19f8a))
+
+
+
 # [0.26.0](https://github.com/jacecotton/tcds/compare/v0.25.0...v0.26.0) (2022-04-25)
 
 
@@ -37,15 +46,6 @@
 ### Bug Fixes
 
 * Ignore files in release ([bd8b245](https://github.com/jacecotton/tcds/commit/bd8b245cf95846319dff9e7343010069302d6161))
-
-
-
-## [0.24.5](https://github.com/jacecotton/tcds/compare/v0.24.4...v0.24.5) (2022-04-19)
-
-
-### Bug Fixes
-
-* **components:** Disable Twig ctx in nested cpts ([2c08198](https://github.com/jacecotton/tcds/commit/2c08198dd06fb67567d51439a8bf88baeec48197))
 
 
 
