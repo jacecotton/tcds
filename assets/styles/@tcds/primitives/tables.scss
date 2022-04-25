@@ -2,6 +2,7 @@
 
 table {
   border-collapse: collapse;
+  width: 100%;
 
   &:where(:not(:last-child)) {
     margin-bottom: 1em;
