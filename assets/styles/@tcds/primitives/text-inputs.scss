@@ -1,0 +1,42 @@
+@use "../_all" as *;
+
+label {
+  font-weight: font-weight("semibold");
+}
+
+[type="text"],
+[type="search"],
+[type="tel"],
+[type="date"],
+[type="email"],
+[type="number"],
+[type="month"],
+[type="week"],
+[type="password"],
+textarea {
+  appearance: none;
+  border: none;
+  font-family: font-stack("ui");
+  font-size: font-size("small");
+  padding: space("tight") space("normal");
+  height: size("medium");
+  width: 100%;
+  background-color: color("shade", "0");
+  transition: background-color animation("productive");
+
+  &:hover {
+    background-color: color("shade", "100");
+  }
+
+  &:focus {
+    background-color: #fff;
+  }
+}
+
+textarea {
+  height: initial;
+}
+
+[type="search"] {
+  appearance: textfield;
+}
