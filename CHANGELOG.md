@@ -1,3 +1,12 @@
+# [0.26.0](https://github.com/jacecotton/tcds/compare/v0.25.0...v0.26.0) (2022-04-25)
+
+
+### Features
+
+* **primitives:** Add input styles ([eb8315e](https://github.com/jacecotton/tcds/commit/eb8315e469a78eae32f34e415f83b556ecaece07))
+
+
+
 # [0.25.0](https://github.com/jacecotton/tcds/compare/v0.24.7...v0.25.0) (2022-04-25)
 
 
@@ -37,15 +46,6 @@
 ### Bug Fixes
 
 * **components:** Disable Twig ctx in nested cpts ([2c08198](https://github.com/jacecotton/tcds/commit/2c08198dd06fb67567d51439a8bf88baeec48197))
-
-
-
-## [0.24.4](https://github.com/jacecotton/tcds/compare/v0.24.3...v0.24.4) (2022-04-14)
-
-
-### Bug Fixes
-
-* **typography:** Prevent redundant font-sizes ([596e732](https://github.com/jacecotton/tcds/commit/596e732980825a7bc6eb7398b62c2f8b2a4a9d0f))
 
 
 
