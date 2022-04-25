@@ -5,7 +5,6 @@ ul:not([class]),
 ol:not([class]),
 .ol {
   padding-left: space("normal", "rem");
-  line-height: line-height("normal");
 
   &:not(:last-child) {
     margin: 0 0 space("normal", "rem");
@@ -17,8 +16,12 @@ ol[class]:not(.ol) {
   list-style: none;
 }
 
+li {
+  line-height: line-height("loose");
+}
+
 dl {
-  line-height: line-height("normal");
+  line-height: line-height("loose");
 
   &:not(:last-child) {
     margin-bottom: space("normal", "rem");
