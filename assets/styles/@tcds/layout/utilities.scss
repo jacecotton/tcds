@@ -21,13 +21,14 @@
 }
 
 .grid {
-  --grid-columns: 12;
+  --grid-columns-default: 12;
+  --grid-columns: var(--grid-columns-default);
 
   display: grid;
   grid-template-columns: repeat(var(--grid-columns), 1fr);
 
   @include breakpoint-above("small") {
-    --above-small-grid-columns: 12;
+    --above-small-grid-columns: var(--grid-columns-default);
     --grid-columns: var(--above-small-grid-columns);
   }
 
