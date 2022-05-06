@@ -1,3 +1,17 @@
+# [0.28.0](https://github.com/jacecotton/tcds/compare/v0.27.0...v0.28.0) (2022-05-06)
+
+
+### Bug Fixes
+
+* **components:** Vertically align button primitive ([da1b140](https://github.com/jacecotton/tcds/commit/da1b14002ab3cea0b3b41a4f04d079a4587fbfd6))
+
+
+### Features
+
+* **components:** Add align-bottom Hero modifier ([7e88dee](https://github.com/jacecotton/tcds/commit/7e88deeee102110f3f3896479ea998aaadce104b))
+
+
+
 # [0.27.0](https://github.com/jacecotton/tcds/compare/v0.26.1...v0.27.0) (2022-05-06)
 
 
@@ -48,15 +62,6 @@
 
 * **layout:** Replace flex util with grid util ([4be1a0a](https://github.com/jacecotton/tcds/commit/4be1a0a6170755f08025c4d70ffe5d9e1f3e2eb8))
 * Remove legacy Chrome from support 🥳 ([f72c269](https://github.com/jacecotton/tcds/commit/f72c269ff3eaf4f62b6ad2d6429deab8d2a7c507))
-
-
-
-## [0.24.7](https://github.com/jacecotton/tcds/compare/v0.24.6...v0.24.7) (2022-04-19)
-
-
-### Bug Fixes
-
-* Ignore files from git archive ([e40e31b](https://github.com/jacecotton/tcds/commit/e40e31ba6ccf2c23f9d02f7c7bc2c7d5e3ce0874))
 
 
 
