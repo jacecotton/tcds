@@ -1,3 +1,12 @@
+# [0.29.0](https://github.com/jacecotton/tcds/compare/v0.28.2...v0.29.0) (2022-05-06)
+
+
+### Features
+
+* **components:** Add interval prop to Hero ([42c941e](https://github.com/jacecotton/tcds/commit/42c941e6b7b15b80da0fcb809b6aa1b17aa7e29a))
+
+
+
 ## [0.28.2](https://github.com/jacecotton/tcds/compare/v0.28.1...v0.28.2) (2022-05-06)
 
 
@@ -48,15 +57,6 @@
 ### Features
 
 * **layout:** Add flex utilities, responsive grid ([23c4fb8](https://github.com/jacecotton/tcds/commit/23c4fb82d12886d0791f22a03d6c0f331cff8f28))
-
-
-
-## [0.26.1](https://github.com/jacecotton/tcds/compare/v0.26.0...v0.26.1) (2022-04-25)
-
-
-### Bug Fixes
-
-* Push compiled changes ([6670731](https://github.com/jacecotton/tcds/commit/66707317c3273b4a2d22865dc671004242d19f8a))
 
 
 
