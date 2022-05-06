@@ -1,3 +1,12 @@
+## [0.28.2](https://github.com/jacecotton/tcds/compare/v0.28.1...v0.28.2) (2022-05-06)
+
+
+### Bug Fixes
+
+* **layout:** Fix responsive grid utility ([213263c](https://github.com/jacecotton/tcds/commit/213263cce38ac1f9e7c0ed0d29eacdf15e2c7e52))
+
+
+
 ## [0.28.1](https://github.com/jacecotton/tcds/compare/v0.28.0...v0.28.1) (2022-05-06)
 
 
@@ -48,15 +57,6 @@
 ### Bug Fixes
 
 * Push compiled changes ([6670731](https://github.com/jacecotton/tcds/commit/66707317c3273b4a2d22865dc671004242d19f8a))
-
-
-
-# [0.26.0](https://github.com/jacecotton/tcds/compare/v0.25.0...v0.26.0) (2022-04-25)
-
-
-### Features
-
-* **primitives:** Add input styles ([eb8315e](https://github.com/jacecotton/tcds/commit/eb8315e469a78eae32f34e415f83b556ecaece07))
 
 
 
