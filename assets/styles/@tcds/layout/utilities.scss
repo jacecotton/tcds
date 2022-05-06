@@ -21,13 +21,29 @@
 }
 
 .grid {
-  display: grid;
-  grid-template-columns: repeat(var(--grid-columns, 12), 1fr);
+  --grid-columns: 12;
 
-  @each $breakpoint, $x in $breakpoints {
-    @include breakpoint-above($breakpoint) {
-      grid-template-columns: repeat(var(--above-#{$breakpoint}-grid-columns, var(--grid-columns, 12)), 1fr);
-    }
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+
+  @include breakpoint-above("small") {
+    --above-small-grid-columns: 12;
+    --grid-columns: var(--above-small-grid-columns);
+  }
+
+  @include breakpoint-above("medium") {
+    --above-medium-grid-columns: var(--above-small-grid-columns);
+    --grid-columns: var(--above-medium-grid-columns);
+  }
+
+  @include breakpoint-above("large") {
+    --above-large-grid-columns: var(--above-medium-grid-columns);
+    --grid-columns: var(--above-large-grid-columns);
+  }
+
+  @include breakpoint-above("x-large") {
+    --above-x-large-grid-columns: var(--above-large-grid-columns);
+    --grid-columns: var(--above-x-large-grid-columns);
   }
 
   [class*="column"] {
