@@ -5,6 +5,10 @@
 {% set root_element = "section" %}
 
 {% block root_attributes %}
+  {% if interval %}
+    data-interval="{{ interval }}"
+  {% endif %}
+
   {% if backgrounds|length == 1 %}
     style="background-image: url('{{ backgrounds[0] }}')"
   {% elseif backgrounds|length > 1 %}
