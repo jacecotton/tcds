@@ -1,3 +1,23 @@
+# [0.27.0](https://github.com/jacecotton/tcds/compare/v0.26.1...v0.27.0) (2022-05-06)
+
+
+### Bug Fixes
+
+* **components:** Add line-height to Message conten ([faa1371](https://github.com/jacecotton/tcds/commit/faa13719bb5278d04a0803b00a21346fe71db538))
+* **components:** Increase button icon padding ([76a4f06](https://github.com/jacecotton/tcds/commit/76a4f064d6806284612eaf668dcd70f0828439c7))
+* **primitives:** Add vertical margin to tables ([feb7a5b](https://github.com/jacecotton/tcds/commit/feb7a5b46121e697b300148bf2ab78f7cb031ce1))
+* **primitives:** Remove dl > div margin ([ddb5cdb](https://github.com/jacecotton/tcds/commit/ddb5cdbdbcae8d9ba35f5f67505a47f568204249))
+* **primitives:** Tweak details styles ([5bf8ce9](https://github.com/jacecotton/tcds/commit/5bf8ce955ffcc039813dc9cad407b4c4f3de171d))
+* **typography:** Heading selector specificity ([bcfa733](https://github.com/jacecotton/tcds/commit/bcfa733e467151e5c80a1ad2ba388a0484284545))
+* **typography:** Increase medium-plus line-height ([87b5ec9](https://github.com/jacecotton/tcds/commit/87b5ec965c4510c993b9274b36b68431bc27eb75))
+
+
+### Features
+
+* **layout:** Add flex utilities, responsive grid ([23c4fb8](https://github.com/jacecotton/tcds/commit/23c4fb82d12886d0791f22a03d6c0f331cff8f28))
+
+
+
 ## [0.26.1](https://github.com/jacecotton/tcds/compare/v0.26.0...v0.26.1) (2022-04-25)
 
 
@@ -37,15 +57,6 @@
 ### Bug Fixes
 
 * Ignore files from git archive ([e40e31b](https://github.com/jacecotton/tcds/commit/e40e31ba6ccf2c23f9d02f7c7bc2c7d5e3ce0874))
-
-
-
-## [0.24.6](https://github.com/jacecotton/tcds/compare/v0.24.5...v0.24.6) (2022-04-19)
-
-
-### Bug Fixes
-
-* Ignore files in release ([bd8b245](https://github.com/jacecotton/tcds/commit/bd8b245cf95846319dff9e7343010069302d6161))
 
 
 
