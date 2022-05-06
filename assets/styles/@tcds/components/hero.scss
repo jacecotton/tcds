@@ -61,6 +61,13 @@
   }
 
   /**
+   * Align content to the bottom of the hero.
+   */
+  &--align-bottom {
+    align-items: end;
+  }
+
+  /**
    * Only allow parallax if reduced motion preference is not set. Note this
    * property is not necessary for the parallax effect, but serves as a decent
    * fallback if the JavaScript effect fails.
@@ -95,11 +102,6 @@
     display: flex;
     align-items: center;
     gap: space("x-loose");
-
-    .column:last-of-type {
-      flex: 1;
-      gap: space("normal");
-    }
   }
 
   &__heading {
