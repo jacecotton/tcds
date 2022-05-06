@@ -16,6 +16,7 @@ button,
   border: none;
   font: inherit;
   cursor: pointer;
+  vertical-align: middle;
 
   &:not([class]) {
     padding: space("tight") space("normal");
