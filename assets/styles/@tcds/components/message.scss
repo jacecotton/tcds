@@ -11,6 +11,7 @@
 
   border-left: 4px solid;
   padding: space("normal") space("loose");
+  line-height: line-height("loose");
 
   &:not(:first-child) {
     margin-top: space("loose");
