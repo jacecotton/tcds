@@ -4,9 +4,31 @@
   @include max-width;
 }
 
+.row {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+@for $flex from 1 through 12 {
+  .flex-#{$flex} {
+    flex: $flex;
+  }
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(var(--grid-columns, 12), 1fr);
+
+  @each $breakpoint, $x in $breakpoints {
+    @include breakpoint-above($breakpoint) {
+      grid-template-columns: repeat(var(--above-#{$breakpoint}-grid-columns, var(--grid-columns, 12)), 1fr);
+    }
+  }
 
   [class*="column"] {
     min-width: fit-content;
@@ -14,7 +36,7 @@
 }
 
 .column-full {
-  grid-column: span var(--grid-columns, 12);
+  grid-column: 1 / -1;
 }
 
 @for $column from 1 through 12 {
@@ -23,10 +45,14 @@
   }
 }
 
-@each $breakpoint-name, $breakpoint-value in $breakpoints {
-  @media (min-width: #{$breakpoint-value}) {
+@each $breakpoint, $x in $breakpoints {
+  @include breakpoint-above($breakpoint) {
+    .above-#{$breakpoint}\:column-full {
+      grid-column: 1 / -1;
+    }
+
     @for $column from 1 through 12 {
-      .above-#{$breakpoint-name}\:column-#{$column} {
+      .above-#{$breakpoint}\:column-#{$column} {
         grid-column: span $column;
       }
     }
@@ -97,7 +123,7 @@
   }
 }
 
-@each $breakpoint, $value in $breakpoints {
+@each $breakpoint, $x in $breakpoints {
   @include breakpoint-below($breakpoint) {
     .hide-below-#{$breakpoint} {
       display: none !important;
