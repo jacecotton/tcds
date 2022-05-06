@@ -1,3 +1,13 @@
+## [0.28.1](https://github.com/jacecotton/tcds/compare/v0.28.0...v0.28.1) (2022-05-06)
+
+
+### Bug Fixes
+
+* **layout:** Fix responsive grid utility bug ([0e5b1dc](https://github.com/jacecotton/tcds/commit/0e5b1dc7d735953f0aab4ba78ca7c879d3673945))
+* **primitives:** Vertically align links ([07c8b76](https://github.com/jacecotton/tcds/commit/07c8b76b9f18bb324f0621523bf52c9da80b4938))
+
+
+
 # [0.28.0](https://github.com/jacecotton/tcds/compare/v0.27.0...v0.28.0) (2022-05-06)
 
 
@@ -47,21 +57,6 @@
 ### Features
 
 * **primitives:** Add input styles ([eb8315e](https://github.com/jacecotton/tcds/commit/eb8315e469a78eae32f34e415f83b556ecaece07))
-
-
-
-# [0.25.0](https://github.com/jacecotton/tcds/compare/v0.24.7...v0.25.0) (2022-04-25)
-
-
-### Bug Fixes
-
-* **primitives:** Make tables full-width by default ([2928460](https://github.com/jacecotton/tcds/commit/292846018d177f302259b6b698b5c595f05dcc76))
-
-
-### Features
-
-* **layout:** Replace flex util with grid util ([4be1a0a](https://github.com/jacecotton/tcds/commit/4be1a0a6170755f08025c4d70ffe5d9e1f3e2eb8))
-* Remove legacy Chrome from support 🥳 ([f72c269](https://github.com/jacecotton/tcds/commit/f72c269ff3eaf4f62b6ad2d6429deab8d2a7c507))
 
 
 
