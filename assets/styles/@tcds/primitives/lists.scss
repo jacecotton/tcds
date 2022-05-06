@@ -26,10 +26,6 @@ dl {
   &:not(:last-child) {
     margin-bottom: space("normal", "rem");
   }
-
-  div:not(:last-child) {
-    margin-bottom: space("normal", "rem");
-  }
 }
 
 dt {
