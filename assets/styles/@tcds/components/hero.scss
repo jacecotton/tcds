@@ -114,6 +114,8 @@
   &__subheading {
     @include font-size("medium-plus");
 
-    width: 50%;
+    @include breakpoint-above("medium") {
+      width: 50%;
+    }
   }
 }
