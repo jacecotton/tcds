@@ -1,3 +1,12 @@
+## [0.31.9](https://github.com/jacecotton/tcds/compare/v0.31.8...v0.31.9) (2022-05-08)
+
+
+### Bug Fixes
+
+* **components:** Accordion style tweak ([90608be](https://github.com/jacecotton/tcds/commit/90608bef9c4b93c7cc7b4e695d4bcf71f7dfdd16))
+
+
+
 ## [0.31.8](https://github.com/jacecotton/tcds/compare/v0.31.7...v0.31.8) (2022-05-08)
 
 
@@ -31,17 +40,6 @@
 ### Bug Fixes
 
 * **components:** Update Accordion design ([c9e1f42](https://github.com/jacecotton/tcds/commit/c9e1f42072931dee1a7ba3b91d78acd6873a5aec))
-
-
-
-## [0.31.4](https://github.com/jacecotton/tcds/compare/v0.31.3...v0.31.4) (2022-05-08)
-
-
-### Bug Fixes
-
-* **components:** Action Bar style tweak ([bdfd82b](https://github.com/jacecotton/tcds/commit/bdfd82be5b668a2281838b8300478c51d36c924b))
-* **components:** Add text shadow to Hero heading ([fa60865](https://github.com/jacecotton/tcds/commit/fa6086505fd0fef41cbd7aa72e3397090bae1ef2))
-* **components:** Hero bug script fix ([2268f24](https://github.com/jacecotton/tcds/commit/2268f24d86d16bb76166466a7646765eb0f9644c))
 
 
 
