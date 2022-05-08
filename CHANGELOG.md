@@ -1,3 +1,12 @@
+## [0.31.1](https://github.com/jacecotton/tcds/compare/v0.31.0...v0.31.1) (2022-05-08)
+
+
+### Bug Fixes
+
+* **components:** Disable ctx in nested component ([b2df2c3](https://github.com/jacecotton/tcds/commit/b2df2c3d1d3b5292a1d95306d5cda28a53872269))
+
+
+
 # [0.31.0](https://github.com/jacecotton/tcds/compare/v0.30.1...v0.31.0) (2022-05-08)
 
 
@@ -36,15 +45,6 @@
 ### Features
 
 * **components:** Add interval prop to Hero ([42c941e](https://github.com/jacecotton/tcds/commit/42c941e6b7b15b80da0fcb809b6aa1b17aa7e29a))
-
-
-
-## [0.28.2](https://github.com/jacecotton/tcds/compare/v0.28.1...v0.28.2) (2022-05-06)
-
-
-### Bug Fixes
-
-* **layout:** Fix responsive grid utility ([213263c](https://github.com/jacecotton/tcds/commit/213263cce38ac1f9e7c0ed0d29eacdf15e2c7e52))
 
 
 
