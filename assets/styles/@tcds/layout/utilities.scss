@@ -46,10 +46,6 @@
     --above-x-large-grid-columns: var(--above-large-grid-columns);
     --grid-columns: var(--above-x-large-grid-columns);
   }
-
-  [class*="column"] {
-    min-width: fit-content;
-  }
 }
 
 .column-full {
