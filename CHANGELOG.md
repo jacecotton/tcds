@@ -1,3 +1,12 @@
+## [0.31.7](https://github.com/jacecotton/tcds/compare/v0.31.6...v0.31.7) (2022-05-08)
+
+
+### Bug Fixes
+
+* **components:** Bug fix ([411614f](https://github.com/jacecotton/tcds/commit/411614f9ff331edf9e0df5e84c73f014857d0bb3))
+
+
+
 ## [0.31.6](https://github.com/jacecotton/tcds/compare/v0.31.5...v0.31.6) (2022-05-08)
 
 
@@ -33,15 +42,6 @@
 ### Bug Fixes
 
 * **components:** Action Bar style tweak ([93699ff](https://github.com/jacecotton/tcds/commit/93699ff5d786d7f24af87820d65906377acccd7a))
-
-
-
-## [0.31.2](https://github.com/jacecotton/tcds/compare/v0.31.1...v0.31.2) (2022-05-08)
-
-
-### Bug Fixes
-
-* **components:** Action Bar style tweak ([e0c4a43](https://github.com/jacecotton/tcds/commit/e0c4a43a95f6e4b486b604028fd4907b39209a41))
 
 
 
