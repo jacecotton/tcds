@@ -108,6 +108,7 @@
     @include font-size("xx-large");
 
     font-weight: font-weight("semibold");
+    text-shadow: 0 0 1rem color("shade", "200");
     margin: 0;
   }
 
