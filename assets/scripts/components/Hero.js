@@ -21,7 +21,7 @@ export default class Hero {
     this.backgroundImages = this.element.getAttribute("data-background-images") && this.element.getAttribute("data-background-images").trim().split(" ");
 
     // If there is more than one background image...
-    if(this.backgroundImages.length > 1) {
+    if(this.backgroundImages && this.backgroundImages.length > 1) {
       // Preload each image to avoid flashes of white when the background
       // changes.
       this.backgroundImages.forEach((image) => {
