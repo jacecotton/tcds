@@ -5,11 +5,17 @@
   z-index: 1;
   box-shadow: 0 0 1rem color("shade");
 
+  @include breakpoint-above("medium") {
+    height: 100px;
+  }
+
   &:not(#{&}--no-offset) {
     transform: translateY(-50%);
   }
 
   &__items {
+    height: 100%;
+
     @include breakpoint-above("medium") {
       display: flex;
     }
