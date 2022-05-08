@@ -1,3 +1,12 @@
+## [0.31.6](https://github.com/jacecotton/tcds/compare/v0.31.5...v0.31.6) (2022-05-08)
+
+
+### Bug Fixes
+
+* **components:** Accordion style tweak ([499de6c](https://github.com/jacecotton/tcds/commit/499de6c32840c30ffd03928755d3fbec53c817b2))
+
+
+
 ## [0.31.5](https://github.com/jacecotton/tcds/compare/v0.31.4...v0.31.5) (2022-05-08)
 
 
@@ -33,15 +42,6 @@
 ### Bug Fixes
 
 * **components:** Action Bar style tweak ([e0c4a43](https://github.com/jacecotton/tcds/commit/e0c4a43a95f6e4b486b604028fd4907b39209a41))
-
-
-
-## [0.31.1](https://github.com/jacecotton/tcds/compare/v0.31.0...v0.31.1) (2022-05-08)
-
-
-### Bug Fixes
-
-* **components:** Disable ctx in nested component ([b2df2c3](https://github.com/jacecotton/tcds/commit/b2df2c3d1d3b5292a1d95306d5cda28a53872269))
 
 
 
