@@ -1,3 +1,14 @@
+## [0.31.4](https://github.com/jacecotton/tcds/compare/v0.31.3...v0.31.4) (2022-05-08)
+
+
+### Bug Fixes
+
+* **components:** Action Bar style tweak ([bdfd82b](https://github.com/jacecotton/tcds/commit/bdfd82be5b668a2281838b8300478c51d36c924b))
+* **components:** Add text shadow to Hero heading ([fa60865](https://github.com/jacecotton/tcds/commit/fa6086505fd0fef41cbd7aa72e3397090bae1ef2))
+* **components:** Hero bug script fix ([2268f24](https://github.com/jacecotton/tcds/commit/2268f24d86d16bb76166466a7646765eb0f9644c))
+
+
+
 ## [0.31.3](https://github.com/jacecotton/tcds/compare/v0.31.2...v0.31.3) (2022-05-08)
 
 
@@ -36,15 +47,6 @@
 ### Features
 
 * **components:** Add Action Bar component [#3](https://github.com/jacecotton/tcds/issues/3) ([41d7b13](https://github.com/jacecotton/tcds/commit/41d7b130f5c9d337df2a501c4834a03a8a785bd2))
-
-
-
-## [0.30.1](https://github.com/jacecotton/tcds/compare/v0.30.0...v0.30.1) (2022-05-07)
-
-
-### Bug Fixes
-
-* **components:** Hero tweak ([2c7a3ad](https://github.com/jacecotton/tcds/commit/2c7a3adbbde943196e9eb6977f55ab4b5c37999f))
 
 
 
