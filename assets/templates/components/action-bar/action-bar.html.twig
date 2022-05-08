@@ -1,0 +1,20 @@
+{% extends "@tcds/components/component/component.html.twig" %}
+
+{% set component_name = "ActionBar" %}
+
+{% set root_element = "nav" %}
+
+{% block inner_content %}
+  <ul class="ActionBar__items">
+    {% for item in items %}
+      <li class="ActionBar__item">
+        {{ include("@tcds/components/tile/tile.html.twig", {
+          heading: item.title,
+          link: item.link,
+          icon: item.icon,
+          modifiers: ["fill"],
+        }) }}
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

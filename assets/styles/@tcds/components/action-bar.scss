@@ -1,0 +1,39 @@
+@use "@tcds/_all" as *;
+
+.ActionBar {
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 1rem color("shade");
+
+  &:not(#{&}--no-offset) {
+    transform: translateY(-50%);
+  }
+
+  &__items {
+    @include breakpoint-above("medium") {
+      display: flex;
+    }
+  }
+
+  &__item {
+    flex: 1;
+
+    &:nth-of-type(1) .Tile {
+      background-color: #328fc2;
+    }
+
+    &:nth-of-type(2) .Tile {
+      background-color: #1b83ba;
+    }
+
+    &:nth-of-type(3) .Tile {
+      background-color: #0877b4;
+    }
+  }
+
+  .Tile {
+    justify-content: center;
+    gap: 0;
+    color: theme-color("secondary", "0");
+  }
+}
