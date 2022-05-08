@@ -1,3 +1,17 @@
+# [0.31.0](https://github.com/jacecotton/tcds/compare/v0.30.1...v0.31.0) (2022-05-08)
+
+
+### Bug Fixes
+
+* **components:** Hero responsive tweak ([80c4f3e](https://github.com/jacecotton/tcds/commit/80c4f3e13e3e351ecd5d228a1858b8376c7ff8b9))
+
+
+### Features
+
+* **components:** Add Action Bar component [#3](https://github.com/jacecotton/tcds/issues/3) ([41d7b13](https://github.com/jacecotton/tcds/commit/41d7b130f5c9d337df2a501c4834a03a8a785bd2))
+
+
+
 ## [0.30.1](https://github.com/jacecotton/tcds/compare/v0.30.0...v0.30.1) (2022-05-07)
 
 
@@ -31,16 +45,6 @@
 ### Bug Fixes
 
 * **layout:** Fix responsive grid utility ([213263c](https://github.com/jacecotton/tcds/commit/213263cce38ac1f9e7c0ed0d29eacdf15e2c7e52))
-
-
-
-## [0.28.1](https://github.com/jacecotton/tcds/compare/v0.28.0...v0.28.1) (2022-05-06)
-
-
-### Bug Fixes
-
-* **layout:** Fix responsive grid utility bug ([0e5b1dc](https://github.com/jacecotton/tcds/commit/0e5b1dc7d735953f0aab4ba78ca7c879d3673945))
-* **primitives:** Vertically align links ([07c8b76](https://github.com/jacecotton/tcds/commit/07c8b76b9f18bb324f0621523bf52c9da80b4938))
 
 
 
