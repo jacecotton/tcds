@@ -13,7 +13,7 @@
   }
 
   &__section {
-    border-bottom: 1px solid color("shade", "200");
+    border-bottom: 1px solid color("gray", "100");
   }
 
   &__heading {
@@ -58,7 +58,7 @@
 
   &__panel {
     overflow: hidden;
-    border-top: 1px solid color("shade", "200");
+    border-top: 1px solid color("gray", "100");
     transition: height animation("expressive");
   }
 
