@@ -13,7 +13,7 @@
   }
 
   &__section {
-    border-bottom: 1px solid color("shade", "100");
+    border-bottom: 1px solid color("shade", "200");
   }
 
   &__heading {
@@ -28,7 +28,7 @@
     display: flex;
     align-items: center;
     gap: space("tight");
-    line-height: line-height("x-loose");
+    line-height: 2.5;
     font-family: font-stack("ui");
     font-size: font-size("medium");
     width: 100%;
@@ -58,7 +58,7 @@
 
   &__panel {
     overflow: hidden;
-    border-top: 1px solid color("shade", "100");
+    border-top: 1px solid color("shade", "200");
     transition: height animation("expressive");
   }
 
