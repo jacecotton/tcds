@@ -13,7 +13,7 @@
   }
 
   &__section {
-    margin-bottom: 3px;
+    border-bottom: 1px solid color("shade", "100");
   }
 
   &__heading {
@@ -23,30 +23,18 @@
   &__button {
     appearance: none;
     border: 0;
-    background: color("gray", "0");
-    color: color("gray", "400");
+    color: theme-color("link");
     cursor: pointer;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    gap: space("tight");
+    line-height: line-height("x-loose");
     font-family: font-stack("ui");
     font-size: font-size("medium");
-    font-weight: font-weight("semibold");
-    line-height: 1;
-    padding: space("normal") space("loose");
     width: 100%;
     transition:
       background animation("productive"),
       color animation("productive");
-
-    &:hover,
-    &[aria-expanded="true"] {
-      background: theme-color("secondary");
-      color: theme-color("secondary", "0");
-    }
-
-    &:active {
-      background: theme-color("secondary", "400");
-    }
 
     &:focus-visible {
       @include focus-style;

@@ -38,12 +38,12 @@
     <section class="Accordion__section">
       {% if heading_level %} <h{{ heading_level }} class="Accordion__heading"> {% endif %}
         <button data-component-part="panel-toggle" class="Accordion__button" id="{{ section_id }}-button" aria-controls="{{ section_id }}-panel">
-          {{ section.heading|raw }}
-
           {{ include("@tcds/components/icon/icon.html.twig", {
             icon: "chevron-down",
             custom_classes: ["Accordion__icon"],
           }, with_context = false) }}
+
+          {{ section.heading|raw }}
         </button>
       {% if heading_level %} </h{{ heading_level }}> {% endif %}
 
