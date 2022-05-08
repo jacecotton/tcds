@@ -7,10 +7,10 @@
 
   @include breakpoint-above("medium") {
     height: 90px;
-  }
 
-  &:not(#{&}--no-offset) {
-    transform: translateY(-50%);
+    &:not(#{&}--no-offset) {
+      transform: translateY(-50%);
+    }
   }
 
   &__items {
