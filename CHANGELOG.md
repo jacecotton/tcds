@@ -1,3 +1,12 @@
+## [0.30.1](https://github.com/jacecotton/tcds/compare/v0.30.0...v0.30.1) (2022-05-07)
+
+
+### Bug Fixes
+
+* **components:** Hero tweak ([2c7a3ad](https://github.com/jacecotton/tcds/commit/2c7a3adbbde943196e9eb6977f55ab4b5c37999f))
+
+
+
 # [0.30.0](https://github.com/jacecotton/tcds/compare/v0.29.0...v0.30.0) (2022-05-06)
 
 
@@ -32,20 +41,6 @@
 
 * **layout:** Fix responsive grid utility bug ([0e5b1dc](https://github.com/jacecotton/tcds/commit/0e5b1dc7d735953f0aab4ba78ca7c879d3673945))
 * **primitives:** Vertically align links ([07c8b76](https://github.com/jacecotton/tcds/commit/07c8b76b9f18bb324f0621523bf52c9da80b4938))
-
-
-
-# [0.28.0](https://github.com/jacecotton/tcds/compare/v0.27.0...v0.28.0) (2022-05-06)
-
-
-### Bug Fixes
-
-* **components:** Vertically align button primitive ([da1b140](https://github.com/jacecotton/tcds/commit/da1b14002ab3cea0b3b41a4f04d079a4587fbfd6))
-
-
-### Features
-
-* **components:** Add align-bottom Hero modifier ([7e88dee](https://github.com/jacecotton/tcds/commit/7e88deeee102110f3f3896479ea998aaadce104b))
 
 
 
