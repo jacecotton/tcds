@@ -32,8 +32,10 @@
   }
 
   .Tile {
+    --tile-icon-size: 2ch;
+
     justify-content: center;
-    gap: 0;
+    gap: space("tight");
     color: theme-color("secondary", "0");
   }
 }
