@@ -1,3 +1,12 @@
+## [0.31.3](https://github.com/jacecotton/tcds/compare/v0.31.2...v0.31.3) (2022-05-08)
+
+
+### Bug Fixes
+
+* **components:** Action Bar style tweak ([93699ff](https://github.com/jacecotton/tcds/commit/93699ff5d786d7f24af87820d65906377acccd7a))
+
+
+
 ## [0.31.2](https://github.com/jacecotton/tcds/compare/v0.31.1...v0.31.2) (2022-05-08)
 
 
@@ -36,15 +45,6 @@
 ### Bug Fixes
 
 * **components:** Hero tweak ([2c7a3ad](https://github.com/jacecotton/tcds/commit/2c7a3adbbde943196e9eb6977f55ab4b5c37999f))
-
-
-
-# [0.30.0](https://github.com/jacecotton/tcds/compare/v0.29.0...v0.30.0) (2022-05-06)
-
-
-### Features
-
-* **icons:** Add social media icons ([e6c32ce](https://github.com/jacecotton/tcds/commit/e6c32cebd28e3a5ff10b0b81e7c46c4ed5638a1e))
 
 
 
