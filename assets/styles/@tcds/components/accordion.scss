@@ -58,6 +58,7 @@
 
   &__panel {
     overflow: hidden;
+    border-bottom: 1px solid color("shade", "100");
     transition: height animation("expressive");
   }
 
