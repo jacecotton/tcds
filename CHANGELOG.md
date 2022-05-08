@@ -1,3 +1,12 @@
+## [0.31.5](https://github.com/jacecotton/tcds/compare/v0.31.4...v0.31.5) (2022-05-08)
+
+
+### Bug Fixes
+
+* **components:** Update Accordion design ([c9e1f42](https://github.com/jacecotton/tcds/commit/c9e1f42072931dee1a7ba3b91d78acd6873a5aec))
+
+
+
 ## [0.31.4](https://github.com/jacecotton/tcds/compare/v0.31.3...v0.31.4) (2022-05-08)
 
 
@@ -33,20 +42,6 @@
 ### Bug Fixes
 
 * **components:** Disable ctx in nested component ([b2df2c3](https://github.com/jacecotton/tcds/commit/b2df2c3d1d3b5292a1d95306d5cda28a53872269))
-
-
-
-# [0.31.0](https://github.com/jacecotton/tcds/compare/v0.30.1...v0.31.0) (2022-05-08)
-
-
-### Bug Fixes
-
-* **components:** Hero responsive tweak ([80c4f3e](https://github.com/jacecotton/tcds/commit/80c4f3e13e3e351ecd5d228a1858b8376c7ff8b9))
-
-
-### Features
-
-* **components:** Add Action Bar component [#3](https://github.com/jacecotton/tcds/issues/3) ([41d7b13](https://github.com/jacecotton/tcds/commit/41d7b130f5c9d337df2a501c4834a03a8a785bd2))
 
 
 
