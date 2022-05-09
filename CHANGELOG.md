@@ -1,3 +1,12 @@
+## [0.32.1](https://github.com/jacecotton/tcds/compare/v0.32.0...v0.32.1) (2022-05-09)
+
+
+### Bug Fixes
+
+* **components:** Make hero overlays composable ([19b39d5](https://github.com/jacecotton/tcds/commit/19b39d549b43e9eb35bad508ee64493811fb779c))
+
+
+
 # [0.32.0](https://github.com/jacecotton/tcds/compare/v0.31.10...v0.32.0) (2022-05-09)
 
 
@@ -37,15 +46,6 @@
 ### Bug Fixes
 
 * **components:** Accordion style tweak ([73a0977](https://github.com/jacecotton/tcds/commit/73a0977df06f34c46ca61c9f6efdbc66ad5c2c51))
-
-
-
-## [0.31.7](https://github.com/jacecotton/tcds/compare/v0.31.6...v0.31.7) (2022-05-08)
-
-
-### Bug Fixes
-
-* **components:** Bug fix ([411614f](https://github.com/jacecotton/tcds/commit/411614f9ff331edf9e0df5e84c73f014857d0bb3))
 
 
 
