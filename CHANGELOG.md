@@ -1,3 +1,17 @@
+# [0.32.0](https://github.com/jacecotton/tcds/compare/v0.31.10...v0.32.0) (2022-05-09)
+
+
+### Bug Fixes
+
+* **components:** Responsive accordion font size ([6e337c1](https://github.com/jacecotton/tcds/commit/6e337c132841e896f96468d240a81191a58ce652))
+
+
+### Features
+
+* **components:** Add contrast modifiers to hero ([a2a4ad1](https://github.com/jacecotton/tcds/commit/a2a4ad13421c6e03306a4fb0e99cf37f6836077d))
+
+
+
 ## [0.31.10](https://github.com/jacecotton/tcds/compare/v0.31.9...v0.31.10) (2022-05-08)
 
 
@@ -32,15 +46,6 @@
 ### Bug Fixes
 
 * **components:** Bug fix ([411614f](https://github.com/jacecotton/tcds/commit/411614f9ff331edf9e0df5e84c73f014857d0bb3))
-
-
-
-## [0.31.6](https://github.com/jacecotton/tcds/compare/v0.31.5...v0.31.6) (2022-05-08)
-
-
-### Bug Fixes
-
-* **components:** Accordion style tweak ([499de6c](https://github.com/jacecotton/tcds/commit/499de6c32840c30ffd03928755d3fbec53c817b2))
 
 
 
