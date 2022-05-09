@@ -78,13 +78,7 @@
     }
   }
 
-  /** Children */
-
-  /**
-   * Increase contrast with the background image(s) by adding a darkened
-   * overlay.
-   */
-  &::before {
+  &--darken-overlay::before {
     content: "";
     position: absolute;
     top: 0;
@@ -95,6 +89,23 @@
     background-color: rgb(0 0 0 / 20%);
     background-color: rgb(0 0 0 / var(--hero-overlay-opacity, 20%));
   }
+
+  &--bottom-gradient::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    height: 50%;
+    background-image: linear-gradient(to top, rgb(0 0 0 / 50%) 0%, transparent 100%);
+  }
+
+  &--text-shadow {
+    text-shadow: 0 0 1rem color("shade");
+  }
+
+  /** Children */
 
   &__content {
     @include max-width;
@@ -108,7 +119,6 @@
     @include font-size("xx-large");
 
     font-weight: font-weight("semibold");
-    text-shadow: 0 0 1rem color("shade", "200");
     margin: 0;
   }
 
