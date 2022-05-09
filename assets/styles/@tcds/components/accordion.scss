@@ -21,6 +21,8 @@
   }
 
   &__button {
+    @include font-size("medium");
+
     appearance: none;
     border: 0;
     color: theme-color("link");
@@ -30,7 +32,6 @@
     gap: space("tight");
     line-height: 2.5;
     font-family: font-stack("ui");
-    font-size: font-size("medium");
     width: 100%;
     transition:
       background animation("productive"),
