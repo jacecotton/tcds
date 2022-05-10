@@ -1,3 +1,12 @@
+## [0.33.1](https://github.com/jacecotton/tcds/compare/v0.33.0...v0.33.1) (2022-05-10)
+
+
+### Bug Fixes
+
+* **components:** Correct conditional in Hero cpt ([9e0b08b](https://github.com/jacecotton/tcds/commit/9e0b08ba3460dd5a64d2f6e46f38866139c2d095))
+
+
+
 # [0.33.0](https://github.com/jacecotton/tcds/compare/v0.32.1...v0.33.0) (2022-05-10)
 
 
@@ -38,15 +47,6 @@
 
 * **components:** Action Bar offset tweak ([c91c97f](https://github.com/jacecotton/tcds/commit/c91c97fc4b717508856d19a972c939d0c8246276))
 * **layout:** Grid utility bug fix ([967ba95](https://github.com/jacecotton/tcds/commit/967ba95c141724fb2d70bc73fb5df1d48beb662e))
-
-
-
-## [0.31.9](https://github.com/jacecotton/tcds/compare/v0.31.8...v0.31.9) (2022-05-08)
-
-
-### Bug Fixes
-
-* **components:** Accordion style tweak ([90608be](https://github.com/jacecotton/tcds/commit/90608bef9c4b93c7cc7b4e695d4bcf71f7dfdd16))
 
 
 
