@@ -1,3 +1,12 @@
+## [0.33.3](https://github.com/jacecotton/tcds/compare/v0.33.2...v0.33.3) (2022-05-10)
+
+
+### Bug Fixes
+
+* **components:** Change Hero aspect ratio ([18838eb](https://github.com/jacecotton/tcds/commit/18838ebfeeb77dd87bc25daadcc62448efa3aa89))
+
+
+
 ## [0.33.2](https://github.com/jacecotton/tcds/compare/v0.33.1...v0.33.2) (2022-05-10)
 
 
@@ -32,20 +41,6 @@
 ### Bug Fixes
 
 * **components:** Make hero overlays composable ([19b39d5](https://github.com/jacecotton/tcds/commit/19b39d549b43e9eb35bad508ee64493811fb779c))
-
-
-
-# [0.32.0](https://github.com/jacecotton/tcds/compare/v0.31.10...v0.32.0) (2022-05-09)
-
-
-### Bug Fixes
-
-* **components:** Responsive accordion font size ([6e337c1](https://github.com/jacecotton/tcds/commit/6e337c132841e896f96468d240a81191a58ce652))
-
-
-### Features
-
-* **components:** Add contrast modifiers to hero ([a2a4ad1](https://github.com/jacecotton/tcds/commit/a2a4ad13421c6e03306a4fb0e99cf37f6836077d))
 
 
 
