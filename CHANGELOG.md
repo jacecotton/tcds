@@ -1,3 +1,13 @@
+# [0.33.0](https://github.com/jacecotton/tcds/compare/v0.32.1...v0.33.0) (2022-05-10)
+
+
+### Features
+
+* **components:** Add aspect ratio feature to Hero ([4474f7f](https://github.com/jacecotton/tcds/commit/4474f7f74ca93bc07198ca2218294ba86eb7a042))
+* **components:** Set different Hero bgs at bps ([d2fb4ef](https://github.com/jacecotton/tcds/commit/d2fb4efae6ef7c0640a48e81efa7c2eb2a36b614))
+
+
+
 ## [0.32.1](https://github.com/jacecotton/tcds/compare/v0.32.0...v0.32.1) (2022-05-09)
 
 
@@ -37,15 +47,6 @@
 ### Bug Fixes
 
 * **components:** Accordion style tweak ([90608be](https://github.com/jacecotton/tcds/commit/90608bef9c4b93c7cc7b4e695d4bcf71f7dfdd16))
-
-
-
-## [0.31.8](https://github.com/jacecotton/tcds/compare/v0.31.7...v0.31.8) (2022-05-08)
-
-
-### Bug Fixes
-
-* **components:** Accordion style tweak ([73a0977](https://github.com/jacecotton/tcds/commit/73a0977df06f34c46ca61c9f6efdbc66ad5c2c51))
 
 
 
