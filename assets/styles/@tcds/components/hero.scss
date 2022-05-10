@@ -7,47 +7,64 @@
  *    bottom padding (so the total height isn't 100% plus padding). Then, if
  *    defined, subtract the height of the site's header, which will be added as
  *    top padding in 4.
- * 4. Set the top padding to the height of the site header (to be pulled up by
+ * 3. Set the top padding to the height of the site header (to be pulled up by
  *    the same amount in 5), plus whatever additional top padding is specified.
- * 5. Pull the hero up with a negative top margin, by the height of the site
+ * 4. Pull the hero up with a negative top margin, by the height of the site
  *    header (so that the header overlays the hero).
- * 6. If the hero rotates between multiple background images, create a proper
- *    "crossfade" effect with a "darken" blend mode.
  */
 
 .Hero {
-  /** Custom property defaults */
-  $hero-padding-bottom: 5rem;
-  $hero-padding-top: 5rem;
-  $hero-base-height: 75vh;
-
   display: flex;
   align-items: center;
   background-size: cover;
   background-position: center;
-  box-sizing: content-box; // 1
-  min-height:
-    calc(
-      var(--hero-base-height, #{$hero-base-height})
-      - var(--hero-padding-top, #{$hero-padding-top})
-      - var(--hero-padding-bottom, #{$hero-padding-bottom})
-      - var(--site-header-height, 0px)
-    ); // 3
-
-  padding-top: calc(var(--site-header-height, 0px) + var(--hero-padding-top, #{$hero-padding-top})); // 4
-  padding-bottom: var(--hero-padding-bottom, #{$hero-padding-bottom});
-  margin-top: calc(var(--site-header-height, 0px) * -1); // 5
   z-index: 1;
   position: relative;
   color: #fff;
 
   /** Modifiers */
+  &:not(#{&}--vertically-responsive) {
+    aspect-ratio: 4 / 3;
+    box-sizing: border-box;
+
+    @include breakpoint-above("medium") {
+      aspect-ratio: 16 / 9;
+    }
+
+    @include breakpoint-above("x-large") {
+      aspect-ratio: 2.39 / 1;
+    }
+  }
+
+  &--vertically-responsive {
+    --hero-base-height: 75vh;
+    --hero-padding-bottom: 5rem;
+    --hero-padding-top: 5rem;
+
+    min-height: var(--hero-base-height);
+    padding: var(--hero-padding-top, 0) 0 var(--hero-padding-bottom, 0);
+
+    @include breakpoint-above("medium") {
+      box-sizing: content-box; // 1
+      min-height:
+        calc(
+          var(--hero-base-height, 0px)
+          - var(--hero-padding-top, 0px)
+          - var(--hero-padding-bottom, 0px)
+          - var(--site-header-height, 0px)
+        ); // 2
+
+      padding-top: calc(var(--site-header-height, 0px) + var(--hero-padding-top, 0px)); // 3
+      padding-bottom: var(--hero-padding-bottom, 0);
+      margin-top: calc(var(--site-header-height, 0px) * -1); // 4
+    }
+  }
 
   /**
    * Enable cross-fade effect between images if there are multiple.
    */
   &[data-background-images] {
-    background-blend-mode: darken; // 6
+    background-blend-mode: darken;
     transition: background-image 3s;
   }
 
@@ -78,6 +95,10 @@
     }
   }
 
+  /**
+   * Add a darkened overlay over a Hero's background image to increase contrast
+   * between it and the text content.
+   */
   &--darken-overlay::before {
     content: "";
     position: absolute;
@@ -90,6 +111,10 @@
     background-color: rgb(0 0 0 / var(--hero-overlay-opacity, 20%));
   }
 
+  /**
+   * Add a dark gradient affixed to the bottom of the Hero to add contrast to
+   * the text content (works best with the align-bottom modifier).
+   */
   &--bottom-gradient::after {
     content: "";
     position: absolute;
@@ -101,6 +126,10 @@
     background-image: linear-gradient(to top, rgb(0 0 0 / 50%) 0%, transparent 100%);
   }
 
+  /**
+   * Add a dark text shadow to the Hero content to increase contrast between it
+   * and the background image.
+   */
   &--text-shadow {
     text-shadow: 0 0 1rem color("shade");
   }
