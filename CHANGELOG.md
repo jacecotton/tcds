@@ -1,3 +1,12 @@
+## [0.33.2](https://github.com/jacecotton/tcds/compare/v0.33.1...v0.33.2) (2022-05-10)
+
+
+### Bug Fixes
+
+* **components:** Correct data checking ([1a9a5a8](https://github.com/jacecotton/tcds/commit/1a9a5a84fe61198899c36c3aa8552a4deaacb70d))
+
+
+
 ## [0.33.1](https://github.com/jacecotton/tcds/compare/v0.33.0...v0.33.1) (2022-05-10)
 
 
@@ -37,16 +46,6 @@
 ### Features
 
 * **components:** Add contrast modifiers to hero ([a2a4ad1](https://github.com/jacecotton/tcds/commit/a2a4ad13421c6e03306a4fb0e99cf37f6836077d))
-
-
-
-## [0.31.10](https://github.com/jacecotton/tcds/compare/v0.31.9...v0.31.10) (2022-05-08)
-
-
-### Bug Fixes
-
-* **components:** Action Bar offset tweak ([c91c97f](https://github.com/jacecotton/tcds/commit/c91c97fc4b717508856d19a972c939d0c8246276))
-* **layout:** Grid utility bug fix ([967ba95](https://github.com/jacecotton/tcds/commit/967ba95c141724fb2d70bc73fb5df1d48beb662e))
 
 
 
