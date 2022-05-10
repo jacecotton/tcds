@@ -9,14 +9,59 @@
     data-interval="{{ interval }}"
   {% endif %}
 
-  {% if backgrounds|length == 1 %}
+  {# {% if backgrounds|length == 1 %}
     style="background-image: url('{{ backgrounds[0] }}')"
   {% elseif backgrounds|length > 1 %}
     data-background-images="{% for background in backgrounds %}{{ background }} {% endfor %}"
-  {% endif %}
+  {% endif %} #}
 {% endblock %}
 
 {% block inner_content %}
+  {% if backgrounds|length == 1 %}
+    <style>
+      .Hero {
+        background-image: url({{ backgrounds[0]["default"]["image"] }});
+        background-position: {{ backgrounds[0]["default"]["pos_x"] }} {{ backgrounds[0]["default"]["pos_y"] }};
+      }
+
+      {% if backgrounds[0]["above_small"] is defined %}
+        @media (min-width: 640px) {
+          .Hero {
+            background-image: url({{ backgrounds[0]["above_small"]["image"] }});
+            background-position: {{ backgrounds[0]["above_small"]["pos_x"] }} {{ backgrounds[0]["above_small"]["pos_y"] }};
+          }
+        }
+      {% endif %}
+
+      {% if backgrounds[0]["above_medium"] is defined %}
+        @media (min-width: 768px) {
+          .Hero {
+            background-image: url({{ backgrounds[0]["above_medium"]["image"] }});
+            background-position: {{ backgrounds[0]["above_medium"]["pos_x"] }} {{ backgrounds[0]["above_medium"]["pos_y"] }};
+          }
+        }
+      {% endif %}
+
+      {% if backgrounds[0]["above_large"] is defined %}
+        @media (min-width: 1024px) {
+          .Hero {
+            background-image: url({{ backgrounds[0]["above_large"]["image"] }});
+            background-position: {{ backgrounds[0]["above_large"]["pos_x"] }} {{ backgrounds[0]["above_large"]["pos_y"] }};
+          }
+        }
+      {% endif %}
+
+      {% if backgrounds[0]["above_x_large"] is defined %}
+        @media (min-width: 1280px) {
+          .Hero {
+            background-image: url({{ backgrounds[0]["above_x_large"]["image"] }});
+            background-position: {{ backgrounds[0]["above_x_large"]["pos_x"] }} {{ backgrounds[0]["above_x_large"]["pos_y"] }};
+          }
+        }
+      {% endif %}
+    </style>
+  {% endif %}
+
   <div class="Hero__content">
     {% if block("start") %}
       <div class="column gap-normal align-start">
