@@ -1,3 +1,12 @@
+## [0.33.4](https://github.com/jacecotton/tcds/compare/v0.33.3...v0.33.4) (2022-05-10)
+
+
+### Bug Fixes
+
+* **components:** Fixing data checking ([05ba4bd](https://github.com/jacecotton/tcds/commit/05ba4bdf56e68c9f4a9c4ffc41911eb07bcf4114))
+
+
+
 ## [0.33.3](https://github.com/jacecotton/tcds/compare/v0.33.2...v0.33.3) (2022-05-10)
 
 
@@ -32,15 +41,6 @@
 
 * **components:** Add aspect ratio feature to Hero ([4474f7f](https://github.com/jacecotton/tcds/commit/4474f7f74ca93bc07198ca2218294ba86eb7a042))
 * **components:** Set different Hero bgs at bps ([d2fb4ef](https://github.com/jacecotton/tcds/commit/d2fb4efae6ef7c0640a48e81efa7c2eb2a36b614))
-
-
-
-## [0.32.1](https://github.com/jacecotton/tcds/compare/v0.32.0...v0.32.1) (2022-05-09)
-
-
-### Bug Fixes
-
-* **components:** Make hero overlays composable ([19b39d5](https://github.com/jacecotton/tcds/commit/19b39d549b43e9eb35bad508ee64493811fb779c))
 
 
 
