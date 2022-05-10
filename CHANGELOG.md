@@ -1,3 +1,13 @@
+## [0.33.6](https://github.com/jacecotton/tcds/compare/v0.33.5...v0.33.6) (2022-05-10)
+
+
+### Bug Fixes
+
+* **components:** Hero style tweak ([b322609](https://github.com/jacecotton/tcds/commit/b322609c3da03f2bc33de1dc3deb1bb7766e94bb))
+* **components:** Hero style tweak ([59f4130](https://github.com/jacecotton/tcds/commit/59f4130a9057bb858b6cede7857f4ae546c71c76))
+
+
+
 ## [0.33.5](https://github.com/jacecotton/tcds/compare/v0.33.4...v0.33.5) (2022-05-10)
 
 
@@ -31,15 +41,6 @@
 ### Bug Fixes
 
 * **components:** Correct data checking ([1a9a5a8](https://github.com/jacecotton/tcds/commit/1a9a5a84fe61198899c36c3aa8552a4deaacb70d))
-
-
-
-## [0.33.1](https://github.com/jacecotton/tcds/compare/v0.33.0...v0.33.1) (2022-05-10)
-
-
-### Bug Fixes
-
-* **components:** Correct conditional in Hero cpt ([9e0b08b](https://github.com/jacecotton/tcds/commit/9e0b08ba3460dd5a64d2f6e46f38866139c2d095))
 
 
 
