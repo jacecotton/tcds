@@ -24,7 +24,7 @@
         background-position: {{ backgrounds[0]["default"]["pos_x"] }} {{ backgrounds[0]["default"]["pos_y"] }};
       }
 
-      {% if backgrounds[0]["above_small"] is defined %}
+      {% if backgrounds[0]["above_small"]["image"] is not empty %}
         @media (min-width: 640px) {
           .Hero {
             background-image: url({{ backgrounds[0]["above_small"]["image"] }});
@@ -33,7 +33,7 @@
         }
       {% endif %}
 
-      {% if backgrounds[0]["above_medium"] is defined %}
+      {% if backgrounds[0]["above_medium"]["image"] is not empty %}
         @media (min-width: 768px) {
           .Hero {
             background-image: url({{ backgrounds[0]["above_medium"]["image"] }});
@@ -42,7 +42,7 @@
         }
       {% endif %}
 
-      {% if backgrounds[0]["above_large"] is defined %}
+      {% if backgrounds[0]["above_large"]["image"] is not empty %}
         @media (min-width: 1024px) {
           .Hero {
             background-image: url({{ backgrounds[0]["above_large"]["image"] }});
@@ -51,7 +51,7 @@
         }
       {% endif %}
 
-      {% if backgrounds[0]["above_x_large"] is defined %}
+      {% if backgrounds[0]["above_x_large"]["image"] is not empty %}
         @media (min-width: 1280px) {
           .Hero {
             background-image: url({{ backgrounds[0]["above_x_large"]["image"] }});
