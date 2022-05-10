@@ -23,16 +23,17 @@
   color: #fff;
 
   /** Modifiers */
+
   &:not(#{&}--vertically-responsive) {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 4 / 3; // Standard aspect ratio
     box-sizing: border-box;
 
     @include breakpoint-above("medium") {
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 16 / 9; // Standard widescreen aspect ratio
     }
 
     @include breakpoint-above("x-large") {
-      aspect-ratio: 2.39 / 1;
+      aspect-ratio: 16 / 5; // Standard ultra-widescreen aspect ratio
     }
   }
 
