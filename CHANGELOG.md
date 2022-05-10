@@ -1,3 +1,12 @@
+## [0.33.5](https://github.com/jacecotton/tcds/compare/v0.33.4...v0.33.5) (2022-05-10)
+
+
+### Bug Fixes
+
+* **components:** Add default padding to Hero ([051cde0](https://github.com/jacecotton/tcds/commit/051cde02c25f513d5c8427d1a68c97f3bd755b28))
+
+
+
 ## [0.33.4](https://github.com/jacecotton/tcds/compare/v0.33.3...v0.33.4) (2022-05-10)
 
 
@@ -31,16 +40,6 @@
 ### Bug Fixes
 
 * **components:** Correct conditional in Hero cpt ([9e0b08b](https://github.com/jacecotton/tcds/commit/9e0b08ba3460dd5a64d2f6e46f38866139c2d095))
-
-
-
-# [0.33.0](https://github.com/jacecotton/tcds/compare/v0.32.1...v0.33.0) (2022-05-10)
-
-
-### Features
-
-* **components:** Add aspect ratio feature to Hero ([4474f7f](https://github.com/jacecotton/tcds/commit/4474f7f74ca93bc07198ca2218294ba86eb7a042))
-* **components:** Set different Hero bgs at bps ([d2fb4ef](https://github.com/jacecotton/tcds/commit/d2fb4efae6ef7c0640a48e81efa7c2eb2a36b614))
 
 
 
