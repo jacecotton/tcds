@@ -14,8 +14,8 @@
  */
 
 .Hero {
-  --hero-padding-bottom: 5rem;
-  --hero-padding-top: 5rem;
+  --hero-padding-bottom: 6rem;
+  --hero-padding-top: 6rem;
 
   display: flex;
   align-items: center;
@@ -145,6 +145,7 @@
     display: flex;
     align-items: center;
     gap: space("x-loose");
+    padding: 0 3rem;
   }
 
   &__heading {
