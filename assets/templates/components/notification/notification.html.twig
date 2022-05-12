@@ -1,0 +1,39 @@
+{% extends "@tcds/components/component/component.html.twig" %}
+
+{% set component_name = "Notification" %}
+
+{% block inner_content %}
+  {% if id is not defined %}
+    {% set id = content|slice(0, 20)|clean_id %}
+  {% endif %}
+
+  <div class="Notification__message" data-component-part="message" role="{{ type ?: "status" }}" id="{{ id }}">
+    <div class="max-width">
+      {{ content|raw }}
+    </div>
+  </div>
+
+  {{ include("@tcds/components/button/button.html.twig", {
+    label: "Dismiss notification",
+    icon: "x",
+    controls: id,
+    modifiers: ["icon-only", "round", "ghost"],
+    custom_classes: ["Notification__dismiss"],
+    custom_attributes: {
+      "data-component-part": "dismiss",
+    },
+  }) }}
+
+  {% if "full-bleed" in modifiers %}
+    {{ include("@tcds/components/button/button.html.twig", {
+      label: "Expand notification",
+      icon: "chevron-down",
+      controls: id,
+      modifiers: ["icon-only", "round"],
+      custom_classes: ["Notification__expand"],
+      custom_attributes: {
+        "data-component-part": "expand",
+      },
+    }) }}
+  {% endif %}
+{% endblock %}

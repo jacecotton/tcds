@@ -1,0 +1,60 @@
+@use "@tcds/_all" as *;
+
+.Notification {
+  z-index: layer("notification");
+  display: flex;
+  align-items: center;
+  position: relative;
+  background-color: theme-color("secondary");
+  color: theme-color("secondary", "0");
+
+  &:not(#{&}--full-bleed) {
+    @include max-width;
+
+    position: fixed;
+    bottom: space("x-loose");
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &--full-bleed {
+    position: sticky;
+    top: 0;
+  }
+
+  &__dismiss {
+    position: absolute;
+    right: space("normal");
+  }
+
+  &__message[hidden] ~ &__dismiss {
+    display: none;
+  }
+
+  &__expand {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 1rem;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    width: 4rem;
+    height: 2rem;
+
+    svg {
+      width: 100%;
+      padding: 5%;
+    }
+  }
+
+  &__message:not([hidden]) ~ &__expand {
+    display: none;
+  }
+
+  &__message {
+    flex: 1;
+    text-align: center;
+    padding: space("normal");
+  }
+}
