@@ -22,7 +22,7 @@
     custom_attributes: {
       "data-component-part": "dismiss",
     },
-  }) }}
+  }, with_context = false) }}
 
   {% if "full-bleed" in modifiers %}
     {{ include("@tcds/components/button/button.html.twig", {
@@ -34,6 +34,6 @@
       custom_attributes: {
         "data-component-part": "expand",
       },
-    }) }}
+    }, with_context = false) }}
   {% endif %}
 {% endblock %}
