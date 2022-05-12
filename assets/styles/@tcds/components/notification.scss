@@ -52,9 +52,16 @@
     display: none;
   }
 
+  /**
+   * 1. Create content-safe area, ensuring button does not overlap the text.
+   */
   &__message {
     flex: 1;
     text-align: center;
     padding: space("normal");
+
+    @include breakpoint-below("x-large") {
+      padding: space("normal") 60px space("normal") space("normal"); // 1
+    }
   }
 }
