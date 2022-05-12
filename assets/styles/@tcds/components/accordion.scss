@@ -24,6 +24,7 @@
     @include font-size("medium");
 
     appearance: none;
+    background: none;
     border: 0;
     color: theme-color("link");
     cursor: pointer;
@@ -33,9 +34,6 @@
     line-height: 2.5;
     font-family: font-stack("ui");
     width: 100%;
-    transition:
-      background animation("productive"),
-      color animation("productive");
 
     &:focus-visible {
       @include focus-style;
