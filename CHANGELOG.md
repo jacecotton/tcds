@@ -1,3 +1,12 @@
+## [0.34.2](https://github.com/jacecotton/tcds/compare/v0.34.1...v0.34.2) (2022-05-12)
+
+
+### Bug Fixes
+
+* **components:** Notification design tweak ([2e3e691](https://github.com/jacecotton/tcds/commit/2e3e691efc13212585445062c818f1c82d5cadb4))
+
+
+
 ## [0.34.1](https://github.com/jacecotton/tcds/compare/v0.34.0...v0.34.1) (2022-05-12)
 
 
@@ -37,15 +46,6 @@
 ### Bug Fixes
 
 * **components:** Add default padding to Hero ([051cde0](https://github.com/jacecotton/tcds/commit/051cde02c25f513d5c8427d1a68c97f3bd755b28))
-
-
-
-## [0.33.4](https://github.com/jacecotton/tcds/compare/v0.33.3...v0.33.4) (2022-05-10)
-
-
-### Bug Fixes
-
-* **components:** Fixing data checking ([05ba4bd](https://github.com/jacecotton/tcds/commit/05ba4bdf56e68c9f4a9c4ffc41911eb07bcf4114))
 
 
 
