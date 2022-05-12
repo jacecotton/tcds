@@ -1,3 +1,12 @@
+## [0.34.3](https://github.com/jacecotton/tcds/compare/v0.34.2...v0.34.3) (2022-05-12)
+
+
+### Bug Fixes
+
+* **components:** Create content safe area in Notif ([67d1f2c](https://github.com/jacecotton/tcds/commit/67d1f2c21d3da7faf755bb442dc8bbdcf44ab5d8))
+
+
+
 ## [0.34.2](https://github.com/jacecotton/tcds/compare/v0.34.1...v0.34.2) (2022-05-12)
 
 
@@ -37,15 +46,6 @@
 
 * **components:** Hero style tweak ([b322609](https://github.com/jacecotton/tcds/commit/b322609c3da03f2bc33de1dc3deb1bb7766e94bb))
 * **components:** Hero style tweak ([59f4130](https://github.com/jacecotton/tcds/commit/59f4130a9057bb858b6cede7857f4ae546c71c76))
-
-
-
-## [0.33.5](https://github.com/jacecotton/tcds/compare/v0.33.4...v0.33.5) (2022-05-10)
-
-
-### Bug Fixes
-
-* **components:** Add default padding to Hero ([051cde0](https://github.com/jacecotton/tcds/commit/051cde02c25f513d5c8427d1a68c97f3bd755b28))
 
 
 
