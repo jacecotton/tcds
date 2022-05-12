@@ -1,3 +1,17 @@
+# [0.34.0](https://github.com/jacecotton/tcds/compare/v0.33.6...v0.34.0) (2022-05-12)
+
+
+### Bug Fixes
+
+* **components:** Accordion cleanup ([6115ec5](https://github.com/jacecotton/tcds/commit/6115ec5e7225894ffcdd8e73fa3b3af3ec6c2229))
+
+
+### Features
+
+* **components:** [#3](https://github.com/jacecotton/tcds/issues/3) Add Notification component ([4072c00](https://github.com/jacecotton/tcds/commit/4072c0046b3abfcd23512a5f9d6a723b720206fc))
+
+
+
 ## [0.33.6](https://github.com/jacecotton/tcds/compare/v0.33.5...v0.33.6) (2022-05-10)
 
 
@@ -32,15 +46,6 @@
 ### Bug Fixes
 
 * **components:** Change Hero aspect ratio ([18838eb](https://github.com/jacecotton/tcds/commit/18838ebfeeb77dd87bc25daadcc62448efa3aa89))
-
-
-
-## [0.33.2](https://github.com/jacecotton/tcds/compare/v0.33.1...v0.33.2) (2022-05-10)
-
-
-### Bug Fixes
-
-* **components:** Correct data checking ([1a9a5a8](https://github.com/jacecotton/tcds/commit/1a9a5a84fe61198899c36c3aa8552a4deaacb70d))
 
 
 
