@@ -62,17 +62,19 @@
     </style>
   {% endif %}
 
-  <div class="Hero__content">
-    {% if block("start") %}
-      <div class="column gap-normal align-start">
-        {% block start %}{% endblock %}
-      </div>
-    {% endif %}
+  <div class="Hero__print-safe">
+    <div class="Hero__content-area">
+      {% if block("start") %}
+        <div class="column gap-normal align-start">
+          {% block start %}{% endblock %}
+        </div>
+      {% endif %}
 
-    <div class="column gap-normal align-start flex-1">
-      {% if heading %} <p class="Hero__heading">{{ heading|raw }}</p> {% endif %}
-      {% if subheading %} <p class="Hero__subheading">{{ subheading|raw }}</p> {% endif %}
-      {% block content %}{% endblock %}
+      <div class="column gap-normal align-start flex-1">
+        {% if heading %} <p class="Hero__heading">{{ heading|raw }}</p> {% endif %}
+        {% if subheading %} <p class="Hero__subheading">{{ subheading|raw }}</p> {% endif %}
+        {% block content %}{% endblock %}
+      </div>
     </div>
   </div>
 {% endblock %}

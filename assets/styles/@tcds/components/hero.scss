@@ -17,52 +17,34 @@
   --hero-padding-bottom: 6rem;
   --hero-padding-top: 6rem;
 
-  display: flex;
-  align-items: center;
   background-size: cover;
   background-position: center;
-  padding: var(--hero-padding-top, 0) 0 var(--hero-padding-bottom, 0);
   z-index: 1;
   position: relative;
   color: #fff;
 
   @include breakpoint-above("medium") {
     box-sizing: content-box;
-    padding-top: calc(var(--site-header-height, 0px) + var(--hero-padding-top, 0px));
-    padding-bottom: var(--hero-padding-bottom, 0);
+    padding-top: var(--site-header-height, 0);
     margin-top: calc(var(--site-header-height, 0px) * -1);
   }
 
   /** Modifiers */
 
-  &:not(#{&}--vertically-responsive) {
-    aspect-ratio: 4 / 3; // Standard aspect ratio
-    box-sizing: border-box;
+  &:not(#{&}--vertically-responsive):not(#{&}--full-height) {
+    --hero-aspect-ratio: 4 / 3; // Standard aspect ratio
 
     @include breakpoint-above("medium") {
-      aspect-ratio: 16 / 9; // Standard widescreen aspect ratio
+      --hero-aspect-ratio: 16 / 9; // Standard widescreen aspect ratio
     }
 
     @include breakpoint-above("x-large") {
-      aspect-ratio: 16 / 5; // Standard ultra-widescreen aspect ratio
+      --hero-aspect-ratio: 16 / 5; // Standard ultra-widescreen aspect ratio
     }
   }
 
   &--vertically-responsive {
-    --hero-base-height: 75vh;
-
-    min-height: var(--hero-base-height);
-    padding: var(--hero-padding-top, 0) 0 var(--hero-padding-bottom, 0);
-
-    @include breakpoint-above("medium") {
-      min-height:
-        calc(
-          var(--hero-base-height, 0px)
-          - var(--hero-padding-top, 0px)
-          - var(--hero-padding-bottom, 0px)
-          - var(--site-header-height, 0px)
-        );
-    }
+    --hero-base-height: calc(75vh - var(--site-header-height, 0px));
   }
 
   /**
@@ -79,7 +61,7 @@
    * if the window height scales below that).
    */
   &--full-height {
-    --hero-base-height: 100vh;
+    --hero-base-height: calc(100vh - var(--site-header-height, 0px));
   }
 
   /**
@@ -141,13 +123,20 @@
 
   /** Children */
 
-  &__content {
+  &__print-safe {
+    display: flex;
+    align-items: center;
+    aspect-ratio: var(--hero-aspect-ratio, unset);
+    min-height: var(--hero-base-height, 0);
+  }
+
+  &__content-area {
     @include max-width;
 
     display: flex;
     align-items: center;
     gap: space("x-loose");
-    padding: 0 3rem;
+    padding: var(--hero-padding-top, 0) 0 var(--hero-padding-bottom, 0) 3rem;
   }
 
   &__heading {
