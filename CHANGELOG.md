@@ -1,3 +1,12 @@
+## [0.34.1](https://github.com/jacecotton/tcds/compare/v0.34.0...v0.34.1) (2022-05-12)
+
+
+### Bug Fixes
+
+* **components:** Fix nested component ctx bug ([ddf9181](https://github.com/jacecotton/tcds/commit/ddf9181cc9140bace25fa0271437c6fc20d0370a))
+
+
+
 # [0.34.0](https://github.com/jacecotton/tcds/compare/v0.33.6...v0.34.0) (2022-05-12)
 
 
@@ -37,15 +46,6 @@
 ### Bug Fixes
 
 * **components:** Fixing data checking ([05ba4bd](https://github.com/jacecotton/tcds/commit/05ba4bdf56e68c9f4a9c4ffc41911eb07bcf4114))
-
-
-
-## [0.33.3](https://github.com/jacecotton/tcds/compare/v0.33.2...v0.33.3) (2022-05-10)
-
-
-### Bug Fixes
-
-* **components:** Change Hero aspect ratio ([18838eb](https://github.com/jacecotton/tcds/commit/18838ebfeeb77dd87bc25daadcc62448efa3aa89))
 
 
 
