@@ -1,3 +1,12 @@
+## [0.34.4](https://github.com/jacecotton/tcds/compare/v0.34.3...v0.34.4) (2022-05-12)
+
+
+### Bug Fixes
+
+* **components:** Correct Hero underlap ([cf1ecb8](https://github.com/jacecotton/tcds/commit/cf1ecb8e9bd99641ed0f8fbffc5f0bd2bb379526))
+
+
+
 ## [0.34.3](https://github.com/jacecotton/tcds/compare/v0.34.2...v0.34.3) (2022-05-12)
 
 
@@ -36,16 +45,6 @@
 ### Features
 
 * **components:** [#3](https://github.com/jacecotton/tcds/issues/3) Add Notification component ([4072c00](https://github.com/jacecotton/tcds/commit/4072c0046b3abfcd23512a5f9d6a723b720206fc))
-
-
-
-## [0.33.6](https://github.com/jacecotton/tcds/compare/v0.33.5...v0.33.6) (2022-05-10)
-
-
-### Bug Fixes
-
-* **components:** Hero style tweak ([b322609](https://github.com/jacecotton/tcds/commit/b322609c3da03f2bc33de1dc3deb1bb7766e94bb))
-* **components:** Hero style tweak ([59f4130](https://github.com/jacecotton/tcds/commit/59f4130a9057bb858b6cede7857f4ae546c71c76))
 
 
 
