@@ -1,0 +1,17 @@
+@use "@tcds/_all" as *;
+
+.Breadcrumb {
+  &__list {
+    display: flex;
+  }
+
+  &__item {
+    line-height: 0;
+
+    &:not(:last-child)::after {
+      content: "/";
+      margin: 0 1ch;
+      user-select: none;
+    }
+  }
+}

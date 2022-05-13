@@ -153,4 +153,14 @@
       width: 50%;
     }
   }
+
+  .Breadcrumb {
+    &__link {
+      color: inherit;
+
+      &:not(:hover) {
+        text-decoration: none;
+      }
+    }
+  }
 }
