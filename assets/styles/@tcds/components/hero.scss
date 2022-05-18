@@ -68,7 +68,7 @@
    * Align content to the bottom of the hero.
    */
   &--align-bottom {
-    align-items: end;
+    --hero-align-items: end;
   }
 
   /**
@@ -125,7 +125,7 @@
 
   &__print-safe {
     display: flex;
-    align-items: center;
+    align-items: var(--hero-align-items, center);
     aspect-ratio: var(--hero-aspect-ratio, unset);
     min-height: var(--hero-base-height, 0);
   }
