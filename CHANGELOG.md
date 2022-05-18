@@ -1,3 +1,18 @@
+# [0.35.0](https://github.com/jacecotton/tcds/compare/v0.34.5...v0.35.0) (2022-05-13)
+
+
+### Bug Fixes
+
+* **scripts:** Conditionally load cqfill ([9ea44ee](https://github.com/jacecotton/tcds/commit/9ea44ee82c7bae91697fceaa4c4978813abd8df1))
+
+
+### Features
+
+* **components:** Add Breadcrumb component ([7d01a0c](https://github.com/jacecotton/tcds/commit/7d01a0c112c5a02fc2afc0b88643eac896a6b73d))
+* **components:** Add overline to Hero ([1a2322a](https://github.com/jacecotton/tcds/commit/1a2322a9302c8a0b71017f680f92590490033f45))
+
+
+
 ## [0.34.5](https://github.com/jacecotton/tcds/compare/v0.34.4...v0.34.5) (2022-05-12)
 
 
@@ -31,15 +46,6 @@
 ### Bug Fixes
 
 * **components:** Notification design tweak ([2e3e691](https://github.com/jacecotton/tcds/commit/2e3e691efc13212585445062c818f1c82d5cadb4))
-
-
-
-## [0.34.1](https://github.com/jacecotton/tcds/compare/v0.34.0...v0.34.1) (2022-05-12)
-
-
-### Bug Fixes
-
-* **components:** Fix nested component ctx bug ([ddf9181](https://github.com/jacecotton/tcds/commit/ddf9181cc9140bace25fa0271437c6fc20d0370a))
 
 
 
