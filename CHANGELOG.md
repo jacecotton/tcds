@@ -1,3 +1,17 @@
+# [0.36.0](https://github.com/jacecotton/tcds/compare/v0.35.1...v0.36.0) (2022-05-19)
+
+
+### Bug Fixes
+
+* **typography:** Remove old Avenir ([bf659aa](https://github.com/jacecotton/tcds/commit/bf659aa4f59b0e94b4242eae1de8eeb5cee70404))
+
+
+### Features
+
+* **typography:** Add Metropolis font ([4a033a4](https://github.com/jacecotton/tcds/commit/4a033a4e7b64f0f01b5be7e96dda5f4c1901fd2c))
+
+
+
 ## [0.35.1](https://github.com/jacecotton/tcds/compare/v0.35.0...v0.35.1) (2022-05-18)
 
 
@@ -37,15 +51,6 @@
 ### Bug Fixes
 
 * **components:** Correct Hero underlap ([cf1ecb8](https://github.com/jacecotton/tcds/commit/cf1ecb8e9bd99641ed0f8fbffc5f0bd2bb379526))
-
-
-
-## [0.34.3](https://github.com/jacecotton/tcds/compare/v0.34.2...v0.34.3) (2022-05-12)
-
-
-### Bug Fixes
-
-* **components:** Create content safe area in Notif ([67d1f2c](https://github.com/jacecotton/tcds/commit/67d1f2c21d3da7faf755bb442dc8bbdcf44ab5d8))
 
 
 
