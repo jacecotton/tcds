@@ -1,3 +1,12 @@
+## [0.35.1](https://github.com/jacecotton/tcds/compare/v0.35.0...v0.35.1) (2022-05-18)
+
+
+### Bug Fixes
+
+* **components:** Fix align bottom Hero modifier ([b400681](https://github.com/jacecotton/tcds/commit/b40068187412ea4cf9b84be498fcc4ac241353f2))
+
+
+
 # [0.35.0](https://github.com/jacecotton/tcds/compare/v0.34.5...v0.35.0) (2022-05-13)
 
 
@@ -37,15 +46,6 @@
 ### Bug Fixes
 
 * **components:** Create content safe area in Notif ([67d1f2c](https://github.com/jacecotton/tcds/commit/67d1f2c21d3da7faf755bb442dc8bbdcf44ab5d8))
-
-
-
-## [0.34.2](https://github.com/jacecotton/tcds/compare/v0.34.1...v0.34.2) (2022-05-12)
-
-
-### Bug Fixes
-
-* **components:** Notification design tweak ([2e3e691](https://github.com/jacecotton/tcds/commit/2e3e691efc13212585445062c818f1c82d5cadb4))
 
 
 
