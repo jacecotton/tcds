@@ -1,1 +1,82 @@
+@use "@tcds/_all" as *;
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
+
+@font-face {
+  font-family: "Metropolis Semi";
+  src:
+    url("#{$ASSETS}/fonts/metropolis/Metropolis-SemiBoldItalic.woff2") format("woff2"),
+    url("#{$ASSETS}/fonts/metropolis/Metropolis-SemiBoldItalic.woff") format("woff");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Metropolis;
+  src:
+    url("#{$ASSETS}/fonts/metropolis/Metropolis-Light.woff2") format("woff2"),
+    url("#{$ASSETS}/fonts/metropolis/Metropolis-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Metropolis;
+  src:
+    url("#{$ASSETS}/fonts/metropolis/Metropolis-LightItalic.woff2") format("woff2"),
+    url("#{$ASSETS}/fonts/metropolis/Metropolis-LightItalic.woff") format("woff");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Metropolis;
+  src:
+    url("#{$ASSETS}/fonts/metropolis/Metropolis-Bold.woff2") format("woff2"),
+    url("#{$ASSETS}/fonts/metropolis/Metropolis-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Metropolis Semi";
+  src:
+    url("#{$ASSETS}/fonts/metropolis/Metropolis-SemiBold.woff2") format("woff2"),
+    url("#{$ASSETS}/fonts/metropolis/Metropolis-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Metropolis;
+  src:
+    url("#{$ASSETS}/fonts/metropolis/Metropolis-BoldItalic.woff2") format("woff2"),
+    url("#{$ASSETS}/fonts/metropolis/Metropolis-BoldItalic.woff") format("woff");
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Metropolis;
+  src:
+    url("#{$ASSETS}/fonts/metropolis/Metropolis-RegularItalic.woff2") format("woff2"),
+    url("#{$ASSETS}/fonts/metropolis/Metropolis-RegularItalic.woff") format("woff");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Metropolis;
+  src:
+    url("#{$ASSETS}/fonts/metropolis/Metropolis-Regular.woff2") format("woff2"),
+    url("#{$ASSETS}/fonts/metropolis/Metropolis-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

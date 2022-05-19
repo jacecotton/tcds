@@ -142,6 +142,7 @@
   &__heading {
     @include font-size("xx-large");
 
+    font-family: font-stack("headings");
     font-weight: font-weight("semibold");
     margin: 0;
   }

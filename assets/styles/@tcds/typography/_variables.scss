@@ -11,8 +11,8 @@
  *
  * See: font-stack()
  */
-$theme-font-default: (inter, system-ui, sans-serif) !default;
-$theme-font-headings: $theme-font-default !default;
+$theme-font-default: ("Inter", system-ui, sans-serif) !default;
+$theme-font-headings: ("Metropolis", "Inter", system-ui, sans-serif) !default;
 $theme-font-copy: $theme-font-default !default;
 $theme-font-ui: $theme-font-default !default;
 

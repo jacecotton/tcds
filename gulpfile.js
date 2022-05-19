@@ -46,6 +46,11 @@ const config = {
       templates: `${inputPath}/templates/icons/`,
     },
   },
+
+  fonts: {
+    src: `${inputPath}/fonts/**/*`,
+    dest: `${outputPath}/fonts/`,
+  },
 };
 
 /**
@@ -113,6 +118,11 @@ const tasks = {
       // Output to source directory.
       .pipe(dest(config.icons.dest.templates));
   },
+
+  fonts: () => {
+    return src(config.fonts.src)
+      .pipe(dest(config.fonts.dest));
+  },
 };
 
 /**
@@ -122,12 +132,14 @@ const tasks = {
 task("styles", tasks.styles);
 task("scripts", tasks.scripts);
 task("icons", tasks.icons);
+task("fonts", tasks.fonts);
 
 task("watch", function watcher() {
   watch(`${inputPath}/styles/`, tasks.styles);
   watch(`${inputPath}/scripts/`, tasks.scripts);
   watch(`${inputPath}/icons/`, tasks.icons);
+  watch(`${inputPath}/fonts`, tasks.fonts);
 });
 
-task("build", series(["styles", "scripts", "icons"]));
+task("build", series(["styles", "scripts", "icons", "fonts"]));
 task("default", series(["build", "watch"]));
