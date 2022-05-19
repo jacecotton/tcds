@@ -1,3 +1,12 @@
+## [0.36.1](https://github.com/jacecotton/tcds/compare/v0.36.0...v0.36.1) (2022-05-19)
+
+
+### Bug Fixes
+
+* **build:** Include dist in npm release ([f068d08](https://github.com/jacecotton/tcds/commit/f068d08819b85941240dda06ba7cc09a9befcc16))
+
+
+
 # [0.36.0](https://github.com/jacecotton/tcds/compare/v0.35.1...v0.36.0) (2022-05-19)
 
 
@@ -42,15 +51,6 @@
 ### Bug Fixes
 
 * **components:** Hero sizing algo fix ([d4c0d85](https://github.com/jacecotton/tcds/commit/d4c0d85bd09cc4ad2b1cd7c51caf013008702313))
-
-
-
-## [0.34.4](https://github.com/jacecotton/tcds/compare/v0.34.3...v0.34.4) (2022-05-12)
-
-
-### Bug Fixes
-
-* **components:** Correct Hero underlap ([cf1ecb8](https://github.com/jacecotton/tcds/commit/cf1ecb8e9bd99641ed0f8fbffc5f0bd2bb379526))
 
 
 
