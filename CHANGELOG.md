@@ -1,3 +1,12 @@
+# [0.38.0](https://github.com/jacecotton/tcds/compare/v0.37.3...v0.38.0) (2022-05-20)
+
+
+### Features
+
+* **primitives:** Add fieldset styles ([469f855](https://github.com/jacecotton/tcds/commit/469f8557542393cf974fe9f61758148496a2108d))
+
+
+
 ## [0.37.3](https://github.com/jacecotton/tcds/compare/v0.37.2...v0.37.3) (2022-05-20)
 
 
@@ -31,17 +40,6 @@
 ### Features
 
 * **icons:** Add search icon ([688a014](https://github.com/jacecotton/tcds/commit/688a014e97742ba01e73123f95c81bfe834c3766))
-
-
-
-## [0.36.3](https://github.com/jacecotton/tcds/compare/v0.36.2...v0.36.3) (2022-05-20)
-
-
-### Bug Fixes
-
-* **components:** Improve Hero responsiveness ([466de30](https://github.com/jacecotton/tcds/commit/466de30974cc3f342ddb7f7d0a2b106eba7d0de0))
-* **components:** Set Action Bar font stack ([295b3c6](https://github.com/jacecotton/tcds/commit/295b3c6fc04dff2d3d6cf46d705f1ea343ce98d9))
-* **components:** Set Hero font stack ([df4a8f6](https://github.com/jacecotton/tcds/commit/df4a8f63c6b320968206d2966cb9d2936861630c))
 
 
 
