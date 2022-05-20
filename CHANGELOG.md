@@ -1,3 +1,14 @@
+## [0.36.3](https://github.com/jacecotton/tcds/compare/v0.36.2...v0.36.3) (2022-05-20)
+
+
+### Bug Fixes
+
+* **components:** Improve Hero responsiveness ([466de30](https://github.com/jacecotton/tcds/commit/466de30974cc3f342ddb7f7d0a2b106eba7d0de0))
+* **components:** Set Action Bar font stack ([295b3c6](https://github.com/jacecotton/tcds/commit/295b3c6fc04dff2d3d6cf46d705f1ea343ce98d9))
+* **components:** Set Hero font stack ([df4a8f6](https://github.com/jacecotton/tcds/commit/df4a8f63c6b320968206d2966cb9d2936861630c))
+
+
+
 ## [0.36.2](https://github.com/jacecotton/tcds/compare/v0.36.1...v0.36.2) (2022-05-20)
 
 
@@ -36,21 +47,6 @@
 ### Bug Fixes
 
 * **components:** Fix align bottom Hero modifier ([b400681](https://github.com/jacecotton/tcds/commit/b40068187412ea4cf9b84be498fcc4ac241353f2))
-
-
-
-# [0.35.0](https://github.com/jacecotton/tcds/compare/v0.34.5...v0.35.0) (2022-05-13)
-
-
-### Bug Fixes
-
-* **scripts:** Conditionally load cqfill ([9ea44ee](https://github.com/jacecotton/tcds/commit/9ea44ee82c7bae91697fceaa4c4978813abd8df1))
-
-
-### Features
-
-* **components:** Add Breadcrumb component ([7d01a0c](https://github.com/jacecotton/tcds/commit/7d01a0c112c5a02fc2afc0b88643eac896a6b73d))
-* **components:** Add overline to Hero ([1a2322a](https://github.com/jacecotton/tcds/commit/1a2322a9302c8a0b71017f680f92590490033f45))
 
 
 
