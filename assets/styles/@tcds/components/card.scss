@@ -148,6 +148,7 @@
   &__title {
     @include font-size("medium-plus", $custom-property: "--card-title-font-size");
 
+    font-family: font-stack("headings");
     font-weight: font-weight("semibold");
     color: inherit; // 1
     text-decoration: none;
