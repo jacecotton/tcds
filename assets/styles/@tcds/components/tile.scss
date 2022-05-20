@@ -68,14 +68,16 @@
   }
 
   &__heading {
-    font-size: font-size("medium-plus"); // fallback
-    font-size: var(--tile-heading-size, #{font-size("medium-plus")});
+    @include font-size("medium-plus", $custom-property: "--tile-heading-size");
+
+    font-family: font-stack("headings");
     font-weight: font-weight("semibold");
   }
 
   &__subheading {
-    font-size: font-size("medium"); // fallback
-    font-size: var(--tile-subheading-size, #{font-size("medium")});
+    @include font-size("medium", $custom-property: "--tile-subheading-size");
+
+    font-family: font-stack("copy");
     font-style: italic;
   }
 }
