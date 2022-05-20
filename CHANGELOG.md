@@ -1,3 +1,12 @@
+# [0.39.0](https://github.com/jacecotton/tcds/compare/v0.38.1...v0.39.0) (2022-05-20)
+
+
+### Features
+
+* **styles:** Complete restructure of style paths ([198d0ac](https://github.com/jacecotton/tcds/commit/198d0ac5115e9956edaf421d9494a500c208f1a9))
+
+
+
 ## [0.38.1](https://github.com/jacecotton/tcds/compare/v0.38.0...v0.38.1) (2022-05-20)
 
 
@@ -34,15 +43,6 @@
 ### Bug Fixes
 
 * **components:** Indicate Notification state ([9fe8db7](https://github.com/jacecotton/tcds/commit/9fe8db7f98096e7bd9b13f7ebd7893130af8e337))
-
-
-
-## [0.37.1](https://github.com/jacecotton/tcds/compare/v0.37.0...v0.37.1) (2022-05-20)
-
-
-### Bug Fixes
-
-* **colors:** Make base colors themeable ([b85d173](https://github.com/jacecotton/tcds/commit/b85d1730bd6805546c4e6689f576dc099e27a884))
 
 
 
