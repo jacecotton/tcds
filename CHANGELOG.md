@@ -1,3 +1,12 @@
+# [0.37.0](https://github.com/jacecotton/tcds/compare/v0.36.3...v0.37.0) (2022-05-20)
+
+
+### Features
+
+* **icons:** Add search icon ([688a014](https://github.com/jacecotton/tcds/commit/688a014e97742ba01e73123f95c81bfe834c3766))
+
+
+
 ## [0.36.3](https://github.com/jacecotton/tcds/compare/v0.36.2...v0.36.3) (2022-05-20)
 
 
@@ -38,15 +47,6 @@
 ### Features
 
 * **typography:** Add Metropolis font ([4a033a4](https://github.com/jacecotton/tcds/commit/4a033a4e7b64f0f01b5be7e96dda5f4c1901fd2c))
-
-
-
-## [0.35.1](https://github.com/jacecotton/tcds/compare/v0.35.0...v0.35.1) (2022-05-18)
-
-
-### Bug Fixes
-
-* **components:** Fix align bottom Hero modifier ([b400681](https://github.com/jacecotton/tcds/commit/b40068187412ea4cf9b84be498fcc4ac241353f2))
 
 
 
