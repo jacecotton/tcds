@@ -1,7 +1,6 @@
 @use "@tcds/_all" as *;
 
 .ActionBar {
-  font-family: font-stack("headings");
   position: relative;
   z-index: 1;
   box-shadow: 0 0 1rem color("shade");
