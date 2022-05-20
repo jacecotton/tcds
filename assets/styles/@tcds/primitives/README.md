@@ -1,4 +1,4 @@
-## Primitive styles
+# Primitive styles
 
 Primitives are basic HTML elements, such as headings, lists, tables, etc. They are generally simple, static, and native features of web browsers. This is in contrast to components, which are often more complex, interactive, and made up of a combination of individual primitives.
 
