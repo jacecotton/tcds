@@ -1,3 +1,12 @@
+## [0.36.2](https://github.com/jacecotton/tcds/compare/v0.36.1...v0.36.2) (2022-05-20)
+
+
+### Bug Fixes
+
+* **components:** Breadcrumb API tweak ([856c696](https://github.com/jacecotton/tcds/commit/856c696efb2e4ab5d19df7b538e297666dac2b91))
+
+
+
 ## [0.36.1](https://github.com/jacecotton/tcds/compare/v0.36.0...v0.36.1) (2022-05-19)
 
 
@@ -42,15 +51,6 @@
 
 * **components:** Add Breadcrumb component ([7d01a0c](https://github.com/jacecotton/tcds/commit/7d01a0c112c5a02fc2afc0b88643eac896a6b73d))
 * **components:** Add overline to Hero ([1a2322a](https://github.com/jacecotton/tcds/commit/1a2322a9302c8a0b71017f680f92590490033f45))
-
-
-
-## [0.34.5](https://github.com/jacecotton/tcds/compare/v0.34.4...v0.34.5) (2022-05-12)
-
-
-### Bug Fixes
-
-* **components:** Hero sizing algo fix ([d4c0d85](https://github.com/jacecotton/tcds/commit/d4c0d85bd09cc4ad2b1cd7c51caf013008702313))
 
 
 
