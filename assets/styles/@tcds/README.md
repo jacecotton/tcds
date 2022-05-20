@@ -6,28 +6,26 @@ We place all styles in a `@tcds` directory to fake a path namespace. When `@use`
 
 In a downstream project, the path `./node_modules/@txch/tcds/assets/styles/` should be provided in the `sass` callback's `includePaths` configuration option. Then, TCDS style modules can be imported as `@use "@tcds/..."`.
 
-## Granular package imports
+## Granular bundle imports
 
-Each package bundles its own styles in an `_index.scss` file, to be compiled to CSS. Files named as such can simply be referred to by their folder name, so
+Each package bundles its own styles in a `_bundle.scss` file, to be compiled to CSS, and can be imported as:
 
 ```css
-@use "@tcds/layout";
+@use "@tcds/layout/bundle";
 ```
-
-will bring in all styles for the layout package (pointing to the file `@tcds/layout/_index.scss`).
 
 ## Forwarding abstracts
 
-Every package has an `_all.scss` file, which `@forward`s all abstracts (variables, mixins, functions) that belong to the package. You can import and use these abstracts with `@use`:
+Every package has an `_index.scss` file, which `@forward`s all abstracts (variables, mixins, functions) that belong to the package. You can import and use these abstracts with `@use`, and can omit specifying `_index.scss`:
 
 ```css
-@use "@tcds/layout/all" as *;
+@use "@tcds/layout" as *;
 ```
 
-The root [`_all.scss`](https://github.com/jacecotton/tcds/blob/main/assets/styles/%40tcds/_all.scss) file `@forward`s each package's `_all.scss` file, so in most cases it's useful to just `@use` this "master" file. So from any file in the styles folder, you can
+The root [`_index.scss`](https://github.com/jacecotton/tcds/blob/main/assets/styles/%40tcds/_index.scss) file `@forward`s each package's `_index.scss` file, so in most cases it's useful to just `@use` this "master" file. So from any file in the styles folder, you can
 
 ```css
-@use "@tcds/all" as *;
+@use "@tcds" as *;
 ```
 
 to have access to every abstract from each package.

@@ -37,8 +37,8 @@ After that, you will be able to bring in Design System assets and bundle it with
 @use "@tcds/tcds";
 
 // Alternatively, you can choose to only import specific packages.
-@use "@tcds/components";
-@use "@tcds/typography";
+@use "@tcds/components/bundle";
+@use "@tcds/typography/bundle";
 
 // Or even specific modules within a package.
 @use "@tcds/components/button";
@@ -46,12 +46,12 @@ After that, you will be able to bring in Design System assets and bundle it with
 ```
 
 ```scss
-/* _all.scss */
+/* _index.scss */
 
 // By @forward-ing the @tcds package here, this file can be @use-d from any
-// other file to access TCDS utilities (variables, functions, mixins, etc.),
+// other file to access TCDS abstracts (variables, functions, mixins, etc.),
 // without having to re-import from the @tcds package each time.
-@forward "@tcds/all" with (
+@forward "@tcds" with (
   // Configuration variables can be set here.
 );
 ```

@@ -6,4 +6,5 @@ The styles included here are global and default. As a result, scope management w
 
 For instance, styles are only applied to [lists](https://github.com/jacecotton/tcds/blob/main/assets/styles/%40tcds/primitives/lists.scss) if a `class` attribute is not used. If it is used and the default stylings are still desired, utility classes are also provided (`.ul` for unordered lists, `.ol` for ordered lists, etc.)
 
+## On resets
 As most elements are styled directly in their dedicated stylesheets, a monolithic "reset" or "normalize" file is not used. Any remaining resets are kept in the [base stylesheet](https://github.com/jacecotton/tcds/blob/main/assets/styles/%40tcds/base/base.scss).
