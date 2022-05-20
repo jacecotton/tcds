@@ -1,3 +1,12 @@
+## [0.37.1](https://github.com/jacecotton/tcds/compare/v0.37.0...v0.37.1) (2022-05-20)
+
+
+### Bug Fixes
+
+* **colors:** Make base colors themeable ([b85d173](https://github.com/jacecotton/tcds/commit/b85d1730bd6805546c4e6689f576dc099e27a884))
+
+
+
 # [0.37.0](https://github.com/jacecotton/tcds/compare/v0.36.3...v0.37.0) (2022-05-20)
 
 
@@ -33,20 +42,6 @@
 ### Bug Fixes
 
 * **build:** Include dist in npm release ([f068d08](https://github.com/jacecotton/tcds/commit/f068d08819b85941240dda06ba7cc09a9befcc16))
-
-
-
-# [0.36.0](https://github.com/jacecotton/tcds/compare/v0.35.1...v0.36.0) (2022-05-19)
-
-
-### Bug Fixes
-
-* **typography:** Remove old Avenir ([bf659aa](https://github.com/jacecotton/tcds/commit/bf659aa4f59b0e94b4242eae1de8eeb5cee70404))
-
-
-### Features
-
-* **typography:** Add Metropolis font ([4a033a4](https://github.com/jacecotton/tcds/commit/4a033a4e7b64f0f01b5be7e96dda5f4c1901fd2c))
 
 
 
