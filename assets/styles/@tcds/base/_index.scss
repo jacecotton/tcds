@@ -1,1 +1,3 @@
-@use "base";
+@forward "abstracts/variables";
+@forward "abstracts/functions";
+@forward "abstracts/mixins";

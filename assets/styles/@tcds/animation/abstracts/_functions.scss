@@ -1,6 +1,6 @@
 @use "sass:map";
 @use "variables" as *;
-@use "@tcds/base/functions" as *;
+@use "@tcds/base/abstracts/functions" as *;
 
 /**
  * Utility functions for animations and transitions.

@@ -3,11 +3,14 @@
  */
 
 /** Bring in the index files from each module. */
-@use "base";
-@use "typography";
-@use "animation";
-@use "primitives";
-@use "components";
+@use "base/bundle" as *;
+@use "typography/bundle" as *;
+@use "animation/bundle" as *;
+@use "primitives/bundle" as *;
+@use "components/bundle" as *;
 
 /** Import utilities last so they have higher precedence. */
-@use "utilities";
+@use "base/utilities" as *;
+@use "typography/utilities" as *;
+@use "layout/utilities" as *;
+@use "color/utilities" as *;

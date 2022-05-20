@@ -1,8 +1,0 @@
-/**
- * Bundles the utilities from each style module. These should be imported last
- * so they have higher precedence than other styles.
- */
-@use "base/utilities" as *;
-@use "layout/utilities" as *;
-@use "color/utilities" as *;
-@use "typography/utilities" as *;
