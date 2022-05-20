@@ -7,7 +7,7 @@
 {% block inner_content %}
   <ol class="Breadcrumb__list">
     {% for item in trail %}
-      <li class="Breadcrumb__item"><a href="{{ item.link }}" class="Breadcrumb__link">{{ item.text }}</a></li>
+      <li class="Breadcrumb__item"><a href="{{ item.link }}" class="Breadcrumb__link">{{ item.title }}</a></li>
     {% endfor %}
   </ol>
 {% endblock %}
