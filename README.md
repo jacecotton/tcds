@@ -29,8 +29,9 @@ After that, you will be able to bring in Design System assets and bundle it with
 
 **Sass** (styling)
 
-\[main.scss\]
 ```scss
+/* main.scss */
+
 // Brings in all actual styles to be compiled to CSS (component styles, utility
 // classes, etc.)
 @use "@tcds/tcds";
@@ -44,8 +45,9 @@ After that, you will be able to bring in Design System assets and bundle it with
 @use "@tcds/typography/fonts";
 ```
 
-\[_all.scss\]
 ```scss
+/* _all.scss */
+
 // By @forward-ing the @tcds package here, this file can be @use-d from any
 // other file to access TCDS utilities (variables, functions, mixins, etc.),
 // without having to re-import from the @tcds package each time.
