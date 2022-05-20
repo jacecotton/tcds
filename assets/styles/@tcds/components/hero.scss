@@ -159,6 +159,10 @@
     }
   }
 
+  &__overline {
+    font-family: font-stack("headings");
+  }
+
   .Breadcrumb {
     &__link {
       color: inherit;
