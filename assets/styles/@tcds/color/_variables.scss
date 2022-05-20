@@ -13,62 +13,111 @@
  *
  * See: color()
  */
+$theme-color-red-0: #fff6f6 !default;
+$theme-color-red-100: #ffdada !default;
+$theme-color-red-200: #ff888b !default;
+$theme-color-red-300: #da2530 !default;
+$theme-color-red-400: #93000f !default;
+$theme-color-red-500: #410003 !default;
+
+$theme-color-blue-0: #f5f8ff !default;
+$theme-color-blue-100: #d5e3ff !default;
+$theme-color-blue-200: #71adff !default;
+$theme-color-blue-300: #2d73bc !default;
+$theme-color-blue-400: #004880 !default;
+$theme-color-blue-500: #001c37 !default;
+
+$theme-color-green-0: #e3ffe8 !default;
+$theme-color-green-100: #aff2bd !default;
+$theme-color-green-200: #4cc16e !default;
+$theme-color-green-300: #248142 !default;
+$theme-color-green-400: #005322 !default;
+$theme-color-green-500: #002109 !default;
+
+$theme-color-yellow-0: #fff9d4 !default;
+$theme-color-yellow-100: #fbe090 !default;
+$theme-color-yellow-200: #c9a900 !default;
+$theme-color-yellow-300: #886f24 !default;
+$theme-color-yellow-400: #504400 !default;
+$theme-color-yellow-500: #211b00 !default;
+
+$theme-color-purple-0: #f9f7ff !default;
+$theme-color-purple-100: #e7defb !default;
+$theme-color-purple-200: #ba9cf2 !default;
+$theme-color-purple-300: #8f4ae6 !default;
+$theme-color-purple-400: #5f23a2 !default;
+$theme-color-purple-500: #280a48 !default;
+
+$theme-color-gray-0: #f8f8f9 !default;
+$theme-color-gray-100: #e2e2e7 !default;
+$theme-color-gray-200: #aaaab3 !default;
+$theme-color-gray-300: #707079 !default;
+$theme-color-gray-400: #464652 !default;
+$theme-color-gray-500: #1b1b1e !default;
+
+$theme-color-shade-0: hsl(0deg 0% 0% / 3%) !default;
+$theme-color-shade-100: hsl(0deg 0% 0% / 10%) !default;
+$theme-color-shade-200: hsl(0deg 0% 0% / 30%) !default;
+$theme-color-shade-300: hsl(0deg 0% 0% / 53.4%) !default;
+$theme-color-shade-400: hsl(0deg 0% 0% / 70%) !default;
+$theme-color-shade-500: hsl(0deg 0% 0% / 90%) !default;
+
 $colors: (
   "red": (
-    "0": #fff6f6,
-    "100": #ffdada,
-    "200": #ff888b,
-    "300": #da2530,
-    "400": #93000f,
-    "500": #410003,
+    "0": $theme-color-red-0,
+    "100": $theme-color-red-100,
+    "200": $theme-color-red-200,
+    "300": $theme-color-red-300,
+    "400": $theme-color-red-400,
+    "500": $theme-color-red-500,
   ),
   "blue": (
-    "0": #f5f8ff,
-    "100": #d5e3ff,
-    "200": #71adff,
-    "300": #2d73bc,
-    "400": #004880,
-    "500": #001c37,
+    "0": $theme-color-blue-0,
+    "100": $theme-color-blue-100,
+    "200": $theme-color-blue-200,
+    "300": $theme-color-blue-300,
+    "400": $theme-color-blue-400,
+    "500": $theme-color-blue-500,
   ),
   "green": (
-    "0": #e3ffe8,
-    "100": #aff2bd,
-    "200": #4cc16e,
-    "300": #248142,
-    "400": #005322,
-    "500": #002109,
+    "0": $theme-color-green-0,
+    "100": $theme-color-green-100,
+    "200": $theme-color-green-200,
+    "300": $theme-color-green-300,
+    "400": $theme-color-green-400,
+    "500": $theme-color-green-500,
   ),
   "yellow": (
-    "0": #fff9d4,
-    "100": #fbe090,
-    "200": #c9a900,
-    "300": #886f24,
-    "400": #504400,
-    "500": #211b00,
+    "0": $theme-color-yellow-0,
+    "100": $theme-color-yellow-100,
+    "200": $theme-color-yellow-200,
+    "300": $theme-color-yellow-300,
+    "400": $theme-color-yellow-400,
+    "500": $theme-color-yellow-500,
   ),
   "purple": (
-    "0": #f9f7ff,
-    "100": #e7defb,
-    "200": #ba9cf2,
-    "300": #8f4ae6,
-    "400": #5f23a2,
-    "500": #280a48,
+    "0": $theme-color-purple-0,
+    "100": $theme-color-purple-100,
+    "200": $theme-color-purple-200,
+    "300": $theme-color-purple-300,
+    "400": $theme-color-purple-400,
+    "500": $theme-color-purple-500,
   ),
   "gray": (
-    "0": #f8f8f9,
-    "100": #e2e2e7,
-    "200": #aaaab3,
-    "300": #707079,
-    "400": #464652,
-    "500": #1b1b1e,
+    "0": $theme-color-gray-0,
+    "100": $theme-color-gray-100,
+    "200": $theme-color-gray-200,
+    "300": $theme-color-gray-300,
+    "400": $theme-color-gray-400,
+    "500": $theme-color-gray-500,
   ),
   "shade": (
-    "0": hsl(0deg 0% 0% / 3%),
-    "100": hsl(0deg 0% 0% / 10%),
-    "200": hsl(0deg 0% 0% / 30%),
-    "300": hsl(0deg 0% 0% / 53.4%),
-    "400": hsl(0deg 0% 0% / 70%),
-    "500": hsl(0deg 0% 0% / 90%),
+    "0": $theme-color-shade-0,
+    "100": $theme-color-shade-100,
+    "200": $theme-color-shade-200,
+    "300": $theme-color-shade-300,
+    "400": $theme-color-shade-400,
+    "500": $theme-color-shade-500,
   ),
 );
 
