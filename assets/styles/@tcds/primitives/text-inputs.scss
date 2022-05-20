@@ -13,23 +13,21 @@ label {
 [type="month"],
 [type="week"],
 [type="password"],
-textarea {
+textarea,
+select {
   appearance: none;
-  border: none;
+  border: 1px solid color("gray", "100");
+  background-color: #fff;
   font-family: font-stack("ui");
   font-size: font-size("small");
-  padding: space("tight") space("normal");
+  padding: 0 space("normal");
   height: size("medium");
   width: 100%;
-  background-color: color("shade", "0");
   transition: background-color animation("productive");
 
-  &:hover {
-    background-color: color("shade", "100");
-  }
-
   &:focus {
-    background-color: #fff;
+    border-color: theme-color("link");
+    outline: 3px solid theme-color("link", "100");
   }
 }
 
@@ -39,4 +37,11 @@ textarea {
 
 [type="search"] {
   appearance: textfield;
+}
+
+select {
+  background-image: url("#{$ASSETS}/icons/chevron-down.svg");
+  background-position: calc(100% - #{space("normal")}) center;
+  background-size: auto 40%;
+  background-repeat: no-repeat;
 }

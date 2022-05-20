@@ -86,27 +86,3 @@
     }
   }
 }
-
-select {
-  appearance: none;
-  border: none;
-  font-family: font-stack("ui");
-  font-size: font-size("small");
-  padding: space("tight") space("normal");
-  background-color: color("shade", "0");
-  width: 100%;
-  height: size("medium");
-  transition: background-color animation("productive");
-  background-image: url("../images/icons/chevron-down.svg");
-  background-position: 98% center;
-  background-size: auto 40%;
-  background-repeat: no-repeat;
-
-  &:hover {
-    background-color: color("shade", "100");
-  }
-
-  &:focus {
-    background-color: #fff;
-  }
-}
