@@ -1,6 +1,6 @@
 @use "sass:string";
-@use "_variables" as *;
-@use "_functions" as *;
+@use "variables" as *;
+@use "functions" as *;
 
 /**
  * A mixin for generating responsive font sizes and automatically providing the

@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "_variables" as *;
-@use "../base/_functions" as *;
+@use "variables" as *;
+@use "@tcds/base/functions" as *;
 
 /**
  * Getter functions for variable maps.

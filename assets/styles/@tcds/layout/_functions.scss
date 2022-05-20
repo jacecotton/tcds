@@ -1,7 +1,7 @@
 @use "sass:map";
 @use "sass:math";
-@use "_variables" as *;
-@use "../base/_functions" as *;
+@use "variables" as *;
+@use "@tcds/base/functions" as *;
 
 /**
  * Utility functions for the layout system.

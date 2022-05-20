@@ -1,4 +1,4 @@
-@use "@tcds/_all" as *;
+@use "@tcds/all" as *;
 
 @mixin -theme($color) {
   background-color: #{interface-color($color, "0")};

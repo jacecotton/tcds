@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "_variables" as *;
-@use "_functions" as *;
+@use "variables" as *;
+@use "functions" as *;
 
 @mixin breakpoint-above($breakpoint) {
   @if map.has-key($breakpoints, $breakpoint) {
