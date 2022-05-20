@@ -136,7 +136,11 @@
     display: flex;
     align-items: center;
     gap: space("x-loose");
-    padding: var(--hero-padding-top, 0) 0 var(--hero-padding-bottom, 0) 3rem;
+    padding: var(--hero-padding-top, 0) 0 var(--hero-padding-bottom, 0);
+
+    @include breakpoint-above("medium") {
+      padding-left: 3rem;
+    }
   }
 
   &__heading {
