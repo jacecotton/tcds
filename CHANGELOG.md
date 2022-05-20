@@ -1,3 +1,12 @@
+## [0.37.2](https://github.com/jacecotton/tcds/compare/v0.37.1...v0.37.2) (2022-05-20)
+
+
+### Bug Fixes
+
+* **components:** Indicate Notification state ([9fe8db7](https://github.com/jacecotton/tcds/commit/9fe8db7f98096e7bd9b13f7ebd7893130af8e337))
+
+
+
 ## [0.37.1](https://github.com/jacecotton/tcds/compare/v0.37.0...v0.37.1) (2022-05-20)
 
 
@@ -33,15 +42,6 @@
 ### Bug Fixes
 
 * **components:** Breadcrumb API tweak ([856c696](https://github.com/jacecotton/tcds/commit/856c696efb2e4ab5d19df7b538e297666dac2b91))
-
-
-
-## [0.36.1](https://github.com/jacecotton/tcds/compare/v0.36.0...v0.36.1) (2022-05-19)
-
-
-### Bug Fixes
-
-* **build:** Include dist in npm release ([f068d08](https://github.com/jacecotton/tcds/commit/f068d08819b85941240dda06ba7cc09a9befcc16))
 
 
 
