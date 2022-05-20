@@ -1,12 +1,19 @@
 @use "@tcds/_all" as *;
 
 .Notification {
+  --notification-height: 60px;
+
   z-index: layer("notification");
   display: flex;
   align-items: center;
   position: relative;
   background-color: theme-color("secondary");
   color: theme-color("secondary", "0");
+  height: var(--notification-height);
+
+  &[data-state="dismissed"] {
+    --notification-height: 0;
+  }
 
   &:not(#{&}--full-bleed) {
     @include max-width;
@@ -58,10 +65,10 @@
   &__message {
     flex: 1;
     text-align: center;
-    padding: space("normal");
+    padding: 0 space("normal");
 
     @include breakpoint-below("x-large") {
-      padding: space("normal") 60px space("normal") space("normal"); // 1
+      padding: 0 60px 0 space("normal"); // 1
     }
   }
 }

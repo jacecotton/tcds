@@ -25,6 +25,7 @@ export default class Notification extends Component {
       expanded: () => {
         localStorage.setItem(this.localStorageState, this.state.expanded ? "expanded" : "dismissed");
 
+        this.element.setAttribute("data-state", this.state.expanded ? "expanded" : "dismissed");
         this.message.hidden = !this.state.expanded;
         this.dismissButton.setAttribute("aria-expanded", this.state.expanded);
         this.expandButton && this.expandButton.setAttribute("aria-expanded", this.state.expanded);
