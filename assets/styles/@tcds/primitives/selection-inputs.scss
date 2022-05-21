@@ -38,9 +38,9 @@
       content: "";
       transform-origin: center;
       transition:
-        background-color animation("productive-timing") animation("expressive-easing"),
-        width animation("productive-timing") animation("expressive-easing"),
-        height animation("productive-timing") animation("expressive-easing");
+        background-color animation("productive-duration") animation("expressive-easing"),
+        width animation("productive-duration") animation("expressive-easing"),
+        height animation("productive-duration") animation("expressive-easing");
       position: absolute;
     }
 
