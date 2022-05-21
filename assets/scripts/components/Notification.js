@@ -1,4 +1,4 @@
-import Component from "../Component.js";
+import Component from "@tcds/Component.js";
 
 export default class Notification extends Component {
   constructor(element, props) {

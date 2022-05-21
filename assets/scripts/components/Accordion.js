@@ -1,4 +1,4 @@
-import Component from "../Component.js";
+import Component from "@tcds/Component.js";
 
 export default class Accordion extends Component {
   constructor(element, props) {

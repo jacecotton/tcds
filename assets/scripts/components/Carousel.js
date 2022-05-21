@@ -1,4 +1,4 @@
-import Tabs from "./Tabs.js";
+import Tabs from "@tcds/components/Tabs.js";
 
 /**
  * Carousel component.
