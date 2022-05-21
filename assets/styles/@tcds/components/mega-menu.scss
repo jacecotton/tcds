@@ -1,0 +1,12 @@
+@use "@tcds" as *;
+
+.MegaMenu {
+  position: absolute;
+  top: var(--site-header-height);
+  left: 0;
+  right: 0;
+  background-color: theme-color("secondary");
+  color: theme-color("secondary", "0");
+  padding: space("x-loose") 0;
+  z-index: -2;
+}

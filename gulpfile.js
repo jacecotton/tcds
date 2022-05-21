@@ -4,6 +4,7 @@
 
 import gulp from "gulp";
 const { task, watch, src, dest, series } = gulp;
+import { join, resolve } from "path";
 
 // Script utilities
 import webpack from "webpack-stream";
@@ -96,6 +97,13 @@ const tasks = {
               ],
             },
           ],
+        },
+        resolve: {
+          alias: {
+            // This will make JavaScript module imports that begin with "@tcds"
+            // look inside the TCDS package.
+            "@tcds": resolve(join(), "./assets/scripts/"),
+          },
         },
         output: {
           filename: "tcds.js",

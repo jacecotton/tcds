@@ -1,0 +1,16 @@
+{% extends "@tcds/components/component/component.html.twig" %}
+
+{% set component_name = "MegaMenu" %}
+
+{% set root_element = "section" %}
+
+{% block root_attributes %}
+  id="mega-menu-{{ id|clean_id }}"
+  hidden
+{% endblock %}
+
+{% block inner_content %}
+  <div class="max-width">
+    {% block content %}{% endblock %}
+  </div>
+{% endblock %}
