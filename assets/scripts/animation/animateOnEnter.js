@@ -31,7 +31,6 @@ import AnimateElement from "./AnimateElement.js";
           // to run only once.
           runOnce: prefix === "on-enter:",
         });
-
         // Remove the original hook, it doesn't do anything.
         element.classList.remove(className);
       });
