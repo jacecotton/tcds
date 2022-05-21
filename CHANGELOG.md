@@ -1,3 +1,13 @@
+# [0.40.0](https://github.com/jacecotton/tcds/compare/v0.39.0...v0.40.0) (2022-05-21)
+
+
+### Features
+
+* **animation:** Add animation engine - [#10](https://github.com/jacecotton/tcds/issues/10) ([7237b89](https://github.com/jacecotton/tcds/commit/7237b896bebaa0f5264a28bdc5f71bb4d68d453e))
+* **components:** Add Mega Menu - [#3](https://github.com/jacecotton/tcds/issues/3) ([b14794a](https://github.com/jacecotton/tcds/commit/b14794ac283c6ad1523cee6ddd909b2f23817873))
+
+
+
 # [0.39.0](https://github.com/jacecotton/tcds/compare/v0.38.1...v0.39.0) (2022-05-20)
 
 
@@ -34,15 +44,6 @@
 ### Bug Fixes
 
 * **primitives:** Input style design tweak ([bab9907](https://github.com/jacecotton/tcds/commit/bab9907ac38176a6ad517c3cce50a4d5da404a6e))
-
-
-
-## [0.37.2](https://github.com/jacecotton/tcds/compare/v0.37.1...v0.37.2) (2022-05-20)
-
-
-### Bug Fixes
-
-* **components:** Indicate Notification state ([9fe8db7](https://github.com/jacecotton/tcds/commit/9fe8db7f98096e7bd9b13f7ebd7893130af8e337))
 
 
 
