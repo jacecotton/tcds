@@ -67,11 +67,7 @@ const tasks = {
         includePaths: [`${inputPath}/styles`],
       }).on("error", sass.logError))
       // Post-processing (PostCSS).
-      .pipe(postcss([
-        autoprefixer({
-          grid: "autoplace",
-        }),
-      ]))
+      .pipe(postcss([autoprefixer()]))
       // Output to destination folder.
       .pipe(dest(config.styles.dest));
   },
