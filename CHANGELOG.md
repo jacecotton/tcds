@@ -1,3 +1,12 @@
+## [0.40.1](https://github.com/jacecotton/tcds/compare/v0.40.0...v0.40.1) (2022-05-21)
+
+
+### Bug Fixes
+
+* **components:** Mega Menu style tweak ([046e99d](https://github.com/jacecotton/tcds/commit/046e99d169727d2d16a99f14645101f42742a7a6))
+
+
+
 # [0.40.0](https://github.com/jacecotton/tcds/compare/v0.39.0...v0.40.0) (2022-05-21)
 
 
@@ -35,15 +44,6 @@
 ### Features
 
 * **primitives:** Add fieldset styles ([469f855](https://github.com/jacecotton/tcds/commit/469f8557542393cf974fe9f61758148496a2108d))
-
-
-
-## [0.37.3](https://github.com/jacecotton/tcds/compare/v0.37.2...v0.37.3) (2022-05-20)
-
-
-### Bug Fixes
-
-* **primitives:** Input style design tweak ([bab9907](https://github.com/jacecotton/tcds/commit/bab9907ac38176a6ad517c3cce50a4d5da404a6e))
 
 
 
