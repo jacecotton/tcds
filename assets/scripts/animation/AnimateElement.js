@@ -55,7 +55,10 @@ export default function AnimateElement(element, animation, options = {}) {
       // Add the utility class that triggers the animation (must be a valid
       // animation token).
       if(typeof animation === "string") {
-        element.style.animation = `${animation} .3s ease-in forwards`;
+        element.style.animation = `${animation} `
+          + `var(--animation-${animation}-duration, var(--animation-duration)) `
+          + `var(--animation-${animation}-easing, var(--animation-easing)) `
+          + `var(--animation-${animation}-fill-mode, var(--animation-fill-mode))`;
       } else if(typeof animation === "object") {
         element.style.animation = "";
         animation.forEach((keyframeset, index) => {
@@ -71,8 +74,10 @@ export default function AnimateElement(element, animation, options = {}) {
       // When the animation has finished...
       element.addEventListener("animationend", (event) => {
         event.stopPropagation();
-        // Remove the class (unless `removeOnFinish` is disabled).
-        element.style.animation = options.removeOnFinish !== false && null;
+        // Remove the animation style (unless `removeOnFinish` is disabled).
+        if(options.removeOnFinish !== false) {
+          element.style.animation = null;
+        }
         // Resolve promise.
         resolve("Animation complete");
       }, { once: true });
