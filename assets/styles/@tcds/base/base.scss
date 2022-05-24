@@ -60,20 +60,22 @@ textarea {
 }
 
 /**
- * 1. Prevent media elements from expanding beyond or stretching out the parent
+ * 1. Remove default white space after inline elements.
+ * 2. Prevent media elements from expanding beyond or stretching out the parent
  *    element.
- * 2. Remove default white space after inline elements.
  */
 audio,
 canvas,
 iframe,
 img,
 svg,
-video,
-button {
-  max-width: 100%; // 1
-  height: auto;
-  vertical-align: middle; // 2
+video {
+  vertical-align: middle; // 1
+
+  &:not([width]):not([height]) {
+    max-width: 100%; // 2
+    height: auto;
+  }
 }
 
 /**
