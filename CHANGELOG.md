@@ -1,3 +1,12 @@
+## [0.40.2](https://github.com/jacecotton/tcds/compare/v0.40.1...v0.40.2) (2022-05-21)
+
+
+### Bug Fixes
+
+* **animation:** Timing variables for single anims ([4a57c97](https://github.com/jacecotton/tcds/commit/4a57c97ef3cdfe4967f765245583f6c0a50da94f))
+
+
+
 ## [0.40.1](https://github.com/jacecotton/tcds/compare/v0.40.0...v0.40.1) (2022-05-21)
 
 
@@ -35,15 +44,6 @@
 * **components:** Add headings font to Tile title ([e785a49](https://github.com/jacecotton/tcds/commit/e785a49708e98aac91ab799cc154e5fbf06843a7))
 * **components:** Carousel style tweak ([57f3fa8](https://github.com/jacecotton/tcds/commit/57f3fa81d6a924916c7d4ceb7120ee6bdaae8518))
 * **components:** Remove Action Bar font ([1dc1043](https://github.com/jacecotton/tcds/commit/1dc1043b74d94f0708bf6575a41e927227edf214))
-
-
-
-# [0.38.0](https://github.com/jacecotton/tcds/compare/v0.37.3...v0.38.0) (2022-05-20)
-
-
-### Features
-
-* **primitives:** Add fieldset styles ([469f855](https://github.com/jacecotton/tcds/commit/469f8557542393cf974fe9f61758148496a2108d))
 
 
 
