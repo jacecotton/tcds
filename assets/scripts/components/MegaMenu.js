@@ -53,7 +53,7 @@ export default class MegaMenu extends Component {
           this.element.hidden = false;
           AnimateElement(this.element, ["slide-in-down", "fade-in"], { lazyload: false });
         } else if(!this.element.hidden) {
-          AnimateElement(this.element, ["slide-out-up", "fade-out"], { lazyload: false}).then(() => {
+          AnimateElement(this.element, "fade-out", { lazyload: false}).then(() => {
             this.element.hidden = true;
           });
         }
