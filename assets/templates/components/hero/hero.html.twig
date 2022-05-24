@@ -72,7 +72,7 @@
 
       <div class="column gap-normal align-start flex-1">
         {% if block("overline") is defined %} <div class="Hero__overline">{{ block("overline") }}</div> {% endif %}
-        {% if heading %} <p class="Hero__heading">{{ heading|raw }}</p> {% endif %}
+        {% if heading %} <{{ heading_level ? "h#{heading_level}" : "p" }} class="Hero__heading">{{ heading|raw }}</{{ heading_level ? "h#{heading_level}" : "p" }}> {% endif %}
         {% if subheading %} <p class="Hero__subheading">{{ subheading|raw }}</p> {% endif %}
         {% block content %}{% endblock %}
       </div>
