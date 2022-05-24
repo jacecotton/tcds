@@ -1,3 +1,16 @@
+## [0.40.3](https://github.com/jacecotton/tcds/compare/v0.40.2...v0.40.3) (2022-05-24)
+
+
+### Bug Fixes
+
+* **components:** Add support for changing H-rank ([ee02a6e](https://github.com/jacecotton/tcds/commit/ee02a6ef617d92e6f064de5898e1614c98dc233c))
+* **components:** Remove Carousel heading margin ([31de782](https://github.com/jacecotton/tcds/commit/31de7827f3168f2c249a3e659c7ba82e46d2f3f5))
+* **components:** Tweak Mega Menu animation ([2f28ccc](https://github.com/jacecotton/tcds/commit/2f28ccc32343de4b27d00aad7c031bd6747f6f0d))
+* **components:** Tweak Tile style ([bb90844](https://github.com/jacecotton/tcds/commit/bb908448607dfa0c91b12d966c90b8650e354f33))
+* **primitives:** Increase vertical space on hr ([f666707](https://github.com/jacecotton/tcds/commit/f66670754fa423154885d2d7d2311170beeb5fe5))
+
+
+
 ## [0.40.2](https://github.com/jacecotton/tcds/compare/v0.40.1...v0.40.2) (2022-05-21)
 
 
@@ -32,18 +45,6 @@
 ### Features
 
 * **styles:** Complete restructure of style paths ([198d0ac](https://github.com/jacecotton/tcds/commit/198d0ac5115e9956edaf421d9494a500c208f1a9))
-
-
-
-## [0.38.1](https://github.com/jacecotton/tcds/compare/v0.38.0...v0.38.1) (2022-05-20)
-
-
-### Bug Fixes
-
-* **components:** Add headings font to Card title ([12e63c9](https://github.com/jacecotton/tcds/commit/12e63c925d08163f2b0e70c50da9930d881c27c0))
-* **components:** Add headings font to Tile title ([e785a49](https://github.com/jacecotton/tcds/commit/e785a49708e98aac91ab799cc154e5fbf06843a7))
-* **components:** Carousel style tweak ([57f3fa8](https://github.com/jacecotton/tcds/commit/57f3fa81d6a924916c7d4ceb7120ee6bdaae8518))
-* **components:** Remove Action Bar font ([1dc1043](https://github.com/jacecotton/tcds/commit/1dc1043b74d94f0708bf6575a41e927227edf214))
 
 
 
