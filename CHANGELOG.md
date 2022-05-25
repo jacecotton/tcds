@@ -1,3 +1,12 @@
+## [0.40.6](https://github.com/jacecotton/tcds/compare/v0.40.5...v0.40.6) (2022-05-25)
+
+
+### Bug Fixes
+
+* **components:** Allow multiple Heroes on one page ([9d7cc1a](https://github.com/jacecotton/tcds/commit/9d7cc1ae3345e039193281a3c87f1bd3a6c2e003))
+
+
+
 ## [0.40.5](https://github.com/jacecotton/tcds/compare/v0.40.4...v0.40.5) (2022-05-25)
 
 
@@ -35,15 +44,6 @@
 ### Bug Fixes
 
 * **animation:** Timing variables for single anims ([4a57c97](https://github.com/jacecotton/tcds/commit/4a57c97ef3cdfe4967f765245583f6c0a50da94f))
-
-
-
-## [0.40.1](https://github.com/jacecotton/tcds/compare/v0.40.0...v0.40.1) (2022-05-21)
-
-
-### Bug Fixes
-
-* **components:** Mega Menu style tweak ([046e99d](https://github.com/jacecotton/tcds/commit/046e99d169727d2d16a99f14645101f42742a7a6))
 
 
 
