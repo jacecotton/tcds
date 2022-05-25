@@ -4,12 +4,12 @@
 
 {% set root_element = "section" %}
 
+{% set id = random(0, 1000) %}
+
 {% block root_attributes %}
   {% if interval %}
     data-interval="{{ interval }}"
   {% endif %}
-
-  {% set id = random(0, 1000) %}
 
   id="hero-{{ id }}"
 
