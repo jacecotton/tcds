@@ -1,3 +1,12 @@
+## [0.40.5](https://github.com/jacecotton/tcds/compare/v0.40.4...v0.40.5) (2022-05-25)
+
+
+### Bug Fixes
+
+* **primitives:** Fix SVG sizing bug ([85c43f5](https://github.com/jacecotton/tcds/commit/85c43f5b323c94a9b656a276746c7d0579dab030))
+
+
+
 ## [0.40.4](https://github.com/jacecotton/tcds/compare/v0.40.3...v0.40.4) (2022-05-24)
 
 
@@ -35,16 +44,6 @@
 ### Bug Fixes
 
 * **components:** Mega Menu style tweak ([046e99d](https://github.com/jacecotton/tcds/commit/046e99d169727d2d16a99f14645101f42742a7a6))
-
-
-
-# [0.40.0](https://github.com/jacecotton/tcds/compare/v0.39.0...v0.40.0) (2022-05-21)
-
-
-### Features
-
-* **animation:** Add animation engine - [#10](https://github.com/jacecotton/tcds/issues/10) ([7237b89](https://github.com/jacecotton/tcds/commit/7237b896bebaa0f5264a28bdc5f71bb4d68d453e))
-* **components:** Add Mega Menu - [#3](https://github.com/jacecotton/tcds/issues/3) ([b14794a](https://github.com/jacecotton/tcds/commit/b14794ac283c6ad1523cee6ddd909b2f23817873))
 
 
 
