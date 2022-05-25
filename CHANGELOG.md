@@ -1,3 +1,12 @@
+## [0.40.7](https://github.com/jacecotton/tcds/compare/v0.40.6...v0.40.7) (2022-05-25)
+
+
+### Bug Fixes
+
+* **components:** Hero ID bug ([21287b1](https://github.com/jacecotton/tcds/commit/21287b1a8cae546cd48335f44ec3146fcd7e84d4))
+
+
+
 ## [0.40.6](https://github.com/jacecotton/tcds/compare/v0.40.5...v0.40.6) (2022-05-25)
 
 
@@ -35,15 +44,6 @@
 * **components:** Tweak Mega Menu animation ([2f28ccc](https://github.com/jacecotton/tcds/commit/2f28ccc32343de4b27d00aad7c031bd6747f6f0d))
 * **components:** Tweak Tile style ([bb90844](https://github.com/jacecotton/tcds/commit/bb908448607dfa0c91b12d966c90b8650e354f33))
 * **primitives:** Increase vertical space on hr ([f666707](https://github.com/jacecotton/tcds/commit/f66670754fa423154885d2d7d2311170beeb5fe5))
-
-
-
-## [0.40.2](https://github.com/jacecotton/tcds/compare/v0.40.1...v0.40.2) (2022-05-21)
-
-
-### Bug Fixes
-
-* **animation:** Timing variables for single anims ([4a57c97](https://github.com/jacecotton/tcds/commit/4a57c97ef3cdfe4967f765245583f6c0a50da94f))
 
 
 
