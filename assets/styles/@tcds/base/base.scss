@@ -72,7 +72,7 @@ svg,
 video {
   vertical-align: middle; // 1
 
-  &:not([width]):not([height]) {
+  &:where(:not([width]):not([height])) {
     max-width: 100%; // 2
     height: auto;
   }
