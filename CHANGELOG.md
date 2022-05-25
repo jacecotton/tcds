@@ -1,3 +1,12 @@
+## [0.40.4](https://github.com/jacecotton/tcds/compare/v0.40.3...v0.40.4) (2022-05-24)
+
+
+### Bug Fixes
+
+* **primitives:** Fix attr specificity issue ([20b716a](https://github.com/jacecotton/tcds/commit/20b716a3b954bbc998c8c59c2710a0ab0141b3ab))
+
+
+
 ## [0.40.3](https://github.com/jacecotton/tcds/compare/v0.40.2...v0.40.3) (2022-05-24)
 
 
@@ -36,15 +45,6 @@
 
 * **animation:** Add animation engine - [#10](https://github.com/jacecotton/tcds/issues/10) ([7237b89](https://github.com/jacecotton/tcds/commit/7237b896bebaa0f5264a28bdc5f71bb4d68d453e))
 * **components:** Add Mega Menu - [#3](https://github.com/jacecotton/tcds/issues/3) ([b14794a](https://github.com/jacecotton/tcds/commit/b14794ac283c6ad1523cee6ddd909b2f23817873))
-
-
-
-# [0.39.0](https://github.com/jacecotton/tcds/compare/v0.38.1...v0.39.0) (2022-05-20)
-
-
-### Features
-
-* **styles:** Complete restructure of style paths ([198d0ac](https://github.com/jacecotton/tcds/commit/198d0ac5115e9956edaf421d9494a500c208f1a9))
 
 
 
