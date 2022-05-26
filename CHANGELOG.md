@@ -1,3 +1,13 @@
+## [0.42.1](https://github.com/jacecotton/tcds/compare/v0.42.0...v0.42.1) (2022-05-26)
+
+
+### Bug Fixes
+
+* **components:** Add Callout template ([bb50337](https://github.com/jacecotton/tcds/commit/bb50337829ca2f591c273bc7b75b11dac448eb90))
+* **components:** Fix Callout spacing bug ([ca3fd09](https://github.com/jacecotton/tcds/commit/ca3fd0974d8c0385f568ecf31479e9016817385b))
+
+
+
 # [0.42.0](https://github.com/jacecotton/tcds/compare/v0.41.2...v0.42.0) (2022-05-26)
 
 
@@ -39,15 +49,6 @@
 ### Features
 
 * **components:** Add Section component - [#3](https://github.com/jacecotton/tcds/issues/3) ([a7c8b39](https://github.com/jacecotton/tcds/commit/a7c8b39ed0f5211f95bf34e54eba414eaf2f97ce))
-
-
-
-## [0.40.9](https://github.com/jacecotton/tcds/compare/v0.40.8...v0.40.9) (2022-05-26)
-
-
-### Bug Fixes
-
-* **primitives:** Media element overflow bug ([ca8e657](https://github.com/jacecotton/tcds/commit/ca8e65706f37ab539ce3fce3c8aa5033570ac1a8))
 
 
 
