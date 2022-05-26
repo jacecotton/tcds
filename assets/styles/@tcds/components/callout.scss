@@ -5,7 +5,8 @@
 
   padding-top: space("normal");
   padding-bottom: space("normal");
-  margin: space("loose") 0;
+  margin-top: space("loose");
+  margin-bottom: space("loose");
   background-color: theme-color("secondary");
   color: theme-color("secondary", "0");
 }
