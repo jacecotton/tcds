@@ -1,0 +1,1 @@
+.Callout{margin-left:calc(var(--container-gutter, var(--site-outer-gutter))*-1);margin-right:calc(var(--container-gutter, var(--site-outer-gutter))*-1);padding-left:var(--container-gutter, var(--site-outer-gutter));padding-right:var(--container-gutter, var(--site-outer-gutter));padding-top:16px;padding-bottom:16px;margin:24px 0;background-color:#2d73bc;color:#f5f8ff}

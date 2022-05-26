@@ -1,0 +1,11 @@
+@use "@tcds" as *;
+
+.Callout {
+  @include full-bleed;
+
+  padding-top: space("normal");
+  padding-bottom: space("normal");
+  margin: space("loose") 0;
+  background-color: theme-color("secondary");
+  color: theme-color("secondary", "0");
+}
