@@ -1,3 +1,19 @@
+# [0.41.0](https://github.com/jacecotton/tcds/compare/v0.40.9...v0.41.0) (2022-05-26)
+
+
+### Bug Fixes
+
+* **components:** Breadcrumb responsive font-size ([2d99f3b](https://github.com/jacecotton/tcds/commit/2d99f3b7ecae77eeeafd095292bab3ab0328dc8b))
+* **styles:** Remove webkit tap highlight ([f563035](https://github.com/jacecotton/tcds/commit/f56303525761b06914c93dd2b542901fb2d7ba64))
+* **typography:** Increase medium line-height ([f489324](https://github.com/jacecotton/tcds/commit/f489324497b668f1ec8c98e7d5210128b42274e4))
+
+
+### Features
+
+* **components:** Add Section component - [#3](https://github.com/jacecotton/tcds/issues/3) ([a7c8b39](https://github.com/jacecotton/tcds/commit/a7c8b39ed0f5211f95bf34e54eba414eaf2f97ce))
+
+
+
 ## [0.40.9](https://github.com/jacecotton/tcds/compare/v0.40.8...v0.40.9) (2022-05-26)
 
 
@@ -31,15 +47,6 @@
 ### Bug Fixes
 
 * **components:** Allow multiple Heroes on one page ([9d7cc1a](https://github.com/jacecotton/tcds/commit/9d7cc1ae3345e039193281a3c87f1bd3a6c2e003))
-
-
-
-## [0.40.5](https://github.com/jacecotton/tcds/compare/v0.40.4...v0.40.5) (2022-05-25)
-
-
-### Bug Fixes
-
-* **primitives:** Fix SVG sizing bug ([85c43f5](https://github.com/jacecotton/tcds/commit/85c43f5b323c94a9b656a276746c7d0579dab030))
 
 
 
