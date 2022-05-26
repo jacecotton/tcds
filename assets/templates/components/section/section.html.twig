@@ -8,6 +8,12 @@
 
 {% block root_attributes %}
   id="{{ id }}"
+  {% if vertical_margin or vertical_padding %}
+  style="
+    {% if vertical_margin %} --section-vertical-margin: {{ vertical_margin }}; {% endif %}
+    {% if vertical_padding %} --section-vertical-padding: {{ vertical_padding }}; {% endif %}
+  "
+  {% endif %}
 {% endblock %}
 
 {% block inner_content %}

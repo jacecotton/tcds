@@ -9,7 +9,7 @@
   z-index: 1;
   position: relative;
   padding: var(--section-vertical-padding) 0;
-  margin: var(--section-vertical-margin) 0;
+  margin: var(--section-vertical-margin) 0 max(var(--section-vertical-margin), 0px);
 
   &::before {
     content: "";
