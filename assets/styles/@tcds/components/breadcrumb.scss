@@ -6,6 +6,8 @@
   }
 
   &__item {
+    @include font-size("medium", $line-height: false);
+
     line-height: 0;
 
     &:not(:last-child)::after {

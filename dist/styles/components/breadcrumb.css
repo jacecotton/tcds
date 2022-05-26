@@ -1,1 +1,1 @@
-.Breadcrumb__list{display:flex}.Breadcrumb__item{line-height:0}.Breadcrumb__item:not(:last-child)::after{content:"/";margin:0 1ch;-webkit-user-select:none;-ms-user-select:none;user-select:none}
+.Breadcrumb__list{display:flex}.Breadcrumb__item{font-size:1rem;font-size:clamp(.66rem,.66rem + 1vw,1rem);line-height:0}.Breadcrumb__item:not(:last-child)::after{content:"/";margin:0 1ch;-webkit-user-select:none;-ms-user-select:none;user-select:none}
