@@ -5,6 +5,10 @@
   z-index: 1;
   box-shadow: 0 0 1rem color("shade");
 
+  @include breakpoint-below("medium") {
+    @include full-bleed($add-inner-gutter: false);
+  }
+
   @include breakpoint-above("medium") {
     height: 90px;
 

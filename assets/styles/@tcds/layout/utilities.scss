@@ -1,5 +1,9 @@
 @use "@tcds" as *;
 
+:root {
+  --site-outer-gutter: #{space("x-loose")};
+}
+
 .max-width {
   @include max-width;
 }
