@@ -1,3 +1,12 @@
+## [0.40.8](https://github.com/jacecotton/tcds/compare/v0.40.7...v0.40.8) (2022-05-25)
+
+
+### Bug Fixes
+
+* **components:** Hero ID bug ([b44c9f1](https://github.com/jacecotton/tcds/commit/b44c9f19a3b1646faf6cf965c5a2c8c71003dad6))
+
+
+
 ## [0.40.7](https://github.com/jacecotton/tcds/compare/v0.40.6...v0.40.7) (2022-05-25)
 
 
@@ -31,19 +40,6 @@
 ### Bug Fixes
 
 * **primitives:** Fix attr specificity issue ([20b716a](https://github.com/jacecotton/tcds/commit/20b716a3b954bbc998c8c59c2710a0ab0141b3ab))
-
-
-
-## [0.40.3](https://github.com/jacecotton/tcds/compare/v0.40.2...v0.40.3) (2022-05-24)
-
-
-### Bug Fixes
-
-* **components:** Add support for changing H-rank ([ee02a6e](https://github.com/jacecotton/tcds/commit/ee02a6ef617d92e6f064de5898e1614c98dc233c))
-* **components:** Remove Carousel heading margin ([31de782](https://github.com/jacecotton/tcds/commit/31de7827f3168f2c249a3e659c7ba82e46d2f3f5))
-* **components:** Tweak Mega Menu animation ([2f28ccc](https://github.com/jacecotton/tcds/commit/2f28ccc32343de4b27d00aad7c031bd6747f6f0d))
-* **components:** Tweak Tile style ([bb90844](https://github.com/jacecotton/tcds/commit/bb908448607dfa0c91b12d966c90b8650e354f33))
-* **primitives:** Increase vertical space on hr ([f666707](https://github.com/jacecotton/tcds/commit/f66670754fa423154885d2d7d2311170beeb5fe5))
 
 
 
