@@ -1,3 +1,12 @@
+## [0.41.1](https://github.com/jacecotton/tcds/compare/v0.41.0...v0.41.1) (2022-05-26)
+
+
+### Bug Fixes
+
+* **components:** Section vertical margin/padding ([45d11d5](https://github.com/jacecotton/tcds/commit/45d11d52fc3c7da97e45746668681774cea11891))
+
+
+
 # [0.41.0](https://github.com/jacecotton/tcds/compare/v0.40.9...v0.41.0) (2022-05-26)
 
 
@@ -38,15 +47,6 @@
 ### Bug Fixes
 
 * **components:** Hero ID bug ([21287b1](https://github.com/jacecotton/tcds/commit/21287b1a8cae546cd48335f44ec3146fcd7e84d4))
-
-
-
-## [0.40.6](https://github.com/jacecotton/tcds/compare/v0.40.5...v0.40.6) (2022-05-25)
-
-
-### Bug Fixes
-
-* **components:** Allow multiple Heroes on one page ([9d7cc1a](https://github.com/jacecotton/tcds/commit/9d7cc1ae3345e039193281a3c87f1bd3a6c2e003))
 
 
 
