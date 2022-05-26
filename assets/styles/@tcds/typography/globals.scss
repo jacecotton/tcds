@@ -135,9 +135,8 @@ sup {
 }
 
 p {
-  @include font-size("medium", $line-height: false);
+  @include font-size("medium");
 
-  line-height: line-height("loose");
   margin: 0 0 space("normal", "rem");
 
   &:last-child {

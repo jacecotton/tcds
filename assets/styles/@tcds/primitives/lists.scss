@@ -17,11 +17,11 @@ ol[class]:not(.ol) {
 }
 
 li {
-  line-height: line-height("loose");
+  @include font-size("medium");
 }
 
 dl {
-  line-height: line-height("loose");
+  @include font-size("medium");
 
   &:not(:last-child) {
     margin-bottom: space("normal", "rem");
