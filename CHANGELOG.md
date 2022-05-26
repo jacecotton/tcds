@@ -1,3 +1,12 @@
+## [0.42.3](https://github.com/jacecotton/tcds/compare/v0.42.2...v0.42.3) (2022-05-26)
+
+
+### Bug Fixes
+
+* **components:** Accordion accessibility ([d5b1482](https://github.com/jacecotton/tcds/commit/d5b1482c7fc878e0238ed7af124d2e54e6f6ae53))
+
+
+
 ## [0.42.2](https://github.com/jacecotton/tcds/compare/v0.42.1...v0.42.2) (2022-05-26)
 
 
@@ -33,15 +42,6 @@
 ### Bug Fixes
 
 * **components:** Section content alignment bug ([0f3e2da](https://github.com/jacecotton/tcds/commit/0f3e2da0c12b2990c66621bf58c4ed7abe0b6a67))
-
-
-
-## [0.41.1](https://github.com/jacecotton/tcds/compare/v0.41.0...v0.41.1) (2022-05-26)
-
-
-### Bug Fixes
-
-* **components:** Section vertical margin/padding ([45d11d5](https://github.com/jacecotton/tcds/commit/45d11d52fc3c7da97e45746668681774cea11891))
 
 
 
