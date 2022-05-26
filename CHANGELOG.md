@@ -1,3 +1,12 @@
+## [0.40.9](https://github.com/jacecotton/tcds/compare/v0.40.8...v0.40.9) (2022-05-26)
+
+
+### Bug Fixes
+
+* **primitives:** Media element overflow bug ([ca8e657](https://github.com/jacecotton/tcds/commit/ca8e65706f37ab539ce3fce3c8aa5033570ac1a8))
+
+
+
 ## [0.40.8](https://github.com/jacecotton/tcds/compare/v0.40.7...v0.40.8) (2022-05-25)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **primitives:** Fix SVG sizing bug ([85c43f5](https://github.com/jacecotton/tcds/commit/85c43f5b323c94a9b656a276746c7d0579dab030))
-
-
-
-## [0.40.4](https://github.com/jacecotton/tcds/compare/v0.40.3...v0.40.4) (2022-05-24)
-
-
-### Bug Fixes
-
-* **primitives:** Fix attr specificity issue ([20b716a](https://github.com/jacecotton/tcds/commit/20b716a3b954bbc998c8c59c2710a0ab0141b3ab))
 
 
 
