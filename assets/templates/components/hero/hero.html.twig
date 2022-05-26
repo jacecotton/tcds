@@ -1,71 +1,12 @@
-{% extends "@tcds/components/component/component.html.twig" %}
+{% extends "@tcds/components/section/section.html.twig" %}
 
-{% set component_name = "Hero" %}
+{% if custom_classes is not defined %}
+  {% set custom_classes = [] %}
+{% endif %}
 
-{% set root_element = "section" %}
+{% set custom_classes = custom_classes|merge(["Hero"]) %}
 
-{% set id = random(0, 1000) %}
-
-{% block root_attributes %}
-  {% if interval %}
-    data-interval="{{ interval }}"
-  {% endif %}
-
-  id="hero-{{ id }}"
-
-  {# {% if backgrounds|length == 1 %}
-    style="background-image: url('{{ backgrounds[0] }}')"
-  {% elseif backgrounds|length > 1 %}
-    data-background-images="{% for background in backgrounds %}{{ background }} {% endfor %}"
-  {% endif %} #}
-{% endblock %}
-
-{% block inner_content %}
-  {% if backgrounds|length == 1 %}
-    <style>
-      #hero-{{ id }} {
-        background-image: url({{ backgrounds[0]["default"]["image"] }});
-        background-position: {{ backgrounds[0]["default"]["pos_x"] }} {{ backgrounds[0]["default"]["pos_y"] }};
-      }
-
-      {% if backgrounds[0]["above_small"]["image"] is defined and backgrounds[0]["above_small"]["image"] is not empty and backgrounds[0]["above_small"]["image"] != "/" %}
-        @media (min-width: 640px) {
-          #hero-{{ id }} {
-            background-image: url({{ backgrounds[0]["above_small"]["image"] }});
-            background-position: {{ backgrounds[0]["above_small"]["pos_x"] }} {{ backgrounds[0]["above_small"]["pos_y"] }};
-          }
-        }
-      {% endif %}
-
-      {% if backgrounds[0]["above_medium"]["image"] is defined and backgrounds[0]["above_medium"]["image"] is not empty and backgrounds[0]["above_medium"]["image"] != "/" %}
-        @media (min-width: 768px) {
-          #hero-{{ id }} {
-            background-image: url({{ backgrounds[0]["above_medium"]["image"] }});
-            background-position: {{ backgrounds[0]["above_medium"]["pos_x"] }} {{ backgrounds[0]["above_medium"]["pos_y"] }};
-          }
-        }
-      {% endif %}
-
-      {% if backgrounds[0]["above_large"]["image"] is defined and backgrounds[0]["above_large"]["image"] is not empty and backgrounds[0]["above_large"]["image"] != "/" %}
-        @media (min-width: 1024px) {
-          #hero-{{ id }} {
-            background-image: url({{ backgrounds[0]["above_large"]["image"] }});
-            background-position: {{ backgrounds[0]["above_large"]["pos_x"] }} {{ backgrounds[0]["above_large"]["pos_y"] }};
-          }
-        }
-      {% endif %}
-
-      {% if backgrounds[0]["above_x_large"]["image"] is defined and backgrounds[0]["above_x_large"]["image"] is not empty and backgrounds[0]["above_x_large"]["image"] != "/" %}
-        @media (min-width: 1280px) {
-          #hero-{{ id }} {
-            background-image: url({{ backgrounds[0]["above_x_large"]["image"] }});
-            background-position: {{ backgrounds[0]["above_x_large"]["pos_x"] }} {{ backgrounds[0]["above_x_large"]["pos_y"] }};
-          }
-        }
-      {% endif %}
-    </style>
-  {% endif %}
-
+{% block root_content %}
   <div class="Hero__print-safe">
     <div class="Hero__content-area">
       {% if block("start") %}

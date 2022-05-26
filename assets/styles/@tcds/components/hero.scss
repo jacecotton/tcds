@@ -1,124 +1,12 @@
 @use "@tcds" as *;
 
-/**
- * 1. Make padding add to the box's total dimensions, rather than pushing
- *    content inwards (as in `box-sizing: border-box`).
- * 2. Set the minimum height to 100% of the viewport height, minus top and
- *    bottom padding (so the total height isn't 100% plus padding). Then, if
- *    defined, subtract the height of the site's header, which will be added as
- *    top padding in 4.
- * 3. Set the top padding to the height of the site header (to be pulled up by
- *    the same amount in 5), plus whatever additional top padding is specified.
- * 4. Pull the hero up with a negative top margin, by the height of the site
- *    header (so that the header overlays the hero).
- */
-
 .Hero {
-  --hero-padding-bottom: 6rem;
-  --hero-padding-top: 6rem;
-
-  background-size: cover;
-  background-position: center;
-  z-index: 1;
-  position: relative;
-  color: #fff;
+  padding: 0;
 
   @include breakpoint-above("medium") {
     box-sizing: content-box;
     padding-top: var(--site-header-height, 0);
     margin-top: calc(var(--site-header-height, 0px) * -1);
-  }
-
-  /** Modifiers */
-
-  &:not(#{&}--vertically-responsive):not(#{&}--full-height) {
-    --hero-aspect-ratio: 4 / 3; // Standard aspect ratio
-
-    @include breakpoint-above("medium") {
-      --hero-aspect-ratio: 16 / 9; // Standard widescreen aspect ratio
-    }
-
-    @include breakpoint-above("x-large") {
-      --hero-aspect-ratio: 16 / 5; // Standard ultra-widescreen aspect ratio
-    }
-  }
-
-  &--vertically-responsive {
-    --hero-base-height: calc(75vh - var(--site-header-height, 0px));
-  }
-
-  /**
-   * Enable cross-fade effect between images if there are multiple.
-   */
-  &[data-background-images] {
-    background-blend-mode: darken;
-    transition: background-image 3s;
-  }
-
-  /**
-   * Make hero fill the full height of the window. Note the minimum height will
-   * still be the height of the inner content plus top and bottom padding (even
-   * if the window height scales below that).
-   */
-  &--full-height {
-    --hero-base-height: calc(100vh - var(--site-header-height, 0px));
-  }
-
-  /**
-   * Align content to the bottom of the hero.
-   */
-  &--align-bottom {
-    --hero-align-items: end;
-  }
-
-  /**
-   * Only allow parallax if reduced motion preference is not set. Note this
-   * property is not necessary for the parallax effect, but serves as a decent
-   * fallback if the JavaScript effect fails.
-   */
-  @include motion-ok {
-    &--parallax {
-      background-attachment: fixed;
-    }
-  }
-
-  /**
-   * Add a darkened overlay over a Hero's background image to increase contrast
-   * between it and the text content.
-   */
-  &--darken-overlay::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: -1;
-    background-color: rgb(0 0 0 / 20%);
-    background-color: rgb(0 0 0 / var(--hero-overlay-opacity, 20%));
-  }
-
-  /**
-   * Add a dark gradient affixed to the bottom of the Hero to add contrast to
-   * the text content (works best with the align-bottom modifier).
-   */
-  &--bottom-gradient::after {
-    content: "";
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: -1;
-    height: 50%;
-    background-image: linear-gradient(to top, rgb(0 0 0 / 50%) 0%, transparent 100%);
-  }
-
-  /**
-   * Add a dark text shadow to the Hero content to increase contrast between it
-   * and the background image.
-   */
-  &--text-shadow {
-    text-shadow: 0 0 1rem color("shade");
   }
 
   /** Children */
@@ -136,7 +24,7 @@
     display: flex;
     align-items: center;
     gap: space("x-loose");
-    padding: var(--hero-padding-top, 0) 0 var(--hero-padding-bottom, 0);
+    padding: var(--section-vertical-padding, 0) 0;
 
     @include breakpoint-above("medium") {
       padding-left: 3rem;
@@ -170,6 +58,51 @@
       &:not(:hover) {
         text-decoration: none;
       }
+    }
+  }
+}
+
+.Section {
+  &:not(#{&}--vertically-responsive):not(#{&}--full-height) {
+    --hero-aspect-ratio: 4 / 3; // Standard aspect ratio
+
+    @include breakpoint-above("medium") {
+      --hero-aspect-ratio: 16 / 9; // Standard widescreen aspect ratio
+    }
+
+    @include breakpoint-above("x-large") {
+      --hero-aspect-ratio: 16 / 5; // Standard ultra-widescreen aspect ratio
+    }
+  }
+
+  &--vertically-responsive {
+    --hero-base-height: calc(75vh - var(--site-header-height, 0px));
+  }
+
+  /**
+   * Make hero fill the full height of the window. Note the minimum height will
+   * still be the height of the inner content plus top and bottom padding (even
+   * if the window height scales below that).
+   */
+  &--full-height {
+    --hero-base-height: calc(100vh - var(--site-header-height, 0px));
+  }
+
+  /**
+   * Align content to the bottom of the hero.
+   */
+  &--align-bottom {
+    --hero-align-items: end;
+  }
+
+  /**
+   * Only allow parallax if reduced motion preference is not set. Note this
+   * property is not necessary for the parallax effect, but serves as a decent
+   * fallback if the JavaScript effect fails.
+   */
+  @include motion-ok {
+    &--parallax {
+      background-attachment: fixed;
     }
   }
 }

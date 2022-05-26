@@ -1,0 +1,47 @@
+{% extends "@tcds/components/component/component.html.twig" %}
+
+{% set component_name = "Section" %}
+
+{% set root_element = "section" %}
+
+{% set id = "section-#{random(0, 1000)}" %}
+
+{% block root_attributes %}
+  id="{{ id }}"
+{% endblock %}
+
+{% block inner_content %}
+  {% if backgrounds|length == 1 %}
+    {% set breakpoints = {
+      "default": "",
+      "above_small": "640px",
+      "above_medium": "768px",
+      "above_large": "1024px",
+      "above_x_large": "1280px",
+    } %}
+
+    <style>
+      {% for breakpoint, value in breakpoints %}
+        {% set image = backgrounds[0][breakpoint] %}
+
+        {% if image["image"] is defined and image["image"] is not empty and image["image"] != "/" %}
+          {% if breakpoint != "default" %} @media (min-width: {{ value }}) { {% endif %}
+            #{{ id }} {
+              background-image: url({{ image["image"] }});
+              background-position: {{ image["pos_x"] }} {{ image["pos_y"] }};
+              color: #fff;
+            }
+          {% if breakpoint != "default" %} } {% endif %}
+        {% endif %}
+      {% endfor %}
+    </style>
+  {% endif %}
+
+  {% block root_content %}
+    <div class="max-width">
+      {% block content %}
+        {{ content }}
+      {% endblock %}
+    </div>
+  {% endblock %}
+{% endblock %}

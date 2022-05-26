@@ -81,9 +81,9 @@ export default class Hero {
   }
 }
 
-document.querySelectorAll("[data-component=Hero]").forEach((instance) => {
+document.querySelectorAll(".Hero[data-component=Section]").forEach((instance) => {
   instance && new Hero(instance, {
     interval: instance.getAttribute("data-interval") || 10000,
-    parallax: instance.classList.contains("Hero--parallax"),
+    parallax: instance.classList.contains("Section--parallax"),
   });
 });
