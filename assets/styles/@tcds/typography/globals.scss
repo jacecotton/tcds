@@ -40,7 +40,6 @@ h1,
 .h1 {
   @include font-size("xx-large");
 
-  font-weight: font-weight("semibold");
   letter-spacing: -0.025em;
   margin: 0 0 2rem;
 }
@@ -49,7 +48,6 @@ h2,
 .h2 {
   @include font-size("x-large");
 
-  font-weight: font-weight("normal");
   letter-spacing: -0.0125em;
 }
 
@@ -57,7 +55,6 @@ h3,
 .h3 {
   @include font-size("large");
 
-  font-weight: font-weight("normal");
   letter-spacing: 0.0125em;
 }
 
@@ -65,7 +62,6 @@ h4,
 .h4 {
   @include font-size("medium-plus");
 
-  font-weight: font-weight("normal");
   letter-spacing: 0.0125em;
 }
 
@@ -73,7 +69,6 @@ h5,
 .h5 {
   @include font-size("medium");
 
-  font-weight: font-weight("bold");
   letter-spacing: 0.0125em;
 }
 
@@ -93,6 +88,7 @@ h6,
 .h5,
 .h6 {
   font-family: font-stack("headings");
+  font-weight: font-weight("bold");
 }
 
 :where(h2, h3, h4, h5, h6), // 1
