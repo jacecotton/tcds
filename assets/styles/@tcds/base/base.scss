@@ -71,9 +71,9 @@ img,
 svg,
 video {
   vertical-align: middle; // 1
+  max-width: 100%; // 2
 
-  &:where(:not([width]):not([height])) {
-    max-width: 100%; // 2
+  &:where(:not([height])) {
     height: auto;
   }
 }
