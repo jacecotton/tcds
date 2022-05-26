@@ -49,6 +49,7 @@ body {
 /**
  * 1. Provide a more "native" feel on touch devices by removing the double-tap
  *    delay of single-tap-only elements.
+ * 2. Remove highlight flicker on tap on iOS devices.
  */
 a,
 button,
@@ -57,6 +58,7 @@ select,
 summary,
 textarea {
   touch-action: manipulation; // 1
+  -webkit-tap-highlight-color: rgb(0 0 0 / 0%); // 2
 }
 
 /**
