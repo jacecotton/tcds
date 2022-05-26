@@ -1,3 +1,13 @@
+# [0.42.0](https://github.com/jacecotton/tcds/compare/v0.41.2...v0.42.0) (2022-05-26)
+
+
+### Features
+
+* **components:** Add Callout component - [#3](https://github.com/jacecotton/tcds/issues/3) ([307845f](https://github.com/jacecotton/tcds/commit/307845f247520cfb3d990ab8a446524abd6950ca))
+* **layout:** Add gutter and full bleed utilities ([9cc83f4](https://github.com/jacecotton/tcds/commit/9cc83f4e70f219fbbcdefd24d8dc99215b3d3f40))
+
+
+
 ## [0.41.2](https://github.com/jacecotton/tcds/compare/v0.41.1...v0.41.2) (2022-05-26)
 
 
@@ -38,15 +48,6 @@
 ### Bug Fixes
 
 * **primitives:** Media element overflow bug ([ca8e657](https://github.com/jacecotton/tcds/commit/ca8e65706f37ab539ce3fce3c8aa5033570ac1a8))
-
-
-
-## [0.40.8](https://github.com/jacecotton/tcds/compare/v0.40.7...v0.40.8) (2022-05-25)
-
-
-### Bug Fixes
-
-* **components:** Hero ID bug ([b44c9f1](https://github.com/jacecotton/tcds/commit/b44c9f19a3b1646faf6cf965c5a2c8c71003dad6))
 
 
 
