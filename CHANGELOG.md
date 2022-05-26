@@ -1,3 +1,12 @@
+## [0.41.2](https://github.com/jacecotton/tcds/compare/v0.41.1...v0.41.2) (2022-05-26)
+
+
+### Bug Fixes
+
+* **components:** Section content alignment bug ([0f3e2da](https://github.com/jacecotton/tcds/commit/0f3e2da0c12b2990c66621bf58c4ed7abe0b6a67))
+
+
+
 ## [0.41.1](https://github.com/jacecotton/tcds/compare/v0.41.0...v0.41.1) (2022-05-26)
 
 
@@ -38,15 +47,6 @@
 ### Bug Fixes
 
 * **components:** Hero ID bug ([b44c9f1](https://github.com/jacecotton/tcds/commit/b44c9f19a3b1646faf6cf965c5a2c8c71003dad6))
-
-
-
-## [0.40.7](https://github.com/jacecotton/tcds/compare/v0.40.6...v0.40.7) (2022-05-25)
-
-
-### Bug Fixes
-
-* **components:** Hero ID bug ([21287b1](https://github.com/jacecotton/tcds/commit/21287b1a8cae546cd48335f44ec3146fcd7e84d4))
 
 
 
