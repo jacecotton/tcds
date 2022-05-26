@@ -47,7 +47,7 @@
         </button>
       {% if heading_level %} </h{{ heading_level }}> {% endif %}
 
-      <div data-component-part="panel" class="Accordion__panel" id="{{ section_id }}-panel" aria-labelledby="{{ section_id }}-button">
+      <div data-component-part="panel" class="Accordion__panel" id="{{ section_id }}-panel" aria-labelledby="{{ section_id }}-button" hidden>
         <div class="Accordion__content">
           {{ section.content ? section.content|raw }}
           {{ block(section.block) is defined ? block(section.block) }}

@@ -80,6 +80,7 @@ export default class Accordion extends Component {
       } else {
         // Collapse the panel (causes transition).
         panel.style.height = "0px";
+
         // After that transition ends...
         panel.ontransitionend = () => {
           // Fully hide the panel for proper correspondence with ARIA state.
