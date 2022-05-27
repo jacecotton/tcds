@@ -1,3 +1,12 @@
+## [0.42.4](https://github.com/jacecotton/tcds/compare/v0.42.3...v0.42.4) (2022-05-27)
+
+
+### Bug Fixes
+
+* **styles:** Full bleed horizontal overflow bug ([a1c88a9](https://github.com/jacecotton/tcds/commit/a1c88a936d9e8e31844f2ad77c62a5ab6c7891af))
+
+
+
 ## [0.42.3](https://github.com/jacecotton/tcds/compare/v0.42.2...v0.42.3) (2022-05-26)
 
 
@@ -33,15 +42,6 @@
 
 * **components:** Add Callout component - [#3](https://github.com/jacecotton/tcds/issues/3) ([307845f](https://github.com/jacecotton/tcds/commit/307845f247520cfb3d990ab8a446524abd6950ca))
 * **layout:** Add gutter and full bleed utilities ([9cc83f4](https://github.com/jacecotton/tcds/commit/9cc83f4e70f219fbbcdefd24d8dc99215b3d3f40))
-
-
-
-## [0.41.2](https://github.com/jacecotton/tcds/compare/v0.41.1...v0.41.2) (2022-05-26)
-
-
-### Bug Fixes
-
-* **components:** Section content alignment bug ([0f3e2da](https://github.com/jacecotton/tcds/commit/0f3e2da0c12b2990c66621bf58c4ed7abe0b6a67))
 
 
 
