@@ -7,6 +7,7 @@
   right: 0;
   background-color: theme-color("secondary");
   color: theme-color("secondary", "0");
-  padding: space("x-loose") 0;
   z-index: -2;
+  padding: calc(var(--site-header-height) + #{space("x-loose")} - 10px) 0 space("x-loose");
+  margin-top: calc(var(--site-header-height) * -1 + 10px);
 }
