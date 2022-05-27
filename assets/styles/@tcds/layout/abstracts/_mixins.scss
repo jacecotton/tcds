@@ -28,13 +28,13 @@
 
 @mixin max-width {
   margin: 0 auto;
-  width: calc(100% - var(--site-outer-gutter));
+  width: calc(100% - (var(--site-outer-gutter) * 2));
   max-width: breakpoint("x-large");
 }
 
 @mixin full-bleed($add-inner-gutter: true) {
-  margin-left: calc(var(--container-gutter, var(--site-outer-gutter)) / 2 * -1);
-  margin-right: calc(var(--container-gutter, var(--site-outer-gutter)) / 2 * -1);
+  margin-left: calc(var(--container-gutter, var(--site-outer-gutter)) * -1);
+  margin-right: calc(var(--container-gutter, var(--site-outer-gutter)) * -1);
 
   @if $add-inner-gutter == true {
     padding-left: var(--container-gutter, var(--site-outer-gutter));
