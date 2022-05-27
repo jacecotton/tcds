@@ -1,3 +1,12 @@
+## [0.42.6](https://github.com/jacecotton/tcds/compare/v0.42.5...v0.42.6) (2022-05-27)
+
+
+### Bug Fixes
+
+* **styles:** Fix max-width calculation error ([bce20ea](https://github.com/jacecotton/tcds/commit/bce20eaa7d7b8f285dd8ecae8bba378f4b6a11b1))
+
+
+
 ## [0.42.5](https://github.com/jacecotton/tcds/compare/v0.42.4...v0.42.5) (2022-05-27)
 
 
@@ -31,16 +40,6 @@
 ### Bug Fixes
 
 * **typography:** Make all headings bold ([daabde7](https://github.com/jacecotton/tcds/commit/daabde79ee1b8d2ca34843197c0aad49f93bf7d2))
-
-
-
-## [0.42.1](https://github.com/jacecotton/tcds/compare/v0.42.0...v0.42.1) (2022-05-26)
-
-
-### Bug Fixes
-
-* **components:** Add Callout template ([bb50337](https://github.com/jacecotton/tcds/commit/bb50337829ca2f591c273bc7b75b11dac448eb90))
-* **components:** Fix Callout spacing bug ([ca3fd09](https://github.com/jacecotton/tcds/commit/ca3fd0974d8c0385f568ecf31479e9016817385b))
 
 
 
