@@ -14,7 +14,6 @@ body {
 :where(a) {
   color: theme-color("link");
   text-decoration: underline;
-  vertical-align: middle;
   transition: color animation("productive");
 }
 
