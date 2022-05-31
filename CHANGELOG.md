@@ -1,3 +1,12 @@
+# [0.44.0](https://github.com/jacecotton/tcds/compare/v0.43.0...v0.44.0) (2022-05-31)
+
+
+### Features
+
+* **primitives:** Add x-large modifier to input ([9cee832](https://github.com/jacecotton/tcds/commit/9cee832ca7f9cc623931beb458097ba436aa61af))
+
+
+
 # [0.43.0](https://github.com/jacecotton/tcds/compare/v0.42.6...v0.43.0) (2022-05-31)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * **styles:** Full bleed horizontal overflow bug ([a1c88a9](https://github.com/jacecotton/tcds/commit/a1c88a936d9e8e31844f2ad77c62a5ab6c7891af))
-
-
-
-## [0.42.3](https://github.com/jacecotton/tcds/compare/v0.42.2...v0.42.3) (2022-05-26)
-
-
-### Bug Fixes
-
-* **components:** Accordion accessibility ([d5b1482](https://github.com/jacecotton/tcds/commit/d5b1482c7fc878e0238ed7af124d2e54e6f6ae53))
 
 
 
