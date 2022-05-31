@@ -1,3 +1,13 @@
+# [0.43.0](https://github.com/jacecotton/tcds/compare/v0.42.6...v0.43.0) (2022-05-31)
+
+
+### Features
+
+* **icons:** Add marker icon ([4f7730c](https://github.com/jacecotton/tcds/commit/4f7730cff379948d163ce4a87a2b686c86cf7956))
+* **primitives:** Add large modifier to inputs ([0392b65](https://github.com/jacecotton/tcds/commit/0392b65bee85c8893787af20bca7768ad49e4c24))
+
+
+
 ## [0.42.6](https://github.com/jacecotton/tcds/compare/v0.42.5...v0.42.6) (2022-05-27)
 
 
@@ -31,15 +41,6 @@
 ### Bug Fixes
 
 * **components:** Accordion accessibility ([d5b1482](https://github.com/jacecotton/tcds/commit/d5b1482c7fc878e0238ed7af124d2e54e6f6ae53))
-
-
-
-## [0.42.2](https://github.com/jacecotton/tcds/compare/v0.42.1...v0.42.2) (2022-05-26)
-
-
-### Bug Fixes
-
-* **typography:** Make all headings bold ([daabde7](https://github.com/jacecotton/tcds/commit/daabde79ee1b8d2ca34843197c0aad49f93bf7d2))
 
 
 
