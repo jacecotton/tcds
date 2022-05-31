@@ -55,6 +55,8 @@ select {
   }
 
   &--x-large {
+    @include font-size("medium");
+
     height: size("x-large");
   }
 }
