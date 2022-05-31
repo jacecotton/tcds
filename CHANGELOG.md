@@ -1,3 +1,12 @@
+## [0.44.1](https://github.com/jacecotton/tcds/compare/v0.44.0...v0.44.1) (2022-05-31)
+
+
+### Bug Fixes
+
+* **primitives:** Tweak input x-large ([ba2d91c](https://github.com/jacecotton/tcds/commit/ba2d91c73a5273fdc26f7c6ccedff1b758a0e60d))
+
+
+
 # [0.44.0](https://github.com/jacecotton/tcds/compare/v0.43.0...v0.44.0) (2022-05-31)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * **components:** Mega Menu animation tweak ([616e0de](https://github.com/jacecotton/tcds/commit/616e0de4b7988b1df5264365f7a1021511ea98b5))
-
-
-
-## [0.42.4](https://github.com/jacecotton/tcds/compare/v0.42.3...v0.42.4) (2022-05-27)
-
-
-### Bug Fixes
-
-* **styles:** Full bleed horizontal overflow bug ([a1c88a9](https://github.com/jacecotton/tcds/commit/a1c88a936d9e8e31844f2ad77c62a5ab6c7891af))
 
 
 
