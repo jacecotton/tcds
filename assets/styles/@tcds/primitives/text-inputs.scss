@@ -15,11 +15,12 @@ label {
 [type="password"],
 textarea,
 select {
+  @include font-size("small");
+
   appearance: none;
   border: 1px solid color("gray", "100");
   background-color: #fff;
   font-family: font-stack("ui");
-  font-size: font-size("small");
   padding: 0 space("normal");
   height: size("medium");
   width: 100%;
@@ -44,4 +45,12 @@ select {
   background-position: calc(100% - #{space("normal")}) center;
   background-size: auto 40%;
   background-repeat: no-repeat;
+}
+
+.input {
+  &--large {
+    @include font-size("medium");
+
+    height: size("large");
+  }
 }
