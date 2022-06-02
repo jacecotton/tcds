@@ -12,7 +12,7 @@
     margin: 0;
   }
 
-  &__section {
+  &__section:not(:last-child) {
     border-bottom: 1px solid color("gray", "100");
   }
 
@@ -37,10 +37,6 @@
 
     &:focus-visible {
       @include focus-style;
-    }
-
-    &:focus-visible:hover {
-      @include focus-style($inverted: true);
     }
 
     &[aria-expanded="true"] {
