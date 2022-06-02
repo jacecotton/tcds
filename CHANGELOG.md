@@ -1,3 +1,12 @@
+## [0.46.4](https://github.com/jacecotton/tcds/compare/v0.46.3...v0.46.4) (2022-06-02)
+
+
+### Bug Fixes
+
+* **components:** Mega Menu responsiveness ([3c7b60f](https://github.com/jacecotton/tcds/commit/3c7b60f262828b9d85e52e771f5eb63684650a1f))
+
+
+
 ## [0.46.3](https://github.com/jacecotton/tcds/compare/v0.46.2...v0.46.3) (2022-06-02)
 
 
@@ -38,15 +47,6 @@
 ### Features
 
 * **components:** Toggleable localstorage state ([1cee76a](https://github.com/jacecotton/tcds/commit/1cee76a2fb0e86fa0d5508e9b35d4df7fc8073ee))
-
-
-
-## [0.45.4](https://github.com/jacecotton/tcds/compare/v0.45.3...v0.45.4) (2022-06-02)
-
-
-### Bug Fixes
-
-* Module load bug ([9f72344](https://github.com/jacecotton/tcds/commit/9f7234486079351343b7b2b0f9401ae0dfc83d8b))
 
 
 
