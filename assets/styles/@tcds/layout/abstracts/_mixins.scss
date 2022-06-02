@@ -33,11 +33,11 @@
 }
 
 @mixin full-bleed($add-inner-gutter: true) {
-  margin-left: calc(var(--container-gutter, var(--site-outer-gutter)) * -1);
-  margin-right: calc(var(--container-gutter, var(--site-outer-gutter)) * -1);
+  margin-left: calc(var(--content-inner-gutter, var(--site-outer-gutter)) * -1);
+  margin-right: calc(var(--content-inner-gutter, var(--site-outer-gutter)) * -1);
 
   @if $add-inner-gutter == true {
-    padding-left: var(--container-gutter, var(--site-outer-gutter));
-    padding-right: var(--container-gutter, var(--site-outer-gutter));
+    padding-left: var(--content-inner-gutter, var(--site-outer-gutter));
+    padding-right: var(--content-inner-gutter, var(--site-outer-gutter));
   }
 }
