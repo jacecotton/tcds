@@ -1,3 +1,12 @@
+## [0.46.1](https://github.com/jacecotton/tcds/compare/v0.46.0...v0.46.1) (2022-06-02)
+
+
+### Bug Fixes
+
+* **typography:** Make body font size responsive ([c190937](https://github.com/jacecotton/tcds/commit/c1909372097b182ea2e39bc8e4ea484bb46108ba))
+
+
+
 # [0.46.0](https://github.com/jacecotton/tcds/compare/v0.45.4...v0.46.0) (2022-06-02)
 
 
@@ -37,15 +46,6 @@
 
 * **components:** Tweak Card styles ([a497400](https://github.com/jacecotton/tcds/commit/a497400078d2f765b9d41706bb977a009925d082))
 * **styles:** Change inner gutter variable name ([3bd9047](https://github.com/jacecotton/tcds/commit/3bd9047e75181e0f2b97ab18664084f8f120965d))
-
-
-
-## [0.45.1](https://github.com/jacecotton/tcds/compare/v0.45.0...v0.45.1) (2022-06-02)
-
-
-### Bug Fixes
-
-* **twig:** Nested component bug ([1feec35](https://github.com/jacecotton/tcds/commit/1feec351023b20642c191328201107d2e0055c46))
 
 
 
