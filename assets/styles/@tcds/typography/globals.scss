@@ -1,9 +1,10 @@
 @use "@tcds" as *;
 
 body {
+  @include font-size("medium");
+
   color: color("gray", "400");
   font-family: font-stack("default");
-  font-size: font-size("medium");
 }
 
 /**
