@@ -68,7 +68,7 @@
   }
 
   &__heading {
-    @include font-size("medium-plus", $custom-property: "--tile-heading-size");
+    @include font-size("medium-plus", $custom-property: "--tile-heading-size", $line-height: false);
 
     font-family: font-stack("headings");
     font-weight: font-weight("semibold");
