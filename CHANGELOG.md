@@ -1,3 +1,12 @@
+## [0.46.3](https://github.com/jacecotton/tcds/compare/v0.46.2...v0.46.3) (2022-06-02)
+
+
+### Bug Fixes
+
+* **components:** Mega Menu responsiveness ([7eda3b4](https://github.com/jacecotton/tcds/commit/7eda3b451252f4c4fb7d1b1b87aea84f44c8abdb))
+
+
+
 ## [0.46.2](https://github.com/jacecotton/tcds/compare/v0.46.1...v0.46.2) (2022-06-02)
 
 
@@ -38,15 +47,6 @@
 ### Bug Fixes
 
 * Module load bug ([9f72344](https://github.com/jacecotton/tcds/commit/9f7234486079351343b7b2b0f9401ae0dfc83d8b))
-
-
-
-## [0.45.3](https://github.com/jacecotton/tcds/compare/v0.45.2...v0.45.3) (2022-06-02)
-
-
-### Bug Fixes
-
-* Fix module load bug ([a92a3eb](https://github.com/jacecotton/tcds/commit/a92a3eb90a6ea567a91173c61e34d196bf04d5d7))
 
 
 
