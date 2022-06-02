@@ -1,6 +1,15 @@
-import Component from "@tcds/Component.js";
+import Component from "@tcds/utilities/Component.js";
 import AnimateElement from "@tcds/animation/AnimateElement.js";
 
+/**
+ * MegaMenu component script.
+ *
+ * Note this script extends the Toggleable primitive, sharing base functionality
+ * with other components that toggle (open and close) content.
+ *
+ * The functionality added by this script is:
+ * - Closes other Mega Menu instances when an instance is opened.
+ */
 export default class MegaMenu extends Component {
   constructor(element, props) {
     super(element, props);

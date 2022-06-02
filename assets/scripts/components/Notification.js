@@ -1,4 +1,4 @@
-import Component from "@tcds/Component.js";
+import Component from "@tcds/utilities/Component.js";
 
 export default class Notification extends Component {
   constructor(element, props) {
@@ -7,7 +7,7 @@ export default class Notification extends Component {
     this.message = this.element.querySelector("[data-component-part=message]");
     this.dismissButton = this.element.querySelector("[data-component-part=dismiss]");
     this.expandButton = this.element.querySelector("[data-component-part=expand]");
-    this.localStorageState = `notification_${this.message.getAttribute("id")}_state`;
+    this.localStorageState = `notification_${this.message.id}_state`;
 
     this.state.expanded = localStorage.getItem(this.localStorageState) === "dismissed" ? false : true;
 
