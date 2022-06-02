@@ -1,3 +1,17 @@
+# [0.46.0](https://github.com/jacecotton/tcds/compare/v0.45.4...v0.46.0) (2022-06-02)
+
+
+### Bug Fixes
+
+* **components:** Dialog focus trap bug ([9792233](https://github.com/jacecotton/tcds/commit/9792233d092132b0992637066aad88bc3ce98456))
+
+
+### Features
+
+* **components:** Toggleable localstorage state ([1cee76a](https://github.com/jacecotton/tcds/commit/1cee76a2fb0e86fa0d5508e9b35d4df7fc8073ee))
+
+
+
 ## [0.45.4](https://github.com/jacecotton/tcds/compare/v0.45.3...v0.45.4) (2022-06-02)
 
 
@@ -32,23 +46,6 @@
 ### Bug Fixes
 
 * **twig:** Nested component bug ([1feec35](https://github.com/jacecotton/tcds/commit/1feec351023b20642c191328201107d2e0055c46))
-
-
-
-# [0.45.0](https://github.com/jacecotton/tcds/compare/v0.44.2...v0.45.0) (2022-06-02)
-
-
-### Bug Fixes
-
-* **components:** Tweak Accordion styles ([a9d40bb](https://github.com/jacecotton/tcds/commit/a9d40bbf9e1019ac959062a5ed6c29dc705b6617))
-* **scripts:** Animation event listener bug ([e116fd7](https://github.com/jacecotton/tcds/commit/e116fd7b17c26902f34dbef6fe76d69df3fdbe3d))
-* **styles:** Update focus style ([501ed6e](https://github.com/jacecotton/tcds/commit/501ed6e968b2892f19f770f15958bb93779b4540))
-
-
-### Features
-
-* **components:** Add Dialog component ([72761dd](https://github.com/jacecotton/tcds/commit/72761dd6a22f2acf9a799ef7bee6f8327909de59))
-* **scripts:** Add Toggleable component primitive ([1da1a9e](https://github.com/jacecotton/tcds/commit/1da1a9ee39c442c904497813b82e302a94f89d8e))
 
 
 
