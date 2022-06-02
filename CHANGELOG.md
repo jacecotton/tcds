@@ -1,3 +1,12 @@
+## [0.44.2](https://github.com/jacecotton/tcds/compare/v0.44.1...v0.44.2) (2022-05-31)
+
+
+### Bug Fixes
+
+* **typography:** Vertical alignment on anchor tags ([70c2c32](https://github.com/jacecotton/tcds/commit/70c2c32b7cae5a8dfe9d8643fa9d27437cc290e3))
+
+
+
 ## [0.44.1](https://github.com/jacecotton/tcds/compare/v0.44.0...v0.44.1) (2022-05-31)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * **styles:** Fix max-width calculation error ([bce20ea](https://github.com/jacecotton/tcds/commit/bce20eaa7d7b8f285dd8ecae8bba378f4b6a11b1))
-
-
-
-## [0.42.5](https://github.com/jacecotton/tcds/compare/v0.42.4...v0.42.5) (2022-05-27)
-
-
-### Bug Fixes
-
-* **components:** Mega Menu animation tweak ([616e0de](https://github.com/jacecotton/tcds/commit/616e0de4b7988b1df5264365f7a1021511ea98b5))
 
 
 
