@@ -1,3 +1,12 @@
+## [0.45.4](https://github.com/jacecotton/tcds/compare/v0.45.3...v0.45.4) (2022-06-02)
+
+
+### Bug Fixes
+
+* Module load bug ([9f72344](https://github.com/jacecotton/tcds/commit/9f7234486079351343b7b2b0f9401ae0dfc83d8b))
+
+
+
 ## [0.45.3](https://github.com/jacecotton/tcds/compare/v0.45.2...v0.45.3) (2022-06-02)
 
 
@@ -40,15 +49,6 @@
 
 * **components:** Add Dialog component ([72761dd](https://github.com/jacecotton/tcds/commit/72761dd6a22f2acf9a799ef7bee6f8327909de59))
 * **scripts:** Add Toggleable component primitive ([1da1a9e](https://github.com/jacecotton/tcds/commit/1da1a9ee39c442c904497813b82e302a94f89d8e))
-
-
-
-## [0.44.2](https://github.com/jacecotton/tcds/compare/v0.44.1...v0.44.2) (2022-05-31)
-
-
-### Bug Fixes
-
-* **typography:** Vertical alignment on anchor tags ([70c2c32](https://github.com/jacecotton/tcds/commit/70c2c32b7cae5a8dfe9d8643fa9d27437cc290e3))
 
 
 
