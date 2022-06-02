@@ -22,8 +22,8 @@
  */
 @mixin focus-style {
   box-shadow:
-    0 0 0 1px theme-color("link"),
-    0 0 0 3px theme-color("link", "100");
+    0 0 0 1px #2d73bc,
+    0 0 0 3px #d5e3ff;
   outline: none;
 }
 
