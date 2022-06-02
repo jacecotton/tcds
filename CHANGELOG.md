@@ -1,3 +1,12 @@
+## [0.45.3](https://github.com/jacecotton/tcds/compare/v0.45.2...v0.45.3) (2022-06-02)
+
+
+### Bug Fixes
+
+* Fix module load bug ([a92a3eb](https://github.com/jacecotton/tcds/commit/a92a3eb90a6ea567a91173c61e34d196bf04d5d7))
+
+
+
 ## [0.45.2](https://github.com/jacecotton/tcds/compare/v0.45.1...v0.45.2) (2022-06-02)
 
 
@@ -40,15 +49,6 @@
 ### Bug Fixes
 
 * **typography:** Vertical alignment on anchor tags ([70c2c32](https://github.com/jacecotton/tcds/commit/70c2c32b7cae5a8dfe9d8643fa9d27437cc290e3))
-
-
-
-## [0.44.1](https://github.com/jacecotton/tcds/compare/v0.44.0...v0.44.1) (2022-05-31)
-
-
-### Bug Fixes
-
-* **primitives:** Tweak input x-large ([ba2d91c](https://github.com/jacecotton/tcds/commit/ba2d91c73a5273fdc26f7c6ccedff1b758a0e60d))
 
 
 
