@@ -10,6 +10,13 @@
 {% endblock %}
 
 {% block inner_content %}
+  {{ include("@tcds/components/button/button.html.twig", {
+    label: "Dismiss submenu",
+    icon: "chevron-left",
+    controls: "mega-menu#{id|clean_id}",
+    modifiers: ["icon-only", "ghost", "round"],
+  }, with_context = false) }}
+
   <div class="max-width">
     {% block content %}{% endblock %}
   </div>
