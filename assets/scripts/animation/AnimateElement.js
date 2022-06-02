@@ -72,15 +72,18 @@ export default function AnimateElement(element, animation, options = {}) {
       }
 
       // When the animation has finished...
-      element.addEventListener("animationend", (event) => {
+      element.onanimationend = (event) => {
         event.stopPropagation();
         // Remove the animation style (unless `removeOnFinish` is disabled).
         if(options.removeOnFinish !== false) {
           element.style.animation = null;
         }
+
+        element.onanimationend = null;
+
         // Resolve promise.
         resolve("Animation complete");
-      }, { once: true });
+      };
     }
   });
 }
