@@ -178,7 +178,9 @@
   &__content {
     @include font-size("medium", $custom-property: "--card-content-font-size");
 
-    margin-bottom: space("loose", "em");
+    &:not(:last-child) {
+      margin-bottom: space("loose", "em");
+    }
 
     a {
       position: relative; // 1
