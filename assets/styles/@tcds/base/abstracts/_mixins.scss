@@ -1,3 +1,5 @@
+@use "@tcds/color" as *;
+
 /**
  * Generic mixins.
  */
@@ -18,14 +20,11 @@
 /**
  * For adding a consistent focus style to elements.
  */
-@mixin focus-style($inverted: false) {
-  $color: blue;
-
-  @if $inverted == true {
-    $color: yellow;
-  }
-
-  outline: 3px solid $color;
+@mixin focus-style {
+  box-shadow:
+    0 0 0 1px theme-color("link"),
+    0 0 0 3px theme-color("link", "100");
+  outline: none;
 }
 
 /**

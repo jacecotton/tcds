@@ -27,8 +27,9 @@ select {
   transition: background-color animation("productive");
 
   &:focus {
+    @include focus-style;
+
     border-color: theme-color("link");
-    outline: 3px solid theme-color("link", "100");
   }
 }
 

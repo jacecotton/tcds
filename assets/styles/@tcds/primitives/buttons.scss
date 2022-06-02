@@ -18,6 +18,10 @@ button,
   cursor: pointer;
   vertical-align: middle;
 
+  &:focus-visible {
+    @include focus-style;
+  }
+
   &:not([class]) {
     padding: space("tight") space("normal");
     color: color("gray", "400");

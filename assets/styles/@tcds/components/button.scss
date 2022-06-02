@@ -50,6 +50,10 @@
     --button-scale: 0.99;
   }
 
+  &:focus-visible {
+    @include focus-style;
+  }
+
   /** Modifiers */
 
   &--small {
