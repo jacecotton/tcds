@@ -19,5 +19,10 @@
     bottom: 0;
     background-color: #fff;
     color: color("gray");
+    z-index: 1;
+  }
+
+  [aria-controls] {
+    margin-bottom: space("normal");
   }
 }
