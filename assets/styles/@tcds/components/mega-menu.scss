@@ -24,5 +24,9 @@
 
   [aria-controls] {
     margin-bottom: space("normal");
+
+    @include breakpoint-above("large") {
+      display: none;
+    }
   }
 }
