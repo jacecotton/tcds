@@ -28,7 +28,17 @@ export default class Dialog extends Toggleable {
 
     this.element.addEventListener("keydown", (event) => {
       if(event.key === "Tab") {
-        this.trapTabKey(event);
+        const focusableChildren = getFocusableChildren(this.element);
+        const focusedItemIndex = focusableChildren.indexOf(document.activeElement);
+        const lastIndex = focusableChildren.length - 1;
+
+        if(event.shiftKey && focusedItemIndex === 0) {
+          focusableChildren[lastIndex].focus();
+          event.preventDefault();
+        } else if(!event.shiftKey && focusedItemIndex === lastIndex) {
+          focusableChildren[0].focus();
+          event.preventDefault();
+        }
       }
     });
   }
@@ -43,32 +53,16 @@ export default class Dialog extends Toggleable {
         document.body.style.overflowY = this.state.open === true ? "hidden" : null;
 
         if(this.state.open === true) {
+          const target = this.element.querySelector("[autofocus]") || getFocusableChildren(this.element)[0];
           this.previouslyFocused = document.activeElement;
-          this.focusDialog();
+          target && target.focus();
         } else {
-          this.previouslyFocused.focus();
+          if(this.previouslyFocused && this.previouslyFocused.focus) {
+            this.previouslyFocused.focus();
+          }
         }
       },
     };
-  }
-
-  trapTabKey(event) {
-    event.preventDefault();
-
-    const focusableChildren = getFocusableChildren(this.element);
-    const focusedItemIndex = focusableChildren.indexOf(document.activeElement);
-    const lastIndex = focusableChildren.length - 1;
-
-    if(event.shiftKey && focusedItemIndex === 0) {
-      focusableChildren[lastIndex].focus();
-    } else if(!event.shiftKey && focusedItemIndex === lastIndex) {
-      focusableChildren[0].focus();
-    }
-  }
-
-  focusDialog() {
-    const target = this.element.querySelector("[autofocus]") || getFocusableChildren(this.element)[0];
-    target && target.focus();
   }
 }
 
