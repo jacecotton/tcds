@@ -5,6 +5,7 @@
  */
 
 import Accordion from "./components/Accordion.js";
+import Dialog from "./components/Dialog.js";
 import Hero from "./components/Hero.js";
 import Tabs from "./components/Tabs.js";
 import Carousel from "./components/Carousel.js";

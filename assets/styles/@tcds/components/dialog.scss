@@ -1,0 +1,46 @@
+@use "@tcds" as *;
+
+.Dialog {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: layer("dialog");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: color("shade");
+  overscroll-behavior: none;
+  backdrop-filter: blur(1px);
+
+  &--no-padding {
+    --dialog-padding: 0;
+  }
+
+  &__content {
+    background: #fff;
+    width: calc(100vw - var(--site-outer-gutter) * 2);
+    overflow-wrap: break-word;
+    padding: var(--dialog-padding, #{space("x-loose")});
+    position: relative;
+    z-index: 1;
+
+    @include breakpoint-above("medium") {
+      width: fit-content;
+      min-width: 500px;
+      max-width: 50vw;
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+  }
+
+  &:not([hidden]) &__content {
+    animation: slide-in-down animation("expressive");
+  }
+}

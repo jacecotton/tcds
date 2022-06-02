@@ -16,9 +16,21 @@
   }
 }
 
+@keyframes slide-out-down {
+  to {
+    transform: translateY(15%);
+  }
+}
+
+@keyframes slide-in-up {
+  from {
+    transform: translateY(15%);
+  }
+}
+
 @keyframes slide-out-up {
   to {
-    transform: translateY(-100%);
+    transform: translateY(-15%);
   }
 }
 
@@ -31,5 +43,29 @@
 @keyframes fade-out {
   to {
     opacity: 0;
+  }
+}
+
+@keyframes shrink-in {
+  from {
+    transform: scale(1.5);
+  }
+}
+
+@keyframes shrink-out {
+  to {
+    transform: scale(0.5);
+  }
+}
+
+@keyframes grow-in {
+  from {
+    transform: scale(0.5);
+  }
+}
+
+@keyframes grow-out {
+  to {
+    transform: scale(1.5);
   }
 }

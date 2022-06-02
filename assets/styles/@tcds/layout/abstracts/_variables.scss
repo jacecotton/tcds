@@ -87,14 +87,14 @@ $breakpoints: (
  *
  * Note that negative values, 1, and 2 are reserved. They are allowed to be used
  * anywhere and do not need to be systematized, as they are often only useful
- * for setting z-indices relative to the stacking context of the element in
- * question.
+ * for setting z-indices relative to the stacking context of and within the
+ * element in question.
  *
  * See: layer()
  */
 
 $layers: (
-  "modal": 5,
+  "dialog": 5,
   "notification": 4,
   "sticky-header": 3,
 );
