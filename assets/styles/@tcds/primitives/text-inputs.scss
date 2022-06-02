@@ -31,6 +31,10 @@ select {
 
     border-color: theme-color("link");
   }
+
+  @media (pointer: coarse) {
+    font-size: font-size("medium");
+  }
 }
 
 textarea {
