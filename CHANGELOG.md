@@ -1,3 +1,13 @@
+## [0.45.2](https://github.com/jacecotton/tcds/compare/v0.45.1...v0.45.2) (2022-06-02)
+
+
+### Bug Fixes
+
+* **components:** Tweak Card styles ([a497400](https://github.com/jacecotton/tcds/commit/a497400078d2f765b9d41706bb977a009925d082))
+* **styles:** Change inner gutter variable name ([3bd9047](https://github.com/jacecotton/tcds/commit/3bd9047e75181e0f2b97ab18664084f8f120965d))
+
+
+
 ## [0.45.1](https://github.com/jacecotton/tcds/compare/v0.45.0...v0.45.1) (2022-06-02)
 
 
@@ -39,15 +49,6 @@
 ### Bug Fixes
 
 * **primitives:** Tweak input x-large ([ba2d91c](https://github.com/jacecotton/tcds/commit/ba2d91c73a5273fdc26f7c6ccedff1b758a0e60d))
-
-
-
-# [0.44.0](https://github.com/jacecotton/tcds/compare/v0.43.0...v0.44.0) (2022-05-31)
-
-
-### Features
-
-* **primitives:** Add x-large modifier to input ([9cee832](https://github.com/jacecotton/tcds/commit/9cee832ca7f9cc623931beb458097ba436aa61af))
 
 
 
