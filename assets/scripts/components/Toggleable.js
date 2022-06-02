@@ -22,8 +22,7 @@ export default class Toggleable extends Component {
 
     // Initialize state.
     if(this.props.openOnload === true) {
-      // this.state.open = localStorage.getItem(this.localStorageState) === "closed" ? false : true;
-      this.state.open = true;
+      this.state.open = localStorage.getItem(this.localStorageState) === "closed" ? false : true;
     } else {
       this.state.open = false;
     }
