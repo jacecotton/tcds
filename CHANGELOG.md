@@ -1,3 +1,12 @@
+## [0.45.1](https://github.com/jacecotton/tcds/compare/v0.45.0...v0.45.1) (2022-06-02)
+
+
+### Bug Fixes
+
+* **twig:** Nested component bug ([1feec35](https://github.com/jacecotton/tcds/commit/1feec351023b20642c191328201107d2e0055c46))
+
+
+
 # [0.45.0](https://github.com/jacecotton/tcds/compare/v0.44.2...v0.45.0) (2022-06-02)
 
 
@@ -39,16 +48,6 @@
 ### Features
 
 * **primitives:** Add x-large modifier to input ([9cee832](https://github.com/jacecotton/tcds/commit/9cee832ca7f9cc623931beb458097ba436aa61af))
-
-
-
-# [0.43.0](https://github.com/jacecotton/tcds/compare/v0.42.6...v0.43.0) (2022-05-31)
-
-
-### Features
-
-* **icons:** Add marker icon ([4f7730c](https://github.com/jacecotton/tcds/commit/4f7730cff379948d163ce4a87a2b686c86cf7956))
-* **primitives:** Add large modifier to inputs ([0392b65](https://github.com/jacecotton/tcds/commit/0392b65bee85c8893787af20bca7768ad49e4c24))
 
 
 
