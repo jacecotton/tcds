@@ -1,3 +1,12 @@
+## [0.46.5](https://github.com/jacecotton/tcds/compare/v0.46.4...v0.46.5) (2022-06-02)
+
+
+### Bug Fixes
+
+* Version bump ([e30015f](https://github.com/jacecotton/tcds/commit/e30015f55b6a760bd237e2d57e067d6a9c6d2cb7))
+
+
+
 ## [0.46.4](https://github.com/jacecotton/tcds/compare/v0.46.3...v0.46.4) (2022-06-02)
 
 
@@ -33,20 +42,6 @@
 ### Bug Fixes
 
 * **typography:** Make body font size responsive ([c190937](https://github.com/jacecotton/tcds/commit/c1909372097b182ea2e39bc8e4ea484bb46108ba))
-
-
-
-# [0.46.0](https://github.com/jacecotton/tcds/compare/v0.45.4...v0.46.0) (2022-06-02)
-
-
-### Bug Fixes
-
-* **components:** Dialog focus trap bug ([9792233](https://github.com/jacecotton/tcds/commit/9792233d092132b0992637066aad88bc3ce98456))
-
-
-### Features
-
-* **components:** Toggleable localstorage state ([1cee76a](https://github.com/jacecotton/tcds/commit/1cee76a2fb0e86fa0d5508e9b35d4df7fc8073ee))
 
 
 
