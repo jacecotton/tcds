@@ -52,6 +52,11 @@ const config = {
     src: `${inputPath}/fonts/**/*`,
     dest: `${outputPath}/fonts/`,
   },
+
+  images: {
+    src: `${inputPath}/images/**/*`,
+    dest: `${outputPath}/images/`,
+  },
 };
 
 /**
@@ -127,6 +132,12 @@ const tasks = {
     return src(config.fonts.src)
       .pipe(dest(config.fonts.dest));
   },
+
+  images: () => {
+    return src(config.images.src)
+      .pipe(imagemin())
+      .pipe(dest(config.images.dest));
+  },
 };
 
 /**
@@ -137,13 +148,15 @@ task("styles", tasks.styles);
 task("scripts", tasks.scripts);
 task("icons", tasks.icons);
 task("fonts", tasks.fonts);
+task("images", tasks.images);
 
 task("watch", function watcher() {
   watch(`${inputPath}/styles/`, tasks.styles);
   watch(`${inputPath}/scripts/`, tasks.scripts);
   watch(`${inputPath}/icons/`, tasks.icons);
   watch(`${inputPath}/fonts`, tasks.fonts);
+  watch(`${inputPath}/images/`, tasks.images);
 });
 
-task("build", series(["styles", "scripts", "icons", "fonts"]));
+task("build", series(["styles", "scripts", "icons", "fonts", "images"]));
 task("default", series(["build", "watch"]));

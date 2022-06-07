@@ -9,6 +9,7 @@
     "build:scripts": "gulp scripts",
     "build:styles": "gulp styles",
     "build:icons": "gulp icons",
+    "build:images": "gulp images",
     "lint": "npm run lint:styles && npm run lint:scripts",
     "lint:styles": "stylelint 'assets/**/*.scss'",
     "lint:scripts": "eslint 'assets/**/*.js'",
