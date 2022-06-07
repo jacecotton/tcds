@@ -1,3 +1,12 @@
+## [0.49.1](https://github.com/jacecotton/tcds/compare/v0.49.0...v0.49.1) (2022-06-07)
+
+
+### Bug Fixes
+
+* **components:** Tweak footer styles ([56b02d7](https://github.com/jacecotton/tcds/commit/56b02d750384f31cae62509ac39c8cbbc32ae5fd))
+
+
+
 # [0.49.0](https://github.com/jacecotton/tcds/compare/v0.48.0...v0.49.0) (2022-06-07)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * **icons:** Fix SVG markup ([f575d48](https://github.com/jacecotton/tcds/commit/f575d484c95e7be30e0fc9b12e7c224083c6ba35))
-
-
-
-# [0.47.0](https://github.com/jacecotton/tcds/compare/v0.46.5...v0.47.0) (2022-06-03)
-
-
-### Features
-
-* **icons:** Add icons ([26e495e](https://github.com/jacecotton/tcds/commit/26e495edbe0821973a8fe0f3bc67c306e96cb60f))
 
 
 
