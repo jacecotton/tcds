@@ -1,3 +1,12 @@
+## [0.49.3](https://github.com/jacecotton/tcds/compare/v0.49.2...v0.49.3) (2022-06-07)
+
+
+### Bug Fixes
+
+* **components:** Footer copy typo fix ([8ec71c1](https://github.com/jacecotton/tcds/commit/8ec71c182e05b8f7deb2219d746ae01af7901937))
+
+
+
 ## [0.49.2](https://github.com/jacecotton/tcds/compare/v0.49.1...v0.49.2) (2022-06-07)
 
 
@@ -32,15 +41,6 @@
 ### Features
 
 * **images:** Add TCH logo ([78a0dca](https://github.com/jacecotton/tcds/commit/78a0dcaec7bb9ee1b7ac118ceeeceb81e86027ed))
-
-
-
-## [0.47.2](https://github.com/jacecotton/tcds/compare/v0.47.1...v0.47.2) (2022-06-03)
-
-
-### Bug Fixes
-
-* **icons:** Add fill of currentColor to icons ([34fc250](https://github.com/jacecotton/tcds/commit/34fc25056d44b4724847a866be0a70346e6f6c3a))
 
 
 
