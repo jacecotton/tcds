@@ -1,3 +1,12 @@
+## [0.49.4](https://github.com/jacecotton/tcds/compare/v0.49.3...v0.49.4) (2022-06-07)
+
+
+### Bug Fixes
+
+* **components:** Fix notification ID issue ([6eef904](https://github.com/jacecotton/tcds/commit/6eef9044a63bcd15739e1dc2c8920545fc59e42a))
+
+
+
 ## [0.49.3](https://github.com/jacecotton/tcds/compare/v0.49.2...v0.49.3) (2022-06-07)
 
 
@@ -32,15 +41,6 @@
 
 * **components:** Add Footer component ([75ac89a](https://github.com/jacecotton/tcds/commit/75ac89a6765cbb7a6558a436c8294ca701506fad))
 * **components:** Add Header component ([44f9fee](https://github.com/jacecotton/tcds/commit/44f9fee0808b9caa2a8e7f1b03af4d67a1c89077))
-
-
-
-# [0.48.0](https://github.com/jacecotton/tcds/compare/v0.47.2...v0.48.0) (2022-06-07)
-
-
-### Features
-
-* **images:** Add TCH logo ([78a0dca](https://github.com/jacecotton/tcds/commit/78a0dcaec7bb9ee1b7ac118ceeeceb81e86027ed))
 
 
 
