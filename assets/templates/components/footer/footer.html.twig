@@ -8,7 +8,7 @@
   {% block menus %}{% endblock %}
 
   <nav class="site-footer__social" aria-labelledby="footer-social-cta">
-    <h2 id="footer-social-cta">{{ social_cta ?: "Connect with Texas Children's Hospital on our social media channels" }}</h2>
+    <h2 id="footer-social-cta">{{ social_cta ? social_cta|raw : "Connect with Texas Children's Hospital on our social media channels" }}</h2>
 
     <ul>
       {% for item in social_links %}
@@ -26,7 +26,7 @@
   </nav>
 
   <section class="site-footer__fine-print">
-    <p>{{ fine_print ?: "&copy; 1998—#{'now'|date('Y')} Texas Children's Hospital. ALl rights reserved." }}</p>
+    <p>{{ fine_print ? fine_print|raw : "&copy; 1998—#{'now'|date('Y')} Texas Children's Hospital. ALl rights reserved."|raw }}</p>
 
     <nav class="site-footer__policy-nav" aria-labelledby="footer-policy-links">
       <h2 id="footer-policy-links" class="visually-hidden">Policy links</h2>
