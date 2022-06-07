@@ -1,3 +1,12 @@
+## [0.49.2](https://github.com/jacecotton/tcds/compare/v0.49.1...v0.49.2) (2022-06-07)
+
+
+### Bug Fixes
+
+* **components:** Disable component copy encoding ([5f25728](https://github.com/jacecotton/tcds/commit/5f2572866f3a04194d60578a6d56335614c09292))
+
+
+
 ## [0.49.1](https://github.com/jacecotton/tcds/compare/v0.49.0...v0.49.1) (2022-06-07)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * **icons:** Add fill of currentColor to icons ([34fc250](https://github.com/jacecotton/tcds/commit/34fc25056d44b4724847a866be0a70346e6f6c3a))
-
-
-
-## [0.47.1](https://github.com/jacecotton/tcds/compare/v0.47.0...v0.47.1) (2022-06-03)
-
-
-### Bug Fixes
-
-* **icons:** Fix SVG markup ([f575d48](https://github.com/jacecotton/tcds/commit/f575d484c95e7be30e0fc9b12e7c224083c6ba35))
 
 
 
