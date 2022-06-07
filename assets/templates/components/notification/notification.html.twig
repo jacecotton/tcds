@@ -4,7 +4,7 @@
 
 {% block inner_content %}
   {% if id is not defined %}
-    {% set id = content|slice(0, 20)|clean_id %}
+    {% set id = "notification-#{random(0, 1000)}" %}
   {% endif %}
 
   <div class="Notification__message" data-component-part="message" role="{{ type ?: "status" }}" id="{{ id }}">
