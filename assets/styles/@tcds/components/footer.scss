@@ -68,11 +68,13 @@
 
       margin: 0;
       font-weight: font-weight("normal");
+      font-family: font-stack("copy");
     }
 
     ul {
       display: flex;
       gap: space("normal");
+      list-style: none;
     }
 
     &-icon {
@@ -99,6 +101,7 @@
   &__policy-nav {
     ul {
       display: flex;
+      list-style: none;
     }
 
     li {
