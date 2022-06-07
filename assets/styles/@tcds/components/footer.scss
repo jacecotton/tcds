@@ -1,0 +1,118 @@
+@use "sass:math";
+@use "@tcds" as *;
+
+.site-footer {
+  --site-footer-logo-width: 200px;
+
+  display: grid;
+  grid-template-columns: minmax(1rem, 1fr) minmax(auto, #{breakpoint("x-large")}) minmax(1rem, 1fr);
+  grid-template-areas:
+    ".     logo   ."
+    ".     social ."
+    "print print  print";
+  align-items: center;
+  background-color: color("gray", "0");
+  padding-top: 7rem;
+
+  @include breakpoint-below("large") {
+    text-align: center;
+  }
+
+  @include breakpoint-above("large") {
+    grid-template-columns:
+      minmax(1rem, 1fr)
+      minmax(15vw, var(--site-footer-logo-width))
+      minmax(auto, calc(#{breakpoint("x-large")} - var(--site-footer-logo-width)))
+      minmax(1rem, 1fr);
+    grid-template-areas:
+      ".     logo   nav    ."
+      ".     social social ."
+      "print print  print  print";
+  }
+
+  &__logo {
+    grid-area: logo;
+
+    @include breakpoint-below("large") {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  &__nav {
+    grid-area: nav;
+    margin-left: min(6rem, 6vw);
+
+    a {
+      color: inherit;
+
+      &:not(:hover) {
+        text-decoration: none;
+      }
+    }
+  }
+
+  &__social {
+    grid-area: social;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: space("normal");
+    border-top: 1px solid color("shade", "100");
+    margin-top: math.div(7rem, 2);
+    padding: space("x-loose") 0;
+
+    h2 {
+      @include font-size("medium", $line-height: false);
+
+      margin: 0;
+      font-weight: font-weight("normal");
+    }
+
+    ul {
+      display: flex;
+      gap: space("normal");
+    }
+
+    &-icon {
+      vertical-align: middle;
+    }
+  }
+
+  &__fine-print {
+    grid-area: print;
+    background-color: color("gray", "400");
+    color: color("gray", "0");
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: space("normal");
+    padding: space("tight") space("normal");
+
+    p {
+      margin: 0;
+    }
+  }
+
+  &__policy-nav {
+    ul {
+      display: flex;
+    }
+
+    li {
+      line-height: 1;
+
+      &:not(:last-child) {
+        border-right: 1px solid currentcolor;
+        margin-right: space("tight");
+        padding-right: space("tight");
+      }
+
+      a {
+        color: inherit;
+      }
+    }
+  }
+}

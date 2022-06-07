@@ -1,0 +1,40 @@
+<footer class="site-footer">
+  <div class="site-footer__logo">
+    <a href="{{ logo.link ?: "/" }}" rel="home" title="Go home">
+      <img height="128" width="200" src="{{ logo.image ?: "https://unpkg.com/@txch/tcds/dist/images/logo.svg" }}" alt="Texas Children's logo">
+    </a>
+  </div>
+
+  {% block menus %}{% endblock %}
+
+  <nav class="site-footer__social" aria-labelledby="footer-social-cta">
+    <h2 id="footer-social-cta">{{ social_cta ?: "Connect with Texas Children's Hospital on our social media channels" }}</h2>
+
+    <ul>
+      {% for item in social_links %}
+        <li>
+          {{ include("@tcds/components/button/button.html.twig", {
+            label: item.title,
+            icon: item.icon,
+            link: item.link,
+            modifiers: ["icon-only", "round", "small"],
+            custom_classes: ["bg-secondary", "site-footer__social-icon"],
+          }, with_context = false) }}
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
+
+  <section class="site-footer__fine-print">
+    <p>{{ fine_print ?: "&copy; 1998—#{'now'|date('Y')} Texas Children's Hospital. ALl rights reserved." }}</p>
+
+    <nav class="site-footer__policy-nav" aria-labelledby="footer-policy-links">
+      <h2 id="footer-policy-links" class="visually-hidden">Policy links</h2>
+      <ul>
+        {% for item in policy_links %}
+          <li><a href="{{ item.link }}">{{ item.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </section>
+</footer>
