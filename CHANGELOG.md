@@ -1,3 +1,12 @@
+## [0.49.5](https://github.com/jacecotton/tcds/compare/v0.49.4...v0.49.5) (2022-06-07)
+
+
+### Bug Fixes
+
+* **components:** Add destroy feature to Toggleable ([6820f28](https://github.com/jacecotton/tcds/commit/6820f280e3e2196c3e8d051c24d139fd6be5ec57))
+
+
+
 ## [0.49.4](https://github.com/jacecotton/tcds/compare/v0.49.3...v0.49.4) (2022-06-07)
 
 
@@ -31,16 +40,6 @@
 ### Bug Fixes
 
 * **components:** Tweak footer styles ([56b02d7](https://github.com/jacecotton/tcds/commit/56b02d750384f31cae62509ac39c8cbbc32ae5fd))
-
-
-
-# [0.49.0](https://github.com/jacecotton/tcds/compare/v0.48.0...v0.49.0) (2022-06-07)
-
-
-### Features
-
-* **components:** Add Footer component ([75ac89a](https://github.com/jacecotton/tcds/commit/75ac89a6765cbb7a6558a436c8294ca701506fad))
-* **components:** Add Header component ([44f9fee](https://github.com/jacecotton/tcds/commit/44f9fee0808b9caa2a8e7f1b03af4d67a1c89077))
 
 
 
