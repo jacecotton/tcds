@@ -1,3 +1,12 @@
+# [0.48.0](https://github.com/jacecotton/tcds/compare/v0.47.2...v0.48.0) (2022-06-07)
+
+
+### Features
+
+* **images:** Add TCH logo ([78a0dca](https://github.com/jacecotton/tcds/commit/78a0dcaec7bb9ee1b7ac118ceeeceb81e86027ed))
+
+
+
 ## [0.47.2](https://github.com/jacecotton/tcds/compare/v0.47.1...v0.47.2) (2022-06-03)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * Version bump ([e30015f](https://github.com/jacecotton/tcds/commit/e30015f55b6a760bd237e2d57e067d6a9c6d2cb7))
-
-
-
-## [0.46.4](https://github.com/jacecotton/tcds/compare/v0.46.3...v0.46.4) (2022-06-02)
-
-
-### Bug Fixes
-
-* **components:** Mega Menu responsiveness ([3c7b60f](https://github.com/jacecotton/tcds/commit/3c7b60f262828b9d85e52e771f5eb63684650a1f))
 
 
 
