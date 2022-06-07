@@ -1,3 +1,13 @@
+# [0.49.0](https://github.com/jacecotton/tcds/compare/v0.48.0...v0.49.0) (2022-06-07)
+
+
+### Features
+
+* **components:** Add Footer component ([75ac89a](https://github.com/jacecotton/tcds/commit/75ac89a6765cbb7a6558a436c8294ca701506fad))
+* **components:** Add Header component ([44f9fee](https://github.com/jacecotton/tcds/commit/44f9fee0808b9caa2a8e7f1b03af4d67a1c89077))
+
+
+
 # [0.48.0](https://github.com/jacecotton/tcds/compare/v0.47.2...v0.48.0) (2022-06-07)
 
 
@@ -31,15 +41,6 @@
 ### Features
 
 * **icons:** Add icons ([26e495e](https://github.com/jacecotton/tcds/commit/26e495edbe0821973a8fe0f3bc67c306e96cb60f))
-
-
-
-## [0.46.5](https://github.com/jacecotton/tcds/compare/v0.46.4...v0.46.5) (2022-06-02)
-
-
-### Bug Fixes
-
-* Version bump ([e30015f](https://github.com/jacecotton/tcds/commit/e30015f55b6a760bd237e2d57e067d6a9c6d2cb7))
 
 
 
