@@ -29,25 +29,29 @@ export default class Toggleable extends Component {
 
     if(this.props.closeOnClickOutside) {
       document.body.addEventListener("click", () => {
-        if(this.state.open === true) {
+        if(this.state.open === true && this.state.destroyed !== true) {
           this.state.open = false;
         }
       });
 
       this.element.addEventListener("click", (event) => {
-        event.stopPropagation();
+        if(this.state.destroyed !== true) {
+          event.stopPropagation();
+        }
       });
     }
 
     this.togglers.forEach((toggler) => {
       toggler.addEventListener("click", (event) => {
-        event.stopPropagation();
-        this.state.open = !this.state.open;
+        if(this.state.destroyed !== true) {
+          event.stopPropagation();
+          this.state.open = !this.state.open;
+        }
       });
     });
 
     document.addEventListener("keyup", (event) => {
-      if(event.key === "Escape" && this.state.open === true) {
+      if(event.key === "Escape" && this.state.open === true && this.state.destroyed !== true) {
         this.state.open = false;
       }
     });
@@ -82,13 +86,21 @@ export default class Toggleable extends Component {
 
   toggle() {
     this.state.open = !this.state.open;
+    this.state.destroyed = false;
   }
 
   open() {
     this.state.open = true;
+    this.state.destroyed = false;
   }
 
   close() {
     this.state.open = false;
+    this.state.destroyed = false;
+  }
+
+  destroy() {
+    this.state.open = true;
+    this.state.destroyed = true;
   }
 }

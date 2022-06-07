@@ -21,7 +21,7 @@ import Toggleable from "@tcds/components/Toggleable.js";
       toggleableMenu.close();
       moveSearchTo("utility-menu");
     } else {
-      toggleableMenu.open();
+      toggleableMenu.destroy();
       moveSearchTo("main-menu");
     }
   }
