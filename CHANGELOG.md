@@ -1,3 +1,12 @@
+## [0.49.6](https://github.com/jacecotton/tcds/compare/v0.49.5...v0.49.6) (2022-06-07)
+
+
+### Bug Fixes
+
+* **components:** Remove bullets in mobile nav ([dbe2a91](https://github.com/jacecotton/tcds/commit/dbe2a91d13d9dab811d2bae2ae53b6cfcdb333c9))
+
+
+
 ## [0.49.5](https://github.com/jacecotton/tcds/compare/v0.49.4...v0.49.5) (2022-06-07)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Disable component copy encoding ([5f25728](https://github.com/jacecotton/tcds/commit/5f2572866f3a04194d60578a6d56335614c09292))
-
-
-
-## [0.49.1](https://github.com/jacecotton/tcds/compare/v0.49.0...v0.49.1) (2022-06-07)
-
-
-### Bug Fixes
-
-* **components:** Tweak footer styles ([56b02d7](https://github.com/jacecotton/tcds/commit/56b02d750384f31cae62509ac39c8cbbc32ae5fd))
 
 
 
