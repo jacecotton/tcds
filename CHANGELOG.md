@@ -1,3 +1,12 @@
+## [0.49.7](https://github.com/jacecotton/tcds/compare/v0.49.6...v0.49.7) (2022-06-08)
+
+
+### Bug Fixes
+
+* **components:** Add logo dimension props ([fc43e60](https://github.com/jacecotton/tcds/commit/fc43e60bfd3abc0d7bcc8000b8ea78804ccc1343))
+
+
+
 ## [0.49.6](https://github.com/jacecotton/tcds/compare/v0.49.5...v0.49.6) (2022-06-07)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Footer copy typo fix ([8ec71c1](https://github.com/jacecotton/tcds/commit/8ec71c182e05b8f7deb2219d746ae01af7901937))
-
-
-
-## [0.49.2](https://github.com/jacecotton/tcds/compare/v0.49.1...v0.49.2) (2022-06-07)
-
-
-### Bug Fixes
-
-* **components:** Disable component copy encoding ([5f25728](https://github.com/jacecotton/tcds/commit/5f2572866f3a04194d60578a6d56335614c09292))
 
 
 
