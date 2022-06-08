@@ -1,3 +1,12 @@
+## [0.49.9](https://github.com/jacecotton/tcds/compare/v0.49.8...v0.49.9) (2022-06-08)
+
+
+### Bug Fixes
+
+* **components:** Add dimension props to Footer ([1f89f73](https://github.com/jacecotton/tcds/commit/1f89f738781e56a02d29ec11447e79fd4434d0e3))
+
+
+
 ## [0.49.8](https://github.com/jacecotton/tcds/compare/v0.49.7...v0.49.8) (2022-06-08)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Add destroy feature to Toggleable ([6820f28](https://github.com/jacecotton/tcds/commit/6820f280e3e2196c3e8d051c24d139fd6be5ec57))
-
-
-
-## [0.49.4](https://github.com/jacecotton/tcds/compare/v0.49.3...v0.49.4) (2022-06-07)
-
-
-### Bug Fixes
-
-* **components:** Fix notification ID issue ([6eef904](https://github.com/jacecotton/tcds/commit/6eef9044a63bcd15739e1dc2c8920545fc59e42a))
 
 
 
