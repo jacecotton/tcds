@@ -1,3 +1,12 @@
+## [0.49.8](https://github.com/jacecotton/tcds/compare/v0.49.7...v0.49.8) (2022-06-08)
+
+
+### Bug Fixes
+
+* **components:** Center logo image in header ([5920172](https://github.com/jacecotton/tcds/commit/5920172156f3e402d0ca9aba6207ad7386e95e56))
+
+
+
 ## [0.49.7](https://github.com/jacecotton/tcds/compare/v0.49.6...v0.49.7) (2022-06-08)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Fix notification ID issue ([6eef904](https://github.com/jacecotton/tcds/commit/6eef9044a63bcd15739e1dc2c8920545fc59e42a))
-
-
-
-## [0.49.3](https://github.com/jacecotton/tcds/compare/v0.49.2...v0.49.3) (2022-06-07)
-
-
-### Bug Fixes
-
-* **components:** Footer copy typo fix ([8ec71c1](https://github.com/jacecotton/tcds/commit/8ec71c182e05b8f7deb2219d746ae01af7901937))
 
 
 
