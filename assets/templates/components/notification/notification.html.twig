@@ -2,10 +2,6 @@
 
 {% set component_name = "Notification" %}
 
-{% if background %}
-  {% set component_classes = ["bg-#{background}"] %}
-{% endif %}
-
 {% block inner_content %}
   {% if id is not defined %}
     {% set id = "notification-#{random(0, 1000)}" %}
