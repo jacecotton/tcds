@@ -1,21 +1,20 @@
 @use "@tcds" as *;
 
 .Notification {
-  --notification-height: 60px;
-
   z-index: layer("notification");
   display: flex;
   align-items: center;
   position: relative;
   background-color: theme-color("secondary");
   color: theme-color("secondary", "0");
-  height: var(--notification-height);
+  padding: space("normal") 0;
 
   &[data-state="dismissed"] {
-    --notification-height: 0;
+    height: 0;
+    padding: 0;
   }
 
-  &:not(#{&}--full-bleed) {
+  &:not(#{&}--full-bleed):not(#{&}--alert) {
     @include max-width;
 
     position: fixed;
