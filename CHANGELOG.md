@@ -1,3 +1,12 @@
+## [0.49.11](https://github.com/jacecotton/tcds/compare/v0.49.10...v0.49.11) (2022-06-09)
+
+
+### Bug Fixes
+
+* **components:** Add background prop to notif ([9c39a3d](https://github.com/jacecotton/tcds/commit/9c39a3d26e5b02ec8d2d971d3037eae1aa03e6c4))
+
+
+
 ## [0.49.10](https://github.com/jacecotton/tcds/compare/v0.49.9...v0.49.10) (2022-06-09)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * **components:** Add logo dimension props ([fc43e60](https://github.com/jacecotton/tcds/commit/fc43e60bfd3abc0d7bcc8000b8ea78804ccc1343))
-
-
-
-## [0.49.6](https://github.com/jacecotton/tcds/compare/v0.49.5...v0.49.6) (2022-06-07)
-
-
-### Bug Fixes
-
-* **components:** Remove bullets in mobile nav ([dbe2a91](https://github.com/jacecotton/tcds/commit/dbe2a91d13d9dab811d2bae2ae53b6cfcdb333c9))
 
 
 
