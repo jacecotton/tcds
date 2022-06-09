@@ -8,6 +8,7 @@
   background-color: theme-color("secondary");
   color: theme-color("secondary", "0");
   padding: space("normal") 0;
+  overflow: hidden;
 
   &[data-state="dismissed"] {
     height: 0;
@@ -30,6 +31,22 @@
   &--full-bleed {
     position: sticky;
     top: 0;
+    z-index: layer("site-header") + 1;
+  }
+
+  &--alert {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    animation: alert-reveal animation("expressive");
+
+    @keyframes alert-reveal {
+      from {
+        height: 0;
+        padding: 0;
+      }
+    }
   }
 
   &__dismiss {
