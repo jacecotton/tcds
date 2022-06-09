@@ -1,3 +1,12 @@
+## [0.49.12](https://github.com/jacecotton/tcds/compare/v0.49.11...v0.49.12) (2022-06-09)
+
+
+### Bug Fixes
+
+* **components:** Undo notif bg prop ([551fb2a](https://github.com/jacecotton/tcds/commit/551fb2a5e2a2185e197fa7b94f431e79ce0c0727))
+
+
+
 ## [0.49.11](https://github.com/jacecotton/tcds/compare/v0.49.10...v0.49.11) (2022-06-09)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * **components:** Center logo image in header ([5920172](https://github.com/jacecotton/tcds/commit/5920172156f3e402d0ca9aba6207ad7386e95e56))
-
-
-
-## [0.49.7](https://github.com/jacecotton/tcds/compare/v0.49.6...v0.49.7) (2022-06-08)
-
-
-### Bug Fixes
-
-* **components:** Add logo dimension props ([fc43e60](https://github.com/jacecotton/tcds/commit/fc43e60bfd3abc0d7bcc8000b8ea78804ccc1343))
 
 
 
