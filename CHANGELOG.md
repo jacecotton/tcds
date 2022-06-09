@@ -1,3 +1,12 @@
+## [0.49.13](https://github.com/jacecotton/tcds/compare/v0.49.12...v0.49.13) (2022-06-09)
+
+
+### Bug Fixes
+
+* **components:** Add alert modifier to notif ([6917696](https://github.com/jacecotton/tcds/commit/691769613c845d707380a0b9599aab1e0ea9e218))
+
+
+
 ## [0.49.12](https://github.com/jacecotton/tcds/compare/v0.49.11...v0.49.12) (2022-06-09)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * **components:** Add dimension props to Footer ([1f89f73](https://github.com/jacecotton/tcds/commit/1f89f738781e56a02d29ec11447e79fd4434d0e3))
-
-
-
-## [0.49.8](https://github.com/jacecotton/tcds/compare/v0.49.7...v0.49.8) (2022-06-08)
-
-
-### Bug Fixes
-
-* **components:** Center logo image in header ([5920172](https://github.com/jacecotton/tcds/commit/5920172156f3e402d0ca9aba6207ad7386e95e56))
 
 
 
