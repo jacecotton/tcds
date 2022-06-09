@@ -1,3 +1,13 @@
+## [0.49.10](https://github.com/jacecotton/tcds/compare/v0.49.9...v0.49.10) (2022-06-09)
+
+
+### Bug Fixes
+
+* **components:** Add show-title modifier to dialog ([8d085c4](https://github.com/jacecotton/tcds/commit/8d085c432dac95bc4c396b64607ae854c972b640))
+* **components:** Tweak Dialog style ([9747690](https://github.com/jacecotton/tcds/commit/97476904e88042e643ff4f6f87654dd57d6f00fb))
+
+
+
 ## [0.49.9](https://github.com/jacecotton/tcds/compare/v0.49.8...v0.49.9) (2022-06-08)
 
 
@@ -31,15 +41,6 @@
 ### Bug Fixes
 
 * **components:** Remove bullets in mobile nav ([dbe2a91](https://github.com/jacecotton/tcds/commit/dbe2a91d13d9dab811d2bae2ae53b6cfcdb333c9))
-
-
-
-## [0.49.5](https://github.com/jacecotton/tcds/compare/v0.49.4...v0.49.5) (2022-06-07)
-
-
-### Bug Fixes
-
-* **components:** Add destroy feature to Toggleable ([6820f28](https://github.com/jacecotton/tcds/commit/6820f280e3e2196c3e8d051c24d139fd6be5ec57))
 
 
 
