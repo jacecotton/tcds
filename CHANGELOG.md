@@ -1,3 +1,12 @@
+## [0.49.17](https://github.com/jacecotton/tcds/compare/v0.49.16...v0.49.17) (2022-06-14)
+
+
+### Bug Fixes
+
+* **components:** Notification display issue ([fad9c66](https://github.com/jacecotton/tcds/commit/fad9c6681dbd5fa8b8b512c422686e8ecc5c69ac))
+
+
+
 ## [0.49.16](https://github.com/jacecotton/tcds/compare/v0.49.15...v0.49.16) (2022-06-14)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Add alert modifier to notif ([6917696](https://github.com/jacecotton/tcds/commit/691769613c845d707380a0b9599aab1e0ea9e218))
-
-
-
-## [0.49.12](https://github.com/jacecotton/tcds/compare/v0.49.11...v0.49.12) (2022-06-09)
-
-
-### Bug Fixes
-
-* **components:** Undo notif bg prop ([551fb2a](https://github.com/jacecotton/tcds/commit/551fb2a5e2a2185e197fa7b94f431e79ce0c0727))
 
 
 
