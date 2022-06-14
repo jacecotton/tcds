@@ -8,7 +8,6 @@
   background-color: theme-color("secondary");
   color: theme-color("secondary", "0");
   padding: space("normal") 0;
-  overflow: hidden;
 
   &[data-state="dismissed"] {
     height: 0;
