@@ -1,3 +1,12 @@
+## [0.49.16](https://github.com/jacecotton/tcds/compare/v0.49.15...v0.49.16) (2022-06-14)
+
+
+### Bug Fixes
+
+* **components:** Accordion style tweak ([275f42f](https://github.com/jacecotton/tcds/commit/275f42f4a1799961119fcbafe498e72ff81624e4))
+
+
+
 ## [0.49.15](https://github.com/jacecotton/tcds/compare/v0.49.14...v0.49.15) (2022-06-09)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Undo notif bg prop ([551fb2a](https://github.com/jacecotton/tcds/commit/551fb2a5e2a2185e197fa7b94f431e79ce0c0727))
-
-
-
-## [0.49.11](https://github.com/jacecotton/tcds/compare/v0.49.10...v0.49.11) (2022-06-09)
-
-
-### Bug Fixes
-
-* **components:** Add background prop to notif ([9c39a3d](https://github.com/jacecotton/tcds/commit/9c39a3d26e5b02ec8d2d971d3037eae1aa03e6c4))
 
 
 
