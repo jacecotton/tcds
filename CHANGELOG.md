@@ -1,3 +1,12 @@
+## [0.49.15](https://github.com/jacecotton/tcds/compare/v0.49.14...v0.49.15) (2022-06-09)
+
+
+### Bug Fixes
+
+* **components:** Tweak Notification alert styles ([307612b](https://github.com/jacecotton/tcds/commit/307612b9f3070836b38ed97445bbad1a8e208afe))
+
+
+
 ## [0.49.14](https://github.com/jacecotton/tcds/compare/v0.49.13...v0.49.14) (2022-06-09)
 
 
@@ -31,16 +40,6 @@
 ### Bug Fixes
 
 * **components:** Add background prop to notif ([9c39a3d](https://github.com/jacecotton/tcds/commit/9c39a3d26e5b02ec8d2d971d3037eae1aa03e6c4))
-
-
-
-## [0.49.10](https://github.com/jacecotton/tcds/compare/v0.49.9...v0.49.10) (2022-06-09)
-
-
-### Bug Fixes
-
-* **components:** Add show-title modifier to dialog ([8d085c4](https://github.com/jacecotton/tcds/commit/8d085c432dac95bc4c396b64607ae854c972b640))
-* **components:** Tweak Dialog style ([9747690](https://github.com/jacecotton/tcds/commit/97476904e88042e643ff4f6f87654dd57d6f00fb))
 
 
 
