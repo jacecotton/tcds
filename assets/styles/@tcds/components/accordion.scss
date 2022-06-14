@@ -45,7 +45,6 @@
   }
 
   &__icon {
-    height: 1em;
     pointer-events: none;
     transform: rotateZ(var(--icon-rotate, 0));
     transition: transform animation("productive");
@@ -54,7 +53,7 @@
   &__panel {
     overflow: hidden;
     border-top: 1px solid color("gray", "100");
-    transition: height animation("expressive");
+    transition: height 0.15s linear;
   }
 
   &__content {
