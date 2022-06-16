@@ -1,3 +1,17 @@
+# [0.51.0](https://github.com/jacecotton/tcds/compare/v0.50.1...v0.51.0) (2022-06-16)
+
+
+### Bug Fixes
+
+* **components:** Update Carousel ([3133871](https://github.com/jacecotton/tcds/commit/3133871078cd7e0bc41a591bb6479997dd2f1635))
+
+
+### Features
+
+* **icons:** Update icon library ([b1286de](https://github.com/jacecotton/tcds/commit/b1286de300b1d105cfee18b00c130f7b99c3ae48))
+
+
+
 ## [0.50.1](https://github.com/jacecotton/tcds/compare/v0.50.0...v0.50.1) (2022-06-16)
 
 
@@ -31,15 +45,6 @@
 ### Bug Fixes
 
 * Reorder font imports ([bdce1a6](https://github.com/jacecotton/tcds/commit/bdce1a64e0555c06deeb1bee907aaea281bacec0))
-
-
-
-## [0.49.17](https://github.com/jacecotton/tcds/compare/v0.49.16...v0.49.17) (2022-06-14)
-
-
-### Bug Fixes
-
-* **components:** Notification display issue ([fad9c66](https://github.com/jacecotton/tcds/commit/fad9c6681dbd5fa8b8b512c422686e8ecc5c69ac))
 
 
 
