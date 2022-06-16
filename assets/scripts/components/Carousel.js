@@ -51,8 +51,10 @@ export default class Carousel extends Tabs {
       this.state.playing = this.props.autoplay;
     }
 
-    // Set initial "expanded" state.
-    this.state.expanded = false;
+    if(this.controls.expandCollapse) {
+      // Set initial "expanded" state.
+      this.state.expanded = false;
+    }
 
     /** Add event listeners and observers. */
 
@@ -69,9 +71,11 @@ export default class Carousel extends Tabs {
     });
 
     // Toggle play state on play/pause button click.
-    this.controls.playPause.addEventListener("click", () => {
-      this.state.playing = !this.state.playing;
-    });
+    if(this.controls.playPause) {
+      this.controls.playPause.addEventListener("click", () => {
+        this.state.playing = !this.state.playing;
+      });
+    }
 
     this.tabs.forEach((tab) => {
       tab.addEventListener("click", () => {
@@ -167,10 +171,12 @@ export default class Carousel extends Tabs {
     });
 
     // Expand/collapse carousel on expand/collapse button click.
-    this.controls.expandCollapse.addEventListener("click", () => {
-      this.state.playing = false;
-      this.state.expanded = !this.state.expanded;
-    });
+    if(this.controls.expandCollapse) {
+      this.controls.expandCollapse.addEventListener("click", () => {
+        this.state.playing = false;
+        this.state.expanded = !this.state.expanded;
+      });
+    }
   }
 
   // Update DOM after state change.
@@ -210,17 +216,19 @@ export default class Carousel extends Tabs {
         // Indicate state for styling hook.
         this.element.setAttribute("data-playing", this.state.playing);
 
-        // Change ARIA label and tooltip of the play/pause button according to
-        // current state.
-        this.controls.playPause.setAttribute("aria-label", this.state.playing ? "Pause carousel" : "Play carousel");
-        this.controls.playPause.setAttribute("title", this.state.playing ? "Pause carousel" : "Play carousel");
+        if(this.controls.playPause) {
+          // Change ARIA label and tooltip of the play/pause button according to
+          // current state.
+          this.controls.playPause.setAttribute("aria-label", this.state.playing ? "Pause carousel" : "Play carousel");
+          this.controls.playPause.setAttribute("title", this.state.playing ? "Pause carousel" : "Play carousel");
 
-        // Change the icon of the play/pause button according to current state.
-        // @todo Don't hardcode the SVG here. Think of a way to pull it in from
-        //   the icon library.
-        this.controls.playPause.innerHTML = this.state.playing
-          ? `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>`
-          : `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>`;
+          // Change the icon of the play/pause button according to current state.
+          // @todo Don't hardcode the SVG here. Think of a way to pull it in from
+          //   the icon library.
+          this.controls.playPause.innerHTML = this.state.playing
+            ? `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>`
+            : `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>`;
+        }
 
         // Indiciate whether the carousel is a "live region" according to its
         // current play state. Due to several interface elements having the

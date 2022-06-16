@@ -56,6 +56,7 @@
   &__indicators {
     grid-area: indicators;
     display: flex;
+    margin-left: auto;
   }
 
   &__indicator {
@@ -103,12 +104,6 @@
   [data-action="next"],
   [data-action="previous"] {
     display: var(--carousel-navigation-arrows, inline-flex);
-    opacity: 0.45;
-    transition: opacity animation("productive");
-
-    &:hover {
-      opacity: 1;
-    }
   }
 
   [data-action="expand-collapse"] {

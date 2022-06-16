@@ -8,7 +8,7 @@
 
 {% block root_attributes %}
   aria-roledescription="carousel"
-  data-autoplay="{{ autoplay ?: "true" }}"
+  data-autoplay="{{ autoplay ?: (playable ?: "true") }}"
   {# Sets the amount of time (milliseconds) between slide changes #}
   {{ interval ? "data-interval=#{interval}" }}
 {% endblock %}
@@ -70,7 +70,7 @@
     {% endfor %}
   </div>
 
-  {% if autoplay != "true" %}
+  {% if playable != "false" %}
     {{ include("@tcds/components/button/button.html.twig", {
       label: "Play carousel",
       icon: "play",
