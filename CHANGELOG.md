@@ -1,3 +1,12 @@
+# [0.50.0](https://github.com/jacecotton/tcds/compare/v0.49.19...v0.50.0) (2022-06-16)
+
+
+### Features
+
+* **animation:** Add animation hook ([d7c4395](https://github.com/jacecotton/tcds/commit/d7c4395a66685e6ecd2fe45f60511a5134993e57))
+
+
+
 ## [0.49.19](https://github.com/jacecotton/tcds/compare/v0.49.18...v0.49.19) (2022-06-16)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Accordion style tweak ([275f42f](https://github.com/jacecotton/tcds/commit/275f42f4a1799961119fcbafe498e72ff81624e4))
-
-
-
-## [0.49.15](https://github.com/jacecotton/tcds/compare/v0.49.14...v0.49.15) (2022-06-09)
-
-
-### Bug Fixes
-
-* **components:** Tweak Notification alert styles ([307612b](https://github.com/jacecotton/tcds/commit/307612b9f3070836b38ed97445bbad1a8e208afe))
 
 
 
