@@ -1,32 +1,34 @@
 import Toggleable from "@tcds/components/Toggleable.js";
 
-(function() {
-  const menu = document.getElementById("header-menu");
+class Header {
+  constructor(element) {
+    this.element = element;
 
-  const toggleableMenu = new Toggleable(menu, {
-    animation: {
-      open: "slide-in-left",
-      close: "slide-out-right",
-    },
-  });
+    this.toggleableMenu = new Toggleable(this.element, {
+      animation: {
+        open: "slide-in-left",
+        close: "slide-out-right",
+      },
+    });
 
-  const breakpoint = window.matchMedia("(max-width: 1024px)");
+    const breakpoint = window.matchMedia("(max-width: 1024px)");
 
-  handleHeaderMenu(breakpoint);
-  breakpoint.addListener(handleHeaderMenu);
+    this.handleHeaderMenu(breakpoint);
+    breakpoint.addListener(this.handleHeaderMenu.bind(this));
+  }
 
-  function handleHeaderMenu(breakpoint) {
+  handleHeaderMenu(breakpoint) {
     if(breakpoint.matches) {
-      menu.hidden = true;
-      toggleableMenu.close();
-      moveSearchTo("utility-menu");
+      this.element.hidden = true;
+      this.toggleableMenu.close();
+      this.moveSearchTo("utility-menu");
     } else {
-      toggleableMenu.destroy();
-      moveSearchTo("main-menu");
+      this.toggleableMenu.destroy();
+      this.moveSearchTo("main-menu");
     }
   }
 
-  function moveSearchTo(whichNav) {
+  moveSearchTo(whichNav) {
     const nav = document.querySelector(`.site-header__nav--${whichNav} ul`);
     const navItems = document.querySelectorAll(".site-header__nav ul li");
 
@@ -38,4 +40,9 @@ import Toggleable from "@tcds/components/Toggleable.js";
       });
     }
   }
+}
+
+(function() {
+  const instance = document.getElementById("header-menu");
+  instance && new Header(instance);
 }());
