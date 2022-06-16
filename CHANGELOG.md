@@ -1,3 +1,12 @@
+## [0.51.2](https://github.com/jacecotton/tcds/compare/v0.51.1...v0.51.2) (2022-06-16)
+
+
+### Bug Fixes
+
+* **components:** Tweak Carousel API ([ba864b8](https://github.com/jacecotton/tcds/commit/ba864b8c76ca8bd6e6b055235101958723e3c235))
+
+
+
 ## [0.51.1](https://github.com/jacecotton/tcds/compare/v0.51.0...v0.51.1) (2022-06-16)
 
 
@@ -36,15 +45,6 @@
 ### Features
 
 * **animation:** Add animation hook ([d7c4395](https://github.com/jacecotton/tcds/commit/d7c4395a66685e6ecd2fe45f60511a5134993e57))
-
-
-
-## [0.49.19](https://github.com/jacecotton/tcds/compare/v0.49.18...v0.49.19) (2022-06-16)
-
-
-### Bug Fixes
-
-* **components:** Fix Header component ([f6d5341](https://github.com/jacecotton/tcds/commit/f6d53414c41347bd02c044402487198c3c31c18a))
 
 
 
