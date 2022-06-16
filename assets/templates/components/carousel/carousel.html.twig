@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block inner_content %}
-  {% if hide_header !== "true" %}
+  {% if hide_header != "true" %}
     <header class="Carousel__header">
       <h{{ heading_level ?: "2" }} class="Carousel__heading">
         {% if heading_link %} <a href="{{ heading_link }}"> {% endif %}
@@ -70,7 +70,7 @@
     {% endfor %}
   </div>
 
-  {% if autoplay !== "true" %}
+  {% if autoplay != "true" %}
     {{ include("@tcds/components/button/button.html.twig", {
       label: "Play carousel",
       icon: "play",
