@@ -69,6 +69,8 @@ export default function AnimateElement(element, animation, options = {}) {
             + `var(--animation-${keyframeset}-easing, var(--animation-easing)) `
             + `var(--animation-${keyframeset}-fill-mode, var(--animation-fill-mode))`;
         });
+
+        element.setAttribute("data-animating", "true");
       }
 
       // When the animation has finished...
@@ -77,6 +79,7 @@ export default function AnimateElement(element, animation, options = {}) {
         // Remove the animation style (unless `removeOnFinish` is disabled).
         if(options.removeOnFinish !== false) {
           element.style.animation = null;
+          element.removeAttribute("data-animating");
         }
 
         element.onanimationend = null;
