@@ -57,7 +57,7 @@ export default class Toggleable extends Component {
     });
   }
 
-  sync() {
+  sync(newState, prevState) {
     return {
       open: () => {
         // Set local storage state.
@@ -68,15 +68,22 @@ export default class Toggleable extends Component {
           toggler.setAttribute("aria-expanded", this.state.open);
         });
 
-        if(!this.props.animation) {
+        if(!this.props.animation || prevState.open === undefined) {
           this.element.hidden = !this.state.open;
         } else {
           if(this.state.open === true) {
+            this.element.setAttribute("data-animation-state", "opening");
             this.element.hidden = false;
-            AnimateElement(this.element, this.props.animation.open || this.props.animation, { lazyload: false });
+
+            AnimateElement(this.element, this.props.animation.open || this.props.animation, { lazyload: false }).then(() => {
+              this.element.removeAttribute("data-animation-state");
+            });
           } else {
+            this.element.setAttribute("data-animation-state", "closing");
+
             AnimateElement(this.element, this.props.animation.close || this.props.animation, { lazyload: false}).then(() => {
               this.element.hidden = true;
+              this.element.removeAttribute("data-animation-state");
             });
           }
         }
