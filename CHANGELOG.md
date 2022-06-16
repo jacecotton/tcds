@@ -1,3 +1,12 @@
+## [0.49.19](https://github.com/jacecotton/tcds/compare/v0.49.18...v0.49.19) (2022-06-16)
+
+
+### Bug Fixes
+
+* **components:** Fix Header component ([f6d5341](https://github.com/jacecotton/tcds/commit/f6d53414c41347bd02c044402487198c3c31c18a))
+
+
+
 ## [0.49.18](https://github.com/jacecotton/tcds/compare/v0.49.17...v0.49.18) (2022-06-16)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Tweak Notification alert styles ([307612b](https://github.com/jacecotton/tcds/commit/307612b9f3070836b38ed97445bbad1a8e208afe))
-
-
-
-## [0.49.14](https://github.com/jacecotton/tcds/compare/v0.49.13...v0.49.14) (2022-06-09)
-
-
-### Bug Fixes
-
-* **components:** Tweak Notification styles ([a3bf2a8](https://github.com/jacecotton/tcds/commit/a3bf2a88667a7043931a792167620fe05010bdde))
 
 
 
