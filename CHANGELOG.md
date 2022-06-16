@@ -1,3 +1,12 @@
+## [0.49.18](https://github.com/jacecotton/tcds/compare/v0.49.17...v0.49.18) (2022-06-16)
+
+
+### Bug Fixes
+
+* Reorder font imports ([bdce1a6](https://github.com/jacecotton/tcds/commit/bdce1a64e0555c06deeb1bee907aaea281bacec0))
+
+
+
 ## [0.49.17](https://github.com/jacecotton/tcds/compare/v0.49.16...v0.49.17) (2022-06-14)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Tweak Notification styles ([a3bf2a8](https://github.com/jacecotton/tcds/commit/a3bf2a88667a7043931a792167620fe05010bdde))
-
-
-
-## [0.49.13](https://github.com/jacecotton/tcds/compare/v0.49.12...v0.49.13) (2022-06-09)
-
-
-### Bug Fixes
-
-* **components:** Add alert modifier to notif ([6917696](https://github.com/jacecotton/tcds/commit/691769613c845d707380a0b9599aab1e0ea9e218))
 
 
 
