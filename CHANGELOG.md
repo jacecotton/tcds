@@ -1,3 +1,12 @@
+## [0.50.1](https://github.com/jacecotton/tcds/compare/v0.50.0...v0.50.1) (2022-06-16)
+
+
+### Bug Fixes
+
+* **components:** Add Toggle state hooks ([128838c](https://github.com/jacecotton/tcds/commit/128838cef953de917e55b197af0089b24132f3ba))
+
+
+
 # [0.50.0](https://github.com/jacecotton/tcds/compare/v0.49.19...v0.50.0) (2022-06-16)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Notification display issue ([fad9c66](https://github.com/jacecotton/tcds/commit/fad9c6681dbd5fa8b8b512c422686e8ecc5c69ac))
-
-
-
-## [0.49.16](https://github.com/jacecotton/tcds/compare/v0.49.15...v0.49.16) (2022-06-14)
-
-
-### Bug Fixes
-
-* **components:** Accordion style tweak ([275f42f](https://github.com/jacecotton/tcds/commit/275f42f4a1799961119fcbafe498e72ff81624e4))
 
 
 
