@@ -1,3 +1,12 @@
+## [0.51.1](https://github.com/jacecotton/tcds/compare/v0.51.0...v0.51.1) (2022-06-16)
+
+
+### Bug Fixes
+
+* **components:** Carousel Twig error fix ([c40cac2](https://github.com/jacecotton/tcds/commit/c40cac2ecd31dacc31bd2e221c7025bb53fb3040))
+
+
+
 # [0.51.0](https://github.com/jacecotton/tcds/compare/v0.50.1...v0.51.0) (2022-06-16)
 
 
@@ -36,15 +45,6 @@
 ### Bug Fixes
 
 * **components:** Fix Header component ([f6d5341](https://github.com/jacecotton/tcds/commit/f6d53414c41347bd02c044402487198c3c31c18a))
-
-
-
-## [0.49.18](https://github.com/jacecotton/tcds/compare/v0.49.17...v0.49.18) (2022-06-16)
-
-
-### Bug Fixes
-
-* Reorder font imports ([bdce1a6](https://github.com/jacecotton/tcds/commit/bdce1a64e0555c06deeb1bee907aaea281bacec0))
 
 
 
