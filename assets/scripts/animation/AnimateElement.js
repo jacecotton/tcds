@@ -52,6 +52,8 @@ export default function AnimateElement(element, animation, options = {}) {
     }
 
     function triggerAnimation() {
+      element.style.setProperty("--animation-element-calculated-height", `${element.scrollHeight}px`);
+
       // Add the utility class that triggers the animation (must be a valid
       // animation token).
       if(typeof animation === "string") {

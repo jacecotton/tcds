@@ -17,6 +17,10 @@ export default class Toggleable extends Component {
       this.props.closeOnClickOutside = true;
     }
 
+    if(this.props.target === undefined) {
+      this.props.target = this.element;
+    }
+
     this.togglers = document.querySelectorAll(`[aria-controls=${this.element.id}]`);
     this.localStorageState = `toggleable_${this.element.id}_state`;
 
@@ -68,21 +72,21 @@ export default class Toggleable extends Component {
           toggler.setAttribute("aria-expanded", this.state.open);
         });
 
-        if(!this.props.animation || prevState.open === undefined) {
-          this.element.hidden = !this.state.open;
+        if(!this.props.animation || prevState && prevState.open === undefined) {
+          this.props.target.hidden = !this.state.open;
         } else {
           if(this.state.open === true) {
             this.element.setAttribute("data-animation-state", "opening");
-            this.element.hidden = false;
+            this.props.target.hidden = false;
 
-            AnimateElement(this.element, this.props.animation.open || this.props.animation, { lazyload: false }).then(() => {
+            AnimateElement(this.props.target, this.props.animation.open || this.props.animation, { lazyload: false }).then(() => {
               this.element.removeAttribute("data-animation-state");
             });
           } else {
             this.element.setAttribute("data-animation-state", "closing");
 
-            AnimateElement(this.element, this.props.animation.close || this.props.animation, { lazyload: false}).then(() => {
-              this.element.hidden = true;
+            AnimateElement(this.props.target, this.props.animation.close || this.props.animation, { lazyload: false}).then(() => {
+              this.props.target.hidden = true;
               this.element.removeAttribute("data-animation-state");
             });
           }

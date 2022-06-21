@@ -93,3 +93,27 @@
     transform: scale(1.5);
   }
 }
+
+@keyframes expand-down {
+  from {
+    height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  to {
+    height: var(--animation-element-calculated-height);
+  }
+}
+
+@keyframes collapse-up {
+  from {
+    height: var(--animation-element-calculated-height);
+  }
+
+  to {
+    height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}

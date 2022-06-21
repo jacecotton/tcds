@@ -7,12 +7,6 @@
   position: relative;
   background-color: theme-color("secondary");
   color: theme-color("secondary", "0");
-  padding: space("normal") 0;
-
-  &[data-state="dismissed"] {
-    height: 0;
-    padding: 0;
-  }
 
   &:not(#{&}--full-bleed):not(#{&}--alert) {
     @include max-width;
@@ -38,23 +32,17 @@
     top: 0;
     right: 0;
     left: 0;
-    animation: alert-reveal animation("expressive");
+  }
 
-    @keyframes alert-reveal {
-      from {
-        height: 0;
-        padding: 0;
-      }
-    }
+  &__content {
+    @include max-width;
+
+    padding: space("normal") 0;
   }
 
   &__dismiss {
     position: absolute;
     right: space("normal");
-  }
-
-  &__message[hidden] ~ &__dismiss {
-    display: none;
   }
 
   &__expand {
@@ -65,17 +53,17 @@
     border-radius: 1rem;
     border-top-right-radius: 0;
     border-top-left-radius: 0;
-    width: 4rem;
-    height: 1.5rem;
+    width: 64px;
+    height: 24px;
+
+    [aria-expanded="true"] + & {
+      transform: translate(-50%, -100%);
+    }
 
     svg {
       width: 100%;
       padding: 5%;
     }
-  }
-
-  &__message:not([hidden]) ~ &__expand {
-    display: none;
   }
 
   /**
