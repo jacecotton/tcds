@@ -1,3 +1,12 @@
+## [0.51.3](https://github.com/jacecotton/tcds/compare/v0.51.2...v0.51.3) (2022-06-21)
+
+
+### Bug Fixes
+
+* **components:** Update Notification and Toggleabl ([da30fd0](https://github.com/jacecotton/tcds/commit/da30fd06cc4f1713493fed233ddbc409e1c0d6bd))
+
+
+
 ## [0.51.2](https://github.com/jacecotton/tcds/compare/v0.51.1...v0.51.2) (2022-06-16)
 
 
@@ -36,15 +45,6 @@
 ### Bug Fixes
 
 * **components:** Add Toggle state hooks ([128838c](https://github.com/jacecotton/tcds/commit/128838cef953de917e55b197af0089b24132f3ba))
-
-
-
-# [0.50.0](https://github.com/jacecotton/tcds/compare/v0.49.19...v0.50.0) (2022-06-16)
-
-
-### Features
-
-* **animation:** Add animation hook ([d7c4395](https://github.com/jacecotton/tcds/commit/d7c4395a66685e6ecd2fe45f60511a5134993e57))
 
 
 
