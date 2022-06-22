@@ -38,11 +38,14 @@
     @include max-width;
 
     padding: space("normal") 0;
+    overflow: hidden;
   }
 
   &__dismiss {
     position: absolute;
     right: space("normal");
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   &__expand {
@@ -56,7 +59,7 @@
     width: 64px;
     height: 24px;
 
-    [aria-expanded="true"] + & {
+    &[aria-expanded="true"] {
       transform: translate(-50%, -100%);
     }
 
