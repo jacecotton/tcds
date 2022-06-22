@@ -1,3 +1,17 @@
+# [0.52.0](https://github.com/jacecotton/tcds/compare/v0.51.3...v0.52.0) (2022-06-22)
+
+
+### Bug Fixes
+
+* **primitives:** List style selector specificity ([31d28cd](https://github.com/jacecotton/tcds/commit/31d28cd747f961b365842c4a8762338a51e2b9ea))
+
+
+### Features
+
+* **components:** Add inline icon modifier to Button ([2ca1096](https://github.com/jacecotton/tcds/commit/2ca10964fb674e70e46ff5d58cee03751b5a17d7))
+
+
+
 ## [0.51.3](https://github.com/jacecotton/tcds/compare/v0.51.2...v0.51.3) (2022-06-21)
 
 
@@ -36,15 +50,6 @@
 ### Features
 
 * **icons:** Update icon library ([b1286de](https://github.com/jacecotton/tcds/commit/b1286de300b1d105cfee18b00c130f7b99c3ae48))
-
-
-
-## [0.50.1](https://github.com/jacecotton/tcds/compare/v0.50.0...v0.50.1) (2022-06-16)
-
-
-### Bug Fixes
-
-* **components:** Add Toggle state hooks ([128838c](https://github.com/jacecotton/tcds/commit/128838cef953de917e55b197af0089b24132f3ba))
 
 
 
