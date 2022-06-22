@@ -11,8 +11,8 @@ ol:not([class]),
   }
 }
 
-ul[class]:not(.ul),
-ol[class]:not(.ol) {
+:where(ul[class]:not(.ul)),
+:where(ol[class]:not(.ol)) {
   list-style: none;
 }
 
