@@ -1,3 +1,13 @@
+## [0.52.2](https://github.com/jacecotton/tcds/compare/v0.52.1...v0.52.2) (2022-06-22)
+
+
+### Bug Fixes
+
+* **components:** Card style tweak ([5c5c7b6](https://github.com/jacecotton/tcds/commit/5c5c7b6c74d7f8661fd6a15db21ec46ce932e2d6))
+* **components:** Z-index notification + header issue ([b914822](https://github.com/jacecotton/tcds/commit/b914822a7f7f1de150f177e515826d1608800c57))
+
+
+
 ## [0.52.1](https://github.com/jacecotton/tcds/compare/v0.52.0...v0.52.1) (2022-06-22)
 
 
@@ -36,15 +46,6 @@
 ### Bug Fixes
 
 * **components:** Tweak Carousel API ([ba864b8](https://github.com/jacecotton/tcds/commit/ba864b8c76ca8bd6e6b055235101958723e3c235))
-
-
-
-## [0.51.1](https://github.com/jacecotton/tcds/compare/v0.51.0...v0.51.1) (2022-06-16)
-
-
-### Bug Fixes
-
-* **components:** Carousel Twig error fix ([c40cac2](https://github.com/jacecotton/tcds/commit/c40cac2ecd31dacc31bd2e221c7025bb53fb3040))
 
 
 
