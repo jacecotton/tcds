@@ -12,6 +12,7 @@
 
   display: grid;
   position: relative;
+  transition: box-shadow animation("productive");
 
   /** States */
 
@@ -198,8 +199,8 @@
   &__footer {
     display: flex;
     margin-top: auto;
-    border-top: 1px solid color("gray", "200");
-    padding-top: var(--card-body-padding-y, var(--card-body-padding, #{space("x-loose")}));
+    border-top: 1px solid color("shade", "100");
+    padding-top: 1rem;
   }
 
   &__action {
