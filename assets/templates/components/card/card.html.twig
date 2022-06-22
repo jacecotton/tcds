@@ -33,9 +33,8 @@
                 <a
                   href="{{ link }}"
                   class="
-                    {% if "compact" not in modifiers %}
-                      Button Button--small
-                      {% if "full-width-button" in modifiers %} Button--full-width {% endif %}
+                    {% if "full-width-button" in modifiers %}
+                      Button Button--small Button--full-width
                     {% else %}
                       Card__action
                     {% endif %}

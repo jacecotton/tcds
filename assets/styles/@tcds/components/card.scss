@@ -19,6 +19,10 @@
     @include focus-style;
   }
 
+  &:hover {
+    box-shadow: 0 0.5rem 1rem color("shade", "100");
+  }
+
   /** Modifiers */
 
   /**
@@ -178,6 +182,8 @@
   &__content {
     @include font-size("medium", $custom-property: "--card-content-font-size");
 
+    color: color("gray", "300");
+
     &:not(:last-child) {
       margin-bottom: space("loose", "em");
     }
@@ -192,11 +198,12 @@
   &__footer {
     display: flex;
     margin-top: auto;
+    border-top: 1px solid color("gray", "200");
+    padding-top: var(--card-body-padding-y, var(--card-body-padding, #{space("x-loose")}));
   }
 
   &__action {
     font-size: font-size("small");
-    font-weight: font-weight("bold");
     text-decoration: none;
   }
 }
