@@ -1,3 +1,12 @@
+## [0.52.1](https://github.com/jacecotton/tcds/compare/v0.52.0...v0.52.1) (2022-06-22)
+
+
+### Bug Fixes
+
+* **components:** Notification overflow bug ([608e235](https://github.com/jacecotton/tcds/commit/608e2353beb095f01e8b8fa050a4187779f3be99))
+
+
+
 # [0.52.0](https://github.com/jacecotton/tcds/compare/v0.51.3...v0.52.0) (2022-06-22)
 
 
@@ -36,20 +45,6 @@
 ### Bug Fixes
 
 * **components:** Carousel Twig error fix ([c40cac2](https://github.com/jacecotton/tcds/commit/c40cac2ecd31dacc31bd2e221c7025bb53fb3040))
-
-
-
-# [0.51.0](https://github.com/jacecotton/tcds/compare/v0.50.1...v0.51.0) (2022-06-16)
-
-
-### Bug Fixes
-
-* **components:** Update Carousel ([3133871](https://github.com/jacecotton/tcds/commit/3133871078cd7e0bc41a591bb6479997dd2f1635))
-
-
-### Features
-
-* **icons:** Update icon library ([b1286de](https://github.com/jacecotton/tcds/commit/b1286de300b1d105cfee18b00c130f7b99c3ae48))
 
 
 
