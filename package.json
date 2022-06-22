@@ -1,6 +1,6 @@
 {
   "name": "@txch/tcds",
-  "version": "0.52.2",
+  "version": "0.52.3",
   "description": "Texas Children's Design System",
   "type": "module",
   "scripts": {

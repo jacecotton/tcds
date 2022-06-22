@@ -1,3 +1,12 @@
+## [0.52.3](https://github.com/jacecotton/tcds/compare/v0.52.2...v0.52.3) (2022-06-22)
+
+
+### Bug Fixes
+
+* **components:** Card style tweak ([04d0a45](https://github.com/jacecotton/tcds/commit/04d0a45fe088696368de10e781b269820f09ff54))
+
+
+
 ## [0.52.2](https://github.com/jacecotton/tcds/compare/v0.52.1...v0.52.2) (2022-06-22)
 
 
@@ -37,15 +46,6 @@
 ### Bug Fixes
 
 * **components:** Update Notification and Toggleabl ([da30fd0](https://github.com/jacecotton/tcds/commit/da30fd06cc4f1713493fed233ddbc409e1c0d6bd))
-
-
-
-## [0.51.2](https://github.com/jacecotton/tcds/compare/v0.51.1...v0.51.2) (2022-06-16)
-
-
-### Bug Fixes
-
-* **components:** Tweak Carousel API ([ba864b8](https://github.com/jacecotton/tcds/commit/ba864b8c76ca8bd6e6b055235101958723e3c235))
 
 
 
