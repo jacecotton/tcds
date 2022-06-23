@@ -42,6 +42,6 @@
   }
 
   &--text-shadow {
-    text-shadow: 0 0.5rem 0.5rem color("shade", "100");
+    --section-text-shadow: 0 0.5rem 0.5rem color("shade", "100");
   }
 }

@@ -35,12 +35,15 @@
     @include font-size("xx-large");
 
     font-family: font-stack("headings");
-    font-weight: font-weight("semibold");
+    font-weight: font-weight("bold");
     margin: 0;
+    text-shadow: var(--section-text-shadow, none);
   }
 
   &__subheading {
     @include font-size("medium-plus");
+
+    text-shadow: var(--section-text-shadow, none);
 
     @include breakpoint-above("medium") {
       width: 50%;
