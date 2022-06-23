@@ -4,7 +4,7 @@ ul:not([class]),
 .ul,
 ol:not([class]),
 .ol {
-  padding-left: space("normal", "rem");
+  padding-left: 2ch;
 
   &:not(:last-child) {
     margin: 0 0 space("normal", "rem");
