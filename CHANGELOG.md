@@ -1,3 +1,12 @@
+## [0.52.5](https://github.com/jacecotton/tcds/compare/v0.52.4...v0.52.5) (2022-06-23)
+
+
+### Bug Fixes
+
+* **primitives:** Tweak list styles ([a8724f2](https://github.com/jacecotton/tcds/commit/a8724f29c22fe44e37d15f7b9d8b57d691d5ce7e))
+
+
+
 ## [0.52.4](https://github.com/jacecotton/tcds/compare/v0.52.3...v0.52.4) (2022-06-23)
 
 
@@ -32,20 +41,6 @@
 ### Bug Fixes
 
 * **components:** Notification overflow bug ([608e235](https://github.com/jacecotton/tcds/commit/608e2353beb095f01e8b8fa050a4187779f3be99))
-
-
-
-# [0.52.0](https://github.com/jacecotton/tcds/compare/v0.51.3...v0.52.0) (2022-06-22)
-
-
-### Bug Fixes
-
-* **primitives:** List style selector specificity ([31d28cd](https://github.com/jacecotton/tcds/commit/31d28cd747f961b365842c4a8762338a51e2b9ea))
-
-
-### Features
-
-* **components:** Add inline icon modifier to Button ([2ca1096](https://github.com/jacecotton/tcds/commit/2ca10964fb674e70e46ff5d58cee03751b5a17d7))
 
 
 
