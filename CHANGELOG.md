@@ -1,3 +1,12 @@
+## [0.52.4](https://github.com/jacecotton/tcds/compare/v0.52.3...v0.52.4) (2022-06-23)
+
+
+### Bug Fixes
+
+* **components:** Hero style tweak ([3b32787](https://github.com/jacecotton/tcds/commit/3b3278747c86cab3f4533ae3494327f035280778))
+
+
+
 ## [0.52.3](https://github.com/jacecotton/tcds/compare/v0.52.2...v0.52.3) (2022-06-22)
 
 
@@ -37,15 +46,6 @@
 ### Features
 
 * **components:** Add inline icon modifier to Button ([2ca1096](https://github.com/jacecotton/tcds/commit/2ca10964fb674e70e46ff5d58cee03751b5a17d7))
-
-
-
-## [0.51.3](https://github.com/jacecotton/tcds/compare/v0.51.2...v0.51.3) (2022-06-21)
-
-
-### Bug Fixes
-
-* **components:** Update Notification and Toggleabl ([da30fd0](https://github.com/jacecotton/tcds/commit/da30fd06cc4f1713493fed233ddbc409e1c0d6bd))
 
 
 
