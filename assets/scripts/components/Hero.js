@@ -74,10 +74,7 @@ export default class Hero {
   // Simple parallax effect. Change the background position as a percentage of
   // the current scroll offset.
   parallax() {
-    const scrolled = window.pageYOffset;
-    const offset = 50 + scrolled * .1;
-
-    this.element.style.backgroundPosition = `center ${offset}%`;
+    this.element.style.backgroundPosition = `center ${50 + window.pageYOffset * .1}%`;
   }
 }
 

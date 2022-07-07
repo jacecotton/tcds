@@ -56,10 +56,8 @@ export default class Dialog extends Toggleable {
           const target = this.element.querySelector("[autofocus]") || getFocusableChildren(this.element)[0];
           this.previouslyFocused = document.activeElement;
           target && target.focus();
-        } else {
-          if(this.previouslyFocused && this.previouslyFocused.focus) {
-            this.previouslyFocused.focus();
-          }
+        } else if(this.previouslyFocused && this.previouslyFocused.focus) {
+          this.previouslyFocused.focus();
         }
       },
     };
