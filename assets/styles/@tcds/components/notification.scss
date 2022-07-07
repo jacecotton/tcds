@@ -24,6 +24,10 @@
   &--full-bleed {
     position: sticky;
     top: 0;
+  }
+
+  &[data-state="closed"]#{&}--full-bleed,
+  &[data-animation-state="closing"]#{&}--full-bleed {
     z-index: layer("site-header") + 1;
   }
 

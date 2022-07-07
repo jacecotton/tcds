@@ -81,6 +81,7 @@ export default class Toggleable extends Component {
 
             AnimateElement(this.props.target, this.props.animation.open || this.props.animation, { lazyload: false }).then(() => {
               this.element.removeAttribute("data-animation-state");
+              this.element.setAttribute("data-state", "open");
             });
           } else {
             this.element.setAttribute("data-animation-state", "closing");
@@ -88,6 +89,7 @@ export default class Toggleable extends Component {
             AnimateElement(this.props.target, this.props.animation.close || this.props.animation, { lazyload: false}).then(() => {
               this.props.target.hidden = true;
               this.element.removeAttribute("data-animation-state");
+              this.element.setAttribute("data-state", "closed");
             });
           }
         }
