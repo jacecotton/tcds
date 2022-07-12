@@ -1,0 +1,18 @@
+<div data-component="Tabs"
+  class="Tabs
+    {% for modifier in modifiers %}
+      Tabs--{{ modifier }}
+    {% endfor %}
+    {% for class in custom_classes %}
+      {{ class }}
+    {% endfor %}
+  "
+  {% for custom_property, custom_value in custom_attributes %}
+    {{ custom_property }}="{{ custom_value }}"
+  {% endfor %}
+  {% if hide_all %}
+    data-hide-all
+  {% endif %}
+>
+  {% block content %}{% endblock %}
+</div>
