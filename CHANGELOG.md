@@ -1,3 +1,12 @@
+## [0.52.8](https://github.com/jacecotton/tcds/compare/v0.52.7...v0.52.8) (2022-07-12)
+
+
+### Bug Fixes
+
+* **components:** Accordion button alignment and line-height issue ([b00c886](https://github.com/jacecotton/tcds/commit/b00c886039925c5684fba7c0010349d46344b6d7))
+
+
+
 ## [0.52.7](https://github.com/jacecotton/tcds/compare/v0.52.6...v0.52.7) (2022-07-07)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * **components:** Hero style tweak ([3b32787](https://github.com/jacecotton/tcds/commit/3b3278747c86cab3f4533ae3494327f035280778))
-
-
-
-## [0.52.3](https://github.com/jacecotton/tcds/compare/v0.52.2...v0.52.3) (2022-06-22)
-
-
-### Bug Fixes
-
-* **components:** Card style tweak ([04d0a45](https://github.com/jacecotton/tcds/commit/04d0a45fe088696368de10e781b269820f09ff54))
 
 
 
