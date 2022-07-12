@@ -1,4 +1,6 @@
 <section>
   <h2>{{ heading|raw }}</h2>
-  {{ content|raw }}
+  {% block content %}
+    {{ content|raw }}
+  {% endblock %}
 </section>
