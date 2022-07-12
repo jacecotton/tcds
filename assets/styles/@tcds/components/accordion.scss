@@ -30,8 +30,9 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+    text-align: left;
     gap: space("tight");
-    line-height: 2.5;
+    padding: space("tight") 0;
     font-family: font-stack("ui");
     width: 100%;
 
