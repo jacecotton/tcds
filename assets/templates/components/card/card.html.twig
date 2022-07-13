@@ -1,4 +1,12 @@
 <div class="is-self-responsive">
+  {% if not image.url %}
+    {% if not modifiers %}
+      {% set modifiers = [] %}
+    {% endif %}
+
+    {% set modifiers = modifiers|merge(["no-media"]) %}
+  {% endif %}
+
   {% embed "@tcds/components/component/component.html.twig" with {
     component_name: "Card",
     root_element: "article",

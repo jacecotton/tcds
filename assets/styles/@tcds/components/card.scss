@@ -52,7 +52,7 @@
    * explicitly set, and the card's outer container is sufficiently wide.
    */
   @container (min-width: 600px) {
-    &:not(#{&}--vertical) {
+    &:not(#{&}--vertical):not(#{&}--no-media) {
       @include horizontal-card;
     }
   }
@@ -61,7 +61,7 @@
    * Also apply horizontal orientation styles when the "horizontal" modifier is
    * explicitly set.
    */
-  &--horizontal {
+  &--horizontal:not(#{&}--no-media) {
     @include horizontal-card;
   }
 
