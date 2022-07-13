@@ -12,6 +12,14 @@ export default class Accordion extends Component {
     this.expandAllButton = this.element.querySelector("[data-component-part=expand-all]");
     this.collapseAllButton = this.element.querySelector("[data-component-part=collapse-all]");
 
+    const duplicates = [...new Set(this.buttons.map(button => button.id).filter((item, index, array) => array.indexOf(item) !== index))];
+
+    if(duplicates.length > 0) {
+      duplicates.forEach((duplicate) => {
+        console.error(`ERROR: Accordion sections must be unique. Duplicate sections labeled "${document.getElementById(duplicate).textContent.trim()}" were found. Choose a unique name for each section, or remove the duplicate section(s).`);
+      });
+    }
+
     // Track which buttons should be active via an array. Start with an empty
     // array to collapse all sections.
     this.state.activeButtons = [];
