@@ -1,3 +1,12 @@
+## [0.52.11](https://github.com/jacecotton/tcds/compare/v0.52.10...v0.52.11) (2022-07-13)
+
+
+### Bug Fixes
+
+* **components:** Check for duplicate Accordion section labels, throw error ([91041fc](https://github.com/jacecotton/tcds/commit/91041fcfaa903785d1f4d4b72c3c648ecd0fb9ce))
+
+
+
 ## [0.52.10](https://github.com/jacecotton/tcds/compare/v0.52.9...v0.52.10) (2022-07-12)
 
 
@@ -31,16 +40,6 @@
 ### Bug Fixes
 
 * **components:** Header logo sizing issue in FF ([57d69f6](https://github.com/jacecotton/tcds/commit/57d69f656f5c49b76e7e6bf2ae5ee298aab3169d))
-
-
-
-## [0.52.6](https://github.com/jacecotton/tcds/compare/v0.52.5...v0.52.6) (2022-07-07)
-
-
-### Bug Fixes
-
-* **components:** Dialog show-title fix ([93d98e9](https://github.com/jacecotton/tcds/commit/93d98e9ff6c997c5ff897328f5616120d1e0031c))
-* **components:** Notification z-index issue ([ef60708](https://github.com/jacecotton/tcds/commit/ef60708b8d924810e1b47b8434ffc807b058d14e))
 
 
 
