@@ -1,3 +1,12 @@
+## [0.52.12](https://github.com/jacecotton/tcds/compare/v0.52.11...v0.52.12) (2022-07-13)
+
+
+### Bug Fixes
+
+* **components:** Card no media fix ([789576f](https://github.com/jacecotton/tcds/commit/789576fcf27c0d46e145b4b92955523790ea5999))
+
+
+
 ## [0.52.11](https://github.com/jacecotton/tcds/compare/v0.52.10...v0.52.11) (2022-07-13)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Accordion button alignment and line-height issue ([b00c886](https://github.com/jacecotton/tcds/commit/b00c886039925c5684fba7c0010349d46344b6d7))
-
-
-
-## [0.52.7](https://github.com/jacecotton/tcds/compare/v0.52.6...v0.52.7) (2022-07-07)
-
-
-### Bug Fixes
-
-* **components:** Header logo sizing issue in FF ([57d69f6](https://github.com/jacecotton/tcds/commit/57d69f656f5c49b76e7e6bf2ae5ee298aab3169d))
 
 
 
