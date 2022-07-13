@@ -11,6 +11,7 @@
   $card-media-small: 220px; // 1
 
   display: grid;
+  grid-template-areas: "body";
   position: relative;
   transition: box-shadow animation("productive");
 
