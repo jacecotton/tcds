@@ -97,6 +97,6 @@ export default class Tabs extends Component {
 
 document.querySelectorAll(".Tabs").forEach((instance) => {
   instance && new Tabs(instance, {
-    hideAll: instance.classList.contains("Tabs--hide-all"),
+    hideAll: /hide-all/.test(instance.className),
   });
 });
