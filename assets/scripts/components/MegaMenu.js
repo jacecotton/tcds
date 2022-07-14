@@ -1,5 +1,4 @@
-import Component from "@tcds/utilities/Component.js";
-import AnimateElement from "@tcds/animation/AnimateElement.js";
+import Toggleable from "@tcds/components/Toggleable.js";
 
 /**
  * MegaMenu component script.
@@ -10,65 +9,36 @@ import AnimateElement from "@tcds/animation/AnimateElement.js";
  * The functionality added by this script is:
  * - Closes other Mega Menu instances when an instance is opened.
  */
-export default class MegaMenu extends Component {
+export default class MegaMenu extends Toggleable {
   constructor(element, props) {
-    super(element, props);
-
-    this.toggles = document.querySelectorAll(`[aria-controls=${this.element.id}]`);
-
-    this.state.expanded = false;
-
-    this.toggles.forEach((toggle) => {
-      toggle.addEventListener("click", (event) => {
-        event.stopPropagation();
-        this.state.expanded = !this.state.expanded;
-      });
-    });
-
-    document.body.addEventListener("click", () => {
-      this.state.expanded = false;
-    });
-
-    this.element.addEventListener("click", (event) => {
-      event.stopPropagation();
-    });
-
-    this.element.addEventListener("keyup", (event) => {
-      if(event.key === "Escape") {
-        this.state.expanded = false;
-      }
+    super(element, {
+      ...props,
+      ...{
+        animation: {
+          open: ["slide-in-down", "fade-in"],
+          close: "fade-out",
+        },
+      },
     });
   }
 
   sync() {
+    super.sync();
+
     return {
-      expanded: () => {
-        this.toggles.forEach((toggle) => {
-          toggle.setAttribute("aria-expanded", this.state.expanded);
-        });
+      open: () => {
+        super.sync().open();
 
         if(this.state.expanded === true) {
           // If opening a mega menu, close other mega menus first.
           document.querySelectorAll("[data-component=MegaMenu]").forEach((otherMegaMenu) => {
             if(otherMegaMenu !== this.element) {
               otherMegaMenu.hidden = true;
+
               document.querySelectorAll(`[aria-controls=${otherMegaMenu.id}]`).forEach((otherToggle) => {
                 otherToggle.setAttribute("aria-expanded", "false");
               });
             }
-          });
-
-          // Now open the current mega menu.
-          this.element.hidden = false;
-
-          if(window.matchMedia("(min-width: 1280px)").matches) {
-            AnimateElement(this.element, ["slide-in-down", "fade-in"], { lazyload: false });
-          } else {
-            AnimateElement(this.element, ["slide-in-left", "fade-in"], { lazyload: false });
-          }
-        } else if(!this.element.hidden) {
-          AnimateElement(this.element, "fade-out", { lazyload: false }).then(() => {
-            this.element.hidden = true;
           });
         }
       },
