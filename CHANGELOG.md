@@ -1,3 +1,12 @@
+## [0.52.15](https://github.com/jacecotton/tcds/compare/v0.52.14...v0.52.15) (2022-07-14)
+
+
+### Bug Fixes
+
+* **components:** Fix state bug in Mega Menu ([5c13e8d](https://github.com/jacecotton/tcds/commit/5c13e8d295dc3e248c42b0c2b84cc0acf9681941))
+
+
+
 ## [0.52.14](https://github.com/jacecotton/tcds/compare/v0.52.13...v0.52.14) (2022-07-14)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Check for duplicate Accordion section labels, throw error ([91041fc](https://github.com/jacecotton/tcds/commit/91041fcfaa903785d1f4d4b72c3c648ecd0fb9ce))
-
-
-
-## [0.52.10](https://github.com/jacecotton/tcds/compare/v0.52.9...v0.52.10) (2022-07-12)
-
-
-### Bug Fixes
-
-* **components:** Tab item data type tweak ([35d5cea](https://github.com/jacecotton/tcds/commit/35d5cea6a053279ee4569783e10fd2d542d8fbcc))
 
 
 
