@@ -91,7 +91,7 @@ export default class Tabs extends Component {
   }
 
   getPanelByTab(tab) {
-    return tab !== null && this.panels.find((panel) => tab.getAttribute("aria-controls") === panel.id);
+    return tab !== null && document.getElementById(tab.getAttribute("aria-controls"));
   }
 }
 
