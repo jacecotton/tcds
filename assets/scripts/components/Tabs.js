@@ -7,6 +7,9 @@ export default class Tabs extends Component {
 
     this.preprocessDOM();
 
+    this.tabs = Array.from(element.querySelectorAll("[role=tab]"));
+    this.panels = Array.from(this.element.querySelectorAll("[role=tabpanel]"));
+
     this.state.activeTab = this.props.hideAll !== true ? this.tabs[0] : null;
 
     this.tabs.forEach((tab) => {
@@ -14,11 +17,11 @@ export default class Tabs extends Component {
         this.state.activeTab = tab;
       });
 
-      tab.addEventListener("keydown", (key) => {
-        if(key.code === "ArrowRight") {
+      tab.addEventListener("keydown", (event) => {
+        if(event.key === "ArrowRight") {
           this.state.activeTab = this.getNextTab();
           this.state.activeTab.focus();
-        } else if(key.code === "ArrowLeft") {
+        } else if(event.key === "ArrowLeft") {
           this.state.activeTab = this.getPreviousTab();
           this.state.activeTab.focus();
         }
@@ -27,40 +30,26 @@ export default class Tabs extends Component {
   }
 
   preprocessDOM() {
-    this.panels = Array.from(this.element.querySelectorAll("section"));
-    this.tabs = [];
+    const sections = Array.from(this.element.querySelectorAll("section"));
 
-    this.tablist = document.createElement("div");
-    this.tablist.setAttribute("role", "tablist");
-    this.tablist.classList.add("Tabs__tablist");
+    this.tablist = `<div role="tablist" class="Tabs__tablist">${sections.map((section) => {
+      const heading = section.querySelector("h2, h3, h4, h5, h6");
 
-    this.viewport = document.createElement("div");
-    this.viewport.classList.add("Tabs__viewport");
+      return `<button role="tab" id="${slugify(heading.innerText)}-tab" aria-controls="${slugify(heading.innerText)}-panel" class="Tabs__tab">${heading.innerText}</button>`;
+    }).join("")}</div>`;
 
-    this.panels.forEach((panel) => {
-      const heading = panel.querySelector("h2, h3, h4, h5, h6");
-      const id = slugify(heading.innerText);
-
-      panel.setAttribute("role", "tabpanel");
-      panel.setAttribute("id", `${id}-panel`);
-      panel.setAttribute("aria-labelledby", `${id}-tab`);
-      panel.classList.add("Tabs__panel");
-      this.viewport.appendChild(panel);
-
-      const tab = document.createElement("button");
-      tab.setAttribute("role", "tab");
-      tab.setAttribute("id", `${id}-tab`);
-      tab.setAttribute("aria-controls", `${id}-panel`);
-      tab.classList.add("Tabs__tab");
-      tab.textContent = heading.innerText;
-
+    this.viewport = `<div class="Tabs__viewport">${sections.map((section) => {
+      const heading = section.querySelector("h2, h3, h4, h5, h6");
       heading.remove();
-      this.tablist.append(tab);
-      this.tabs.push(tab);
+
+      return `<section role="tabpanel" id="${slugify(heading.innerText)}-panel" aria-labelledby="${slugify(heading.innerText)}-tab" class="Tabs__panel">${section.innerHTML}</section>`;
+    }).join("")}</div>`;
+
+    sections.forEach((section) => {
+      section.remove();
     });
 
-    this.element.prepend(this.tablist);
-    this.element.append(this.viewport);
+    this.element.innerHTML = this.tablist + this.viewport;
   }
 
   sync() {
