@@ -1,3 +1,12 @@
+## [0.52.13](https://github.com/jacecotton/tcds/compare/v0.52.12...v0.52.13) (2022-07-13)
+
+
+### Bug Fixes
+
+* **components:** Card display issue ([7340b4a](https://github.com/jacecotton/tcds/commit/7340b4a6c8697991aa280d0f031e96f88cb8f342))
+
+
+
 ## [0.52.12](https://github.com/jacecotton/tcds/compare/v0.52.11...v0.52.12) (2022-07-13)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Major Tabs markup refactor ([d3da16c](https://github.com/jacecotton/tcds/commit/d3da16ca85800113857626b8f6725ea13f488177))
-
-
-
-## [0.52.8](https://github.com/jacecotton/tcds/compare/v0.52.7...v0.52.8) (2022-07-12)
-
-
-### Bug Fixes
-
-* **components:** Accordion button alignment and line-height issue ([b00c886](https://github.com/jacecotton/tcds/commit/b00c886039925c5684fba7c0010349d46344b6d7))
 
 
 
