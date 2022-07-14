@@ -17,8 +17,6 @@
 
 export default (string, separator = "-") => {
   return string
-    // Trim leading and trailing white space.
-    .trim()
     // Remove diacritics from base letter.
     .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
     // Convert to lowercase.
@@ -27,6 +25,8 @@ export default (string, separator = "-") => {
     .replace(/[^\w\s]/gi, " ")
     // Replace multiple spaces with single space (avoids double separators).
     .replace(/\s\s+/g, " ")
+    // Trim leading and trailing white space.
+    .trim()
     // Replace white space with separator.
     .replace(/\s+/g, separator);
 };

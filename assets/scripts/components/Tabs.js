@@ -83,15 +83,17 @@ export default class Tabs extends Component {
   }
 
   getNextTab(relativeTab = this.state.activeTab) {
-    return relativeTab === this.tabs[this.tabs.length - 1]
-      ? this.tabs[0]
-      : this.tabs[this.tabs.indexOf(relativeTab) + 1];
+    return this.tabs[relativeTab === this.tabs[this.tabs.length - 1]
+      ? 0
+      : this.tabs.indexOf(relativeTab) + 1
+    ];
   }
 
   getPreviousTab(relativeTab = this.state.activeTab) {
-    return relativeTab === this.tabs[0]
-      ? this.tabs[this.tabs.length - 1]
-      : this.tabs[this.tabs.indexOf(relativeTab) - 1];
+    return this.tabs[relativeTab === this.tabs[0]
+      ? this.tabs.length - 1
+      : this.tabs.indexOf(relativeTab) - 1
+    ];
   }
 
   getPanelByTab(tab) {
@@ -99,8 +101,8 @@ export default class Tabs extends Component {
   }
 }
 
-document.querySelectorAll("[data-component=Tabs]").forEach((instance) => {
+document.querySelectorAll(".Tabs").forEach((instance) => {
   instance && new Tabs(instance, {
-    hideAll: instance.hasAttribute("data-hide-all"),
+    hideAll: instance.classList.contains("Tabs--hide-all"),
   });
 });
