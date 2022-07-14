@@ -83,17 +83,17 @@ export default class Tabs extends Component {
   }
 
   getNextTab(relativeTab = this.state.activeTab) {
-    return this.tabs[relativeTab === this.tabs[this.tabs.length - 1]
+    return this.tabs.at(relativeTab === this.tabs.at(-1)
       ? 0
       : this.tabs.indexOf(relativeTab) + 1
-    ];
+    );
   }
 
   getPreviousTab(relativeTab = this.state.activeTab) {
-    return this.tabs[relativeTab === this.tabs[0]
-      ? this.tabs.length - 1
+    return this.tabs.at(relativeTab === this.tabs.at(0)
+      ? -1
       : this.tabs.indexOf(relativeTab) - 1
-    ];
+    );
   }
 
   getPanelByTab(tab) {
