@@ -29,7 +29,7 @@ export default class MegaMenu extends Toggleable {
       open: () => {
         super.sync().open();
 
-        if(this.state.expanded === true) {
+        if(this.state.open === true) {
           // If opening a mega menu, close other mega menus first.
           document.querySelectorAll("[data-component=MegaMenu]").forEach((otherMegaMenu) => {
             if(otherMegaMenu !== this.element) {
