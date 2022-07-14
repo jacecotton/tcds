@@ -1,3 +1,12 @@
+## [0.52.16](https://github.com/jacecotton/tcds/compare/v0.52.15...v0.52.16) (2022-07-14)
+
+
+### Bug Fixes
+
+* Misc code optimizations ([063ba3b](https://github.com/jacecotton/tcds/commit/063ba3b4df81af0f52d1258067226af00aa754ac))
+
+
+
 ## [0.52.15](https://github.com/jacecotton/tcds/compare/v0.52.14...v0.52.15) (2022-07-14)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Card no media fix ([789576f](https://github.com/jacecotton/tcds/commit/789576fcf27c0d46e145b4b92955523790ea5999))
-
-
-
-## [0.52.11](https://github.com/jacecotton/tcds/compare/v0.52.10...v0.52.11) (2022-07-13)
-
-
-### Bug Fixes
-
-* **components:** Check for duplicate Accordion section labels, throw error ([91041fc](https://github.com/jacecotton/tcds/commit/91041fcfaa903785d1f4d4b72c3c648ecd0fb9ce))
 
 
 
