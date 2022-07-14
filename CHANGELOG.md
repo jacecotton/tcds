@@ -1,3 +1,12 @@
+## [0.52.14](https://github.com/jacecotton/tcds/compare/v0.52.13...v0.52.14) (2022-07-14)
+
+
+### Bug Fixes
+
+* **components:** Mega Menu extends Toggleable ([3471e7e](https://github.com/jacecotton/tcds/commit/3471e7e9c864b8fa447d13176a34e7cab611c101))
+
+
+
 ## [0.52.13](https://github.com/jacecotton/tcds/compare/v0.52.12...v0.52.13) (2022-07-13)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Tab item data type tweak ([35d5cea](https://github.com/jacecotton/tcds/commit/35d5cea6a053279ee4569783e10fd2d542d8fbcc))
-
-
-
-## [0.52.9](https://github.com/jacecotton/tcds/compare/v0.52.8...v0.52.9) (2022-07-12)
-
-
-### Bug Fixes
-
-* **components:** Major Tabs markup refactor ([d3da16c](https://github.com/jacecotton/tcds/commit/d3da16ca85800113857626b8f6725ea13f488177))
 
 
 
