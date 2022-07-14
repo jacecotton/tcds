@@ -1,3 +1,12 @@
+## [0.52.17](https://github.com/jacecotton/tcds/compare/v0.52.16...v0.52.17) (2022-07-14)
+
+
+### Bug Fixes
+
+* **components:** Update indexing ([cea73d9](https://github.com/jacecotton/tcds/commit/cea73d923525c5b9c96f94225d522c0142636a8c))
+
+
+
 ## [0.52.16](https://github.com/jacecotton/tcds/compare/v0.52.15...v0.52.16) (2022-07-14)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Card display issue ([7340b4a](https://github.com/jacecotton/tcds/commit/7340b4a6c8697991aa280d0f031e96f88cb8f342))
-
-
-
-## [0.52.12](https://github.com/jacecotton/tcds/compare/v0.52.11...v0.52.12) (2022-07-13)
-
-
-### Bug Fixes
-
-* **components:** Card no media fix ([789576f](https://github.com/jacecotton/tcds/commit/789576fcf27c0d46e145b4b92955523790ea5999))
 
 
 
