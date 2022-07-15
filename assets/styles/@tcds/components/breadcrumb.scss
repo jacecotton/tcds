@@ -1,11 +1,11 @@
 @use "@tcds" as *;
 
 .Breadcrumb {
-  &__list {
+  ul {
     display: flex;
   }
 
-  &__item {
+  li {
     @include font-size("medium", $line-height: false);
 
     line-height: 0;
