@@ -60,11 +60,11 @@ export default class Tabs extends Component {
           tab.setAttribute("tabindex", (tab === this.state.activeTab || !this.state.activeTab) ? "0" : "-1");
         });
 
-        this.panels.forEach((panel) => {
-          if(this.props.keepPanelVisibility !== true) {
+        if(this.props.keepPanelVisibility !== true) {
+          this.panels.forEach((panel) => {
             panel.hidden = panel !== this.getPanelByTab(this.state.activeTab);
-          }
-        });
+          });
+        }
 
         window.dispatchEvent(new Event("scroll"));
       },
