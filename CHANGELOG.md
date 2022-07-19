@@ -1,3 +1,12 @@
+## [0.52.18](https://github.com/jacecotton/tcds/compare/v0.52.17...v0.52.18) (2022-07-15)
+
+
+### Bug Fixes
+
+* **components:** Genericizing breadcrumb selectors ([b168d30](https://github.com/jacecotton/tcds/commit/b168d30f6a4e099caebb9025b96219e62a1d819e))
+
+
+
 ## [0.52.17](https://github.com/jacecotton/tcds/compare/v0.52.16...v0.52.17) (2022-07-14)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Mega Menu extends Toggleable ([3471e7e](https://github.com/jacecotton/tcds/commit/3471e7e9c864b8fa447d13176a34e7cab611c101))
-
-
-
-## [0.52.13](https://github.com/jacecotton/tcds/compare/v0.52.12...v0.52.13) (2022-07-13)
-
-
-### Bug Fixes
-
-* **components:** Card display issue ([7340b4a](https://github.com/jacecotton/tcds/commit/7340b4a6c8697991aa280d0f031e96f88cb8f342))
 
 
 
