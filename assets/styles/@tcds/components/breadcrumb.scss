@@ -6,9 +6,7 @@
   }
 
   li {
-    @include font-size("medium", $line-height: false);
-
-    line-height: 0;
+    @include font-size("medium");
 
     &:not(:last-child)::after {
       content: "/";
