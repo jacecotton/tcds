@@ -45,10 +45,6 @@ export default class Tabs extends Component {
       return `<section role="tabpanel" id="${slugify(heading.innerText)}-panel" aria-labelledby="${slugify(heading.innerText)}-tab" class="Tabs__panel">${section.innerHTML}</section>`;
     }).join("")}</div>`;
 
-    sections.forEach((section) => {
-      section.remove();
-    });
-
     this.element.innerHTML = this.tablist + this.viewport;
   }
 
@@ -72,11 +68,11 @@ export default class Tabs extends Component {
   }
 
   getNextTab(relativeTab = this.state.activeTab) {
-    return this.tabs.at((this.tabs.indexOf(relativeTab) + 1) % this.tabs.length);
+    return this.tabs[(this.tabs.indexOf(relativeTab) + 1) % this.tabs.length];
   }
 
   getPreviousTab(relativeTab = this.state.activeTab) {
-    return this.tabs.at((this.tabs.indexOf(relativeTab) - 1) % this.tabs.length);
+    return this.tabs[(this.tabs.indexOf(relativeTab) - 1) % this.tabs.length];
   }
 
   getPanelByTab(tab) {
