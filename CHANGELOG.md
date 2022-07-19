@@ -1,3 +1,12 @@
+## [0.52.19](https://github.com/jacecotton/tcds/compare/v0.52.18...v0.52.19) (2022-07-19)
+
+
+### Bug Fixes
+
+* **components:** Breadcrumb line height ([ff786c9](https://github.com/jacecotton/tcds/commit/ff786c9c11edad421cd0e51a7a5f29431b4e4eca))
+
+
+
 ## [0.52.18](https://github.com/jacecotton/tcds/compare/v0.52.17...v0.52.18) (2022-07-15)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Fix state bug in Mega Menu ([5c13e8d](https://github.com/jacecotton/tcds/commit/5c13e8d295dc3e248c42b0c2b84cc0acf9681941))
-
-
-
-## [0.52.14](https://github.com/jacecotton/tcds/compare/v0.52.13...v0.52.14) (2022-07-14)
-
-
-### Bug Fixes
-
-* **components:** Mega Menu extends Toggleable ([3471e7e](https://github.com/jacecotton/tcds/commit/3471e7e9c864b8fa447d13176a34e7cab611c101))
 
 
 
