@@ -1,3 +1,12 @@
+## [0.52.20](https://github.com/jacecotton/tcds/compare/v0.52.19...v0.52.20) (2022-07-19)
+
+
+### Bug Fixes
+
+* **components:** Tabs script browser support issue ([84f1aca](https://github.com/jacecotton/tcds/commit/84f1aca0e146bc294ac238a5ec788bb3f18bec46))
+
+
+
 ## [0.52.19](https://github.com/jacecotton/tcds/compare/v0.52.18...v0.52.19) (2022-07-19)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * Misc code optimizations ([063ba3b](https://github.com/jacecotton/tcds/commit/063ba3b4df81af0f52d1258067226af00aa754ac))
-
-
-
-## [0.52.15](https://github.com/jacecotton/tcds/compare/v0.52.14...v0.52.15) (2022-07-14)
-
-
-### Bug Fixes
-
-* **components:** Fix state bug in Mega Menu ([5c13e8d](https://github.com/jacecotton/tcds/commit/5c13e8d295dc3e248c42b0c2b84cc0acf9681941))
 
 
 
