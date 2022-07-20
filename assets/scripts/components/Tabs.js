@@ -1,87 +1,62 @@
-import Component from "@tcds/utilities/Component.js";
+import WebComponent from "./WebComponent/WebComponent.js";
+import store from "./WebComponent/store.js";
 import slugify from "@tcds/utilities/slugify.js";
 
-export default class Tabs extends Component {
-  constructor(element, props) {
-    super(element, props);
+class Tab extends HTMLElement {
+  constructor() {
+    super();
+  }
+}
 
-    this.preprocessDOM();
+export default class Tabs extends WebComponent {
+  constructor() {
+    super();
 
-    this.tabs = Array.from(element.querySelectorAll("[role=tab]"));
-    this.panels = Array.from(this.element.querySelectorAll("[role=tabpanel]"));
+    this.state = store({
+      activeTab: 0,
+    });
+  }
 
-    this.state.activeTab = this.props.hideAll !== true ? this.tabs[0] : null;
+  render() {
+    const tabs = Array.from(this.querySelectorAll("tcds-tab"));
 
-    this.tabs.forEach((tab) => {
+    return `
+      <div role="tablist" part="tablist">
+        ${tabs.map((tab, index) => {
+          const label = tab.getAttribute("label");
+          return `<button role="tab" part="tab ${this.state.activeTab === index ? "active" : ""}" id="${slugify(label)}-tab" aria-controls="${slugify(label)}-panel" aria-expanded="${this.state.activeTab === index}" tabindex="${this.state.activeTab === index ? "0" : "-1"}">${label}</button>`;
+        }).join("")}
+      </div>
+      <div part="viewport">
+        ${tabs.map((tab, index) => {
+          const label = tab.getAttribute("label");
+
+          return `<section role="tabpanel" part="panel" id="${slugify(label)}-panel" aria-labelledby="${slugify(label)}-tab" ${this.state.activeTab === index ? "" : "hidden"}>${tab.innerHTML}</section>`;
+        }).join("")}
+      </div>
+    `;
+  }
+
+  mounted() {
+    const tabs = Array.from(this.shadowRoot.querySelectorAll("[role=tab]"));
+
+    tabs.forEach((tab, index) => {
       tab.addEventListener("click", () => {
-        this.state.activeTab = tab;
+        this.state.activeTab = index;
       });
 
       tab.addEventListener("keydown", (event) => {
         if(event.key === "ArrowRight") {
-          this.state.activeTab = this.getNextTab();
-          this.state.activeTab.focus();
+          this.state.activeTab = this.state.activeTab === tabs.length - 1 ? 0 : this.state.activeTab + 1;
+          tabs[this.state.activeTab].focus();
         } else if(event.key === "ArrowLeft") {
-          this.state.activeTab = this.getPreviousTab();
-          this.state.activeTab.focus();
+          this.state.activeTab = this.state.activeTab === 0 ? tabs.length - 1 : this.state.activeTab - 1;
+          tabs[this.state.activeTab].focus();
         }
       });
     });
   }
-
-  preprocessDOM() {
-    const sections = Array.from(this.element.querySelectorAll("section"));
-
-    this.tablist = `<div role="tablist" class="Tabs__tablist">${sections.map((section) => {
-      const heading = section.querySelector("h2, h3, h4, h5, h6");
-
-      return `<button role="tab" id="${slugify(heading.innerText)}-tab" aria-controls="${slugify(heading.innerText)}-panel" class="Tabs__tab">${heading.innerText}</button>`;
-    }).join("")}</div>`;
-
-    this.viewport = `<div class="Tabs__viewport">${sections.map((section) => {
-      const heading = section.querySelector("h2, h3, h4, h5, h6");
-      heading.remove();
-
-      return `<section role="tabpanel" id="${slugify(heading.innerText)}-panel" aria-labelledby="${slugify(heading.innerText)}-tab" class="Tabs__panel">${section.innerHTML}</section>`;
-    }).join("")}</div>`;
-
-    this.element.innerHTML = this.tablist + this.viewport;
-  }
-
-  sync() {
-    return {
-      activeTab: () => {
-        this.tabs.forEach((tab) => {
-          tab.setAttribute("aria-expanded", tab === this.state.activeTab);
-          tab.setAttribute("tabindex", (tab === this.state.activeTab || !this.state.activeTab) ? "0" : "-1");
-        });
-
-        if(this.props.keepPanelVisibility !== true) {
-          this.panels.forEach((panel) => {
-            panel.hidden = panel !== this.getPanelByTab(this.state.activeTab);
-          });
-        }
-
-        window.dispatchEvent(new Event("scroll"));
-      },
-    };
-  }
-
-  getNextTab(relativeTab = this.state.activeTab) {
-    return this.tabs[(this.tabs.indexOf(relativeTab) + 1) % this.tabs.length];
-  }
-
-  getPreviousTab(relativeTab = this.state.activeTab) {
-    return this.tabs[(this.tabs.indexOf(relativeTab) - 1) % this.tabs.length];
-  }
-
-  getPanelByTab(tab) {
-    return tab !== null && document.getElementById(tab.getAttribute("aria-controls"));
-  }
 }
 
-document.querySelectorAll(".Tabs").forEach((instance) => {
-  instance && new Tabs(instance, {
-    hideAll: /hide-all/.test(instance.className),
-  });
-});
+customElements.define("tcds-tabs", Tabs);
+customElements.define("tcds-tab", Tab);

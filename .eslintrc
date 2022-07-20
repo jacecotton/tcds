@@ -10,7 +10,8 @@
     "sourceType": "module"
   },
   "rules": {
-    "indent": ["error", 2],
+    "indent": ["error", 2, { "ignoredNodes": ["TemplateLiteral *"] }],
+    "function-paren-newline": "off",
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "double", {
       "allowTemplateLiterals": true,
