@@ -12,51 +12,101 @@ export default class Carousel extends WebComponent {
     super();
 
     this.id = `carousel-${crypto.randomUUID()}`;
+    this.setAttribute("aria-roledescription", "carousel");
+    this.indicators = null;
+    this.slides = null;
+    this.viewport = null;
+
+    this.props = {
+      playable: this.hasAttribute("timing"),
+      timing: this.hasAttribute("timing") && this.getAttribute("timing"),
+    };
 
     this.state = store({
       activeSlide: 0,
-      playing: this.hasAttribute("playable"),
+      playing: this.hasAttribute("paused") ? false : window.matchMedia("(prefers-reduced-motion: reduce), (hover: none)").matches === false && this.hasAttribute("timing"),
     });
-
-    if(window.matchMedia("(prefers-reduced-motion: reduce), (hover: none)").matches) {
-      this.state.playing = false;
-    }
   }
 
   render() {
     const slides = Array.from(this.querySelectorAll("tcds-slide"));
 
     return `
-      <div role="tablist" part="indicators">
+      ${this.props.header !== false ? `
+        <header part="header">
+          <slot name="header"></slot>
+          <tcds-button>expand</tcds-button>
+        </header>
+      ` : ""}
+      <div part="indicators" role="tablist">
         ${slides.map((slide, index) => {
-          return `<button role="tab" part="indicator ${this.state.activeSlide === index ? "active" : ""}" id="${this.id}-indicator-${index + 1}" aria-controls="${this.id}-slide-${index + 1}" aria-expanded="${this.state.activeSlide === index}" tabindex="${this.state.activeSlide === index ? "0" : "-1"}" title="Slide ${index + 1} of ${slides.length}">Slide ${index + 1} of ${slides.length}</button>`;
+          const isActive = this.state.activeSlide === index;
+          const label = `Slide ${index + 1} of ${slides.length}`;
+
+          return `
+            <button
+              part="indicator ${isActive ? "active" : ""}"
+              role="tab"
+              id="${this.id}-indicator-${index + 1}"
+              aria-controls="${this.id}-slide-${index + 1}"
+              aria-expanded="${isActive}"
+              tabindex="${isActive ? "0" : "-1"}"
+              title="${label}"
+            >
+              ${label}
+            </button>
+          `;
         }).join("")}
       </div>
       <div part="viewport">
         ${slides.map((slide, index) => {
-          return `<section role="tabpanel" part="slide ${this.state.activeSlide === index ? "active" : ""}" id="${this.id}-slide-${index + 1}" aria-labelledby="${this.id}-indicator-${index + 1}">${slide.innerHTML}</section>`;
+          const isActive = this.state.activeSlide === index;
+
+          return `
+            <section
+              part="slide ${isActive ? "active" : ""}"
+              role="tabpanel"
+              id="${this.id}-slide-${index + 1}"
+              aria-labelledby="${this.id}-indicator-${index + 1}"
+              ${isActive ? "" : `aria-hidden="true" tabindex="-1"`}
+            >
+              ${slide.innerHTML}
+            </section>
+          `;
         }).join("")}
       </div>
+      ${this.props.playable ? `
+        <tcds-button part="playpause">${this.state.playing ? "pause" : "play"}</tcds-button>
+      ` : ""}
+      <tcds-button part="previous" icon="chevron-left" modifiers="icon-only round ghost">Previous</tcds-button>
+      <tcds-button part="next" icon="chevron-right" modifiers="icon-only round ghost">next</tcds-button>
     `;
   }
 
   mounted() {
-    const indicators = Array.from(this.shadowRoot.querySelectorAll("[role=tab]"));
-    const slides = Array.from(this.shadowRoot.querySelectorAll("[role=tabpanel]"));
-    const viewport = this.shadowRoot.querySelector("[part=viewport]");
+    this.indicators = Array.from(this.shadowRoot.querySelectorAll("[role=tab]"));
+    this.slides = Array.from(this.shadowRoot.querySelectorAll("[role=tabpanel]"));
+    this.viewport = this.shadowRoot.querySelector("[part=viewport]");
+    this.next = this.shadowRoot.querySelector("[part=next]");
+    this.previous = this.shadowRoot.querySelector("[part=previous]");
 
-    indicators.forEach((indicator, index) => {
+    if(this.props.playable) {
+      this.playpause = this.shadowRoot.querySelector("[part=playpause]");
+      this.setAttribute(this.state.playing ? "playing" : "paused", "");
+    }
+
+    this.indicators.forEach((indicator, index) => {
       indicator.addEventListener("click", () => {
         this.state.activeSlide = index;
       });
 
       indicator.addEventListener("keydown", (event) => {
         if(event.key === "ArrowRight") {
-          this.state.activeSlide = this.state.activeSlide === indicators.length - 1 ? 0 : this.state.activeSlide + 1;
-          indicators[this.state.activeSlide].focus();
+          this.state.activeSlide = this.state.activeSlide === this.indicators.length - 1 ? 0 : this.state.activeSlide + 1;
+          this.indicators[this.state.activeSlide].focus();
         } else if(event.key === "ArrowLeft") {
-          this.state.activeSlide = this.state.activeSlide === 0 ? indicators.length - 1 : this.state.activeSlide - 1;
-          indicators[this.state.activeSlide].focus();
+          this.state.activeSlide = this.state.activeSlide === 0 ? this.indicators.length - 1 : this.state.activeSlide - 1;
+          this.indicators[this.state.activeSlide].focus();
         }
       });
     });
@@ -64,30 +114,42 @@ export default class Carousel extends WebComponent {
     const swipe = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if(entry.isIntersecting) {
-          this.state.activeSlide = indicators.indexOf(this.shadowRoot.querySelector(`[role=tab][aria-controls=${entry.target.id}]`));
+          this.state.activeSlide = this.indicators.indexOf(this.shadowRoot.querySelector(`[role=tab][aria-controls=${entry.target.id}]`));
         }
-      }, {
-        root: viewport,
-        threshold: 1.0,
-        rootMargin: "1px",
       });
+    }, {
+      root: this.viewport,
+      threshold: 1.0,
+      rootMargin: "1px",
     });
 
-    viewport.addEventListener("mouseenter", () => {
-      slides.forEach((slide) => {
+    this.viewport.addEventListener("mouseenter", () => {
+      this.slides.forEach((slide) => {
         swipe.observe(slide);
       });
     });
 
-    viewport.addEventListener("mouseleave", () => {
-      slides.forEach((slide) => {
+    this.viewport.addEventListener("mouseleave", () => {
+      this.slides.forEach((slide) => {
         swipe.unobserve(slide);
       });
+    });
+
+    this.next.addEventListener("click", () => {
+      this.state.activeSlide = this.state.activeSlide === this.indicators.length - 1 ? 0 : this.state.activeSlide + 1;
+    });
+
+    this.previous.addEventListener("click", () => {
+      this.state.activeSlide = this.state.activeSlide === 0 ? this.indicators.length - 1 : this.state.activeSlide - 1;
     });
   }
 
   updated() {
-    console.log(this.state.activeSlide);
+    if(this.viewport) {
+      const viewportOffset = this.viewport.getBoundingClientRect().left;
+      const slideOffset = this.slides[this.state.activeSlide].getBoundingClientRect().left;
+      this.viewport.scrollLeft += slideOffset - viewportOffset;
+    }
   }
 }
 

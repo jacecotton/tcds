@@ -2,15 +2,20 @@
 
 tcds-carousel {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: size("small") size("medium") 1fr size("small");
   grid-template-areas:
-    "slides slides"
-    "indicators .";
+    ". header header ."
+    "previous slides slides next"
+    ". playpause indicators .";
   align-items: center;
   gap: space("normal") space("loose");
 
   &::part(indicators) {
     grid-area: indicators;
+  }
+
+  &::part(indicator active) {
+    font-weight: bold;
   }
 
   &::part(viewport) {
@@ -31,5 +36,22 @@ tcds-carousel {
     flex: 1 0 100%;
     scroll-snap-align: start;
     scroll-snap-stop: always;
+  }
+
+  &::part(header) {
+    grid-area: header;
+    display: flex;
+  }
+
+  &::part(playpause) {
+    grid-area: playpause;
+  }
+
+  &::part(next) {
+    grid-area: next;
+  }
+
+  &::part(previous) {
+    grid-area: previous;
   }
 }
