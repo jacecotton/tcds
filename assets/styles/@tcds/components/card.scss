@@ -12,6 +12,7 @@
 
   display: grid;
   grid-template-areas: "body";
+  background-color: color("gray", "0");
   position: relative;
   transition: box-shadow animation("productive");
 
@@ -81,11 +82,15 @@
    * padding in content area).
    */
   &--no-bg {
-    --card-body-background: transparent;
+    background-color: transparent;
   }
 
   &--no-bg#{&}--vertical {
     --card-body-padding-x: 0;
+  }
+
+  &--bg-white {
+    background-color: #fff;
   }
 
   @container (max-width: 599px) {
@@ -135,7 +140,6 @@
     grid-area: body;
     display: flex;
     flex-direction: column;
-    background-color: var(--card-body-background, #{color("gray", "0")});
     color: color("gray", "400");
     border-top: var(--card-body-divider, none);
     padding:
