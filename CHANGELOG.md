@@ -1,3 +1,12 @@
+## [0.52.22](https://github.com/jacecotton/tcds/compare/v0.52.21...v0.52.22) (2022-07-21)
+
+
+### Bug Fixes
+
+* **components:** Add white bg modifier to card ([c0b9848](https://github.com/jacecotton/tcds/commit/c0b9848d2e26c234b0b30d0b85f6476781f05528))
+
+
+
 ## [0.52.21](https://github.com/jacecotton/tcds/compare/v0.52.20...v0.52.21) (2022-07-20)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Genericizing breadcrumb selectors ([b168d30](https://github.com/jacecotton/tcds/commit/b168d30f6a4e099caebb9025b96219e62a1d819e))
-
-
-
-## [0.52.17](https://github.com/jacecotton/tcds/compare/v0.52.16...v0.52.17) (2022-07-14)
-
-
-### Bug Fixes
-
-* **components:** Update indexing ([cea73d9](https://github.com/jacecotton/tcds/commit/cea73d923525c5b9c96f94225d522c0142636a8c))
 
 
 
