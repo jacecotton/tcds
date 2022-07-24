@@ -67,7 +67,6 @@ export default class Tabs extends WebComponent {
 
     this.tabButtons.forEach((tabButton, index) => {
       tabButton.addEventListener("click", () => {
-        console.log(`${index} clicked`);
         this.state.activeTab = index;
       });
 
