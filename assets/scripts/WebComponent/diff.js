@@ -3,36 +3,68 @@ const formAttributes = ["value", "checked", "selected"];
 const formAttributesNoValue = ["checked", "selected"];
 
 function stringToHTML(string) {
-  const fragment = new DOMParser().parseFromString(string, "text/html");
+  const parser = new DOMParser();
+  const document = parser.parseFromString(string, "text/html");
 
-  if(fragment.head && fragment.head.childNodes.length) {
-    Array.from(fragment.head.childNodes).reverse().forEach((node) => {
-      fragment.body.insertBefore(node, fragment.body.firstChild);
+  if(document.head && document.head.childNodes.length) {
+    Array.from(document.head.childNodes).reverse().forEach((node) => {
+      document.body.insertBefore(node, document.body.firstChild);
     });
   }
 
-  return fragment.body || document.createElement("body");
+  return document.body || document.createElement("body");
 }
 
-function isDifferentNode(comparator, comparer) {
+/**
+ * Check if two nodes are different.
+ *
+ * @param {Node} node1 The node to compare against.
+ * @param {Node} node2 The node to compare.
+ *
+ * @returns {Boolean} Whether they're different nodes.
+ */
+function isDifferentNode(node1, node2) {
   return (
-    comparator.nodeType !== comparer.nodeType ||
-    comparator.tagName !== comparer.tagName ||
-    comparator.id !== comparer.id ||
-    comparator.src !== comparer.src
+    node1.nodeType !== node2.nodeType ||
+    node1.tagName !== node2.tagName ||
+    node1.id !== node2.id ||
+    node1.src !== node2.src
   );
 }
 
+/**
+ * Convert falsy string values to boolean values.
+ *
+ * @param {String} string The string to convert to a boolean.
+ *
+ * @returns {Boolean} The boolean.
+ */
 function stringToBoolean(string) {
   return !["false", "null", "undefined", "0", "-0", "NaN", "0n", "-0n"].includes(string);
 }
 
+/**
+ * Check if the desired node is further ahead in the DOM `existingNodes`.
+ *
+ * @param {Node} node The node to look for.
+ * @param {NodeList} existingNodes The DOM `existingNodes`.
+ * @param {Integer} index The indexing index.
+ *
+ * @return {Integer} How many nodes ahead the target node is.
+ */
 function aheadInTree(node, existingNodes, index) {
   return Array.from(existingNodes).slice(index + 1).find((branch) => {
     return !isDifferentNode(node, branch);
   });
 }
 
+/**
+ * Add an attribute to an element.
+ *
+ * @param {Node} element The element.
+ * @param {String} attribute The attribute.
+ * @param {String} val The value.
+ */
 function addAttribute(element, attribute, value) {
   if(skipAttribute(attribute, value)) {
     return true;
@@ -45,6 +77,12 @@ function addAttribute(element, attribute, value) {
   element.setAttribute(attribute, value);
 }
 
+/**
+ * Remove an attribute from an element.
+ *
+ * @param {Node} element The element.
+ * @param {String} attribute The attribute.
+ */
 function removeAttribute(element, attribute) {
   if(formAttributes.includes(attribute)) {
     element[attribute] = "";
@@ -53,6 +91,15 @@ function removeAttribute(element, attribute) {
   element.removeAttribute(attribute);
 }
 
+/**
+ * Check if attribute should be skipped (sanitize properties).
+ *
+ * @param {String} name The attribute name.
+ * @param {String} value The attribute value.
+ * @param {Boolean} events If true, inline events are allowed.
+ *
+ * @return {Boolean} If true, skip the attribute.
+ */
 function skipAttribute(name, value, events) {
   const normalizedValue = value.replace(/\s+/g, "").toLowerCase();
 
@@ -65,7 +112,15 @@ function skipAttribute(name, value, events) {
   }
 }
 
+/**
+ * Compare the existing node attributes to the template node attributes and make
+ * updates.
+ *
+ * @param  {Node} template The new template.
+ * @param  {Node} existing The existing DOM node.
+ */
 function diffAttributes(template, existing) {
+  // Exit function if given template is not HTML.
   if(template.nodeType !== 1) {
     return;
   }
@@ -100,10 +155,23 @@ function diffAttributes(template, existing) {
   }
 }
 
+/**
+ * Get the content from a node.
+ *
+ * @param {Node} node The node.
+ *
+ * @return {String} The content.
+ */
 function getNodeContent(node) {
   return node.childNodes && node.childNodes.length ? null : node.textContent;
 }
 
+/**
+ * If there are extra elements in DOM, remove them.
+ *
+ * @param {Array} existingNodes The existing DOM.
+ * @param {Array} templateNodes The template.
+ */
 function trimExtraNodes(existingNodes, templateNodes) {
   let extra = existingNodes.length - templateNodes.length;
 
@@ -117,6 +185,10 @@ function trimExtraNodes(existingNodes, templateNodes) {
 }
 
 function diff(template, existing) {
+  if(template.nodeType !== 1) {
+    template = stringToHTML(template);
+  }
+
   const templateNodes = template.childNodes;
   const existingNodes = existing.childNodes;
 
@@ -169,4 +241,4 @@ function diff(template, existing) {
   trimExtraNodes(existingNodes, templateNodes);
 }
 
-export {stringToHTML, diff};
+export default diff;

@@ -1,10 +1,19 @@
-import WebComponent from "./WebComponent/WebComponent.js";
-import store from "./WebComponent/store.js";
+import WebComponent from "@tcds/WebComponent/WebComponent.js";
 import slugify from "@tcds/utilities/slugify.js";
 
-class Tab extends HTMLElement {
+class Tab extends WebComponent {
+  static get observedAttributes() {
+    return ["label"];
+  }
+
   constructor() {
     super();
+  }
+
+  attributeChangedCallback(attribute) {
+    if(attribute === "label") {
+      this.label = this.getAttribute("label");
+    }
   }
 }
 
@@ -12,51 +21,68 @@ export default class Tabs extends WebComponent {
   constructor() {
     super();
 
-    this.state = store({
-      activeTab: 0,
-    });
+    this.tabs = Array.from(this.querySelectorAll("tcds-tab"));
+
+    this.state.activeTab = 0;
   }
 
   render() {
-    const tabs = Array.from(this.querySelectorAll("tcds-tab"));
-
     return `
       <div role="tablist" part="tablist">
-        ${tabs.map((tab, index) => {
-          const label = tab.getAttribute("label");
-          return `<button role="tab" part="tab ${this.state.activeTab === index ? "active" : ""}" id="${slugify(label)}-tab" aria-controls="${slugify(label)}-panel" aria-expanded="${this.state.activeTab === index}" tabindex="${this.state.activeTab === index ? "0" : "-1"}">${label}</button>`;
+        ${this.tabs.map((tab, index) => {
+          return `
+            <button
+              role="tab"
+              part="tab ${this.state.activeTab === index ? "active" : ""}"
+              aria-expanded="${this.state.activeTab === index}"
+              tabindex="${this.state.activeTab === index ? "0" : "-1"}"
+              id="${slugify(tab.label)}-tab"
+              aria-controls="${slugify(tab.label)}-panel"
+            >
+              ${tab.label}
+            </button>
+          `;
         }).join("")}
       </div>
       <div part="viewport">
-        ${tabs.map((tab, index) => {
-          const label = tab.getAttribute("label");
-
-          return `<section role="tabpanel" part="panel" id="${slugify(label)}-panel" aria-labelledby="${slugify(label)}-tab" ${this.state.activeTab === index ? "" : "hidden"}>${tab.innerHTML}</section>`;
+        ${this.tabs.map((tab, index) => {
+          return `
+            <section
+              role="tabpanel"
+              part="panel"
+              id="${slugify(tab.label)}-panel"
+              aria-labelledby="${slugify(tab.label)}-tab"
+              ${this.state.activeTab === index ? "" : "hidden"}
+            >
+              ${tab.innerHTML}
+            </section>
+          `;
         }).join("")}
       </div>
     `;
   }
 
   mounted() {
-    const tabs = Array.from(this.shadowRoot.querySelectorAll("[role=tab]"));
+    this.tabButtons = Array.from(this.shadowRoot.querySelectorAll("[role=tab]"));
 
-    tabs.forEach((tab, index) => {
-      tab.addEventListener("click", () => {
+    this.tabButtons.forEach((tabButton, index) => {
+      tabButton.addEventListener("click", () => {
+        console.log(`${index} clicked`);
         this.state.activeTab = index;
       });
 
-      tab.addEventListener("keydown", (event) => {
+      tabButton.addEventListener("keydown", (event) => {
         if(event.key === "ArrowRight") {
-          this.state.activeTab = this.state.activeTab === tabs.length - 1 ? 0 : this.state.activeTab + 1;
-          tabs[this.state.activeTab].focus();
+          this.state.activeTab = this.state.activeTab === this.tabButtons.length - 1 ? 0 : this.state.activeTab + 1;
+          this.tabButtons[this.state.activeTab].focus();
         } else if(event.key === "ArrowLeft") {
-          this.state.activeTab = this.state.activeTab === 0 ? tabs.length - 1 : this.state.activeTab - 1;
-          tabs[this.state.activeTab].focus();
+          this.state.activeTab = this.state.activeTab === 0 ? this.tabButtons.length - 1 : this.state.activeTab - 1;
+          this.tabButtons[this.state.activeTab].focus();
         }
       });
     });
   }
 }
 
-customElements.define("tcds-tabs", Tabs);
 customElements.define("tcds-tab", Tab);
+customElements.define("tcds-tabs", Tabs);

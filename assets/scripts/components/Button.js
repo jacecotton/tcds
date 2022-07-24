@@ -1,52 +1,83 @@
-import WebComponent from "./WebComponent/WebComponent.js";
-// import store from "./WebComponent/store.js";
+import WebComponent from "@tcds/WebComponent/WebComponent.js";
+
+window.__TCDS_ICON_CACHE = {};
 
 export default class Button extends WebComponent {
+  static get observedAttributes() {
+    return ["icon", "label", "modifiers", "link", "type", "controls"];
+  }
+
   constructor() {
     super();
 
-    this.props = {
-      modifiers: this.hasAttribute("modifiers") ? this.getAttribute("modifiers").split(" ") : [],
-      icon: this.hasAttribute("icon") && this.getAttribute("icon"),
-      link: this.hasAttribute("link") && this.getAttribute("link"),
-      type: this.hasAttribute("type") && this.getAttribute("type"),
-      controls: this.hasAttribute("controls") && this.getAttribute("controls"),
-    };
-
-    const stylesheet = document.createElement("link");
-    stylesheet.setAttribute("rel", "stylesheet");
-    stylesheet.setAttribute("href", "/styles/main.css");
-    this.append(stylesheet);
+    this.link = false;
+    this.controls = false;
+    this.modifiers = false;
+    this.iconModifiers = false;
+    this.state.icon = false;
+    this.state.label = this.textContent;
   }
 
   render() {
     return `
-      <${this.props.link ? `a` : "button"}
+      <${this.link ? "a" : "button"}
         part="button"
-        ${this.props.link ? `
-          href="${this.props.link}"
+        ${this.link ? `
+          href="${this.link}"
         ` : `
-          type="${this.props.type ? this.props.type : "button"}"
-          ${this.props.controls ? `
-            aria-controls="${this.props.controls}"
+          type="${this.type ? this.type : "button"}"
+          ${this.controls ? `
+            aria-controls="${this.controls}"
           ` : ""}
         `}
-        ${this.props.modifiers.includes("icon-only") ? `
-          aria-label="${this.textContent}"
-          title="${this.textContent}"
+        ${this.iconModifiers && this.iconModifiers.includes("only") ? `
+          aria-label="${this.state.label}"
+          title="${this.state.label}"
         ` : ""}
       >
-        ${this.props.icon ? `<tcds-icon icon="${this.props.icon}"></tcds-icon>` : ""}
-        ${this.props.modifiers.includes("icon-only") ? "" : "<slot></slot>"}
-      </${this.props.link ? "a" : "button"}>
+        ${this.state.icon ? this.state.icon : ""}
+        ${this.iconModifiers && this.iconModifiers.includes("only") ? "" : `
+          <slot>${this.state.label}</slot>
+        `}
+      </${this.link ? "a" : "button"}>
     `;
   }
 
-  mounted() {
-  }
+  attributeChangedCallback(attribute, oldValue, newValue) {
+    switch(attribute) {
+      case "icon":
+        this.iconModifiers = newValue.split(" ").filter(modifier => ["only", "right", "inline"].includes(modifier));
+        this.iconToken = newValue.replace(/only|(?<!-)right|inline/gi, "").trim();
 
-  updated() {
+        if(!(this.iconToken in window.__TCDS_ICON_CACHE)) {
+          fetch(`https://unpkg.com/@txch/tcds/dist/icons/${this.iconToken}.svg`)
+            .then(response => response.text())
+            .then(svg => {
+              svg = svg.replace(/<svg/, `<svg part="icon"`);
+              window.__TCDS_ICON_CACHE[this.iconToken] = svg;
+              this.state.icon = svg;
+            });
+        } else {
+          this.state.icon = window.__TCDS_ICON_CACHE[this.iconToken];
+        }
 
+        break;
+      case "label":
+        this.state.label = newValue;
+        break;
+      case "modifiers":
+        this.modifiers = newValue.split(" ");
+        break;
+      case "link":
+        this.link = newValue;
+        break;
+      case "type":
+        this.type = newValue;
+        break;
+      case "controls":
+        this.controls = newValue;
+        break;
+    }
   }
 }
 

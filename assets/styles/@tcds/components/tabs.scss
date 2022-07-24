@@ -38,13 +38,15 @@ tcds-tabs {
     cursor: pointer;
     transition:
       border-color animation("productive"),
-      color animation("productive");
+      color animation("productive"),
+      background-color animation("productive");
 
     @media (any-hover: hover) {
       &:hover {
         --tcds-tabs-tab-indicator-color: #{color("shade", "200")};
 
         color: color("shade", "400");
+        background-color: color("shade", "0");
       }
     }
 
@@ -67,11 +69,13 @@ tcds-tabs {
   }
 }
 
-tcds-tab::before {
-  @include font-size("medium");
+tcds-tabs:not(:defined) {
+  tcds-tab::before {
+    @include font-size("medium");
 
-  content: attr(label);
-  display: block;
-  font-weight: font-weight("semibold");
-  margin: space("loose") 0 space("tight");
+    content: attr(label);
+    display: block;
+    font-weight: font-weight("semibold");
+    margin: space("loose") 0 space("tight");
+  }
 }

@@ -14,6 +14,10 @@
  * 6. For link buttons.
  */
 
+tcds-button {
+  display: inline-flex;
+}
+
 .Button,
 tcds-button::part(button) {
   --button-padding: #{space("normal", "em")}; // 1
@@ -95,17 +99,17 @@ tcds-button[modifiers*="ghost"]::part(button) {
 }
 
 .Button--ghost.Button--icon-right,
-tcds-button[modifiers*="ghost"][modifiers*="icon-right"]::part(button) {
+tcds-button[modifiers*="ghost"][icon~="right"]::part(button) {
   --button-icon-margin-left: 0;
 }
 
 .Button--ghost:not(.Button--icon-right),
-tcds-button[modifiers*="ghost"]:not([modifiers*="icon-right"])::part(button) {
+tcds-button[modifiers*="ghost"]:not([icon~="right"])::part(button) {
   --button-icon-margin-right: 0;
 }
 
 .Button--icon-right,
-tcds-button[modifiers*="icon-right"] {
+tcds-button[icon~="right"]::part(button) {
   flex-direction: row-reverse;
 
   --button-icon-margin-right: calc(var(--button-padding) * -1);
@@ -113,7 +117,7 @@ tcds-button[modifiers*="icon-right"] {
 }
 
 .Button--icon-only,
-tcds-button[modifiers*="icon-only"]::part(button) {
+tcds-button[icon~="only"]::part(button) {
   padding: 0;
 
   --button-icon-background: transparent;
@@ -122,7 +126,7 @@ tcds-button[modifiers*="icon-only"]::part(button) {
 }
 
 .Button--icon-inline,
-tcds-button[modifiers*="icon-inline"]::part(button) {
+tcds-button[icon~="inline"]::part(button) {
   --button-icon-background: transparent;
   --button-icon-height: 1em;
   --button-icon-margin-right: 0.5em;
@@ -131,7 +135,7 @@ tcds-button[modifiers*="icon-inline"]::part(button) {
 }
 
 .Button--icon-inline.Button--icon-right,
-tcds-button[modifiers*="icon-inline"][modifiers*="icon-right"]::part(button) {
+tcds-button[icon~="inline"][icon~="right"]::part(button) {
   --button-icon-margin-right: 0;
   --button-icon-margin-left: 0.5em;
 }
@@ -154,6 +158,7 @@ tcds-button::part(button)::after {
 
 .Button svg,
 tcds-button::part(icon) {
+  box-sizing: border-box;
   background-color: var(--button-icon-background, #{color("shade", "100")});
   height: var(--button-icon-height, 100%);
   margin:
