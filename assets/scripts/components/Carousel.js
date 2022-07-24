@@ -16,14 +16,15 @@ export default class Carousel extends WebComponent {
 
     this.id = "carousel";
 
-    document.querySelectorAll("tcds-carousel").forEach((carousel, index, array) => {
-      if(array.length === 1) {
-        return;
-      } else if(this === carousel) {
-        this.id += `-${index + 1}`;
-        return;
-      }
-    });
+    const instances = document.querySelectorAll("tcds-carousel");
+
+    if(instances.length > 1) {
+      instances.forEach((carousel, index) => {
+        if(this === carousel) {
+          this.id += `-${index + 1}`;
+        }
+      });
+    }
 
     this.slides = Array.from(this.querySelectorAll("tcds-slide"));
     this.header = this.querySelector("[slot=header]") || false;
