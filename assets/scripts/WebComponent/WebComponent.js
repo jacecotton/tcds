@@ -1,7 +1,13 @@
 import diff from "./diff.js";
 
 /**
- * @todo Add dismounting - remove `state-change` event listener.
+ * @todo More dynamic way of loading stylesheet. Hardcoding the path doesn't
+ * seem like the best option. Maybe designate a <link> in the head with a
+ * [data-import] attribute and pull the [href] from there. Loop through all
+ * elements containing the attribute and apply the stylesheet.
+ * @todo Look into working with built-in lifecycle methods more.
+ * connectedCallback for mounting, disconnectedCallback for dismounting (remove
+ * `state-change` event listener and so on), etc.
  */
 export default class Component extends HTMLElement {
   constructor() {
