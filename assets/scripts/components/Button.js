@@ -65,25 +65,29 @@ export default class Button extends WebComponent {
             .then(svg => {
               svg = svg.replace(/<svg/, `<svg part="icon"`);
               window.__TCDS_ICON_CACHE[this.iconToken] = svg;
-              this.state.icon = svg;
             });
-        } else {
-          this.state.icon = window.__TCDS_ICON_CACHE[this.iconToken];
         }
 
+        this.state.icon = window.__TCDS_ICON_CACHE[this.iconToken];
+
         break;
+
       case "label":
         this.state.label = newValue;
         break;
+
       case "modifiers":
         this.modifiers = newValue.split(" ");
         break;
+
       case "link":
         this.link = newValue;
         break;
+
       case "type":
         this.type = newValue;
         break;
+
       case "controls":
         this.controls = newValue;
         break;
