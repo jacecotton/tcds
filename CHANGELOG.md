@@ -1,3 +1,12 @@
+## [0.53.1](https://github.com/jacecotton/tcds/compare/v0.53.0...v0.53.1) (2022-07-25)
+
+
+### Bug Fixes
+
+* **components:** Misc bug fixes ([207ea8e](https://github.com/jacecotton/tcds/commit/207ea8ecb8a4ca03666f41797019e188d854fff8))
+
+
+
 # [0.53.0](https://github.com/jacecotton/tcds/compare/v0.52.23...v0.53.0) (2022-07-25)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Breadcrumb selector ([3017239](https://github.com/jacecotton/tcds/commit/3017239115b8b04a3cc0017c185e1ad608c0e26b))
-
-
-
-## [0.52.20](https://github.com/jacecotton/tcds/compare/v0.52.19...v0.52.20) (2022-07-19)
-
-
-### Bug Fixes
-
-* **components:** Tabs script browser support issue ([84f1aca](https://github.com/jacecotton/tcds/commit/84f1aca0e146bc294ac238a5ec788bb3f18bec46))
 
 
 
