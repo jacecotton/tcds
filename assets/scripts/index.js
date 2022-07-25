@@ -5,6 +5,7 @@
  */
 
 import "./components/Accordion.js";
+import "./components/Button.js";
 import "./components/Dialog.js";
 import "./components/Header.js";
 import "./components/Hero.js";
@@ -12,6 +13,7 @@ import "./components/MegaMenu.js";
 import "./components/Notification.js";
 import "./components/Tabs.js";
 import "./components/Carousel.js";
+import "./components/Card.js";
 
 if(!("container" in document.documentElement.style) && document.querySelectorAll(".is-self-responsive").length > 0) {
   const script = document.createElement("script");

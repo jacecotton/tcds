@@ -1,87 +1,92 @@
-import Component from "@tcds/utilities/Component.js";
+import WebComponent from "@tcds/WebComponent/WebComponent.js";
 import slugify from "@tcds/utilities/slugify.js";
 
-export default class Tabs extends Component {
-  constructor(element, props) {
-    super(element, props);
+/**
+ * @todo Allow users to set a default active tab by setting an `active`
+ * attribute on the desired <tcds-tab> element.
+ */
 
-    this.preprocessDOM();
+class Tab extends WebComponent {
+  static get observedAttributes() {
+    return ["label"];
+  }
 
-    this.tabs = Array.from(element.querySelectorAll("[role=tab]"));
-    this.panels = Array.from(this.element.querySelectorAll("[role=tabpanel]"));
+  constructor() {
+    super();
+  }
 
-    this.state.activeTab = this.props.hideAll !== true ? this.tabs[0] : null;
+  attributeChangedCallback(attribute) {
+    if(attribute === "label") {
+      this.label = this.getAttribute("label");
+    }
+  }
+}
 
-    this.tabs.forEach((tab) => {
-      tab.addEventListener("click", () => {
-        this.state.activeTab = tab;
+export default class Tabs extends WebComponent {
+  constructor() {
+    super();
+
+    this.tabs = Array.from(this.querySelectorAll("tcds-tab"));
+
+    this.state.activeTab = 0;
+  }
+
+  render() {
+    return `
+      <div role="tablist" part="tablist">
+        ${this.tabs.map((tab, index) => {
+          return `
+            <button
+              role="tab"
+              part="tab ${this.state.activeTab === index ? "active" : ""}"
+              aria-expanded="${this.state.activeTab === index}"
+              tabindex="${this.state.activeTab === index ? "0" : "-1"}"
+              id="${slugify(tab.label)}-tab"
+              aria-controls="${slugify(tab.label)}-panel"
+            >
+              ${tab.label}
+            </button>
+          `;
+        }).join("")}
+      </div>
+      <div part="viewport">
+        ${this.tabs.map((tab, index) => {
+          return `
+            <section
+              role="tabpanel"
+              part="panel"
+              id="${slugify(tab.label)}-panel"
+              aria-labelledby="${slugify(tab.label)}-tab"
+              ${this.state.activeTab === index ? "" : "hidden"}
+            >
+              ${tab.innerHTML}
+            </section>
+          `;
+        }).join("")}
+      </div>
+    `;
+  }
+
+  mounted() {
+    this.tabButtons = Array.from(this.shadowRoot.querySelectorAll("[role=tab]"));
+
+    this.tabButtons.forEach((tabButton, index) => {
+      tabButton.addEventListener("click", () => {
+        this.state.activeTab = index;
       });
 
-      tab.addEventListener("keydown", (event) => {
+      tabButton.addEventListener("keydown", (event) => {
         if(event.key === "ArrowRight") {
-          this.state.activeTab = this.getNextTab();
-          this.state.activeTab.focus();
+          this.state.activeTab = this.state.activeTab === this.tabButtons.length - 1 ? 0 : this.state.activeTab + 1;
+          this.tabButtons[this.state.activeTab].focus();
         } else if(event.key === "ArrowLeft") {
-          this.state.activeTab = this.getPreviousTab();
-          this.state.activeTab.focus();
+          this.state.activeTab = this.state.activeTab === 0 ? this.tabButtons.length - 1 : this.state.activeTab - 1;
+          this.tabButtons[this.state.activeTab].focus();
         }
       });
     });
   }
-
-  preprocessDOM() {
-    const sections = Array.from(this.element.querySelectorAll("section"));
-
-    this.tablist = `<div role="tablist" class="Tabs__tablist">${sections.map((section) => {
-      const heading = section.querySelector("h2, h3, h4, h5, h6");
-
-      return `<button role="tab" id="${slugify(heading.innerText)}-tab" aria-controls="${slugify(heading.innerText)}-panel" class="Tabs__tab">${heading.innerText}</button>`;
-    }).join("")}</div>`;
-
-    this.viewport = `<div class="Tabs__viewport">${sections.map((section) => {
-      const heading = section.querySelector("h2, h3, h4, h5, h6");
-      heading.remove();
-
-      return `<section role="tabpanel" id="${slugify(heading.innerText)}-panel" aria-labelledby="${slugify(heading.innerText)}-tab" class="Tabs__panel">${section.innerHTML}</section>`;
-    }).join("")}</div>`;
-
-    this.element.innerHTML = this.tablist + this.viewport;
-  }
-
-  sync() {
-    return {
-      activeTab: () => {
-        this.tabs.forEach((tab) => {
-          tab.setAttribute("aria-expanded", tab === this.state.activeTab);
-          tab.setAttribute("tabindex", (tab === this.state.activeTab || !this.state.activeTab) ? "0" : "-1");
-        });
-
-        if(this.props.keepPanelVisibility !== true) {
-          this.panels.forEach((panel) => {
-            panel.hidden = panel !== this.getPanelByTab(this.state.activeTab);
-          });
-        }
-
-        window.dispatchEvent(new Event("scroll"));
-      },
-    };
-  }
-
-  getNextTab(relativeTab = this.state.activeTab) {
-    return this.tabs[(this.tabs.indexOf(relativeTab) + 1) % this.tabs.length];
-  }
-
-  getPreviousTab(relativeTab = this.state.activeTab) {
-    return this.tabs[(this.tabs.indexOf(relativeTab) - 1) % this.tabs.length];
-  }
-
-  getPanelByTab(tab) {
-    return tab !== null && document.getElementById(tab.getAttribute("aria-controls"));
-  }
 }
 
-document.querySelectorAll(".Tabs").forEach((instance) => {
-  instance && new Tabs(instance, {
-    hideAll: /hide-all/.test(instance.className),
-  });
-});
+customElements.define("tcds-tab", Tab);
+customElements.define("tcds-tabs", Tabs);

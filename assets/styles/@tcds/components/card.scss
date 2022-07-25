@@ -1,174 +1,112 @@
 @use "@tcds" as *;
 
-/**
- * 1. Define the "small" size of the media area (e.g. image). By default, the
- *    media area will be 1/4th the width of the card. However, this variable
- *    will both be used as the minimum width of the media element for all cards,
- *    and the maximum width for cards with the `compact` modifier.
- */
+tcds-card {
+  $card-image-small: 220px;
 
-.Card {
-  $card-media-small: 220px; // 1
+  width: 100%;
+  height: 100%;
 
-  display: grid;
-  grid-template-areas: "body";
-  background-color: color("gray", "0");
-  position: relative;
-  transition: box-shadow animation("productive");
-
-  /** States */
-
-  &:focus-within {
-    @include focus-style;
-  }
-
-  &:hover {
-    box-shadow: 0 0.5rem 1rem color("shade", "100");
-  }
-
-  /** Modifiers */
-
-  /**
-   * Vertical orientation styles (applies by default, unless the "horizontal"
-   * modifier is explicitly set).
-   */
-  &:not(#{&}--horizontal) {
-    grid-template-areas:
-      "media"
-      "body";
-  }
-
-  /**
-   * Horizontal orientation styles.
-   */
-  @mixin horizontal-card {
-    grid-template-columns: var(--card-media-width, minmax(#{$card-media-small}, 1fr)) 3fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: "media body";
-
-    --card-body-divider: none;
-  }
-
-  /**
-   * Apply horizontal orientation styles when the "vertical" modifier is not
-   * explicitly set, and the card's outer container is sufficiently wide.
-   */
-  @container (min-width: 600px) {
-    &:not(#{&}--vertical):not(#{&}--no-media) {
-      @include horizontal-card;
+  &:not(:defined) {
+    [slot="image"] {
+      width: $card-image-small;
+      float: left;
     }
   }
 
-  /**
-   * Also apply horizontal orientation styles when the "horizontal" modifier is
-   * explicitly set.
-   */
-  &--horizontal:not(#{&}--no-media) {
-    @include horizontal-card;
-  }
-
-  /**
-   * Reduce padding, font sizes, and image width.
-   */
-  &--compact {
-    --card-media-width: minmax(auto, #{$card-media-small});
-    --card-body-padding: #{space("loose")};
-    --card-title-font-size: #{font-size("medium", $responsive: true)};
-    --card-content-font-size: #{font-size("small", $responsive: true)};
-  }
-
-  /**
-   * Remove background color (and for vertical cards, also remove left/right
-   * padding in content area).
-   */
-  &--no-bg {
-    background-color: transparent;
-  }
-
-  &--no-bg#{&}--vertical {
-    --card-body-padding-x: 0;
-  }
-
-  &--bg-white {
-    background-color: #fff;
-  }
-
-  @container (max-width: 599px) {
-    &--no-bg:not(#{&}--horizontal) {
-      --card-body-padding-x: 0;
-    }
-  }
-
-  /**
-   * Add thick red border between content area and image (vertical cards only).
-   */
-  &--accent-divider {
-    --card-body-divider: #{space("tight")} solid #{theme-color("primary")};
-  }
-
-  /**
-   * Use `contain` background sizing algorithm for media image (default is
-   * `cover`).
-   */
-  &--contain-media {
-    --card-media-fit: contain;
-  }
-
-  /**
-   * Make card fill all of the available space in the parent container.
-   */
-  &--fill {
+  &::part(card) {
+    display: grid;
+    grid-template-areas: "content";
+    position: relative;
+    background-color: var(--card-background, #{color("gray", "0")});
     width: 100%;
     height: 100%;
-  }
+    transition: box-shadow animation("productive");
 
-  /** Children */
+    &:focus-within {
+      @include focus-style;
+    }
 
-  &__media {
-    grid-area: media;
-
-    > img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: var(--card-media-fit, cover);
-      object-position: center;
+    &:hover {
+      box-shadow: 0 0.5rem 1rem color("shade", "100");
     }
   }
 
-  &__body {
-    grid-area: body;
+  &[orientation*="vertical"]::part(card) {
+    grid-template-areas:
+      "image"
+      "content";
+  }
+
+  &[orientation*="horizontal"]:not([image="false"])::part(card) {
+    grid-template-columns: var(--card-image-width, minmax(#{$card-image-small}, 1fr)) 3fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "image content";
+  }
+
+  &[size*="small"] {
+    --card-image-width: minmax(auto, #{$card-image-small});
+    --card-content-padding: #{space("loose")};
+    --card-title-font-size: #{font-size("medium", $responsive: true)};
+    --card-description-font-size: #{font-size("small", $responsive: true)};
+  }
+
+  &[background="none"] {
+    --card-background: transparent;
+  }
+
+  &[background="none"][orientation="vertical"] {
+    --card-content-padding-x: 0;
+  }
+
+  &[background="reverse"] {
+    --card-background: #fff;
+  }
+  
+  &[divider]:not([orientation="horizontal"]) {
+    --card-content-divider: #{space("tight")} solid #{theme-color("primary")};
+  }
+
+  &[image="contain"] {
+    --card-image-fit: contain;
+  }
+
+  &::part(figure) {
+    grid-area: image;
+  }
+
+  [slot="image"] {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: var(--card-image-fit, cover);
+    object-position: center;
+  }
+
+  &::part(content) {
+    grid-area: content;
     display: flex;
     flex-direction: column;
     color: color("gray", "400");
-    border-top: var(--card-body-divider, none);
+    border-top: var(--card-content-divider, none);
     padding:
-      var(--card-body-padding-y, var(--card-body-padding, #{space("x-loose")}))
-      var(--card-body-padding-x, var(--card-body-padding, #{space("x-loose")}));
+      var(--card-content-padding-y, var(--card-content-padding, #{space("x-loose")}))
+      var(--card-content-padding-x, var(--card-content-padding, #{space("x-loose")}));
   }
 
-  /**
-   * 1. Inherit text color since the title will be the link element if a link is
-   *    specified.
-   * 2. Remove focus outline since focus styles are added to the overall card
-   *    above via `:focus-within`.
-   * 3. Make the link clickable from the entire card's surface.
-   */
-
-  &__title {
+  [slot="title"] {
     @include font-size("medium-plus", $custom-property: "--card-title-font-size");
 
     font-family: font-stack("headings");
     font-weight: font-weight("semibold");
-    color: inherit; // 1
+    color: inherit;
     text-decoration: none;
     margin-bottom: space("tight", "em");
 
     &:focus {
-      outline: none; // 2
+      outline: none;
     }
 
-    &[href]::before { // 3
+    &[href]::before {
       content: "";
       position: absolute;
       top: 0;
@@ -178,38 +116,31 @@
     }
   }
 
-  /**
-   * 1. Make other links in the card content clickable by raising it in the
-   *    stacking context.
-   * 2. Because the whole card surface is clickable, links within the card
-   *    should have a larger click target.
-   */
-
-  &__content {
-    @include font-size("medium", $custom-property: "--card-content-font-size");
+  [slot="description"] {
+    @include font-size("medium", $custom-property: "--card-description-font-size");
 
     color: color("gray", "300");
-
-    &:not(:last-child) {
-      margin-bottom: space("loose", "em");
-    }
-
-    a {
-      position: relative; // 1
-      margin: -0.5em; // 2
-      padding: 0.5em; // 2
-    }
+    margin-bottom: space("loose", "em");
   }
 
-  &__footer {
+  &::part(footer),
+  [slot="footer"] {
     display: flex;
     margin-top: auto;
     border-top: 1px solid color("shade", "100");
     padding-top: 1rem;
+    font-size: font-size("small");
+    color: theme-color("link");
+    gap: 1em;
   }
 
-  &__action {
-    font-size: font-size("small");
-    text-decoration: none;
+  [slot="description"],
+  [slot="footer"] {
+    a {
+      position: relative;
+      margin: -0.5em;
+      padding: 0.5em;
+      text-decoration: none;
+    }
   }
 }

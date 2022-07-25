@@ -138,6 +138,10 @@
   .column-gap-#{$space} {
     column-gap: $value;
   }
+
+  .margin-bottom-#{$space} {
+    margin-bottom: $value;
+  }
 }
 
 @each $breakpoint, $x in $breakpoints {

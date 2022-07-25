@@ -54,30 +54,21 @@ h2,
 h3,
 .h3 {
   @include font-size("large");
-
-  letter-spacing: 0.0125em;
 }
 
 h4,
 .h4 {
   @include font-size("medium-plus");
-
-  letter-spacing: 0.0125em;
 }
 
 h5,
 .h5 {
   @include font-size("medium");
-
-  letter-spacing: 0.0125em;
 }
 
 h6,
 .h6 {
   @include font-size("small");
-
-  font-weight: font-weight("bold");
-  letter-spacing: 0.0125em;
 }
 
 :where(h1, h2, h3, h4, h5, h6), // 1
