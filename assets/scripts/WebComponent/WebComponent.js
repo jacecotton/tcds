@@ -20,37 +20,37 @@ export default class Component extends HTMLElement {
 
     // Set up a proxy to intercept changes to local `state` object. Fires a
     // `state-change` event.
-    this.state = new Proxy({}, this.#stateHandler());
+    this.state = new Proxy({}, this.stateHandler());
 
     // Initialize a collection of changed state to pass to the `updated`
     // callback all at once.
-    this.#stateBatch = {};
+    this.stateBatch = {};
     // Initialize a boolean to keep track of whether to debounce the `updated`
     // call (to wait for more changed state properties to go into the batch).
-    this.#debounce = null;
+    this.debounce = null;
 
     // Listen for state changes (a custom event emitted by the `stateHandler`),
     // then call the `render` function and `updated` callback.
     this.addEventListener("state-change", (event) => {
       // Update the collection of changed state properties with their new and
       // old values.
-      this.#stateBatch.newState = { ...this.#stateBatch.newState, ...event.detail.newState };
-      this.#stateBatch.oldState = { ...this.#stateBatch.oldState, ...event.detail.oldState };
+      this.stateBatch.newState = { ...this.stateBatch.newState, ...event.detail.newState };
+      this.stateBatch.oldState = { ...this.stateBatch.oldState, ...event.detail.oldState };
 
-      // `#debounce` will be defined as a `requestAnimationFrame` (see below) if
-      // the current listener has already been triggered. So if `#debounce` is
+      // `debounce` will be defined as a `requestAnimationFrame` (see below) if
+      // the current listener has already been triggered. So if `debounce` is
       // not `null` (as initialized), some state has been changed more than once
       // before the next available animation frame (i.e. back-to-back changes
       // have occured). So, cancel the existing request, and try again on the
       // next animation frame.
-      if(this.#debounce !== null) {
-        cancelAnimationFrame(this.#debounce);
+      if(this.debounce !== null) {
+        cancelAnimationFrame(this.debounce);
       }
 
       // If this callback runs, the next animation frame is available, which
       // means all mutations have completed without the request being canceled.
       // So, call the `render` function and `updated` callback.
-      this.#debounce = requestAnimationFrame(() => {
+      this.debounce = requestAnimationFrame(() => {
         const template = `
           <link rel="stylesheet" href="/styles/main.css">
           ${this.render()}
@@ -63,20 +63,20 @@ export default class Component extends HTMLElement {
         // Call the `updated` callback and get its return object (with
         // properties corresponding to changed state properties, set to
         // callbacks to handle those specific state changes).
-        const stateUpdateHandlers = this.updated(this.#stateBatch.newState, this.#stateBatch.oldState);
+        const stateUpdateHandlers = this.updated(this.stateBatch.newState, this.stateBatch.oldState);
 
         // Loop through each handler in the returned object.
         for(let handler in stateUpdateHandlers) {
           // If the key corresponding to the handler is in the newly changed
           // state batch...
-          if(handler in this.#stateBatch.newState) {
+          if(handler in this.stateBatch.newState) {
             // Call the handler.
             stateUpdateHandlers[handler]();
           }
         }
 
         // Reset state batch (removes unchanged state on next run).
-        this.#stateBatch = {};
+        this.stateBatch = {};
       });
     });
 
@@ -94,15 +94,15 @@ export default class Component extends HTMLElement {
   }
 
   // Register private properties.
-  #stateBatch;
-  #debounce;
+  stateBatch;
+  debounce;
 
   /**
    * A callback for a proxy on `this.state`. Will check that the new value is
    * different from the old value, then emits a custom event to notify listeners
    * of the change, with details about that change.
    */
-  #stateHandler() {
+  stateHandler() {
     return {
       /**
        * store - The object that `this.state` becomes.
@@ -160,7 +160,7 @@ export default class Component extends HTMLElement {
         }
 
         if(["object", "array"].includes(Object.prototype.toString.call(store[state]).slice(8, -1).toLowerCase()) && !store[state]._isProxy) {
-          store[state] = new Proxy(store[state], this.#stateHandler());
+          store[state] = new Proxy(store[state], this.stateHandler());
         }
 
         return store[state];

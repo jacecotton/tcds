@@ -63,7 +63,7 @@ export default class Button extends WebComponent {
 
   fetchIcon() {
     this.iconModifiers = this.getAttribute("icon").split(" ").filter(modifier => ["only", "right", "inline"].includes(modifier));
-    this.iconToken = this.getAttribute("icon").replace(/only|(?<!-)right|inline/gi, "").trim();
+    this.iconToken = this.getAttribute("icon").replace(/only|^(?!-)right|inline/gi, "").trim();
 
     if(!(this.iconToken in window.__TCDS_ICON_CACHE)) {
       fetch(`https://unpkg.com/@txch/tcds/dist/icons/${this.iconToken}.svg`)
