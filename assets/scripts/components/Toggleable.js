@@ -22,7 +22,6 @@ export default class Toggleable extends Component {
     }
 
     this.togglers = document.querySelectorAll(`[aria-controls=${this.element.id}], tcds-button[controlss=${this.element.id}]`);
-    console.log(this.togglers);
     this.localStorageState = `toggleable_${this.element.id}_state`;
 
     // Initialize state.
