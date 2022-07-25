@@ -1,3 +1,12 @@
+# [0.53.0](https://github.com/jacecotton/tcds/compare/v0.52.23...v0.53.0) (2022-07-25)
+
+
+### Features
+
+* **components:** Finish migration to Web Components for select components ([be9e14f](https://github.com/jacecotton/tcds/commit/be9e14fa5f1143c9bae88c2cfd2f7f43ac025315))
+
+
+
 ## [0.52.23](https://github.com/jacecotton/tcds/compare/v0.52.22...v0.52.23) (2022-07-25)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Tabs script browser support issue ([84f1aca](https://github.com/jacecotton/tcds/commit/84f1aca0e146bc294ac238a5ec788bb3f18bec46))
-
-
-
-## [0.52.19](https://github.com/jacecotton/tcds/compare/v0.52.18...v0.52.19) (2022-07-19)
-
-
-### Bug Fixes
-
-* **components:** Breadcrumb line height ([ff786c9](https://github.com/jacecotton/tcds/commit/ff786c9c11edad421cd0e51a7a5f29431b4e4eca))
 
 
 
