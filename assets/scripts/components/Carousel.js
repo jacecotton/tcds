@@ -46,7 +46,7 @@ export default class Carousel extends WebComponent {
       ${this.header !== false ? `
         <header part="header">
           <slot name="header"></slot>
-          <tcds-button part="expand-collapse" controls="${this.id}" icon="only chevron-down" modifiers="small ghost round" label="${this.state.expanded ? "Collapse carousel" : "Expand carousel"}"></tcds-button>
+          <tcds-button part="expand-collapse" controls="${this.id}" icon="only chevron-down" size="small" color="ghost" round label="${this.state.expanded ? "Collapse carousel" : "Expand carousel"}"></tcds-button>
         </header>
       ` : ""}
       <div role="tablist" part="indicators" ${this.state.expanded !== false ? "hidden" : ""}>
@@ -85,10 +85,10 @@ export default class Carousel extends WebComponent {
         }).join("")}
       </div>
       ${this.timing ? `
-        <tcds-button part="play-pause" aria-controls="${this.id}" icon="only ${this.state.playing ? "pause" : "play"}" modifiers="small round ghost" label="${this.state.playing ? "Pause carousel" : "Play carousel"}" ${this.state.expanded ? "hidden" : ""}></tcds-button>
+        <tcds-button part="play-pause" controls="${this.id}" icon="only ${this.state.playing ? "pause" : "play"}" size="small" round color="ghost" label="${this.state.playing ? "Pause carousel" : "Play carousel"}" ${this.state.expanded ? "hidden" : ""}></tcds-button>
       ` : ""}
-      <tcds-button part="previous" aria-controls="${this.id}" icon="only arrow-left" modifiers="small round ghost" ${this.state.expanded !== false ? "hidden" : ""}>Previous</tcds-button>
-      <tcds-button part="next" aria-controls="${this.id}" icon="only arrow-right" modifiers="small round ghost" ${this.state.expanded !== false ? "hidden" : ""}>Next</tcds-button>
+      <tcds-button part="previous" controls="${this.id}" icon="only arrow-left" size="small" round color="ghost" ${this.state.expanded !== false ? "hidden" : ""}>Previous</tcds-button>
+      <tcds-button part="next" controls="${this.id}" icon="only arrow-right" size="small" round color="ghost" ${this.state.expanded !== false ? "hidden" : ""}>Next</tcds-button>
     `;
   }
 

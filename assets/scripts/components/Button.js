@@ -14,30 +14,26 @@ window.__TCDS_ICON_CACHE = {};
 
 export default class Button extends WebComponent {
   static get observedAttributes() {
-    return ["icon", "label", "modifiers", "link", "type", "controls"];
+    return ["icon", "label"];
   }
 
   constructor() {
     super();
 
-    this.link = false;
-    this.controls = false;
-    this.modifiers = false;
-    this.iconModifiers = false;
     this.state.icon = false;
     this.state.label = this.textContent;
   }
 
   render() {
     return `
-      <${this.link ? "a" : "button"}
+      <${this.hasAttribute("link") ? "a" : "button"}
         part="button"
-        ${this.link ? `
-          href="${this.link}"
+        ${this.hasAttribute("link") ? `
+          href="${this.getAttribute("link")}"
         ` : `
-          type="${this.type ? this.type : "button"}"
-          ${this.controls ? `
-            aria-controls="${this.controls}"
+          type="${this.hasAttribute("type") ? this.getAttribute("type") : "button"}"
+          ${this.hasAttribute("controls") ? `
+            aria-controls="${this.getAttribute("controls")}"
           ` : ""}
         `}
         ${this.iconModifiers && this.iconModifiers.includes("only") ? `
@@ -49,7 +45,7 @@ export default class Button extends WebComponent {
         ${this.iconModifiers && this.iconModifiers.includes("only") ? "" : `
           <slot>${this.state.label}</slot>
         `}
-      </${this.link ? "a" : "button"}>
+      </${this.hasAttribute("link") ? "a" : "button"}>
     `;
   }
 
@@ -61,22 +57,6 @@ export default class Button extends WebComponent {
 
       case "label":
         this.state.label = newValue;
-        break;
-
-      case "modifiers":
-        this.modifiers = newValue.split(" ");
-        break;
-
-      case "link":
-        this.link = newValue;
-        break;
-
-      case "type":
-        this.type = newValue;
-        break;
-
-      case "controls":
-        this.controls = newValue;
         break;
     }
   }
