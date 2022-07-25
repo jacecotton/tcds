@@ -61,7 +61,7 @@ tcds-card {
   &[background="reverse"] {
     --card-background: #fff;
   }
-
+  
   &[divider]:not([orientation="horizontal"]) {
     --card-content-divider: #{space("tight")} solid #{theme-color("primary")};
   }

@@ -1,7 +1,8 @@
 @use "@tcds" as *;
 
 .Breadcrumb {
-  ul {
+  ul,
+  ol {
     display: flex;
   }
 
