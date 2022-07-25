@@ -1,3 +1,12 @@
+## [0.53.2](https://github.com/jacecotton/tcds/compare/v0.53.1...v0.53.2) (2022-07-25)
+
+
+### Bug Fixes
+
+* **scripts:** Safari regex bug ([2f481ef](https://github.com/jacecotton/tcds/commit/2f481ef3608083c2680ff027addbfed688fc91c7))
+
+
+
 ## [0.53.1](https://github.com/jacecotton/tcds/compare/v0.53.0...v0.53.1) (2022-07-25)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Add white bg modifier to card ([c0b9848](https://github.com/jacecotton/tcds/commit/c0b9848d2e26c234b0b30d0b85f6476781f05528))
-
-
-
-## [0.52.21](https://github.com/jacecotton/tcds/compare/v0.52.20...v0.52.21) (2022-07-20)
-
-
-### Bug Fixes
-
-* **components:** Breadcrumb selector ([3017239](https://github.com/jacecotton/tcds/commit/3017239115b8b04a3cc0017c185e1ad608c0e26b))
 
 
 
