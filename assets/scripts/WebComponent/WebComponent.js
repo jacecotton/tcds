@@ -9,7 +9,7 @@ import diff from "./diff.js";
  * connectedCallback for mounting, disconnectedCallback for dismounting (remove
  * `state-change` event listener and so on), etc.
  */
-export default class Component extends HTMLElement {
+export default class WebComponent extends HTMLElement {
   constructor() {
     super();
 
