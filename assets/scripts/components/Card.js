@@ -19,11 +19,11 @@ export default class Card extends WebComponent {
         <div part="content">
           <slot name="title" part="title"></slot>
           <slot name="description" part="description"></slot>
-          <footer part="footer">
-            <slot name="footer">
-              <span part="action-label">${this.getAttribute("action-label") || "Read more"}</span>
-            </slot>
-          </footer>
+          <slot name="footer">
+            <footer part="footer">
+              <span part="action-label">${this.hasAttribute("action-label") && this.getAttribute("action-label") || "Read more"}</span>
+            </footer>
+          </slot>
         </div>
       </article>
     `;
@@ -35,25 +35,16 @@ export default class Card extends WebComponent {
     }
 
     if(!this.getAttribute("orientation") || !this.getAttribute("orientation").match("lock")) {
-      const resize = new ResizeObserver((entries) => {
-        entries.forEach((entry) => {
-          if(entry.contentBoxSize) {
-            const contentBoxSize = Array.isArray(entry.contentBoxSize) ? entry.contentBoxSize[0] : entry.contentBoxSize;
-
-            if(contentBoxSize.inlineSize > 600) {
-              this.setAttribute("orientation", "horizontal");
-            } else {
-              this.setAttribute("orientation", "vertical");
-            }
-          }
-        });
+      const resize = new ResizeObserver(() => {
+        if(this.getBoundingClientRect().width > 600) {
+          this.setAttribute("orientation", "horizontal");
+        } else {
+          this.setAttribute("orientation", "vertical");
+        }
       });
 
-      resize.observe(this);
+      resize.observe(document.body);
     }
-  }
-
-  updated() {
   }
 
   attributeChangedCallback(attribute) {

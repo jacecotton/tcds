@@ -32,6 +32,12 @@ tcds-carousel {
   &[expanded] {
     --carousel-expand-collapse-rotate: 180deg;
     --carousel-slides-direction: column;
+
+    &::part(slide) {
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid color("shade", "0");
+    }
   }
 
   &::part(header) {

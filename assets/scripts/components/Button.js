@@ -56,20 +56,7 @@ export default class Button extends WebComponent {
   attributeChangedCallback(attribute, oldValue, newValue) {
     switch(attribute) {
       case "icon":
-        this.iconModifiers = newValue.split(" ").filter(modifier => ["only", "right", "inline"].includes(modifier));
-        this.iconToken = newValue.replace(/only|(?<!-)right|inline/gi, "").trim();
-
-        if(!(this.iconToken in window.__TCDS_ICON_CACHE)) {
-          fetch(`https://unpkg.com/@txch/tcds/dist/icons/${this.iconToken}.svg`)
-            .then(response => response.text())
-            .then(svg => {
-              svg = svg.replace(/<svg/, `<svg part="icon"`);
-              window.__TCDS_ICON_CACHE[this.iconToken] = svg;
-            });
-        }
-
-        this.state.icon = window.__TCDS_ICON_CACHE[this.iconToken];
-
+        this.fetchIcon();
         break;
 
       case "label":
@@ -91,6 +78,23 @@ export default class Button extends WebComponent {
       case "controls":
         this.controls = newValue;
         break;
+    }
+  }
+
+  fetchIcon() {
+    this.iconModifiers = this.getAttribute("icon").split(" ").filter(modifier => ["only", "right", "inline"].includes(modifier));
+    this.iconToken = this.getAttribute("icon").replace(/only|(?<!-)right|inline/gi, "").trim();
+
+    if(!(this.iconToken in window.__TCDS_ICON_CACHE)) {
+      fetch(`https://unpkg.com/@txch/tcds/dist/icons/${this.iconToken}.svg`)
+        .then(response => response.text())
+        .then(svg => {
+          svg = svg.replace(/<svg/, `<svg part="icon"`);
+          window.__TCDS_ICON_CACHE[this.iconToken] = svg;
+          this.state.icon = svg;
+        });
+    } else {
+      this.state.icon = window.__TCDS_ICON_CACHE[this.iconToken];
     }
   }
 }

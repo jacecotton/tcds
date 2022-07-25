@@ -62,8 +62,23 @@ tcds-button::part(button) {
   }
 }
 
+tcds-button[color*="reverse"]::part(button) {
+  background-color: #fff;
+  color: theme-color("primary");
+}
+
+tcds-button[color*="secondary"]::part(button) {
+  background-color: theme-color("secondary");
+  color: theme-color("secondary", "0");
+}
+
+tcds-button[color*="tertiary"]::part(button) {
+  background-color: theme-color("tertiary");
+  color: theme-color("tertiary", "0");
+}
+
 .Button--small,
-tcds-button[modifiers*="small"]::part(button) {
+tcds-button[size*="small"]::part(button) {
   @include font-size("small", $line-height: false);
 
   @media (pointer: fine) {
@@ -72,26 +87,27 @@ tcds-button[modifiers*="small"]::part(button) {
 }
 
 .Button--large,
-tcds-button[modifiers*="large"]::part(button) {
+tcds-button[size*="large"]::part(button) {
   --button-height: #{size("large")};
 
   @include font-size("medium-plus", $line-height: false);
 }
 
 .Button--full-width,
-tcds-button[modifiers*="full-width"]::part(button) {
+tcds-button[size*="full-width"],
+tcds-button[size*="full-width"]::part(button) {
   display: flex;
   justify-content: center;
   width: 100%;
 }
 
 .Button--round,
-tcds-button[modifiers*="round"]::part(button) {
+tcds-button[round]::part(button) {
   border-radius: var(--button-height);
 }
 
 .Button--ghost,
-tcds-button[modifiers*="ghost"]::part(button) {
+tcds-button[color*="ghost"]::part(button) {
   background-color: transparent;
   color: inherit;
 
@@ -99,12 +115,12 @@ tcds-button[modifiers*="ghost"]::part(button) {
 }
 
 .Button--ghost.Button--icon-right,
-tcds-button[modifiers*="ghost"][icon~="right"]::part(button) {
+tcds-button[color*="ghost"][icon~="right"]::part(button) {
   --button-icon-margin-left: 0;
 }
 
 .Button--ghost:not(.Button--icon-right),
-tcds-button[modifiers*="ghost"]:not([icon~="right"])::part(button) {
+tcds-button[color*="ghost"]:not([icon~="right"])::part(button) {
   --button-icon-margin-right: 0;
 }
 

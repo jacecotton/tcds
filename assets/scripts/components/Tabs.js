@@ -1,6 +1,11 @@
 import WebComponent from "@tcds/WebComponent/WebComponent.js";
 import slugify from "@tcds/utilities/slugify.js";
 
+/**
+ * @todo Allow users to set a default active tab by setting an `active`
+ * attribute on the desired <tcds-tab> element.
+ */
+
 class Tab extends WebComponent {
   static get observedAttributes() {
     return ["label"];

@@ -3,6 +3,9 @@
 tcds-card {
   $card-image-small: 220px;
 
+  width: 100%;
+  height: 100%;
+
   &:not(:defined) {
     [slot="image"] {
       width: $card-image-small;
@@ -15,6 +18,8 @@ tcds-card {
     grid-template-areas: "content";
     position: relative;
     background-color: var(--card-background, #{color("gray", "0")});
+    width: 100%;
+    height: 100%;
     transition: box-shadow animation("productive");
 
     &:focus-within {
@@ -38,7 +43,7 @@ tcds-card {
     grid-template-areas: "image content";
   }
 
-  &[size*="compact"] {
+  &[size*="small"] {
     --card-image-width: minmax(auto, #{$card-image-small});
     --card-content-padding: #{space("loose")};
     --card-title-font-size: #{font-size("medium", $responsive: true)};
@@ -63,14 +68,6 @@ tcds-card {
 
   &[image="contain"] {
     --card-image-fit: contain;
-  }
-
-  &[size*="fill"] {
-    &,
-    &::part(card) {
-      width: 100%;
-      height: 100%;
-    }
   }
 
   &::part(figure) {
@@ -120,24 +117,30 @@ tcds-card {
   }
 
   [slot="description"] {
-    @include font-size("medium", $custom-property: "--card-content-font-size");
+    @include font-size("medium", $custom-property: "--card-description-font-size");
 
     color: color("gray", "300");
     margin-bottom: space("loose", "em");
-
-    a {
-      position: relative;
-      margin: -0.5em;
-      padding: 0.5em;
-    }
   }
 
-  &::part(footer) {
+  &::part(footer),
+  [slot="footer"] {
     display: flex;
     margin-top: auto;
     border-top: 1px solid color("shade", "100");
     padding-top: 1rem;
     font-size: font-size("small");
     color: theme-color("link");
+    gap: 1em;
+  }
+
+  [slot="description"],
+  [slot="footer"] {
+    a {
+      position: relative;
+      margin: -0.5em;
+      padding: 0.5em;
+      text-decoration: none;
+    }
   }
 }
