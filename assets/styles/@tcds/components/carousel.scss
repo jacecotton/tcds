@@ -1,143 +1,145 @@
 @use "@tcds" as *;
 
 tcds-carousel {
-  display: grid;
-  grid-template-columns: size("small") size("medium") 1fr size("small");
-  grid-template-areas:
-    ". header header ."
-    "previous slides slides next"
-    ". play-pause indicators .";
-  align-items: center;
-  gap: space("normal") space("loose");
-
-  @include breakpoint-below("medium") {
-    --carousel-navigation-arrows: none;
-
-    grid-template-columns: size("medium") 1fr;
+  &:defined {
+    display: grid;
+    grid-template-columns: size("small") size("medium") 1fr size("small");
     grid-template-areas:
-      "header header"
-      "slides slides"
-      "play-pause indicators";
-  }
-
-  @media (hover: none) {
-    --carousel-control-opacity: 1;
-  }
-
-  &:hover,
-  &:focus-within {
-    --carousel-control-opacity: 1;
-  }
-
-  &[expanded] {
-    --carousel-expand-collapse-rotate: 180deg;
-    --carousel-slides-direction: column;
-
-    &::part(slide) {
-      margin-bottom: 1rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid color("shade", "0");
-    }
-  }
-
-  &::part(header) {
-    grid-area: header;
-    display: flex;
+      ". header header ."
+      "previous slides slides next"
+      ". play-pause indicators .";
     align-items: center;
-    gap: space("tight");
-    border-bottom: 1px solid color("shade", "100");
-  }
+    gap: space("normal") space("loose");
 
-  [slot="header"] {
-    @include font-size("medium");
+    @include breakpoint-below("medium") {
+      --carousel-navigation-arrows: none;
 
-    margin: 0;
-    font-weight: font-weight("normal");
+      grid-template-columns: size("medium") 1fr;
+      grid-template-areas:
+        "header header"
+        "slides slides"
+        "play-pause indicators";
+    }
 
-    a {
-      color: inherit;
+    @media (hover: none) {
+      --carousel-control-opacity: 1;
+    }
 
-      &:not(:hover) {
-        text-decoration: none;
+    &:hover,
+    &:focus-within {
+      --carousel-control-opacity: 1;
+    }
+
+    &[expanded] {
+      --carousel-expand-collapse-rotate: 180deg;
+      --carousel-slides-direction: column;
+
+      &::part(slide) {
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid color("shade", "0");
       }
     }
-  }
 
-  &::part(indicators) {
-    grid-area: indicators;
-    justify-self: center;
-    display: flex;
-    gap: space("normal");
-  }
-
-  &::part(indicator) {
-    height: 0.75rem;
-    width: 0.75rem;
-    border-radius: 0.75rem;
-    background-color: color("shade", "100");
-    opacity: var(--carousel-control-opacity, 0);
-    transition:
-      background-color animation("productive"),
-      opacity animation("productive");
-    padding: 0;
-
-    &:hover {
-      background-color: color("shade", "200");
-    }
-
-    &:focus {
-      outline: 4px solid color("blue", "100");
-    }
-  }
-
-  &::part(indicator active),
-  &::part(indicator active):hover {
-    background-color: color("shade", "300");
-  }
-
-  &::part(viewport) {
-    grid-area: slides;
-    display: flex;
-    flex-direction: var(--carousel-slides-direction, row);
-  }
-
-  &:not([expanded]) {
-    &::part(viewport) {
+    &::part(header) {
+      grid-area: header;
+      display: flex;
       align-items: center;
-      overflow-x: scroll;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none;
+      gap: space("tight");
+      border-bottom: 1px solid color("shade", "100");
+    }
 
-      @include motion-ok {
-        scroll-behavior: smooth;
+    [slot="header"] {
+      @include font-size("medium");
+
+      margin: 0;
+      font-weight: font-weight("normal");
+
+      a {
+        color: inherit;
+
+        &:not(:hover) {
+          text-decoration: none;
+        }
       }
     }
 
-    &::part(slide) {
-      flex: 1 0 100%;
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
+    &::part(indicators) {
+      grid-area: indicators;
+      justify-self: center;
+      display: flex;
+      gap: space("normal");
     }
-  }
 
-  &::part(expand-collapse) {
-    transition: transform animation("productive");
-    transform: rotateZ(var(--carousel-expand-collapse-rotate, 0));
-  }
+    &::part(indicator) {
+      height: 0.75rem;
+      width: 0.75rem;
+      border-radius: 0.75rem;
+      background-color: color("shade", "100");
+      opacity: var(--carousel-control-opacity, 0);
+      transition:
+        background-color animation("productive"),
+        opacity animation("productive");
+      padding: 0;
 
-  &::part(play-pause) {
-    grid-area: play-pause;
-    opacity: var(--carousel-control-opacity, 0);
-    transition: opacity animation("productive");
-  }
+      &:hover {
+        background-color: color("shade", "200");
+      }
 
-  &::part(next) {
-    display: var(--carousel-navigation-arrows, inline-flex);
-    grid-area: next;
-  }
+      &:focus {
+        outline: 4px solid color("blue", "100");
+      }
+    }
 
-  &::part(previous) {
-    display: var(--carousel-navigation-arrows, inline-flex);
-    grid-area: previous;
+    &::part(indicator active),
+    &::part(indicator active):hover {
+      background-color: color("shade", "300");
+    }
+
+    &::part(viewport) {
+      grid-area: slides;
+      display: flex;
+      flex-direction: var(--carousel-slides-direction, row);
+    }
+
+    &:not([expanded]) {
+      &::part(viewport) {
+        align-items: center;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+
+        @include motion-ok {
+          scroll-behavior: smooth;
+        }
+      }
+
+      &::part(slide) {
+        flex: 1 0 100%;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+      }
+    }
+
+    &::part(expand-collapse) {
+      transition: transform animation("productive");
+      transform: rotateZ(var(--carousel-expand-collapse-rotate, 0));
+    }
+
+    &::part(play-pause) {
+      grid-area: play-pause;
+      opacity: var(--carousel-control-opacity, 0);
+      transition: opacity animation("productive");
+    }
+
+    &::part(next) {
+      display: var(--carousel-navigation-arrows, inline-flex);
+      grid-area: next;
+    }
+
+    &::part(previous) {
+      display: var(--carousel-navigation-arrows, inline-flex);
+      grid-area: previous;
+    }
   }
 }

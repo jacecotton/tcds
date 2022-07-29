@@ -1,0 +1,12 @@
+@use "@tcds" as *;
+
+tcds-tab::before,
+tcds-accordion-section::before {
+  @include font-size("medium-plus");
+
+  content: attr(label);
+  display: block;
+  font-weight: font-weight("bold");
+  font-family: font-stack("ui");
+  margin: space("loose") 0 space("tight");
+}

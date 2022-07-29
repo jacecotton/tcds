@@ -1,5 +1,10 @@
-.Card {
-  &__body {
-    display: block;
+tcds-card {
+  display: inline-block;
+  position: relative;
+
+  [slot="image"] {
+    float: left;
+    margin-right: 1rem;
+    width: 220px;
   }
 }

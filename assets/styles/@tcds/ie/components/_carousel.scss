@@ -1,0 +1,15 @@
+@use "@tcds" as *;
+
+tcds-carousel {
+  display: flex;
+  overflow-x: scroll;
+  margin: space("loose") 0;
+
+  :not(tcds-slide) {
+    display: none;
+  }
+
+  tcds-slide {
+    flex: 1 0 100%;
+  }
+}

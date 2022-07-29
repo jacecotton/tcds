@@ -1,6 +1,6 @@
 @use "@tcds" as *;
 
-tcds-tabs {
+tcds-tabs:defined {
   &[size="small"] {
     --tcds-tabs-tab-font-size: #{font-size("small")};
     --tcds-tabs-tab-height: #{size("small")};
@@ -66,16 +66,5 @@ tcds-tabs {
 
   &::part(panel) {
     padding: var(--tcds-tabs-panel-y-padding, #{space("normal")}) 0 0;
-  }
-}
-
-tcds-tabs:not(:defined) {
-  tcds-tab::before {
-    @include font-size("medium");
-
-    content: attr(label);
-    display: block;
-    font-weight: font-weight("semibold");
-    margin: space("loose") 0 space("tight");
   }
 }

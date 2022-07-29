@@ -3,17 +3,6 @@
 tcds-card {
   $card-image-small: 220px;
 
-  &:not(:defined) {
-    display: inline-block;
-    position: relative;
-
-    [slot="image"] {
-      float: left;
-      margin-right: space("normal");
-      width: $card-image-small;
-    }
-  }
-
   &:defined {
     width: 100%;
     height: 100%;

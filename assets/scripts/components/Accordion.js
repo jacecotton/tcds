@@ -103,31 +103,29 @@ export default class Accordion extends WebComponent {
     }
   }
 
-  updated() {
+  updated(state) {
     return {
       state: {
         expandedSections: () => {
-          this.panels.forEach((panel, index) => {
+          this.panels && this.panels.forEach((panel, index) => {
             const isExpanded = this.state.expandedSections.includes(index);
+            const wasExpanded = state.oldState.expandedSections && state.oldState.expandedSections.includes(index);
 
             if(isExpanded) {
-              panel.ontransitionend = null;
               panel.style.height = "0px";
               panel.hidden = false;
               requestAnimationFrame(() => {
                 panel.style.height = `${panel.scrollHeight}px`;
               });
-            } else {
+            } else if(wasExpanded) {
               panel.style.height = "0px";
               panel.ontransitionend = () => {
                 panel.hidden = true;
+                panel.style.height = null;
+                panel.ontransitionend = null;
               };
-
-              setTimeout(() => {
-                if(!panel.hidden) {
-                  panel.hidden = true;
-                }
-              }, 150);
+            } else {
+              panel.hidden = true;
             }
           });
 
