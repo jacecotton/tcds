@@ -1,24 +1,9 @@
 import WebComponent from "@tcds/WebComponent/WebComponent.js";
 import slugify from "@tcds/utilities/slugify.js";
 
-/**
- * @todo Allow users to set a default active tab by setting an `active`
- * attribute on the desired <tcds-tab> element.
- */
-
 class Tab extends WebComponent {
-  static get observedAttributes() {
-    return ["label"];
-  }
-
   constructor() {
     super();
-  }
-
-  attributeChangedCallback(attribute) {
-    if(attribute === "label") {
-      this.label = this.getAttribute("label");
-    }
   }
 }
 
@@ -29,6 +14,12 @@ export default class Tabs extends WebComponent {
     this.tabs = Array.from(this.querySelectorAll("tcds-tab"));
 
     this.state.activeTab = 0;
+
+    this.tabs.forEach((tab, index) => {
+      if(tab.hasAttribute("active")) {
+        this.state.activeTab = index;
+      }
+    });
   }
 
   render() {
@@ -41,10 +32,10 @@ export default class Tabs extends WebComponent {
               part="tab ${this.state.activeTab === index ? "active" : ""}"
               aria-expanded="${this.state.activeTab === index}"
               tabindex="${this.state.activeTab === index ? "0" : "-1"}"
-              id="${slugify(tab.label)}-tab"
-              aria-controls="${slugify(tab.label)}-panel"
+              id="${slugify(tab.props.label)}-tab"
+              aria-controls="${slugify(tab.props.label)}-panel"
             >
-              ${tab.label}
+              ${tab.props.label}
             </button>
           `;
         }).join("")}
@@ -55,8 +46,8 @@ export default class Tabs extends WebComponent {
             <section
               role="tabpanel"
               part="panel"
-              id="${slugify(tab.label)}-panel"
-              aria-labelledby="${slugify(tab.label)}-tab"
+              id="${slugify(tab.props.label)}-panel"
+              aria-labelledby="${slugify(tab.props.label)}-tab"
               ${this.state.activeTab === index ? "" : "hidden"}
             >
               ${tab.innerHTML}
@@ -85,6 +76,22 @@ export default class Tabs extends WebComponent {
         }
       });
     });
+  }
+
+  updated() {
+    return {
+      state: {
+        activeTab: () => {
+          this.tabs.forEach((tab, index) => {
+            if(index === this.state.activeTab) {
+              tab.setAttribute("active", "");
+            } else {
+              tab.removeAttribute("active");
+            }
+          });
+        },
+      },
+    };
   }
 }
 

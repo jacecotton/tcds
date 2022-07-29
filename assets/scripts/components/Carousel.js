@@ -7,10 +7,6 @@ class Slide extends WebComponent {
 }
 
 export default class Carousel extends WebComponent {
-  static get observedAttributes() {
-    return ["timing", "playing", "paused", "expanded"];
-  }
-
   constructor() {
     super();
 
@@ -28,17 +24,16 @@ export default class Carousel extends WebComponent {
 
     this.slides = Array.from(this.querySelectorAll("tcds-slide"));
     this.header = this.querySelector("[slot=header]") || false;
-    this.timing = false;
 
     this.state.activeSlide = 0;
-    this.state.playing = this.hasAttribute("paused") ? false : window.matchMedia("(prefers-reduced-motion: reduce), (hover: none)").matches === false && this.hasAttribute("timing");
+    this.state.playing = this.hasAttribute("playing") && this.hasAttribute("timing") && window.matchMedia("(prefers-reduced-motion: reduce), (hover: none)").matches === false;
     this.state.expanded = false;
   }
 
   render() {
     return `
       <style>
-        :host [part="viewport"]::-webkit-scrollbar {
+        [part="viewport"]::-webkit-scrollbar {
           display: none;
         }
       </style>
@@ -84,7 +79,7 @@ export default class Carousel extends WebComponent {
           `;
         }).join("")}
       </div>
-      ${this.timing ? `
+      ${this.props.timing ? `
         <tcds-button part="play-pause" controls="${this.id}" icon="only ${this.state.playing ? "pause" : "play"}" size="small" round color="ghost" label="${this.state.playing ? "Pause carousel" : "Play carousel"}" ${this.state.expanded ? "hidden" : ""}></tcds-button>
       ` : ""}
       <tcds-button part="previous" controls="${this.id}" icon="only arrow-left" size="small" round color="ghost" ${this.state.expanded !== false ? "hidden" : ""}>Previous</tcds-button>
@@ -106,7 +101,7 @@ export default class Carousel extends WebComponent {
       });
     }
 
-    if(this.timing) {
+    if(this.props.timing) {
       this.shadowRoot.querySelector("[part=play-pause]").addEventListener("click", () => {
         this.state.playing = !this.state.playing;
       });
@@ -204,34 +199,35 @@ export default class Carousel extends WebComponent {
     });
   }
 
-  updated(newState) {
-    if("playing" in newState || "paused" in newState) {
-      if(this.timing) {
-        this.toggleAttribute("playing", this.state.playing);
-        this.toggleAttribute("paused", !this.state.playing);
-
-        if(this.state.playing === true) {
-          this.playTimer = setTimeout(this.play.bind(this), this.timing);
-        } else {
-          clearTimeout(this.playTimer);
-        }
-      }
-    }
-
+  updated() {
     return {
-      expanded: () => {
-        if(this.header) {
-          this.toggleAttribute("expanded", this.state.expanded);
-          this.setAttribute("aria-roledescription", this.state.expanded ? "" : "carousel");
-        }
-      },
+      state: {
+        playing: () => {
+          if(this.props.timing) {
+            this.toggleAttribute("playing", this.state.playing);
 
-      activeSlide: () => {
-        if(this.viewport) {
-          const viewportOffset = this.viewport.getBoundingClientRect().left;
-          const slideOffset = this.slidePanels[this.state.activeSlide].getBoundingClientRect().left;
-          this.viewport.scrollLeft += slideOffset - viewportOffset;
-        }
+            if(this.state.playing === true) {
+              this.playTimer = setTimeout(this.play.bind(this), parseInt(this.props.timing));
+            } else {
+              clearTimeout(this.playTimer);
+            }
+          }
+        },
+
+        expanded: () => {
+          if(this.header) {
+            this.toggleAttribute("expanded", this.state.expanded);
+            this.setAttribute("aria-roledescription", this.state.expanded ? "" : "carousel");
+          }
+        },
+
+        activeSlide: () => {
+          if(this.viewport) {
+            const viewportOffset = this.viewport.getBoundingClientRect().left;
+            const slideOffset = this.slidePanels[this.state.activeSlide].getBoundingClientRect().left;
+            this.viewport.scrollLeft += slideOffset - viewportOffset;
+          }
+        },
       },
     };
   }
@@ -239,7 +235,7 @@ export default class Carousel extends WebComponent {
   play() {
     if(this.state.playing === true) {
       this.state.activeSlide = this.state.activeSlide === this.indicators.length - 1 ? 0 : this.state.activeSlide + 1;
-      this.playTimer = setTimeout(this.play.bind(this), this.timing);
+      this.playTimer = setTimeout(this.play.bind(this), parseInt(this.props.timing));
     }
   }
 
@@ -254,12 +250,6 @@ export default class Carousel extends WebComponent {
     if(this.state.paused === true) {
       this.state.playing = true;
       this.state.paused = false;
-    }
-  }
-
-  attributeChangedCallback(attribute) {
-    if(attribute === "timing") {
-      this.timing = parseInt(this.getAttribute("timing"));
     }
   }
 }

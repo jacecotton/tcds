@@ -1,27 +1,25 @@
 import WebComponent from "@tcds/WebComponent/WebComponent.js";
 
 export default class Card extends WebComponent {
-  static get observedAttributes() {
-    return ["image", "title", "content", "size", "orientation"];
-  }
-
   constructor() {
     super();
+
+    this.state.noop = "";
   }
 
   render() {
     return `
       <article part="card">
         <figure part="figure">
-          <slot name="image" part="image"></slot>
+          <slot name="image"></slot>
         </figure>
 
         <div part="content">
-          <slot name="title" part="title"></slot>
-          <slot name="description" part="description"></slot>
+          <slot name="title"></slot>
+          <slot name="description"></slot>
           <slot name="footer">
             <footer part="footer">
-              <span part="action-label">${this.hasAttribute("action-label") && this.getAttribute("action-label") || "Read more"}</span>
+              <span part="action-label">${this.props["action-label"] || "Read more"}</span>
             </footer>
           </slot>
         </div>
@@ -31,10 +29,10 @@ export default class Card extends WebComponent {
 
   mounted() {
     if(!this.querySelector("[slot=image]")) {
-      this.setAttribute("image", "false");
+      this.state.image = false;
     }
 
-    if(!this.getAttribute("orientation") || !this.getAttribute("orientation").match("lock")) {
+    if(!this.props.orientation && this.state.image !== false) {
       const resize = new ResizeObserver(() => {
         if(this.getBoundingClientRect().width > 600) {
           this.setAttribute("orientation", "horizontal");
@@ -47,10 +45,18 @@ export default class Card extends WebComponent {
     }
   }
 
-  attributeChangedCallback(attribute) {
-    if(attribute === "orientation") {
-      this.state.orientation = this.getAttribute("orientation");
-    }
+  updated() {
+    return {
+      state: {
+        image: () => {
+          if(this.state.image === false) {
+            this.setAttribute("no-image", "");
+          } else {
+            this.removeAttribute("no-image");
+          }
+        },
+      },
+    };
   }
 }
 

@@ -5,28 +5,10 @@
     </a>
   </div>
 
-  {{ include("@tcds/components/button/button.html.twig", {
-    label: "Open menu",
-    icon: "hamburger",
-    controls: "header-menu",
-    modifiers: ["icon-only", "round", "ghost"],
-    custom_classes: ["site-header__open-menu"],
-    custom_attributes: {
-      "aria-expanded": "false",
-    },
-  }, with_context = false) }}
+  <tcds-button icon="only hamburger" round color="ghost" class="site-header__open-menu" controls="header-menu">Open menu</tcds-button>
 
   <div class="site-header__menu" id="header-menu">
-    {{ include("@tcds/components/button/button.html.twig", {
-      label: "Close menu",
-      icon: "x",
-      controls: "header-menu",
-      modifiers: ["icon-only", "round", "ghost"],
-      custom_classes: ["site-header__close-menu"],
-      custom_attributes: {
-        "aria-expanded": "false",
-      },
-    }, with_context = false) }}
+    <tcds-button icon="only x" round color="ghost" class="site-header__close-menu" controls="header-menu">Close menu</tcds-button>
 
     {% block menus %}{% endblock %}
   </div>

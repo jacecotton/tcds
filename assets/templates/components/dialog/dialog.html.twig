@@ -18,13 +18,7 @@
 {% block inner_content %}
   <div class="Dialog__content">
     <h1 class="{{ "show-title" not in modifiers ? "visually-hidden" }}" id="{{ id }}-title">{{ title }}</h1>
-    {{ include("@tcds/components/button/button.html.twig", {
-      label: "Close dialog",
-      icon: "x",
-      controls: id,
-      modifiers: ["icon-only", "round"],
-      custom_classes: ["bg-secondary", "Dialog__close"],
-    }, with_context = false) }}
+    <tcds-button icon="only x" controls="{{ id }}" round class="bg-secondary Dialog__close">Close dialog</tcds-button>
 
     {% block content %}
       {{ content }}

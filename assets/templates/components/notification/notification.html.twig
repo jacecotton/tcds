@@ -13,24 +13,12 @@
 
 {% block inner_content %}
   <div class="Notification__content">
-    {{ include("@tcds/components/button/button.html.twig", {
-      label: "Dismiss notification",
-      icon: "x",
-      controls: id,
-      modifiers: ["icon-only", "round", "ghost"],
-      custom_classes: ["Notification__dismiss"],
-    }, with_context = false) }}
+    <tcds-button icon="only x" round color="ghost" class="Notification__dismiss" controls="{{ id }}">Dismiss notification</tcds-button>
 
     {{ content|raw }}
   </div>
 
   {% if "full-bleed" in modifiers %}
-    {{ include("@tcds/components/button/button.html.twig", {
-      label: "Expand notification",
-      icon: "chevron-down",
-      controls: id,
-      modifiers: ["icon-only", "round"],
-      custom_classes: ["Notification__expand"],
-    }, with_context = false) }}
+    <tcds-button icon="only chevron-down" round color="ghost" class="Notification__expand" controls="{{ id }}">Expand notification</tcds-button>
   {% endif %}
 {% endblock %}

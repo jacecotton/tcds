@@ -38,6 +38,10 @@
     font-weight: font-weight("bold");
     margin: 0;
     text-shadow: var(--section-text-shadow, none);
+
+    @include breakpoint-above("medium") {
+      width: 50%;
+    }
   }
 
   &__subheading {

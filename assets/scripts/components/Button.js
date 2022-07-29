@@ -13,57 +13,56 @@ import WebComponent from "@tcds/WebComponent/WebComponent.js";
 window.__TCDS_ICON_CACHE = {};
 
 export default class Button extends WebComponent {
-  static get observedAttributes() {
-    return ["icon", "label"];
-  }
-
   constructor() {
     super();
 
-    this.state.icon = false;
-    this.state.label = this.textContent;
+    this.state.iconSVG = false;
   }
 
   render() {
     return `
-      <${this.hasAttribute("link") ? "a" : "button"}
+      <${this.props.link ? "a" : "button"}
         part="button"
-        ${this.hasAttribute("link") ? `
-          href="${this.getAttribute("link")}"
+        ${this.props.link ? `
+          href="${this.props.link}"
         ` : `
-          type="${this.hasAttribute("type") ? this.getAttribute("type") : "button"}"
-          ${this.hasAttribute("controls") ? `
-            aria-controls="${this.getAttribute("controls")}"
+          type="${this.props.type ? this.props.type : "button"}"
+          ${this.props.controls ? `
+            aria-controls="${this.props.controls}"
           ` : ""}
         `}
         ${this.iconModifiers && this.iconModifiers.includes("only") ? `
-          aria-label="${this.state.label}"
-          title="${this.state.label}"
+          aria-label="${this.props.label}"
+          title="${this.props.label}"
         ` : ""}
       >
-        ${this.state.icon ? this.state.icon : ""}
+        ${this.state.iconSVG ? this.state.iconSVG : ""}
         ${this.iconModifiers && this.iconModifiers.includes("only") ? "" : `
-          <slot>${this.state.label}</slot>
+          <slot>${this.props.label}</slot>
         `}
-      </${this.hasAttribute("link") ? "a" : "button"}>
+      </${this.props.link ? "a" : "button"}>
     `;
   }
 
-  attributeChangedCallback(attribute, oldValue, newValue) {
-    switch(attribute) {
-      case "icon":
-        this.fetchIcon();
-        break;
-
-      case "label":
-        this.state.label = newValue;
-        break;
+  mounted() {
+    if(this.props.icon) {
+      this.fetchIcon();
     }
   }
 
+  updated() {
+    return {
+      props: {
+        icon: () => {
+          this.fetchIcon();
+        },
+      },
+    };
+  }
+
   fetchIcon() {
-    this.iconModifiers = this.getAttribute("icon").split(" ").filter(modifier => ["only", "right", "inline"].includes(modifier));
-    this.iconToken = this.getAttribute("icon").replace(/only|^(?!-)right|inline/gi, "").trim();
+    this.iconModifiers = this.props.icon.split(" ").filter(modifier => ["only", "right", "inline"].includes(modifier));
+    this.iconToken = this.props.icon.replace(/only|^(?!-)right|inline/gi, "").trim();
 
     if(!(this.iconToken in window.__TCDS_ICON_CACHE)) {
       fetch(`https://unpkg.com/@txch/tcds/dist/icons/${this.iconToken}.svg`)
@@ -71,10 +70,10 @@ export default class Button extends WebComponent {
         .then(svg => {
           svg = svg.replace(/<svg/, `<svg part="icon"`);
           window.__TCDS_ICON_CACHE[this.iconToken] = svg;
-          this.state.icon = svg;
+          this.state.iconSVG = svg;
         });
     } else {
-      this.state.icon = window.__TCDS_ICON_CACHE[this.iconToken];
+      this.state.iconSVG = window.__TCDS_ICON_CACHE[this.iconToken];
     }
   }
 }

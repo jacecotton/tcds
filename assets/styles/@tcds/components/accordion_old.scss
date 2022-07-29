@@ -1,26 +1,26 @@
 @use "@tcds" as *;
 
-tcds-accordion {
-  margin: space("normal") 0;
+.Accordion {
+  &:not(:last-child) {
+    margin-bottom: space("normal");
+  }
 
-  &::part(controls) {
+  &__controls {
     display: flex;
     justify-content: flex-end;
-  }
-
-  &::part(section) {
-    border-bottom: 1px solid color("shade", "100");
-  }
-
-  &::part(section last) {
-    border-bottom: none;
-  }
-
-  &::part(heading) {
+    list-style: none;
     margin: 0;
   }
 
-  &::part(button) {
+  &__section:not(:last-child) {
+    border-bottom: 1px solid color("gray", "100");
+  }
+
+  &__heading {
+    margin: 0;
+  }
+
+  &__button {
     @include font-size("medium");
 
     appearance: none;
@@ -34,28 +34,30 @@ tcds-accordion {
     gap: space("tight");
     padding: space("tight") 0;
     font-family: font-stack("ui");
-    font-weight: font-weight("normal");
     width: 100%;
+
+    &:focus-visible {
+      @include focus-style;
+    }
+
+    &[aria-expanded="true"] {
+      --icon-rotate: 180deg;
+    }
   }
 
-  &::part(button expanded) {
-    --tcds-accordion-icon-rotate: 180deg;
-  }
-
-  &::part(icon) {
-    width: 1rem;
+  &__icon {
     pointer-events: none;
-    transform: rotateZ(var(--tcds-accordion-icon-rotate, 0));
+    transform: rotateZ(var(--icon-rotate, 0));
     transition: transform animation("productive");
   }
 
-  &::part(panel) {
+  &__panel {
     overflow: hidden;
-    border-top: 1px solid color("shade", "100");
-    transition: height animation("productive");
+    border-top: 1px solid color("gray", "100");
+    transition: height 0.15s linear;
   }
 
-  &::part(content) {
+  &__content {
     padding: space("normal") space("loose");
   }
 }

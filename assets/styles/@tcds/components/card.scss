@@ -3,144 +3,150 @@
 tcds-card {
   $card-image-small: 220px;
 
-  width: 100%;
-  height: 100%;
-
   &:not(:defined) {
-    [slot="image"] {
-      width: $card-image-small;
-      float: left;
-    }
-  }
-
-  &::part(card) {
-    display: grid;
-    grid-template-areas: "content";
+    display: inline-block;
     position: relative;
-    background-color: var(--card-background, #{color("gray", "0")});
+
+    [slot="image"] {
+      float: left;
+      margin-right: space("normal");
+      width: $card-image-small;
+    }
+  }
+
+  &:defined {
     width: 100%;
     height: 100%;
-    transition: box-shadow animation("productive");
 
-    &:focus-within {
-      @include focus-style;
-    }
-
-    &:hover {
-      box-shadow: 0 0.5rem 1rem color("shade", "100");
-    }
-  }
-
-  &[orientation*="vertical"]::part(card) {
-    grid-template-areas:
-      "image"
-      "content";
-  }
-
-  &[orientation*="horizontal"]:not([image="false"])::part(card) {
-    grid-template-columns: var(--card-image-width, minmax(#{$card-image-small}, 1fr)) 3fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: "image content";
-  }
-
-  &[size*="small"] {
-    --card-image-width: minmax(auto, #{$card-image-small});
-    --card-content-padding: #{space("loose")};
-    --card-title-font-size: #{font-size("medium", $responsive: true)};
-    --card-description-font-size: #{font-size("small", $responsive: true)};
-  }
-
-  &[background="none"] {
-    --card-background: transparent;
-  }
-
-  &[background="none"][orientation="vertical"] {
-    --card-content-padding-x: 0;
-  }
-
-  &[background="reverse"] {
-    --card-background: #fff;
-  }
-  
-  &[divider]:not([orientation="horizontal"]) {
-    --card-content-divider: #{space("tight")} solid #{theme-color("primary")};
-  }
-
-  &[image="contain"] {
-    --card-image-fit: contain;
-  }
-
-  &::part(figure) {
-    grid-area: image;
-  }
-
-  [slot="image"] {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: var(--card-image-fit, cover);
-    object-position: center;
-  }
-
-  &::part(content) {
-    grid-area: content;
-    display: flex;
-    flex-direction: column;
-    color: color("gray", "400");
-    border-top: var(--card-content-divider, none);
-    padding:
-      var(--card-content-padding-y, var(--card-content-padding, #{space("x-loose")}))
-      var(--card-content-padding-x, var(--card-content-padding, #{space("x-loose")}));
-  }
-
-  [slot="title"] {
-    @include font-size("medium-plus", $custom-property: "--card-title-font-size");
-
-    font-family: font-stack("headings");
-    font-weight: font-weight("semibold");
-    color: inherit;
-    text-decoration: none;
-    margin-bottom: space("tight", "em");
-
-    &:focus {
-      outline: none;
-    }
-
-    &[href]::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-    }
-  }
-
-  [slot="description"] {
-    @include font-size("medium", $custom-property: "--card-description-font-size");
-
-    color: color("gray", "300");
-    margin-bottom: space("loose", "em");
-  }
-
-  &::part(footer),
-  [slot="footer"] {
-    display: flex;
-    margin-top: auto;
-    border-top: 1px solid color("shade", "100");
-    padding-top: 1rem;
-    font-size: font-size("small");
-    color: theme-color("link");
-    gap: 1em;
-  }
-
-  [slot="description"],
-  [slot="footer"] {
-    a {
+    &::part(card) {
+      display: grid;
+      grid-template-areas: "content";
       position: relative;
-      margin: -0.5em;
-      padding: 0.5em;
+      background-color: var(--card-background, #{color("gray", "0")});
+      width: 100%;
+      height: 100%;
+      transition: box-shadow animation("productive");
+
+      &:focus-within {
+        @include focus-style;
+      }
+
+      &:hover {
+        box-shadow: 0 0.5rem 1rem color("shade", "100");
+      }
+    }
+
+    &[orientation*="vertical"]:not([no-image])::part(card) {
+      grid-template-areas:
+        "image"
+        "content";
+    }
+
+    &[orientation*="horizontal"]:not([no-image])::part(card) {
+      grid-template-columns: var(--card-image-width, minmax(#{$card-image-small}, 1fr)) 3fr;
+      grid-template-rows: 1fr;
+      grid-template-areas: "image content";
+    }
+
+    &[size*="small"] {
+      --card-image-width: minmax(auto, #{$card-image-small});
+      --card-content-padding: #{space("loose")};
+      --card-title-font-size: #{font-size("medium", $responsive: true)};
+      --card-description-font-size: #{font-size("small", $responsive: true)};
+    }
+
+    &[background="none"] {
+      --card-background: transparent;
+    }
+
+    &[background="none"][orientation="vertical"] {
+      --card-content-padding-x: 0;
+    }
+
+    &[background="reverse"] {
+      --card-background: #fff;
+    }
+
+    &[divider]:not([orientation="horizontal"]) {
+      --card-content-divider: #{space("tight")} solid #{theme-color("primary")};
+    }
+
+    &[image="contain"] {
+      --card-image-fit: contain;
+    }
+
+    &::part(figure) {
+      grid-area: image;
+    }
+
+    [slot="image"] {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: var(--card-image-fit, cover);
+      object-position: center;
+    }
+
+    &::part(content) {
+      grid-area: content;
+      display: flex;
+      flex-direction: column;
+      color: color("gray", "400");
+      border-top: var(--card-content-divider, none);
+      padding:
+        var(--card-content-padding-y, var(--card-content-padding, #{space("x-loose")}))
+        var(--card-content-padding-x, var(--card-content-padding, #{space("x-loose")}));
+    }
+
+    [slot="title"] {
+      @include font-size("medium-plus", $custom-property: "--card-title-font-size");
+
+      font-family: font-stack("headings");
+      font-weight: font-weight("semibold");
+      color: inherit;
       text-decoration: none;
+      margin-bottom: space("tight", "em");
+
+      &:focus {
+        outline: none;
+      }
+
+      &[href]::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+      }
+    }
+
+    [slot="description"] {
+      @include font-size("medium", $custom-property: "--card-description-font-size");
+
+      color: color("gray", "300");
+      margin-bottom: space("loose", "em");
+    }
+
+    &::part(footer),
+    [slot="footer"] {
+      display: flex;
+      margin-top: auto;
+      border-top: 1px solid color("shade", "100");
+      padding-top: 1rem;
+      font-size: font-size("small");
+      color: theme-color("link");
+      gap: 1em;
+    }
+
+    [slot="description"],
+    [slot="footer"] {
+      a {
+        position: relative;
+        margin: -0.5em;
+        padding: 0.5em;
+        text-decoration: none;
+      }
     }
   }
 }

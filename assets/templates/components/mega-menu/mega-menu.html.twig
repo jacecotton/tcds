@@ -11,12 +11,7 @@
 
 {% block inner_content %}
   <div class="max-width">
-    {{ include("@tcds/components/button/button.html.twig", {
-      label: "Dismiss submenu",
-      icon: "chevron-left",
-      controls: "mega-menu-#{id|clean_id}",
-      modifiers: ["icon-only", "ghost", "round"],
-    }, with_context = false) }}
+    <tcds-button icon="only chevron-left" round color="ghost" class="site-header__open-menu" controls="mega-menu-{{ id|clean_id }}">Dismiss submenu</tcds-button>
     {% block content %}{% endblock %}
   </div>
 {% endblock %}

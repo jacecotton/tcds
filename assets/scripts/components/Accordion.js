@@ -1,127 +1,148 @@
-import Component from "@tcds/utilities/Component.js";
+import WebComponent from "@tcds/WebComponent/WebComponent.js";
+import slugify from "@tcds/utilities/slugify.js";
 
-export default class Accordion extends Component {
-  constructor(element, props) {
-    super(element, props);
+class AccordionSection extends WebComponent {
+  constructor() {
+    super();
+  }
+}
 
-    this.props.multiselectable = this.props.multiselectable || false;
+export default class Accordion extends WebComponent {
+  constructor() {
+    super();
 
-    // Get relevant elements.
-    this.panels = Array.from(this.element.querySelectorAll("[data-component-part=panel]"));
-    this.buttons = Array.from(this.element.querySelectorAll("[data-component-part=panel-toggle]"));
-    this.expandAllButton = this.element.querySelector("[data-component-part=expand-all]");
-    this.collapseAllButton = this.element.querySelector("[data-component-part=collapse-all]");
+    this.sections = Array.from(this.querySelectorAll("tcds-accordion-section"));
 
-    const duplicates = [...new Set(this.buttons.map(button => button.id).filter((item, index, array) => array.indexOf(item) !== index))];
+    this.state.expandedSections = [];
+  }
 
-    if(duplicates.length > 0) {
-      duplicates.forEach((duplicate) => {
-        console.error(`ERROR: Accordion sections must be unique. Duplicate sections labeled "${document.getElementById(duplicate).textContent.trim()}" were found. Choose a unique name for each section, or remove the duplicate section(s).`);
-      });
-    }
+  render() {
+    return `
+      ${this.props.mode === "multiselectable" ? `
+        <div part="controls">
+          <tcds-button part="expand-all" color="ghost" size="small" round label="expand all"></tcds-button>
+          <tcds-button part="collapse-all" color="ghost" size="small" round label="collapse all"></tcds-button>
+        </div>
+      ` : ""}
+      ${this.sections.map((section, index) => {
+        const isExpanded = this.state.expandedSections.includes(index);
+        const isLast = index === this.sections.length - 1;
 
-    // Track which buttons should be active via an array. Start with an empty
-    // array to collapse all sections.
-    this.state.activeButtons = [];
+        return `
+          <section part="section ${isExpanded ? "expanded" : ""} ${isLast ? "last" : ""}">
+            <h${this.props.headingLevel ? this.props.headingLevel : "3"} part="heading">
+              <button
+                part="button ${isExpanded ? "expanded" : ""}"
+                id="${slugify(section.props.label)}-button"
+                aria-controls="${slugify(section.props.label)}-panel"
+                aria-expanded="${isExpanded}"
+              >
+                <svg part="icon" xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-linecap="square">
+                  <path d="M6 10l6 6 6-6"/>
+                </svg>
+                ${section.props.label}
+              </button>
+            </h${this.props.headingLevel ? this.props.headingLevel : "3"}>
 
-    this.buttons.forEach((button) => {
+            <div
+              part="panel ${isExpanded ? "expanded" : ""}"
+              id="${slugify(section.props.label)}-panel"
+              aria-labelledby="${slugify(section.props.label)}-button"
+            >
+              <div part="content">${section.innerHTML}</div>
+            </div>
+          </section>
+        `;
+      }).join("")}
+    `;
+  }
+
+  mounted() {
+    const sections = Array.from(this.shadowRoot.querySelectorAll("section"));
+    this.panels = Array.from(this.shadowRoot.querySelectorAll("[part*=panel]"));
+    this.expandAll = this.shadowRoot.querySelector("[label='expand all']");
+    this.collapseAll = this.shadowRoot.querySelector("[label='collapse all']");
+
+    this.panels.forEach((panel) => {
+      panel.hidden = true;
+    });
+
+    sections.forEach((section, index) => {
+      const button = section.querySelector("button");
+
       button.addEventListener("click", () => {
-        // We're going to add each clicked button to an array (`activeButtons`),
-        // then remove that button when clicked again. If the clicked button
-        // isn't already in the array...
-        if(this.state.activeButtons.indexOf(button) === -1) {
-          // If not multiselectable, make the clicked button the only active one
-          // in state.
-          if(this.props.multiselectable === false) {
-            this.state.activeButtons = [button];
-          } else {
-            // Otherwise, add the clicked button to the active state with the
-            // others.
-            this.state.activeButtons.push(button);
-          }
+        const isExpanded = this.state.expandedSections.includes(index);
+
+        if(isExpanded) {
+          this.state.expandedSections = this.state.expandedSections.filter(_index => _index !== index);
         } else {
-          // If the button is currently active and it's clicked again, remove it
-          // from the array.
-          this.state.activeButtons.splice(this.state.activeButtons.indexOf(button), 1);
+          if(this.props.mode !== "multiselectable") {
+            this.state.expandedSections = [index];
+          } else {
+            this.state.expandedSections = [...this.state.expandedSections, ...[index]];
+          }
         }
       });
     });
 
-    if(this.props.multiselectable === true) {
-      // Add every button to the active sections state on "expand all" click.
-      this.expandAllButton.addEventListener("click", () => {
-        this.state.activeButtons = [...this.buttons];
+    if(this.props.mode === "multiselectable") {
+      this.expandAll.addEventListener("click", () => {
+        sections.forEach((section, index) => {
+          this.state.expandedSections = [...this.state.expandedSections, ...[index]];
+        });
       });
 
-      // Empty active sections state on "collapse all" click.
-      this.collapseAllButton.addEventListener("click", () => {
-        this.state.activeButtons = [];
+      this.collapseAll.addEventListener("click", () => {
+        this.state.expandedSections = [];
       });
     }
   }
 
-  // Update DOM after state change.
-  sync() {
-    this.buttons.forEach((button) => {
-      // Determine whether the current button is in the active state.
-      const isActive = this.state.activeButtons.indexOf(button) > -1;
+  updated() {
+    return {
+      state: {
+        expandedSections: () => {
+          this.panels.forEach((panel, index) => {
+            const isExpanded = this.state.expandedSections.includes(index);
 
-      // Get the panel associated with the button.
-      const panel = this.getPanelByButton(button);
-      // Get the section containing the panel and button.
-      const section = button.closest("section");
+            if(isExpanded) {
+              panel.ontransitionend = null;
+              panel.style.height = "0px";
+              panel.hidden = false;
+              requestAnimationFrame(() => {
+                panel.style.height = `${panel.scrollHeight}px`;
+              });
+            } else {
+              panel.style.height = "0px";
+              panel.ontransitionend = () => {
+                panel.hidden = true;
+              };
 
-      // Set ARIA state on button.
-      button.setAttribute("aria-expanded", isActive);
-      section.setAttribute("data-open", isActive);
+              setTimeout(() => {
+                if(!panel.hidden) {
+                  panel.hidden = true;
+                }
+              }, 150);
+            }
+          });
 
-      if(isActive) {
-        // Remove leftover event listener from collapse transition.
-        panel.ontransitionend = null;
-        // Unhide the panel (still collapsed).
-        panel.hidden = false;
-        // When ready...
-        requestAnimationFrame(() => {
-          // Uncollapse the panel (causes transition).
-          panel.style.height = `${panel.scrollHeight}px`;
-        });
-      } else {
-        // Collapse the panel (causes transition).
-        panel.style.height = "0px";
-
-        // After that transition ends...
-        panel.ontransitionend = () => {
-          // Fully hide the panel for proper correspondence with ARIA state.
-          panel.hidden = true;
-        };
-      }
-    });
-  }
-
-  /** Utilities */
-
-  /**
-   * Get the panel controlled by the given toggle button.
-   *
-   * @param {HTMLElement} button - The button for which you want to get the
-   * associated panel.
-   * @returns {HTMLElement} - A panel.
-   */
-  getPanelByButton(button) {
-    // Return the panel with an ID matching the `[aria-controls]` attribute of
-    // the button.
-    return this.panels.find((panel) => {
-      return button.getAttribute("aria-controls") === panel.id;
-    });
+          this.sections.forEach((section, index) => {
+            if(this.state.expandedSections.includes(index)) {
+              section.setAttribute("expanded", "");
+            } else {
+              section.removeAttribute("expanded");
+            }
+          });
+        },
+      },
+    };
   }
 }
 
-// Wait for the window to fully load to ensure height calculations of panels are
-// accurate.
-window.addEventListener("load", () => {
-  document.querySelectorAll("[data-component=Accordion]").forEach((instance) => {
-    instance && new Accordion(instance, {
-      multiselectable: instance.classList.contains("Accordion--multiselectable"),
-    });
-  });
-});
+customElements.define("tcds-accordion-section", AccordionSection);
+customElements.define("tcds-accordion", Accordion);
