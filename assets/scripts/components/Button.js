@@ -15,7 +15,6 @@ window.__TCDS_ICON_CACHE = {};
 export default class Button extends WebComponent {
   constructor() {
     super();
-
     this.state.iconSVG = false;
   }
 
@@ -62,7 +61,12 @@ export default class Button extends WebComponent {
 
   fetchIcon() {
     this.iconModifiers = this.props.icon.split(" ").filter(modifier => ["only", "right", "inline"].includes(modifier));
-    this.iconToken = this.props.icon.replace(/only|^(?!-)right|inline/gi, "").trim();
+    this.iconToken = this.props.icon.split(" ").filter(word => !this.iconModifiers.includes(word)).join(" ");
+
+    console.log(`${this.props.label} button`, {
+      iconModifiers: this.iconModifiers,
+      iconToken: this.iconToken,
+    });
 
     if(!(this.iconToken in window.__TCDS_ICON_CACHE)) {
       fetch(`https://unpkg.com/@txch/tcds/dist/icons/${this.iconToken}.svg`)

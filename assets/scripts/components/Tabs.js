@@ -83,11 +83,7 @@ export default class Tabs extends WebComponent {
       state: {
         activeTab: () => {
           this.tabs.forEach((tab, index) => {
-            if(index === this.state.activeTab) {
-              tab.setAttribute("active", "");
-            } else {
-              tab.removeAttribute("active");
-            }
+            tab.toggleAttribute("active", index === this.state.activeTab);
           });
         },
       },

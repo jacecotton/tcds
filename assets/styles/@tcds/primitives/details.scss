@@ -7,29 +7,17 @@ details {
 }
 
 summary {
+  @include font-size("small", $responsive: true, $line-height: false);
+
   display: flex;
   gap: space("tight");
   align-items: center;
+  line-height: 3;
   list-style: none;
-  background: color("gray", "0");
   color: color("gray", "400");
-  font-size: font-size("small");
   font-weight: font-weight("semibold");
-  line-height: line-height("loose");
-  padding: space("tight") space("normal");
   user-select: none;
-  width: 100%;
   cursor: pointer;
-  transition:
-    background animation("productive"),
-    color animation("productive");
-
-  &:hover {
-    background: theme-color("secondary");
-    color: theme-color("secondary", "0");
-
-    --icon-filter: invert(1);
-  }
 
   [open] > & {
     --icon-rotate: 90deg;
@@ -54,6 +42,6 @@ summary {
   }
 
   + div {
-    padding: space("normal");
+    padding: 0 0 space("normal");
   }
 }

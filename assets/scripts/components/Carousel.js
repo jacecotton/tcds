@@ -227,6 +227,10 @@ export default class Carousel extends WebComponent {
             const slideOffset = this.slidePanels[this.state.activeSlide].getBoundingClientRect().left;
             this.viewport.scrollLeft += slideOffset - viewportOffset;
           }
+
+          this.slides.forEach((slide, index) => {
+            slide.toggleAttribute("active", index === this.state.activeSlide);
+          });
         },
       },
     };
