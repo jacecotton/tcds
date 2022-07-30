@@ -1,3 +1,12 @@
+## [0.53.4](https://github.com/jacecotton/tcds/compare/v0.53.3...v0.53.4) (2022-07-29)
+
+
+### Bug Fixes
+
+* **components:** Cleanup ([ec4a4e1](https://github.com/jacecotton/tcds/commit/ec4a4e1643b139369173ff413217be183b7c7359))
+
+
+
 ## [0.53.3](https://github.com/jacecotton/tcds/compare/v0.53.2...v0.53.3) (2022-07-29)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * **components:** Finish migration to Web Components for select components ([be9e14f](https://github.com/jacecotton/tcds/commit/be9e14fa5f1143c9bae88c2cfd2f7f43ac025315))
-
-
-
-## [0.52.23](https://github.com/jacecotton/tcds/compare/v0.52.22...v0.52.23) (2022-07-25)
-
-
-### Bug Fixes
-
-* **components:** [#2](https://github.com/jacecotton/tcds/issues/2) - Native web components ([#13](https://github.com/jacecotton/tcds/issues/13)) ([9ac8dc9](https://github.com/jacecotton/tcds/commit/9ac8dc95acfc79ed17e42e33da5391b5d5d524c5))
 
 
 
