@@ -1,14 +1,14 @@
 # WebComponent.js
 
-The `WebComponent` class is used to create custom web components. It extends the `HTMLElement` interface, and adds some helpful features like reactive state-based rendering, props management, and related lifecycle hooks.
+The `WebComponent` class is a utility for more easily creating native web components, or custom elements. It extends the `HTMLElement` interface, and adds some helpful features like reactive state-based rendering, props management, and related lifecycle hooks.
 
 ## Props
 Props are like settings for a component. The component provides the API, and props are set to interface with the API.
 
-Props are set by the component user via attributes on the component at the instance level. They are tracked and mirrored to an internal `this.props` object, which is immutable. Any changes to the component's attributes will trigger a re-render. As such, a best practice while creating components is to never use `setAttribute` on the component's host.
+Props are set by the component user via attributes on the component at the instance level. Any changes to the component's attributes will update the `this.props` object and trigger a re-render. As such, a best practice while creating components is to never use `setAttribute` on the component's host.
 
 ## State
-State is the internal data of a component that keeps track of changes to the component as it's interacted with. Whether an accordion section is collapsed, whether a carousel is playing, the current slide a carousel is on, etc. is the component's state.
+State is the internal data of a component that responds to user input, action, or some other event. Whether an accordion section is collapsed, a carousel is playing, which slide of a carousel is active, etc. is the component's state.
 
 Component state is readable and writable from an internal `this.state` object. Mutations to `this.state` trigger a re-render.
 
@@ -44,6 +44,4 @@ class MyComponent extends WebComponent {
     }
   }
 }
-
-## Notes
-* The Web Component API's default lifecycle callback is utilized by the `WebComponent` class and are thus reserved for it. It is not recommended to use them; instead, use the provided callbacks (e.g. `mounted` instead of `connectedCallback`, `updated` instead of `attributeChangedCallback`, etc.) If you do use the Web Component API's provided callbacks, make sure to first invoke the `super`'s callback (e.g. `super.attributeChangedCallback()`).
+```

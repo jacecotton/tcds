@@ -63,11 +63,6 @@ export default class Button extends WebComponent {
     this.iconModifiers = this.props.icon.split(" ").filter(modifier => ["only", "right", "inline"].includes(modifier));
     this.iconToken = this.props.icon.split(" ").filter(word => !this.iconModifiers.includes(word)).join(" ");
 
-    console.log(`${this.props.label} button`, {
-      iconModifiers: this.iconModifiers,
-      iconToken: this.iconToken,
-    });
-
     if(!(this.iconToken in window.__TCDS_ICON_CACHE)) {
       fetch(`https://unpkg.com/@txch/tcds/dist/icons/${this.iconToken}.svg`)
         .then(response => response.text())

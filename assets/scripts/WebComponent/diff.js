@@ -1,17 +1,36 @@
+/**
+ * A small library for comparing and reconciling the differences between given
+ * HTML and the given existing DOM.
+ *
+ * Largely borrowed from the DOM diffing technique used in the Reef library by
+ * Chris Ferdinandi, with some simplifications.
+ * https://github.com/cferdinandi/reef
+ */
+
 const formFields = ["input", "option", "textarea"];
 const formAttributes = ["value", "checked", "selected"];
 const formAttributesNoValue = ["checked", "selected"];
 
+/**
+ *
+ * @param {string} string The string to parse as HTML.
+ * @returns HTMLElement The parsed HTML.
+ */
 function stringToHTML(string) {
+  // Parse string as HTML.
   const parser = new DOMParser();
   const document = parser.parseFromString(string, "text/html");
 
+  // If a head exists in the given HTML.
   if(document.head && document.head.childNodes.length) {
+    // Insert contents into body.
     Array.from(document.head.childNodes).reverse().forEach((node) => {
       document.body.insertBefore(node, document.body.firstChild);
     });
   }
 
+  // Return the body of the created DOM, or if the string is empty, return an
+  // empty new body.
   return document.body || document.createElement("body");
 }
 
@@ -33,7 +52,7 @@ function isDifferentNode(node1, node2) {
 }
 
 /**
- * Convert falsy string values to boolean values.
+ * Return false from falsy string values, true for everything else.
  *
  * @param {String} string The string to convert to a boolean.
  *
@@ -44,10 +63,10 @@ function stringToBoolean(string) {
 }
 
 /**
- * Check if the desired node is further ahead in the DOM `existingNodes`.
+ * Check if the desired node is further ahead in the existing DOM.
  *
  * @param {Node} node The node to look for.
- * @param {NodeList} existingNodes The DOM `existingNodes`.
+ * @param {NodeList} existingNodes The existing DOM.
  * @param {Integer} index The indexing index.
  *
  * @return {Integer} How many nodes ahead the target node is.
@@ -113,8 +132,8 @@ function skipAttribute(name, value, events) {
 }
 
 /**
- * Compare the existing node attributes to the template node attributes and make
- * updates.
+ * Compare and reconcile the differences between the given node attributes and
+ * existing node attributes.
  *
  * @param  {Node} template The new template.
  * @param  {Node} existing The existing DOM node.
@@ -184,7 +203,12 @@ function trimExtraNodes(existingNodes, templateNodes) {
   }
 }
 
+/**
+ * Compare and reconcile the differences between a given `template` and the
+ * `existing` DOM.
+ */
 function diff(template, existing) {
+  // If the given `template` is not already HTML, convert it.
   if(template.nodeType !== 1) {
     template = stringToHTML(template);
   }
@@ -193,15 +217,23 @@ function diff(template, existing) {
   const existingNodes = existing.childNodes;
 
   templateNodes.forEach((node, index) => {
+    // If the given `template` node does not existing in the `existing` DOM...
     if(!existingNodes[index]) {
+      // Append it.
       existing.append(node.cloneNode(true));
       return;
     }
 
+    // If the node in the `existing` DOM in the same position of the given
+    // `node` is a different node...
     if(isDifferentNode(node, existingNodes[index])) {
+      // Get how far ahead the same node is in the tree...
       const ahead = aheadInTree(node, existingNodes, index);
 
+      // If it doesn't exist...
       if(!ahead) {
+        // Insert the given `node` prior to the existing node in the same
+        // position.
         existingNodes[index].before(node.cloneNode(true));
         return;
       }
@@ -209,30 +241,38 @@ function diff(template, existing) {
       existingNodes[index].before(ahead);
     }
 
+    // Diff the given attributes against the existing attributes.
     diffAttributes(node, existingNodes[index]);
 
+    // Do not diff custom elements.
     if(node.nodeName.includes("-")) {
       return;
     }
 
+    // Diff text content.
     const templateContent = getNodeContent(node);
 
     if(templateContent && templateContent !== getNodeContent(existingNodes[index])) {
       existingNodes[index].textContent = templateContent;
     }
 
+    // If given node is empty, empty existing node.
     if(!node.childNodes.length && existingNodes[index].childNodes.length) {
       existingNodes[index].innerHTML = "";
       return;
     }
 
+    // If a node in the position of the given node does not exist...
     if(!existingNodes[index].childNodes.length && node.childNodes.length) {
+      // Create it.
       const fragment = document.createDocumentFragment();
       diff(node, fragment);
+      // Add it.
       existingNodes[index].appendChild(fragment);
       return;
     }
 
+    // Repeat the process recursively down the node branch.
     if(node.childNodes.length) {
       diff(node, existingNodes[index]);
     }
