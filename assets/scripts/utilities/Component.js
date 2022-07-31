@@ -1,4 +1,6 @@
 /**
+ * @deprecated since version 0.55.0
+ *
  * A superclass for scripting components with state-driven DOM manipulation.
  *
  * Note that, unlike reactive SPA libraries, this utility has no "render"
