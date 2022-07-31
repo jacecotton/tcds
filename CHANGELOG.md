@@ -1,3 +1,12 @@
+## [0.55.1](https://github.com/jacecotton/tcds/compare/v0.55.0...v0.55.1) (2022-07-31)
+
+
+### Bug Fixes
+
+* **components:** Do not require state initialization to make initial render ([471216e](https://github.com/jacecotton/tcds/commit/471216ef1c8f1351b2fda245281020656c8d803f))
+
+
+
 # [0.55.0](https://github.com/jacecotton/tcds/compare/v0.54.0...v0.55.0) (2022-07-31)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Cleanup ([46d7ac9](https://github.com/jacecotton/tcds/commit/46d7ac90d860b00714e22a4b396ab7fa8354548c))
-
-
-
-## [0.53.4](https://github.com/jacecotton/tcds/compare/v0.53.3...v0.53.4) (2022-07-29)
-
-
-### Bug Fixes
-
-* **components:** Cleanup ([ec4a4e1](https://github.com/jacecotton/tcds/commit/ec4a4e1643b139369173ff413217be183b7c7359))
 
 
 
