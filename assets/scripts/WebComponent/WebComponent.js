@@ -1,4 +1,4 @@
-import diff from "./diff.js";
+import diffDOM from "@tcds/utilities/diffDOM.js";
 
 /**
  * A utility class for creating web components. Designed to be familiar to users
@@ -255,7 +255,7 @@ export default class WebComponent extends HTMLElement {
 
     // Diff the `render` template against the existing component DOM and
     // apply permutations.
-    diff(template, this.renderRoot);
+    diffDOM(template, this.renderRoot);
 
     // Call the `updated` callback and get its return object (with
     // properties corresponding to changed state and props keys, set to

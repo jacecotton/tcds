@@ -12,6 +12,7 @@ const formAttributes = ["value", "checked", "selected"];
 const formAttributesNoValue = ["checked", "selected"];
 
 /**
+ * Convert a given string of HTML to a parsed DOM.
  *
  * @param {string} string The string to parse as HTML.
  * @returns HTMLElement The parsed HTML.
@@ -207,7 +208,7 @@ function trimExtraNodes(existingNodes, templateNodes) {
  * Compare and reconcile the differences between a given `template` and the
  * `existing` DOM.
  */
-function diff(template, existing) {
+function diffDOM(template, existing) {
   // If the given `template` is not already HTML, convert it.
   if(template.nodeType !== 1) {
     template = stringToHTML(template);
@@ -266,7 +267,7 @@ function diff(template, existing) {
     if(!existingNodes[index].childNodes.length && node.childNodes.length) {
       // Create it.
       const fragment = document.createDocumentFragment();
-      diff(node, fragment);
+      diffDOM(node, fragment);
       // Add it.
       existingNodes[index].appendChild(fragment);
       return;
@@ -274,11 +275,11 @@ function diff(template, existing) {
 
     // Repeat the process recursively down the node branch.
     if(node.childNodes.length) {
-      diff(node, existingNodes[index]);
+      diffDOM(node, existingNodes[index]);
     }
   });
 
   trimExtraNodes(existingNodes, templateNodes);
 }
 
-export default diff;
+export default diffDOM;
