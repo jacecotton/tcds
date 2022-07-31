@@ -1,3 +1,12 @@
+## [0.55.2](https://github.com/jacecotton/tcds/compare/v0.55.1...v0.55.2) (2022-07-31)
+
+
+### Bug Fixes
+
+* **components:** Accordion section heading level fix ([b24d15d](https://github.com/jacecotton/tcds/commit/b24d15d58adbd912ef3d7f793b40e0f6189d864e))
+
+
+
 ## [0.55.1](https://github.com/jacecotton/tcds/compare/v0.55.0...v0.55.1) (2022-07-31)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * Pushing compiled changes ([f3bacfc](https://github.com/jacecotton/tcds/commit/f3bacfc8387393b15c98a769147d96a95e99267d))
-
-
-
-## [0.53.5](https://github.com/jacecotton/tcds/compare/v0.53.4...v0.53.5) (2022-07-30)
-
-
-### Bug Fixes
-
-* **components:** Cleanup ([46d7ac9](https://github.com/jacecotton/tcds/commit/46d7ac90d860b00714e22a4b396ab7fa8354548c))
 
 
 
