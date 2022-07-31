@@ -1,3 +1,12 @@
+# [0.54.0](https://github.com/jacecotton/tcds/compare/v0.53.6...v0.54.0) (2022-07-31)
+
+
+### Features
+
+* Remove container query polyfill ([6ef6b38](https://github.com/jacecotton/tcds/commit/6ef6b3892d6d873e9441cf7fb3707bf008d594e5))
+
+
+
 ## [0.53.6](https://github.com/jacecotton/tcds/compare/v0.53.5...v0.53.6) (2022-07-30)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** WebComponent bug fixes ([9958193](https://github.com/jacecotton/tcds/commit/9958193b008aaa38f7a212db494ea24f9a196a16))
-
-
-
-## [0.53.2](https://github.com/jacecotton/tcds/compare/v0.53.1...v0.53.2) (2022-07-25)
-
-
-### Bug Fixes
-
-* **scripts:** Safari regex bug ([2f481ef](https://github.com/jacecotton/tcds/commit/2f481ef3608083c2680ff027addbfed688fc91c7))
 
 
 
