@@ -14,9 +14,3 @@ import "./components/Notification.js";
 import "./components/Tabs.js";
 import "./components/Carousel.js";
 import "./components/Card.js";
-
-if(!("container" in document.documentElement.style) && document.querySelectorAll(".is-self-responsive").length > 0) {
-  const script = document.createElement("script");
-  script.src = "https://unpkg.com/container-query-polyfill/cqfill.iife.min.js";
-  document.head.appendChild(script);
-}
