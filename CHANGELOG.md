@@ -1,3 +1,12 @@
+# [0.55.0](https://github.com/jacecotton/tcds/compare/v0.54.0...v0.55.0) (2022-07-31)
+
+
+### Features
+
+* **components:** Remove Accordion Twig template ([0c0eb49](https://github.com/jacecotton/tcds/commit/0c0eb498034951c813039dd95f3607d5e771de14))
+
+
+
 # [0.54.0](https://github.com/jacecotton/tcds/compare/v0.53.6...v0.54.0) (2022-07-31)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Cleanup ([ec4a4e1](https://github.com/jacecotton/tcds/commit/ec4a4e1643b139369173ff413217be183b7c7359))
-
-
-
-## [0.53.3](https://github.com/jacecotton/tcds/compare/v0.53.2...v0.53.3) (2022-07-29)
-
-
-### Bug Fixes
-
-* **components:** WebComponent bug fixes ([9958193](https://github.com/jacecotton/tcds/commit/9958193b008aaa38f7a212db494ea24f9a196a16))
 
 
 
