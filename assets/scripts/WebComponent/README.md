@@ -38,8 +38,16 @@ class MyComponent extends WebComponent {
 
   updated() {
     return {
-      someState: () => {
-        // This code runs only when this.state.someState is changed.
+      state: {
+        someState: () => {
+          // This code runs only when this.state.someState is changed.
+        },
+      },
+
+      props: {
+        someProp: () => {
+          // This code runs only when this.props.someProp is changed.
+        },
       },
     }
   }

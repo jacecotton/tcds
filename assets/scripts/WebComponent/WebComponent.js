@@ -22,6 +22,15 @@ import diff from "./diff.js";
  * @todo Look into working with built-in lifecycle methods more.
  * connectedCallback for mounting, disconnectedCallback for dismounting (remove
  * `update-schedule` event listener and so on), etc.
+ * @todo Look into actually making `this.props` immutable. One way to do this
+ * might be to derive this._props from attributes, update this._props in the
+ * mutation observer, set up a proxy on this._props that simply sets this.props
+ * to this._props when this._props is updated, then set up a proxy on this.props
+ * that rejects setting any value other than this._props. Actually, may be able
+ * to skip the proxy on this._props, can just do `this.props = this._props`
+ * wherever this._props is updated. Will either need to make this._props a
+ * static property, or in the future a private property, to ensure extending
+ * component classes don't attempt to mutate this._props.
  */
 export default class WebComponent extends HTMLElement {
   constructor() {
