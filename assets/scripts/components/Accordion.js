@@ -1,12 +1,6 @@
 import WebComponent from "@tcds/WebComponent/WebComponent.js";
 import slugify from "@tcds/utilities/slugify.js";
 
-class AccordionSection extends WebComponent {
-  constructor() {
-    super();
-  }
-}
-
 export default class Accordion extends WebComponent {
   constructor() {
     super();
@@ -142,5 +136,5 @@ export default class Accordion extends WebComponent {
   }
 }
 
-customElements.define("tcds-accordion-section", AccordionSection);
+customElements.define("tcds-accordion-section", class AccordionSection extends WebComponent {});
 customElements.define("tcds-accordion", Accordion);

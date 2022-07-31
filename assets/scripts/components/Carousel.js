@@ -1,11 +1,5 @@
 import WebComponent from "@tcds/WebComponent/WebComponent.js";
 
-class Slide extends WebComponent {
-  constructor() {
-    super();
-  }
-}
-
 export default class Carousel extends WebComponent {
   constructor() {
     super();
@@ -258,5 +252,5 @@ export default class Carousel extends WebComponent {
   }
 }
 
-customElements.define("tcds-slide", Slide);
+customElements.define("tcds-slide", class Slide extends WebComponent {});
 customElements.define("tcds-carousel", Carousel);

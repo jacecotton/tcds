@@ -1,12 +1,6 @@
 import WebComponent from "@tcds/WebComponent/WebComponent.js";
 
 export default class Card extends WebComponent {
-  constructor() {
-    super();
-
-    this.state.noop = "";
-  }
-
   render() {
     return `
       <article part="card">
@@ -29,10 +23,10 @@ export default class Card extends WebComponent {
 
   mounted() {
     if(!this.querySelector("[slot=image]")) {
-      this.state.image = false;
+      this.state.noImage = true;
     }
 
-    if(!this.props.orientation && this.state.image !== false) {
+    if(!this.props.orientation && this.state.noImage !== true) {
       const resize = new ResizeObserver(() => {
         if(this.getBoundingClientRect().width > 600) {
           this.setAttribute("orientation", "horizontal");
@@ -48,12 +42,8 @@ export default class Card extends WebComponent {
   updated() {
     return {
       state: {
-        image: () => {
-          if(this.state.image === false) {
-            this.setAttribute("no-image", "");
-          } else {
-            this.removeAttribute("no-image");
-          }
+        noImage: () => {
+          this.toggleAttribute("no-image", this.state.noImage);
         },
       },
     };

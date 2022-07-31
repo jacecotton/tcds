@@ -13,11 +13,6 @@ import WebComponent from "@tcds/WebComponent/WebComponent.js";
 window.__TCDS_ICON_CACHE = {};
 
 export default class Button extends WebComponent {
-  constructor() {
-    super();
-    this.state.iconSVG = false;
-  }
-
   render() {
     return `
       <${this.props.link ? "a" : "button"}

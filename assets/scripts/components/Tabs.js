@@ -1,12 +1,6 @@
 import WebComponent from "@tcds/WebComponent/WebComponent.js";
 import slugify from "@tcds/utilities/slugify.js";
 
-class Tab extends WebComponent {
-  constructor() {
-    super();
-  }
-}
-
 export default class Tabs extends WebComponent {
   constructor() {
     super();
@@ -91,5 +85,5 @@ export default class Tabs extends WebComponent {
   }
 }
 
-customElements.define("tcds-tab", Tab);
+customElements.define("tcds-tab", class Tab extends WebComponent {});
 customElements.define("tcds-tabs", Tabs);

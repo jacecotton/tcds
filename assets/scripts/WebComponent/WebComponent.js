@@ -142,6 +142,9 @@ export default class WebComponent extends HTMLElement {
     // Wait for all child components to be defined, then declare the component
     // mounted.
     requestAnimationFrame(() => {
+      // Make first update pass.
+      this.update();
+
       const promises = Array.from(this.renderRoot.querySelectorAll(":not(:defined)")).map((undefinedChild) => {
         return customElements.whenDefined(undefinedChild.localName);
       });
