@@ -9,7 +9,7 @@ tcds-accordion {
   }
 
   &::part(section) {
-    border-bottom: 1px solid color("shade", "100");
+    border-bottom: 1px solid var(--tcds-color-translucent);
   }
 
   &::part(section last) {
@@ -26,7 +26,7 @@ tcds-accordion {
     appearance: none;
     background: none;
     border: 0;
-    color: theme-color("link");
+    color: var(--tcds-color-link);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -51,7 +51,7 @@ tcds-accordion {
 
   &::part(panel) {
     overflow: hidden;
-    border-top: 1px solid color("shade", "100");
+    border-top: 1px solid var(--tcds-color-translucent);
     transition: height animation("productive");
   }
 

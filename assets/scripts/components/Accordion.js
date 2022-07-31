@@ -24,7 +24,7 @@ export default class Accordion extends WebComponent {
 
         return `
           <section part="section ${isExpanded ? "expanded" : ""} ${isLast ? "last" : ""}">
-            <h${this.props.headingLevel ? this.props.headingLevel : "3"} part="heading">
+            <h${this.props["heading-level"] ? this.props["heading-level"] : "3"} part="heading">
               <button
                 part="button ${isExpanded ? "expanded" : ""}"
                 id="${slugify(section.props.label)}-button"
@@ -41,7 +41,7 @@ export default class Accordion extends WebComponent {
                 </svg>
                 ${section.props.label}
               </button>
-            </h${this.props.headingLevel ? this.props.headingLevel : "3"}>
+            </h${this.props["heading-level"] ? this.props["heading-level"] : "3"}>
 
             <div
               part="panel ${isExpanded ? "expanded" : ""}"

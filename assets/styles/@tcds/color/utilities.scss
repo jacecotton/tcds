@@ -5,6 +5,11 @@
  * Utility classes for the color system.
  */
 
+:root {
+  --tcds-color-link: #{theme-color("link")};
+  --tcds-color-translucent: #{color("shade", "100")};
+}
+
 /**
  * Define which color grades work as text and link colors for each grade when
  * used as a background color. For instance, a color of grade 0 used as a
@@ -34,7 +39,7 @@ $grade-associations: (
   ),
   "500": (
     "text": "100",
-    "link": "200",
+    "link": "100",
   ),
 );
 
@@ -53,8 +58,17 @@ $grade-associations: (
       $selector: ".bg-#{$theme-color}";
     }
 
+    $translucent: "0deg 0% 0% / 10%";
+
+    @if index(("300", "400", "500"), $grade) {
+      $translucent: "0deg 100% 100% / 30%";
+    }
+
     // Select the generated class.
     #{$selector} {
+      --tcds-color-link: #{theme-color("link", map.get($grade-associations, $grade, "link"))};
+      --tcds-color-translucent: hsl(#{$translucent});
+
       // Set the background color.
       background-color: $value;
 
