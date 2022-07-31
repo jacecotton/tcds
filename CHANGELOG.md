@@ -1,3 +1,12 @@
+## [0.53.6](https://github.com/jacecotton/tcds/compare/v0.53.5...v0.53.6) (2022-07-30)
+
+
+### Bug Fixes
+
+* Pushing compiled changes ([f3bacfc](https://github.com/jacecotton/tcds/commit/f3bacfc8387393b15c98a769147d96a95e99267d))
+
+
+
 ## [0.53.5](https://github.com/jacecotton/tcds/compare/v0.53.4...v0.53.5) (2022-07-30)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **scripts:** Safari regex bug ([2f481ef](https://github.com/jacecotton/tcds/commit/2f481ef3608083c2680ff027addbfed688fc91c7))
-
-
-
-## [0.53.1](https://github.com/jacecotton/tcds/compare/v0.53.0...v0.53.1) (2022-07-25)
-
-
-### Bug Fixes
-
-* **components:** Misc bug fixes ([207ea8e](https://github.com/jacecotton/tcds/commit/207ea8ecb8a4ca03666f41797019e188d854fff8))
 
 
 
