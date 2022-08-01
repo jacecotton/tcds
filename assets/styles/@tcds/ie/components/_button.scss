@@ -1,0 +1,12 @@
+@use "@tcds" as *;
+
+[data-tcds-button] {
+  background: theme-color("primary");
+  color: theme-color("primary", "0");
+  height: size("medium");
+  line-height: size("medium");
+  padding: 0 space("normal");
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
