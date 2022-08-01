@@ -23,10 +23,10 @@ export default class Card extends WebComponent {
 
   mounted() {
     if(!this.querySelector("[slot=image]")) {
-      this.state.noImage = true;
+      this.state["no-image"] = true;
     }
 
-    if(!this.props.orientation && this.state.noImage !== true) {
+    if(!this.props.orientation && this.state["no-image"] !== true) {
       const resize = new ResizeObserver(() => {
         if(this.getBoundingClientRect().width > 600) {
           this.setAttribute("orientation", "horizontal");
@@ -42,8 +42,8 @@ export default class Card extends WebComponent {
   updated() {
     return {
       state: {
-        noImage: () => {
-          this.toggleAttribute("no-image", this.state.noImage);
+        "no-image": () => {
+          this.toggleAttribute("no-image", this.state["no-image"]);
         },
       },
     };
