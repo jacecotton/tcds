@@ -13,13 +13,7 @@
     <ul>
       {% for item in social_links %}
         <li>
-          {{ include("@tcds/components/button/button.html.twig", {
-            label: item.title,
-            icon: item.icon,
-            link: item.link,
-            modifiers: ["icon-only", "round", "small"],
-            custom_classes: ["bg-secondary", "site-footer__social-icon"],
-          }, with_context = false) }}
+          <tcds-button icon="only {{ item.icon }}" link="{{ item.link }}" round size="small" color="secondary" class="site-footer__social-icon">{{ item.title }}</tcds-button>
         </li>
       {% endfor %}
     </ul>
