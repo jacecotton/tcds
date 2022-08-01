@@ -1,3 +1,13 @@
+## [0.55.3](https://github.com/jacecotton/tcds/compare/v0.55.2...v0.55.3) (2022-08-01)
+
+
+### Bug Fixes
+
+* **components:** Card state key ([99b072b](https://github.com/jacecotton/tcds/commit/99b072b2c13df4157e8c8c80b2b364f2fd1a95cb))
+* **components:** IE 11 fixes ([73ae6df](https://github.com/jacecotton/tcds/commit/73ae6dff6657b59ca4fbc33c87754725e550caa7))
+
+
+
 ## [0.55.2](https://github.com/jacecotton/tcds/compare/v0.55.1...v0.55.2) (2022-07-31)
 
 
@@ -31,15 +41,6 @@
 ### Features
 
 * Remove container query polyfill ([6ef6b38](https://github.com/jacecotton/tcds/commit/6ef6b3892d6d873e9441cf7fb3707bf008d594e5))
-
-
-
-## [0.53.6](https://github.com/jacecotton/tcds/compare/v0.53.5...v0.53.6) (2022-07-30)
-
-
-### Bug Fixes
-
-* Pushing compiled changes ([f3bacfc](https://github.com/jacecotton/tcds/commit/f3bacfc8387393b15c98a769147d96a95e99267d))
 
 
 
