@@ -26,8 +26,8 @@ export default class Button extends WebComponent {
           ` : ""}
         `}
         ${this.iconModifiers && this.iconModifiers.includes("only") ? `
-          aria-label="${this.props.label}"
-          title="${this.props.label}"
+          aria-label="${this.props.label || this.textContent}"
+          title="${this.props.label || this.textContent}"
         ` : ""}
       >
         ${this.state.iconSVG ? this.state.iconSVG : ""}

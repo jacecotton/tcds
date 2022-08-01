@@ -21,7 +21,7 @@ export default class Toggleable extends Component {
       this.props.target = this.element;
     }
 
-    this.togglers = document.querySelectorAll(`[aria-controls=${this.element.id}], tcds-button[controlss=${this.element.id}]`);
+    this.togglers = document.querySelectorAll(`[aria-controls=${this.element.id}], tcds-button[controls=${this.element.id}]::part(button)`);
     this.localStorageState = `toggleable_${this.element.id}_state`;
 
     // Initialize state.
