@@ -252,7 +252,7 @@ export default class WebComponent extends HTMLElement {
     // Define template as result from `render` method as well as main
     // stylesheet.
     const template = `
-      <link rel="stylesheet" href="/styles/main.css">
+      <link rel="stylesheet" href="${window.TCDS_STATIC_PATH || ""}/styles/main.css">
       ${this.render()}
     `;
 
