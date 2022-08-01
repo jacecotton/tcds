@@ -1,3 +1,14 @@
+## [0.55.4](https://github.com/jacecotton/tcds/compare/v0.55.3...v0.55.4) (2022-08-01)
+
+
+### Bug Fixes
+
+* **components:** Migrate from deprecated Button twig component in footer ([bb9b8de](https://github.com/jacecotton/tcds/commit/bb9b8de1e8b155c1c95710b0fcc9a02b1a515734))
+* **components:** White space handling ([aad7c25](https://github.com/jacecotton/tcds/commit/aad7c25c49fe924b2e01860d9204d0ce6ca865bd))
+* **components:** White space handling ([ac72485](https://github.com/jacecotton/tcds/commit/ac72485205a00c1d4a62dae4b54195b60126d9fa))
+
+
+
 ## [0.55.3](https://github.com/jacecotton/tcds/compare/v0.55.2...v0.55.3) (2022-08-01)
 
 
@@ -32,15 +43,6 @@
 ### Features
 
 * **components:** Remove Accordion Twig template ([0c0eb49](https://github.com/jacecotton/tcds/commit/0c0eb498034951c813039dd95f3607d5e771de14))
-
-
-
-# [0.54.0](https://github.com/jacecotton/tcds/compare/v0.53.6...v0.54.0) (2022-07-31)
-
-
-### Features
-
-* Remove container query polyfill ([6ef6b38](https://github.com/jacecotton/tcds/commit/6ef6b3892d6d873e9441cf7fb3707bf008d594e5))
 
 
 
