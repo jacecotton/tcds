@@ -1,13 +1,13 @@
 @use "@tcds" as *;
 
 tcds-tabs:defined {
-  &[size="small"] {
+  &[size*="small"] {
     --tcds-tabs-tab-font-size: #{font-size("small")};
     --tcds-tabs-tab-height: #{size("small")};
     --tcds-tabs-tab-x-padding: #{space("normal")};
   }
 
-  &[size="large"] {
+  &[size*="large"] {
     --tcds-tabs-tab-flex-grow: 1;
     --tcds-tabs-tab-font-size: #{font-size("medium-plus", $responsive: true)};
     --tcds-tabs-tab-height: #{size("large")};

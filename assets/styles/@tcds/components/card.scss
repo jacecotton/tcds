@@ -43,23 +43,23 @@ tcds-card:defined {
     --card-description-font-size: #{font-size("small", $responsive: true)};
   }
 
-  &[background="none"] {
+  &[background*="none"] {
     --card-background: transparent;
   }
 
-  &[background="none"][orientation="vertical"] {
+  &[background*="none"][orientation*="vertical"] {
     --card-content-padding-x: 0;
   }
 
-  &[background="reverse"] {
+  &[background*="reverse"] {
     --card-background: #fff;
   }
 
-  &[divider]:not([orientation="horizontal"]) {
+  &[divider]:not([orientation*="horizontal"]) {
     --card-content-divider: #{space("tight")} solid #{theme-color("primary")};
   }
 
-  &[image="contain"] {
+  &[image*="contain"] {
     --card-image-fit: contain;
   }
 
