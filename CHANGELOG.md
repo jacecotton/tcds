@@ -1,3 +1,12 @@
+## [0.55.5](https://github.com/jacecotton/tcds/compare/v0.55.4...v0.55.5) (2022-08-01)
+
+
+### Bug Fixes
+
+* **components:** Add customizable static asset path to scripts ([7fbb223](https://github.com/jacecotton/tcds/commit/7fbb223c37fac14e5eb752a493c25a4d7deca7c6))
+
+
+
 ## [0.55.4](https://github.com/jacecotton/tcds/compare/v0.55.3...v0.55.4) (2022-08-01)
 
 
@@ -34,15 +43,6 @@
 ### Bug Fixes
 
 * **components:** Do not require state initialization to make initial render ([471216e](https://github.com/jacecotton/tcds/commit/471216ef1c8f1351b2fda245281020656c8d803f))
-
-
-
-# [0.55.0](https://github.com/jacecotton/tcds/compare/v0.54.0...v0.55.0) (2022-07-31)
-
-
-### Features
-
-* **components:** Remove Accordion Twig template ([0c0eb49](https://github.com/jacecotton/tcds/commit/0c0eb498034951c813039dd95f3607d5e771de14))
 
 
 
