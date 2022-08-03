@@ -1,6 +1,6 @@
 @use "@tcds" as *;
 
-tcds-accordion {
+tcds-accordion:defined {
   margin: space("normal") 0;
 
   &::part(controls) {

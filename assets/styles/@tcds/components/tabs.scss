@@ -1,6 +1,15 @@
 @use "@tcds" as *;
 
+tcds-tabs:not(:defined) {
+  tcds-tab {
+    display: block;
+    margin-top: 2rem;
+  }
+}
+
 tcds-tabs:defined {
+  display: block;
+
   &[size*="small"] {
     --tcds-tabs-tab-font-size: #{font-size("small")};
     --tcds-tabs-tab-height: #{size("small")};

@@ -142,7 +142,7 @@ tcds-button[icon~="only"]::part(button) {
 }
 
 .Button--icon-inline,
-tcds-button[icon~="inline"]::part(button) {
+tcds-button[icon~="inline"]:not([icon~="only"])::part(button) {
   --button-icon-background: transparent;
   --button-icon-height: 1em;
   --button-icon-margin-right: 0.5em;
@@ -151,7 +151,7 @@ tcds-button[icon~="inline"]::part(button) {
 }
 
 .Button--icon-inline.Button--icon-right,
-tcds-button[icon~="inline"][icon~="right"]::part(button) {
+tcds-button[icon~="inline"][icon~="right"]:not([icon~="only"])::part(button) {
   --button-icon-margin-right: 0;
   --button-icon-margin-left: 0.5em;
 }
