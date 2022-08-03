@@ -1,3 +1,12 @@
+## [0.55.6](https://github.com/jacecotton/tcds/compare/v0.55.5...v0.55.6) (2022-08-01)
+
+
+### Bug Fixes
+
+* **components:** Fix Button label ([171a5a8](https://github.com/jacecotton/tcds/commit/171a5a8b54f4bc319a457d85ac47ea2b60b0e48b))
+
+
+
 ## [0.55.5](https://github.com/jacecotton/tcds/compare/v0.55.4...v0.55.5) (2022-08-01)
 
 
@@ -34,15 +43,6 @@
 ### Bug Fixes
 
 * **components:** Accordion section heading level fix ([b24d15d](https://github.com/jacecotton/tcds/commit/b24d15d58adbd912ef3d7f793b40e0f6189d864e))
-
-
-
-## [0.55.1](https://github.com/jacecotton/tcds/compare/v0.55.0...v0.55.1) (2022-07-31)
-
-
-### Bug Fixes
-
-* **components:** Do not require state initialization to make initial render ([471216e](https://github.com/jacecotton/tcds/commit/471216ef1c8f1351b2fda245281020656c8d803f))
 
 
 
