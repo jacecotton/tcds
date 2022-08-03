@@ -1,6 +1,6 @@
 /**
- * A small library for comparing and reconciling the differences between given
- * HTML and the given existing DOM.
+ * A small library for comparing and reconciling the differences between some
+ * given HTML and its corresponding existing DOM.
  *
  * Largely borrowed from the DOM diffing technique used in the Reef library by
  * Chris Ferdinandi, with some simplifications.
@@ -208,7 +208,7 @@ function trimExtraNodes(existingNodes, templateNodes) {
  * Compare and reconcile the differences between a given `template` and the
  * `existing` DOM.
  */
-function diffDOM(template, existing) {
+function diff(template, existing) {
   // If the given `template` is not already HTML, convert it.
   if(template.nodeType !== 1) {
     template = stringToHTML(template);
@@ -245,7 +245,7 @@ function diffDOM(template, existing) {
     // Diff the given attributes against the existing attributes.
     diffAttributes(node, existingNodes[index]);
 
-    // Do not diff custom elements.
+    // Do not diff custom elements. Rendering is handled internally.
     if(node.nodeName.includes("-")) {
       return;
     }
@@ -267,7 +267,7 @@ function diffDOM(template, existing) {
     if(!existingNodes[index].childNodes.length && node.childNodes.length) {
       // Create it.
       const fragment = document.createDocumentFragment();
-      diffDOM(node, fragment);
+      diff(node, fragment);
       // Add it.
       existingNodes[index].appendChild(fragment);
       return;
@@ -275,11 +275,11 @@ function diffDOM(template, existing) {
 
     // Repeat the process recursively down the node branch.
     if(node.childNodes.length) {
-      diffDOM(node, existingNodes[index]);
+      diff(node, existingNodes[index]);
     }
   });
 
   trimExtraNodes(existingNodes, templateNodes);
 }
 
-export default diffDOM;
+export default diff;

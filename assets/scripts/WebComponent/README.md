@@ -16,13 +16,12 @@ In some cases, state may be "reflected" by the component DOM through a boolean a
 
 ## Lifecycle
 ### `mounted`
-The `mounted` hook is called on the available animation frame after the first render pass, and after all child custom elements are defined. This is where you should add any event listeners, observers, timers, etc., and mutate state as a result of those things.
+The `mounted` hook is called on the available animation frame after the first render pass, and after all child custom elements are defined, but before the `updated` hook. This is where you should add any event listeners, observers, timers, etc., and mutate state as a result of those things.
 
-Todo:
-* Maybe instead of putting this in a `requestAnimationFrame` after the `state-change` event listener, put it in the `connectedCallback` hook?
+Because this hook is called before `updated`, do not assume you're working with DOM that reflects any changes made in the `updated` hook. In fact, it is recommended to not do anything to or based upon the DOM in this hook. If possible, restrict operations in this hook to updating state, adding listeners, observers, etc.
 
 ### `updated`
-The `updated` hook is called any time `this.state` or `this.props` is mutated and the re-render pass has completed. This method is essentially for doing any imperative manipulation of the component DOM, whereas the `render` method is for declarative rendering.
+The `updated` hook is called after every render. After the first render pass, it is called after the `mounted` hook. This method is essentially for doing any imperative manipulation of the component DOM, whereas the `render` method is for declarative rendering.
 
 The `updated` method returns a state object, with each state key being set to a callback function that runs when that particular state is updated. This way you can run code selectively based on the appropriate state.
 

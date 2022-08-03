@@ -2,18 +2,12 @@ import WebComponent from "@tcds/WebComponent/WebComponent.js";
 import slugify from "@tcds/utilities/slugify.js";
 
 export default class Tabs extends WebComponent {
-  constructor() {
-    super();
-
+  connected() {
     this.tabs = Array.from(this.querySelectorAll("tcds-tab"));
 
-    this.state.activeTab = 0;
+    const initialActive = this.tabs.indexOf(this.tabs.find(tab => tab.hasAttribute("active")));
 
-    this.tabs.forEach((tab, index) => {
-      if(tab.hasAttribute("active")) {
-        this.state.activeTab = index;
-      }
-    });
+    this.state.activeTab = initialActive > 0 ? initialActive : 0;
   }
 
   render() {
@@ -53,7 +47,7 @@ export default class Tabs extends WebComponent {
   }
 
   mounted() {
-    this.tabButtons = Array.from(this.shadowRoot.querySelectorAll("[role=tab]"));
+    this.tabButtons = Array.from(this.shadowRoot.querySelectorAll("[part~=tab]"));
 
     this.tabButtons.forEach((tabButton, index) => {
       tabButton.addEventListener("click", () => {

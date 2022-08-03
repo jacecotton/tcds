@@ -1,11 +1,13 @@
 import WebComponent from "@tcds/WebComponent/WebComponent.js";
 
 export default class Carousel extends WebComponent {
-  constructor() {
-    super();
-
+  connected() {
     this.id = "carousel";
 
+    /**
+     * @todo Move this outside of the class so it's not repeated for every
+     * instance.
+     */
     const instances = document.querySelectorAll("tcds-carousel");
 
     if(instances.length > 1) {

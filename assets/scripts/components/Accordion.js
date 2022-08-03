@@ -2,11 +2,8 @@ import WebComponent from "@tcds/WebComponent/WebComponent.js";
 import slugify from "@tcds/utilities/slugify.js";
 
 export default class Accordion extends WebComponent {
-  constructor() {
-    super();
-
+  connected() {
     this.sections = Array.from(this.querySelectorAll("tcds-accordion-section"));
-
     this.state.expandedSections = [];
   }
 
@@ -24,7 +21,7 @@ export default class Accordion extends WebComponent {
 
         return `
           <section part="section ${isExpanded ? "expanded" : ""} ${isLast ? "last" : ""}">
-            <h${this.props["heading-level"] ? this.props["heading-level"] : "3"} part="heading">
+            <h${this.props["heading-level"] || "3"} part="heading">
               <button
                 part="button ${isExpanded ? "expanded" : ""}"
                 id="${slugify(section.props.label)}-button"
@@ -41,14 +38,16 @@ export default class Accordion extends WebComponent {
                 </svg>
                 ${section.props.label}
               </button>
-            </h${this.props["heading-level"] ? this.props["heading-level"] : "3"}>
+            </h${this.props["heading-level"] || "3"}>
 
             <div
               part="panel ${isExpanded ? "expanded" : ""}"
               id="${slugify(section.props.label)}-panel"
               aria-labelledby="${slugify(section.props.label)}-button"
             >
-              <div part="content">${section.innerHTML}</div>
+              <div part="content">
+                ${section.innerHTML}
+              </div>
             </div>
           </section>
         `;
@@ -101,18 +100,20 @@ export default class Accordion extends WebComponent {
     return {
       state: {
         expandedSections: () => {
-          this.panels && this.panels.forEach((panel, index) => {
+          this.panels.forEach((panel, index) => {
             const isExpanded = this.state.expandedSections.includes(index);
-            const wasExpanded = state.oldState.expandedSections && state.oldState.expandedSections.includes(index);
+            const wasExpanded = state.oldState.expandedSections && state.oldState.expandedSections.includes(index) || false;
 
             if(isExpanded) {
               panel.style.height = "0px";
               panel.hidden = false;
+
               requestAnimationFrame(() => {
                 panel.style.height = `${panel.scrollHeight}px`;
               });
             } else if(wasExpanded) {
               panel.style.height = "0px";
+
               panel.ontransitionend = () => {
                 panel.hidden = true;
                 panel.style.height = null;
@@ -120,14 +121,6 @@ export default class Accordion extends WebComponent {
               };
             } else {
               panel.hidden = true;
-            }
-          });
-
-          this.sections.forEach((section, index) => {
-            if(this.state.expandedSections.includes(index)) {
-              section.setAttribute("expanded", "");
-            } else {
-              section.removeAttribute("expanded");
             }
           });
         },
