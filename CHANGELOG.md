@@ -1,3 +1,17 @@
+# [0.56.0](https://github.com/jacecotton/tcds/compare/v0.55.6...v0.56.0) (2022-08-03)
+
+
+### Bug Fixes
+
+* **components:** Style issues ([3b2cfb7](https://github.com/jacecotton/tcds/commit/3b2cfb746dc4c2346e936cbbdd15245ce30eda49))
+
+
+### Features
+
+* **components:** Refactor of WebComponent lifecycle ([1d76eb4](https://github.com/jacecotton/tcds/commit/1d76eb4a9c501562a920b8ef8c7c2ae4d13498a6))
+
+
+
 ## [0.55.6](https://github.com/jacecotton/tcds/compare/v0.55.5...v0.55.6) (2022-08-01)
 
 
@@ -34,15 +48,6 @@
 
 * **components:** Card state key ([99b072b](https://github.com/jacecotton/tcds/commit/99b072b2c13df4157e8c8c80b2b364f2fd1a95cb))
 * **components:** IE 11 fixes ([73ae6df](https://github.com/jacecotton/tcds/commit/73ae6dff6657b59ca4fbc33c87754725e550caa7))
-
-
-
-## [0.55.2](https://github.com/jacecotton/tcds/compare/v0.55.1...v0.55.2) (2022-07-31)
-
-
-### Bug Fixes
-
-* **components:** Accordion section heading level fix ([b24d15d](https://github.com/jacecotton/tcds/commit/b24d15d58adbd912ef3d7f793b40e0f6189d864e))
 
 
 
