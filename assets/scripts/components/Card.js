@@ -4,10 +4,11 @@ export default class Card extends WebComponent {
   render() {
     return `
       <article part="card">
-        <figure part="figure">
-          <slot name="image"></slot>
-        </figure>
-
+        ${this.state["no-image"] !== true ? `
+          <figure part="figure">
+            <slot name="image"></slot>
+          </figure>
+        ` : ""}
         <div part="content">
           <slot name="title"></slot>
           <slot name="description"></slot>
