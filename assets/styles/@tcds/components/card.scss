@@ -110,10 +110,14 @@ tcds-card:defined {
   }
 
   [slot="description"] {
-    @include font-size("medium", $custom-property: "--card-description-font-size");
-
-    color: color("gray", "300");
     margin-bottom: space("loose", "em");
+
+    &,
+    p {
+      @include font-size("medium", $custom-property: "--card-description-font-size");
+
+      color: color("gray", "300");
+    }
   }
 
   &::part(footer),
