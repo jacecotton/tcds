@@ -38,6 +38,26 @@ this.state = {
 };
 ```
 
+### Prototype methods
+Note that prototype methods on a state property will not be intercepted by the proxy, and thus won't trigger a component update.
+
+```js
+// These will fail to trigger a re-render or schedule an update
+this.state.someData.push(item);
+this.state.someData.sort();
+```
+
+This is intentional, as it helps avoid performance issues and protects against accidental infinite loops in the `render` method.
+
+Instead, state needs to be mutated through explicit declaration in order to trigger anything:
+
+```js
+// Instead of push()
+this.state.someData = [...this.state.someData, ...[item]];
+// Instead of sort()
+this.state.someData = this.state.someData.sort();
+```
+
 ### Reflected state attributes
 If you want some state property to be reflected onto the component instance's DOM, you can return an array with that property inside a static `observedAttributes` getter. Note that the attribute and state value will be bidirectionally synchronized—`this.state` will update the instance's attributes, and changes to the instance's attributes will update `this.state`.
 
@@ -160,7 +180,7 @@ return `
 </details>
 
 ## Styling
-Styles can be added by returning a string in a static `styles` getter. The returned string will be placed between inline `<style>` tags, which will be embedded into the shadow DOM (meaning the styles are encapsulated). While this means the styles will technically be duplicated across component instances, browsers have implemented the Custom Elements API to eliminate redundancies intelligently.
+Styles can be added by setting the `styles` property. The returned string will be placed between inline `<style>` tags, which will be embedded into the shadow DOM (meaning the styles are encapsulated). While this means the styles will technically be duplicated across component instances, browsers have implemented the Custom Elements API to eliminate redundancies intelligently.
 
 ```js
 customElements.define("my-component", class MyComponent extends WebComponent {
@@ -188,15 +208,15 @@ customElements.define("my-component", class MyComponent extends WebComponent {
 
 ## Lifecycle hooks
 ### `connected`
-The `connected` hook serves the same purpose as the Custom Element API's `connectedCallback` hook, only it's called after state and props have been proxied, and the `this.props` object has been populated from the component instance's given attributes. If you want to do anything before rendering, mounting, and updating (such as defining elements and initializing variables), do it here.
+The `connected` hook serves the same purpose as the [Custom Element API's `connectedCallback` hook](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks), only it's called after state and props have been proxied, and the `this.props` object has been populated from the component instance's given attributes. If you want to do anything before rendering, mounting, and updating (such as defining elements and initializing variables), do it here.
 
 ### `mounted`
-The `mounted` hook is called on the available animation frame after the first render pass, and after all child custom elements are defined, but before the `updated` hook. This is where you should add any event listeners, observers, timers, etc., and mutate state as a result of those things.
+The `mounted` hook is called on the available [animation frame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) after the first render pass, and after all child custom elements are defined, but before the `updated` hook. This is where you should add any event listeners, observers, timers, etc., and update state as a result of those things.
 
-Because this hook is called before `updated`, do not assume you're working with DOM that reflects any changes made in the `updated` hook. In fact, it is recommended to not do anything to or based upon the DOM in this hook. If possible, restrict operations in this hook to updating state, adding listeners, observers, etc.
+Because this hook is called before `updated`, do not assume you're working with DOM that reflects any changes made in the `updated` hook. In fact, it is recommended to not do anything to or based upon the DOM in this hook.
 
 ### `updated`
-The `updated` hook is first called after the `mounted` hook, then after every render after that. This method is essentially for doing any imperative manipulation of the component DOM, if needed.
+The `updated` hook is first called after `mounted`, then after every render after that. This method is essentially for doing any imperative manipulation of the component DOM, if needed.
 
 You can return an object with `state` and `props` child objects, which can contain callback functions to respond to specific state or prop updates.
 
