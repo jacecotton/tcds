@@ -1,4 +1,4 @@
-import diff from "@tcds/WebComponent/diff.js";
+import diff from "./diff.js";
 
 /**
  * A class for creating web components in vanilla JavaScript. Extends
