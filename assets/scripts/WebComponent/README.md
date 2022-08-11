@@ -1,12 +1,13 @@
 # WebComponent.js
 
-The `WebComponent` class is a utility for more easily creating native web components, or custom elements. It extends the `HTMLElement` class, and adds some helpful features like reactive state-based rendering, props management, and related lifecycle hooks.
+The `WebComponent` class is a utility for more easily creating [native Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components). It extends the `HTMLElement` class, and adds some helpful features like reactive state-based rendering, props management, related lifecycle hooks, and styling.
 
-The API should be familiar to those used to React, Vue, etc. Concepts such as state, props, declarative rendering, and lifecycle hooks are identical. The primary differences between this and front-end frameworks are:
+The API should be familiar if you're acquainted with React, Vue, etc. Concepts such as state, props, declarative rendering, and lifecycle hooks are identical. The primary differences between this and front-end frameworks are:
 
-* Vanilla JavaScript — This is not a "library" or "framework" but rather a utility class for creating native Web Components based on the Custom Elements API.
+* Vanilla JavaScript — This is not a "library" or "framework" but rather a utility class for creating native Web Components based on the browser-native [Custom Elements API](https://web.dev/custom-elements-v1/). There are no dependencies and no build steps.
 * Progressively enhanced rendering — Whereas other libraries and frameworks render views entirely with JavaScript (usually in the client), all Web Components are rendered statically as plain content then *enhanced* by the `WebComponent` utility.
-* Agnostic — Because it's native JavaScript, Web Components can be used out of the box no matter what other libraries, frameworks, content management systems, or rendering pipelines are used.
+* Agnostic and interoperable — Because it's native JavaScript, Web Components can be used out of the box no matter what other libraries, frameworks, content management systems, or rendering pipelines are used.
+* Non-idiomatic — Unlike other Web Component libraries like Lit or FAST, the `WebComponent` utility introduces no idioms, directive utilities, or syntactical sugar.
 
 ## Defining custom elements
 To define a custom element, pass the name of the element and a class that extends `WebComponent` as arguments to a `customElements.define` method.
@@ -38,7 +39,7 @@ this.state = {
 ```
 
 ### Reflected state attributes
-If you want some state property to be reflected onto the component instance's DOM, you can return an array with that property inside a static `observedAttributes` getter.
+If you want some state property to be reflected onto the component instance's DOM, you can return an array with that property inside a static `observedAttributes` getter. Note that the attribute and state value will be bidirectionally synchronized—`this.state` will update the instance's attributes, and changes to the instance's attributes will update `this.state`.
 
 ```js
 customElements.define("my-component", class MyComponent extends WebComponent {
@@ -63,13 +64,25 @@ connected() {
 }
 ```
 
-Result:
+Resulting DOM:
 
 ```html
 <my-component foo bar="baz">
 ```
 
 Note that any state properties in `observedAttributes` will be excluded from `this.props` population (i.e. `this.props` will not include `foo` or `bar`). So be careful to design your component's API accordingly.
+
+Remember, reflected attributes are synchronized, so changing the instance's attributes will also update the `this.state` object, triggering a re-render.
+
+```js
+this.setAttribute("foo", "bar");
+
+updated() {
+  console.log(this.state.foo); // => "bar"
+}
+```
+
+(The `WebComponent` utility protects against infinite loops.)
 
 ## Rendering
 The `WebComponent` class allows for declarative rendering via the `render()` method. You can return a string with component markup that you want to be inserted into the custom element's shadow DOM.
@@ -96,6 +109,8 @@ render() {
 }
 ```
 
+Given the usage:
+
 ```html
 <my-component greeting="Goodbye"></my-component>
 ```
@@ -103,6 +118,46 @@ render() {
 Result:
 
 > Goodbye world!
+
+### Directives
+The `WebComponent` utility provides no directive utilities, as you can accomplish anything you'd need from them with vanilla JavaScript. This is to keep the utility as non-idiomatic as possible.
+
+Conditional rendering:
+
+```js
+render() {
+  return `
+    ${someCondition ? `
+      <p>someCondition is true</p>
+    ` : `
+      <p>someCondition is false</p>
+    `}
+  `;
+}
+```
+
+Recursive rendering:
+
+```js
+const someData = ["red", "green", "blue", "yellow"];
+
+return `
+  <ul>
+    ${someData.map((item) => `
+      <li>${item}</li>
+    `).join("")}
+  </ul>
+`
+```
+
+<details>
+  <summary>Result</summary>
+
+> * red
+> * green
+> * blue
+> * yellow
+</details>
 
 ## Styling
 Styles can be added by returning a string in a static `styles` getter. The returned string will be placed between inline `<style>` tags, which will be embedded into the shadow DOM (meaning the styles are encapsulated). While this means the styles will technically be duplicated across component instances, browsers have implemented the Custom Elements API to eliminate redundancies intelligently.
@@ -149,13 +204,13 @@ You can return an object with `state` and `props` child objects, which can conta
 updated() {
   return {
     state: {
-      someState: () => {
+      "someState": () => {
         // This code runs only when this.state.someState is changed.
       },
     },
 
     props: {
-      someProp: () => {
+      "someProp": () => {
         // This code runs only when this.props.someProp is changed.
       },
     },
