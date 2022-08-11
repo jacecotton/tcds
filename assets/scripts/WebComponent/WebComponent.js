@@ -1,4 +1,10 @@
-import diff from "@tcds/utilities/diff.js";
+import diff from "@tcds/WebComponent/diff.js";
+
+/**
+ * A class for creating web components in vanilla JavaScript. Extends
+ * `HTMLElement` to create custom elements, while providing reactive state and
+ * props, declarative rendering, and related lifecycle hooks.
+ */
 
 export default class WebComponent extends HTMLElement {
   constructor() {
@@ -6,37 +12,35 @@ export default class WebComponent extends HTMLElement {
     this.attachShadow({ mode: "open" });
   }
 
+  childComponents = {};
+  slottedContent = {};
+  parts = {};
+  #renderPasses = 0;
+  #batch = { state: {}, props: {} };
+  #debounce = null;
+
   connectedCallback() {
-    this.state = new Proxy({}, this.stateHandler());
-    this.props = new Proxy({}, this.propsHandler());
+    this.state = new Proxy({}, this.#stateHandler());
+    this.props = new Proxy({}, this.#propsHandler());
 
     this.getAttributeNames().forEach((attribute) => {
       this.props[attribute] = this.getAttribute(attribute);
     });
 
-    this.observeAttributes();
+    this.addEventListener("component:update", this.#updateHandler.bind(this));
 
-    this.renderPasses = 0;
+    this.connected?.();
 
-    this.batch = {
-      state: {},
-      props: {},
-    };
-
-    this.debounce = null;
-
-    this.addEventListener("component:update", this.updateHandler.bind(this));
-
-    this.connected();
+    this.#observeAttributes();
 
     requestAnimationFrame(() => {
       if(Object.keys(this.state).length === 0) {
-        this.update();
+        this.#update();
       }
     });
   }
 
-  stateHandler() {
+  #stateHandler() {
     return {
       set: (store, state, value) => {
         if(store[state] === value) {
@@ -63,10 +67,10 @@ export default class WebComponent extends HTMLElement {
     };
   }
 
-  propsHandler() {
+  #propsHandler() {
     return {
       set: (props, prop, value) => {
-        if(this.getAttribute(prop) === value) {
+        if(this.getAttribute(prop) === value && !(prop in this.state)) {
           const oldValue = props[prop];
 
           props[prop] = value;
@@ -88,10 +92,10 @@ export default class WebComponent extends HTMLElement {
     };
   }
 
-  observeAttributes() {
+  #observeAttributes() {
     const attributeChange = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
-        if(this.props[mutation.attributeName] !== mutation.target.getAttribute(mutation.attributeName)) {
+        if(!(mutation.attributeName in this.state) && this.props[mutation.attributeName] !== mutation.target.getAttribute(mutation.attributeName)) {
           this.props[mutation.attributeName] = mutation.target.getAttribute(mutation.attributeName);
         }
       });
@@ -100,93 +104,107 @@ export default class WebComponent extends HTMLElement {
     attributeChange.observe(this, { attributes: true });
   }
 
-  updateHandler(event) {
+  #updateHandler(event) {
     if(event.detail.state) {
-      this.batch.state.newState = { ...this.batch.state.newState, ...event.detail.state.newState };
-      this.batch.state.oldState = { ...this.batch.state.oldState, ...event.detail.state.oldState };
+      this.#batch.state.newState = { ...this.#batch.state.newState, ...event.detail.state.newState };
+      this.#batch.state.oldState = { ...this.#batch.state.oldState, ...event.detail.state.oldState };
     }
 
     if(event.detail.props) {
-      this.batch.props.newProps = { ...this.batch.props.newProps, ...event.detail.props.newProps };
-      this.batch.props.oldProps = { ...this.batch.props.oldProps, ...event.detail.props.oldProps };
+      this.#batch.props.newProps = { ...this.#batch.props.newProps, ...event.detail.props.newProps };
+      this.#batch.props.oldProps = { ...this.#batch.props.oldProps, ...event.detail.props.oldProps };
     }
 
-    if(this.debounce !== null) {
-      cancelAnimationFrame(this.debounce);
+    if(this.#debounce !== null) {
+      cancelAnimationFrame(this.#debounce);
     }
 
-    this.debounce = requestAnimationFrame(this.update.bind(this));
+    this.#debounce = requestAnimationFrame(this.#update.bind(this));
   }
 
-  update() {
+  #update() {
+    if(this.constructor.observedAttributes) {
+      for(let state in this.#batch.state.newState) {
+        if(this.constructor.observedAttributes.includes(state)) {
+          if(typeof this.state[state] === "boolean") {
+            this.toggleAttribute(state, this.state[state]);
+          } else if(this.getAttribute(state) !== this.state[state]) {
+            this.setAttribute(state, this.state[state]);
+          }
+        }
+      }
+    }
+
     const template = `
       <link rel="stylesheet" href="${window.TCDS_STATIC_PATH || ""}/styles/main.css">
-      <style>
-        ${this.styles}
-      </style>
-      ${this.render()}
+      ${this.constructor.styles ? `
+        <style>
+          ${this.constructor.styles}
+        </style>
+      ` : ""}
+      ${this.render?.()}
     `;
 
     diff(template, this.shadowRoot);
 
-    this.renderPasses++;
+    this.#renderPasses++;
 
-    if(this.renderPasses === 1) {
+    if(this.#renderPasses === 1) {
       const childComponentsAreDefined = Array.from(this.shadowRoot.querySelectorAll(":not(:defined)")).map((undefinedChild) => {
         return customElements.whenDefined(undefinedChild.localName);
       });
 
       Promise.all(childComponentsAreDefined).then(() => {
-        this.mounted();
-        this.updateProceed();
+        this.mounted?.();
+        this.#callUpdateCallbacks();
       });
     } else {
-      this.updateProceed();
+      this.#callUpdateCallbacks();
     }
   }
 
-  updateProceed() {
-    const updateHandlers = this.updated(this.batch.state, this.batch.props);
+  #callUpdateCallbacks() {
+    const updateCallbacks = this.updated?.(this.#batch.state, this.#batch.props) || {};
 
-    if(updateHandlers && updateHandlers.state) {
-      for(let handler in updateHandlers.state) {
-        if(this.batch.state.newState && handler in this.batch.state.newState) {
-          updateHandlers.state[handler]();
+    if("state" in updateCallbacks) {
+      for(let state in updateCallbacks.state) {
+        if(this.#batch.state.newState && state in this.#batch.state.newState) {
+          updateCallbacks.state[state]();
         }
       }
     }
 
-    if(updateHandlers && updateHandlers.props) {
-      for(let handler in updateHandlers.props) {
-        if(this.batch.props.newProps && handler in this.batch.props.newProps) {
-          updateHandlers.props[handler]();
+    if("props" in updateCallbacks) {
+      for(let prop in updateCallbacks.props) {
+        if(this.#batch.props.newProps && prop in this.#batch.props.newProps) {
+          updateCallbacks.props[prop]();
         }
       }
     }
 
-    this.batch = {
+    this.#batch = {
       state: {},
       props: {},
     };
   }
 
-  render() {
-    return "";
-  }
+  attributeChangedCallback(attribute, _oldValue, newValue) {
+    if(this.state && attribute in this.state) {
+      if(
+        this.state[attribute] === newValue
+        || (this.state[attribute] === true && newValue === "")
+        || (this.state[attribute] === false && newValue === null)
+      ) {
+        return;
+      }
 
-  connected() {
-    return;
-  }
-
-  updated() {
-    return {};
-  }
-
-  mounted() {
-    return;
-  }
-
-  get styles() {
-    return "";
+      if(newValue === null && this.state[attribute] !== false) {
+        this.state[attribute] = false;
+      } else if(newValue === "" && this.state[attribute] !== true) {
+        this.state[attribute] = true;
+      } else if(this.state[attribute] !== newValue) {
+        this.state[attribute] = newValue;
+      }
+    }
   }
 }
