@@ -12,8 +12,7 @@ export default class WebComponent extends HTMLElement {
     this.attachShadow({ mode: "open" });
   }
 
-  childComponents = {};
-  slottedContent = {};
+  nestedElements = {};
   parts = {};
   #renderPasses = 0;
   #batch = { state: {}, props: {} };

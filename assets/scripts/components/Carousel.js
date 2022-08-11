@@ -151,33 +151,33 @@ customElements.define("tcds-carousel", class Carousel extends WebComponent {
       && this.hasAttribute("timing")
       && window.matchMedia("(prefers-reduced-motion: reduce), (hover: none)").matches === false;
 
-    this.childComponents.slides = Array.from(this.querySelectorAll("tcds-slide"));
-    this.slottedContent.header = this.querySelector("[slot=header]");
+    this.nestedElements.slides = Array.from(this.querySelectorAll("tcds-slide"));
+    this.nestedElements.header = this.querySelector("[slot=header]");
   }
 
   render() {
     return `
-      ${this.slottedContent.header ? `
+      ${this.nestedElements.header ? `
         <header part="header">
           <slot name="header"></slot>
           <tcds-button part="expand-collapse" controls="${this.id}" icon="only chevron-down" size="small" color="ghost" round label="${this.state.expanded ? "Collapse carousel" : "Expand carousel"}"></tcds-button>
         </header>
       ` : ""}
       <div role="tablist" part="indicators" ${this.state.expanded !== false ? "hidden" : ""}>
-        ${this.childComponents.slides.map((slide, index) => `
+        ${this.nestedElements.slides.map((slide, index) => `
           <button
             role="tab"
             part="indicator"
             id="${this.id}-indicator-${index + 1}"
             aria-controls="${this.id}-panel-${index + 1}"
             aria-expanded="${this.state.activeSlide === index}"
-            title="Slide ${index + 1} of ${this.childComponents.slides.length}"
-            aria-label="Slide ${index + 1} of ${this.childComponents.slides.length}"
+            title="Slide ${index + 1} of ${this.nestedElements.slides.length}"
+            aria-label="Slide ${index + 1} of ${this.nestedElements.slides.length}"
           ></button>
         `).join("")}
       </div>
       <div part="viewport">
-        ${this.childComponents.slides.map((slide, index) => `
+        ${this.nestedElements.slides.map((slide, index) => `
           <section
             role="${this.state.expanded !== false ? "" : "tabpanel"}"
             part="slide"
