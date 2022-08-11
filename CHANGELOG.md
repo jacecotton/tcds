@@ -1,3 +1,12 @@
+## [0.57.1](https://github.com/jacecotton/tcds/compare/v0.57.0...v0.57.1) (2022-08-11)
+
+
+### Bug Fixes
+
+* Update relative import path ([0eb4ccb](https://github.com/jacecotton/tcds/commit/0eb4ccb9361b4e4610cc8b55a7cc15234232194f))
+
+
+
 # [0.57.0](https://github.com/jacecotton/tcds/compare/v0.56.1...v0.57.0) (2022-08-11)
 
 
@@ -42,15 +51,6 @@
 ### Bug Fixes
 
 * **components:** Fix Button label ([171a5a8](https://github.com/jacecotton/tcds/commit/171a5a8b54f4bc319a457d85ac47ea2b60b0e48b))
-
-
-
-## [0.55.5](https://github.com/jacecotton/tcds/compare/v0.55.4...v0.55.5) (2022-08-01)
-
-
-### Bug Fixes
-
-* **components:** Add customizable static asset path to scripts ([7fbb223](https://github.com/jacecotton/tcds/commit/7fbb223c37fac14e5eb752a493c25a4d7deca7c6))
 
 
 
