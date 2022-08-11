@@ -116,18 +116,13 @@ function removeAttribute(element, attribute) {
  *
  * @param {String} name The attribute name.
  * @param {String} value The attribute value.
- * @param {Boolean} events If true, inline events are allowed.
  *
  * @return {Boolean} If true, skip the attribute.
  */
-function skipAttribute(name, value, events) {
+function skipAttribute(name, value) {
   const normalizedValue = value.replace(/\s+/g, "").toLowerCase();
 
   if(["src", "href", "xlink:href"].includes(name) && normalizedValue.includes("javascript:") || normalizedValue.includes("data:text/html")) {
-    return true;
-  }
-
-  if(!events && name.startsWith("on")) {
     return true;
   }
 }
@@ -172,6 +167,10 @@ function diffAttributes(template, existing) {
     }
 
     removeAttribute(existing, name);
+  }
+
+  if(Array.from(template.attributes).sort().join(",") !== Array.from(existing.attributes).sort().join(",")) {
+    diffAttributes(template, existing);
   }
 }
 
