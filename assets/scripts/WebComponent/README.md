@@ -9,6 +9,11 @@ The API should be familiar if you're acquainted with React, Vue, etc. Concepts s
 * Agnostic and interoperable — Because it's native JavaScript, Web Components can be used out of the box no matter what other libraries, frameworks, content management systems, or rendering pipelines are used.
 * Non-idiomatic — Unlike other Web Component libraries like Lit or FAST, the `WebComponent` utility introduces no idioms, directive utilities, or syntactical sugar.
 
+## Demos
+* Simple: [`click-counter`](https://codepen.io/jacecotton/pen/abYavbm), `type-reflector`
+* Intermediate: `toggle-section`, `info-selector`
+* Advanced: `tabs`
+
 ## Defining custom elements
 To define a custom element, pass the name of the element and a class that extends `WebComponent` as arguments to a `customElements.define` method.
 
