@@ -224,7 +224,7 @@ customElements.define("tcds-carousel", class Carousel extends WebComponent {
       },
 
       "End": () => {
-        this.state.activeSlide = this.childComponents.slides.length - 1;
+        this.state.activeSlide = this.nestedElements.slides.length - 1;
         this.parts.indicators?.[this.parts.indicators.length - 1].focus();
       },
     };
@@ -262,7 +262,7 @@ customElements.define("tcds-carousel", class Carousel extends WebComponent {
     }, {
       root: this.parts.viewport,
       threshold: 1.0,
-      rootMargin: "16px",
+      rootMargin: "1px",
     });
 
     this.parts.viewport.addEventListener("mouseenter", () => {
@@ -347,11 +347,11 @@ customElements.define("tcds-carousel", class Carousel extends WebComponent {
   }
 
   getNextSlide(relativeSlide = this.state.activeSlide) {
-    return relativeSlide !== this.childComponents.slides.length - 1 ? this.state.activeSlide + 1 : 0;
+    return relativeSlide !== this.nestedElements.slides.length - 1 ? this.state.activeSlide + 1 : 0;
   }
 
   getPreviousSlide(relativeSlide = this.state.activeSlide) {
-    return relativeSlide !== 0 ? this.state.activeSlide - 1 : this.childComponents.slides.length - 1;
+    return relativeSlide !== 0 ? this.state.activeSlide - 1 : this.nestedElements.slides.length - 1;
   }
 
   // A recursive timeout for playing the Carousel on an interval.
