@@ -1,3 +1,12 @@
+## [0.57.4](https://github.com/jacecotton/tcds/compare/v0.57.3...v0.57.4) (2022-08-15)
+
+
+### Bug Fixes
+
+* **components:** Fix toggler issue ([efdb216](https://github.com/jacecotton/tcds/commit/efdb216609e5df453abbdca6507ae2cf554db210))
+
+
+
 ## [0.57.3](https://github.com/jacecotton/tcds/compare/v0.57.2...v0.57.3) (2022-08-15)
 
 
@@ -37,15 +46,6 @@
 ### Features
 
 * **components:** Support reactive reflected state attributes to WebComponents ([03e2ffa](https://github.com/jacecotton/tcds/commit/03e2ffaaa914c9f76864e6cfe44df44b08041919))
-
-
-
-## [0.56.1](https://github.com/jacecotton/tcds/compare/v0.56.0...v0.56.1) (2022-08-04)
-
-
-### Bug Fixes
-
-* **components:** Card image conditional rendering ([849785c](https://github.com/jacecotton/tcds/commit/849785cca6796d66c717d7ed35b57e31d89d3213))
 
 
 
