@@ -1,3 +1,12 @@
+## [0.57.8](https://github.com/jacecotton/tcds/compare/v0.57.7...v0.57.8) (2022-08-15)
+
+
+### Bug Fixes
+
+* Toggleable ([3e523a0](https://github.com/jacecotton/tcds/commit/3e523a05060e5d4fb7f60920f71f36e336803244))
+
+
+
 ## [0.57.7](https://github.com/jacecotton/tcds/compare/v0.57.6...v0.57.7) (2022-08-15)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Fix toggler issue ([efdb216](https://github.com/jacecotton/tcds/commit/efdb216609e5df453abbdca6507ae2cf554db210))
-
-
-
-## [0.57.3](https://github.com/jacecotton/tcds/compare/v0.57.2...v0.57.3) (2022-08-15)
-
-
-### Bug Fixes
-
-* **components:** Add new tab feature to Button component ([93d275e](https://github.com/jacecotton/tcds/commit/93d275efa6124caf5236962d7d195fcfd6c11c2c))
 
 
 
