@@ -44,5 +44,8 @@ class Header {
 
 (function() {
   const instance = document.getElementById("header-menu");
-  instance && new Header(instance);
+
+  requestAnimationFrame(() => {
+    instance && new Header(instance);
+  });
 }());
