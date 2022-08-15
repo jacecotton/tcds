@@ -27,6 +27,7 @@ export default class Toggleable extends Component {
         return toggler.parts.button;
       })
     ];
+
     this.localStorageState = `toggleable_${this.element.id}_state`;
 
     // Initialize state.
