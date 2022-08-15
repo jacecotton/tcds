@@ -1,3 +1,12 @@
+## [0.57.3](https://github.com/jacecotton/tcds/compare/v0.57.2...v0.57.3) (2022-08-15)
+
+
+### Bug Fixes
+
+* **components:** Add new tab feature to Button component ([93d275e](https://github.com/jacecotton/tcds/commit/93d275efa6124caf5236962d7d195fcfd6c11c2c))
+
+
+
 ## [0.57.2](https://github.com/jacecotton/tcds/compare/v0.57.1...v0.57.2) (2022-08-12)
 
 
@@ -37,20 +46,6 @@
 ### Bug Fixes
 
 * **components:** Card image conditional rendering ([849785c](https://github.com/jacecotton/tcds/commit/849785cca6796d66c717d7ed35b57e31d89d3213))
-
-
-
-# [0.56.0](https://github.com/jacecotton/tcds/compare/v0.55.6...v0.56.0) (2022-08-03)
-
-
-### Bug Fixes
-
-* **components:** Style issues ([3b2cfb7](https://github.com/jacecotton/tcds/commit/3b2cfb746dc4c2346e936cbbdd15245ce30eda49))
-
-
-### Features
-
-* **components:** Refactor of WebComponent lifecycle ([1d76eb4](https://github.com/jacecotton/tcds/commit/1d76eb4a9c501562a920b8ef8c7c2ae4d13498a6))
 
 
 
