@@ -74,7 +74,7 @@ export default class Toggleable extends Component {
 
         // Indicate state on controlling buttons.
         this.togglers.forEach((toggler) => {
-          toggler.setAttribute("aria-expanded", this.state.open);
+          toggler && toggler.setAttribute("aria-expanded", this.state.open);
         });
 
         if(!this.props.animation || prevState && prevState.open === undefined) {
