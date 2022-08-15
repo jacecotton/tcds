@@ -174,6 +174,7 @@ customElements.define("tcds-button", class Button extends WebComponent {
         part="button"
         ${this.props.link ? `
           href="${this.props.link}"
+          ${this.props["new-tab"] === "" ? `target="_blank"` : ""}
         ` : `
           type="${this.props.type || "button"}"
           ${this.props.controls ? `aria-controls="${this.props.controls}"` : ""}
