@@ -1,3 +1,12 @@
+## [0.57.10](https://github.com/jacecotton/tcds/compare/v0.57.9...v0.57.10) (2022-08-15)
+
+
+### Bug Fixes
+
+* Toggleable header ([33a6a47](https://github.com/jacecotton/tcds/commit/33a6a474d411dba7296f615dda34c3e72f213b04))
+
+
+
 ## [0.57.9](https://github.com/jacecotton/tcds/compare/v0.57.8...v0.57.9) (2022-08-15)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * Toggler bug ([6d79678](https://github.com/jacecotton/tcds/commit/6d79678ce6cc83edf527868ca9c693df9be6ed29))
-
-
-
-## [0.57.5](https://github.com/jacecotton/tcds/compare/v0.57.4...v0.57.5) (2022-08-15)
-
-
-### Bug Fixes
-
-* Toggler ([f32c3dd](https://github.com/jacecotton/tcds/commit/f32c3dd58f9b91fe540cda1dd2b8cd6a14086bee))
 
 
 
