@@ -51,7 +51,7 @@ export default class Toggleable extends Component {
     }
 
     this.togglers.forEach((toggler) => {
-      toggler.addEventListener("click", (event) => {
+      toggler && toggler.addEventListener("click", (event) => {
         if(this.state.destroyed !== true) {
           event.stopPropagation();
           this.state.open = !this.state.open;
