@@ -1,3 +1,12 @@
+## [0.57.2](https://github.com/jacecotton/tcds/compare/v0.57.1...v0.57.2) (2022-08-12)
+
+
+### Bug Fixes
+
+* **components:** Migrate Button to new API ([9f8ae7b](https://github.com/jacecotton/tcds/commit/9f8ae7b6ecdfab65e176821913f8a6f6490de33e))
+
+
+
 ## [0.57.1](https://github.com/jacecotton/tcds/compare/v0.57.0...v0.57.1) (2022-08-11)
 
 
@@ -42,15 +51,6 @@
 ### Features
 
 * **components:** Refactor of WebComponent lifecycle ([1d76eb4](https://github.com/jacecotton/tcds/commit/1d76eb4a9c501562a920b8ef8c7c2ae4d13498a6))
-
-
-
-## [0.55.6](https://github.com/jacecotton/tcds/compare/v0.55.5...v0.55.6) (2022-08-01)
-
-
-### Bug Fixes
-
-* **components:** Fix Button label ([171a5a8](https://github.com/jacecotton/tcds/commit/171a5a8b54f4bc319a457d85ac47ea2b60b0e48b))
 
 
 
