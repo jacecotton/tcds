@@ -1,3 +1,12 @@
+## [0.57.6](https://github.com/jacecotton/tcds/compare/v0.57.5...v0.57.6) (2022-08-15)
+
+
+### Bug Fixes
+
+* Toggler bug ([6d79678](https://github.com/jacecotton/tcds/commit/6d79678ce6cc83edf527868ca9c693df9be6ed29))
+
+
+
 ## [0.57.5](https://github.com/jacecotton/tcds/compare/v0.57.4...v0.57.5) (2022-08-15)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Migrate Button to new API ([9f8ae7b](https://github.com/jacecotton/tcds/commit/9f8ae7b6ecdfab65e176821913f8a6f6490de33e))
-
-
-
-## [0.57.1](https://github.com/jacecotton/tcds/compare/v0.57.0...v0.57.1) (2022-08-11)
-
-
-### Bug Fixes
-
-* Update relative import path ([0eb4ccb](https://github.com/jacecotton/tcds/commit/0eb4ccb9361b4e4610cc8b55a7cc15234232194f))
 
 
 
