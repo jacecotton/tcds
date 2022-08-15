@@ -21,6 +21,35 @@ export default class Toggleable extends Component {
       this.props.target = this.element;
     }
 
+    this.localStorageState = `toggleable_${this.element.id}_state`;
+
+    // Initialize state.
+    if(this.props.openOnload === true) {
+      this.state.open = localStorage.getItem(this.localStorageState) === "closed" ? false : true;
+    } else {
+      this.state.open = false;
+    }
+
+    if(this.props.closeOnClickOutside) {
+      document.body.addEventListener("click", () => {
+        if(this.state.open === true && this.state.destroyed !== true) {
+          this.state.open = false;
+        }
+      });
+
+      this.element.addEventListener("click", (event) => {
+        if(this.state.destroyed !== true) {
+          event.stopPropagation();
+        }
+      });
+    }
+
+    document.addEventListener("keyup", (event) => {
+      if(event.key === "Escape" && this.state.open === true && this.state.destroyed !== true) {
+        this.state.open = false;
+      }
+    });
+
     requestAnimationFrame(() => {
       this.togglers = [
         ...Array.from(document.querySelectorAll(`[aria-controls=${this.element.id}]`)),
@@ -29,29 +58,6 @@ export default class Toggleable extends Component {
         })
       ];
 
-      this.localStorageState = `toggleable_${this.element.id}_state`;
-
-      // Initialize state.
-      if(this.props.openOnload === true) {
-        this.state.open = localStorage.getItem(this.localStorageState) === "closed" ? false : true;
-      } else {
-        this.state.open = false;
-      }
-
-      if(this.props.closeOnClickOutside) {
-        document.body.addEventListener("click", () => {
-          if(this.state.open === true && this.state.destroyed !== true) {
-            this.state.open = false;
-          }
-        });
-
-        this.element.addEventListener("click", (event) => {
-          if(this.state.destroyed !== true) {
-            event.stopPropagation();
-          }
-        });
-      }
-
       this.togglers.forEach((toggler) => {
         toggler && toggler.addEventListener("click", (event) => {
           if(this.state.destroyed !== true) {
@@ -59,12 +65,6 @@ export default class Toggleable extends Component {
             this.state.open = !this.state.open;
           }
         });
-      });
-
-      document.addEventListener("keyup", (event) => {
-        if(event.key === "Escape" && this.state.open === true && this.state.destroyed !== true) {
-          this.state.open = false;
-        }
       });
     });
 
