@@ -191,6 +191,8 @@ customElements.define("tcds-button", class Button extends WebComponent {
   }
 
   mounted() {
+    this.parts.button = this.shadowRoot.querySelector("[part=button]");
+
     if(this.props.icon) {
       this.fetchIcon();
     }
