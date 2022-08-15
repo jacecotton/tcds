@@ -22,8 +22,8 @@ export default class Toggleable extends Component {
     }
 
     this.togglers = [
-      ...document.querySelectorAll(`[aria-controls=${this.element.id}]`),
-      ...document.querySelectorAll(`tcds-button[controls=${this.element.id}]`).map((toggler) => {
+      ...Array.from(document.querySelectorAll(`[aria-controls=${this.element.id}]`)),
+      ...Array.from(document.querySelectorAll(`tcds-button[controls=${this.element.id}]`)).map((toggler) => {
         return toggler.parts.button;
       })
     ];
