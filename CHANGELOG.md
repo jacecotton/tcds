@@ -1,3 +1,12 @@
+## [0.57.12](https://github.com/jacecotton/tcds/compare/v0.57.11...v0.57.12) (2022-08-16)
+
+
+### Bug Fixes
+
+* revert accidental commit ([fd29dd6](https://github.com/jacecotton/tcds/commit/fd29dd612d65f5c655b42bffe870e81de7de377f))
+
+
+
 ## [0.57.11](https://github.com/jacecotton/tcds/compare/v0.57.10...v0.57.11) (2022-08-16)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * Toggleable ([3e523a0](https://github.com/jacecotton/tcds/commit/3e523a05060e5d4fb7f60920f71f36e336803244))
-
-
-
-## [0.57.7](https://github.com/jacecotton/tcds/compare/v0.57.6...v0.57.7) (2022-08-15)
-
-
-### Bug Fixes
-
-* Version bump ([f088e21](https://github.com/jacecotton/tcds/commit/f088e21f1566b345f76655215981bd3ff2ff375a))
 
 
 
