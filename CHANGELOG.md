@@ -1,3 +1,12 @@
+## [0.57.11](https://github.com/jacecotton/tcds/compare/v0.57.10...v0.57.11) (2022-08-16)
+
+
+### Bug Fixes
+
+* Add animateOnEnter to bundle ([2bb5950](https://github.com/jacecotton/tcds/commit/2bb59501e58ec56469b0439527d0432356e09838))
+
+
+
 ## [0.57.10](https://github.com/jacecotton/tcds/compare/v0.57.9...v0.57.10) (2022-08-15)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * Version bump ([f088e21](https://github.com/jacecotton/tcds/commit/f088e21f1566b345f76655215981bd3ff2ff375a))
-
-
-
-## [0.57.6](https://github.com/jacecotton/tcds/compare/v0.57.5...v0.57.6) (2022-08-15)
-
-
-### Bug Fixes
-
-* Toggler bug ([6d79678](https://github.com/jacecotton/tcds/commit/6d79678ce6cc83edf527868ca9c693df9be6ed29))
 
 
 
