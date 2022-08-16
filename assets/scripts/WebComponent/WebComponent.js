@@ -124,23 +124,13 @@ export default class WebComponent extends HTMLElement {
   #update() {
     if(this.constructor.observedAttributes) {
       for(let state in this.#batch.state.newState) {
-        const stateAttribute = this.getAttribute(state);
-        const stateProperty = this.state[state];
-        const statePropertyIsBool = typeof stateProperty === "boolean";
-        const stateAttributeIsBool = stateAttribute === "" || stateAttribute === null;
-        const observeStateAttribute = this.constructor.observedAttributes.includes(state);
-
-        const hasObservedState = this.constructor.observedAttributes.includes(state);
-        const stateIsBoolean = typeof this.state[state] === "boolean";
-        const stateIsDifferent = this.getAttribute(state) !== this.state[state];
-
-        if(!hasObservedState) {
+        if(!this.constructor.observedAttributes.includes(state)) {
           return;
         }
 
-        if(stateIsBoolean) {
+        if(typeof this.state[state] === "boolean") {
           this.toggleAttribute(state, this.state[state]);
-        } else if(stateIsDifferent) {
+        } else if(this.getAttribute(state) !== this.state[state]) {
           this.setAttribute(state, this.state[state]);
         }
       }
