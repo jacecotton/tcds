@@ -14,3 +14,4 @@ import "./components/Notification.js";
 import "./components/Tabs.js";
 import "./components/Carousel.js";
 import "./components/Card.js";
+import "./animation/animateOnEnter.js";
