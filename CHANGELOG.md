@@ -1,3 +1,12 @@
+## [0.57.13](https://github.com/jacecotton/tcds/compare/v0.57.12...v0.57.13) (2022-08-17)
+
+
+### Bug Fixes
+
+* **components:** Add half image modifier to Card component ([920da89](https://github.com/jacecotton/tcds/commit/920da89e3037a10c11ca4654e1eaedb77b039926))
+
+
+
 ## [0.57.12](https://github.com/jacecotton/tcds/compare/v0.57.11...v0.57.12) (2022-08-16)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * Header ([32907bd](https://github.com/jacecotton/tcds/commit/32907bd92379b10b21f73767c3e7fbe049252ba6))
-
-
-
-## [0.57.8](https://github.com/jacecotton/tcds/compare/v0.57.7...v0.57.8) (2022-08-15)
-
-
-### Bug Fixes
-
-* Toggleable ([3e523a0](https://github.com/jacecotton/tcds/commit/3e523a05060e5d4fb7f60920f71f36e336803244))
 
 
 
