@@ -64,6 +64,10 @@ tcds-card:defined {
     --card-image-fit: contain;
   }
 
+  &[image*="half"] {
+    --card-image-width: 3fr;
+  }
+
   &::part(figure) {
     grid-area: image;
   }
