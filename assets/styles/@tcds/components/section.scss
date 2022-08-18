@@ -61,8 +61,8 @@
   }
 
   &--background-clip {
-    background-color: #fff;
     color: color("gray", "500");
+    background-color: #fff;
 
     @include breakpoint-above("small") {
       --section-background-clip: ellipse(71vw 98% at 100% 0%);
