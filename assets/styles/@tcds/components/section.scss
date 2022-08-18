@@ -65,7 +65,7 @@
     background-color: #fff;
 
     @include breakpoint-above("small") {
-      --section-background-clip: ellipse(71vw 98% at 100% 0%);
+      --section-background-clip: ellipse(42% 99% at 85% 77%);
     }
   }
 }
