@@ -1,3 +1,12 @@
+# [0.58.0](https://github.com/jacecotton/tcds/compare/v0.57.13...v0.58.0) (2022-08-18)
+
+
+### Features
+
+* **components:** Add dark text modifier to Hero ([da252a9](https://github.com/jacecotton/tcds/commit/da252a9278a53bb8949c24b14d7dd7193978aff2))
+
+
+
 ## [0.57.13](https://github.com/jacecotton/tcds/compare/v0.57.12...v0.57.13) (2022-08-17)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * Toggleable header ([33a6a47](https://github.com/jacecotton/tcds/commit/33a6a474d411dba7296f615dda34c3e72f213b04))
-
-
-
-## [0.57.9](https://github.com/jacecotton/tcds/compare/v0.57.8...v0.57.9) (2022-08-15)
-
-
-### Bug Fixes
-
-* Header ([32907bd](https://github.com/jacecotton/tcds/commit/32907bd92379b10b21f73767c3e7fbe049252ba6))
 
 
 
