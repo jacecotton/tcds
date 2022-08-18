@@ -8,7 +8,6 @@
   position: relative;
   padding: var(--section-vertical-padding) 0;
   margin: var(--section-vertical-margin) 0 max(var(--section-vertical-margin), 0px);
-  color: #fff;
 
   &::before {
     content: "";
@@ -62,6 +61,7 @@
 
   &--background-clip {
     background-color: #9a9a9a;
+    color: #fff;
 
     @include breakpoint-above("small") {
       --section-background-clip: ellipse(42% 99% at 85% 77%);

@@ -2,6 +2,7 @@
 
 .Hero {
   padding: 0;
+  color: #fff;
 
   @include breakpoint-above("medium") {
     box-sizing: content-box;
