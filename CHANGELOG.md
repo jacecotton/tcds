@@ -1,3 +1,12 @@
+## [0.59.3](https://github.com/jacecotton/tcds/compare/v0.59.2...v0.59.3) (2022-08-18)
+
+
+### Bug Fixes
+
+* **components:** Fix section colors ([914b2d1](https://github.com/jacecotton/tcds/commit/914b2d1fd4ab6192176e9d67cd7635d7d2a941e8))
+
+
+
 ## [0.59.2](https://github.com/jacecotton/tcds/compare/v0.59.1...v0.59.2) (2022-08-18)
 
 
@@ -33,15 +42,6 @@
 ### Features
 
 * **components:** Add dark text modifier to Hero ([da252a9](https://github.com/jacecotton/tcds/commit/da252a9278a53bb8949c24b14d7dd7193978aff2))
-
-
-
-## [0.57.13](https://github.com/jacecotton/tcds/compare/v0.57.12...v0.57.13) (2022-08-17)
-
-
-### Bug Fixes
-
-* **components:** Add half image modifier to Card component ([920da89](https://github.com/jacecotton/tcds/commit/920da89e3037a10c11ca4654e1eaedb77b039926))
 
 
 
