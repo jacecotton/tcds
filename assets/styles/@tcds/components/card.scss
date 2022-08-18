@@ -29,6 +29,7 @@ tcds-card:defined {
     grid-template-areas:
       "image"
       "content";
+    grid-template-rows: auto 1fr;
   }
 
   &[orientation*="horizontal"]:not([no-image])::part(card) {
