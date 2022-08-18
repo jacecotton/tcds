@@ -58,7 +58,7 @@ export default class Toggleable extends Component {
         })
       ];
 
-      this.togglers.forEach((toggler) => {
+      this.togglers && this.togglers.forEach((toggler) => {
         toggler && toggler.addEventListener("click", (event) => {
           if(this.state.destroyed !== true) {
             event.stopPropagation();
@@ -77,7 +77,7 @@ export default class Toggleable extends Component {
         localStorage.setItem(this.localStorageState, this.state.open ? "open" : "closed");
 
         // Indicate state on controlling buttons.
-        this.togglers.forEach((toggler) => {
+        this.togglers && this.togglers.forEach((toggler) => {
           toggler && toggler.setAttribute("aria-expanded", this.state.open);
         });
 
