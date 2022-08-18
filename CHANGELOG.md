@@ -1,3 +1,13 @@
+## [0.59.2](https://github.com/jacecotton/tcds/compare/v0.59.1...v0.59.2) (2022-08-18)
+
+
+### Bug Fixes
+
+* **components:** Adjust Hero component background clip color ([097eda5](https://github.com/jacecotton/tcds/commit/097eda5c67873ac0811fb85a12dc5a883be542a4))
+* **components:** Tweak Card styles ([9166ae0](https://github.com/jacecotton/tcds/commit/9166ae0f30bc67c418841cc77346ff1810fdeeac))
+
+
+
 ## [0.59.1](https://github.com/jacecotton/tcds/compare/v0.59.0...v0.59.1) (2022-08-18)
 
 
@@ -32,15 +42,6 @@
 ### Bug Fixes
 
 * **components:** Add half image modifier to Card component ([920da89](https://github.com/jacecotton/tcds/commit/920da89e3037a10c11ca4654e1eaedb77b039926))
-
-
-
-## [0.57.12](https://github.com/jacecotton/tcds/compare/v0.57.11...v0.57.12) (2022-08-16)
-
-
-### Bug Fixes
-
-* revert accidental commit ([fd29dd6](https://github.com/jacecotton/tcds/commit/fd29dd612d65f5c655b42bffe870e81de7de377f))
 
 
 
