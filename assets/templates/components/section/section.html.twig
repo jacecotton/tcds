@@ -32,7 +32,7 @@
 
         {% if image["image"] is defined and image["image"] is not empty and image["image"] != "/" %}
           {% if breakpoint != "default" %} @media (min-width: {{ value }}) { {% endif %}
-            #{{ id }} {
+            #{{ id }} .Section__background {
               background-image: url({{ image["image"] }});
               background-position: {{ image["pos_x"] }} {{ image["pos_y"] }};
             }
@@ -40,6 +40,8 @@
         {% endif %}
       {% endfor %}
     </style>
+
+    <div class="Section__background"></div>
   {% endif %}
 
   {% block root_content %}

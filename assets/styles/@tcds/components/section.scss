@@ -4,8 +4,6 @@
   --section-vertical-padding: 5rem;
   --section-vertical-margin: 0;
 
-  background-size: cover;
-  background-position: center;
   z-index: 1;
   position: relative;
   padding: var(--section-vertical-padding) 0;
@@ -22,8 +20,17 @@
     z-index: -1;
   }
 
-  &--dark-text {
-    color: color("gray", "500");
+  &__background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -2;
+    background-size: cover;
+    background-position: center;
+    clip-path: var(--section-background-clip, none);
+    transition: clip-path animation("expressive");
   }
 
   &--overlay-darken::before {
@@ -47,5 +54,18 @@
 
   &--text-shadow {
     --section-text-shadow: 0 0.5rem 0.5rem color("shade", "100");
+  }
+
+  &--dark-text {
+    color: color("gray", "500");
+  }
+
+  &--background-clip {
+    background-color: #fff;
+    color: color("gray", "500");
+
+    @include breakpoint-above("small") {
+      --section-background-clip: ellipse(71vw 98% at 100% 0%);
+    }
   }
 }
