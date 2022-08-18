@@ -1,3 +1,13 @@
+# [0.59.0](https://github.com/jacecotton/tcds/compare/v0.58.0...v0.59.0) (2022-08-18)
+
+
+### Features
+
+* **components:** Add background clip modifier to Section component ([405955b](https://github.com/jacecotton/tcds/commit/405955b5c68c33b033f01f066c7e672a0b11a536))
+* Version bump ([af8fe1f](https://github.com/jacecotton/tcds/commit/af8fe1f63b1ba8e2c046e1546e6820030dc0939c))
+
+
+
 # [0.58.0](https://github.com/jacecotton/tcds/compare/v0.57.13...v0.58.0) (2022-08-18)
 
 
@@ -31,15 +41,6 @@
 ### Bug Fixes
 
 * Add animateOnEnter to bundle ([2bb5950](https://github.com/jacecotton/tcds/commit/2bb59501e58ec56469b0439527d0432356e09838))
-
-
-
-## [0.57.10](https://github.com/jacecotton/tcds/compare/v0.57.9...v0.57.10) (2022-08-15)
-
-
-### Bug Fixes
-
-* Toggleable header ([33a6a47](https://github.com/jacecotton/tcds/commit/33a6a474d411dba7296f615dda34c3e72f213b04))
 
 
 
