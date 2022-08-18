@@ -1,3 +1,12 @@
+## [0.59.4](https://github.com/jacecotton/tcds/compare/v0.59.3...v0.59.4) (2022-08-18)
+
+
+### Bug Fixes
+
+* **components:** Fix vertical card image sizing ([04e7748](https://github.com/jacecotton/tcds/commit/04e77487222789acc7c20ecd1a6f4c1324532c4c))
+
+
+
 ## [0.59.3](https://github.com/jacecotton/tcds/compare/v0.59.2...v0.59.3) (2022-08-18)
 
 
@@ -33,15 +42,6 @@
 
 * **components:** Add background clip modifier to Section component ([405955b](https://github.com/jacecotton/tcds/commit/405955b5c68c33b033f01f066c7e672a0b11a536))
 * Version bump ([af8fe1f](https://github.com/jacecotton/tcds/commit/af8fe1f63b1ba8e2c046e1546e6820030dc0939c))
-
-
-
-# [0.58.0](https://github.com/jacecotton/tcds/compare/v0.57.13...v0.58.0) (2022-08-18)
-
-
-### Features
-
-* **components:** Add dark text modifier to Hero ([da252a9](https://github.com/jacecotton/tcds/commit/da252a9278a53bb8949c24b14d7dd7193978aff2))
 
 
 
