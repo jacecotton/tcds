@@ -1,3 +1,12 @@
+## [0.59.1](https://github.com/jacecotton/tcds/compare/v0.59.0...v0.59.1) (2022-08-18)
+
+
+### Bug Fixes
+
+* **components:** Adjust Hero background clip curve path ([3fb797d](https://github.com/jacecotton/tcds/commit/3fb797dfafed43557d6c16ce0b8b9872d1fc779c))
+
+
+
 # [0.59.0](https://github.com/jacecotton/tcds/compare/v0.58.0...v0.59.0) (2022-08-18)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * revert accidental commit ([fd29dd6](https://github.com/jacecotton/tcds/commit/fd29dd612d65f5c655b42bffe870e81de7de377f))
-
-
-
-## [0.57.11](https://github.com/jacecotton/tcds/compare/v0.57.10...v0.57.11) (2022-08-16)
-
-
-### Bug Fixes
-
-* Add animateOnEnter to bundle ([2bb5950](https://github.com/jacecotton/tcds/commit/2bb59501e58ec56469b0439527d0432356e09838))
 
 
 
