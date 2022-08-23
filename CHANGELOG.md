@@ -1,3 +1,12 @@
+# [0.60.0](https://github.com/jacecotton/tcds/compare/v0.59.5...v0.60.0) (2022-08-23)
+
+
+### Features
+
+* **components:** Add logo area to footer component ([cc41784](https://github.com/jacecotton/tcds/commit/cc41784042285491ee567b3442ee06cc02ff7e68))
+
+
+
 ## [0.59.5](https://github.com/jacecotton/tcds/compare/v0.59.4...v0.59.5) (2022-08-18)
 
 
@@ -32,15 +41,6 @@
 
 * **components:** Adjust Hero component background clip color ([097eda5](https://github.com/jacecotton/tcds/commit/097eda5c67873ac0811fb85a12dc5a883be542a4))
 * **components:** Tweak Card styles ([9166ae0](https://github.com/jacecotton/tcds/commit/9166ae0f30bc67c418841cc77346ff1810fdeeac))
-
-
-
-## [0.59.1](https://github.com/jacecotton/tcds/compare/v0.59.0...v0.59.1) (2022-08-18)
-
-
-### Bug Fixes
-
-* **components:** Adjust Hero background clip curve path ([3fb797d](https://github.com/jacecotton/tcds/commit/3fb797dfafed43557d6c16ce0b8b9872d1fc779c))
 
 
 
