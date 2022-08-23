@@ -13,13 +13,13 @@
     <ul>
       {% for item in social_links %}
         <li>
-          <tcds-button icon="only {{ item.icon }}" link="{{ item.link }}" round size="small" color="secondary" class="site-footer__social-icon">{{ item.title }}</tcds-button>
+          <tcds-button icon="only {{ item.icon }}" link="{{ item.link }}" round color="secondary" class="site-footer__social-icon">{{ item.title }}</tcds-button>
         </li>
       {% endfor %}
     </ul>
   </nav>
 
-  <section class="site-footer__fine-print">
+  <section class="site-footer__fine-print {{ logos and logos|length > 0 ? site-footer__fine-print--with-logos }}">
     <p>{{ fine_print ? fine_print|raw : "&copy; 1998—#{'now'|date('Y')} Texas Children's Hospital. All rights reserved."|raw }}</p>
 
     <nav class="site-footer__policy-nav" aria-labelledby="footer-policy-links">
@@ -30,5 +30,17 @@
         {% endfor %}
       </ul>
     </nav>
+
+    {% if logos and logos|length > 0 %}
+      <ul class="site-footer__logo-list">
+        {% for item in logos %}
+          <li class="site-footer__logo-item">
+            <a href="{{ item.link }}" title="{{ item.title }}">
+              <img src="{{ item.image }}" alt="{{ item.title }}">
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
   </section>
 </footer>
