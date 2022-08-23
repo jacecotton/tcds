@@ -1,3 +1,12 @@
+## [0.60.3](https://github.com/jacecotton/tcds/compare/v0.60.2...v0.60.3) (2022-08-23)
+
+
+### Bug Fixes
+
+* **components:** Footer markup structure ([5a60215](https://github.com/jacecotton/tcds/commit/5a60215cbf8995abc6ac23af8c929d8fbaa134a2))
+
+
+
 ## [0.60.2](https://github.com/jacecotton/tcds/compare/v0.60.1...v0.60.2) (2022-08-23)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Toggler issue ([4527d33](https://github.com/jacecotton/tcds/commit/4527d3332dc0c90da5f3d3c1ab1def88ea7eacb0))
-
-
-
-## [0.59.4](https://github.com/jacecotton/tcds/compare/v0.59.3...v0.59.4) (2022-08-18)
-
-
-### Bug Fixes
-
-* **components:** Fix vertical card image sizing ([04e7748](https://github.com/jacecotton/tcds/commit/04e77487222789acc7c20ecd1a6f4c1324532c4c))
 
 
 
