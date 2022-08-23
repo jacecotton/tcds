@@ -19,7 +19,7 @@
     </ul>
   </nav>
 
-  <section class="site-footer__fine-print {{ logos and logos|length > 0 ? site-footer__fine-print--with-logos }}">
+  <section class="site-footer__fine-print {{ logos ? site-footer__fine-print--with-logos }}">
     <p>{{ fine_print ? fine_print|raw : "&copy; 1998—#{'now'|date('Y')} Texas Children's Hospital. All rights reserved."|raw }}</p>
 
     <nav class="site-footer__policy-nav" aria-labelledby="footer-policy-links">
@@ -31,7 +31,7 @@
       </ul>
     </nav>
 
-    {% if logos and logos|length > 0 %}
+    {% if logos %}
       <ul class="site-footer__logo-list">
         {% for item in logos %}
           <li class="site-footer__logo-item">
