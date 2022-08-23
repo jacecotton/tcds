@@ -1,3 +1,12 @@
+## [0.60.2](https://github.com/jacecotton/tcds/compare/v0.60.1...v0.60.2) (2022-08-23)
+
+
+### Bug Fixes
+
+* **components:** Footer twig tweak ([4da2a5b](https://github.com/jacecotton/tcds/commit/4da2a5bf1a5579edbc756070275c424c1c76bda4))
+
+
+
 ## [0.60.1](https://github.com/jacecotton/tcds/compare/v0.60.0...v0.60.1) (2022-08-23)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Fix vertical card image sizing ([04e7748](https://github.com/jacecotton/tcds/commit/04e77487222789acc7c20ecd1a6f4c1324532c4c))
-
-
-
-## [0.59.3](https://github.com/jacecotton/tcds/compare/v0.59.2...v0.59.3) (2022-08-18)
-
-
-### Bug Fixes
-
-* **components:** Fix section colors ([914b2d1](https://github.com/jacecotton/tcds/commit/914b2d1fd4ab6192176e9d67cd7635d7d2a941e8))
 
 
 
