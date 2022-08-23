@@ -1,3 +1,12 @@
+## [0.60.5](https://github.com/jacecotton/tcds/compare/v0.60.4...v0.60.5) (2022-08-23)
+
+
+### Bug Fixes
+
+* **components:** Footer conditional check ([5b035a5](https://github.com/jacecotton/tcds/commit/5b035a5e30b9b4d0dbc3a29fef65a26a3fa4e559))
+
+
+
 ## [0.60.4](https://github.com/jacecotton/tcds/compare/v0.60.3...v0.60.4) (2022-08-23)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Twig syntax issue ([80de044](https://github.com/jacecotton/tcds/commit/80de0448d7264732d83b0ad41fc038d224832d55))
-
-
-
-# [0.60.0](https://github.com/jacecotton/tcds/compare/v0.59.5...v0.60.0) (2022-08-23)
-
-
-### Features
-
-* **components:** Add logo area to footer component ([cc41784](https://github.com/jacecotton/tcds/commit/cc41784042285491ee567b3442ee06cc02ff7e68))
 
 
 
