@@ -19,22 +19,22 @@
     </ul>
   </nav>
 
-  <section class="site-footer__fine-print {{ footer_logos ? "site-footer__fine-print--with-logos" }}">
+  <section class="site-footer__fine-print {{ footer_logos and footer_logos|length > 0 ? "site-footer__fine-print--with-logos" }}">
     <div class="max-width">
-      {% if footer_logos %} <div> {% endif %}
+      {% if footer_logos and footer_logos|length > 0 %} <div> {% endif %}
         <p>{{ fine_print ? fine_print|raw : "&copy; 1998—#{'now'|date('Y')} Texas Children's Hospital. All rights reserved."|raw }}</p>
 
         <nav class="site-footer__policy-nav" aria-labelledby="footer-policy-links">
           <h2 id="footer-policy-links" class="visually-hidden">Policy links</h2>
-          <ul>
+          <ul class>
             {% for item in policy_links %}
               <li><a href="{{ item.link }}">{{ item.title }}</a></li>
             {% endfor %}
           </ul>
         </nav>
-      {% if footer_logos %} </div> {% endif %}
+      {% if footer_logos and footer_logos|length > 0 %} </div> {% endif %}
 
-      {% if footer_logos %}
+      {% if footer_logos and footer_logos|length > 0 %}
         <ul class="site-footer__logo-list">
           {% for item in footer_logos %}
             <li class="site-footer__logo-item">
