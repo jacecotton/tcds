@@ -21,7 +21,7 @@
 
   <section class="site-footer__fine-print {{ footer_logos ? "site-footer__fine-print--with-logos" }}">
     <div class="max-width">
-      <div>
+      {% if footer_logos %} <div> {% endif %}
         <p>{{ fine_print ? fine_print|raw : "&copy; 1998—#{'now'|date('Y')} Texas Children's Hospital. All rights reserved."|raw }}</p>
 
         <nav class="site-footer__policy-nav" aria-labelledby="footer-policy-links">
@@ -32,7 +32,7 @@
             {% endfor %}
           </ul>
         </nav>
-      </div>
+      {% if footer_logos %} </div> {% endif %}
 
       {% if footer_logos %}
         <ul class="site-footer__logo-list">

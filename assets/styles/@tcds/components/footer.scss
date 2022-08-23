@@ -86,15 +86,25 @@
     grid-area: print;
     background-color: color("gray", "400");
     color: color("gray", "0");
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: space("normal");
-    padding: space("tight") space("normal");
+    padding: space("normal") 0;
 
     p {
       margin: 0;
+    }
+
+    .max-width {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: space("normal");
+    }
+
+    &--with-logos p {
+      margin: 0 0 0.5rem;
+    }
+
+    &--with-logos .max-width {
+      justify-content: space-between;
     }
   }
 
