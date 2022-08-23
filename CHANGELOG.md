@@ -1,3 +1,12 @@
+## [0.60.4](https://github.com/jacecotton/tcds/compare/v0.60.3...v0.60.4) (2022-08-23)
+
+
+### Bug Fixes
+
+* **components:** Tweak Footer styles ([5c58d25](https://github.com/jacecotton/tcds/commit/5c58d2521fd1616ba9eaa81422d7aed5bed69358))
+
+
+
 ## [0.60.3](https://github.com/jacecotton/tcds/compare/v0.60.2...v0.60.3) (2022-08-23)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * **components:** Add logo area to footer component ([cc41784](https://github.com/jacecotton/tcds/commit/cc41784042285491ee567b3442ee06cc02ff7e68))
-
-
-
-## [0.59.5](https://github.com/jacecotton/tcds/compare/v0.59.4...v0.59.5) (2022-08-18)
-
-
-### Bug Fixes
-
-* **components:** Toggler issue ([4527d33](https://github.com/jacecotton/tcds/commit/4527d3332dc0c90da5f3d3c1ab1def88ea7eacb0))
 
 
 
