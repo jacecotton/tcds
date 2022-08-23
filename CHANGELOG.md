@@ -1,3 +1,12 @@
+## [0.60.1](https://github.com/jacecotton/tcds/compare/v0.60.0...v0.60.1) (2022-08-23)
+
+
+### Bug Fixes
+
+* **components:** Twig syntax issue ([80de044](https://github.com/jacecotton/tcds/commit/80de0448d7264732d83b0ad41fc038d224832d55))
+
+
+
 # [0.60.0](https://github.com/jacecotton/tcds/compare/v0.59.5...v0.60.0) (2022-08-23)
 
 
@@ -31,16 +40,6 @@
 ### Bug Fixes
 
 * **components:** Fix section colors ([914b2d1](https://github.com/jacecotton/tcds/commit/914b2d1fd4ab6192176e9d67cd7635d7d2a941e8))
-
-
-
-## [0.59.2](https://github.com/jacecotton/tcds/compare/v0.59.1...v0.59.2) (2022-08-18)
-
-
-### Bug Fixes
-
-* **components:** Adjust Hero component background clip color ([097eda5](https://github.com/jacecotton/tcds/commit/097eda5c67873ac0811fb85a12dc5a883be542a4))
-* **components:** Tweak Card styles ([9166ae0](https://github.com/jacecotton/tcds/commit/9166ae0f30bc67c418841cc77346ff1810fdeeac))
 
 
 
