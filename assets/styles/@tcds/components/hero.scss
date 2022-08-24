@@ -3,7 +3,7 @@
 .Hero {
   padding: 0;
 
-  &:not(#{&}--dark-text) {
+  &:not(.Section--dark-text) {
     color: #fff;
   }
 
