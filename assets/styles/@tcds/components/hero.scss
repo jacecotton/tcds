@@ -2,7 +2,10 @@
 
 .Hero {
   padding: 0;
-  color: #fff;
+
+  &:not(#{&}--dark-text) {
+    color: #fff;
+  }
 
   @include breakpoint-above("medium") {
     box-sizing: content-box;
