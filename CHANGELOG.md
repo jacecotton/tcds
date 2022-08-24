@@ -1,3 +1,12 @@
+## [0.60.6](https://github.com/jacecotton/tcds/compare/v0.60.5...v0.60.6) (2022-08-24)
+
+
+### Bug Fixes
+
+* **components:** Hero text color ([45762d3](https://github.com/jacecotton/tcds/commit/45762d36bb8c1316776e545fffbe2be000d3eed2))
+
+
+
 ## [0.60.5](https://github.com/jacecotton/tcds/compare/v0.60.4...v0.60.5) (2022-08-23)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Footer twig tweak ([4da2a5b](https://github.com/jacecotton/tcds/commit/4da2a5bf1a5579edbc756070275c424c1c76bda4))
-
-
-
-## [0.60.1](https://github.com/jacecotton/tcds/compare/v0.60.0...v0.60.1) (2022-08-23)
-
-
-### Bug Fixes
-
-* **components:** Twig syntax issue ([80de044](https://github.com/jacecotton/tcds/commit/80de0448d7264732d83b0ad41fc038d224832d55))
 
 
 
