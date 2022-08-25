@@ -9,15 +9,10 @@ ol:not([class]),
   &:not(:last-child) {
     margin: 0 0 space("normal", "rem");
   }
-}
 
-:where(ul[class]:not(.ul)),
-:where(ol[class]:not(.ol)) {
-  list-style: none;
-}
-
-li {
-  @include font-size("medium");
+  li {
+    @include font-size("medium");
+  }
 }
 
 dl {

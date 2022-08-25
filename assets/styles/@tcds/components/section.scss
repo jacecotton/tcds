@@ -61,7 +61,10 @@
 
   &--background-clip {
     background-color: #9a9a9a;
-    color: #fff;
+
+    &:not(.Section--dark-text) {
+      color: #fff;
+    }
 
     @include breakpoint-above("small") {
       --section-background-clip: ellipse(42% 99% at 85% 77%);

@@ -4,6 +4,10 @@ details {
   &:where(:not(:last-child)) {
     margin-bottom: 1em;
   }
+
+  &[open] {
+    --icon-rotate: 90deg;
+  }
 }
 
 summary {
@@ -19,10 +23,6 @@ summary {
   user-select: none;
   cursor: pointer;
 
-  [open] > & {
-    --icon-rotate: 90deg;
-  }
-
   &::-webkit-details-marker {
     display: none;
   }
@@ -34,10 +34,7 @@ summary {
     background-image: url("#{$ASSETS}/icons/chevron-right.svg");
     background-size: 100%;
     display: block;
-    transition:
-      transform animation("productive"),
-      filter animation("productive");
-    filter: var(--icon-filter, none);
+    transition: transform animation("productive");
     transform: rotateZ(var(--icon-rotate, 0));
   }
 
