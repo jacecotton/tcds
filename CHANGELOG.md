@@ -1,3 +1,12 @@
+## [0.60.7](https://github.com/jacecotton/tcds/compare/v0.60.6...v0.60.7) (2022-08-24)
+
+
+### Bug Fixes
+
+* **components:** Hero dark text modifier ([39689a1](https://github.com/jacecotton/tcds/commit/39689a1c5364b43c006f87fe4ce3541154bc278e))
+
+
+
 ## [0.60.6](https://github.com/jacecotton/tcds/compare/v0.60.5...v0.60.6) (2022-08-24)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Footer markup structure ([5a60215](https://github.com/jacecotton/tcds/commit/5a60215cbf8995abc6ac23af8c929d8fbaa134a2))
-
-
-
-## [0.60.2](https://github.com/jacecotton/tcds/compare/v0.60.1...v0.60.2) (2022-08-23)
-
-
-### Bug Fixes
-
-* **components:** Footer twig tweak ([4da2a5b](https://github.com/jacecotton/tcds/commit/4da2a5bf1a5579edbc756070275c424c1c76bda4))
 
 
 
