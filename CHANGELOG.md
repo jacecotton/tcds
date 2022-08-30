@@ -1,3 +1,12 @@
+## [0.60.10](https://github.com/jacecotton/tcds/compare/v0.60.9...v0.60.10) (2022-08-30)
+
+
+### Bug Fixes
+
+* **components:** MegaMenu ([982571f](https://github.com/jacecotton/tcds/commit/982571fa63b6c4775badedbc5dd710f979db9123))
+
+
+
 ## [0.60.9](https://github.com/jacecotton/tcds/compare/v0.60.8...v0.60.9) (2022-08-30)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Hero text color ([45762d3](https://github.com/jacecotton/tcds/commit/45762d36bb8c1316776e545fffbe2be000d3eed2))
-
-
-
-## [0.60.5](https://github.com/jacecotton/tcds/compare/v0.60.4...v0.60.5) (2022-08-23)
-
-
-### Bug Fixes
-
-* **components:** Footer conditional check ([5b035a5](https://github.com/jacecotton/tcds/commit/5b035a5e30b9b4d0dbc3a29fef65a26a3fa4e559))
 
 
 
