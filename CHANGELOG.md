@@ -1,3 +1,12 @@
+## [0.60.9](https://github.com/jacecotton/tcds/compare/v0.60.8...v0.60.9) (2022-08-30)
+
+
+### Bug Fixes
+
+* **components:** Add MegaMenu auto transformation ([2d650c6](https://github.com/jacecotton/tcds/commit/2d650c6102b6525bb1c7b1a8b9decc6e9a5babe9))
+
+
+
 ## [0.60.8](https://github.com/jacecotton/tcds/compare/v0.60.7...v0.60.8) (2022-08-25)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Footer conditional check ([5b035a5](https://github.com/jacecotton/tcds/commit/5b035a5e30b9b4d0dbc3a29fef65a26a3fa4e559))
-
-
-
-## [0.60.4](https://github.com/jacecotton/tcds/compare/v0.60.3...v0.60.4) (2022-08-23)
-
-
-### Bug Fixes
-
-* **components:** Tweak Footer styles ([5c58d25](https://github.com/jacecotton/tcds/commit/5c58d2521fd1616ba9eaa81422d7aed5bed69358))
 
 
 
