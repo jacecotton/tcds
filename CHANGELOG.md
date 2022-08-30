@@ -1,3 +1,12 @@
+## [0.60.8](https://github.com/jacecotton/tcds/compare/v0.60.7...v0.60.8) (2022-08-25)
+
+
+### Bug Fixes
+
+* Misc. cleanup ([e7aeaea](https://github.com/jacecotton/tcds/commit/e7aeaea4df96fd02e9bb9a06b16f95337cab979a))
+
+
+
 ## [0.60.7](https://github.com/jacecotton/tcds/compare/v0.60.6...v0.60.7) (2022-08-24)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Tweak Footer styles ([5c58d25](https://github.com/jacecotton/tcds/commit/5c58d2521fd1616ba9eaa81422d7aed5bed69358))
-
-
-
-## [0.60.3](https://github.com/jacecotton/tcds/compare/v0.60.2...v0.60.3) (2022-08-23)
-
-
-### Bug Fixes
-
-* **components:** Footer markup structure ([5a60215](https://github.com/jacecotton/tcds/commit/5a60215cbf8995abc6ac23af8c929d8fbaa134a2))
 
 
 
