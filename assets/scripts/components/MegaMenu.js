@@ -1,4 +1,5 @@
 import Toggleable from "@tcds/components/Toggleable.js";
+import slugify from "@tcds/utilities/slugify.js";
 
 /**
  * MegaMenu component script.
@@ -9,6 +10,7 @@ import Toggleable from "@tcds/components/Toggleable.js";
  * The functionality added by this script is:
  * - Closes other Mega Menu instances when an instance is opened.
  */
+
 export default class MegaMenu extends Toggleable {
   constructor(element, props) {
     super(element, {
@@ -46,6 +48,29 @@ export default class MegaMenu extends Toggleable {
   }
 }
 
-document.querySelectorAll("[data-component=MegaMenu]").forEach((instance) => {
-  instance && new MegaMenu(instance, {});
-});
+(function() {
+  const headerMenu = document.getElementById("header-menu");
+  const headerMenuLinks = headerMenu.querySelectorAll("li a");
+
+  headerMenuLinks.forEach((link) => {
+    const id = slugify(link.textContent);
+    link.id = id;
+  });
+
+  document.querySelectorAll("[data-component=MegaMenu]").forEach((instance) => {
+    const link = document.getElementById(instance.getAttribute("aria-labelledby"));
+
+    if(!link) {
+      return;
+    }
+
+    const button = document.createElement("button");
+    button.id = link.id;
+    button.setAttribute("aria-controls", instance.id);
+    button.setAttribute("aria-expanded", "false");
+
+    link.parentNode.replaceChild(button, link);
+
+    instance && new MegaMenu(instance, {});
+  });
+}());

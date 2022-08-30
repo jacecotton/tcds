@@ -159,14 +159,19 @@
           }
         }
 
-        a {
+        a,
+        button {
+          appearance: none;
           color: inherit;
           border-right: var(--site-header-nav-link-separator, 2px solid currentColor);
           line-height: 1;
           padding-right: var(--site-header-nav-link-separator, #{space("normal")});
+          background: transparent;
+          text-decoration: none;
+          cursor: pointer;
 
-          &:not(:hover) {
-            text-decoration: none;
+          &:hover {
+            text-decoration: underline;
           }
         }
       }
