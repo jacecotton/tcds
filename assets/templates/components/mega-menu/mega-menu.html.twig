@@ -6,6 +6,7 @@
 
 {% block root_attributes %}
   id="mega-menu-{{ id|clean_id }}"
+  aria-labelledby="{{ id|clean_id }}"
   hidden
 {% endblock %}
 
