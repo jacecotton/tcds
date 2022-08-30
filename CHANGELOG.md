@@ -1,3 +1,12 @@
+## [0.60.12](https://github.com/jacecotton/tcds/compare/v0.60.11...v0.60.12) (2022-08-30)
+
+
+### Bug Fixes
+
+* **components:** Add special processing for mega menu search button ([a0bd309](https://github.com/jacecotton/tcds/commit/a0bd3090dfc8b69b756d984c9f256eda3fc5548a))
+
+
+
 ## [0.60.11](https://github.com/jacecotton/tcds/compare/v0.60.10...v0.60.11) (2022-08-30)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * Misc. cleanup ([e7aeaea](https://github.com/jacecotton/tcds/commit/e7aeaea4df96fd02e9bb9a06b16f95337cab979a))
-
-
-
-## [0.60.7](https://github.com/jacecotton/tcds/compare/v0.60.6...v0.60.7) (2022-08-24)
-
-
-### Bug Fixes
-
-* **components:** Hero dark text modifier ([39689a1](https://github.com/jacecotton/tcds/commit/39689a1c5364b43c006f87fe4ce3541154bc278e))
 
 
 
