@@ -1,3 +1,12 @@
+## [0.60.11](https://github.com/jacecotton/tcds/compare/v0.60.10...v0.60.11) (2022-08-30)
+
+
+### Bug Fixes
+
+* Compile changes ([973e7bc](https://github.com/jacecotton/tcds/commit/973e7bca796b0eadb8f200345b2b7f3f88b23e57))
+
+
+
 ## [0.60.10](https://github.com/jacecotton/tcds/compare/v0.60.9...v0.60.10) (2022-08-30)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Hero dark text modifier ([39689a1](https://github.com/jacecotton/tcds/commit/39689a1c5364b43c006f87fe4ce3541154bc278e))
-
-
-
-## [0.60.6](https://github.com/jacecotton/tcds/compare/v0.60.5...v0.60.6) (2022-08-24)
-
-
-### Bug Fixes
-
-* **components:** Hero text color ([45762d3](https://github.com/jacecotton/tcds/commit/45762d36bb8c1316776e545fffbe2be000d3eed2))
 
 
 
