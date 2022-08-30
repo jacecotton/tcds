@@ -68,7 +68,14 @@ export default class MegaMenu extends Toggleable {
     button.id = link.id;
     button.setAttribute("aria-controls", instance.id);
     button.setAttribute("aria-expanded", "false");
-    button.textContent = link.textContent;
+
+    if(link.textContent === "Search") {
+      button.innerHTML = `<span class="Icon" aria-hidden="true" role="presentation"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="arcs"><circle cx="11" cy="11" r="5.5"></circle><path d="m21 21-5-5"></path></svg></span>`;
+      button.setAttribute("aria-label", "Search");
+      button.setAttribute("title", "Search");
+    } else {
+      button.textContent = link.textContent;
+    }
 
     link.parentNode.replaceChild(button, link);
 
