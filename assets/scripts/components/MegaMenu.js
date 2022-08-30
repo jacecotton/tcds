@@ -68,6 +68,7 @@ export default class MegaMenu extends Toggleable {
     button.id = link.id;
     button.setAttribute("aria-controls", instance.id);
     button.setAttribute("aria-expanded", "false");
+    button.textContent = link.textContent;
 
     link.parentNode.replaceChild(button, link);
 
