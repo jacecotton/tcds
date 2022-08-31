@@ -1,3 +1,12 @@
+## [0.60.13](https://github.com/jacecotton/tcds/compare/v0.60.12...v0.60.13) (2022-08-31)
+
+
+### Bug Fixes
+
+* **components:** Mega Menu style tweak ([3332d80](https://github.com/jacecotton/tcds/commit/3332d803e61b802d00411c12dcf461a3925cd55c))
+
+
+
 ## [0.60.12](https://github.com/jacecotton/tcds/compare/v0.60.11...v0.60.12) (2022-08-30)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Add MegaMenu auto transformation ([2d650c6](https://github.com/jacecotton/tcds/commit/2d650c6102b6525bb1c7b1a8b9decc6e9a5babe9))
-
-
-
-## [0.60.8](https://github.com/jacecotton/tcds/compare/v0.60.7...v0.60.8) (2022-08-25)
-
-
-### Bug Fixes
-
-* Misc. cleanup ([e7aeaea](https://github.com/jacecotton/tcds/commit/e7aeaea4df96fd02e9bb9a06b16f95337cab979a))
 
 
 
