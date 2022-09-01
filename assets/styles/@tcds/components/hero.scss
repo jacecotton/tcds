@@ -22,6 +22,12 @@
     min-height: var(--hero-base-height, 0);
   }
 
+  @include breakpoint-below("medium") {
+    &:not(.Section--overlay-darken) &__print-safe {
+      background-color: rgba(30 35 40 / var(--section-overlay-opacity, 60%));
+    }
+  }
+
   &__content-area {
     @include max-width;
 

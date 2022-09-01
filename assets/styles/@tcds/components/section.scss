@@ -1,13 +1,18 @@
 @use "@tcds" as *;
 
 .Section {
-  --section-vertical-padding: 5rem;
+  --_section-vertical-padding: 2rem;
+  --section-vertical-padding: var(--_section-vertical-padding);
   --section-vertical-margin: 0;
 
   z-index: 1;
   position: relative;
   padding: var(--section-vertical-padding) 0;
   margin: var(--section-vertical-margin) 0 max(var(--section-vertical-margin), 0px);
+
+  @include breakpoint-above("medium") {
+    --_section-vertical-padding: 5rem;
+  }
 
   &::before {
     content: "";
@@ -33,7 +38,7 @@
   }
 
   &--overlay-darken::before {
-    background-color: rgb(0 0 0 / var(--section-overlay-opacity, 20%));
+    background-color: rgba(30 35 40 / var(--section-overlay-opacity, 60%));
   }
 
   &--overlay-desaturate::before {
