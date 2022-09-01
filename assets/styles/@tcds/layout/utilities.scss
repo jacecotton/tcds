@@ -129,15 +129,15 @@
 
 @each $space, $value in $spaces {
   .gap-#{$space} {
-    gap: $value;
+    gap: min(100% / (var(--grid-columns, 1) * 2), #{$value});
   }
 
   .row-gap-#{$space} {
-    row-gap: $value;
+    row-gap: min(100% / (var(--grid-columns, 1) * 2), #{$value});
   }
 
   .column-gap-#{$space} {
-    column-gap: $value;
+    column-gap: min(100% / (var(--grid-columns, 1) * 2), #{$value});
   }
 
   .margin-bottom-#{$space} {

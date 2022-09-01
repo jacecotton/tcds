@@ -1,7 +1,7 @@
 @use "@tcds" as *;
 
 .Section {
-  --_section-vertical-padding: 2rem;
+  --_section-vertical-padding: 1rem;
   --section-vertical-padding: var(--_section-vertical-padding);
   --section-vertical-margin: 0;
 

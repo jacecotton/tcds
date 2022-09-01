@@ -29,7 +29,8 @@
 
     &__logo img {
       filter: saturate(0) contrast(0) brightness(2);
-      padding: 18%;
+      padding: 18% 0;
+      width: auto;
     }
 
     &__menu {
@@ -63,10 +64,12 @@
       border-bottom: 1px solid color("shade", "100");
     }
 
-    a {
+    a,
+    button {
       display: block;
       color: inherit;
       text-decoration: none;
+      background: transparent;
 
       &:hover {
         color: color("gray", "500");

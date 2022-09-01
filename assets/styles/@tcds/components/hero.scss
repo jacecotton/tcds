@@ -23,7 +23,7 @@
   }
 
   @include breakpoint-below("medium") {
-    &:not(.Section--overlay-darken) &__print-safe {
+    &:not(.Section--overlay-darken):not(.Section--dark-text) &__print-safe {
       background-color: rgba(30 35 40 / var(--section-overlay-opacity, 60%));
     }
   }
