@@ -1,3 +1,12 @@
+## [0.60.14](https://github.com/jacecotton/tcds/compare/v0.60.13...v0.60.14) (2022-09-01)
+
+
+### Bug Fixes
+
+* **components:** Hero responsive design tweaks ([5a85ebc](https://github.com/jacecotton/tcds/commit/5a85ebc0705e950cc7b50a93afbb9b98e2d11b2a))
+
+
+
 ## [0.60.13](https://github.com/jacecotton/tcds/compare/v0.60.12...v0.60.13) (2022-08-31)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** MegaMenu ([982571f](https://github.com/jacecotton/tcds/commit/982571fa63b6c4775badedbc5dd710f979db9123))
-
-
-
-## [0.60.9](https://github.com/jacecotton/tcds/compare/v0.60.8...v0.60.9) (2022-08-30)
-
-
-### Bug Fixes
-
-* **components:** Add MegaMenu auto transformation ([2d650c6](https://github.com/jacecotton/tcds/commit/2d650c6102b6525bb1c7b1a8b9decc6e9a5babe9))
 
 
 
