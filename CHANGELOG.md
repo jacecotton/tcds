@@ -1,3 +1,12 @@
+## [0.60.15](https://github.com/jacecotton/tcds/compare/v0.60.14...v0.60.15) (2022-09-01)
+
+
+### Bug Fixes
+
+* Responsive adjustments ([699e302](https://github.com/jacecotton/tcds/commit/699e302a4ad48855905b7e32fcd2dbcea2e0cf93))
+
+
+
 ## [0.60.14](https://github.com/jacecotton/tcds/compare/v0.60.13...v0.60.14) (2022-09-01)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * Compile changes ([973e7bc](https://github.com/jacecotton/tcds/commit/973e7bca796b0eadb8f200345b2b7f3f88b23e57))
-
-
-
-## [0.60.10](https://github.com/jacecotton/tcds/compare/v0.60.9...v0.60.10) (2022-08-30)
-
-
-### Bug Fixes
-
-* **components:** MegaMenu ([982571f](https://github.com/jacecotton/tcds/commit/982571fa63b6c4775badedbc5dd710f979db9123))
 
 
 
