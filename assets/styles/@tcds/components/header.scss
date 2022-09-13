@@ -177,6 +177,11 @@
             text-decoration: underline;
           }
         }
+
+        button[aria-controls="mega-menu-search"] {
+          font-size: 1.2rem;
+          line-height: 0;
+        }
       }
     }
   }
