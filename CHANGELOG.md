@@ -1,3 +1,12 @@
+## [0.60.16](https://github.com/jacecotton/tcds/compare/v0.60.15...v0.60.16) (2022-09-07)
+
+
+### Bug Fixes
+
+* **components:** Lighten hero overlay on mobile ([0d71d93](https://github.com/jacecotton/tcds/commit/0d71d93b1cf577fb0f497a3c74fd8855d3d1cf62))
+
+
+
 ## [0.60.15](https://github.com/jacecotton/tcds/compare/v0.60.14...v0.60.15) (2022-09-01)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Add special processing for mega menu search button ([a0bd309](https://github.com/jacecotton/tcds/commit/a0bd3090dfc8b69b756d984c9f256eda3fc5548a))
-
-
-
-## [0.60.11](https://github.com/jacecotton/tcds/compare/v0.60.10...v0.60.11) (2022-08-30)
-
-
-### Bug Fixes
-
-* Compile changes ([973e7bc](https://github.com/jacecotton/tcds/commit/973e7bca796b0eadb8f200345b2b7f3f88b23e57))
 
 
 
