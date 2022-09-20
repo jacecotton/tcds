@@ -1,3 +1,13 @@
+## [0.60.17](https://github.com/jacecotton/tcds/compare/v0.60.16...v0.60.17) (2022-09-13)
+
+
+### Bug Fixes
+
+* **components:** Increase search icon size in main menu ([b714104](https://github.com/jacecotton/tcds/commit/b71410444fa350505c0bdc50f98814df4143b3d4))
+* **icons:** Tweak search icon ([97c0260](https://github.com/jacecotton/tcds/commit/97c0260de00806d0597fc0d3852c0dd43e7c3e89))
+
+
+
 ## [0.60.16](https://github.com/jacecotton/tcds/compare/v0.60.15...v0.60.16) (2022-09-07)
 
 
@@ -31,15 +41,6 @@
 ### Bug Fixes
 
 * **components:** Mega Menu style tweak ([3332d80](https://github.com/jacecotton/tcds/commit/3332d803e61b802d00411c12dcf461a3925cd55c))
-
-
-
-## [0.60.12](https://github.com/jacecotton/tcds/compare/v0.60.11...v0.60.12) (2022-08-30)
-
-
-### Bug Fixes
-
-* **components:** Add special processing for mega menu search button ([a0bd309](https://github.com/jacecotton/tcds/commit/a0bd3090dfc8b69b756d984c9f256eda3fc5548a))
 
 
 
