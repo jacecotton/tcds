@@ -1,3 +1,12 @@
+## [0.60.18](https://github.com/jacecotton/tcds/compare/v0.60.17...v0.60.18) (2022-09-21)
+
+
+### Bug Fixes
+
+* **components:** Use local site's own main CSS path for caching reasons ([c701b6b](https://github.com/jacecotton/tcds/commit/c701b6bead072c6f5dd171254bc9820a1c22d9a1))
+
+
+
 ## [0.60.17](https://github.com/jacecotton/tcds/compare/v0.60.16...v0.60.17) (2022-09-13)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * **components:** Hero responsive design tweaks ([5a85ebc](https://github.com/jacecotton/tcds/commit/5a85ebc0705e950cc7b50a93afbb9b98e2d11b2a))
-
-
-
-## [0.60.13](https://github.com/jacecotton/tcds/compare/v0.60.12...v0.60.13) (2022-08-31)
-
-
-### Bug Fixes
-
-* **components:** Mega Menu style tweak ([3332d80](https://github.com/jacecotton/tcds/commit/3332d803e61b802d00411c12dcf461a3925cd55c))
 
 
 
