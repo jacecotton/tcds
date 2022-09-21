@@ -136,8 +136,10 @@ export default class WebComponent extends HTMLElement {
       }
     }
 
+    const MAIN_CSS_LINK = document.head.querySelector(`link[href*="main.css"]`).getAttribute("href");
+
     const template = `
-      <link rel="stylesheet" href="${window.TCDS_STATIC_PATH || ""}/styles/main.css">
+      <link rel="stylesheet" href="${MAIN_CSS_LINK}">
       ${this.constructor.styles ? `
         <style>
           ${this.constructor.styles}
