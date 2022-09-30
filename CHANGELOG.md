@@ -1,3 +1,12 @@
+## [0.60.19](https://github.com/jacecotton/tcds/compare/v0.60.18...v0.60.19) (2022-09-30)
+
+
+### Bug Fixes
+
+* **components:** Open social links in new tab in footer ([597d541](https://github.com/jacecotton/tcds/commit/597d541c6d4879ce9a7c2a70357403d884ee8745))
+
+
+
 ## [0.60.18](https://github.com/jacecotton/tcds/compare/v0.60.17...v0.60.18) (2022-09-21)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * Responsive adjustments ([699e302](https://github.com/jacecotton/tcds/commit/699e302a4ad48855905b7e32fcd2dbcea2e0cf93))
-
-
-
-## [0.60.14](https://github.com/jacecotton/tcds/compare/v0.60.13...v0.60.14) (2022-09-01)
-
-
-### Bug Fixes
-
-* **components:** Hero responsive design tweaks ([5a85ebc](https://github.com/jacecotton/tcds/commit/5a85ebc0705e950cc7b50a93afbb9b98e2d11b2a))
 
 
 
