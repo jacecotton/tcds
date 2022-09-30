@@ -13,7 +13,7 @@
     <ul>
       {% for item in social_links %}
         <li>
-          <tcds-button icon="only {{ item.icon }}" link="{{ item.link }}" round color="secondary" class="site-footer__social-icon">{{ item.title }}</tcds-button>
+          <tcds-button icon="only {{ item.icon }}" link="{{ item.link }}" round color="secondary" class="site-footer__social-icon" new-tab>{{ item.title }}</tcds-button>
         </li>
       {% endfor %}
     </ul>
