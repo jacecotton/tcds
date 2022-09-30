@@ -1,3 +1,12 @@
+## [0.60.20](https://github.com/jacecotton/tcds/compare/v0.60.19...v0.60.20) (2022-09-30)
+
+
+### Bug Fixes
+
+* **components:** Fix notification selector issues ([6375153](https://github.com/jacecotton/tcds/commit/6375153be82cff543488ab1ae3fa0224ad332c2c))
+
+
+
 ## [0.60.19](https://github.com/jacecotton/tcds/compare/v0.60.18...v0.60.19) (2022-09-30)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * **components:** Lighten hero overlay on mobile ([0d71d93](https://github.com/jacecotton/tcds/commit/0d71d93b1cf577fb0f497a3c74fd8855d3d1cf62))
-
-
-
-## [0.60.15](https://github.com/jacecotton/tcds/compare/v0.60.14...v0.60.15) (2022-09-01)
-
-
-### Bug Fixes
-
-* Responsive adjustments ([699e302](https://github.com/jacecotton/tcds/commit/699e302a4ad48855905b7e32fcd2dbcea2e0cf93))
 
 
 
