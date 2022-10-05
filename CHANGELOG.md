@@ -1,3 +1,12 @@
+## [0.61.1](https://github.com/jacecotton/tcds/compare/v0.61.0...v0.61.1) (2022-10-05)
+
+
+### Bug Fixes
+
+* **components:** Button selector issue ([e60c13c](https://github.com/jacecotton/tcds/commit/e60c13ca8265994a7fa4754b4d85873ce4074c50))
+
+
+
 # [0.61.0](https://github.com/jacecotton/tcds/compare/v0.60.20...v0.61.0) (2022-10-05)
 
 
@@ -31,16 +40,6 @@
 ### Bug Fixes
 
 * **components:** Use local site's own main CSS path for caching reasons ([c701b6b](https://github.com/jacecotton/tcds/commit/c701b6bead072c6f5dd171254bc9820a1c22d9a1))
-
-
-
-## [0.60.17](https://github.com/jacecotton/tcds/compare/v0.60.16...v0.60.17) (2022-09-13)
-
-
-### Bug Fixes
-
-* **components:** Increase search icon size in main menu ([b714104](https://github.com/jacecotton/tcds/commit/b71410444fa350505c0bdc50f98814df4143b3d4))
-* **icons:** Tweak search icon ([97c0260](https://github.com/jacecotton/tcds/commit/97c0260de00806d0597fc0d3852c0dd43e7c3e89))
 
 
 
