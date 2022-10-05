@@ -91,6 +91,12 @@
       grid-template-rows: 1fr 1fr;
       border-top: 10px solid theme-color("primary");
 
+      &--scrolled {
+        --site-header-height: 7rem;
+
+        font-size: 0.9rem;
+      }
+
       &::before,
       &::after {
         content: "";

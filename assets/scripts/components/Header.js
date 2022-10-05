@@ -4,6 +4,17 @@ class Header {
   constructor(element) {
     this.element = element;
 
+    const header = document.querySelector(".site-header");
+    const headerHeight = header.getBoundingClientRect().height;
+
+    window.addEventListener("scroll", () => {
+      if(window.scrollY >= headerHeight) {
+        header.classList.add("scrolled");
+      } else if(window.scrollY === 0) {
+        header.classList.remove("scrolled");
+      }
+    }, { passive: true });
+
     this.toggleableMenu = new Toggleable(this.element, {
       animation: {
         open: "slide-in-left",
