@@ -22,7 +22,7 @@ customElements.define("tcds-button", class Button extends WebComponent {
       /**
        * 1. Needed for Safari.
        */
-      [part="button"] {
+      [part*="button"] {
         --tcds-button-height: 40px;
 
         appearance: none;
@@ -51,11 +51,11 @@ customElements.define("tcds-button", class Button extends WebComponent {
 
       /** States */
 
-      [part="button"]:hover {
+      [part*="button"]:hover {
         --tcds-button-overlay: rgba(0, 0, 0, .1);
       }
 
-      [part="button"]:active {
+      [part*="button"]:active {
         --tcds-button-overlay: rgba(0, 0, 0, .3);
         --tcds-button-scale: 0.99;
       }
@@ -63,90 +63,90 @@ customElements.define("tcds-button", class Button extends WebComponent {
       /** Modifiers */
 
       @media (pointer: fine) {
-        :host([size*="small"]) [part="button"] {
+        :host([size*="small"]) [part*="button"] {
           --tcds-button-height: 32px;
 
           font-size: .875rem;
         }
       }
 
-      :host([size*="large"]) [part="button"] {
+      :host([size*="large"]) [part*="button"] {
         --tcds-button-height: 48px;
 
         font-size: 1.25rem;
       }
 
       :host([size*="full-width"]),
-      :host([size*="full-width"]) [part="button"] {
+      :host([size*="full-width"]) [part*="button"] {
         display: flex;
         justify-content: center;
         width: 100%;
       }
 
-      :host([round]) [part="button"] {
+      :host([round]) [part*="button"] {
         border-radius: var(--tcds-button-height);
       }
 
-      :host([color*="reverse"]) [part="button"] {
+      :host([color*="reverse"]) [part*="button"] {
         background-color: #fff;
         color: #da2530;
       }
 
-      :host([color*="secondary"]) [part="button"] {
+      :host([color*="secondary"]) [part*="button"] {
         background-color: #2d73bc;
         color: #f5f8ff;
       }
 
-      :host([color*="tertiary"]) [part="button"] {
+      :host([color*="tertiary"]) [part*="button"] {
         background-color: #707079;
         color: #f8f8f9;
       }
 
-      :host([color*="ghost"]) [part="button"] {
+      :host([color*="ghost"]) [part*="button"] {
         background-color: transparent;
         color: inherit;
 
         --tcds-button-icon-background: transparent;
       }
 
-      :host([icon~="right"]) [part="button"] {
+      :host([icon~="right"]) [part*="button"] {
         flex-direction: row-reverse;
 
         --tcds-button-icon-margin: 0 -1rem 0 1rem;
       }
 
-      :host([icon~="right"][color*="ghost"]) [part="button"] {
+      :host([icon~="right"][color*="ghost"]) [part*="button"] {
         --tcds-button-icon-margin: 0 -1rem 0 0;
       }
 
-      :host(:not([icon~="right"]):not([icon~="only"])[color*="ghost"] [part="button"]) {
+      :host(:not([icon~="right"]):not([icon~="only"])[color*="ghost"] [part*="button"]) {
         --tcds-button-icon-margin: 0 0 0 -1rem;
       }
 
-      :host([icon~="only"]) [part="button"] {
+      :host([icon~="only"]) [part*="button"] {
         padding: 0;
 
         --tcds-button-icon-background: transparent;
         --tcds-button-icon-margin: 0;
       }
 
-      :host([icon~="inline"]:not([icon~="only"])) [part="button"] {
+      :host([icon~="inline"]:not([icon~="only"])) [part*="button"] {
         --tcds-button-icon-background: transparent;
         --tcds-button-icon-height: 1em;
         --tcds-button-icon-padding: 0;
       }
 
-      :host([icon~="inline"]:not([icon~="only"]):not([icon~="right"])) [part="button"] {
+      :host([icon~="inline"]:not([icon~="only"]):not([icon~="right"])) [part*="button"] {
         --tcds-button-icon-margin: 0 0.5em 0 0;
       }
 
-      :host([icon~="inline"][icon~="right"]:not([icon~="only"])) [part="button"] {
+      :host([icon~="inline"][icon~="right"]:not([icon~="only"])) [part*="button"] {
         --tcds-button-icon-margin: 0 0 0 0.5em;
       }
 
       /** Children */
 
-      [part="button"]::after {
+      [part*="button"]::after {
         content: "";
         position: absolute;
         top: 0;
@@ -158,7 +158,7 @@ customElements.define("tcds-button", class Button extends WebComponent {
         transition: background-color .15s ease-in;
       }
 
-      [part="icon"] {
+      [part*="icon"] {
         box-sizing: border-box;
         height: var(--tcds-button-icon-height, 100%);
         margin: var(--tcds-button-icon-margin, 0 1rem 0 -1rem);
@@ -191,7 +191,7 @@ customElements.define("tcds-button", class Button extends WebComponent {
   }
 
   mounted() {
-    this.parts.button = this.shadowRoot.querySelector("[part=button]");
+    this.parts.button = this.shadowRoot.querySelector("[part*=button]");
 
     if(this.props.icon) {
       this.fetchIcon();
