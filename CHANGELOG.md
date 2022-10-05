@@ -1,3 +1,12 @@
+# [0.61.0](https://github.com/jacecotton/tcds/compare/v0.60.20...v0.61.0) (2022-10-05)
+
+
+### Features
+
+* **components:** Collapse Header on scroll ([3da1a11](https://github.com/jacecotton/tcds/commit/3da1a117ae6afa090e93c281fc2ab9f7c11c1507))
+
+
+
 ## [0.60.20](https://github.com/jacecotton/tcds/compare/v0.60.19...v0.60.20) (2022-09-30)
 
 
@@ -32,15 +41,6 @@
 
 * **components:** Increase search icon size in main menu ([b714104](https://github.com/jacecotton/tcds/commit/b71410444fa350505c0bdc50f98814df4143b3d4))
 * **icons:** Tweak search icon ([97c0260](https://github.com/jacecotton/tcds/commit/97c0260de00806d0597fc0d3852c0dd43e7c3e89))
-
-
-
-## [0.60.16](https://github.com/jacecotton/tcds/compare/v0.60.15...v0.60.16) (2022-09-07)
-
-
-### Bug Fixes
-
-* **components:** Lighten hero overlay on mobile ([0d71d93](https://github.com/jacecotton/tcds/commit/0d71d93b1cf577fb0f497a3c74fd8855d3d1cf62))
 
 
 
