@@ -1,3 +1,12 @@
+## [0.61.2](https://github.com/jacecotton/tcds/compare/v0.61.1...v0.61.2) (2022-10-05)
+
+
+### Bug Fixes
+
+* **layout:** Gap utility error ([46e139c](https://github.com/jacecotton/tcds/commit/46e139c3b73f320ec9e7489096815bc63f6c1504))
+
+
+
 ## [0.61.1](https://github.com/jacecotton/tcds/compare/v0.61.0...v0.61.1) (2022-10-05)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Open social links in new tab in footer ([597d541](https://github.com/jacecotton/tcds/commit/597d541c6d4879ce9a7c2a70357403d884ee8745))
-
-
-
-## [0.60.18](https://github.com/jacecotton/tcds/compare/v0.60.17...v0.60.18) (2022-09-21)
-
-
-### Bug Fixes
-
-* **components:** Use local site's own main CSS path for caching reasons ([c701b6b](https://github.com/jacecotton/tcds/commit/c701b6bead072c6f5dd171254bc9820a1c22d9a1))
 
 
 
