@@ -1,3 +1,12 @@
+## [0.61.3](https://github.com/jacecotton/tcds/compare/v0.61.2...v0.61.3) (2022-10-20)
+
+
+### Bug Fixes
+
+* **components:** Fix notification link color ([3e135ba](https://github.com/jacecotton/tcds/commit/3e135ba24b289b89287993a03384244ca4c6b622))
+
+
+
 ## [0.61.2](https://github.com/jacecotton/tcds/compare/v0.61.1...v0.61.2) (2022-10-05)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Fix notification selector issues ([6375153](https://github.com/jacecotton/tcds/commit/6375153be82cff543488ab1ae3fa0224ad332c2c))
-
-
-
-## [0.60.19](https://github.com/jacecotton/tcds/compare/v0.60.18...v0.60.19) (2022-09-30)
-
-
-### Bug Fixes
-
-* **components:** Open social links in new tab in footer ([597d541](https://github.com/jacecotton/tcds/commit/597d541c6d4879ce9a7c2a70357403d884ee8745))
 
 
 
