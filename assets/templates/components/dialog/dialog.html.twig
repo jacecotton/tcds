@@ -18,7 +18,7 @@
 {% block inner_content %}
   <div class="Dialog__content">
     <h1 class="{{ "show-title" not in modifiers ? "visually-hidden" }}" id="{{ id }}-title">{{ title }}</h1>
-    <tcds-button icon="only x" controls="{{ id }}" round class="bg-secondary Dialog__close">Close dialog</tcds-button>
+    <tcds-button icon="only x" controls="{{ id }}" round class="Dialog__close">Close dialog</tcds-button>
 
     {% block content %}
       {{ content }}
