@@ -1,3 +1,12 @@
+## [0.62.1](https://github.com/jacecotton/tcds/compare/v0.62.0...v0.62.1) (2022-11-03)
+
+
+### Bug Fixes
+
+* **components:** Mega Menu script bug fix ([f116032](https://github.com/jacecotton/tcds/commit/f11603265a368c4a171978bce667e165855a55e7))
+
+
+
 # [0.62.0](https://github.com/jacecotton/tcds/compare/v0.61.5...v0.62.0) (2022-11-03)
 
 
@@ -37,15 +46,6 @@
 ### Bug Fixes
 
 * **components:** Fix notification link color ([3e135ba](https://github.com/jacecotton/tcds/commit/3e135ba24b289b89287993a03384244ca4c6b622))
-
-
-
-## [0.61.2](https://github.com/jacecotton/tcds/compare/v0.61.1...v0.61.2) (2022-10-05)
-
-
-### Bug Fixes
-
-* **layout:** Gap utility error ([46e139c](https://github.com/jacecotton/tcds/commit/46e139c3b73f320ec9e7489096815bc63f6c1504))
 
 
 
