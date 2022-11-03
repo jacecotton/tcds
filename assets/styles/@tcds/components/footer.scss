@@ -108,7 +108,7 @@
       justify-content: center;
       gap: space("normal");
 
-      @include breakpoint-below("medium") {
+      @include breakpoint-below("large") {
         flex-direction: column;
       }
     }
