@@ -16,6 +16,11 @@
 
   @include breakpoint-below("large") {
     text-align: center;
+    grid-template-areas:
+      ".     logo   ."
+      ".     nav    ."
+      ".     social ."
+      "print print  print";
   }
 
   @include breakpoint-above("large") {
@@ -42,6 +47,11 @@
   &__nav {
     grid-area: nav;
     margin-left: min(6rem, 6vw);
+
+    @include breakpoint-below("large") {
+      margin-left: 0;
+      margin-top: 2rem;
+    }
 
     a {
       color: inherit;
