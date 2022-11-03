@@ -1,3 +1,12 @@
+## [0.61.5](https://github.com/jacecotton/tcds/compare/v0.61.4...v0.61.5) (2022-11-03)
+
+
+### Bug Fixes
+
+* **components:** Footer responsive ([fad6aec](https://github.com/jacecotton/tcds/commit/fad6aec644083c156999e9e95ea4bb19e0786cd2))
+
+
+
 ## [0.61.4](https://github.com/jacecotton/tcds/compare/v0.61.3...v0.61.4) (2022-10-31)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Button selector issue ([e60c13c](https://github.com/jacecotton/tcds/commit/e60c13ca8265994a7fa4754b4d85873ce4074c50))
-
-
-
-# [0.61.0](https://github.com/jacecotton/tcds/compare/v0.60.20...v0.61.0) (2022-10-05)
-
-
-### Features
-
-* **components:** Collapse Header on scroll ([3da1a11](https://github.com/jacecotton/tcds/commit/3da1a117ae6afa090e93c281fc2ab9f7c11c1507))
 
 
 
