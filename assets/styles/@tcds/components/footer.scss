@@ -107,6 +107,10 @@
       align-items: center;
       justify-content: center;
       gap: space("normal");
+
+      @include breakpoint-below("large") {
+        flex-direction: column;
+      }
     }
 
     &--with-logos p {
