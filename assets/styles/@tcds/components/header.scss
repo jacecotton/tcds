@@ -29,7 +29,8 @@
 
     &__logo img {
       filter: saturate(0) contrast(0) brightness(2);
-      padding: 18% 0;
+      padding: 9% 0;
+      max-height: var(--site-header-height);
       width: auto;
     }
 
