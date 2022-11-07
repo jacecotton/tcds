@@ -1,3 +1,12 @@
+## [0.62.3](https://github.com/jacecotton/tcds/compare/v0.62.2...v0.62.3) (2022-11-07)
+
+
+### Bug Fixes
+
+* **components:** Header logo height ([0538947](https://github.com/jacecotton/tcds/commit/05389479f65cd0c718430b1aec7deb3f3c8990c6))
+
+
+
 ## [0.62.2](https://github.com/jacecotton/tcds/compare/v0.62.1...v0.62.2) (2022-11-07)
 
 
@@ -37,15 +46,6 @@
 ### Bug Fixes
 
 * **components:** Footer responsive ([fad6aec](https://github.com/jacecotton/tcds/commit/fad6aec644083c156999e9e95ea4bb19e0786cd2))
-
-
-
-## [0.61.4](https://github.com/jacecotton/tcds/compare/v0.61.3...v0.61.4) (2022-10-31)
-
-
-### Bug Fixes
-
-* **components:** Remove erroneous HTML class from Dialog ([3e0d316](https://github.com/jacecotton/tcds/commit/3e0d31650f88e798803f4a932b8fd4e3b8181dd3))
 
 
 
