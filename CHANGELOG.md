@@ -1,3 +1,12 @@
+## [0.62.2](https://github.com/jacecotton/tcds/compare/v0.62.1...v0.62.2) (2022-11-07)
+
+
+### Bug Fixes
+
+* **templates:** Fix header logo height ([f7e1158](https://github.com/jacecotton/tcds/commit/f7e1158aff9d2f9af9aea0d17fb0e9f6b11d07f0))
+
+
+
 ## [0.62.1](https://github.com/jacecotton/tcds/compare/v0.62.0...v0.62.1) (2022-11-03)
 
 
@@ -37,15 +46,6 @@
 ### Bug Fixes
 
 * **components:** Remove erroneous HTML class from Dialog ([3e0d316](https://github.com/jacecotton/tcds/commit/3e0d31650f88e798803f4a932b8fd4e3b8181dd3))
-
-
-
-## [0.61.3](https://github.com/jacecotton/tcds/compare/v0.61.2...v0.61.3) (2022-10-20)
-
-
-### Bug Fixes
-
-* **components:** Fix notification link color ([3e135ba](https://github.com/jacecotton/tcds/commit/3e135ba24b289b89287993a03384244ca4c6b622))
 
 
 
