@@ -50,40 +50,43 @@ export default class MegaMenu extends Toggleable {
 
 (function() {
   const headerMenu = document.getElementById("header-menu");
-  const headerMenuLinks = headerMenu.querySelectorAll("li a");
 
-  headerMenuLinks.forEach((link) => {
-    const id = slugify(link.textContent);
-    link.id = id;
-  });
+  if(headerMenu) {
+    const headerMenuLinks = headerMenu.querySelectorAll("li a");
 
-  document.querySelectorAll("[data-component=MegaMenu]").forEach((instance) => {
-    const link = document.querySelector(`a#${instance.getAttribute("aria-labelledby")}`);
-    const button = document.querySelector(`button#${instance.getAttribute("aria-labelledby")}`);
+    headerMenuLinks.forEach((link) => {
+      const id = slugify(link.textContent);
+      link.id = id;
+    });
 
-    if(!link) {
-      if(button) {
-        instance && new MegaMenu(instance, {});
+    document.querySelectorAll("[data-component=MegaMenu]").forEach((instance) => {
+      const link = document.querySelector(`a#${instance.getAttribute("aria-labelledby")}`);
+      const button = document.querySelector(`button#${instance.getAttribute("aria-labelledby")}`);
+
+      if(!link) {
+        if(button) {
+          instance && new MegaMenu(instance, {});
+        }
+
+        return;
       }
 
-      return;
-    }
+      const newButton = document.createElement("button");
+      newButton.id = link.id;
+      newButton.setAttribute("aria-controls", instance.id);
+      newButton.setAttribute("aria-expanded", "false");
 
-    const newButton = document.createElement("button");
-    newButton.id = link.id;
-    newButton.setAttribute("aria-controls", instance.id);
-    newButton.setAttribute("aria-expanded", "false");
+      if(link.textContent === "Search") {
+        newButton.innerHTML = `<span class="Icon" aria-hidden="true" role="presentation"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="arcs"><circle cx="11" cy="11" r="5.5"></circle><path d="m21 21-5-5"></path></svg></span>`;
+        newButton.setAttribute("aria-label", "Search");
+        newButton.setAttribute("title", "Search");
+      } else {
+        newButton.textContent = link.textContent;
+      }
 
-    if(link.textContent === "Search") {
-      newButton.innerHTML = `<span class="Icon" aria-hidden="true" role="presentation"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="arcs"><circle cx="11" cy="11" r="5.5"></circle><path d="m21 21-5-5"></path></svg></span>`;
-      newButton.setAttribute("aria-label", "Search");
-      newButton.setAttribute("title", "Search");
-    } else {
-      newButton.textContent = link.textContent;
-    }
+      link.parentNode.replaceChild(newButton, link);
 
-    link.parentNode.replaceChild(newButton, link);
-
-    instance && new MegaMenu(instance, {});
-  });
+      instance && new MegaMenu(instance, {});
+    });
+  }
 }());

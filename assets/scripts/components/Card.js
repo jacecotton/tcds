@@ -2,6 +2,8 @@ import WebComponent from "@tcds/WebComponent/WebComponent.js";
 
 export default class Card extends WebComponent {
   render() {
+    const footer = this.props["action-label"] || this.querySelector("[slot=footer]");
+
     return `
       <article part="card">
         ${this.state["no-image"] !== true ? `
@@ -12,11 +14,13 @@ export default class Card extends WebComponent {
         <div part="content">
           <slot name="title"></slot>
           <slot name="description"></slot>
-          <slot name="footer">
-            <footer part="footer">
-              <span part="action-label">${this.props["action-label"] || "Read more"}</span>
-            </footer>
-          </slot>
+          ${footer ? `
+            <slot name="footer">
+              <footer part="footer">
+                <span part="action-label">${this.props["action-label"]}</span>
+              </footer>
+            </slot>
+          ` : ``}
         </div>
       </article>
     `;
