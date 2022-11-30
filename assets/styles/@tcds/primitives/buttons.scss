@@ -13,14 +13,14 @@ button,
   appearance: none;
   /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-appearance: button; // Needed for Safari.
-  background: var(--tcds-color-primary);
+  background: theme-color("primary");
   border: 0;
   color: #fff;
   padding: 0 1rem;
-  height: var(--tcds-size-medium);
-  font-size: var(--tcds-font-size-medium);
-  font-family: var(--tcds-font-ui);
-  font-weight: var(--tcds-font-weight-semibold);
+  height: size("medium");
+  font-size: font-size("medium");
+  font-family: font-stack("ui");
+  font-weight: 600;
   cursor: pointer;
   vertical-align: middle;
 
