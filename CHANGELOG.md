@@ -1,3 +1,12 @@
+## [0.62.4](https://github.com/jacecotton/tcds/compare/v0.62.3...v0.62.4) (2022-11-15)
+
+
+### Bug Fixes
+
+* **components:** Leave Card footer empty if not specified ([1726ea2](https://github.com/jacecotton/tcds/commit/1726ea2ae8eabdc6dc76dece87d6b15004d4b1aa))
+
+
+
 ## [0.62.3](https://github.com/jacecotton/tcds/compare/v0.62.2...v0.62.3) (2022-11-07)
 
 
@@ -37,15 +46,6 @@
 ### Features
 
 * **components:** Responsive footer ([88b9cba](https://github.com/jacecotton/tcds/commit/88b9cba8118bd7992b37ae4634a03e5e6fa89f27))
-
-
-
-## [0.61.5](https://github.com/jacecotton/tcds/compare/v0.61.4...v0.61.5) (2022-11-03)
-
-
-### Bug Fixes
-
-* **components:** Footer responsive ([fad6aec](https://github.com/jacecotton/tcds/commit/fad6aec644083c156999e9e95ea4bb19e0786cd2))
 
 
 
