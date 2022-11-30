@@ -1,3 +1,12 @@
+## [0.62.6](https://github.com/jacecotton/tcds/compare/v0.62.5...v0.62.6) (2022-11-30)
+
+
+### Bug Fixes
+
+* **primitives:** Default button styles fix ([970b970](https://github.com/jacecotton/tcds/commit/970b970572f47fe705980de5c6092a41f3442be2))
+
+
+
 ## [0.62.5](https://github.com/jacecotton/tcds/compare/v0.62.4...v0.62.5) (2022-11-30)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **templates:** Fix header logo height ([f7e1158](https://github.com/jacecotton/tcds/commit/f7e1158aff9d2f9af9aea0d17fb0e9f6b11d07f0))
-
-
-
-## [0.62.1](https://github.com/jacecotton/tcds/compare/v0.62.0...v0.62.1) (2022-11-03)
-
-
-### Bug Fixes
-
-* **components:** Mega Menu script bug fix ([f116032](https://github.com/jacecotton/tcds/commit/f11603265a368c4a171978bce667e165855a55e7))
 
 
 
