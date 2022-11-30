@@ -13,35 +13,18 @@ button,
   appearance: none;
   /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-appearance: button; // Needed for Safari.
-  border: none;
-  font: inherit;
+  background: var(--tcds-color-primary);
+  color: #fff;
+  border: 0;
+  padding: 0 1rem;
+  height: var(--tcds-size-medium);
+  font-size: var(--tcds-font-size-medium);
+  font-family: var(--tcds-font-ui);
+  font-weight: var(--tcds-font-weight-semibold);
   cursor: pointer;
   vertical-align: middle;
 
   &:focus-visible {
     @include focus-style;
-  }
-
-  &:not([class]),
-  &:not(::part) {
-    padding: space("tight") space("normal");
-    color: color("gray", "400");
-    background-color: color("gray", "100");
-    position: relative;
-
-    &::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background-color: transparent;
-      transition: background-color animation("productive");
-    }
-
-    &:hover::after {
-      background-color: color("shade", "0");
-    }
   }
 }
