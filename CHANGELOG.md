@@ -1,3 +1,12 @@
+## [0.62.5](https://github.com/jacecotton/tcds/compare/v0.62.4...v0.62.5) (2022-11-30)
+
+
+### Bug Fixes
+
+* **components:** Default button styles ([2f03b3f](https://github.com/jacecotton/tcds/commit/2f03b3f921567f81a3afc1f38787a272f41ec80d))
+
+
+
 ## [0.62.4](https://github.com/jacecotton/tcds/compare/v0.62.3...v0.62.4) (2022-11-15)
 
 
@@ -31,21 +40,6 @@
 ### Bug Fixes
 
 * **components:** Mega Menu script bug fix ([f116032](https://github.com/jacecotton/tcds/commit/f11603265a368c4a171978bce667e165855a55e7))
-
-
-
-# [0.62.0](https://github.com/jacecotton/tcds/compare/v0.61.5...v0.62.0) (2022-11-03)
-
-
-### Bug Fixes
-
-* **components:** Footer fine print responsive ([2e428be](https://github.com/jacecotton/tcds/commit/2e428be8c9530df0890ac123e50203eed621a0a2))
-* **components:** Footer responsive ([f3ffb59](https://github.com/jacecotton/tcds/commit/f3ffb59b2150411cac3014993e17e01a5300a527))
-
-
-### Features
-
-* **components:** Responsive footer ([88b9cba](https://github.com/jacecotton/tcds/commit/88b9cba8118bd7992b37ae4634a03e5e6fa89f27))
 
 
 
