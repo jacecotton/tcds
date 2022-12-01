@@ -7,7 +7,7 @@
 import "./components/Button.js";
 import "./components/Accordion.js";
 import "./components/Dialog.js";
-import "./components/Header.js";
+// import "./components/Header.js";
 import "./components/Hero.js";
 import "./components/MegaMenu.js";
 import "./components/Notification.js";
