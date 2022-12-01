@@ -1,3 +1,12 @@
+# [0.63.0](https://github.com/jacecotton/tcds/compare/v0.62.6...v0.63.0) (2022-12-01)
+
+
+### Features
+
+* **components:** Remove legacy header ([b0f6669](https://github.com/jacecotton/tcds/commit/b0f666963418a7535ad12be096e2eab340395b28))
+
+
+
 ## [0.62.6](https://github.com/jacecotton/tcds/compare/v0.62.5...v0.62.6) (2022-11-30)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Header logo height ([0538947](https://github.com/jacecotton/tcds/commit/05389479f65cd0c718430b1aec7deb3f3c8990c6))
-
-
-
-## [0.62.2](https://github.com/jacecotton/tcds/compare/v0.62.1...v0.62.2) (2022-11-07)
-
-
-### Bug Fixes
-
-* **templates:** Fix header logo height ([f7e1158](https://github.com/jacecotton/tcds/commit/f7e1158aff9d2f9af9aea0d17fb0e9f6b11d07f0))
 
 
 
