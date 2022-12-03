@@ -40,12 +40,13 @@
     $character: string.slice($unquote-code, $i, $i);
     $character-lookup: map.get($escape-characters, $character);
 
-    @if $character-lookup != null {
+    @if $character-lookup {
       $character: $character-lookup;
     }
 
     $escaped-string: $escaped-string + $character;
   }
 
+  /* stylelint-disable-next-line string-quotes */
   @return url('data:image/svg+xml, #{$escaped-string} ');
 }

@@ -2,7 +2,9 @@
 @use "_variables" as *;
 
 @each $breakpoint, $width in $breakpoints {
+  /* stylelint-disable-next-line custom-media-pattern */
   @custom-media --above-#{$breakpoint} (min-width: #{$width});
+  /* stylelint-disable-next-line custom-media-pattern */
   @custom-media --below-#{$breakpoint} (max-width: #{$width});
 }
 
