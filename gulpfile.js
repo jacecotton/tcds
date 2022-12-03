@@ -58,13 +58,13 @@ const tasks = {
   },
 
   "images": () => {
-    return src("./assets/images/**/*")
+    return src("./static/images/**/*")
       .pipe(imagemin())
       .pipe(dest("./dist/images/"));
   },
 
   "fonts": () => {
-    return src("./assets/fonts/**/*")
+    return src("./static/fonts/**/*")
       .pipe(dest("./dist/fonts/"));
   },
 };
@@ -77,8 +77,8 @@ task("fonts", tasks["fonts"]);
 task("watch", function watcher() {
   watch("./styles/", tasks["styles"]);
   watch("./scripts/", tasks["scripts"]);
-  watch("./assets/images/", tasks["images"]);
-  watch("./assets/fonts/", tasks["fonts"]);
+  watch("./static/images/", tasks["images"]);
+  watch("./static/fonts/", tasks["fonts"]);
 });
 
 task("build", series(["styles", "scripts", "images", "fonts"]));
