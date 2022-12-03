@@ -1,3 +1,4 @@
+/* stylelint-disable custom-property-empty-line-before */
 :root {
   --tcds-color-red-x-light: #fff7f7;
   --tcds-color-red-light: #f2e6e6;
@@ -15,19 +16,19 @@
   --tcds-color-gray-dark: #252425;
   --tcds-color-black: #000;
 
-  --tcds-color-tint-xx-weak: rgba(235, 245, 255, .03);
-  --tcds-color-tint-x-weak: rgba(235, 245, 255, .1);
-  --tcds-color-tint-weak: rgba(235, 245, 255, .3);
-  --tcds-color-tint: rgba(235, 245, 255, .5);
-  --tcds-color-tint-strong: rgba(235, 245, 255, .65);
-  --tcds-color-tint-x-strong: rgba(235, 245, 255, .9);
+  --tcds-color-tint-xx-weak: rgb(235 245 255 / 3%);
+  --tcds-color-tint-x-weak: rgb(235 245 255 / 10%);
+  --tcds-color-tint-weak: rgb(235 245 255 / 30%);
+  --tcds-color-tint: rgb(235 245 255 / 50%);
+  --tcds-color-tint-strong: rgb(235 245 255 / 65%);
+  --tcds-color-tint-x-strong: rgb(235 245 255 / 90%);
 
-  --tcds-color-shade-xx-weak: rgba(0, 0, 0, .03);
-  --tcds-color-shade-x-weak: rgba(0, 0, 0, .1);
-  --tcds-color-shade-weak: rgba(0, 0, 0, .3);
-  --tcds-color-shade: rgba(0, 0, 0, .5);
-  --tcds-color-shade-strong: rgba(0, 0, 0, .65);
-  --tcds-color-shade-x-strong: rgba(0, 0, 0, .9);
+  --tcds-color-shade-xx-weak: rgb(0 0 0 / 3%);
+  --tcds-color-shade-x-weak: rgb(0 0 0 / 10%);
+  --tcds-color-shade-weak: rgb(0 0 0 / 30%);
+  --tcds-color-shade: rgb(0 0 0 / 50%);
+  --tcds-color-shade-strong: rgb(0 0 0 / 65%);
+  --tcds-color-shade-x-strong: rgb(0 0 0 / 90%);
 
   --tcds-color-link-default: var(--tcds-color-blue);
   --tcds-color-link-hover-default: var(--tcds-color-blue-dark);
