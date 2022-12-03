@@ -1,0 +1,8 @@
+@use "_variables" as *;
+@use "_functions" as *;
+
+:root {
+  @each $icon, $value in $icons {
+    --tcds-icon-#{$icon}: #{icon($icon)};
+  }
+}

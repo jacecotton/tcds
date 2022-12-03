@@ -1,0 +1,25 @@
+@use "_variables" as *;
+
+:root {
+  --tcds-font-size-scaler: .9;
+
+  @each $font, $stack in $font-stacks {
+    --tcds-font-#{$font}: #{$stack};
+  }
+  
+  @each $name, $weight in $font-weights {
+    --tcds-font-weight-#{$name}: #{$weight};
+  }
+
+  @each $name, $size in $font-sizes {
+    --tcds-font-size-#{$name}: calc(var(--tcds-font-size-scaler) * #{$size});
+  }
+
+  @each $name, $height in $line-heights {
+    --tcds-line-height-#{$name}: #{$height};
+  }
+  
+  @media (--above-medium) {
+    --tcds-font-size-scaler: 1;
+  }
+}

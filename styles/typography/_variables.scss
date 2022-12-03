@@ -1,0 +1,36 @@
+$-font-sans-serif: ("Mont", "Helvetica Neue", "Helvetica", sans-serif);
+$-font-serif: ("Calluna", serif);
+
+$font-stacks: (
+  "sans-serif": $-font-sans-serif,
+  "serif": $-font-serif,
+  "display": $-font-serif,
+  "headings": $-font-serif,
+  "copy": $-font-serif,
+  "ui": $-font-sans-serif,
+);
+
+$font-weights: (
+  "normal": 400,
+  "semibold": 600,
+  "bold": 700,
+);
+
+$font-sizes: (
+  "x-small": 0.75rem,
+  "small": 0.875rem,
+  "medium": 1rem,
+  "medium-plus": 1.125rem,
+  "large": 1.5rem,
+  "x-large": 2rem,
+  "xx-large": 2.5rem,
+  "xxx-large": 6rem,
+);
+
+$line-heights: (
+  "x-tight": 1,
+  "tight": 1.2,
+  "normal": 1.5,
+  "loose": 1.75,
+  "x-loose": 2,
+);

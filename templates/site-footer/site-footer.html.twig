@@ -1,0 +1,68 @@
+<footer class="site-footer">
+  {% if block("top") or block("primary_menu") or social_links %}
+    <div class="site-footer__top bg-secondary" data-theme="dark">
+      <div class="max-width">
+        {% block top %}{% endblock %}
+        {% block primary_menu %}{% endblock %}
+
+        {% if block("top") or block("primary_menu") %}
+          <hr>
+        {% endif %}
+
+        {% if social_links %}
+          <div class="site-footer__social">
+            <p>
+              {{ social_copy ? social_copy|raw : "Connect with Texas Children’s Hospital on our social media channels" }}
+            </p>
+
+            <nav class="site-footer__social-links">
+              <ul>
+                {% for social_link in social_links %}
+                  <li>
+                    <tcds-button icon="only {{ social_link.icon }}" link="{{ social_link.link }}" new-tab variant="ui" size="small">{{ social_link.title }}</tcds-button>
+                  </li>
+                {% endfor %}
+              </ul>
+            </nav>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+  <div class="site-footer__legal">
+    <div class="max-width">
+      <div class="site-footer__branding">
+        <a href="{{ logo.link ?: "/" }}" rel="home" title="Go home" class="site-footer__logo-link">
+          {% set logo_height = "27" %}
+          {% set logo_width = "200" %}
+
+          {% if logo.image %}
+            {% if "pavilion" in logo.image|lower or "tcp" in logo.image|lower or "urgent" in logo.image|lower %}
+              {% set logo_height = "36" %}
+              {% set logo_width = "230" %}
+            {% elseif "nri" in logo.image|lower %}
+              {% set logo_height = "43" %}
+              {% set logo_width = "203" %}
+            {% endif %}
+          {% endif %}
+
+          <img height="{{ logo_height }}" width="{{ logo_width }}" src="{{ logo.image ?: "https://unpkg.com/@txch/tcds/dist/images/logos/texas-childrens/TC_Horz_CMYK_2K22.svg" }}" alt="Texas Children's logo" class="site-footer__logo">
+        </a>
+
+        <small class="site-footer__copyright">
+          {{ copyright ? copyright|raw : "&copy; #{'now'|date('Y')} Texas Children's Hospital"|raw }}
+        </small>
+      </div>
+
+      {% block secondary_menu %}{% endblock %}
+
+      {% if block("fine_print") or fine_print %}
+        <small class="site-footer__fine-print">
+          {% block fine_print %}
+            {{ fine_print }}
+          {% endblock %}
+        </small>
+      {% endif %}
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,27 @@
+tcds-accordion,
+tcds-accordion-section,
+tcds-alert-bar,
+tcds-button,
+tcds-card,
+tcds-carousel,
+tcds-slide,
+tcds-dialog,
+tcds-icon,
+tcds-mega-menu,
+tcds-section,
+tcds-tabs,
+tcds-tab {
+  &:not(:defined) {
+    display: block;
+    height: 0px;
+    overflow: hidden;
+    animation: tcds-component-reveal 1ms ease forwards;
+    animation-delay: 1s;
+
+    @keyframes tcds-component-reveal {
+      to {
+        height: auto;
+      }
+    }
+  }
+}

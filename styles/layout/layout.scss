@@ -1,0 +1,30 @@
+@use "sass:map";
+@use "_variables" as *;
+
+@each $breakpoint, $width in $breakpoints {
+  @custom-media --above-#{$breakpoint} (min-width: #{$width});
+  @custom-media --below-#{$breakpoint} (max-width: #{$width});
+}
+
+:root {
+  --site-outer-gutter: var(--tcds-space-x-loose);
+  --site-container-max-width: #{map.get($breakpoints, "x-large")};
+  
+  @each $size, $value in $sizes {
+    --tcds-size-#{$size}: #{$value};
+  }
+
+  @each $space, $value in $spaces {
+    --tcds-space-#{$space}: #{$value};
+  }
+
+  --tcds-layer-dialog: 6;
+  --tcds-layer-site-header: 5;
+  --tcds-layer-alert-bar: 4;
+  --tcds-layer-notification: 3;
+
+  @media (--above-x-large) {
+    --tcds-layer-alert-bar: 5;
+    --tcds-layer-site-header: 4;
+  }
+}
