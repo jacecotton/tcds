@@ -11,7 +11,7 @@ export default class Slide extends WebComponent(HTMLElement) {
 
   connected() {
     this.parent = this.closest("tcds-carousel");
-    this.siblings = Array.from(this.closest("tcds-carousel").querySelectorAll("tcds-slide"));
+    this.siblings = Array.from(this.parent.querySelectorAll("tcds-slide"));
     this.position = this.siblings.indexOf(this) + 1;
   }
 

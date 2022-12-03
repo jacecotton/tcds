@@ -36,7 +36,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
           icon="only ${this.state.playing ? "pause" : "play"}"
           size="small"
           variant="ui"
-          label="${this.state.playing ? "Pause carousel" : "Play carousel"}"
+          label="${this.state.playing ? "Stop automatic slide show" : "Start automatic slide show"}"
           onclick="this.getRootNode().host.playClick()"
         ></tcds-button>
       ` : ``}
@@ -76,7 +76,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
           onclick="this.getRootNode().host.nextClick()"
         ></tcds-button>
       </div>
-      <div part="viewport">
+      <div part="viewport" aria-live="${this.state.playing ? "off" : "polite"}">
         <slot></slot>
       </div>
     `;
