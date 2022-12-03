@@ -71,7 +71,7 @@
       }
     }
   }
-  
+
   &__social {
     font-family: var(--tcds-font-copy);
     display: flex;
@@ -95,7 +95,7 @@
     background-color: #fff;
     border-bottom: 8px solid var(--tcds-color-primary);
     padding: 3rem 0;
-  
+
     .max-width {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(232px, 1fr));

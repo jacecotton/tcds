@@ -1,12 +1,12 @@
 @use "_variables" as *;
 
 :root {
-  --tcds-font-size-scaler: .9;
+  --tcds-font-size-scaler: 0.9;
 
   @each $font, $stack in $font-stacks {
     --tcds-font-#{$font}: #{$stack};
   }
-  
+
   @each $name, $weight in $font-weights {
     --tcds-font-weight-#{$name}: #{$weight};
   }
@@ -18,7 +18,7 @@
   @each $name, $height in $line-heights {
     --tcds-line-height-#{$name}: #{$height};
   }
-  
+
   @media (--above-medium) {
     --tcds-font-size-scaler: 1;
   }

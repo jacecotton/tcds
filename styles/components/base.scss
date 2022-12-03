@@ -13,7 +13,7 @@ tcds-tabs,
 tcds-tab {
   &:not(:defined) {
     display: block;
-    height: 0px;
+    height: 0;
     overflow: hidden;
     animation: tcds-component-reveal 1ms ease forwards;
     animation-delay: 1s;

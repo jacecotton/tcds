@@ -7,7 +7,7 @@
     width: var(--tcds-selection-button-size);
     height: var(--tcds-selection-button-size);
     border: 1px solid var(--tcds-selection-button-border-color, var(--tcds-color-shade-weak));
-    background-color: var(--tcds-selection-button-button-background, rgba(255, 255, 255, .8));
+    background-color: var(--tcds-selection-button-button-background, rgb(255 255 255 / 80%));
     outline: 1px solid transparent;
     margin: 0 var(--tcds-space-x-tight) 0 0;
     transition:

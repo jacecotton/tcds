@@ -12,7 +12,7 @@ select {
   appearance: none;
   border: 1px solid var(--tcds-color-shade-weak);
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgb(255 255 255 / 50%);
   font-family: var(--tcds-font-ui);
   font-size: var(--tcds-font-size-small);
   line-height: var(--tcds-line-height-normal);
@@ -22,7 +22,7 @@ select {
   transition: background-color var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing);
 
   &:hover {
-    background-color: rgba(255, 255, 255, 0.85);
+    background-color: rgb(255 255 255 / 85%);
   }
 
   &:focus-visible {

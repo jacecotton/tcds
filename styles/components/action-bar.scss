@@ -4,10 +4,10 @@
   list-style: none;
   display: flex;
   background-color: #fff;
-  box-shadow: 0 0 0.625rem 0 rgb(82, 82, 82, .16);
+  box-shadow: 0 0 0.625rem 0 rgb(82 82 82 / 16%);
   border-radius: 20px;
   padding: var(--tcds-space-normal);
-  
+
   &:not(#{&}--compact) {
     @include max-width;
 
@@ -52,7 +52,7 @@
     transition:
       color var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing),
       background-color var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing);
-    
+
     @media (--above-x-large) {
       @at-root .tcds-action-bar:not(.tcds-action-bar--compact) a {
         justify-content: center;

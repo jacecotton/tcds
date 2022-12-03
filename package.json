@@ -1,13 +1,33 @@
 {
-  "name": "tcds",
-  "version": "1.0.0",
+  "name": "@txch/tcds",
+  "version": "0.63.0",
   "description": "Texas Children's Design System",
   "type": "module",
   "scripts": {
-    "dev": "gulp"
+    "dev": "gulp",
+    "build": "gulp build",
+    "build:scripts": "gulp scripts",
+    "build:styles": "gulp styles",
+    "build:images": "gulp images",
+    "build:fonts": "gulp fonts",
+    "lint": "npm run lint:styles && npm run lint:scripts",
+    "lint:styles": "stylelint 'styles/**/*.scss'",
+    "lint:scripts": "eslint 'scripts/**/*.js'",
+    "fix": "npm run fix:styles && npm run fix:scripts",
+    "fix:styles": "stylelint 'styles/**/*.scss' --fix",
+    "fix:scripts": "eslint 'scripts/**/*.js' --fix",
+    "version": "cat package.json | grep -e '^  \"version\": ' | awk '{print $2}' | sed 's/[\",]//g'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacecotton/tcds.git"
   },
   "author": "",
   "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/jacecotton/tcds/issues"
+  },
+  "homepage": "https://github.com/jacecotton/tcds#readme",
   "devDependencies": {
     "@babel/core": "^7.19.1",
     "@babel/preset-env": "^7.19.1",
