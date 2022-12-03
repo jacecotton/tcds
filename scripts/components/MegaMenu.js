@@ -8,7 +8,7 @@ export default class MegaMenu extends WebComponent(HTMLElement) {
 
   static state = {
     open: "boolean",
-  }
+  };
 
   connected() {
     this.state.open = false;

@@ -7,7 +7,7 @@ export default class Card extends WebComponent(HTMLElement) {
 
   static state = {
     "no-image": "boolean",
-  }
+  };
 
   connected() {
     if(!this.querySelector("[slot=image]")) {

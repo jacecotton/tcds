@@ -173,6 +173,6 @@ customElements.define("tcds-alert-bar", AlertBar);
 
 (function() {
   document.querySelectorAll("tcds-alert-bar")?.forEach((alertBar, index, array) => {
-    alertBar.id = `alert-bar${array.length > 1 ? `-${index + 1}` : ""}`
+    alertBar.id = `alert-bar${array.length > 1 ? `-${index + 1}` : ""}`;
   });
 }());

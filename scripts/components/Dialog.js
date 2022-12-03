@@ -8,11 +8,11 @@ export default class Dialog extends WebComponent(HTMLElement) {
 
   static state = {
     "open": "boolean",
-  }
+  };
 
   static props = {
     "autoclose": "number",
-  }
+  };
   
   render() {
     return /* html */`

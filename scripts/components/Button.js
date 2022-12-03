@@ -4,7 +4,7 @@ class Button extends WebComponent(HTMLElement) {
   static props = {
     "icon": "array",
     "new-tab": "boolean",
-  }
+  };
 
   render() {
     return /* html */`

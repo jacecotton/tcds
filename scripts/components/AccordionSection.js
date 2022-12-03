@@ -4,7 +4,7 @@ import slugify from "../utilities/slugify.js";
 export default class AccordionSection extends WebComponent(HTMLElement) {
   static state = {
     "expanded": "boolean",
-  }
+  };
 
   static get observedAttributes() {
     return ["expanded"];

@@ -8,11 +8,11 @@ export default class Tab extends WebComponent(HTMLElement) {
 
   static state = {
     active: "boolean",
-  }
+  };
 
   static props = {
     label: "string",
-  }
+  };
 
   render() {
     return /* html */`

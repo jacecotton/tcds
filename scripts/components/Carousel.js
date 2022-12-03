@@ -7,15 +7,15 @@ export default class Carousel extends WebComponent(HTMLElement) {
 
   static state = {
     playing: "boolean",
-  }
+  };
 
   static props = {
     timing: "number",
-  }
+  };
 
   connected() {
     const carousels = Array.from(document.querySelectorAll("tcds-carousel"));
-    this.id = `carousel${carousels.length > 1 ? `-${carousels.indexOf(this) + 1}` : ""}`
+    this.id = `carousel${carousels.length > 1 ? `-${carousels.indexOf(this) + 1}` : ""}`;
     
     this.slides = Array.from(this.querySelectorAll("tcds-slide"));
     const activeSlides = this.slides.filter(slide => slide.hasAttribute("active"));
@@ -200,7 +200,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
       event.preventDefault();
       this.next().then((next) => {
         this.parts["indicator"][next].focus();
-      })
+      });
     } else if(event.key === "ArrowLeft") {
       event.preventDefault();
       this.previous().then((previous) => {

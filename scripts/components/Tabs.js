@@ -4,7 +4,7 @@ import slugify from "../utilities/slugify.js";
 export default class Tabs extends WebComponent(HTMLElement) {
   static props = {
     "inactive": "boolean",
-  }
+  };
   
   connected() {
     this.tabs = Array.from(this.querySelectorAll("tcds-tab"));
@@ -57,7 +57,7 @@ export default class Tabs extends WebComponent(HTMLElement) {
       event.preventDefault();
       this.next().then((next) => {
         this.parts["tab"][next].focus();
-      })
+      });
     } else if(event.key === "ArrowLeft") {
       event.preventDefault();
       this.previous().then((previous) => {

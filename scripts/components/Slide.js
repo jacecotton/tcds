@@ -7,7 +7,7 @@ export default class Slide extends WebComponent(HTMLElement) {
 
   static state = {
     active: "boolean",
-  }
+  };
 
   connected() {
     this.parent = this.closest("tcds-carousel");
