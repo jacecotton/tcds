@@ -20,7 +20,10 @@ h1,
   font-weight: var(--tcds-font-weight-bold);
   line-height: var(--tcds-line-height-tight);
   letter-spacing: -0.025em;
-  margin: 0 0 2rem;
+
+  &:not(:only-child) {
+    margin: 0 0 2rem;
+  }
 }
 
 h2,
