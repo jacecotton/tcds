@@ -5,9 +5,7 @@ tcds-button,
 tcds-card,
 tcds-carousel,
 tcds-slide,
-tcds-dialog,
 tcds-icon,
-tcds-mega-menu,
 tcds-section,
 tcds-tabs,
 tcds-tab {
@@ -22,6 +20,24 @@ tcds-tab {
       to {
         height: auto;
       }
+    }
+  }
+}
+
+tcds-mega-menu,
+tcds-dialog {
+  &:not(:defined) {
+    display: none;
+  }
+}
+
+tcds-section {
+  &:not(:defined) {
+    padding: 3rem;
+
+    [slot="image"],
+    [slot="background"] {
+      display: none;
     }
   }
 }
