@@ -1,5 +1,7 @@
-import WebComponent from "../WebComponent/WebComponent.js";
-import slugify from "../utilities/slugify.js";
+import WebComponent from "../../scripts/WebComponent/WebComponent.js";
+import styles from "./style.css";
+
+import slugify from "../../scripts/utilities/slugify.js";
 
 export default class Tab extends WebComponent(HTMLElement) {
   static get observedAttributes() {
@@ -14,6 +16,10 @@ export default class Tab extends WebComponent(HTMLElement) {
     label: "string",
   };
 
+  connected() {
+    this.shadowRoot.adoptedStyleSheets = [styles];
+  }
+
   render() {
     return /* html */`
       <section
@@ -24,14 +30,6 @@ export default class Tab extends WebComponent(HTMLElement) {
       >
         <slot></slot>
       </section>
-    `;
-  }
-
-  static get styles() {
-    return /* css */`
-      [role="tabpanel"] {
-        padding: var(--tcds-tab-padding-top, var(--tcds-space-normal)) 0 0;
-      }
     `;
   }
 }

@@ -1,4 +1,4 @@
-import WebComponent from "../WebComponent/WebComponent.js";
+import WebComponent from "../../scripts/WebComponent/WebComponent.js";
 
 export default class Slide extends WebComponent(HTMLElement) {
   static get observedAttributes() {
@@ -38,9 +38,7 @@ export default class Slide extends WebComponent(HTMLElement) {
       state: {
         "active": () => {
           if(this.state.active) {
-            const viewportOffset = this.parent.parts["viewport"].getBoundingClientRect().left;
-            const slideOffset = this.getBoundingClientRect().left;
-            this.parent.parts["viewport"].scrollLeft += slideOffset - viewportOffset;
+            this.parent.scrollToSlide(this);
           }
         },
       },

@@ -1,4 +1,6 @@
-import WebComponent from "../WebComponent/WebComponent.js";
+import WebComponent from "../../scripts/WebComponent/WebComponent.js";
+import shadowStyles from "./style.css";
+import lightStyles from "./style.light.css";
 
 /**
  * @todo Add deep linking.
@@ -10,6 +12,9 @@ export default class Accordion extends WebComponent(HTMLElement) {
   };
 
   connected() {
+    this.shadowRoot.adoptedStyleSheets = [shadowStyles];
+    document.adoptedStyleSheets = [...document.adoptedStyleSheets, ...[lightStyles]];
+
     this.sections = Array.from(this.querySelectorAll("tcds-accordion-section"));
   }
 
@@ -31,33 +36,6 @@ export default class Accordion extends WebComponent(HTMLElement) {
 
   collapseAll() {
     this.sections.forEach(section => section.collapse());
-  }
-
-  static get styles() {
-    return {
-      shadow: () => /* css */`
-        :host {
-          display: flex;
-          flex-direction: column;
-          gap: var(--tcds-space-x-tight);
-        }
-
-        [part="controls"] {
-          display: flex;
-          justify-content: flex-end;
-        }
-      `,
-
-      light: () => /* css */`
-        tcds-accordion:not(:only-child) {
-          margin: var(--tcds-space-normal) 0;
-        }
-
-        tcds-accordion:first-child:not(:only-child) {
-          margin: 0 0 var(--tcds-space-normal);
-        }
-      `,
-    };
   }
 }
 

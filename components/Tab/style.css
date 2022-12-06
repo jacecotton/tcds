@@ -1,0 +1,3 @@
+[role="tabpanel"] {
+  padding: var(--tcds-tab-padding-top, var(--tcds-space-normal)) 0 0;
+}

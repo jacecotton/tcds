@@ -1,4 +1,5 @@
-import WebComponent from "../WebComponent/WebComponent.js";
+import WebComponent from "../../scripts/WebComponent/WebComponent.js";
+import styles from "./style.css";
 
 export default class Carousel extends WebComponent(HTMLElement) {
   static get observedAttributes() {
@@ -14,9 +15,11 @@ export default class Carousel extends WebComponent(HTMLElement) {
   };
 
   connected() {
+    this.shadowRoot.adoptedStyleSheets = [styles];
+
     const carousels = Array.from(document.querySelectorAll("tcds-carousel"));
     this.id = `carousel${carousels.length > 1 ? `-${carousels.indexOf(this) + 1}` : ""}`;
-    
+
     this.slides = Array.from(this.querySelectorAll("tcds-slide"));
     const activeSlides = this.slides.filter(slide => slide.hasAttribute("active"));
 
@@ -88,31 +91,33 @@ export default class Carousel extends WebComponent(HTMLElement) {
       && this.hasAttribute("timing")
       && window.matchMedia("(prefers-reduced-motion: reduce), (hover: none)").matches === false;
 
-    this.parts["viewport"].addEventListener("mouseenter", () => {
-      this.pause();
-      this.state.hovering = true;
+    this.slides.forEach((slide) => {
+      this.swipe.observe(slide);
     });
 
-    this.parts["viewport"].addEventListener("mouseleave", () => {
-      this.resume();
-      this.state.hovering = false;
-    });
+    this.parts["viewport"].addEventListener("mouseenter", this.pause.bind(this));
+    this.parts["viewport"].addEventListener("focusin", this.pause.bind(this));
+    this.parts["viewport"].addEventListener("mouseleave", this.resume.bind(this));
+    this.parts["viewport"].addEventListener("focusout", this.resume.bind(this));
 
     this.parts["viewport"].addEventListener("touchstart", () => {
-      this.state.playing = false;
+      this.stop();
+      this.swiped = true;
+      this.scrolling = false;
 
-      this.slides.forEach((slide) => {
-        this.swipe.observe(slide);
+      this.parts["viewport"].addEventListener("scroll", () => {
+        clearTimeout(this.scrolling);
+
+        this.scrolling = setTimeout(() => {
+          this.swiped = false;
+        }, 200);
       });
     });
-
-    this.parts["viewport"].addEventListener("focusin", this.pause.bind(this));
-    this.parts["viewport"].addEventListener("focusout", this.resume.bind(this));
 
     document.addEventListener("visibilitychange", () => {
       if(document.hidden) {
         this.pause();
-      } else if(this.intersecting !== false) {
+      } else if(this.isInView !== false) {
         this.resume();
       }
     });
@@ -126,31 +131,11 @@ export default class Carousel extends WebComponent(HTMLElement) {
         "playing": () => {
           requestAnimationFrame(() => {
             if(this.state.playing) {
-              this.play();
+              this.startPlayer();
             } else {
-              this.stop();
+              this.cancelPlayer();
             }
           });
-        },
-
-        "hovering": () => {
-          if(this.state.hovering) {
-            this.slides.forEach((slide) => {
-              this.swipe.observe(slide);
-            });
-          } else {
-            let scrolling;
-
-            this.parts["viewport"].addEventListener("scroll", () => {
-              clearTimeout(scrolling);
-
-              scrolling = setTimeout(() => {
-                this.slides.forEach((slide) => {
-                  this.swipe.unobserve(slide);
-                });
-              }, 66);
-            });
-          }
         },
       },
     };
@@ -159,7 +144,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
   get swipe() {
     return new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if(entry.isIntersecting) {
+        if((this.parts["viewport"].matches(":hover") || this.swiped) && entry.isIntersecting) {
           this.select(entry.target);
         }
       });
@@ -175,10 +160,10 @@ export default class Carousel extends WebComponent(HTMLElement) {
       entries.forEach((entry) => {
         if(!entry.isIntersecting) {
           this.pause();
-          this.intersecting = false;
+          this.isInView = false;
         } else {
           this.resume();
-          this.intersecting = true;
+          this.isInView = true;
         }
       });
     }, { threshold: .9 });
@@ -188,6 +173,12 @@ export default class Carousel extends WebComponent(HTMLElement) {
     this.slides.forEach((slide) => {
       slide.state.active = slide === activeSlide;
     });
+  }
+
+  scrollToSlide(slide) {
+    const viewportOffset = this.parts["viewport"].getBoundingClientRect().left;
+    const slideOffset = slide.getBoundingClientRect().left;
+    this.parts["viewport"].scrollLeft += slideOffset - viewportOffset;
   }
 
   indicatorClick(event) {
@@ -225,6 +216,36 @@ export default class Carousel extends WebComponent(HTMLElement) {
     this.state.playing = !this.state.playing;
   }
 
+  pause() {
+    if(this.state.playing === true) {
+      this.state.playing = false;
+      this.isPaused = true;
+    }
+  }
+
+  resume() {
+    if(this.isPaused === true) {
+      this.state.playing = true;
+      this.isPaused = null;
+    }
+  }
+
+  startPlayer() {
+    if(this.state.playing === true) {
+      this.player = setTimeout(() => {
+        this.next();
+        this.startPlayer();
+      }, this.props.timing * 1000);
+    }
+  }
+
+  cancelPlayer() {
+    clearTimeout(this.player);
+  }
+
+  /**
+   * Public API.
+   */
   next() {
     return new Promise((resolve) => {
       const nextIndex = (this.slides.indexOf(this.querySelector("[active]")) + 1) % this.slides.length;
@@ -241,139 +262,12 @@ export default class Carousel extends WebComponent(HTMLElement) {
     });
   }
 
-  player;
-  paused;
-
   play() {
-    if(this.state.playing === true) {
-      this.player = setTimeout(() => {
-        this.next();
-        this.play();
-      }, this.props.timing * 1000);
-    }
+    this.state.playing = true;
   }
 
   stop() {
-    clearTimeout(this.player);
-  }
-
-  pause() {
-    if(this.state.playing === true) {
-      this.state.playing = false;
-      this.paused = true;
-    }
-  }
-
-  resume() {
-    if(this.paused === true) {
-      this.state.playing = true;
-      this.paused = null;
-    }
-  }
-
-  static get styles() {
-    return {
-      shadow: () => /* css */`
-        :host {
-          display: grid;
-          grid-template-areas:
-            "slides     slides"
-            "play-pause navigation";
-          grid-template-columns: min-content 1fr;
-          align-items: center;
-          gap: var(--tcds-space-loose) 0;
-        }
-
-        :host([navigation*="top"][navigation*="right"]) {
-          --tcds-carousel-navigation-justify: end;
-
-          grid-template-areas:
-            ".          navigation"
-            "slides     slides"
-            "play-pause .";
-          gap: var(--tcds-space-tight);
-        }
-
-        @media (hover: none), (max-width: 1024px) {
-          :host {
-            --tcds-carousel-play-pause-opacity: 1;
-          }
-        }
-  
-        :host(:hover),
-        :host(:focus-within) {
-          --tcds-carousel-play-pause-opacity: 1;
-        }
-
-        [part="viewport"] {
-          grid-area: slides;
-          display: flex;
-          align-items: center;
-          overflow-x: scroll;
-          scroll-snap-type: x mandatory;
-          scrollbar-width: none;
-          overscroll-behavior: none;
-        }
-
-        @media (prefers-reduced-motion: no-preference) {
-          [part="viewport"] {
-            scroll-behavior: smooth;
-          }
-        }
-
-        [part="viewport"]::-webkit-scrollbar {
-          display: none;
-        }
-
-        ::slotted(tcds-slide) {
-          flex: 1 0 100%;
-          scroll-snap-align: start;
-          scroll-snap-stop: always;
-        }
-
-        [part="navigation"] {
-          grid-area: navigation;
-          display: flex;
-          align-items: center;
-          justify-content: var(--tcds-carousel-navigation-justify, center);
-          gap: var(--tcds-space-loose);
-        }
-
-        [part="indicators"] {
-          display: flex;
-          gap: var(--tcds-space-x-loose);
-        }
-
-        [part="indicator"] {
-          display: inline-flex;
-          overflow: hidden;
-          height: .85rem;
-          width: .85rem;
-          border-radius: .85rem;
-          padding: 0;
-          border: 0;
-          cursor: pointer;
-          background-color: #a8a8a8;
-          transition: background-color var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing);
-        }
-
-        [part="indicator"]:hover,
-        [part="indicator"][aria-expanded="true"] {
-          background-color: var(--tcds-color-primary);
-        }
-
-        [part="play-pause"] {
-          grid-area: play-pause;
-          opacity: var(--tcds-carousel-play-pause-opacity, 0);
-          transition: opacity var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing);
-        }
-
-        [part="next"]:not(:hover),
-        [part="previous"]:not(:hover) {
-          --tcds-button-text-color: #a8a8a8;
-        }
-      `,
-    };
+    this.state.playing = false;
   }
 }
 

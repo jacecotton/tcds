@@ -18,9 +18,6 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
     // Provide component name property.
     this.component = this.localName;
 
-    // Add light DOM styles if exists.
-    this.#mountLightStyles();
-
     // `state` and `props` objects can be author-initialized to indicate the
     // desired types. We'll store internal copies before redefining these
     // objects for actual state and props.
@@ -55,27 +52,8 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
   }
 
   /**
-   * Add light DOM styles to document head if present.
-   */
-  #mountLightStyles() {
-    if(
-      // If `styles` exists and a `light` stylesheet is given.
-      Object.prototype.toString.call(this.constructor.styles) === "[object Object]" 
-      && "light" in this.constructor.styles
-      // Don't add redundant styles (in the event of multiple component
-      // instances).
-      && !document.head.querySelector(`style[data-component="${this.component}"]`)
-    ) {
-      const lightStyles = document.createElement("style");
-      lightStyles.setAttribute("data-component", this.component);
-      lightStyles.innerHTML = this.constructor.styles.light();
-      document.head.append(lightStyles);
-    }
-  }
-
-  /**
    * Intercept changes to internal `state` object.
-   * 
+   *
    * store = the object that `this.state` will become.
    * state = the state key to update.
    * value = the desired value to set `state` to.
@@ -90,7 +68,7 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
         if(this.#stateTypes) {
           const wantsArrayIsArray = this.#stateTypes[state] === "array" && Array.isArray(value);
           const notOfCorrectType = typeof value !== this.#stateTypes[state] && !wantsArrayIsArray;
-          
+
           // Check new state value against declared type if it exists.
           if(state in this.#stateTypes && notOfCorrectType) {
             console.error(`Value of state property ${state} is not of type ${this.#stateTypes[state].toUpperCase()}.`, `${value} (${(typeof value).toUpperCase()})`);
@@ -308,7 +286,7 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
    */
   #update() {
     this.#debounce = null;
-    
+
     // Set attribute to state value if state prop is listed in
     // `observedAttributes`. We don't do this for props because the `props`
     // object is internally immutable. That is, state is bidirectionally synced
@@ -334,35 +312,11 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
       }
     }
 
-    let template = this.render?.();
-
-    if(template) {
-      const tcdsBaseStyles = document.head.querySelector(`link[href*="tcds.css"]`)?.getAttribute("href") || "https://unpkg.com/@txch/tcds/dist/styles/tcds.css";
-
-      let stylesheets = `<style>@import url("${tcdsBaseStyles}");</style>`;
-
-      // Add styles to shadow root by default. If shadow styles are specified, add
-      // those as well.
-      if(this.constructor.styles) {
-        const styles = this.constructor.styles;
-  
-        stylesheets += `
-          <style>
-            ${typeof styles === "string" ? styles : ""}
-            ${typeof styles === "object" && "shadow" in styles ? styles.shadow() : ""}
-          </style>
-        `;
-      }
-
-      template = stylesheets + template;
-
-      // Diff template from existing DOM and apply differences.
-      diff(template, this.shadowRoot);
-    }
-
+    // Diff template from existing DOM and apply differences.
+    diff(this.render?.(), this.shadowRoot);
 
     const batch = Object.assign({}, this.#buffer);
-    
+
     // Declare component mounted after the first render pass and after all child
     // components are defined. Then call update callbacks after mount and after
     // every update afterwards.

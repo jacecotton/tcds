@@ -48,6 +48,10 @@ const tasks = {
                 },
               ],
             },
+            {
+              test: /\.css$/i,
+              use: ["constructable-style-loader"],
+            },
           ],
         },
         output: {

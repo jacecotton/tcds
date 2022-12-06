@@ -175,7 +175,7 @@ function diffAttributes(template, existing) {
  * Get the content from a node.
  *
  * @param {Node} node The node.
- * 
+ *
  * @return {String} The content.
  */
 function getNodeContent(node) {
@@ -213,7 +213,15 @@ export default function diff(template, existing) {
   const templateNodes = template.childNodes;
   const existingNodes = existing.childNodes;
 
+  let skipper = 0;
+
+  if(existingNodes[0]?.tagName?.toLowerCase() === "style") {
+    skipper = 1;
+  }
+
   templateNodes.forEach((node, index) => {
+    index += skipper;
+
     // If the given `template` node does not exist in the `existing` DOM...
     if(!existingNodes[index]) {
       // Append it.

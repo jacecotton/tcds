@@ -1,5 +1,7 @@
-import WebComponent from "../WebComponent/WebComponent.js";
-import getFocusableChildren from "../utilities/getFocusableChildren.js";
+import WebComponent from "../../scripts/WebComponent/WebComponent.js";
+import styles from "./style.css";
+
+import getFocusableChildren from "../../scripts/utilities/getFocusableChildren.js";
 
 export default class Dialog extends WebComponent(HTMLElement) {
   static get observedAttributes() {
@@ -13,7 +15,11 @@ export default class Dialog extends WebComponent(HTMLElement) {
   static props = {
     "autoclose": "number",
   };
-  
+
+  connected() {
+    this.shadowRoot.adoptedStyleSheets = [styles];
+  }
+
   render() {
     return /* html */`
       <div part="dialog">
@@ -92,12 +98,12 @@ export default class Dialog extends WebComponent(HTMLElement) {
           this.controllers?.forEach((controller) => {
             controller.setAttribute(controller.hasAttribute("controls") ? "expanded" : "aria-expanded", this.state.open);
           });
-          
+
           if(this.state.open) {
             const focusableChildren = getFocusableChildren(this);
             const firstFocusableElement = focusableChildren[0] || this.parts["close"];
             const target = this.querySelector("[autofocus]") || firstFocusableElement;
-            
+
             this.previouslyFocused = document.activeElement;
             target.focus();
 
@@ -120,62 +126,6 @@ export default class Dialog extends WebComponent(HTMLElement) {
 
   open() {
     this.state.open = true;
-  }
-
-  static get styles() {
-    return /* css */`
-      :host {
-        --tcds-dialog-padding: var(--tcds-space-x-loose);
-        
-        display: none;
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        z-index: var(--tcds-layer-dialog);
-        background-color: var(--tcds-color-shade-strong);
-        justify-content: center;
-        align-items: center;
-        overscroll-behavior: none;
-        backdrop-filter: blur(0.5px);
-      }
-
-      :host([open]) {
-        display: flex;
-        animation: fade-in var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing) forwards;
-      }
-
-      :host([open]) [part="dialog"] {
-        animation: slide-in-down var(--tcds-animation-expressive-duration) var(--tcds-animation-expressive-easing) forwards;
-      }
-
-      [part="dialog"] {
-        background-color: var(--tcds-dialog-background, #fff);
-        width: calc(100vw - var(--site-outer-gutter) * 2);
-        overflow-wrap: break-word;
-        padding: var(--tcds-dialog-padding);
-        position: relative;
-        z-index: 1;
-        border-radius: 10px;
-      }
-
-      @media (min-width: 1024px) {
-        [part="dialog"] {
-          width: var(--tcds-dialog-base-width, fit-content);
-          min-width: var(--tcds-dialog-min-width, 500px);
-          max-width: var(--tcds-dialog-max-width, 30vw);
-        }
-      }
-
-      [part="close"] {
-        position: absolute;
-        top: 0;
-        right: 0;
-        transform: translate(50%, -50%);
-        z-index: 1;
-      }
-    `;
   }
 }
 

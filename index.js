@@ -2,20 +2,23 @@ import WebComponent from "./scripts/WebComponent/WebComponent.js";
 import AnimateElement from "./scripts/AnimateElement/AnimateElement.js";
 import slugify from "./scripts/utilities/slugify.js";
 
-import "./scripts/components/Accordion.js";
-import "./scripts/components/AccordionSection.js";
-import "./scripts/components/AlertBar.js";
-import "./scripts/components/Button.js";
-import "./scripts/components/Card.js";
-import "./scripts/components/Slide.js";
-import "./scripts/components/Carousel.js";
-import "./scripts/components/Dialog.js";
-import "./scripts/components/Icon.js";
-import "./scripts/components/MegaMenu.js";
-import "./scripts/components/Section.js";
-import "./scripts/components/Tab.js";
-import "./scripts/components/Tabs.js";
+import "construct-style-sheets-polyfill/dist/adoptedStyleSheets.js";
 
-import "./scripts/site-header.js";
+import "./components/Accordion/index.js";
+import "./components/AccordionSection/index.js";
+import "./components/AlertBar/index.js";
+import "./components/Button/index.js";
+import "./components/Card/index.js";
+import "./components/Slide/index.js";
+import "./components/Carousel/index.js";
+import "./components/Dialog/index.js";
+import "./components/Icon/index.js";
+import "./components/Tab/index.js";
+import "./components/Tabs/index.js";
+// import "./scripts/components/Dialog.js";
+// import "./scripts/components/MegaMenu.js";
+// import "./scripts/components/Section.js";
+
+// import "./scripts/site-header.js";
 
 export { WebComponent, AnimateElement, slugify };

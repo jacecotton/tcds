@@ -1,5 +1,7 @@
-import WebComponent from "../WebComponent/WebComponent.js";
-import slugify from "../utilities/slugify.js";
+import WebComponent from "../../scripts/WebComponent/WebComponent.js";
+import styles from "./style.css";
+
+import slugify from "../../scripts/utilities/slugify.js";
 
 export default class AccordionSection extends WebComponent(HTMLElement) {
   static state = {
@@ -11,6 +13,8 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
   }
 
   connected() {
+    this.shadowRoot.adoptedStyleSheets = [styles];
+
     this.parent = this.closest("tcds-accordion");
     this.siblings = Array.from(this.parent.querySelectorAll("tcds-accordion-section")).filter(instance => instance !== this);
 
@@ -53,7 +57,7 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
           if(this.state.expanded) {
             this.parts["panel"].style.height = "0px";
             this.parts["panel"].hidden = false;
-            
+
             requestAnimationFrame(() => {
               this.parts["panel"].style.height = `${this.parts["panel"].scrollHeight}px`;
 
@@ -87,53 +91,6 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
 
   toggle() {
     this.state.expanded = !this.state.expanded;
-  }
-
-  static get styles() {
-    return /* css */`
-      [part="heading"] {
-        margin: 0;
-      }
-
-      [part="button"] {
-        appearance: none;
-        background: none;
-        border: 0;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: var(--tcds-size-medium);
-        padding: 0 var(--tcds-space-normal);
-        text-align: left;
-        font-size: var(--tcds-font-size-small);
-        font-family: var(--tcds-font-ui);
-        font-weight: var(--tcds-font-weight-semibold);
-        width: 100%;
-        background-color: var(--tcds-color-gray-light);
-        color: var(--tcds-color-gray-dark);
-      }
-
-      [part="button"][aria-expanded="true"] {
-        background-color: var(--tcds-color-blue-dark);
-        color: var(--tcds-color-gray-x-light);
-        font-weight: var(--tcds-font-weight-normal);
-      }
-
-      [part="icon"] {
-        pointer-events: none;
-      }
-
-      [part="panel"] {
-        overflow: hidden;
-        background-color: var(--tcds-color-gray-x-light);
-        transition: height .15s linear;
-      }
-
-      [part="content"] {
-        padding: var(--tcds-space-normal) var(--tcds-space-loose);
-      }
-    `;
   }
 }
 
