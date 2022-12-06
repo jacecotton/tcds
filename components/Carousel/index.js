@@ -101,7 +101,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
     this.parts["viewport"].addEventListener("focusout", this.resume.bind(this));
 
     this.parts["viewport"].addEventListener("touchstart", () => {
-      this.stop();
+      this.state.playing = false;
       this.swiped = true;
       this.scrolling = false;
 
