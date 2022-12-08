@@ -1,3 +1,12 @@
+# [0.64.0](https://github.com/jacecotton/tcds/compare/v0.63.0...v0.64.0) (2022-12-08)
+
+
+### Features
+
+* Release 1.0.0 ([#16](https://github.com/jacecotton/tcds/issues/16)) ([ee3d8cb](https://github.com/jacecotton/tcds/commit/ee3d8cb33727463a914188c093269c260691eab0))
+
+
+
 # [0.63.0](https://github.com/jacecotton/tcds/compare/v0.62.6...v0.63.0) (2022-12-01)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Leave Card footer empty if not specified ([1726ea2](https://github.com/jacecotton/tcds/commit/1726ea2ae8eabdc6dc76dece87d6b15004d4b1aa))
-
-
-
-## [0.62.3](https://github.com/jacecotton/tcds/compare/v0.62.2...v0.62.3) (2022-11-07)
-
-
-### Bug Fixes
-
-* **components:** Header logo height ([0538947](https://github.com/jacecotton/tcds/commit/05389479f65cd0c718430b1aec7deb3f3c8990c6))
 
 
 
