@@ -1,3 +1,55 @@
+# [1.0.0](https://github.com/jacecotton/tcds/compare/v0.63.0...v1.0.0) (2022-12-08)
+
+
+### Features
+
+* Release 1.0.0 ([#17](https://github.com/jacecotton/tcds/issues/17)) ([c3de011](https://github.com/jacecotton/tcds/commit/c3de01109892b936467109b42b726fe6f155d778))
+
+
+### BREAKING CHANGES
+
+* Complete Design System overhaul
+
+* Init commit
+
+* Compiling files
+
+* Carousel optimizations
+
+* Linting
+
+* Stylelint
+
+* eslint
+
+* stylelint
+
+* Rename "assets" to "static"
+
+* Remove IE 11 from support 🥳
+
+* Set default background color
+
+* Progressive enhancement tweaks for web components
+
+* Add styles for breadcrumb, pagination, and main content
+
+* Add README
+
+* Use constructable stylesheets with webpack loader
+
+* Optimize carousel
+
+* Updates
+
+* Force update name change
+
+* Force update name change
+
+Co-authored-by: Jace Cotton <jxcotton@texaschildrens.org>
+
+
+
 # [0.63.0](https://github.com/jacecotton/tcds/compare/v0.62.6...v0.63.0) (2022-12-01)
 
 
@@ -31,15 +83,6 @@
 ### Bug Fixes
 
 * **components:** Leave Card footer empty if not specified ([1726ea2](https://github.com/jacecotton/tcds/commit/1726ea2ae8eabdc6dc76dece87d6b15004d4b1aa))
-
-
-
-## [0.62.3](https://github.com/jacecotton/tcds/compare/v0.62.2...v0.62.3) (2022-11-07)
-
-
-### Bug Fixes
-
-* **components:** Header logo height ([0538947](https://github.com/jacecotton/tcds/commit/05389479f65cd0c718430b1aec7deb3f3c8990c6))
 
 
 
