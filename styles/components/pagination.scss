@@ -3,5 +3,5 @@
 .pager__items {
   display: flex;
   list-style: none;
-  gap: 1rem;
+  gap: var(--tcds-space-normal);
 }

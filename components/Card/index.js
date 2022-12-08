@@ -21,10 +21,12 @@ export default class Card extends WebComponent(HTMLElement) {
 
     if(!this.props.orientation && this.state["no-image"] !== true) {
       const resize = new ResizeObserver(() => {
+        const orientation = this.getAttribute("orientation");
+
         if(this.parentElement.getBoundingClientRect().width > 600) {
-          this.setAttribute("orientation", "horizontal");
+          orientation !== "horizontal" && this.setAttribute("orientation", "horizontal");
         } else {
-          this.setAttribute("orientation", "vertical");
+          orientation!== "vertical" && this.setAttribute("orientation", "vertical");
         }
       });
 

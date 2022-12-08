@@ -4,21 +4,20 @@ import slugify from "./scripts/utilities/slugify.js";
 
 import "construct-style-sheets-polyfill/dist/adoptedStyleSheets.js";
 
-import "./components/Accordion/index.js";
-import "./components/AccordionSection/index.js";
-import "./components/AlertBar/index.js";
-import "./components/Button/index.js";
-import "./components/Card/index.js";
-import "./components/Slide/index.js";
-import "./components/Carousel/index.js";
-import "./components/Dialog/index.js";
-import "./components/Icon/index.js";
-import "./components/Tab/index.js";
-import "./components/Tabs/index.js";
-// import "./scripts/components/Dialog.js";
-// import "./scripts/components/MegaMenu.js";
-// import "./scripts/components/Section.js";
+import "./components/accordion/index.js";
+import "./components/accordion-section/index.js";
+import "./components/alert-bar/index.js";
+import "./components/button/index.js";
+import "./components/card/index.js";
+import "./components/slide/index.js";
+import "./components/carousel/index.js";
+import "./components/dialog/index.js";
+import "./components/icon/index.js";
+import "./components/mega-menu/index.js";
+import "./components/section/index.js";
+import "./components/tab/index.js";
+import "./components/tabs/index.js";
 
-// import "./scripts/site-header.js";
+import "./scripts/site-header.js";
 
 export { WebComponent, AnimateElement, slugify };

@@ -22,20 +22,20 @@ export default class Accordion extends WebComponent(HTMLElement) {
     return /* html */`
       ${this.props.multiple ? /* html */`
         <div part="controls">
-          <tcds-button part="expand-all" variant="ui" size="small" icon="plus" onclick="this.getRootNode().host.expandAll()"><span class="visually-hidden">expand</span> all</tcds-button>
-          <tcds-button part="collapse-all" variant="ui" size="small" icon="minus" onclick="this.getRootNode().host.collapseAll()"><span class="visually-hidden">collapse</span> all</tcds-button>
+          <tcds-button part="open-all" variant="ui" size="small" icon="plus" onclick="this.getRootNode().host.openAll()"><span class="visually-hidden">open</span> all</tcds-button>
+          <tcds-button part="close-all" variant="ui" size="small" icon="minus" onclick="this.getRootNode().host.closeAll()"><span class="visually-hidden">close</span> all</tcds-button>
         </div>
       ` : ``}
       <slot></slot>
     `;
   }
 
-  expandAll() {
-    this.sections.forEach(section => section.expand());
+  openAll() {
+    this.sections.forEach(section => section.open());
   }
 
-  collapseAll() {
-    this.sections.forEach(section => section.collapse());
+  closeAll() {
+    this.sections.forEach(section => section.close());
   }
 }
 

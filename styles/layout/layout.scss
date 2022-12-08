@@ -11,7 +11,7 @@
 :root {
   --site-outer-gutter: var(--tcds-space-x-loose);
   --site-container-max-width: #{map.get($breakpoints, "x-large")};
-  --content-inner-gutter: var(--tcds-space-x-loose);
+  --content-inner-gutter: 2rem;
 
   @each $size, $value in $sizes {
     --tcds-size-#{$size}: #{$value};
@@ -25,6 +25,10 @@
   --tcds-layer-site-header: 5;
   --tcds-layer-alert-bar: 4;
   --tcds-layer-notification: 3;
+
+  @media (--above-medium) {
+    --content-inner-gutter: 4rem;
+  }
 
   @media (--above-x-large) {
     --tcds-layer-alert-bar: 5;

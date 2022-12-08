@@ -13,6 +13,7 @@
   align-items: center;
   overscroll-behavior: none;
   backdrop-filter: blur(0.5px);
+  font-family: var(--tcds-font-ui);
 }
 
 :host([open]) {

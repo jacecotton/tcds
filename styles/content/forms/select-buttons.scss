@@ -55,7 +55,7 @@
     }
 
     &::after {
-      transform: translate(-50%, -50%) rotate(45deg);
+      transform: translate(-50%, -61%) rotate(45deg);
       left: 50%;
       top: 50%;
       width: calc(var(--tcds-selection-button-inner-size, 1px) / 2);

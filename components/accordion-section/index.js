@@ -5,11 +5,11 @@ import slugify from "../../scripts/utilities/slugify.js";
 
 export default class AccordionSection extends WebComponent(HTMLElement) {
   static state = {
-    "expanded": "boolean",
+    "open": "boolean",
   };
 
   static get observedAttributes() {
-    return ["expanded"];
+    return ["open"];
   }
 
   connected() {
@@ -18,9 +18,9 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
     this.parent = this.closest("tcds-accordion");
     this.siblings = Array.from(this.parent.querySelectorAll("tcds-accordion-section")).filter(instance => instance !== this);
 
-    this.state.expanded = this.parent.props.multiple
-      ? this.hasAttribute("expanded")
-      : this.parent.sections.filter(section => section.hasAttribute("expanded")).indexOf(this) === 0;
+    this.state.open = this.parent.props.multiple
+      ? this.hasAttribute("open")
+      : this.parent.sections.filter(section => section.hasAttribute("open")).indexOf(this) === 0;
   }
 
   render() {
@@ -33,11 +33,11 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
             part="button"
             id="${id}-button"
             aria-controls="${id}-panel"
-            aria-expanded="${this.state.expanded}"
+            aria-expanded="${this.state.open}"
             onclick="this.getRootNode().host.toggle()"
           >
             ${this.props.label}
-            <tcds-icon part="icon" icon="${this.state.expanded ? "minus" : "plus"}"></tcds-icon>
+            <tcds-icon part="icon" icon="${this.state.open ? "minus" : "plus"}"></tcds-icon>
           </button>
         </h${this.parent.props["heading-level"] || "3"}>
 
@@ -53,8 +53,8 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
   updated(state) {
     return {
       state: {
-        "expanded": () => {
-          if(this.state.expanded) {
+        "open": () => {
+          if(this.state.open) {
             this.parts["panel"].style.height = "0px";
             this.parts["panel"].hidden = false;
 
@@ -62,10 +62,10 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
               this.parts["panel"].style.height = `${this.parts["panel"].scrollHeight}px`;
 
               if(this.parent.props.multiple === false) {
-                this.siblings.filter(sibling => sibling.state.expanded).forEach(sibling => sibling.collapse());
+                this.siblings.filter(sibling => sibling.state.open).forEach(sibling => sibling.close());
               }
             });
-          } else if(state.oldState.expanded) {
+          } else if(state.oldState.open) {
             this.parts["panel"].style.height = "0px";
 
             this.parts["panel"].ontransitionend = () => {
@@ -81,16 +81,16 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
     };
   }
 
-  expand() {
-    this.state.expanded = true;
+  open() {
+    this.state.open = true;
   }
 
-  collapse() {
-    this.state.expanded = false;
+  close() {
+    this.state.open = false;
   }
 
   toggle() {
-    this.state.expanded = !this.state.expanded;
+    this.state.open = !this.state.open;
   }
 }
 

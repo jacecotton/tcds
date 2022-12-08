@@ -14,6 +14,7 @@
   box-shadow: 0 0 0.625rem 0 rgb(82 82 82 / 16%);
   border-radius: 10px;
   overflow: hidden;
+  font-family: var(--tcds-card-font);
 }
 
 :host([orientation="vertical"]:not([no-image])) [part="card"] {
@@ -43,6 +44,10 @@
 
 :host([divider]:not([orientation*="horizontal"])) {
   --tcds-card-content-divider: var(--tcds-space-tight) solid var(--tcds-color-primary);
+}
+
+:host([variant*="ui"]) {
+  --tcds-card-font: var(--tcds-font-ui);
 }
 
 :host([image*="contain"]) {

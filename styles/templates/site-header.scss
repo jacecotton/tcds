@@ -186,6 +186,8 @@
     &__nav {
       margin-left: auto;
       height: 100%;
+      max-width: 100%;
+      overflow-x: auto;
 
       ul {
         display: flex;

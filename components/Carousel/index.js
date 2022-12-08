@@ -99,20 +99,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
     this.parts["viewport"].addEventListener("focusin", this.pause.bind(this));
     this.parts["viewport"].addEventListener("mouseleave", this.resume.bind(this));
     this.parts["viewport"].addEventListener("focusout", this.resume.bind(this));
-
-    this.parts["viewport"].addEventListener("touchstart", () => {
-      this.state.playing = false;
-      this.swiped = true;
-      this.scrolling = false;
-
-      this.parts["viewport"].addEventListener("scroll", () => {
-        clearTimeout(this.scrolling);
-
-        this.scrolling = setTimeout(() => {
-          this.swiped = false;
-        }, 200);
-      });
-    });
+    this.parts["viewport"].addEventListener("touchstart", this.stop.bind(this));
 
     document.addEventListener("visibilitychange", () => {
       if(document.hidden) {
@@ -144,7 +131,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
   get swipe() {
     return new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if((this.parts["viewport"].matches(":hover") || this.swiped) && entry.isIntersecting) {
+        if(this.state.playing === false && entry.isIntersecting) {
           this.select(entry.target);
         }
       });
@@ -169,9 +156,9 @@ export default class Carousel extends WebComponent(HTMLElement) {
     }, { threshold: .9 });
   }
 
-  select(activeSlide) {
+  select(active) {
     this.slides.forEach((slide) => {
-      slide.state.active = slide === activeSlide;
+      slide.state.active = slide === active;
     });
   }
 
@@ -225,8 +212,12 @@ export default class Carousel extends WebComponent(HTMLElement) {
 
   resume() {
     if(this.isPaused === true) {
-      this.state.playing = true;
-      this.isPaused = null;
+      // This requestAnimationFrame is to prevent setTimeout weirdness if the
+      // play state is toggled too rapidly.
+      requestAnimationFrame(() => {
+        this.state.playing = true;
+        this.isPaused = null;
+      });
     }
   }
 

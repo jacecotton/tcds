@@ -17,12 +17,16 @@ body {
 h1,
 .h1 {
   font-size: var(--tcds-font-size-xx-large);
-  font-weight: var(--tcds-font-weight-bold);
+  font-weight: var(--tcds-font-weight-semibold);
   line-height: var(--tcds-line-height-tight);
   letter-spacing: -0.025em;
 
   &:not(:only-child) {
     margin: 0 0 2rem;
+  }
+
+  main & {
+    color: var(--tcds-color-primary);
   }
 }
 

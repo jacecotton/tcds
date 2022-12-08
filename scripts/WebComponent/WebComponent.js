@@ -177,21 +177,21 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
         // If the part has not already been read...
         if(!parts[part]) {
           // Query select for the part.
-          const $parts = this.shadowRoot.querySelectorAll(`[part~=${part}]`);
+          const query = this.shadowRoot.querySelectorAll(`[part~=${part}]`);
 
-          if(!$parts || $parts.length < 1) {
+          if(!query || query.length < 1) {
             console.warn(`${this.component} does not contain shadow part(s) "${part}".`);
             return;
           }
 
           let value;
 
-          if($parts.length > 1) {
+          if(query.length > 1) {
             // Return an array of nodes if node list of more than 1 node.
-            value = Array.from($parts);
+            value = Array.from(query);
           } else {
             // Just return the first node if only 1 node.
-            value = $parts[0];
+            value = query[0];
           }
 
           // Store the part(s) in the object to avoid redundant DOM querying
@@ -312,8 +312,16 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
       }
     }
 
+    let template = this.render?.();
+    const baseStyles = Array.from(document.styleSheets).find(sheet => sheet.title === "tcds-base");
+
+    template = `
+      <style id="${baseStyles.title}">@import url("${baseStyles.href}")</style>
+      ${template}
+    `;
+
     // Diff template from existing DOM and apply differences.
-    diff(this.render?.(), this.shadowRoot);
+    diff(template, this.shadowRoot);
 
     const batch = Object.assign({}, this.#buffer);
 
@@ -328,6 +336,8 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
       Promise.all(childComponentsAreDefined).then(() => {
         this.mounted?.();
         this.#callUpdateCallbacks(batch);
+      }).catch((error) => {
+        console.error(error);
       });
     } else {
       this.#callUpdateCallbacks(batch);
