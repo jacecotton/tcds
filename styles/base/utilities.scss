@@ -1,0 +1,5 @@
+@use "mixins" as *;
+
+.visually-hidden:not(:focus, :active) {
+  @include visually-hidden;
+}

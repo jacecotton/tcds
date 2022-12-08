@@ -1,0 +1,28 @@
+.tcds-breadcrumb,
+/* Legacy selector, do not use */
+.coh-breadcrumb {
+  font-family: var(--tcds-font-ui);
+  font-size: var(--tcds-font-size-small);
+}
+
+.tcds-breadcrumb :is(ul, ol),
+/* Legacy selector, do not use */
+:is(ul, ol).coh-breadcrumb {
+  display: flex;
+  list-style: none;
+
+  li:not(:last-child)::after {
+    content: "";
+    margin: 0 1ch;
+    user-select: none;
+    width: 1em;
+    height: 1em;
+    color: inherit;
+    background: currentcolor;
+    mask: var(--tcds-icon-chevron-right);
+    mask-position: 50% 50%;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    vertical-align: middle;
+  }
+}

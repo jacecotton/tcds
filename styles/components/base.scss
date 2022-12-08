@@ -1,0 +1,43 @@
+tcds-accordion,
+tcds-accordion-section,
+tcds-alert-bar,
+tcds-button,
+tcds-card,
+tcds-carousel,
+tcds-slide,
+tcds-icon,
+tcds-section,
+tcds-tabs,
+tcds-tab {
+  &:not(:defined) {
+    display: block;
+    height: 0;
+    overflow: hidden;
+    animation: tcds-component-reveal 1ms ease forwards;
+    animation-delay: 1s;
+
+    @keyframes tcds-component-reveal {
+      to {
+        height: auto;
+      }
+    }
+  }
+}
+
+tcds-mega-menu,
+tcds-dialog {
+  &:not(:defined) {
+    display: none;
+  }
+}
+
+tcds-section {
+  &:not(:defined) {
+    padding: 3rem;
+
+    [slot="image"],
+    [slot="background"] {
+      display: none;
+    }
+  }
+}

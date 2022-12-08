@@ -1,0 +1,111 @@
+body {
+  font-family: var(--tcds-font-copy);
+  font-size: var(--tcds-font-size-medium);
+  font-variant-numeric: lining-nums;
+}
+
+:where(a) {
+  color: var(--tcds-color-link);
+  transition: color var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing);
+}
+
+:where(a:hover),
+:where(a:visited) {
+  color: var(--tcds-color-link-hover);
+}
+
+h1,
+.h1 {
+  font-size: var(--tcds-font-size-xx-large);
+  font-weight: var(--tcds-font-weight-semibold);
+  line-height: var(--tcds-line-height-tight);
+  letter-spacing: -0.025em;
+
+  &:not(:only-child) {
+    margin: 0 0 2rem;
+  }
+
+  main & {
+    color: var(--tcds-color-primary);
+  }
+}
+
+h2,
+.h2 {
+  font-size: var(--tcds-font-size-x-large);
+  line-height: var(--tcds-line-height-tight);
+  letter-spacing: -0.0125em;
+}
+
+h3,
+.h3 {
+  font-size: var(--tcds-font-size-large);
+  line-height: var(--tcds-line-height-tight);
+}
+
+h4,
+.h4 {
+  font-size: var(--tcds-font-size-medium-plus);
+  line-height: var(--tcds-line-height-normal);
+}
+
+h5,
+.h5 {
+  font-size: var(--tcds-font-size-medium);
+  line-height: var(--tcds-line-height-normal);
+}
+
+h6,
+.h6 {
+  font-size: var(--tcds-font-size-small);
+  line-height: var(--tcds-line-height-normal);
+}
+
+:where(h1, h2, h3, h4, h5, h6),
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: var(--tcds-font-headings);
+}
+
+:where(h2, h3, h4, h5, h6),
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-weight: var(--tcds-font-weight-semibold);
+  margin: 1rem 0;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+:where(:not(h1) + h2),
+:where(:not(h2) + h3) {
+  margin-top: 3.5rem;
+}
+
+:where(:not(h3) + h4) {
+  margin-top: 2rem;
+}
+
+small,
+sub,
+sup {
+  font-size: max(var(--tcds-font-size-x-small), 87.5%);
+}
+
+p {
+  font-size: var(--tcds-font-size-medium);
+  line-height: var(--tcds-line-height-normal);
+  margin: 0 0 1rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

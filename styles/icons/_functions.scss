@@ -1,0 +1,52 @@
+@use "sass:string";
+@use "sass:map";
+@use "_variables" as *;
+
+@function icon($icon) {
+  @if not map.has-key($icons, $icon) {
+    @error "Icon #{name} not found in icon library.";
+    @return false;
+  }
+
+  $icon: map.get($icons, $icon);
+
+  @return svg($icon);
+}
+
+@function svg($code) {
+  $escaped-string: "";
+  $unquote-code: string.unquote($code);
+
+  $escape-characters: (
+    " ": "%20",
+    "'": "%22",
+    "\"": "%27",
+    "#": "%23",
+    "/": "%2F",
+    ":": "%3A",
+    "(": "%28",
+    ")": "%29",
+    "%": "%25",
+    "<": "%3C",
+    ">": "%3E",
+    "\\": "%5C",
+    "^": "%5E",
+    "{": "%7B",
+    "|": "%7C",
+    "}": "%7D",
+  );
+
+  @for $i from 1 through string.length($unquote-code) {
+    $character: string.slice($unquote-code, $i, $i);
+    $character-lookup: map.get($escape-characters, $character);
+
+    @if $character-lookup {
+      $character: $character-lookup;
+    }
+
+    $escaped-string: $escaped-string + $character;
+  }
+
+  /* stylelint-disable-next-line string-quotes */
+  @return url('data:image/svg+xml, #{$escaped-string} ');
+}

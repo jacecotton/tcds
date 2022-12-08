@@ -1,0 +1,37 @@
+@use "_variables" as *;
+
+.text-center {
+  text-align: center;
+}
+
+@each $font, $stack in $font-stacks {
+  .font-#{$font} {
+    font-family: var(--tcds-font-#{$font});
+  }
+}
+
+@each $name, $weight in $font-weights {
+  .font-weight-#{$name} {
+    font-weight: var(--tcds-font-weight-#{$name});
+  }
+}
+
+@each $name, $size in $font-sizes {
+  .font-size-#{$name} {
+    font-size: var(--tcds-font-size-#{$name});
+
+    @if index(("xx-large", "x-large", "large"), $name) {
+      line-height: var(--tcds-line-height-tight);
+    }
+
+    @if index(("medium-plus", "medium", "small", "x-small"), $name) {
+      line-height: var(--tcds-line-height-normal);
+    }
+  }
+}
+
+@each $name, $height in $line-heights {
+  .line-height-#{$name} {
+    line-height: var(--tcds-line-height-#{$name});
+  }
+}
