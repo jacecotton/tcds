@@ -10,4 +10,3 @@ gulpfile.js           export-ignore
 CONTRIBUTING.md       export-ignore
 ARCHITECTURE.md       export-ignore
 dist/                 export-ignore
-assets/**/README.md   export-ignore

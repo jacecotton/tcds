@@ -1,1 +1,0 @@
-tcds-carousel:defined [slot=header]{font-size:1rem;font-size:clamp(.66rem,.66rem + 1vw,1rem);line-height:1.6;margin:0;font-weight:400}tcds-carousel:defined [slot=header] a{color:inherit}tcds-carousel:defined [slot=header] a:not(:hover){text-decoration:none}

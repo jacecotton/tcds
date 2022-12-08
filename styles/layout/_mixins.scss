@@ -1,0 +1,18 @@
+@mixin max-width {
+  margin: 0 auto;
+  width: calc(100% - (var(--site-outer-gutter) * 2));
+  max-width: var(--site-container-max-width);
+}
+
+@mixin full-bleed($element: "") {
+  margin-left: calc(var(--content-inner-gutter, var(--site-outer-gutter)) * -1);
+
+  @if $element == "img" {
+    width: calc(100% + (var(--content-inner-gutter, var(--site-outer-gutter)) * 2));
+    max-width: calc(100% + (var(--content-inner-gutter, var(--site-outer-gutter)) * 2));
+  } @else {
+    margin-right: calc(var(--content-inner-gutter, var(--site-outer-gutter)) * -1);
+    padding-left: var(--content-inner-gutter, var(--site-outer-gutter));
+    padding-right: var(--content-inner-gutter, var(--site-outer-gutter));
+  }
+}

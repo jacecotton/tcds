@@ -1,0 +1,7 @@
+.tcds-pagination :is(ul, ol),
+/* Legacy selector, do not use */
+.pager__items {
+  display: flex;
+  list-style: none;
+  gap: var(--tcds-space-normal);
+}

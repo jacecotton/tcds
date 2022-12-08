@@ -1,0 +1,10 @@
+@use "../layout/mixins" as *;
+
+.tcds-callout {
+  @include full-bleed;
+
+  padding-top: var(--tcds-space-normal);
+  padding-bottom: var(--tcds-space-normal);
+  margin-top: var(--tcds-space-loose);
+  margin-bottom: var(--tcds-space-loose);
+}

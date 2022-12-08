@@ -1,94 +1,45 @@
-/**
- * Dependencies.
- */
-
 import gulp from "gulp";
 const { task, watch, src, dest, series } = gulp;
-import { join, resolve } from "path";
 
-// Script utilities
 import webpack from "webpack-stream";
 
-// Style utilities
 import postcss from "gulp-postcss";
+import custommedia from "postcss-custom-media";
 import autoprefixer from "autoprefixer";
-import dartSass from "sass";
-import gulpSass from "gulp-sass";
-const sass = gulpSass(dartSass);
+import dartsass from "sass";
+import gulpsass from "gulp-sass";
+const sass = gulpsass(dartsass);
 
-// Image utilities
 import imagemin from "gulp-imagemin";
 
-// Miscellaneous utilities
 import rename from "gulp-rename";
 
-/**
- * Configuration.
- */
-
-const inputPath = "./assets";
-const outputPath = "./dist";
-
-const config = {
-  styles: {
-    src: `${inputPath}/styles/@tcds/**/*.scss`,
-    dest: `${outputPath}/styles/`,
-  },
-
-  scripts: {
-    src: `${inputPath}/scripts/index.js`,
-    dest: `${outputPath}/scripts/`,
-  },
-
-  icons: {
-    src: `${inputPath}/icons/**/*.svg`,
-    dest: {
-      images: `${outputPath}/icons/`,
-      templates: `${inputPath}/templates/icons/`,
-    },
-  },
-
-  fonts: {
-    src: `${inputPath}/fonts/**/*`,
-    dest: `${outputPath}/fonts/`,
-  },
-
-  images: {
-    src: `${inputPath}/images/**/*`,
-    dest: `${outputPath}/images/`,
-  },
-};
-
-/**
- * Define tasks.
- */
-
 const tasks = {
-  styles: () => {
-    return src(config.styles.src)
-      // Preprocessing (Sass).
+  "styles": () => {
+    return src("./index.scss")
       .pipe(sass({
         outputStyle: "compressed",
-        includePaths: [`${inputPath}/styles`],
-      }).on("error", sass.logError))
-      // Post-processing (PostCSS).
-      .pipe(postcss([autoprefixer()]))
-      // Output to destination folder.
-      .pipe(dest(config.styles.dest));
+      }))
+      .pipe(postcss([
+        autoprefixer(),
+        custommedia({
+          importFrom: "./styles/layout/layout",
+        }),
+      ]))
+      .pipe(rename("tcds.css"))
+      .pipe(dest("./dist/"));
   },
 
-  scripts: () => {
-    return src(config.scripts.src)
-      // Module bundling.
+  "scripts": () => {
+    return src("./index.js")
       .pipe(webpack({
-        entry: config.scripts.src,
+        entry: "./index.js",
         module: {
           rules: [
             {
               test: /\.js$/,
               exclude: /(node_modules)/,
               use: [
-                // Use Babel for transpiling to older syntax.
                 {
                   loader: "babel-loader",
                   options: {
@@ -97,66 +48,42 @@ const tasks = {
                 },
               ],
             },
+            {
+              test: /\.css$/i,
+              use: ["constructable-style-loader"],
+            },
           ],
-        },
-        resolve: {
-          alias: {
-            // This will make JavaScript module imports that begin with "@tcds"
-            // look inside the TCDS package.
-            "@tcds": resolve(join(), "./assets/scripts/"),
-          },
         },
         output: {
           filename: "tcds.js",
         },
       }))
-      // Output to destination folder.
-      .pipe(dest(config.scripts.dest));
+      .pipe(dest("./dist/"));
   },
 
-  icons: () => {
-    return src(config.icons.src)
-      // File optimization.
+  "images": () => {
+    return src("./static/images/**/*")
       .pipe(imagemin())
-      // Output to destination folder.
-      .pipe(dest(config.icons.dest.images))
-      // Convert to Twig template for transclusion.
-      .pipe(rename((path) => {
-        path.extname = ".svg.twig";
-      }))
-      // Output to source directory.
-      .pipe(dest(config.icons.dest.templates));
+      .pipe(dest("./dist/images/"));
   },
 
-  fonts: () => {
-    return src(config.fonts.src)
-      .pipe(dest(config.fonts.dest));
-  },
-
-  images: () => {
-    return src(config.images.src)
-      .pipe(imagemin())
-      .pipe(dest(config.images.dest));
+  "fonts": () => {
+    return src("./static/fonts/**/*")
+      .pipe(dest("./dist/fonts/"));
   },
 };
 
-/**
- * Register tasks.
- */
-
-task("styles", tasks.styles);
-task("scripts", tasks.scripts);
-task("icons", tasks.icons);
-task("fonts", tasks.fonts);
-task("images", tasks.images);
+task("styles", tasks["styles"]);
+task("scripts", tasks["scripts"]);
+task("images", tasks["images"]);
+task("fonts", tasks["fonts"]);
 
 task("watch", function watcher() {
-  watch(`${inputPath}/styles/`, tasks.styles);
-  watch(`${inputPath}/scripts/`, tasks.scripts);
-  watch(`${inputPath}/icons/`, tasks.icons);
-  watch(`${inputPath}/fonts`, tasks.fonts);
-  watch(`${inputPath}/images/`, tasks.images);
+  watch("./styles/", tasks["styles"]);
+  watch("./scripts/", tasks["scripts"]);
+  watch("./static/images/", tasks["images"]);
+  watch("./static/fonts/", tasks["fonts"]);
 });
 
-task("build", series(["styles", "scripts", "icons", "fonts", "images"]));
+task("build", series(["styles", "scripts", "images", "fonts"]));
 task("default", series(["build", "watch"]));

@@ -1,0 +1,41 @@
+@use "../../styles/base/_variables" as *;
+@import "https://use.typekit.net/edh4ohj.css";
+
+@font-face {
+  font-family: Mont;
+  src: url("#{$static-path}/fonts/mont/Mont-Bold.woff2") format("woff2");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: Mont;
+  src: url("#{$static-path}/fonts/mont/Mont-BoldItalic.woff2") format("woff2");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Mont;
+  src: url("#{$static-path}/fonts/mont/Mont-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: Mont;
+  src: url("#{$static-path}/fonts/mont/Mont-SemiBoldItalic.woff2") format("woff2");
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Mont;
+  src: url("#{$static-path}/fonts/mont/Mont-Regular.woff2") format("woff2");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: Mont;
+  src: url("#{$static-path}/fonts/mont/Mont-RegularItalic.woff2") format("woff2");
+  font-weight: normal;
+  font-style: italic;
+}

@@ -1,1 +1,0 @@
-.Breadcrumb ul,.Breadcrumb ol{display:flex;list-style:none}.Breadcrumb li{font-size:1rem;font-size:clamp(.66rem,.66rem + 1vw,1rem);line-height:1.6}.Breadcrumb li:not(:last-child)::after{content:"/";margin:0 1ch;-webkit-user-select:none;-ms-user-select:none;user-select:none}

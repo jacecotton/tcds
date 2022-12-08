@@ -1,1 +1,0 @@
-table{border-collapse:collapse;width:100%}table:where(:not(:only-child)){margin:32px 0}:not(thead)>tr:nth-of-type(odd){background-color:#f8f8f9}td{vertical-align:top}th{text-align:left}td,th{padding:8px 16px;border-bottom:1px solid #e2e2e7}

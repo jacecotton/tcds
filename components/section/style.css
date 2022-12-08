@@ -1,0 +1,203 @@
+/* stylelint-disable property-no-vendor-prefix */
+:host {
+  --tcds-section-vertical-padding: 7rem;
+  --tcds-section-watermark-size: min(768px, 110vw);
+  --tcds-section-watermark-y-offset: 25%;
+  --tcds-section-watermark-color: var(--tcds-color-shade-x-weak);
+  --tcds-section-heading-color: var(--tcds-color-primary);
+  --tcds-section-text-align: left;
+
+  display: block;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+:host([watermark*="large"]) {
+  --tcds-section-watermark-size: 127vw;
+  --tcds-section-watermark-y-offset: 50%;
+}
+
+:host([data-theme="dark"]) {
+  --tcds-section-heading-color: #fff;
+}
+
+:host([data-theme="light"].bg-secondary) {
+  --tcds-section-watermark-color: var(--tcds-color-blue-light);
+}
+
+:host([data-theme="light"].bg-primary) {
+  --tcds-section-watermark-color: var(--tcds-color-red-light);
+}
+
+:host([has-background]) {
+  --tcds-section-aspect-ratio: 4 / 3;
+}
+
+@media (min-width: 768px) {
+  :host([has-background]) {
+    --tcds-section-aspect-ratio: 16 / 9;
+  }
+
+  :host([has-background="video"]) {
+    --tcds-section-aspect-ratio: 4 / 3;
+  }
+}
+
+@media (min-width: 1200px) {
+  :host([has-background]) {
+    --tcds-section-aspect-ratio: 16 / 5;
+  }
+
+  :host([has-background="video"]) {
+    --tcds-section-aspect-ratio: 16 / 9;
+  }
+}
+
+@media (min-width: 1920px) {
+  :host([has-background="video"]) {
+    --tcds-section-aspect-ratio: 16 / 5;
+  }
+}
+
+:host([class*="bg-"]:not([watermark="none"]))::before {
+  display: block;
+  content: "";
+  width: var(--tcds-section-watermark-size);
+  height: var(--tcds-section-watermark-size);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translate(25%, var(--tcds-section-watermark-y-offset));
+  color: inherit;
+  background: var(--tcds-section-watermark-color);
+  -webkit-mask: var(--tcds-icon-texas-childrens);
+  mask: var(--tcds-icon-texas-childrens);
+  -webkit-mask-position: 50% 50%;
+  mask-position: 50% 50%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  z-index: -1;
+}
+
+section {
+  display: flex;
+  align-items: var(--tcds-section-vertical-align, center);
+  aspect-ratio: var(--tcds-section-aspect-ratio);
+  padding: var(--tcds-section-vertical-padding) 0;
+}
+
+section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+}
+
+:host([overlay*="darken"]) section::before {
+  background-color: rgb(30 35 40 / var(--tcds-section-overlay-opacity, 60%));
+}
+
+:host([overlay*="desaturate"]) section::before {
+  backdrop-filter: saturate(0);
+}
+
+:host([overlay*="bottom-gradient"]) section::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  height: 50%;
+  background-image: linear-gradient(to top, rgb(0 0 0 / 50%) 0%, rgb(0 0 0 / 0%) 100%);
+}
+
+.max-width {
+  z-index: 1;
+}
+
+[part="content"] {
+  display: grid;
+  align-items: center;
+  gap: var(--tcds-space-normal) 3vw;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "image"
+    "text"
+    "cta";
+}
+
+@media (max-width: 768px) {
+  :host {
+    --tcds-section-text-align: center;
+  }
+
+  [part="content"] {
+    gap: var(--tcds-space-normal);
+  }
+}
+
+@media (min-width: 768px) {
+  :host([has-image]) [part="content"] {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      "text image"
+      "cta  cta";
+  }
+}
+
+hgroup {
+  grid-area: text;
+  display: flex;
+  flex-direction: column;
+  gap: var(--tcds-space-x-loose);
+  text-align: var(--tcds-section-text-align);
+}
+
+figure {
+  grid-area: image;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  figure {
+    margin:
+      calc(var(--tcds-section-vertical-padding) * -1)
+      calc(var(--site-outer-gutter) * -1)
+      3rem;
+  }
+}
+
+nav {
+  grid-area: cta;
+  display: flex;
+  gap: var(--tcds-space-x-loose);
+}
+
+@media (max-width: 768px) {
+  nav {
+    justify-content: center;
+  }
+}
+
+::slotted(h1),
+::slotted(h2) {
+  color: var(--tcds-section-heading-color);
+  line-height: var(--tcds-line-height-x-tight) !important;
+  margin: 0 !important;
+}
+
+::slotted(h1) {
+  font-size: var(--tcds-font-size-xxx-large) !important;
+  font-weight: 400 !important;
+}
+
+::slotted(h2) {
+  font-size: calc(3.5rem * var(--tcds-font-size-scaler)) !important;
+}
