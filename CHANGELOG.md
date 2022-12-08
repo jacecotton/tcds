@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/jacecotton/tcds/compare/v1.0.0...v1.0.1) (2022-12-08)
+
+
+### Bug Fixes
+
+* Include construct-style-sheets-polyfill and constructable-style-loader as peer dependencies ([5959b08](https://github.com/jacecotton/tcds/commit/5959b088a9e3f655fd29b2952496987523cf5e54))
+
+
+
 # [1.0.0](https://github.com/jacecotton/tcds/compare/v0.63.0...v1.0.0) (2022-12-08)
 
 
@@ -74,15 +83,6 @@ Co-authored-by: Jace Cotton <jxcotton@texaschildrens.org>
 ### Bug Fixes
 
 * **components:** Default button styles ([2f03b3f](https://github.com/jacecotton/tcds/commit/2f03b3f921567f81a3afc1f38787a272f41ec80d))
-
-
-
-## [0.62.4](https://github.com/jacecotton/tcds/compare/v0.62.3...v0.62.4) (2022-11-15)
-
-
-### Bug Fixes
-
-* **components:** Leave Card footer empty if not specified ([1726ea2](https://github.com/jacecotton/tcds/commit/1726ea2ae8eabdc6dc76dece87d6b15004d4b1aa))
 
 
 
