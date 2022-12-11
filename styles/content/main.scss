@@ -1,5 +1,4 @@
-main:not([class]),
-.main-content {
+main:not(.main--unstyled) {
   background-color: #fff;
   padding: var(--content-inner-gutter);
   border-radius: 25px;
