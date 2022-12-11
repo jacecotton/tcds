@@ -156,7 +156,7 @@ hgroup {
   grid-area: text;
   display: flex;
   flex-direction: column;
-  gap: var(--tcds-space-x-loose);
+  gap: var(--tcds-space-tight);
   text-align: var(--tcds-section-text-align);
 }
 
@@ -190,14 +190,10 @@ nav {
 ::slotted(h2) {
   color: var(--tcds-section-heading-color);
   line-height: var(--tcds-line-height-x-tight) !important;
-  margin: 0 !important;
+  margin: 0 0 var(--tcds-space-x-loose) !important;
+  font-size: calc(3.5rem * var(--tcds-font-size-scaler)) !important;
 }
 
 ::slotted(h1) {
-  font-size: var(--tcds-font-size-xxx-large) !important;
   font-weight: 400 !important;
-}
-
-::slotted(h2) {
-  font-size: calc(3.5rem * var(--tcds-font-size-scaler)) !important;
 }

@@ -13,7 +13,7 @@
 
 :host([size*="large"]) {
   --tcds-button-height: var(--tcds-size-large);
-  --tcds-button-x-padding: var(--tcds-size-medium);
+  --tcds-button-x-padding: var(--tcds-space-x-loose);
   --tcds-button-font-size: 1.125rem;
 }
 
