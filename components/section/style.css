@@ -12,7 +12,7 @@
   z-index: 1;
 }
 
-:host:not([watermark]) {
+:host([watermark]) {
   overflow: hidden;
 }
 
