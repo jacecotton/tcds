@@ -10,10 +10,10 @@
   display: block;
   position: relative;
   z-index: 1;
+}
 
-  &:not([watermark]) {
-    overflow: hidden;
-  }
+:host:not([watermark]) {
+  overflow: hidden;
 }
 
 :host([watermark*="large"]) {
