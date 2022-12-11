@@ -1,3 +1,13 @@
+## [1.0.3](https://github.com/jacecotton/tcds/compare/v1.0.2...v1.0.3) (2022-12-11)
+
+
+### Bug Fixes
+
+* **components:** Change section to have no watermark by default, add overline slot ([f27c09e](https://github.com/jacecotton/tcds/commit/f27c09e18cdd5ef99e57b2c42c4718be5173739b))
+* **content:** Make main content styled by default, add unstyled option ([ea4bd74](https://github.com/jacecotton/tcds/commit/ea4bd748b2ca19274577a5632175e31c83986f0a))
+
+
+
 ## [1.0.2](https://github.com/jacecotton/tcds/compare/v1.0.1...v1.0.2) (2022-12-11)
 
 
@@ -74,15 +84,6 @@ Co-authored-by: Jace Cotton <jxcotton@texaschildrens.org>
 ### Features
 
 * **components:** Remove legacy header ([b0f6669](https://github.com/jacecotton/tcds/commit/b0f666963418a7535ad12be096e2eab340395b28))
-
-
-
-## [0.62.6](https://github.com/jacecotton/tcds/compare/v0.62.5...v0.62.6) (2022-11-30)
-
-
-### Bug Fixes
-
-* **primitives:** Default button styles fix ([970b970](https://github.com/jacecotton/tcds/commit/970b970572f47fe705980de5c6092a41f3442be2))
 
 
 
