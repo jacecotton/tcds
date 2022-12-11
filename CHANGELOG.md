@@ -1,3 +1,12 @@
+## [1.0.5](https://github.com/jacecotton/tcds/compare/v1.0.4...v1.0.5) (2022-12-11)
+
+
+### Bug Fixes
+
+* **components:** Tweak styles ([5e8b628](https://github.com/jacecotton/tcds/commit/5e8b6287918b5485dc556e166aec774983ec4427))
+
+
+
 ## [1.0.4](https://github.com/jacecotton/tcds/compare/v1.0.3...v1.0.4) (2022-12-11)
 
 
@@ -32,58 +41,6 @@
 ### Bug Fixes
 
 * Include construct-style-sheets-polyfill and constructable-style-loader as peer dependencies ([5959b08](https://github.com/jacecotton/tcds/commit/5959b088a9e3f655fd29b2952496987523cf5e54))
-
-
-
-# [1.0.0](https://github.com/jacecotton/tcds/compare/v0.63.0...v1.0.0) (2022-12-08)
-
-
-### Features
-
-* Release 1.0.0 ([#17](https://github.com/jacecotton/tcds/issues/17)) ([c3de011](https://github.com/jacecotton/tcds/commit/c3de01109892b936467109b42b726fe6f155d778))
-
-
-### BREAKING CHANGES
-
-* Complete Design System overhaul
-
-* Init commit
-
-* Compiling files
-
-* Carousel optimizations
-
-* Linting
-
-* Stylelint
-
-* eslint
-
-* stylelint
-
-* Rename "assets" to "static"
-
-* Remove IE 11 from support 🥳
-
-* Set default background color
-
-* Progressive enhancement tweaks for web components
-
-* Add styles for breadcrumb, pagination, and main content
-
-* Add README
-
-* Use constructable stylesheets with webpack loader
-
-* Optimize carousel
-
-* Updates
-
-* Force update name change
-
-* Force update name change
-
-Co-authored-by: Jace Cotton <jxcotton@texaschildrens.org>
 
 
 
