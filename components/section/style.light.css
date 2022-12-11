@@ -17,6 +17,13 @@ tcds-section video[slot="background"] {
   object-position: center;
 }
 
+tcds-section [slot="heading"] {
+  color: var(--tcds-section-heading-color);
+  line-height: var(--tcds-line-height-x-tight) !important;
+  margin: 0 0 var(--tcds-space-x-loose) !important;
+  font-size: calc(3.5rem * var(--tcds-font-size-scaler)) !important;
+}
+
 tcds-section [slot="heading"] span {
   display: block;
   font-family: var(--tcds-font-ui);

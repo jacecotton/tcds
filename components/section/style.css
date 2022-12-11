@@ -184,15 +184,3 @@ nav {
     justify-content: center;
   }
 }
-
-::slotted(h1),
-::slotted(h2) {
-  color: var(--tcds-section-heading-color);
-  line-height: var(--tcds-line-height-x-tight) !important;
-  margin: 0 0 var(--tcds-space-x-loose) !important;
-  font-size: calc(3.5rem * var(--tcds-font-size-scaler)) !important;
-}
-
-::slotted(h1) {
-  font-weight: 400 !important;
-}
