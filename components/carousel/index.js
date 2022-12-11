@@ -116,13 +116,11 @@ export default class Carousel extends WebComponent(HTMLElement) {
     return {
       state: {
         "playing": () => {
-          requestAnimationFrame(() => {
-            if(this.state.playing) {
-              this.startPlayer();
-            } else {
-              this.cancelPlayer();
-            }
-          });
+          if(this.state.playing) {
+            this.startPlayer();
+          } else {
+            this.cancelPlayer();
+          }
         },
       },
     };
@@ -131,7 +129,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
   get swipe() {
     return new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if(this.state.playing === false && entry.isIntersecting) {
+        if(entry.isIntersecting) {
           this.select(entry.target);
         }
       });
@@ -165,6 +163,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
   scrollToSlide(slide) {
     const viewportOffset = this.parts["viewport"].getBoundingClientRect().left;
     const slideOffset = slide.getBoundingClientRect().left;
+
     this.parts["viewport"].scrollLeft += slideOffset - viewportOffset;
   }
 
