@@ -72,10 +72,10 @@ export default class Carousel extends WebComponent(HTMLElement) {
         <tcds-button
           part="next"
           controls="${this.id}"
+          label="Next slide"
           icon="only chevron-right"
           variant="ghost"
           size="large"
-          label="Next slide"
           onclick="this.getRootNode().host.nextClick()"
         ></tcds-button>
       </div>
