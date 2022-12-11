@@ -1,3 +1,13 @@
+## [1.0.8](https://github.com/jacecotton/tcds/compare/v1.0.7...v1.0.8) (2022-12-11)
+
+
+### Bug Fixes
+
+* **components:** Change application scope of section heading styles ([363a79b](https://github.com/jacecotton/tcds/commit/363a79b7c28affe4c01970a5f04be97c9f660262))
+* **components:** Systematize text colors ([d317f06](https://github.com/jacecotton/tcds/commit/d317f0616b4248edd87345d9671644843dcee55d))
+
+
+
 ## [1.0.7](https://github.com/jacecotton/tcds/compare/v1.0.6...v1.0.7) (2022-12-11)
 
 
@@ -31,16 +41,6 @@
 ### Bug Fixes
 
 * **components:** Tweak styles ([d532bde](https://github.com/jacecotton/tcds/commit/d532bdeb9fad4ea5439f8e9f6bef0fd19370e84b))
-
-
-
-## [1.0.3](https://github.com/jacecotton/tcds/compare/v1.0.2...v1.0.3) (2022-12-11)
-
-
-### Bug Fixes
-
-* **components:** Change section to have no watermark by default, add overline slot ([f27c09e](https://github.com/jacecotton/tcds/commit/f27c09e18cdd5ef99e57b2c42c4718be5173739b))
-* **content:** Make main content styled by default, add unstyled option ([ea4bd74](https://github.com/jacecotton/tcds/commit/ea4bd748b2ca19274577a5632175e31c83986f0a))
 
 
 
