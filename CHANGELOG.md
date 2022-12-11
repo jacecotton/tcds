@@ -1,3 +1,12 @@
+## [1.0.9](https://github.com/jacecotton/tcds/compare/v1.0.8...v1.0.9) (2022-12-11)
+
+
+### Bug Fixes
+
+* **components:** Component light DOM style scope issue ([f3ccbdb](https://github.com/jacecotton/tcds/commit/f3ccbdbf6c4ac343ba661f1345a5cc754bf3860e))
+
+
+
 ## [1.0.8](https://github.com/jacecotton/tcds/compare/v1.0.7...v1.0.8) (2022-12-11)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * **components:** Tweak styles ([5e8b628](https://github.com/jacecotton/tcds/commit/5e8b6287918b5485dc556e166aec774983ec4427))
-
-
-
-## [1.0.4](https://github.com/jacecotton/tcds/compare/v1.0.3...v1.0.4) (2022-12-11)
-
-
-### Bug Fixes
-
-* **components:** Tweak styles ([d532bde](https://github.com/jacecotton/tcds/commit/d532bdeb9fad4ea5439f8e9f6bef0fd19370e84b))
 
 
 
