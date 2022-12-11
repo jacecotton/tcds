@@ -1,3 +1,12 @@
+## [1.0.4](https://github.com/jacecotton/tcds/compare/v1.0.3...v1.0.4) (2022-12-11)
+
+
+### Bug Fixes
+
+* **components:** Tweak styles ([d532bde](https://github.com/jacecotton/tcds/commit/d532bdeb9fad4ea5439f8e9f6bef0fd19370e84b))
+
+
+
 ## [1.0.3](https://github.com/jacecotton/tcds/compare/v1.0.2...v1.0.3) (2022-12-11)
 
 
@@ -75,15 +84,6 @@
 * Force update name change
 
 Co-authored-by: Jace Cotton <jxcotton@texaschildrens.org>
-
-
-
-# [0.63.0](https://github.com/jacecotton/tcds/compare/v0.62.6...v0.63.0) (2022-12-01)
-
-
-### Features
-
-* **components:** Remove legacy header ([b0f6669](https://github.com/jacecotton/tcds/commit/b0f666963418a7535ad12be096e2eab340395b28))
 
 
 
