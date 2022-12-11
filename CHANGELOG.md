@@ -1,3 +1,12 @@
+## [1.0.6](https://github.com/jacecotton/tcds/compare/v1.0.5...v1.0.6) (2022-12-11)
+
+
+### Bug Fixes
+
+* **styles:** Fix CSS syntax error ([84d2673](https://github.com/jacecotton/tcds/commit/84d26732e6bcbb1514263468a7673f75c8e81d9f))
+
+
+
 ## [1.0.5](https://github.com/jacecotton/tcds/compare/v1.0.4...v1.0.5) (2022-12-11)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * **components:** Carousel cleanup ([ecc6cf5](https://github.com/jacecotton/tcds/commit/ecc6cf546e7092a048ce916a1974934ebe32af24))
-
-
-
-## [1.0.1](https://github.com/jacecotton/tcds/compare/v1.0.0...v1.0.1) (2022-12-08)
-
-
-### Bug Fixes
-
-* Include construct-style-sheets-polyfill and constructable-style-loader as peer dependencies ([5959b08](https://github.com/jacecotton/tcds/commit/5959b088a9e3f655fd29b2952496987523cf5e54))
 
 
 
