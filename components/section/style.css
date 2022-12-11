@@ -9,8 +9,11 @@
 
   display: block;
   position: relative;
-  overflow: hidden;
   z-index: 1;
+
+  &:not([watermark]) {
+    overflow: hidden;
+  }
 }
 
 :host([watermark*="large"]) {
@@ -116,10 +119,6 @@ section::before {
   z-index: 0;
   height: 50%;
   background-image: linear-gradient(to top, rgb(0 0 0 / 50%) 0%, rgb(0 0 0 / 0%) 100%);
-}
-
-.max-width {
-  z-index: 1;
 }
 
 [part="content"] {

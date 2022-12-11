@@ -17,7 +17,7 @@
     user-select: none;
   }
 
-  a {
+  a:not(:hover) {
     text-decoration: none;
   }
 }

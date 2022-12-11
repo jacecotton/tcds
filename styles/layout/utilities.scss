@@ -4,6 +4,9 @@
 
 .max-width {
   @include max-width;
+
+  position: relative;
+  z-index: 1;
 }
 
 .full-bleed {
