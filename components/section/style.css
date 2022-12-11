@@ -60,7 +60,7 @@
   }
 }
 
-:host([class*="bg-"]:not([watermark="none"]))::before {
+:host([class*="bg-"][watermark])::before {
   display: block;
   content: "";
   width: var(--tcds-section-watermark-size);

@@ -11,6 +11,7 @@ export default class Section extends WebComponent(HTMLElement) {
     this.video = !!this.querySelector("video[slot=background]");
     this.heading = !!this.querySelector("[slot=heading]");
     this.subheading = !!this.querySelector("[slot=subheading]");
+    this.overline = !!this.querySelector("[slot=overline]");
     this.image = !!this.querySelector("[slot=image]");
     this.cta = !!this.querySelector("[slot=cta]");
 
@@ -32,10 +33,11 @@ export default class Section extends WebComponent(HTMLElement) {
       <section>
         <slot name="background"></slot>
         <div class="max-width">
-          ${this.heading || this.subheading || this.image || this.cta ? /* html */`
+          ${this.heading || this.subheading || this.overline || this.image || this.cta ? /* html */`
             <div part="content">
-              ${this.heading || this.subheading ? /* html */`
+              ${this.heading || this.subheading || this.overline ? /* html */`
                 <hgroup>
+                  <slot name="overline"></slot>
                   <slot name="heading"></slot>
                   <slot name="subheading"></slot>
                 </hgroup>
