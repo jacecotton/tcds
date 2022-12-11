@@ -1,7 +1,7 @@
-tcds-section [slot="background"],
-tcds-section [slot="background"] img,
-tcds-section img[slot="background"],
-tcds-section video[slot="background"] {
+tcds-section > [slot="background"],
+tcds-section > [slot="background"] img,
+tcds-section > img[slot="background"],
+tcds-section > video[slot="background"] {
   position: absolute;
   top: 0;
   left: 0;
@@ -10,28 +10,28 @@ tcds-section video[slot="background"] {
   z-index: -1;
 }
 
-tcds-section [slot="background"] img,
-tcds-section img[slot="background"],
-tcds-section video[slot="background"] {
+tcds-section > [slot="background"] img,
+tcds-section > img[slot="background"],
+tcds-section > video[slot="background"] {
   object-fit: cover;
   object-position: center;
 }
 
-tcds-section [slot="heading"] {
+tcds-section > [slot="heading"] {
   color: var(--tcds-section-heading-color);
   line-height: var(--tcds-line-height-x-tight) !important;
   margin: 0 0 var(--tcds-space-x-loose) !important;
-  font-size: calc(3.5rem * var(--tcds-font-size-scaler)) !important;
+  font-size: calc(3.5rem * var(--tcds-font-size-scaler));
 }
 
-tcds-section [slot="heading"] span {
+tcds-section > [slot="heading"] span {
   display: block;
   font-family: var(--tcds-font-ui);
   font-size: var(--tcds-font-size-xx-large);
   font-weight: var(--tcds-font-weight-semibold);
 }
 
-tcds-section [slot="heading"] sup {
+tcds-section > [slot="heading"] sup {
   font-size: 10%;
   letter-spacing: 0.05em;
   position: relative;
@@ -39,12 +39,12 @@ tcds-section [slot="heading"] sup {
   top: -1em;
 }
 
-tcds-section [slot="subheading"] {
+tcds-section > [slot="subheading"] {
   font-size: 1.5rem !important;
 }
 
 @media (min-width: 768px) {
-  tcds-section [slot="image"] {
+  tcds-section > [slot="image"] {
     width: 115%;
     max-width: none;
     position: absolute;

@@ -4,32 +4,32 @@ tcds-alert-bar details {
   display: contents;
 }
 
-tcds-alert-bar details[open] > summary {
+tcds-alert-bar > details[open] > summary {
   --tcds-details-icon-rotate: -180deg;
 }
 
-tcds-alert-bar details summary {
+tcds-alert-bar > details summary {
   grid-row: 1 / 2;
   height: var(--tcds-alert-bar-height);
   flex-direction: row-reverse;
   margin-right: var(--tcds-space-normal);
 }
 
-tcds-alert-bar details summary:hover {
+tcds-alert-bar > details summary:hover {
   color: var(--tcds-color-primary);
 }
 
-tcds-alert-bar details[open] summary {
+tcds-alert-bar > details[open] summary {
   box-shadow: inset 0 -4px 0 var(--tcds-color-primary);
 }
 
-tcds-alert-bar details summary::before {
+tcds-alert-bar > details summary::before {
   -webkit-mask: var(--tcds-icon-chevron-down);
   mask: var(--tcds-icon-chevron-down);
   background-color: var(--tcds-color-primary);
 }
 
-tcds-alert-bar details article {
+tcds-alert-bar > details article {
   grid-row: 2 / -1;
   grid-column: 1 / -1;
   display: flex;

@@ -1,4 +1,4 @@
-tcds-mega-menu [slot="title"] {
+tcds-mega-menu > [slot="title"] {
   font-family: var(--tcds-font-ui);
   font-weight: var(--tcds-font-weight-bold);
   font-size: var(--tcds-font-size-large);
@@ -38,7 +38,7 @@ tcds-mega-menu button:hover {
 }
 
 @media (max-width: 1200px) {
-  tcds-mega-menu [slot="title"] {
+  tcds-mega-menu > [slot="title"] {
     display: none;
   }
 
