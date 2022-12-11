@@ -1,3 +1,12 @@
+## [1.0.7](https://github.com/jacecotton/tcds/compare/v1.0.6...v1.0.7) (2022-12-11)
+
+
+### Bug Fixes
+
+* **components:** Section overflow fix ([f4eb09c](https://github.com/jacecotton/tcds/commit/f4eb09c83b84de9ad6a07a432870ba45d964e0bc))
+
+
+
 ## [1.0.6](https://github.com/jacecotton/tcds/compare/v1.0.5...v1.0.6) (2022-12-11)
 
 
@@ -32,15 +41,6 @@
 
 * **components:** Change section to have no watermark by default, add overline slot ([f27c09e](https://github.com/jacecotton/tcds/commit/f27c09e18cdd5ef99e57b2c42c4718be5173739b))
 * **content:** Make main content styled by default, add unstyled option ([ea4bd74](https://github.com/jacecotton/tcds/commit/ea4bd748b2ca19274577a5632175e31c83986f0a))
-
-
-
-## [1.0.2](https://github.com/jacecotton/tcds/compare/v1.0.1...v1.0.2) (2022-12-11)
-
-
-### Bug Fixes
-
-* **components:** Carousel cleanup ([ecc6cf5](https://github.com/jacecotton/tcds/commit/ecc6cf546e7092a048ce916a1974934ebe32af24))
 
 
 
