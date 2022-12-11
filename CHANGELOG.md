@@ -1,3 +1,12 @@
+## [1.0.2](https://github.com/jacecotton/tcds/compare/v1.0.1...v1.0.2) (2022-12-11)
+
+
+### Bug Fixes
+
+* **components:** Carousel cleanup ([ecc6cf5](https://github.com/jacecotton/tcds/commit/ecc6cf546e7092a048ce916a1974934ebe32af24))
+
+
+
 ## [1.0.1](https://github.com/jacecotton/tcds/compare/v1.0.0...v1.0.1) (2022-12-08)
 
 
@@ -74,15 +83,6 @@ Co-authored-by: Jace Cotton <jxcotton@texaschildrens.org>
 ### Bug Fixes
 
 * **primitives:** Default button styles fix ([970b970](https://github.com/jacecotton/tcds/commit/970b970572f47fe705980de5c6092a41f3442be2))
-
-
-
-## [0.62.5](https://github.com/jacecotton/tcds/compare/v0.62.4...v0.62.5) (2022-11-30)
-
-
-### Bug Fixes
-
-* **components:** Default button styles ([2f03b3f](https://github.com/jacecotton/tcds/commit/2f03b3f921567f81a3afc1f38787a272f41ec80d))
 
 
 
