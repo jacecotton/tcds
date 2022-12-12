@@ -230,7 +230,7 @@ Use [Constructable Stylesheets](https://web.dev/constructable-stylesheets/) to s
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
   connected() {
-    this.shadowRoot.adoptedStyleSheets = [this.styles];
+    this.shadowRoot.adoptedStyleSheets = [new CSSStyleSheet().replaceSync(this.styles)];
   }
 
   get styles() {
