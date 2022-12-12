@@ -121,6 +121,10 @@ section::before {
   background-image: linear-gradient(to top, rgb(0 0 0 / 50%) 0%, rgb(0 0 0 / 0%) 100%);
 }
 
+.max-width {
+  z-index: 1;
+}
+
 [part="content"] {
   display: grid;
   align-items: center;
