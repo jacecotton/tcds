@@ -1,3 +1,12 @@
+## [1.0.10](https://github.com/jacecotton/tcds/compare/v1.0.9...v1.0.10) (2022-12-12)
+
+
+### Bug Fixes
+
+* **styles:** Misc. cleanup ([5659837](https://github.com/jacecotton/tcds/commit/56598376bd7b846ccaed8660ec201d7ed23f3413))
+
+
+
 ## [1.0.9](https://github.com/jacecotton/tcds/compare/v1.0.8...v1.0.9) (2022-12-11)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * **styles:** Fix CSS syntax error ([84d2673](https://github.com/jacecotton/tcds/commit/84d26732e6bcbb1514263468a7673f75c8e81d9f))
-
-
-
-## [1.0.5](https://github.com/jacecotton/tcds/compare/v1.0.4...v1.0.5) (2022-12-11)
-
-
-### Bug Fixes
-
-* **components:** Tweak styles ([5e8b628](https://github.com/jacecotton/tcds/commit/5e8b6287918b5485dc556e166aec774983ec4427))
 
 
 
