@@ -30,7 +30,7 @@ select {
     background-color: #fff;
   }
 
-  @media (pointer: coarse) {
+  @media (hover: none) {
     font-size: var(--tcds-font-size-medium);
   }
 }
