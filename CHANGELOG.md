@@ -1,3 +1,12 @@
+## [1.0.11](https://github.com/jacecotton/tcds/compare/v1.0.10...v1.0.11) (2022-12-12)
+
+
+### Bug Fixes
+
+* **styles:** Tweak styles ([1155c46](https://github.com/jacecotton/tcds/commit/1155c46a020194f9d4d4d239587b6e512a02c6c9))
+
+
+
 ## [1.0.10](https://github.com/jacecotton/tcds/compare/v1.0.9...v1.0.10) (2022-12-12)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * **components:** Section overflow fix ([f4eb09c](https://github.com/jacecotton/tcds/commit/f4eb09c83b84de9ad6a07a432870ba45d964e0bc))
-
-
-
-## [1.0.6](https://github.com/jacecotton/tcds/compare/v1.0.5...v1.0.6) (2022-12-11)
-
-
-### Bug Fixes
-
-* **styles:** Fix CSS syntax error ([84d2673](https://github.com/jacecotton/tcds/commit/84d26732e6bcbb1514263468a7673f75c8e81d9f))
 
 
 
