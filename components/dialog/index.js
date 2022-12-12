@@ -3,7 +3,7 @@ import styles from "./style.css";
 
 import getFocusableChildren from "../../scripts/utilities/getFocusableChildren.js";
 
-export default class Dialog extends WebComponent(HTMLElement) {
+export default class Dialog extends WebComponent(HTMLElement, { delegatesFocus: true }) {
   static get observedAttributes() {
     return ["open"];
   }
@@ -54,27 +54,31 @@ export default class Dialog extends WebComponent(HTMLElement) {
       event.stopPropagation();
     });
 
-    const focusableChildren = getFocusableChildren(this);
-    const lastIndex = focusableChildren.length - 1;
-
-    this.addEventListener("keydown", (event) => {
-      if(event.key === "Tab") {
-        const focusedItemIndex = focusableChildren.indexOf(document.activeElement);
-        const focusedOnCloseButton = document.activeElement === this;
-
-        if(focusedOnCloseButton) {
-          focusableChildren[event.shiftKey ? lastIndex : 0].focus();
-          event.preventDefault();
-        } else if(focusedItemIndex === (event.shiftKey ? 0 : lastIndex)) {
-          this.parts["close"].focus();
-          event.preventDefault();
-        }
-      }
-    });
-
     this.addEventListener("keyup", (event) => {
       if(event.key === "Escape") {
         this.state.open = false;
+      }
+    });
+
+    this.addEventListener("keydown", (event) => {
+      if(event.key === "Tab") {
+        if(event.shiftKey) {
+          if(document.activeElement === this) {
+            this.lastFocusableChild.focus();
+            event.preventDefault();
+          } else if(document.activeElement === this.firstFocusableChild) {
+            this.parts["close"].focus();
+            event.preventDefault();
+          }
+        } else {
+          if(document.activeElement === this) {
+            this.firstFocusableChild.focus();
+            event.preventDefault();
+          } else if(document.activeElement === this.lastFocusableChild) {
+            this.parts["close"].focus();
+            event.preventDefault();
+          }
+        }
       }
     });
 
@@ -100,11 +104,13 @@ export default class Dialog extends WebComponent(HTMLElement) {
           });
 
           if(this.state.open) {
-            const focusableChildren = getFocusableChildren(this);
-            const firstFocusableElement = focusableChildren[0] || this.parts["close"];
-            const target = this.querySelector("[autofocus]") || firstFocusableElement;
-
+            this.focusableChildren = getFocusableChildren(this);
+            this.firstFocusableChild = this.focusableChildren[0] || this.parts["close"];
+            this.lastFocusableChild = this.focusableChildren[this.focusableChildren.length - 1] || this.parts["close"];
             this.previouslyFocused = document.activeElement;
+
+            const target = this.querySelector("[autofocus]") || this.firstFocusableChild;
+
             target.focus();
 
             if(this.props.autoclose) {

@@ -1,10 +1,10 @@
 import diff from "./utilities/diff.js";
 import getAttributeValueOfType from "./utilities/getAttributeValueOfType.js";
 
-const WebComponent = (ElementInterface = HTMLElement) => class extends ElementInterface {
+const WebComponent = (ElementInterface = HTMLElement, options = {}) => class extends ElementInterface {
   constructor() {
     super();
-    this.attachShadow({ mode: "open" });
+    this.attachShadow({ mode: "open", ...options });
   }
 
   // Initialize internal properties.
