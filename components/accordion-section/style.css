@@ -37,7 +37,5 @@
 }
 
 [part="content"] {
-  --tcds-color-text: var(--tcds-color-gray-dark);
-
   padding: var(--tcds-space-normal) var(--tcds-space-loose);
 }

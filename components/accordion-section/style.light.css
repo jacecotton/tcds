@@ -1,0 +1,5 @@
+tcds-accordion-section {
+  --tcds-color-text: var(--tcds-color-gray-dark);
+
+  color: var(--tcds-color-text);
+}

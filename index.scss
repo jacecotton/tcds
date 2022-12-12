@@ -24,10 +24,7 @@
 @use "./styles/content/lists";
 @use "./styles/content/main";
 @use "./styles/content/tables";
-@use "./styles/content/forms/form";
-@use "./styles/content/forms/buttons";
-@use "./styles/content/forms/text-inputs";
-@use "./styles/content/forms/select-buttons";
+@use "./styles/content/forms";
 
 /** Icons */
 @use "./styles/icons/icons";

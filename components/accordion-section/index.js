@@ -1,5 +1,6 @@
 import WebComponent from "../../scripts/WebComponent/WebComponent.js";
-import styles from "./style.css";
+import shadowStyles from "./style.css";
+import lightStyles from "./style.light.css";
 
 import slugify from "../../scripts/utilities/slugify.js";
 
@@ -13,7 +14,8 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
   }
 
   connected() {
-    this.shadowRoot.adoptedStyleSheets = [styles];
+    this.shadowRoot.adoptedStyleSheets = [shadowStyles];
+    document.adoptedStyleSheets = [...document.adoptedStyleSheets, ...[lightStyles]];
 
     this.parent = this.closest("tcds-accordion");
     this.siblings = Array.from(this.parent.querySelectorAll("tcds-accordion-section")).filter(instance => instance !== this);
