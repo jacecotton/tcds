@@ -86,8 +86,6 @@ export default class Carousel extends WebComponent(HTMLElement) {
   }
 
   mounted() {
-    console.log("test");
-
     this.state.playing =
       this.hasAttribute("playing")
       && this.hasAttribute("timing")
