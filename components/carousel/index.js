@@ -14,20 +14,21 @@ export default class Carousel extends WebComponent(HTMLElement) {
     timing: "number",
   };
 
-  connected() {
+  constructor() {
+    super();
     this.shadowRoot.adoptedStyleSheets = [styles];
+  }
 
+  connected() {
+    this.slides = Array.from(this.querySelectorAll("tcds-slide"));
+
+    // Add auto-incrementing unique IDs to each carousel instance.
     const carousels = Array.from(document.querySelectorAll("tcds-carousel"));
     this.id = `carousel${carousels.length > 1 ? `-${carousels.indexOf(this) + 1}` : ""}`;
 
-    this.slides = Array.from(this.querySelectorAll("tcds-slide"));
+    // Select the first slide or the first slide marked active.
     const activeSlides = this.slides.filter(slide => slide.hasAttribute("active"));
-
-    if(activeSlides.length === 0) {
-      this.select(this.slides[0]);
-    } else if(activeSlides.length >= 1) {
-      this.select(activeSlides[0]);
-    }
+    this.select(activeSlides.length < 1 ? this.slides[0] : activeSlides[0]);
   }
 
   render() {
@@ -50,7 +51,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
           icon="only chevron-left"
           variant="ghost"
           size="large"
-          label="Previous slide"
+          label="Go to previous slide"
           onclick="this.getRootNode().host.previousClick()"
         ></tcds-button>
         <div role="tablist" part="indicators">
@@ -72,14 +73,22 @@ export default class Carousel extends WebComponent(HTMLElement) {
         <tcds-button
           part="next"
           controls="${this.id}"
-          label="Next slide"
+          label="Go to next slide"
           icon="only chevron-right"
           variant="ghost"
           size="large"
           onclick="this.getRootNode().host.nextClick()"
         ></tcds-button>
       </div>
-      <div part="viewport" aria-live="${this.state.playing ? "off" : "polite"}">
+      <div
+        part="viewport"
+        aria-live="${this.state.playing ? "off" : "polite"}"
+        ontouchstart="this.getRootNode().host.viewportSwipe()"
+        onmouseover="this.getRootNode().host.viewportHover()"
+        onmouseleave="this.getRootNode().host.resume()"
+        onfocus="this.getRootNode().host.pause()"
+        onblur="this.getRootNode().host.resume()"
+      >
         <slot></slot>
       </div>
     `;
@@ -95,27 +104,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
       this.swipe.observe(slide);
     });
 
-    this.parts["viewport"].addEventListener("focusin", this.pause.bind(this));
-    this.parts["viewport"].addEventListener("mouseleave", this.resume.bind(this));
-    this.parts["viewport"].addEventListener("focusout", this.resume.bind(this));
-
-    this.parts["viewport"].addEventListener("mouseenter", () => {
-      this.pause();
-      this.suspendObserver = false;
-    });
-
-    this.parts["viewport"].addEventListener("touchstart", () => {
-      this.stop();
-      this.suspendObserver = false;
-    });
-
-    this.addEventListener("click", () => {
-      this.suspendObserver = true;
-    });
-
-    this.parts["viewport"].addEventListener("click", (event) => {
-      event.stopPropagation();
-    });
+    this.scrollOutOfView.observe(this);
 
     document.addEventListener("visibilitychange", () => {
       if(document.hidden) {
@@ -124,8 +113,6 @@ export default class Carousel extends WebComponent(HTMLElement) {
         this.resume();
       }
     });
-
-    this.scrollOutOfView.observe(this);
   }
 
   updated() {
@@ -134,7 +121,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
         "playing": () => {
           if(this.state.playing) {
             this.startPlayer();
-            this.suspendObserver = true;
+            this.observeSwipe = false;
           } else {
             this.cancelPlayer();
           }
@@ -146,7 +133,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
   get swipe() {
     return new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if(entry.isIntersecting && this.suspendObserver !== true) {
+        if(entry.isIntersecting && this.observeSwipe !== false) {
           this.select(entry.target);
         }
       });
@@ -184,9 +171,20 @@ export default class Carousel extends WebComponent(HTMLElement) {
     this.parts["viewport"].scrollLeft += slideOffset - viewportOffset;
   }
 
+  viewportSwipe() {
+    this.stop();
+    this.observeSwipe = true;
+  }
+
+  viewportHover() {
+    this.pause();
+    this.observeSwipe = true;
+  }
+
   indicatorClick(event) {
     this.select(this.slides[this.parts["indicator"].indexOf(event.currentTarget)]);
     this.state.playing = false;
+    this.observeSwipe = false;
   }
 
   indicatorKeydown(event) {
@@ -203,16 +201,19 @@ export default class Carousel extends WebComponent(HTMLElement) {
     }
 
     this.state.playing = false;
+    this.observeSwipe = false;
   }
 
   nextClick() {
     this.next();
     this.state.playing = false;
+    this.observeSwipe = false;
   }
 
   previousClick() {
     this.previous();
     this.state.playing = false;
+    this.observeSwipe = false;
   }
 
   playClick() {
