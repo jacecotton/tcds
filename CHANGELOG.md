@@ -1,3 +1,12 @@
+## [1.0.14](https://github.com/jacecotton/tcds/compare/v1.0.13...v1.0.14) (2022-12-13)
+
+
+### Bug Fixes
+
+* **templates:** Footer style ([7c6034d](https://github.com/jacecotton/tcds/commit/7c6034d65ecfe5228d906014e66aa80f98aa2241))
+
+
+
 ## [1.0.13](https://github.com/jacecotton/tcds/compare/v1.0.12...v1.0.13) (2022-12-13)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * **styles:** Misc. cleanup ([5659837](https://github.com/jacecotton/tcds/commit/56598376bd7b846ccaed8660ec201d7ed23f3413))
-
-
-
-## [1.0.9](https://github.com/jacecotton/tcds/compare/v1.0.8...v1.0.9) (2022-12-11)
-
-
-### Bug Fixes
-
-* **components:** Component light DOM style scope issue ([f3ccbdb](https://github.com/jacecotton/tcds/commit/f3ccbdbf6c4ac343ba661f1345a5cc754bf3860e))
 
 
 
