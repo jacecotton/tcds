@@ -125,10 +125,6 @@
     grid-column: span 2;
     margin-bottom: var(--tcds-space-normal);
 
-    @media (--above-x-large) {
-      justify-self: end;
-    }
-
     ul {
       column-gap: var(--tcds-space-x-loose);
       row-gap: var(--tcds-space-normal);

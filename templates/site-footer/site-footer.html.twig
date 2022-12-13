@@ -60,7 +60,7 @@
       {% if block("fine_print") or fine_print %}
         <small class="site-footer__fine-print">
           {% block fine_print %}
-            {{ fine_print }}
+            {{ fine_print|raw }}
           {% endblock %}
         </small>
       {% endif %}
