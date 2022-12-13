@@ -1,3 +1,12 @@
+## [1.0.13](https://github.com/jacecotton/tcds/compare/v1.0.12...v1.0.13) (2022-12-13)
+
+
+### Bug Fixes
+
+* **components:** Fix footer conditional ([a70cfbd](https://github.com/jacecotton/tcds/commit/a70cfbd0f55de307e52c971d6272f09d68690f4a))
+
+
+
 ## [1.0.12](https://github.com/jacecotton/tcds/compare/v1.0.11...v1.0.12) (2022-12-12)
 
 
@@ -32,16 +41,6 @@
 ### Bug Fixes
 
 * **components:** Component light DOM style scope issue ([f3ccbdb](https://github.com/jacecotton/tcds/commit/f3ccbdbf6c4ac343ba661f1345a5cc754bf3860e))
-
-
-
-## [1.0.8](https://github.com/jacecotton/tcds/compare/v1.0.7...v1.0.8) (2022-12-11)
-
-
-### Bug Fixes
-
-* **components:** Change application scope of section heading styles ([363a79b](https://github.com/jacecotton/tcds/commit/363a79b7c28affe4c01970a5f04be97c9f660262))
-* **components:** Systematize text colors ([d317f06](https://github.com/jacecotton/tcds/commit/d317f0616b4248edd87345d9671644843dcee55d))
 
 
 
