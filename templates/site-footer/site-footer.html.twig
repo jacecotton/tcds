@@ -1,5 +1,5 @@
 <footer class="site-footer">
-  {% if block("top") or block("primary_menu") or social_links %}
+  {% if block("top") or (block("primary_menu") and block("primary_menu")|trim != "") or social_links %}
     <div class="site-footer__top bg-secondary" data-theme="dark">
       <div class="max-width">
         {% block top %}{% endblock %}
