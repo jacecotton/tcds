@@ -86,6 +86,8 @@ export default class Carousel extends WebComponent(HTMLElement) {
   }
 
   mounted() {
+    console.log("test");
+
     this.state.playing =
       this.hasAttribute("playing")
       && this.hasAttribute("timing")
@@ -95,11 +97,27 @@ export default class Carousel extends WebComponent(HTMLElement) {
       this.swipe.observe(slide);
     });
 
-    this.parts["viewport"].addEventListener("mouseenter", this.pause.bind(this));
     this.parts["viewport"].addEventListener("focusin", this.pause.bind(this));
     this.parts["viewport"].addEventListener("mouseleave", this.resume.bind(this));
     this.parts["viewport"].addEventListener("focusout", this.resume.bind(this));
-    this.parts["viewport"].addEventListener("touchstart", this.stop.bind(this));
+
+    this.parts["viewport"].addEventListener("mouseenter", () => {
+      this.pause();
+      this.suspendObserver = false;
+    });
+
+    this.parts["viewport"].addEventListener("touchstart", () => {
+      this.stop();
+      this.suspendObserver = false;
+    });
+
+    this.addEventListener("click", () => {
+      this.suspendObserver = true;
+    });
+
+    this.parts["viewport"].addEventListener("click", (event) => {
+      event.stopPropagation();
+    });
 
     document.addEventListener("visibilitychange", () => {
       if(document.hidden) {
@@ -118,6 +136,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
         "playing": () => {
           if(this.state.playing) {
             this.startPlayer();
+            this.suspendObserver = true;
           } else {
             this.cancelPlayer();
           }
@@ -129,7 +148,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
   get swipe() {
     return new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if(entry.isIntersecting) {
+        if(entry.isIntersecting && this.suspendObserver !== true) {
           this.select(entry.target);
         }
       });
