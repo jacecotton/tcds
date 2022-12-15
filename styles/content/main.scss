@@ -1,6 +1,15 @@
-main:not(.main--unstyled) {
-  background-color: #fff;
-  padding: var(--content-inner-gutter);
-  border-radius: 25px;
-  box-shadow: 0 0 20px rgb(0 0 0 / 8%);
+main {
+  &:not(.main--unstyled) {
+    background-color: #fff;
+    padding: var(--content-inner-gutter);
+    box-shadow: 0 0 20px rgb(0 0 0 / 8%);
+
+    @media (--above-medium) {
+      border-radius: 25px;
+    }
+  }
+
+  @media (--below-medium) {
+    margin: 0 calc(var(--site-outer-gutter) * -1);
+  }
 }
