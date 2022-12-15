@@ -7,7 +7,9 @@
 }
 
 [class*="bg-"],
-[class*="text-"] {
+.text-primary,
+.text-secondary,
+.text-tertiary {
   color: var(--tcds-color-text);
 }
 
