@@ -11,7 +11,7 @@
 :root {
   --site-outer-gutter: var(--tcds-space-x-loose);
   --site-container-max-width: #{map.get($breakpoints, "x-large")};
-  --content-inner-gutter: 2rem;
+  --content-inner-gutter: 1.5rem;
 
   @each $size, $value in $sizes {
     --tcds-size-#{$size}: #{$value};
