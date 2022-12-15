@@ -1,3 +1,15 @@
+## [1.0.17](https://github.com/jacecotton/tcds/compare/v1.0.16...v1.0.17) (2022-12-15)
+
+
+### Bug Fixes
+
+* **content:** Image auto-sizing issue ([2082d9c](https://github.com/jacecotton/tcds/commit/2082d9c666fcf207218e82f49abd2436307fe953))
+* **content:** Responsive main styles ([02c15cf](https://github.com/jacecotton/tcds/commit/02c15cfa8f5458d87e586bdbbc18dd724271b408))
+* **layout:** Responsive layout tweak ([5ade78d](https://github.com/jacecotton/tcds/commit/5ade78d73b2d0e1b066b119b946b4e01459ff2d2))
+* **utilities:** Text color class over-broad issue ([e8fc480](https://github.com/jacecotton/tcds/commit/e8fc48097fea0eb2d81da4db3be7dce25010cd6a))
+
+
+
 ## [1.0.16](https://github.com/jacecotton/tcds/compare/v1.0.15...v1.0.16) (2022-12-13)
 
 
@@ -31,16 +43,6 @@
 ### Bug Fixes
 
 * **components:** Fix footer conditional ([a70cfbd](https://github.com/jacecotton/tcds/commit/a70cfbd0f55de307e52c971d6272f09d68690f4a))
-
-
-
-## [1.0.12](https://github.com/jacecotton/tcds/compare/v1.0.11...v1.0.12) (2022-12-12)
-
-
-### Bug Fixes
-
-* **components:** Focus delegation issue with button and dialog ([6f7996a](https://github.com/jacecotton/tcds/commit/6f7996a3b6c6c31ad46bf4da21494fb844fab410))
-* **styles:** Fix z-index issue with dialog and site-header ([f3cf13c](https://github.com/jacecotton/tcds/commit/f3cf13c14d2478d9b616a955aa04fda5eb524cc3))
 
 
 
