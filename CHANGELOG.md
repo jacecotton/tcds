@@ -1,3 +1,12 @@
+## [1.0.16](https://github.com/jacecotton/tcds/compare/v1.0.15...v1.0.16) (2022-12-13)
+
+
+### Bug Fixes
+
+* **components:** Carousel cleanup ([8b00266](https://github.com/jacecotton/tcds/commit/8b00266e19d1359a791968b8eb3a2472bc3be12e))
+
+
+
 ## [1.0.15](https://github.com/jacecotton/tcds/compare/v1.0.14...v1.0.15) (2022-12-13)
 
 
@@ -32,15 +41,6 @@
 
 * **components:** Focus delegation issue with button and dialog ([6f7996a](https://github.com/jacecotton/tcds/commit/6f7996a3b6c6c31ad46bf4da21494fb844fab410))
 * **styles:** Fix z-index issue with dialog and site-header ([f3cf13c](https://github.com/jacecotton/tcds/commit/f3cf13c14d2478d9b616a955aa04fda5eb524cc3))
-
-
-
-## [1.0.11](https://github.com/jacecotton/tcds/compare/v1.0.10...v1.0.11) (2022-12-12)
-
-
-### Bug Fixes
-
-* **styles:** Tweak styles ([1155c46](https://github.com/jacecotton/tcds/commit/1155c46a020194f9d4d4d239587b6e512a02c6c9))
 
 
 
