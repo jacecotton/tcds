@@ -25,7 +25,7 @@ h1,
     margin: 0 0 2rem;
   }
 
-  main & {
+  :is(main, .main-content) & {
     --tcds-color-text: var(--tcds-color-primary);
   }
 }

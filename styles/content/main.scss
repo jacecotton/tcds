@@ -1,4 +1,5 @@
-main {
+main,
+.main-content {
   &:not(.main--unstyled) {
     background-color: #fff;
     padding: var(--content-inner-gutter);

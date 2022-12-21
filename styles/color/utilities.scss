@@ -6,7 +6,7 @@
   --tcds-color-text: var(--tcds-color-white);
 }
 
-[class*="bg-"],
+[class*="bg-"][data-theme],
 .text-primary,
 .text-secondary,
 .text-tertiary {
