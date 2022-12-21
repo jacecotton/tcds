@@ -1,3 +1,13 @@
+## [1.0.18](https://github.com/jacecotton/tcds/compare/v1.0.17...v1.0.18) (2022-12-21)
+
+
+### Bug Fixes
+
+* **styles:** Specificity issues ([f00e72e](https://github.com/jacecotton/tcds/commit/f00e72e056178fe9d5f40ee756863b99ee673cf9))
+* **templates:** Set different default height for NRI logo in header ([aac4992](https://github.com/jacecotton/tcds/commit/aac4992eff1934f6c07676dd7db26912550528a4))
+
+
+
 ## [1.0.17](https://github.com/jacecotton/tcds/compare/v1.0.16...v1.0.17) (2022-12-15)
 
 
@@ -34,15 +44,6 @@
 ### Bug Fixes
 
 * **templates:** Footer style ([7c6034d](https://github.com/jacecotton/tcds/commit/7c6034d65ecfe5228d906014e66aa80f98aa2241))
-
-
-
-## [1.0.13](https://github.com/jacecotton/tcds/compare/v1.0.12...v1.0.13) (2022-12-13)
-
-
-### Bug Fixes
-
-* **components:** Fix footer conditional ([a70cfbd](https://github.com/jacecotton/tcds/commit/a70cfbd0f55de307e52c971d6272f09d68690f4a))
 
 
 
