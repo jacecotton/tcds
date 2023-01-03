@@ -3,9 +3,13 @@ import shadowStyles from "./style.css";
 import lightStyles from "./style.light.css";
 
 export default class AlertBar extends WebComponent(HTMLElement) {
-  connected() {
+  connectedCallback() {
     this.shadowRoot.adoptedStyleSheets = [shadowStyles];
     document.adoptedStyleSheets = [...document.adoptedStyleSheets, ...[lightStyles]];
+
+    // Add auto-incrementing unique IDs to each carousel instance.
+    const alertBars = Array.from(document.querySelectorAll("tcds-alert-bar"));
+    this.id = `alert-bar${alertBars.length > 1 ? `-${alertBars.indexOf(this) + 1}` : ""}`;
   }
 
   render() {
@@ -20,7 +24,7 @@ export default class AlertBar extends WebComponent(HTMLElement) {
     `;
   }
 
-  mounted() {
+  mountedCallback() {
     const details = Array.from(this.querySelectorAll("details"));
 
     details.forEach((detail) => {
@@ -38,9 +42,3 @@ export default class AlertBar extends WebComponent(HTMLElement) {
 }
 
 customElements.define("tcds-alert-bar", AlertBar);
-
-(function() {
-  document.querySelectorAll("tcds-alert-bar")?.forEach((alertBar, index, array) => {
-    alertBar.id = `alert-bar${array.length > 1 ? `-${index + 1}` : ""}`;
-  });
-}());

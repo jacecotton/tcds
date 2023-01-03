@@ -1,23 +1,20 @@
 import WebComponent from "../../scripts/WebComponent/WebComponent.js";
 import AnimateElement from "../../scripts/AnimateElement/AnimateElement.js";
-
 import shadowStyles from "./style.css";
 import lightStyles from "./style.light.css";
 
 export default class MegaMenu extends WebComponent(HTMLElement) {
-  static get observedAttributes() {
-    return ["open"];
-  }
-
   static state = {
-    open: "boolean",
+    open: {
+      type: Boolean,
+      reflected: true,
+      default: false,
+    },
   };
 
-  connected() {
+  connectedCallback() {
     this.shadowRoot.adoptedStyleSheets = [shadowStyles];
     document.adoptedStyleSheets = [...document.adoptedStyleSheets, ...[lightStyles]];
-
-    this.state.open = false;
   }
 
   render() {
@@ -35,7 +32,7 @@ export default class MegaMenu extends WebComponent(HTMLElement) {
     `;
   }
 
-  mounted() {
+  mountedCallback() {
     this.controllers = [
       ...document.querySelectorAll(`[aria-controls="${this.id}"], [controls="${this.id}"]`),
       ...this.shadowRoot.querySelectorAll(`[aria-controls="${this.id}"], [controls="${this.id}"]`)
@@ -62,7 +59,7 @@ export default class MegaMenu extends WebComponent(HTMLElement) {
     });
   }
 
-  updated(state) {
+  updatedCallback(state) {
     return {
       state: {
         open: () => {
@@ -75,7 +72,8 @@ export default class MegaMenu extends WebComponent(HTMLElement) {
           });
 
           if(this.state.open) {
-            this.closeOtherMegaMenus();
+            const otherMegaMenus = Array.from(document.querySelectorAll("tcds-mega-menu")).filter(otherMegaMenu => otherMegaMenu !== this);
+            otherMegaMenus.forEach(otherMegaMenu => otherMegaMenu.close());
             this.hidden = false;
           } else if(state.oldState.open === true) {
             AnimateElement(this.parts["mega-menu"], (window.innerWidth < 1200 ? "slide-out-right" : ["slide-out-up", "fade-out"]), {
@@ -98,11 +96,6 @@ export default class MegaMenu extends WebComponent(HTMLElement) {
 
   close() {
     this.state.open = false;
-  }
-
-  closeOtherMegaMenus() {
-    const otherMegaMenus = Array.from(document.querySelectorAll("tcds-mega-menu")).filter(otherMegaMenu => otherMegaMenu !== this);
-    otherMegaMenus.forEach(otherMegaMenu => otherMegaMenu.close());
   }
 }
 

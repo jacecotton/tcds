@@ -3,7 +3,7 @@ import shadowStyles from "./style.css";
 import lightStyles from "./style.light.css";
 
 export default class Section extends WebComponent(HTMLElement) {
-  connected() {
+  connectedCallback() {
     this.shadowRoot.adoptedStyleSheets = [shadowStyles];
     document.adoptedStyleSheets = [...document.adoptedStyleSheets, ...[lightStyles]];
 

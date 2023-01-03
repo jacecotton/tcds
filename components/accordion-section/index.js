@@ -6,14 +6,13 @@ import slugify from "../../scripts/utilities/slugify.js";
 
 export default class AccordionSection extends WebComponent(HTMLElement) {
   static state = {
-    "open": "boolean",
+    open: {
+      type: Boolean,
+      reflected: true,
+    },
   };
 
-  static get observedAttributes() {
-    return ["open"];
-  }
-
-  connected() {
+  connectedCallback() {
     this.shadowRoot.adoptedStyleSheets = [shadowStyles];
     document.adoptedStyleSheets = [...document.adoptedStyleSheets, ...[lightStyles]];
 
@@ -30,7 +29,7 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
 
     return /* html */`
       <section part="section">
-        <h${this.parent.props["heading-level"] || "3"} part="heading">
+        <h${this.parent.props["heading-level"]} part="heading">
           <button
             part="button"
             id="${id}-button"
@@ -41,7 +40,7 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
             ${this.props.label}
             <tcds-icon part="icon" icon="${this.state.open ? "minus" : "plus"}"></tcds-icon>
           </button>
-        </h${this.parent.props["heading-level"] || "3"}>
+        </h${this.parent.props["heading-level"]}>
 
         <div part="panel" id="${id}-panel" aria-labelledby="${id}-button">
           <div part="content">
@@ -52,21 +51,23 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
     `;
   }
 
-  updated(state) {
+  updatedCallback(state) {
     return {
       state: {
-        "open": () => {
+        open: () => {
           if(this.state.open) {
+            const height = `${this.parts["panel"].scrollHeight}px`;
+
             this.parts["panel"].style.height = "0px";
             this.parts["panel"].hidden = false;
 
             requestAnimationFrame(() => {
-              this.parts["panel"].style.height = `${this.parts["panel"].scrollHeight}px`;
-
-              if(this.parent.props.multiple === false) {
-                this.siblings.filter(sibling => sibling.state.open).forEach(sibling => sibling.close());
-              }
+              this.parts["panel"].style.height = height;
             });
+
+            if(this.parent.props.multiple === false) {
+              this.siblings.filter(sibling => sibling.state.open).forEach(sibling => sibling.close());
+            }
           } else if(state.oldState.open) {
             this.parts["panel"].style.height = "0px";
 

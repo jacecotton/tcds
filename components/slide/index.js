@@ -1,15 +1,14 @@
 import WebComponent from "../../scripts/WebComponent/WebComponent.js";
 
 export default class Slide extends WebComponent(HTMLElement) {
-  static get observedAttributes() {
-    return ["active"];
-  }
-
   static state = {
-    active: "boolean",
+    active: {
+      type: Boolean,
+      reflected: true,
+    },
   };
 
-  connected() {
+  connectedCallback() {
     this.parent = this.closest("tcds-carousel");
     this.siblings = Array.from(this.parent.querySelectorAll("tcds-slide"));
     this.position = this.siblings.indexOf(this) + 1;
@@ -33,14 +32,10 @@ export default class Slide extends WebComponent(HTMLElement) {
     `;
   }
 
-  updated() {
+  updatedCallback() {
     return {
       state: {
-        "active": () => {
-          if(this.state.active) {
-            this.parent.scrollToSlide(this);
-          }
-        },
+        active: () => this.state.active && this.parent.scrollToSlide(this),
       },
     };
   }

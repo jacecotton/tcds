@@ -1,94 +1,95 @@
-import diff from "./utilities/diff.js";
-import getAttributeValueOfType from "./utilities/getAttributeValueOfType.js";
+import diff from "./diff.js";
 
-const WebComponent = (ElementInterface = HTMLElement, options = {}) => class extends ElementInterface {
+const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends BaseElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open", ...options });
-  }
 
-  // Initialize internal properties.
-  #stateTypes;
-  #propTypes;
-  #renderPasses = 0;
-  #buffer = {state: {}, props: {}};
-  #debounce = null;
+    this.#stateSettings = this.constructor.state || {};
+    this.#propSettings = this.constructor.props || {};
 
-  connectedCallback() {
-    // Provide component name property.
-    this.component = this.localName;
-
-    // `state` and `props` objects can be author-initialized to indicate the
-    // desired types. We'll store internal copies before redefining these
-    // objects for actual state and props.
-    this.#stateTypes = this.constructor.state || null;
-    this.#propTypes = this.constructor.props || null;
-
-    // Proxy `state` and `props` properties to intercept and handle changes.
     this.state = new Proxy({}, this.#stateHandler());
     this.props = new Proxy({}, this.#propsHandler());
 
-    // Intercept `parts` reads to query select shadow DOM and return part nodes
-    // automatically.
-    this.parts = new Proxy({}, this.#getParts());
+    this.addEventListener("update", this.#batchUpdates.bind(this));
 
-    // Listen for component updates.
-    this.addEventListener("component:update", this.#updateHandler.bind(this));
+    this.#attributeHandler([...this.attributes]);
+    this.#attributeObserver.observe(this, { attributes: true });
 
-    // Populate the `props` object from the component instance's element
-    // attributes.
-    this.#propsFromAttributes();
+    this.#populateDefaults();
 
-    // Declare the component connected (allows component authors to hook inside
-    // `connectedCallback` after the above has been completed).
-    this.isConnected && this.connected?.();
-
-    // Wait for the next animation frame. If `state` has been populated by the
-    // component author at this point, then an update will already be scheduled.
-    // But if not, trigger the first update.
-    if(Object.keys(this.state).length === 0) {
-      this.#update();
-    }
+    Object.keys(this.state).length === 0
+      && Object.keys(this.props).length === 0
+      && this.dispatchEvent(new CustomEvent("update"));
   }
 
-  /**
-   * Intercept changes to internal `state` object.
-   *
-   * store = the object that `this.state` will become.
-   * state = the state key to update.
-   * value = the desired value to set `state` to.
-   */
+  #stateSettings;
+  #propSettings;
+  #renderPasses = 0;
+  #batch = {state: {}, props: {}};
+  #debounce = null;
+
+  disconnectedCallback() {
+    this.#attributeObserver.disconnect();
+  }
+
+  get #attributeObserver() {
+    return new MutationObserver((mutations) => {
+      this.#attributeHandler(
+        [...mutations].map(({ attributeName }) => ({
+          name: attributeName,
+          value: this.getAttribute(attributeName),
+        }))
+      );
+    });
+  }
+
+  #attributeHandler(attributes) {
+    attributes.forEach((attribute) => {
+      const reflectedState = attribute.name in this.#stateSettings && this.#stateSettings[attribute.name].reflected;
+      const settings = reflectedState ? this.#stateSettings : this.#propSettings;
+      const data = reflectedState ? this.state : this.props;
+      const type = settings[attribute.name]?.type;
+
+      data[attribute.name] = type ? this.#typeConverter(attribute.value, type) : attribute.value;
+    });
+  }
+
   #stateHandler() {
     return {
       set: (store, state, value) => {
-        if(store[state] === value) {
+        const type = this.#stateSettings[state]?.type;
+        const isValidType = !type || this.#typeChecker(value, type);
+
+        if(store[state] === value || !isValidType) {
           return true;
         }
 
-        if(this.#stateTypes) {
-          const wantsArrayIsArray = this.#stateTypes[state] === "array" && Array.isArray(value);
-          const notOfCorrectType = typeof value !== this.#stateTypes[state] && !wantsArrayIsArray;
+        const reflected = this.#stateSettings[state]?.reflected;
+        let attribute = reflected && this.getAttribute(state);
 
-          // Check new state value against declared type if it exists.
-          if(state in this.#stateTypes && notOfCorrectType) {
-            console.error(`Value of state property ${state} is not of type ${this.#stateTypes[state].toUpperCase()}.`, `${value} (${(typeof value).toUpperCase()})`);
-            return true;
+        if(attribute && type) {
+          attribute = this.#typeConverter(attribute, type);
+        }
+
+        if(reflected && attribute !== value) {
+          if(type === Boolean) {
+            this.toggleAttribute(state, value);
+          } else {
+            this.setAttribute(state, this.#typeConverter(value, String));
           }
         }
 
-        // Store the old value for reference in `component:update` event, then
-        // update the state prop to the new value.
         const oldValue = store[state];
         store[state] = value;
 
-        // Notify subscribers/observers of component update.
-        this.dispatchEvent(new CustomEvent("component:update", {
+        this.dispatchEvent(new CustomEvent("update", {
           bubbles: true,
           cancelable: true,
           detail: {
             state: {
-              oldState: {[state]: oldValue},
-              newState: {[state]: value},
+              oldState: { [state]: oldValue },
+              newState: { [state]: value },
             },
           },
         }));
@@ -96,7 +97,6 @@ const WebComponent = (ElementInterface = HTMLElement, options = {}) => class ext
         return true;
       },
 
-      // Proxy child properties of each state property as well.
       get: (store, state) => {
         if(state === "_isProxy") {
           return true;
@@ -111,169 +111,84 @@ const WebComponent = (ElementInterface = HTMLElement, options = {}) => class ext
     };
   }
 
-  /**
-   * Intercept changes to internal `props` object.
-   */
   #propsHandler() {
     return {
       set: (props, prop, value) => {
-        // Get the current attribute value and the given internal value of the
-        // prop as the type declared.
-        const desiredType = this.#propTypes?.[prop];
-        const normalizedAttributeValue = getAttributeValueOfType(this.getAttribute(prop), desiredType);
-        const normalizedGivenValue = getAttributeValueOfType(value, desiredType);
+        const type = this.#propSettings[prop]?.type;
+        let attribute = this.getAttribute(prop);
 
-        // Exit early if the property key is a reflected state attribute, or if
-        // the attempted setting of the `props` property is different from its
-        // corresponding DOM attribute. This allows `props` to be updated via
-        // attribute changes on the component, but not internal mutations of the
-        // object.
-        if(
-          this.constructor.observedAttributes?.includes(prop)
-          || (desiredType !== "array" && normalizedAttributeValue !== normalizedGivenValue)
-          // Special equality checking required for arrays.
-          || (desiredType === "array" && normalizedAttributeValue.slice().sort().join() !== normalizedGivenValue.slice().sort().join())
-        ) {
+        if(type !== Boolean && attribute === null) {
           return true;
         }
 
-        // Store the old value for reference in the `component:update` event,
-        // then update the prop to the new value.
-        const oldValue = props[prop];
-        props[prop] = normalizedGivenValue;
+        if(type) {
+          attribute = this.#typeConverter(attribute, type);
+          value = this.#typeConverter(value, type);
+        }
 
-        // Notify subscribers/observers of component update.
-        this.dispatchEvent(new CustomEvent("component:update", {
-          bubbles: true,
-          cancelable: true,
-          detail: {
-            props: {
-              oldProps: {[prop]: oldValue},
-              newProps: {[prop]: normalizedGivenValue},
+        const outOfSync = type !== Array
+          ? (attribute !== value)
+          : (attribute.slice().sort().join() !== value.slice().sort().join());
+
+        if(!outOfSync) {
+          const oldValue = props[prop];
+          props[prop] = value;
+
+          this.dispatchEvent(new CustomEvent("update", {
+            bubbles: true,
+            cancelable: true,
+            detail: {
+              props: {
+                oldProps: { [prop]: oldValue },
+                newProps: { [prop]: value },
+              },
             },
-          },
-        }));
+          }));
+        }
 
         return true;
       },
-
-      get: (props, prop) => {
-        if(this.#propTypes && prop in this.#propTypes && props[prop] === undefined) {
-          props[prop] = getAttributeValueOfType(this.getAttribute(prop), this.#propTypes[prop]);
-        }
-
-        return props[prop];
-      },
     };
   }
 
-  /**
-   * Intercepts reads to internal `parts` object to give automatic access to all
-   * component parts.
-   */
-  #getParts() {
-    return {
-      get: (parts, part) => {
-        // If the part has not already been read...
-        if(!parts[part]) {
-          // Query select for the part.
-          const query = this.shadowRoot.querySelectorAll(`[part~=${part}]`);
+  #populateDefaults() {
+    const defaultState = Object.keys(this.#stateSettings).filter(state => "default" in this.#stateSettings[state]);
+    const defaultProps = Object.keys(this.#propSettings).filter(prop => "default" in this.#propSettings[prop]);
 
-          if(!query || query.length < 1) {
-            console.warn(`${this.component} does not contain shadow part(s) "${part}".`);
-            return;
-          }
+    defaultState.forEach((state) => {
+      if(this.state[state] === undefined) {
+        this.state[state] = this.#stateSettings[state].default;
+      }
+    });
 
-          let value;
+    defaultProps.forEach((prop) => {
+      const { type, default: defaultValue } = this.#propSettings[prop];
 
-          if(query.length > 1) {
-            // Return an array of nodes if node list of more than 1 node.
-            value = Array.from(query);
-          } else {
-            // Just return the first node if only 1 node.
-            value = query[0];
-          }
+      if(type === Boolean) {
+        this.toggleAttribute(prop, defaultValue);
 
-          // Store the part(s) in the object to avoid redundant DOM querying
-          // if accessed multiple times.
-          parts[part] = value;
-          return value;
-        } else {
-          // Return already-accessed node(s) if queried before.
-          return parts[part];
+        if(defaultValue === false) {
+          this.props[prop] = false;
         }
-      },
-    };
+      } else if(this.getAttribute(prop) === null) {
+        this.setAttribute(prop, defaultValue);
+      }
+    });
   }
 
-  /**
-   * Populate `this.props` from existing attributes, then attach a mutation
-   * observer to update `this.props` when an attribute changes.
-   */
-  #propsFromAttributes() {
-    function setPropToAttribute(attribute) {
-      // Cancel if the prop is a reflected state attribute.
-      if(this.constructor.observedAttributes && this.constructor.observedAttributes.includes(attribute)) {
-        return;
-      }
-
-      // Convert attribute value to desired type (won't change value if the prop
-      // type is null).
-      let value = getAttributeValueOfType(this.getAttribute(attribute), this.#propTypes?.[attribute]);
-
-      // Update prop key if value is actually different.
-      if(this.props[attribute] !== value) {
-        this.props[attribute] = value;
-      }
+  #batchUpdates(event) {
+    if(event.detail?.state) {
+      const { newState, oldState } = event.detail.state;
+      this.#batch.state.newState = {...this.#batch.state.newState, ...newState};
+      this.#batch.state.oldState = {...this.#batch.state.oldState, ...oldState};
     }
 
-    // Populate `props` object from attributes.
-    this.getAttributeNames().forEach((attribute) => {
-      setPropToAttribute.call(this, attribute);
-    });
-
-    // Observe attribute mutations.
-    const attributeChange = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        // Update `props` object with new attribute value.
-        setPropToAttribute.call(this, mutation.attributeName);
-      });
-    });
-
-    attributeChange.observe(this, { attributes: true });
-  }
-
-  /**
-   * Handle `component:update` events (schedule an update).
-   */
-  #updateHandler(event) {
-    // If there are state changes in the update...
-    if(event.detail.state) {
-      // Batch the changes with the queued changes.
-      this.#buffer.state.newState = { ...this.#buffer.state.newState, ...event.detail.state.newState };
-      this.#buffer.state.oldState = { ...this.#buffer.state.oldState, ...event.detail.state.oldState };
+    if(event.detail?.props) {
+      const { newProps, oldProps } = event.detail.props;
+      this.#batch.props.newProps = {...this.#batch.props.newProps, ...newProps};
+      this.#batch.props.oldProps = {...this.#batch.props.oldProps, ...oldProps};
     }
 
-    // If there are prop changes in the update...
-    if(event.detail.props) {
-      // Batch the changes with the queued changes.
-      this.#buffer.props.newProps = { ...this.#buffer.props.newProps, ...event.detail.props.newProps };
-      this.#buffer.props.oldProps = { ...this.#buffer.props.oldProps, ...event.detail.props.oldProps };
-    }
-
-    // Debounce back-to-back state and prop updates to allow them to be batched
-    // above. Wait until next animation frame before calling an update.
-    // `#debounce` is initialized as `null`, but every time this
-    // `#updateHandler` is called from a `component:update`, `#debounce` is set
-    // to a new `requestAnimationFrame`. If `#debounce` is no longer `null`,
-    // that means this event handler has been run, so we need to cancel the
-    // previous animation frame request, and request a new one. On the last call
-    // of this handler from a `component:update`, the previous animation frame
-    // will be canceled (because `#debounce` is not `null`), but the new request
-    // that `#debounce` is set to will be allowed to run, thus only calling
-    // `#update` once there's a full batch of changes within the span of a
-    // single animation frame. Note how each request is not in an `else` block,
-    // allowing it to run on the last update round only.
     if(this.#debounce !== null) {
       cancelAnimationFrame(this.#debounce);
     }
@@ -281,113 +196,120 @@ const WebComponent = (ElementInterface = HTMLElement, options = {}) => class ext
     this.#debounce = requestAnimationFrame(this.#update.bind(this));
   }
 
-  /**
-   * Actually perform the component update.
-   */
   #update() {
     this.#debounce = null;
 
-    // Set attribute to state value if state prop is listed in
-    // `observedAttributes`. We don't do this for props because the `props`
-    // object is internally immutable. That is, state is bidirectionally synced
-    // (DOM to object and vice versa), whereas props are only unidirectionally
-    // synced (from DOM to object).
-    if(this.constructor.observedAttributes) {
-      for(let state in this.#buffer.state.newState) {
-        if(!this.constructor.observedAttributes.includes(state)) {
-          continue;
-        }
+    this.#reflectState();
+    this.#render();
 
-        const desiredType = this.#stateTypes?.[state] || typeof this.state[state];
-        const attributeValue = getAttributeValueOfType(this.getAttribute(state), desiredType);
-        const normalizedValue = getAttributeValueOfType(this.state[state], desiredType);
+    const batch = Object.assign({}, this.#batch);
 
-        if(typeof normalizedValue === "boolean") {
-          this.toggleAttribute(state, normalizedValue);
-        } else if(desiredType === "array") {
-          this.setAttribute(state, normalizedValue.join(" "));
-        } else if(attributeValue !== normalizedValue) {
-          this.setAttribute(state, normalizedValue);
-        }
-      }
-    }
-
-    let template = this.render?.();
-    const baseStyles = Array.from(document.styleSheets).find(sheet => sheet.title === "tcds-base");
-
-    template = `
-      <style id="${baseStyles.title}">@import url("${baseStyles.href}")</style>
-      ${template}
-    `;
-
-    // Diff template from existing DOM and apply differences.
-    diff(template, this.shadowRoot);
-
-    const batch = Object.assign({}, this.#buffer);
-
-    // Declare component mounted after the first render pass and after all child
-    // components are defined. Then call update callbacks after mount and after
-    // every update afterwards.
     if(this.#renderPasses < 1) {
-      const childComponentsAreDefined = Array.from(this.shadowRoot.querySelectorAll(":not(:defined)")).map((childComponent) => {
-        return customElements.whenDefined(childComponent.localName);
-      });
+      const childComponentsAreDefined = Array.from(this.shadowRoot.querySelectorAll(":not(:defined)")).map(child => customElements.whenDefined(child.localName));
 
       Promise.all(childComponentsAreDefined).then(() => {
-        this.mounted?.();
-        this.#callUpdateCallbacks(batch);
-      }).catch((error) => {
-        console.error(error);
-      });
+        this.mountedCallback?.();
+        this.#updateCallbacks(batch);
+      }).catch(error => console.log(error));
     } else {
-      this.#callUpdateCallbacks(batch);
+      this.#updateCallbacks(batch);
     }
 
     this.#renderPasses++;
-    this.#buffer = {state: {}, props: {}};
+    this.#batch = {state: {}, props: {}};
   }
 
-  /**
-   * Callback functions can be provided by component authors in the `updated`
-   * hook. If the name of a callback matches a state or prop key in the current
-   * update batch, call it, then empty out the update batch.
-   */
-  #callUpdateCallbacks(batch) {
-    const updateCallbacks = this.updated?.(batch.state, batch.props) || {};
+  #reflectState() {
+    const reflectedState = this.#stateSettings
+      && Object.keys(this.#stateSettings).filter(state => this.#stateSettings[state].reflected);
+
+    reflectedState.forEach((state) => {
+      const type = this.#stateSettings[state]?.type;
+      let attribute = this.getAttribute(state) || this.state[state];
+      let value = this.state[state];
+
+      if(type) {
+        attribute = this.#typeConverter(attribute, type);
+        value = this.#typeConverter(value, type);
+      }
+
+      if(attribute !== value) {
+        if(typeof value === "boolean") {
+          this.toggleAttribute(state, value);
+        } else {
+          this.setAttribute(state, this.#typeConverter(value, String));
+        }
+      }
+    });
+  }
+
+  #render() {
+    const baseStyles = Array.from(document.styleSheets).find(sheet => sheet.title === "tcds")?.href
+      || "https://unpkg.com/@txch/tcds/dist/tcds.css";
+
+    diff(`
+      <style id="tcds">@import url("${baseStyles}")</style>
+      ${this.render?.()}
+    `, this.shadowRoot);
+  }
+
+  #updateCallbacks(batch) {
+    const { state, props } = batch;
+    const updateCallbacks = this.updatedCallback?.(state, props) || {};
 
     if("state" in updateCallbacks) {
-      for(let state in updateCallbacks.state) {
-        if(batch.state.newState && state in batch.state.newState) {
-          updateCallbacks.state[state]();
+      for(let key in updateCallbacks.state) {
+        if(state.newState && key in state.newState) {
+          updateCallbacks.state[key]();
         }
       }
     }
 
     if("props" in updateCallbacks) {
-      for(let prop in updateCallbacks.props) {
-        if(batch.props.newProps && prop in batch.props.newProps) {
-          updateCallbacks.props[prop]();
+      for(let key in updateCallbacks.props) {
+        if(props.newProps && key in props.newProps) {
+          updateCallbacks.props[key]();
         }
       }
     }
   }
 
-  /**
-   * Sync reflected state attribute changes to internal `state` object.
-   */
-  attributeChangedCallback(attribute, _oldValue, newValue) {
-    if(this.state) {
-      const desiredType = this.#stateTypes?.[attribute] || typeof this.state[attribute];
-      const normalizedValue = getAttributeValueOfType(newValue, desiredType);
-
-      if(
-        desiredType !== "array" && this.state[attribute] !== normalizedValue
-        || desiredType === "array" && normalizedValue.slice().sort().join() !== this.state[attribute].slice().sort().join()
-      ) {
-        this.state[attribute] = normalizedValue;
-      }
-    }
+  #typeConverter(value, type) {
+    return this.#typeChecker(value, type) ? value : {
+      [Array]: typeof value === "string"
+        ? value.trim().replace(/\s\s+/g, " ").split(" ")
+        : [value].flat(),
+      [Boolean]: !["false", "0", 0, null, undefined].includes(value),
+      [Number]: Number(value),
+      [String]: Array.isArray(value)
+        ? value.join(" ")
+        : String(value),
+    }[type];
   }
+
+  #typeChecker(value, type) {
+    return {
+      [Array]: Array.isArray(value),
+      [Boolean]: typeof value === "boolean",
+      [Number]: typeof value === "number",
+      [String]: typeof value === "string",
+    }[type];
+  }
+
+  parts = new Proxy({}, {
+    get: (parts, part) => {
+      if(!parts[part]) {
+        const query = this.shadowRoot.querySelectorAll(`[part~=${part}]`);
+        const value = query.length > 1 ? Array.from(query) : query[0];
+
+        if(value) {
+          parts[part] = value;
+        }
+      }
+
+      return parts[part];
+    },
+  });
 };
 
 export default WebComponent;

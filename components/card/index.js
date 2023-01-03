@@ -3,15 +3,14 @@ import shadowStyles from "./style.css";
 import lightStyles from "./style.light.css";
 
 export default class Card extends WebComponent(HTMLElement) {
-  static get observedAttributes() {
-    return ["no-image"];
-  }
-
   static state = {
-    "no-image": "boolean",
+    "no-image": {
+      type: Boolean,
+      reflected: true,
+    },
   };
 
-  connected() {
+  connectedCallback() {
     this.shadowRoot.adoptedStyleSheets = [shadowStyles];
     document.adoptedStyleSheets = [...document.adoptedStyleSheets, ...[lightStyles]];
 

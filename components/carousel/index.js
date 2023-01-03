@@ -2,16 +2,15 @@ import WebComponent from "../../scripts/WebComponent/WebComponent.js";
 import styles from "./style.css";
 
 export default class Carousel extends WebComponent(HTMLElement) {
-  static get observedAttributes() {
-    return ["playing"];
-  }
-
   static state = {
-    playing: "boolean",
+    playing: {
+      type: Boolean,
+      reflected: true,
+    },
   };
 
   static props = {
-    timing: "number",
+    timing: {type: Number},
   };
 
   constructor() {
@@ -19,7 +18,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
     this.shadowRoot.adoptedStyleSheets = [styles];
   }
 
-  connected() {
+  connectedCallback() {
     this.slides = Array.from(this.querySelectorAll("tcds-slide"));
 
     // Add auto-incrementing unique IDs to each carousel instance.
@@ -94,7 +93,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
     `;
   }
 
-  mounted() {
+  mountedCallback() {
     this.state.playing =
       this.hasAttribute("playing")
       && this.hasAttribute("timing")
@@ -115,10 +114,10 @@ export default class Carousel extends WebComponent(HTMLElement) {
     });
   }
 
-  updated() {
+  updatedCallback() {
     return {
       state: {
-        "playing": () => {
+        playing: () => {
           if(this.state.playing) {
             this.startPlayer();
             this.observeSwipe = false;

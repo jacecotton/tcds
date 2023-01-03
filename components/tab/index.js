@@ -1,22 +1,20 @@
 import WebComponent from "../../scripts/WebComponent/WebComponent.js";
+import slugify from "../../scripts/utilities/slugify.js";
 import styles from "./style.css";
 
-import slugify from "../../scripts/utilities/slugify.js";
-
 export default class Tab extends WebComponent(HTMLElement) {
-  static get observedAttributes() {
-    return ["active"];
-  }
-
   static state = {
-    active: "boolean",
+    active: {
+      type: Boolean,
+      reflected: true,
+    },
   };
 
   static props = {
-    label: "string",
+    label: {type: String},
   };
 
-  connected() {
+  connectedCallback() {
     this.shadowRoot.adoptedStyleSheets = [styles];
   }
 

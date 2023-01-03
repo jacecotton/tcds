@@ -18,6 +18,7 @@
   font-weight: var(--tcds-font-weight-semibold);
   width: 100%;
   color: var(--tcds-color-gray-dark);
+  transition: all var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing);
 }
 
 [part="button"][aria-expanded="true"] {

@@ -1,15 +1,14 @@
 import WebComponent from "../../scripts/WebComponent/WebComponent.js";
+import slugify from "../../scripts/utilities/slugify.js";
 import shadowStyles from "./style.css";
 import lightStyles from "./style.light.css";
 
-import slugify from "../../scripts/utilities/slugify.js";
-
 export default class Tabs extends WebComponent(HTMLElement) {
   static props = {
-    "inactive": "boolean",
+    inactive: {type: Boolean},
   };
 
-  connected() {
+  connectedCallback() {
     this.shadowRoot.adoptedStyleSheets = [shadowStyles];
     document.adoptedStyleSheets = [...document.adoptedStyleSheets, ...[lightStyles]];
 

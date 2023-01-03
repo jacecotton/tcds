@@ -4,11 +4,11 @@ import lightStyles from "./style.light.css";
 
 export default class Button extends WebComponent(HTMLElement, { delegatesFocus: true }) {
   static props = {
-    "icon": "array",
-    "new-tab": "boolean",
+    icon: {type: Array},
+    "new-tab": {type: Boolean},
   };
 
-  connected() {
+  connectedCallback() {
     this.shadowRoot.adoptedStyleSheets = [shadowStyles];
     document.adoptedStyleSheets = [...document.adoptedStyleSheets, ...[lightStyles]];
   }

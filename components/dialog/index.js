@@ -1,22 +1,20 @@
 import WebComponent from "../../scripts/WebComponent/WebComponent.js";
+import getFocusableChildren from "./getFocusableChildren.js";
 import styles from "./style.css";
 
-import getFocusableChildren from "../../scripts/utilities/getFocusableChildren.js";
-
 export default class Dialog extends WebComponent(HTMLElement, { delegatesFocus: true }) {
-  static get observedAttributes() {
-    return ["open"];
-  }
-
   static state = {
-    "open": "boolean",
+    open: {
+      type: Boolean,
+      reflected: true,
+    },
   };
 
   static props = {
-    "autoclose": "number",
+    autoclose: {type: Number},
   };
 
-  connected() {
+  connectedCallback() {
     this.shadowRoot.adoptedStyleSheets = [styles];
   }
 
@@ -37,7 +35,7 @@ export default class Dialog extends WebComponent(HTMLElement, { delegatesFocus: 
     `;
   }
 
-  mounted() {
+  mountedCallback() {
     this.state.open = this.hasAttribute("open")
       && localStorage.getItem(`tcds_dialog_${this.id}_state`) !== "closed";
 
@@ -90,10 +88,10 @@ export default class Dialog extends WebComponent(HTMLElement, { delegatesFocus: 
     });
   }
 
-  updated() {
+  updatedCallback() {
     return {
       state: {
-        "open": () => {
+        open: () => {
           localStorage.setItem(`tcds_dialog_${this.id}_state`, this.state.open ? "open" : "closed");
 
           this.hidden = !this.state.open;

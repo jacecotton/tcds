@@ -8,12 +8,24 @@ import lightStyles from "./style.light.css";
 
 export default class Accordion extends WebComponent(HTMLElement) {
   static props = {
-    "multiple": "boolean",
+    multiple: {
+      type: Boolean,
+      default: false,
+    },
+
+    "heading-level": {
+      type: String,
+      default: "3",
+    },
   };
 
-  connected() {
+  connectedCallback() {
     this.shadowRoot.adoptedStyleSheets = [shadowStyles];
     document.adoptedStyleSheets = [...document.adoptedStyleSheets, ...[lightStyles]];
+
+    // Add auto-incrementing unique IDs to each carousel instance.
+    const accordions = Array.from(document.querySelectorAll("tcds-accordion"));
+    this.id = `accordion${accordions.length > 1 ? `-${accordions.indexOf(this) + 1}` : ""}`;
 
     this.sections = Array.from(this.querySelectorAll("tcds-accordion-section"));
   }
@@ -40,11 +52,3 @@ export default class Accordion extends WebComponent(HTMLElement) {
 }
 
 customElements.define("tcds-accordion", Accordion);
-
-(function() {
-  document.querySelectorAll("tcds-accordion")?.forEach((accordion, index, array) => {
-    if(!accordion.id) {
-      accordion.id = `accordion${array.length > 1 ? `-${index + 1}` : ""}`;
-    }
-  });
-}());
