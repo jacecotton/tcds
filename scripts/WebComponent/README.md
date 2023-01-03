@@ -98,7 +98,7 @@ Props are accessible internally from the public `props` property. This object is
 
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
-  connected() {
+  connectedCallback() {
     console.log(this.props); // => { "foo": "bar" }
   }
 }
