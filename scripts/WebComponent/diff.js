@@ -34,13 +34,13 @@ function stringToHTML(string) {
 }
 
 /**
-* Check if two nodes are different.
-*
-* @param {Node} node1 The node to compare against.
-* @param {Node} node2 The node to compare.
-*
-* @returns {Boolean} Whether they're different nodes.
-*/
+ * Check if two nodes are different.
+ *
+ * @param {Node} node1 The node to compare against.
+ * @param {Node} node2 The node to compare.
+ *
+ * @returns {Boolean} Whether they're different nodes.
+ */
 function isDifferentNode(node1, node2) {
   return (
     node1.nodeType !== node2.nodeType ||
@@ -62,18 +62,17 @@ function stringToBoolean(string) {
 }
 
 /**
- * Check if the desired node is further ahead in the existing DOM.
+ * Check if the desired node is further ahead in the existing DOM, and if so,
+ * what the index position is.
  *
  * @param {Node} node The node to look for.
  * @param {NodeList} existingNodes The existing DOM.
- * @param {Integer} index The indexing index.
+ * @param {Number} index The indexing index.
  *
- * @return {Integer} How many nodes ahead the target node is.
+ * @return {Number} How many nodes ahead the target node is.
  */
 function aheadInTree(node, existingNodes, index) {
-  return Array.from(existingNodes).slice(index + 1).find((branch) => {
-    return !isDifferentNode(node, branch);
-  });
+  return Array.from(existingNodes).slice(index + 1).find(branch => !isDifferentNode(node, branch));
 }
 
 /**

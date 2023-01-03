@@ -1,5 +1,16 @@
 import diff from "./diff.js";
 
+/**
+ * A base class for creating native Web Components. Documentation at
+ * https://github.com/jacecotton/tcds/tree/main/scripts/WebComponent
+ *
+ * @param {Element} [BaseElement=HTMLElement] - The HTML element interface to
+ *   extend. `HTMLElement` if an autonomous custom element, something else if a
+ *   customized built-in (not recommended).
+ * @param {object} options - `attachShadow` settings. Useful to set `mode` to
+ *   `closed` if desired (default is `open`), or things like `delegatesFocus`
+ *   for buttons and other inputs.
+ */
 const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends BaseElement {
   constructor() {
     super();
@@ -18,7 +29,12 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
 
     this.#populateDefaults();
 
-    Object.keys(this.state).length === 0
+    /**
+     * Manually schedule an update if the component has been connected but
+     * doesn't have any state or props (which would trigger an update).
+     */
+    this.isConnected
+      && Object.keys(this.state).length === 0
       && Object.keys(this.props).length === 0
       && this.dispatchEvent(new CustomEvent("update"));
   }

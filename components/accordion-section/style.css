@@ -34,7 +34,7 @@
 [part="panel"] {
   overflow: hidden;
   background-color: var(--tcds-color-gray-x-light);
-  transition: height 0.15s linear;
+  transition: height var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing);
 }
 
 [part="content"] {

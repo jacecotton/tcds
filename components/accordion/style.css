@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--tcds-space-x-tight);
+  contain: content;
 }
 
 [part="controls"] {
