@@ -19,16 +19,9 @@ export default class Card extends WebComponent(HTMLElement) {
     }
 
     if(!this.props.orientation && this.state["no-image"] !== true) {
-      const resize = new ResizeObserver(() => {
-        const orientation = this.getAttribute("orientation");
+      this.orient();
 
-        if(this.parentElement.getBoundingClientRect().width > 600) {
-          orientation !== "horizontal" && this.setAttribute("orientation", "horizontal");
-        } else {
-          orientation!== "vertical" && this.setAttribute("orientation", "vertical");
-        }
-      });
-
+      const resize = new ResizeObserver(this.orient.bind(this));
       resize.observe(document.body);
     }
   }
@@ -55,6 +48,16 @@ export default class Card extends WebComponent(HTMLElement) {
         </div>
       </article>
     `;
+  }
+
+  orient() {
+    const orientation = this.getAttribute("orientation");
+
+    if(this.parentElement.getBoundingClientRect().width > 600) {
+      orientation !== "horizontal" && this.setAttribute("orientation", "horizontal");
+    } else {
+      orientation!== "vertical" && this.setAttribute("orientation", "vertical");
+    }
   }
 }
 

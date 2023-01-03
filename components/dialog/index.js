@@ -2,7 +2,9 @@ import WebComponent from "../../scripts/WebComponent/WebComponent.js";
 import getFocusableChildren from "./getFocusableChildren.js";
 import styles from "./style.css";
 
-export default class Dialog extends WebComponent(HTMLElement, { delegatesFocus: true }) {
+export default class Dialog extends WebComponent(HTMLElement, {
+  delegatesFocus: true,
+}) {
   static state = {
     open: {
       type: Boolean,
@@ -88,7 +90,7 @@ export default class Dialog extends WebComponent(HTMLElement, { delegatesFocus: 
     });
   }
 
-  updatedCallback() {
+  updatedCallback(state) {
     return {
       state: {
         open: () => {
@@ -101,6 +103,8 @@ export default class Dialog extends WebComponent(HTMLElement, { delegatesFocus: 
             controller.setAttribute(controller.hasAttribute("controls") ? "expanded" : "aria-expanded", this.state.open);
           });
 
+          this.handleOtherComponents(state.newState);
+
           if(this.state.open) {
             this.focusableChildren = getFocusableChildren(this);
             this.firstFocusableChild = this.focusableChildren[0] || this.parts["close"];
@@ -108,7 +112,6 @@ export default class Dialog extends WebComponent(HTMLElement, { delegatesFocus: 
             this.previouslyFocused = document.activeElement;
 
             const target = this.querySelector("[autofocus]") || this.firstFocusableChild;
-
             target.focus();
 
             if(this.props.autoclose) {
@@ -122,6 +125,27 @@ export default class Dialog extends WebComponent(HTMLElement, { delegatesFocus: 
         },
       },
     };
+  }
+
+  pausedCarousels = [];
+
+  handleOtherComponents(state) {
+    const cards = this.querySelectorAll("tcds-card");
+    const carousels = document.querySelectorAll("tcds-carousel");
+
+    if(state.open) {
+      cards?.forEach(card => card.orient());
+
+      carousels?.forEach((carousel) => {
+        if(carousel.state.playing) {
+          carousel.pause();
+          this.pausedCarousels.push(carousel);
+        }
+      });
+    } else {
+      this.pausedCarousels.forEach(pausedCarousel => pausedCarousel.resume());
+      this.pausedCarousels = [];
+    }
   }
 
   close() {
