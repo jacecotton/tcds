@@ -34,7 +34,7 @@ customElements.define("my-component", MyComponent, { extends: "ul" });
 
 The customized built-in can now be used as `<ul is="my-component">`.
 
-<sub><sup>\* A polyfill may be added in the future.</sub></sup>
+<sub>\* A polyfill may be added in the future.</sub>
 
 ## Templating
 ```js
@@ -50,7 +50,7 @@ class MyComponent extends WebComponent(HTMLElement) {
 // ...
 ```
 
-<sub><sup>The `/* html */` annotation before the return value can optionally be added to create syntax highlighting, if a plugin like [es6-string-html](https://marketplace.visualstudio.com/items?itemName=Tobermory.es6-string-html) is enabled in your text editor.</sup></sub>
+<sub>The `/* html */` annotation before the return value can optionally be added to create syntax highlighting, if a plugin like [es6-string-html](https://marketplace.visualstudio.com/items?itemName=Tobermory.es6-string-html) is enabled in your text editor.</sub>
 
 ### Shadow parts
 You can access any [shadow parts](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/part) created in the template via the public property `parts`.
