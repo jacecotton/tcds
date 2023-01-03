@@ -20,6 +20,8 @@ customElements.define("my-component", MyComponent);
 
 `<my-component>` can now be used as a valid HTML element on any page with the above script loaded.
 
+**Note:** Unlike when extending `HTMLElement` directly, calling `super()` within a `constructor()` method is not necessary.
+
 While it is not recommended to customize built-in elements (as it's [not supported by Safari](https://caniuse.com/custom-elementsv1)*), it is valid to pass the interface of any other HTML element to the `WebComponent` mixin:
 
 ```js
