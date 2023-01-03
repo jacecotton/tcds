@@ -255,7 +255,9 @@ However, we recommend using [Constructable Stylesheets](https://web.dev/construc
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
   connectedCallback() {
-    this.shadowRoot.adoptedStyleSheets = [new CSSStyleSheet().replaceSync(this.styles)];
+    const styles = new CSSStyleSheet();
+    styles.replaceSync(this.styles);
+    this.shadowRoot.adoptedStyleSheets = [styles];
   }
 
   get styles() {
@@ -268,13 +270,13 @@ class MyComponent extends WebComponent(HTMLElement) {
 }
 ```
 
-Note that Safari does not currently support Constructable Stylesheets. We recommend using the [`construct-style-sheets-polyfill`](https://github.com/calebdwilliams/construct-style-sheets).
+For Safari support, the Design System uses [`construct-style-sheets-polyfill`](https://github.com/calebdwilliams/construct-style-sheets).
 
-The Design System also uses [`constructable-style-loader`](https://github.com/alextech/constructable-style-loader) so we can separate the CSS into a different file, then import it as an adoptable stylesheet.
+To separate the CSS into different files import them as adoptable stylesheets, the Design System uses [`constructable-style-loader`](https://github.com/alextech/constructable-style-loader).
 
 ```js
 /* index.js */
-import styles from "./styles.css";
+import styles from "./style.css";
 
 class MyComponent extends WebComponent(HTMLElement) {
   connectedCallback() {
@@ -290,6 +292,25 @@ class MyComponent extends WebComponent(HTMLElement) {
 ```
 
 This setup is recommended but entirely optional.
+
+Note that adopting or inserting styles into the shadow root ("shadow styles") scopes and encapsulates the styles to the shadow boundary. For outer DOM context awareness (e.g. whether the component is a `:first-child`), or to style slotted content deeper and more specific than `::slotted` allows (e.g. `[slot="content"] a`), you can adopt other styles into the `document` ("light styles").
+
+```js
+/* index.js */
+import lightStyles from "./style.light.css";
+
+class MyComponent extends WebComponent(HTMLElement) {
+  connectedCallback() {
+    document.adoptedStyleSheets = [...document.adoptedStylesheets, ...[lightStyles]];
+  }
+}
+```
+```css
+/* style.light.css */
+my-component:not(:only-child) {
+  margin-bottom: 1rem;
+}
+```
 
 ## Events
 The `WebComponent` utility is technically agnostic as to event handling. Inline DOM events can be added for declarative event handling, or imperative events can be added with `addEventListener` in the `mountedCallback` hook.
