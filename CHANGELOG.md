@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/jacecotton/tcds/compare/v1.0.18...v1.1.0) (2023-01-03)
+
+
+### Features
+
+* **components:** WebComponent rewrite ([c7f269e](https://github.com/jacecotton/tcds/commit/c7f269e80c358590e4e59021a1cdc6ef54fc804d))
+
+
+
 ## [1.0.18](https://github.com/jacecotton/tcds/compare/v1.0.17...v1.0.18) (2022-12-21)
 
 
@@ -35,15 +44,6 @@
 ### Bug Fixes
 
 * **components:** Carousel swiping bug ([27d8640](https://github.com/jacecotton/tcds/commit/27d864019d6705f7ef1bbe7df905e5e3f0065718))
-
-
-
-## [1.0.14](https://github.com/jacecotton/tcds/compare/v1.0.13...v1.0.14) (2022-12-13)
-
-
-### Bug Fixes
-
-* **templates:** Footer style ([7c6034d](https://github.com/jacecotton/tcds/commit/7c6034d65ecfe5228d906014e66aa80f98aa2241))
 
 
 
