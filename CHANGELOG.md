@@ -1,3 +1,14 @@
+## [1.1.1](https://github.com/jacecotton/tcds/compare/v1.1.0...v1.1.1) (2023-01-03)
+
+
+### Bug Fixes
+
+* **components:** Accordion jitter issue ([9e409f1](https://github.com/jacecotton/tcds/commit/9e409f182862bf0a5a00184981d303376b2782fb))
+* **components:** Card style scope and specificity issue ([123aa97](https://github.com/jacecotton/tcds/commit/123aa97ef73f497b5ae21edf4f7fe3c7d5fabee0))
+* **components:** Other component handling when Dialog open ([c1b4f03](https://github.com/jacecotton/tcds/commit/c1b4f0326ca92b20577aba711318b0c07647c8fe))
+
+
+
 # [1.1.0](https://github.com/jacecotton/tcds/compare/v1.0.18...v1.1.0) (2023-01-03)
 
 
@@ -35,15 +46,6 @@
 ### Bug Fixes
 
 * **components:** Carousel cleanup ([8b00266](https://github.com/jacecotton/tcds/commit/8b00266e19d1359a791968b8eb3a2472bc3be12e))
-
-
-
-## [1.0.15](https://github.com/jacecotton/tcds/compare/v1.0.14...v1.0.15) (2022-12-13)
-
-
-### Bug Fixes
-
-* **components:** Carousel swiping bug ([27d8640](https://github.com/jacecotton/tcds/commit/27d864019d6705f7ef1bbe7df905e5e3f0065718))
 
 
 
