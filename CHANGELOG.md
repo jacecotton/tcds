@@ -1,3 +1,12 @@
+## [1.1.4](https://github.com/jacecotton/tcds/compare/v1.1.3...v1.1.4) (2023-01-05)
+
+
+### Bug Fixes
+
+* **components:** Accordion default open issue ([3fd9e0a](https://github.com/jacecotton/tcds/commit/3fd9e0a4d47b503476e1239c6d0df4563f0dec87))
+
+
+
 ## [1.1.3](https://github.com/jacecotton/tcds/compare/v1.1.2...v1.1.3) (2023-01-05)
 
 
@@ -34,16 +43,6 @@
 ### Features
 
 * **components:** WebComponent rewrite ([c7f269e](https://github.com/jacecotton/tcds/commit/c7f269e80c358590e4e59021a1cdc6ef54fc804d))
-
-
-
-## [1.0.18](https://github.com/jacecotton/tcds/compare/v1.0.17...v1.0.18) (2022-12-21)
-
-
-### Bug Fixes
-
-* **styles:** Specificity issues ([f00e72e](https://github.com/jacecotton/tcds/commit/f00e72e056178fe9d5f40ee756863b99ee673cf9))
-* **templates:** Set different default height for NRI logo in header ([aac4992](https://github.com/jacecotton/tcds/commit/aac4992eff1934f6c07676dd7db26912550528a4))
 
 
 
