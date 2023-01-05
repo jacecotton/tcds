@@ -1,3 +1,12 @@
+## [1.1.5](https://github.com/jacecotton/tcds/compare/v1.1.4...v1.1.5) (2023-01-05)
+
+
+### Bug Fixes
+
+* **components:** Default prop handling issue ([a3d2406](https://github.com/jacecotton/tcds/commit/a3d2406144cb121811c14189d2779c3584b7ddc6))
+
+
+
 ## [1.1.4](https://github.com/jacecotton/tcds/compare/v1.1.3...v1.1.4) (2023-01-05)
 
 
@@ -34,15 +43,6 @@
 * **components:** Accordion jitter issue ([9e409f1](https://github.com/jacecotton/tcds/commit/9e409f182862bf0a5a00184981d303376b2782fb))
 * **components:** Card style scope and specificity issue ([123aa97](https://github.com/jacecotton/tcds/commit/123aa97ef73f497b5ae21edf4f7fe3c7d5fabee0))
 * **components:** Other component handling when Dialog open ([c1b4f03](https://github.com/jacecotton/tcds/commit/c1b4f0326ca92b20577aba711318b0c07647c8fe))
-
-
-
-# [1.1.0](https://github.com/jacecotton/tcds/compare/v1.0.18...v1.1.0) (2023-01-03)
-
-
-### Features
-
-* **components:** WebComponent rewrite ([c7f269e](https://github.com/jacecotton/tcds/commit/c7f269e80c358590e4e59021a1cdc6ef54fc804d))
 
 
 
