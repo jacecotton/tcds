@@ -1,8 +1,7 @@
 import WebComponent from "../../scripts/WebComponent/WebComponent.js";
+import slugify from "../../scripts/utilities/slugify.js";
 import shadowStyles from "./style.css";
 import lightStyles from "./style.light.css";
-
-import slugify from "../../scripts/utilities/slugify.js";
 
 export default class AccordionSection extends WebComponent(HTMLElement) {
   static state = {

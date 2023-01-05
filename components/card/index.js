@@ -41,7 +41,7 @@ export default class Card extends WebComponent(HTMLElement) {
           <slot name="footer">
             ${this.props["action-label"] !== "" ? /* html */`
               <footer part="footer">
-                <tcds-button variant="ghost" ${this.props.size !== "large" ? `size="small"` : ""} icon="right chevron-right">${this.props["action-label"] || "Read more"}</tcds-button>
+                <tcds-button variant="ghost" ${this.props.size !== "large" ? `size="small"` : ""} icon="right chevron-right" label="${this.props["action-label"] || "Read more"}"></tcds-button>
               </footer>
             ` : ``}
           </slot>
@@ -56,7 +56,7 @@ export default class Card extends WebComponent(HTMLElement) {
     if(this.parentElement.getBoundingClientRect().width > 600) {
       orientation !== "horizontal" && this.setAttribute("orientation", "horizontal");
     } else {
-      orientation!== "vertical" && this.setAttribute("orientation", "vertical");
+      orientation !== "vertical" && this.setAttribute("orientation", "vertical");
     }
   }
 }

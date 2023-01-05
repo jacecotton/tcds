@@ -1,7 +1,6 @@
 import WebComponent from "../../scripts/WebComponent/WebComponent.js";
-import styles from "./style.css";
-
 import slugify from "../../scripts/utilities/slugify.js";
+import styles from "./style.css";
 
 export default class Icon extends WebComponent(HTMLElement) {
   connectedCallback() {
