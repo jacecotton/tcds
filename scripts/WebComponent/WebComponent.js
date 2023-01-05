@@ -169,7 +169,6 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
 
   #populateDefaults() {
     const defaultState = Object.keys(this.#stateSettings).filter(state => "default" in this.#stateSettings[state]);
-    const defaultProps = Object.keys(this.#propSettings).filter(prop => "default" in this.#propSettings[prop]);
 
     defaultState.forEach((state) => {
       if(this.state[state] === undefined) {
@@ -177,15 +176,15 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
       }
     });
 
-    defaultProps.forEach((prop) => {
+    Object.keys(this.#propSettings).forEach((prop) => {
       const { type, default: defaultValue } = this.#propSettings[prop];
 
-      if(type !== Boolean && typeof defaultValue !== "boolean" && this.getAttribute(prop) === null) {
+      if(type !== Boolean && defaultValue && typeof defaultValue !== "boolean" && this.getAttribute(prop) === null) {
         this.setAttribute(prop, defaultValue);
       } else if(type === Boolean && this.getAttribute(prop) === null) {
         if(defaultValue === true) {
           this.toggleAttribute(prop, true);
-        } else if(defaultValue === false) {
+        } else {
           this.props[prop] = false;
         }
       }
