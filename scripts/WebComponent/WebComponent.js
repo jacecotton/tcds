@@ -185,7 +185,7 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
       } else if(type === Boolean && this.getAttribute(prop) === null) {
         if(defaultValue === true) {
           this.toggleAttribute(prop, true);
-        } else {
+        } else if(defaultValue === false) {
           this.props[prop] = false;
         }
       }

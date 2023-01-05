@@ -55,13 +55,11 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
       state: {
         open: () => {
           if(this.state.open) {
-            const height = `${this.parts["panel"].scrollHeight}px`;
-
             this.parts["panel"].style.height = "0px";
             this.parts["panel"].hidden = false;
 
             requestAnimationFrame(() => {
-              this.parts["panel"].style.height = height;
+              this.parts["panel"].style.height = `${this.parts["panel"].scrollHeight}px`;
             });
 
             if(this.parent.props.multiple === false) {
