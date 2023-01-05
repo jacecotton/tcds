@@ -1,3 +1,12 @@
+## [1.1.3](https://github.com/jacecotton/tcds/compare/v1.1.2...v1.1.3) (2023-01-05)
+
+
+### Bug Fixes
+
+* **components:** Boolean prop default handling ([c028a71](https://github.com/jacecotton/tcds/commit/c028a7153211722ca077c6a763a794db9237b984))
+
+
+
 ## [1.1.2](https://github.com/jacecotton/tcds/compare/v1.1.1...v1.1.2) (2023-01-05)
 
 
@@ -35,18 +44,6 @@
 
 * **styles:** Specificity issues ([f00e72e](https://github.com/jacecotton/tcds/commit/f00e72e056178fe9d5f40ee756863b99ee673cf9))
 * **templates:** Set different default height for NRI logo in header ([aac4992](https://github.com/jacecotton/tcds/commit/aac4992eff1934f6c07676dd7db26912550528a4))
-
-
-
-## [1.0.17](https://github.com/jacecotton/tcds/compare/v1.0.16...v1.0.17) (2022-12-15)
-
-
-### Bug Fixes
-
-* **content:** Image auto-sizing issue ([2082d9c](https://github.com/jacecotton/tcds/commit/2082d9c666fcf207218e82f49abd2436307fe953))
-* **content:** Responsive main styles ([02c15cf](https://github.com/jacecotton/tcds/commit/02c15cfa8f5458d87e586bdbbc18dd724271b408))
-* **layout:** Responsive layout tweak ([5ade78d](https://github.com/jacecotton/tcds/commit/5ade78d73b2d0e1b066b119b946b4e01459ff2d2))
-* **utilities:** Text color class over-broad issue ([e8fc480](https://github.com/jacecotton/tcds/commit/e8fc48097fea0eb2d81da4db3be7dce25010cd6a))
 
 
 
