@@ -1,5 +1,5 @@
 ## WebComponent
-`WebComponent` is a base class for creating [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components). It simply extends the native [custom elements API](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) to add declarative templating and reactive state and props.
+`WebComponent` is a base class for creating [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components). It simply extends the native [custom elements API](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) to add declarative templating, reactive state and props, and efficient DOM diffing.
 
 This utility is not a library, but brings to Web Components some of the requisite features and best practices for building modern UIs found in libraries like [React](https://reactjs.org/) and [Vue](https://vuejs.org/).
 
