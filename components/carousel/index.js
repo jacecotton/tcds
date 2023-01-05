@@ -21,6 +21,8 @@ export default class Carousel extends WebComponent(HTMLElement) {
   connectedCallback() {
     this.slides = Array.from(this.querySelectorAll("tcds-slide"));
 
+    this.ariaRoleDescription = "carousel";
+
     // Add auto-incrementing unique IDs to each carousel instance.
     const carousels = Array.from(document.querySelectorAll("tcds-carousel"));
     this.id = `carousel${carousels.length > 1 ? `-${carousels.indexOf(this) + 1}` : ""}`;
@@ -35,7 +37,6 @@ export default class Carousel extends WebComponent(HTMLElement) {
       ${this.props.timing ? /* html */`
         <tcds-button
           part="play-pause"
-          controls="${this.id}"
           icon="only ${this.state.playing ? "pause" : "play"}"
           size="small"
           variant="ui"
@@ -53,14 +54,15 @@ export default class Carousel extends WebComponent(HTMLElement) {
           label="Go to previous slide"
           onclick="this.getRootNode().host.previousClick()"
         ></tcds-button>
-        <div role="tablist" part="indicators">
+        <div role="tablist" part="indicators" aria-label="Pick slide">
           ${this.slides.map((slide, index) => /* html */`
             <button
               role="tab"
               part="indicator"
-              id="indicator-${index + 1}"
-              aria-controls="slide-${index + 1}"
-              aria-expanded="${slide.state.active}"
+              id="${this.id}-indicator-${index + 1}"
+              aria-controls="${this.id}-slide-${index + 1}"
+              aria-selected="${slide.state.active}"
+              aria-disabled="${slide.state.active}"
               aria-label="Slide ${index + 1} of ${this.slides.length}"
               title="Slide ${index + 1} of ${this.slides.length}"
               tabindex="${slide.state.active ? "0" : "-1"}"
@@ -97,7 +99,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
     this.state.playing =
       this.hasAttribute("playing")
       && this.hasAttribute("timing")
-      && window.matchMedia("(prefers-reduced-motion: reduce), (hover: none)").matches === false;
+      && !window.matchMedia("(prefers-reduced-motion: reduce), (hover: none)").matches;
 
     this.slides.forEach((slide) => {
       this.swipe.observe(slide);

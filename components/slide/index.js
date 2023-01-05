@@ -18,10 +18,9 @@ export default class Slide extends WebComponent(HTMLElement) {
     return /* html */`
       <section
         role="tabpanel"
-        aria-roledescription="slide"
         part="slide"
-        id="slide-${this.position}"
-        aria-labelledby="indicator-${this.position}"
+        id="${this.parent.id}-slide-${this.position}"
+        aria-labelledby="${this.parent.id}-indicator-${this.position}"
         ${this.state.active === false ? `
           aria-hidden="true"
           tabindex="-1"
