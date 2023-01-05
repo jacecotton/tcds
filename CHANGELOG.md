@@ -1,3 +1,13 @@
+## [1.1.2](https://github.com/jacecotton/tcds/compare/v1.1.1...v1.1.2) (2023-01-05)
+
+
+### Bug Fixes
+
+* **components:** Improve carousel ARIA ([0b9a03e](https://github.com/jacecotton/tcds/commit/0b9a03e76a66b776f5699b3303ff89c8e9d49097))
+* **components:** Improve tabs ARIA ([1a341ba](https://github.com/jacecotton/tcds/commit/1a341baa1257a2503c99ebd8083defdf6b5d5cf0))
+
+
+
 ## [1.1.1](https://github.com/jacecotton/tcds/compare/v1.1.0...v1.1.1) (2023-01-03)
 
 
@@ -37,15 +47,6 @@
 * **content:** Responsive main styles ([02c15cf](https://github.com/jacecotton/tcds/commit/02c15cfa8f5458d87e586bdbbc18dd724271b408))
 * **layout:** Responsive layout tweak ([5ade78d](https://github.com/jacecotton/tcds/commit/5ade78d73b2d0e1b066b119b946b4e01459ff2d2))
 * **utilities:** Text color class over-broad issue ([e8fc480](https://github.com/jacecotton/tcds/commit/e8fc48097fea0eb2d81da4db3be7dce25010cd6a))
-
-
-
-## [1.0.16](https://github.com/jacecotton/tcds/compare/v1.0.15...v1.0.16) (2022-12-13)
-
-
-### Bug Fixes
-
-* **components:** Carousel cleanup ([8b00266](https://github.com/jacecotton/tcds/commit/8b00266e19d1359a791968b8eb3a2472bc3be12e))
 
 
 
