@@ -59,6 +59,6 @@
   }
 }
 
-[part="tab"][aria-expanded="true"] {
+[part="tab"][aria-selected="true"] {
   --tcds-tabs-tab-indicator-color: var(--tcds-tabs-tab-indicator-active-color, var(--tcds-color-primary));
 }

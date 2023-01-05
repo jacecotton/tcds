@@ -32,7 +32,7 @@ export default class Tabs extends WebComponent(HTMLElement) {
             part="tab"
             id="${slugify(tab.props.label)}-tab"
             aria-controls="${slugify(tab.props.label)}-panel"
-            aria-expanded="${tab.state.active}"
+            aria-selected="${tab.state.active}"
             tabindex="${tab.state.active ? "0" : "-1"}"
             onclick="this.getRootNode().host.tabClick(event)"
             onkeydown="this.getRootNode().host.tabKeydown(event)"
