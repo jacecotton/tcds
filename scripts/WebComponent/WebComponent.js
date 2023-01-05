@@ -180,14 +180,14 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
     defaultProps.forEach((prop) => {
       const { type, default: defaultValue } = this.#propSettings[prop];
 
-      if(type === Boolean) {
-        this.toggleAttribute(prop, defaultValue);
-
-        if(defaultValue === false) {
+      if(type !== Boolean && typeof defaultValue !== "boolean" && this.getAttribute(prop) === null) {
+        this.setAttribute(prop, defaultValue);
+      } else if(type === Boolean && this.getAttribute(prop) === null) {
+        if(defaultValue === true) {
+          this.toggleAttribute(prop, true);
+        } else {
           this.props[prop] = false;
         }
-      } else if(this.getAttribute(prop) === null) {
-        this.setAttribute(prop, defaultValue);
       }
     });
   }

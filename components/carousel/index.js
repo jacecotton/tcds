@@ -19,9 +19,9 @@ export default class Carousel extends WebComponent(HTMLElement) {
   }
 
   connectedCallback() {
-    this.slides = Array.from(this.querySelectorAll("tcds-slide"));
-
     this.ariaRoleDescription = "carousel";
+
+    this.slides = Array.from(this.querySelectorAll("tcds-slide"));
 
     // Add auto-incrementing unique IDs to each carousel instance.
     const carousels = Array.from(document.querySelectorAll("tcds-carousel"));
