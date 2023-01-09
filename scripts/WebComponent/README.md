@@ -20,7 +20,7 @@ customElements.define("my-component", MyComponent);
 
 `<my-component>` can now be used as a valid HTML element on any page with the above script loaded.
 
-**Note:** Unlike when extending `HTMLElement` directly, calling `super()` within a `constructor()` method is not necessary.
+**Note:** Unlike when extending `HTMLElement` directly, adding a `constructor` method and calling `super` is not necessary.
 
 While it is not recommended to customize built-in elements (as it's [not supported by Safari](https://caniuse.com/custom-elementsv1)*), it is valid to pass the interface of any other HTML element to the `WebComponent` mixin:
 
@@ -37,18 +37,19 @@ The customized built-in can now be used as `<ul is="my-component">`.
 <sub>\* A polyfill may be added in the future.</sub>
 
 ## Templating
+Define your component template in a `render` method.
+
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
-  // Define component template in a render method.
   render() {
     return /* html */`
       <p>Hello world!</p>
     `;
   }
 }
-
-// ...
 ```
+
+[Template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) are recommended as it allows for multi-line strings and string interpolation, rather than concatenation.
 
 <sub>The `/* html */` annotation before the return value can optionally be added to create syntax highlighting, if a plugin like [es6-string-html](https://marketplace.visualstudio.com/items?itemName=Tobermory.es6-string-html) is enabled in your text editor.</sub>
 

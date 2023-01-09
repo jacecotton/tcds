@@ -62,7 +62,7 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
 
   #attributeHandler(attributes) {
     attributes.forEach((attribute) => {
-      const reflectedState = attribute.name in this.#stateSettings && this.#stateSettings[attribute.name].reflected;
+      const reflectedState = attribute.name in this.#stateSettings && this.#stateSettings[attribute.name]["reflected"];
       const settings = reflectedState ? this.#stateSettings : this.#propSettings;
       const data = reflectedState ? this.state : this.props;
       const type = settings[attribute.name]?.type;
@@ -172,21 +172,33 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
 
     defaultState.forEach((state) => {
       if(this.state[state] === undefined) {
-        this.state[state] = this.#stateSettings[state].default;
+        this.state[state] = this.#stateSettings[state]["default"];
       }
     });
 
     Object.keys(this.#propSettings).forEach((prop) => {
       const { type, default: defaultValue } = this.#propSettings[prop];
 
+      // If an attribute for this prop is already present, we should not
+      // populate the prop with the default value.
       if(this.getAttribute(prop) !== null) {
         return;
       }
 
+      // Populate the `props` store with default values by setting the
+      // attributes and triggering the mutation observer which will update the
+      // `props` store from there. We can't mutate `props` directly because the
+      // proxy enforces one-way synchronization (DOM to `props`).
       if(type === Boolean) {
         if(defaultValue === true) {
           this.toggleAttribute(prop, true);
         } else {
+          // We can't just toggle the attribute "off" here, because if the
+          // attribute is not present then the mutation observer will not be
+          // triggered and the `props` store will not update with the default
+          // value. So we have to set it directly. The proxy will allow this
+          // because a `false` value is congruent with the DOM if the attribute
+          // is absent.
           this.props[prop] = false;
         }
       } else if(defaultValue) {
@@ -196,6 +208,7 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
   }
 
   #batchUpdates(event) {
+    // Add incoming state and props to existing batch (or start a new one).
     if(event.detail?.state) {
       const { newState, oldState } = event.detail.state;
       this.#batch.state.newState = {...this.#batch.state.newState, ...newState};
@@ -208,6 +221,15 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
       this.#batch.props.oldProps = {...this.#batch.props.oldProps, ...oldProps};
     }
 
+    // Here we wait for back-to-back `update` events to be batched before
+    // calling our `#update` method (debouncing). To do this, we utilize an
+    // animation frame-based heuristic: the following animation frame request is
+    // canceled if this method, `#batchUpdates`, is called again before the next
+    // available animation frame (indicating multiple `update` event firings
+    // within a single animation frame). If the previous request is canceled, we
+    // try again with a new request. If that request is uninterrupted, it will
+    // finally call `#update`, which will in turn reset `#debounce` to `null` and
+    // empty the `#batch` object, indicating completion.
     if(this.#debounce !== null) {
       cancelAnimationFrame(this.#debounce);
     }
@@ -217,14 +239,23 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
 
   #update() {
     this.#debounce = null;
-
-    this.#reflectState();
-    this.#render();
-
     const batch = Object.assign({}, this.#batch);
 
+    // Updates the host (outer) DOM.
+    if(batch.state && batch.state.newState) {
+      const reflectedState = Object.keys(batch.state.newState)
+        .filter(state => this.#stateSettings?.[state]?.["reflected"]);
+      reflectedState.length > 0 && this.#reflectState(reflectedState);
+    }
+
+    // Updates the shadow (inner) DOM.
+    this.#render();
+
     if(this.#renderPasses < 1) {
-      const childComponentsAreDefined = Array.from(this.shadowRoot.querySelectorAll(":not(:defined)")).map(child => customElements.whenDefined(child.localName));
+      // The component will have mounted after the first render pass and all
+      // child components have connected.
+      const childComponentsAreDefined = Array.from(this.shadowRoot.querySelectorAll(":not(:defined)"))
+        .map(child => customElements.whenDefined(child.localName));
 
       Promise.all(childComponentsAreDefined).then(() => {
         this.mountedCallback?.();
@@ -238,25 +269,24 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
     this.#batch = {state: {}, props: {}};
   }
 
-  #reflectState() {
-    const reflectedState = this.#stateSettings
-      && Object.keys(this.#stateSettings).filter(state => this.#stateSettings[state].reflected);
-
-    reflectedState.forEach((state) => {
-      const type = this.#stateSettings[state]?.type;
-      let attribute = this.getAttribute(state) || this.state[state];
+  #reflectState(stateKeys) {
+    // Note, by now the new `state` value has already been validated by the
+    // proxy, so we can work from here assuming it's of the correct type.
+    stateKeys.forEach((state) => {
       let value = this.state[state];
+      let attribute = this.getAttribute(state);
 
-      if(type) {
-        attribute = this.#typeConverter(attribute, type);
-        value = this.#typeConverter(value, type);
-      }
+      if(typeof value === "boolean") {
+        attribute = this.#typeConverter(attribute, Boolean);
 
-      if(attribute !== value) {
-        if(typeof value === "boolean") {
+        if(attribute !== value) {
           this.toggleAttribute(state, value);
-        } else {
-          this.setAttribute(state, this.#typeConverter(value, String));
+        }
+      } else {
+        value = this.#typeConverter(value, String);
+
+        if(attribute !== value) {
+          this.setAttribute(state, value);
         }
       }
     });
