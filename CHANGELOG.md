@@ -1,3 +1,12 @@
+## [1.1.7](https://github.com/jacecotton/tcds/compare/v1.1.6...v1.1.7) (2023-01-09)
+
+
+### Bug Fixes
+
+* **components:** WebComponent perf/efficiency boost ([0881a48](https://github.com/jacecotton/tcds/commit/0881a488de98918059dd90bed5702bc5b6e821eb))
+
+
+
 ## [1.1.6](https://github.com/jacecotton/tcds/compare/v1.1.5...v1.1.6) (2023-01-05)
 
 
@@ -31,16 +40,6 @@
 ### Bug Fixes
 
 * **components:** Boolean prop default handling ([c028a71](https://github.com/jacecotton/tcds/commit/c028a7153211722ca077c6a763a794db9237b984))
-
-
-
-## [1.1.2](https://github.com/jacecotton/tcds/compare/v1.1.1...v1.1.2) (2023-01-05)
-
-
-### Bug Fixes
-
-* **components:** Improve carousel ARIA ([0b9a03e](https://github.com/jacecotton/tcds/commit/0b9a03e76a66b776f5699b3303ff89c8e9d49097))
-* **components:** Improve tabs ARIA ([1a341ba](https://github.com/jacecotton/tcds/commit/1a341baa1257a2503c99ebd8083defdf6b5d5cf0))
 
 
 
