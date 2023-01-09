@@ -81,21 +81,6 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
           return true;
         }
 
-        const reflected = this.#stateSettings[state]?.reflected;
-        let attribute = reflected && this.getAttribute(state);
-
-        if(attribute && type) {
-          attribute = this.#typeConverter(attribute, type);
-        }
-
-        if(reflected && attribute !== value) {
-          if(type === Boolean) {
-            this.toggleAttribute(state, value);
-          } else {
-            this.setAttribute(state, this.#typeConverter(value, String));
-          }
-        }
-
         const oldValue = store[state];
         store[state] = value;
 
