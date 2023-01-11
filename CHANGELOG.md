@@ -1,3 +1,12 @@
+## [1.1.8](https://github.com/jacecotton/tcds/compare/v1.1.7...v1.1.8) (2023-01-09)
+
+
+### Bug Fixes
+
+* **components:** WebComponent perf/efficiency boost ([777a783](https://github.com/jacecotton/tcds/commit/777a78310f032175de14fd7a8a20ad942c60f41b))
+
+
+
 ## [1.1.7](https://github.com/jacecotton/tcds/compare/v1.1.6...v1.1.7) (2023-01-09)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Accordion default open issue ([3fd9e0a](https://github.com/jacecotton/tcds/commit/3fd9e0a4d47b503476e1239c6d0df4563f0dec87))
-
-
-
-## [1.1.3](https://github.com/jacecotton/tcds/compare/v1.1.2...v1.1.3) (2023-01-05)
-
-
-### Bug Fixes
-
-* **components:** Boolean prop default handling ([c028a71](https://github.com/jacecotton/tcds/commit/c028a7153211722ca077c6a763a794db9237b984))
 
 
 
