@@ -2,9 +2,7 @@ import WebComponent from "../../scripts/WebComponent/WebComponent.js";
 import getFocusableChildren from "./getFocusableChildren.js";
 import styles from "./style.css";
 
-export default class Dialog extends WebComponent(HTMLElement, {
-  delegatesFocus: true,
-}) {
+export default class Dialog extends WebComponent(HTMLElement, {delegatesFocus: true}) {
   static state = {
     open: {
       type: Boolean,

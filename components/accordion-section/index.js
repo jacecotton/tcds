@@ -16,7 +16,7 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
     document.adoptedStyleSheets = [...document.adoptedStyleSheets, ...[lightStyles]];
 
     this.parent = this.closest("tcds-accordion");
-    this.siblings = Array.from(this.parent.querySelectorAll("tcds-accordion-section")).filter(instance => instance !== this);
+    this.siblings = Array.from(this.parent.sections).filter(instance => instance !== this);
 
     this.state.open = this.parent.props.multiple
       ? this.hasAttribute("open")

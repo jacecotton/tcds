@@ -2,9 +2,7 @@ import WebComponent from "../../scripts/WebComponent/WebComponent.js";
 import shadowStyles from "./style.css";
 import lightStyles from "./style.light.css";
 
-export default class Button extends WebComponent(HTMLElement, {
-  delegatesFocus: true,
-}) {
+export default class Button extends WebComponent(HTMLElement, {delegatesFocus: true}) {
   static props = {
     icon: {type: Array},
     "new-tab": {type: Boolean},

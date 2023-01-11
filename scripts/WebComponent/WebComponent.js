@@ -11,6 +11,7 @@ import diff from "./diff.js";
  *   `closed` if desired (default is `open`), or things like `delegatesFocus`
  *   for buttons and other inputs.
  */
+
 const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends BaseElement {
   constructor() {
     super();
