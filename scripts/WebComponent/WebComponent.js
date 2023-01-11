@@ -30,10 +30,8 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
 
     this.#populateDefaults();
 
-    /**
-     * Manually schedule an update if the component has been connected but
-     * doesn't have any state or props (which would trigger an update).
-     */
+    // Manually schedule an update if the component has been connected but
+    // doesn't have any state or props (which would trigger an update).
     this.isConnected
       && Object.keys(this.state).length === 0
       && Object.keys(this.props).length === 0
