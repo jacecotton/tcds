@@ -57,11 +57,9 @@
 
       {% block secondary_menu %}{% endblock %}
 
-      {% if block("fine_print") or fine_print %}
+      {% if fine_print %}
         <small class="site-footer__fine-print">
-          {% block fine_print %}
-            {{ fine_print|raw }}
-          {% endblock %}
+          {{ fine_print|raw }}
         </small>
       {% endif %}
     </div>

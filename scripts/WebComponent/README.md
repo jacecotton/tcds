@@ -3,7 +3,7 @@
 
 This utility is not a library, but brings to Web Components some of the requisite features and best practices for building modern UIs found in libraries like [React](https://reactjs.org/) and [Vue](https://vuejs.org/).
 
-It differs from other Web Component-based libraries, like [Lit](https://lit.dev/) or [Stencil](https://stenciljs.com/), in its aim to bridge only very specific gaps in native browser features. To that end it introduces minimal unique concepts and features, and leans heavily on the use of vanilla JavaScript by component authors.
+It differs from other Web Component-based libraries, like [Lit](https://lit.dev/) or [Stencil](https://stenciljs.com/), in its aim to bridge only very specific gaps in native browser features. To that end it introduces minimal unique concepts and features, and leans heavily on the use of conventional JavaScript by component authors.
 
 ## Defining a component
 Defining a Web Component works like [defining any other custom element]((https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements)), only instead of extending the [`HTMLElement` interface](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) directly, extend it with the `WebComponent` mixin.
@@ -91,6 +91,8 @@ class MyComponent extends WebComponent(HTMLElement) {
   }
 }
 ```
+
+Note that `WebComponent`'s state and prop system (see below) negates the built-in method for handling attribute updates (the `observedAttributes` property and `attributeChangedCallback` method). With `WebComponent`, all attributes are observed by default and synchronized with the `props` property (or `state` property if indicated).
 
 ## Props
 Props are accessible internally from the public `props` property. This object is readonly, and is populated from attributes set by the component user on the component instance.
