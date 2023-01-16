@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/jacecotton/tcds/compare/v1.1.9...v1.2.0) (2023-01-16)
+
+
+### Features
+
+* **components:** Section video modal ([7790e97](https://github.com/jacecotton/tcds/commit/7790e97b916d60ba8b684508d69a095a317d8805))
+
+
+
 ## [1.1.9](https://github.com/jacecotton/tcds/compare/v1.1.8...v1.1.9) (2023-01-15)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** WebComponent default boolean prop handling issue ([1aef20d](https://github.com/jacecotton/tcds/commit/1aef20d568848aeeef455e01db773711e7f78e85))
-
-
-
-## [1.1.5](https://github.com/jacecotton/tcds/compare/v1.1.4...v1.1.5) (2023-01-05)
-
-
-### Bug Fixes
-
-* **components:** Default prop handling issue ([a3d2406](https://github.com/jacecotton/tcds/commit/a3d2406144cb121811c14189d2779c3584b7ddc6))
 
 
 
