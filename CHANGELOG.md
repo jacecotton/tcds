@@ -1,3 +1,12 @@
+## [1.1.9](https://github.com/jacecotton/tcds/compare/v1.1.8...v1.1.9) (2023-01-15)
+
+
+### Bug Fixes
+
+* **components:** Card layout issue ([5386394](https://github.com/jacecotton/tcds/commit/5386394f734802744a64380f5e151b132fd8068a))
+
+
+
 ## [1.1.8](https://github.com/jacecotton/tcds/compare/v1.1.7...v1.1.8) (2023-01-09)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Default prop handling issue ([a3d2406](https://github.com/jacecotton/tcds/commit/a3d2406144cb121811c14189d2779c3584b7ddc6))
-
-
-
-## [1.1.4](https://github.com/jacecotton/tcds/compare/v1.1.3...v1.1.4) (2023-01-05)
-
-
-### Bug Fixes
-
-* **components:** Accordion default open issue ([3fd9e0a](https://github.com/jacecotton/tcds/commit/3fd9e0a4d47b503476e1239c6d0df4563f0dec87))
 
 
 
