@@ -87,7 +87,8 @@
 
 section {
   display: flex;
-  align-items: var(--tcds-section-vertical-align, center);
+  flex-direction: column;
+  justify-content: var(--tcds-section-vertical-align, center);
   aspect-ratio: var(--tcds-section-aspect-ratio);
   padding: var(--tcds-section-vertical-padding) 0;
 }

@@ -39,7 +39,10 @@ export default class Dialog extends WebComponent(HTMLElement, {delegatesFocus: t
     this.state.open = this.hasAttribute("open")
       && localStorage.getItem(`tcds_dialog_${this.id}_state`) !== "closed";
 
-    this.controllers = document.querySelectorAll(`[aria-controls=${this.id}], [controls=${this.id}]`);
+    this.controllers = [
+      ...document.querySelectorAll(`[aria-controls=${this.id}], [controls=${this.id}]`),
+      ...this.getRootNode().querySelectorAll(`[aria-controls=${this.id}], [controls=${this.id}]`)
+    ];
 
     this.setAttribute("role", "dialog");
     this.setAttribute("aria-modal", "true");

@@ -53,3 +53,36 @@ tcds-section > [slot="subheading"] {
     transform: translateY(-50%);
   }
 }
+
+tcds-section [controls*="video-modal"] {
+  --tcds-button-height: 4rem;
+  --tcds-button-font-size: var(--tcds-font-size-large);
+
+  width: 100%;
+  justify-content: center;
+}
+
+tcds-section [slot="video-description"] {
+  color: #fff;
+  z-index: 1;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding: var(--tcds-space-x-loose) var(--content-inner-gutter);
+  font-size: var(--tcds-font-size-medium-plus);
+}
+
+tcds-section [slot="video-description"]::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: var(--tcds-color-secondary);
+  opacity: 0.8;
+  z-index: -1;
+}
