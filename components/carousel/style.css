@@ -32,11 +32,16 @@
 [part="viewport"] {
   grid-area: slides;
   display: flex;
+  gap: var(--tcds-carousel-slide-gap, 0);
   align-items: center;
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   overscroll-behavior-x: none;
+}
+
+:host([multiple]) [part="viewport"] {
+  padding: 0 0 0 50%;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -53,6 +58,10 @@
   flex: 1 0 100%;
   scroll-snap-align: start;
   scroll-snap-stop: always;
+}
+
+:host([multiple]) ::slotted(tcds-slide) {
+  scroll-snap-align: center;
 }
 
 [part="navigation"] {

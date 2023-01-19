@@ -1,5 +1,6 @@
 import WebComponent from "../../scripts/WebComponent/WebComponent.js";
-import styles from "./style.css";
+import shadowStyles from "./style.css";
+import lightStyles from "./style.light.css";
 
 export default class Carousel extends WebComponent(HTMLElement) {
   static state = {
@@ -11,11 +12,13 @@ export default class Carousel extends WebComponent(HTMLElement) {
 
   static props = {
     timing: {type: Number},
+    multiple: {type: Boolean},
   };
 
   constructor() {
     super();
-    this.shadowRoot.adoptedStyleSheets = [styles];
+    this.shadowRoot.adoptedStyleSheets = [shadowStyles];
+    document.adoptedStyleSheets = [...document.adoptedStyleSheets, ...[lightStyles]];
   }
 
   connectedCallback() {
@@ -131,16 +134,36 @@ export default class Carousel extends WebComponent(HTMLElement) {
     };
   }
 
+  #swipeDebounce;
+
   get swipe() {
     return new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if(entry.isIntersecting && this.observeSwipe !== false) {
-          this.select(entry.target);
-        }
-      });
+      if(this.props.multiple) {
+        const { left: viewportLeft, right: viewportRight } = this.parts["viewport"].getBoundingClientRect();
+        const viewportCenterpoint = Math.floor((viewportLeft + viewportRight) / 2);
+
+        clearTimeout(this.#swipeDebounce);
+
+        this.#swipeDebounce = setTimeout(() => {
+          this.slides.forEach((slide) => {
+            const { left: slideLeft, right: slideRight } = slide.getBoundingClientRect();
+            const slideCenterpoint = Math.floor((slideLeft + slideRight) / 2);
+
+            if(Math.abs(slideCenterpoint - viewportCenterpoint) < 20) {
+              this.select(slide);
+            }
+          });
+        }, 200);
+      } else {
+        entries.forEach((entry) => {
+          if(entry.isIntersecting && this.observeSwipe !== false) {
+            this.select(entry.target);
+          }
+        });
+      }
     }, {
       root: this.parts["viewport"],
-      threshold: 1.0,
+      threshold: this.props.multiple ? [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1] : 1,
       rootMargin: "1px",
     });
   }
@@ -163,13 +186,6 @@ export default class Carousel extends WebComponent(HTMLElement) {
     this.slides.forEach((slide) => {
       slide.state.active = slide === active;
     });
-  }
-
-  scrollToSlide(slide) {
-    const viewportOffset = this.parts["viewport"].getBoundingClientRect().left;
-    const slideOffset = slide.getBoundingClientRect().left;
-
-    this.parts["viewport"].scrollLeft += slideOffset - viewportOffset;
   }
 
   viewportSwipe() {

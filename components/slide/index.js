@@ -4,6 +4,7 @@ export default class Slide extends WebComponent(HTMLElement) {
   static state = {
     active: {
       type: Boolean,
+      default: false,
       reflected: true,
     },
   };
@@ -34,7 +35,14 @@ export default class Slide extends WebComponent(HTMLElement) {
   updatedCallback() {
     return {
       state: {
-        active: () => this.state.active && this.parent.scrollToSlide(this),
+        active: () => {
+          if(this.state.active) {
+            this.scrollIntoView({
+              behavior: "smooth",
+              inline: this.parent.props.multiple ? "center" : "start",
+            });
+          }
+        },
       },
     };
   }
