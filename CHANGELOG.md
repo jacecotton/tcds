@@ -1,3 +1,12 @@
+# [1.3.0](https://github.com/jacecotton/tcds/compare/v1.2.0...v1.3.0) (2023-01-19)
+
+
+### Features
+
+* **components:** Add carousel option for multiple slides in the viewport ([dea41b0](https://github.com/jacecotton/tcds/commit/dea41b0a4a66fd19a71cd3e3332518ce5b246ab7))
+
+
+
 # [1.2.0](https://github.com/jacecotton/tcds/compare/v1.1.9...v1.2.0) (2023-01-16)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** WebComponent perf/efficiency boost ([0881a48](https://github.com/jacecotton/tcds/commit/0881a488de98918059dd90bed5702bc5b6e821eb))
-
-
-
-## [1.1.6](https://github.com/jacecotton/tcds/compare/v1.1.5...v1.1.6) (2023-01-05)
-
-
-### Bug Fixes
-
-* **components:** WebComponent default boolean prop handling issue ([1aef20d](https://github.com/jacecotton/tcds/commit/1aef20d568848aeeef455e01db773711e7f78e85))
 
 
 
