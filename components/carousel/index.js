@@ -65,7 +65,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
               id="${this.id}-indicator-${index + 1}"
               aria-controls="${this.id}-slide-${index + 1}"
               aria-selected="${slide.state.active}"
-              aria-disabled="${slide.state.active}"
+              aria-disabled="${!slide.state.active}"
               aria-label="Slide ${index + 1} of ${this.slides.length}"
               title="Slide ${index + 1} of ${this.slides.length}"
               tabindex="${slide.state.active ? "0" : "-1"}"
@@ -163,7 +163,8 @@ export default class Carousel extends WebComponent(HTMLElement) {
       }
     }, {
       root: this.parts["viewport"],
-      threshold: this.props.multiple ? [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1] : 1,
+      threshold: !this.props.multiple ? 1
+        : [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
       rootMargin: "1px",
     });
   }

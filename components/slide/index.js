@@ -37,10 +37,14 @@ export default class Slide extends WebComponent(HTMLElement) {
       state: {
         active: () => {
           if(this.state.active) {
-            this.scrollIntoView({
-              behavior: "smooth",
-              inline: this.parent.props.multiple ? "center" : "start",
-            });
+            if("scrollIntoViewIfNeeded" in document.documentElement) {
+              this.scrollIntoViewIfNeeded();
+            } else {
+              this.scrollIntoView({
+                behavior: "smooth",
+                inline: this.parent.props.multiple ? "center" : "start",
+              });
+            }
           }
         },
       },
