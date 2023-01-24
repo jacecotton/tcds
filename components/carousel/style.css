@@ -55,12 +55,14 @@
 }
 
 ::slotted(tcds-slide) {
-  flex: 1 0 100%;
+  flex: 1 0 var(--tcds-carousel-slide-size, 100%);
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
 
 :host([multiple]) ::slotted(tcds-slide) {
+  --tcds-carousel-slide-size: min(700px, 70vw);
+
   scroll-snap-align: center;
 }
 
