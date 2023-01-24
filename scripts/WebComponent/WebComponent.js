@@ -13,6 +13,9 @@ import diff from "./diff.js";
  */
 
 const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends BaseElement {
+  #stateSettings;
+  #propSettings;
+
   constructor() {
     super();
     this.attachShadow({ mode: "open", ...options });
@@ -38,12 +41,6 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
       && this.dispatchEvent(new CustomEvent("update"));
   }
 
-  #stateSettings;
-  #propSettings;
-  #renderPasses = 0;
-  #batch = {state: {}, props: {}};
-  #debounce = null;
-
   disconnectedCallback() {
     this.#attributeObserver.disconnect();
   }
@@ -61,20 +58,21 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
 
   #attributeHandler(attributes) {
     attributes.forEach((attribute) => {
-      const reflectedState = attribute.name in this.#stateSettings && this.#stateSettings[attribute.name]["reflected"];
-      const settings = reflectedState ? this.#stateSettings : this.#propSettings;
-      const data = reflectedState ? this.state : this.props;
-      const type = settings[attribute.name]?.type;
+      const { name, value } = attribute;
+      const isState = this.#stateSettings[name]?.["reflected"];
+      const settings = isState ? this.#stateSettings : this.#propSettings;
+      const data = isState ? this.state : this.props;
+      const type = settings[name]?.["type"];
 
-      data[attribute.name] = type ? this.#typeConverter(attribute.value, type) : attribute.value;
+      data[name] = type ? typeConverter(value, type) : value;
     });
   }
 
   #stateHandler() {
     return {
       set: (store, state, value) => {
-        const type = this.#stateSettings[state]?.type;
-        const isValidType = !type || this.#typeChecker(value, type);
+        const type = this.#stateSettings[state]?.["type"];
+        const isValidType = !type || typeChecker(value, type);
 
         if(store[state] === value || !isValidType) {
           return true;
@@ -85,7 +83,6 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
 
         this.dispatchEvent(new CustomEvent("update", {
           bubbles: true,
-          cancelable: true,
           detail: {
             state: {
               oldState: { [state]: oldValue },
@@ -114,7 +111,7 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
   #propsHandler() {
     return {
       set: (props, prop, value) => {
-        const type = this.#propSettings[prop]?.type;
+        const type = this.#propSettings[prop]?.["type"];
         let attribute = this.getAttribute(prop);
 
         if(type !== Boolean && attribute === null) {
@@ -122,8 +119,8 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
         }
 
         if(type) {
-          attribute = this.#typeConverter(attribute, type);
-          value = this.#typeConverter(value, type);
+          attribute = typeConverter(attribute, type);
+          value = typeConverter(value, type);
         }
 
         const outOfSync = type !== Array
@@ -136,7 +133,6 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
 
           this.dispatchEvent(new CustomEvent("update", {
             bubbles: true,
-            cancelable: true,
             detail: {
               props: {
                 oldProps: { [prop]: oldValue },
@@ -152,9 +148,9 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
   }
 
   #populateDefaults() {
-    const defaultState = Object.keys(this.#stateSettings).filter(state => "default" in this.#stateSettings[state]);
-
-    defaultState.forEach((state) => {
+    Object.keys(this.#stateSettings).filter((state) => {
+      return "default" in this.#stateSettings[state];
+    }).forEach((state) => {
       if(this.state[state] === undefined) {
         this.state[state] = this.#stateSettings[state]["default"];
       }
@@ -163,36 +159,24 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
     Object.keys(this.#propSettings).forEach((prop) => {
       const { type, default: defaultValue } = this.#propSettings[prop];
 
-      // If an attribute for this prop is already present, we should not
-      // populate the prop with the default value.
       if(this.getAttribute(prop) !== null) {
         return;
       }
 
-      // Populate the `props` store with default values by setting the
-      // attributes and triggering the mutation observer which will update the
-      // `props` store from there. We can't mutate `props` directly because the
-      // proxy enforces one-way synchronization (DOM to `props`).
       if(type === Boolean) {
-        if(defaultValue === true) {
-          this.toggleAttribute(prop, true);
-        } else {
-          // We can't just toggle the attribute "off" here, because if the
-          // attribute is not present then the mutation observer will not be
-          // triggered and the `props` store will not update with the default
-          // value. So we have to set it directly. The proxy will allow this
-          // because a `false` value is congruent with the DOM if the attribute
-          // is absent.
-          this.props[prop] = false;
-        }
+        this.toggleAttribute(prop, defaultValue === true);
+        this.props[prop] = defaultValue === true;
       } else if(defaultValue) {
         this.setAttribute(prop, defaultValue);
       }
     });
   }
 
+  #renderPasses = 0;
+  #batch = {state: {}, props: {}};
+  #debounce = null;
+
   #batchUpdates(event) {
-    // Add incoming state and props to existing batch (or start a new one).
     if(event.detail?.state) {
       const { newState, oldState } = event.detail.state;
       this.#batch.state.newState = {...this.#batch.state.newState, ...newState};
@@ -205,15 +189,7 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
       this.#batch.props.oldProps = {...this.#batch.props.oldProps, ...oldProps};
     }
 
-    // Here we wait for back-to-back `update` events to be batched before
-    // calling our `#update` method (debouncing). To do this, we utilize an
-    // animation frame-based heuristic: the following animation frame request is
-    // canceled if this method, `#batchUpdates`, is called again before the next
-    // available animation frame (indicating multiple `update` event firings
-    // within a single animation frame). If the previous request is canceled, we
-    // try again with a new request. If that request is uninterrupted, it will
-    // finally call `#update`, which will in turn reset `#debounce` to `null` and
-    // empty the `#batch` object, indicating completion.
+    // animationFrame-based heuristic to batch back-to-back `update` calls.
     if(this.#debounce !== null) {
       cancelAnimationFrame(this.#debounce);
     }
@@ -225,20 +201,16 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
     this.#debounce = null;
     const batch = Object.assign({}, this.#batch);
 
-    // Updates the host (outer) DOM.
     if(batch.state && batch.state.newState) {
       const reflectedState = Object.keys(batch.state.newState)
         .filter(state => this.#stateSettings?.[state]?.["reflected"]);
       reflectedState.length > 0 && this.#reflectState(reflectedState);
     }
 
-    // Updates the shadow (inner) DOM.
     this.#render();
 
     if(this.#renderPasses < 1) {
-      // The component will have mounted after the first render pass and all
-      // child components have connected.
-      const childComponentsAreDefined = Array.from(this.shadowRoot.querySelectorAll(":not(:defined)"))
+      const childComponentsAreDefined = [...this.shadowRoot.querySelectorAll(":not(:defined)")]
         .map(child => customElements.whenDefined(child.localName));
 
       Promise.all(childComponentsAreDefined).then(() => {
@@ -254,20 +226,18 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
   }
 
   #reflectState(stateKeys) {
-    // Note, by now the new `state` value has already been validated by the
-    // proxy, so we can work from here assuming it's of the correct type.
     stateKeys.forEach((state) => {
       let value = this.state[state];
       let attribute = this.getAttribute(state);
 
       if(typeof value === "boolean") {
-        attribute = this.#typeConverter(attribute, Boolean);
+        attribute = typeConverter(attribute, Boolean);
 
         if(attribute !== value) {
           this.toggleAttribute(state, value);
         }
       } else {
-        value = this.#typeConverter(value, String);
+        value = typeConverter(value, String);
 
         if(attribute !== value) {
           this.setAttribute(state, value);
@@ -307,28 +277,6 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
     }
   }
 
-  #typeConverter(value, type) {
-    return this.#typeChecker(value, type) ? value : {
-      [Array]: typeof value === "string"
-        ? value.trim().replace(/\s\s+/g, " ").split(" ")
-        : [value].flat(),
-      [Boolean]: !["false", "0", 0, null, undefined].includes(value),
-      [Number]: Number(value),
-      [String]: Array.isArray(value)
-        ? value.join(" ")
-        : String(value),
-    }[type];
-  }
-
-  #typeChecker(value, type) {
-    return {
-      [Array]: Array.isArray(value),
-      [Boolean]: typeof value === "boolean",
-      [Number]: typeof value === "number",
-      [String]: typeof value === "string",
-    }[type];
-  }
-
   parts = new Proxy({}, {
     get: (parts, part) => {
       if(!parts[part]) {
@@ -344,5 +292,27 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
     },
   });
 };
+
+function typeConverter(value, type) {
+  return typeChecker(value, type) ? value : {
+    [Array]: typeof value === "string"
+      ? value.trim().replace(/\s\s+/g, " ").split(" ")
+      : [value].flat(),
+    [Boolean]: !["false", "0", 0, null, undefined].includes(value),
+    [Number]: Number(value),
+    [String]: Array.isArray(value)
+      ? value.join(" ")
+      : String(value),
+  }[type];
+}
+
+function typeChecker(value, type) {
+  return {
+    [Array]: Array.isArray(value),
+    [Boolean]: typeof value === "boolean",
+    [Number]: typeof value === "number",
+    [String]: typeof value === "string",
+  }[type];
+}
 
 export default WebComponent;
