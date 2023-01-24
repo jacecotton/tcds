@@ -1,3 +1,12 @@
+## [1.3.2](https://github.com/jacecotton/tcds/compare/v1.3.1...v1.3.2) (2023-01-24)
+
+
+### Bug Fixes
+
+* **components:** Multiple carousel slide default size ([b2978c5](https://github.com/jacecotton/tcds/commit/b2978c54846664078278a607935930fa8d43ead2))
+
+
+
 ## [1.3.1](https://github.com/jacecotton/tcds/compare/v1.3.0...v1.3.1) (2023-01-24)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * **components:** Card layout issue ([5386394](https://github.com/jacecotton/tcds/commit/5386394f734802744a64380f5e151b132fd8068a))
-
-
-
-## [1.1.8](https://github.com/jacecotton/tcds/compare/v1.1.7...v1.1.8) (2023-01-09)
-
-
-### Bug Fixes
-
-* **components:** WebComponent perf/efficiency boost ([777a783](https://github.com/jacecotton/tcds/commit/777a78310f032175de14fd7a8a20ad942c60f41b))
 
 
 
