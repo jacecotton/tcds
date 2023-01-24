@@ -1,3 +1,13 @@
+## [1.3.1](https://github.com/jacecotton/tcds/compare/v1.3.0...v1.3.1) (2023-01-24)
+
+
+### Bug Fixes
+
+* **components:** Carousel optimization ([d67094b](https://github.com/jacecotton/tcds/commit/d67094b6a19d2b0a5e51cc41665a0f79a1d50eda))
+* **components:** Omit card action label if no link is present ([2d0832a](https://github.com/jacecotton/tcds/commit/2d0832a1a4134e9a4bb2bf900cacb0e7e9976b37))
+
+
+
 # [1.3.0](https://github.com/jacecotton/tcds/compare/v1.2.0...v1.3.0) (2023-01-19)
 
 
@@ -31,15 +41,6 @@
 ### Bug Fixes
 
 * **components:** WebComponent perf/efficiency boost ([777a783](https://github.com/jacecotton/tcds/commit/777a78310f032175de14fd7a8a20ad942c60f41b))
-
-
-
-## [1.1.7](https://github.com/jacecotton/tcds/compare/v1.1.6...v1.1.7) (2023-01-09)
-
-
-### Bug Fixes
-
-* **components:** WebComponent perf/efficiency boost ([0881a48](https://github.com/jacecotton/tcds/commit/0881a488de98918059dd90bed5702bc5b6e821eb))
 
 
 
