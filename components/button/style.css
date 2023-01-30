@@ -138,6 +138,13 @@
   transition: background-color 0.08s ease-in;
 }
 
+[part="button"]:focus-visible {
+  box-shadow:
+    0 0 0 1px var(--tcds-color-secondary),
+    0 0 0 3px #fff;
+  outline: none;
+}
+
 [part="icon"] {
   background-color: var(--tcds-button-icon-background-color);
   color: var(--tcds-button-icon-color);
