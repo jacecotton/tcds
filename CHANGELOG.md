@@ -1,3 +1,14 @@
+## [1.3.4](https://github.com/jacecotton/tcds/compare/v1.3.3...v1.3.4) (2023-01-30)
+
+
+### Bug Fixes
+
+* **components:** Add focus style to tcds-button ([264bdc2](https://github.com/jacecotton/tcds/commit/264bdc27f4964ae3cfd4f051af6adbb1eab71d20))
+* **components:** tcds-dialog bugs ([b20b8e6](https://github.com/jacecotton/tcds/commit/b20b8e66606f113a5264ca7e235d33904dc79a6e))
+* **scripts:** WebComponent update ([95464a7](https://github.com/jacecotton/tcds/commit/95464a72b318fb3f01d1e8a428fd7ba1c75451d8))
+
+
+
 ## [1.3.3](https://github.com/jacecotton/tcds/compare/v1.3.2...v1.3.3) (2023-01-24)
 
 
@@ -32,15 +43,6 @@
 ### Features
 
 * **components:** Add carousel option for multiple slides in the viewport ([dea41b0](https://github.com/jacecotton/tcds/commit/dea41b0a4a66fd19a71cd3e3332518ce5b246ab7))
-
-
-
-# [1.2.0](https://github.com/jacecotton/tcds/compare/v1.1.9...v1.2.0) (2023-01-16)
-
-
-### Features
-
-* **components:** Section video modal ([7790e97](https://github.com/jacecotton/tcds/commit/7790e97b916d60ba8b684508d69a095a317d8805))
 
 
 
