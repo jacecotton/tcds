@@ -1,3 +1,12 @@
+## [1.3.3](https://github.com/jacecotton/tcds/compare/v1.3.2...v1.3.3) (2023-01-24)
+
+
+### Bug Fixes
+
+* **components:** Carousel styling cleanup ([5cf49a6](https://github.com/jacecotton/tcds/commit/5cf49a6fa23a63a8f3535f280bcfb515057c91dc))
+
+
+
 ## [1.3.2](https://github.com/jacecotton/tcds/compare/v1.3.1...v1.3.2) (2023-01-24)
 
 
@@ -32,15 +41,6 @@
 ### Features
 
 * **components:** Section video modal ([7790e97](https://github.com/jacecotton/tcds/commit/7790e97b916d60ba8b684508d69a095a317d8805))
-
-
-
-## [1.1.9](https://github.com/jacecotton/tcds/compare/v1.1.8...v1.1.9) (2023-01-15)
-
-
-### Bug Fixes
-
-* **components:** Card layout issue ([5386394](https://github.com/jacecotton/tcds/commit/5386394f734802744a64380f5e151b132fd8068a))
 
 
 
