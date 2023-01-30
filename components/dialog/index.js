@@ -39,10 +39,7 @@ export default class Dialog extends WebComponent(HTMLElement, {delegatesFocus: t
     this.state.open = this.hasAttribute("open")
       && localStorage.getItem(`tcds_dialog_${this.id}_state`) !== "closed";
 
-    this.controllers = [
-      ...document.querySelectorAll(`[aria-controls=${this.id}], [controls=${this.id}]`),
-      ...this.getRootNode().querySelectorAll(`[aria-controls=${this.id}], [controls=${this.id}]`)
-    ];
+    this.controllers = document.querySelectorAll(`[aria-controls=${this.id}], [controls=${this.id}]`);
 
     this.setAttribute("role", "dialog");
     this.setAttribute("aria-modal", "true");
@@ -91,41 +88,43 @@ export default class Dialog extends WebComponent(HTMLElement, {delegatesFocus: t
     });
   }
 
+  autcloseTimer = null;
+
   updatedCallback(state) {
-    return {
-      state: {
-        open: () => {
-          localStorage.setItem(`tcds_dialog_${this.id}_state`, this.state.open ? "open" : "closed");
+    if(state.newState) {
+      if("open" in state.newState) {
+        localStorage.setItem(`tcds_dialog_${this.id}_state`, this.state.open ? "open" : "closed");
 
-          this.hidden = !this.state.open;
-          document.body.style.overflowY = this.state.open ? "hidden" : null;
+        this.hidden = !this.state.open;
+        document.body.style.overflowY = this.state.open ? "hidden" : null;
 
-          this.controllers?.forEach((controller) => {
-            controller.setAttribute(controller.hasAttribute("controls") ? "expanded" : "aria-expanded", this.state.open);
-          });
+        this.controllers?.forEach((controller) => {
+          controller.setAttribute(controller.hasAttribute("controls") ? "expanded" : "aria-expanded", this.state.open);
+        });
 
-          this.handleOtherComponents(state.newState);
+        this.handleOtherComponents(state.newState);
 
-          if(this.state.open) {
-            this.focusableChildren = getFocusableChildren(this);
-            this.firstFocusableChild = this.focusableChildren[0] || this.parts["close"];
-            this.lastFocusableChild = this.focusableChildren[this.focusableChildren.length - 1] || this.parts["close"];
-            this.previouslyFocused = document.activeElement;
+        if(this.state.open) {
+          this.focusableChildren = getFocusableChildren(this);
+          this.firstFocusableChild = this.focusableChildren[0] || this.parts["close"];
+          this.lastFocusableChild = this.focusableChildren[this.focusableChildren.length - 1] || this.parts["close"];
+          this.previouslyFocused = document.activeElement;
 
-            const target = this.querySelector("[autofocus]") || this.firstFocusableChild;
-            target.focus();
+          const target = this.querySelector("[autofocus]") || this.firstFocusableChild;
+          target.focus();
 
-            if(this.props.autoclose) {
-              setTimeout(() => {
-                this.close();
-              }, this.props.autoclose * 1000);
-            }
-          } else {
-            this.previouslyFocused?.focus?.();
+          if(this.props.autoclose) {
+            this.autocloseTimer = setTimeout(() => {
+              this.close();
+              clearTimeout(this.autocloseTimer);
+            }, this.props.autoclose * 1000);
           }
-        },
-      },
-    };
+        } else {
+          clearTimeout(this.autocloseTimer);
+          this.previouslyFocused?.focus?.();
+        }
+      }
+    }
   }
 
   pausedCarousels = [];

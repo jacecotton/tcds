@@ -6,6 +6,7 @@ const focusableSelectors = [
   `select:not([disabled]):not([tabindex^="-"])`,
   `textarea:not([disabled]):not([tabindex^="-"])`,
   `button:not([disabled]):not([tabindex^="-"])`,
+  `tcds-button:not([tabindex^="-"])`,
   `iframe:not([tabindex^="-"])`,
   `audio[controls]:not([tabindex^="-"])`,
   `video[controls]:not([tabindex^="-"])`,
