@@ -85,9 +85,31 @@ class MyComponent extends WebComponent(HTMLElement) {
     // has not yet been called.
   }
 
-  updatedCallback() {
+  updatedCallback(state, props) {
     // The component's state or prop has been updated.
     // This also runs once after mounting.
+  }
+}
+```
+
+`updatedCallback`'s `state` and `props` arguments each contain two objects, `newState`/`newProps` and `oldState`/`oldProps`. They are each batches which contain copies of the state/props that were changed, and their new and old values respectively. This is useful to filter state and props so only relevant code is executed:
+
+```js
+class MyComponent extends WebComponent(HTMLElement) {
+  updatedCallback(state, props) {
+    if(state.newState) {
+      if("foo" in state.newState) {
+        // this.state.foo was changed
+        // state.oldState.foo contains previous value of this.state.foo
+      }
+    }
+
+    if(props.newProps) {
+      if("bar" in props.newProps) {
+        // this.props.bar was changed
+        // props.oldProps.bar contains previous value of this.props.bar
+      }
+    }
   }
 }
 ```
@@ -121,22 +143,6 @@ class MyComponent extends WebComponent(HTMLElement) {
       default: false,
     },
   };
-}
-```
-
-The `updatedCallback` hook can filter updates by the specific prop that was changed in its `return` object:
-
-```js
-class MyComponent extends WebComponent(HTMLElement) {
-  updatedCallback() {
-    return {
-      props: {
-        multiple: () => {
-          // [multiple] attribute was changed.
-        },
-      },
-    };
-  }
 }
 ```
 
@@ -184,22 +190,6 @@ class MyComponent extends WebComponent(HTMLElement) {
 If `count` exists as a property of the `state` object, the `[count]` attribute will now automatically be synced to `state.count` (in both directions; an update to one will be reflected by the other). This also prevents the `[count]` attribute from being registered as a prop.
 
 This is useful to allow component users to set the initial state of a component via an attribute. For instance, the dialog component allows users to set whether it should open on page load by adding a boolean attribute: `<tcds-dialog open>`.
-
-Like props, the `updatedCallback` hook can filter updates by the specific state property that was changed in its `return` object:
-
-```js
-class MyComponent extends WebComponent(HTMLElement) {
-  updatedCallback() {
-    return {
-      state: {
-        count: () => {
-          // this.state.count was changed.
-        },
-      },
-    };
-  }
-}
-```
 
 ## Typing
 Available state and prop types are `String`, `Number`, `Boolean`, and `Array`.

@@ -60,34 +60,32 @@ export default class MegaMenu extends WebComponent(HTMLElement) {
   }
 
   updatedCallback(state) {
-    return {
-      state: {
-        open: () => {
-          this.controllers.forEach((controller) => {
-            if(controller.hasAttribute("controls")) {
-              controller.setAttribute("expanded", this.state.open);
-            } else {
-              controller.setAttribute("aria-expanded", this.state.open);
-            }
-          });
-
-          if(this.state.open) {
-            const otherMegaMenus = Array.from(document.querySelectorAll("tcds-mega-menu")).filter(otherMegaMenu => otherMegaMenu !== this);
-            otherMegaMenus.forEach(otherMegaMenu => otherMegaMenu.close());
-            this.hidden = false;
-          } else if(state.oldState.open === true) {
-            AnimateElement(this.parts["mega-menu"], (window.innerWidth < 1200 ? "slide-out-right" : ["slide-out-up", "fade-out"]), {
-              lazyload: false,
-              timing: window.innerWidth < 1200 ? "productive" : "expressive",
-            }).then(() => {
-              this.hidden = !this.state.open;
-            });
+    if(state.newState) {
+      if("open" in state.newState) {
+        this.controllers.forEach((controller) => {
+          if(controller.hasAttribute("controls")) {
+            controller.setAttribute("expanded", this.state.open);
           } else {
-            this.hidden = true;
+            controller.setAttribute("aria-expanded", this.state.open);
           }
-        },
-      },
-    };
+        });
+
+        if(this.state.open) {
+          const otherMegaMenus = Array.from(document.querySelectorAll("tcds-mega-menu")).filter(otherMegaMenu => otherMegaMenu !== this);
+          otherMegaMenus.forEach(otherMegaMenu => otherMegaMenu.close());
+          this.hidden = false;
+        } else if(state.oldState.open === true) {
+          AnimateElement(this.parts["mega-menu"], (window.innerWidth < 1200 ? "slide-out-right" : ["slide-out-up", "fade-out"]), {
+            lazyload: false,
+            timing: window.innerWidth < 1200 ? "productive" : "expressive",
+          }).then(() => {
+            this.hidden = !this.state.open;
+          });
+        } else {
+          this.hidden = true;
+        }
+      }
+    }
   }
 
   open() {

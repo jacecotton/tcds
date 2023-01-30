@@ -32,23 +32,21 @@ export default class Slide extends WebComponent(HTMLElement) {
     `;
   }
 
-  updatedCallback() {
-    return {
-      state: {
-        active: () => {
-          if(this.state.active) {
-            if("scrollIntoViewIfNeeded" in document.documentElement) {
-              this.scrollIntoViewIfNeeded();
-            } else {
-              this.scrollIntoView({
-                behavior: "smooth",
-                inline: this.parent.props.multiple ? "center" : "start",
-              });
-            }
+  updatedCallback(state) {
+    if(state.newState) {
+      if("active" in state.newState) {
+        if(this.state.active) {
+          if("scrollIntoViewIfNeeded" in document.documentElement) {
+            this.scrollIntoViewIfNeeded();
+          } else {
+            this.scrollIntoView({
+              behavior: "smooth",
+              inline: this.parent.props.multiple ? "center" : "start",
+            });
           }
-        },
-      },
-    };
+        }
+      }
+    }
   }
 }
 

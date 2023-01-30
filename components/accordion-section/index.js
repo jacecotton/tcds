@@ -51,34 +51,32 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
   }
 
   updatedCallback(state) {
-    return {
-      state: {
-        open: () => {
-          if(this.state.open) {
-            this.parts["panel"].style.height = "0px";
-            this.parts["panel"].hidden = false;
+    if(state.newState) {
+      if("open" in state.newState) {
+        if(this.state.open) {
+          this.parts["panel"].style.height = "0px";
+          this.parts["panel"].hidden = false;
 
-            requestAnimationFrame(() => {
-              this.parts["panel"].style.height = `${this.parts["panel"].scrollHeight}px`;
-            });
+          requestAnimationFrame(() => {
+            this.parts["panel"].style.height = `${this.parts["panel"].scrollHeight}px`;
+          });
 
-            if(this.parent.props.multiple === false) {
-              this.siblings.filter(sibling => sibling.state.open).forEach(sibling => sibling.close());
-            }
-          } else if(state.oldState.open) {
-            this.parts["panel"].style.height = "0px";
-
-            this.parts["panel"].ontransitionend = () => {
-              this.parts["panel"].hidden = true;
-              this.parts["panel"].style.height = null;
-              this.parts["panel"].ontransitionend = null;
-            };
-          } else {
-            this.parts["panel"].hidden = true;
+          if(this.parent.props.multiple === false) {
+            this.siblings.filter(sibling => sibling.state.open).forEach(sibling => sibling.close());
           }
-        },
-      },
-    };
+        } else if(state.oldState.open) {
+          this.parts["panel"].style.height = "0px";
+
+          this.parts["panel"].ontransitionend = () => {
+            this.parts["panel"].hidden = true;
+            this.parts["panel"].style.height = null;
+            this.parts["panel"].ontransitionend = null;
+          };
+        } else {
+          this.parts["panel"].hidden = true;
+        }
+      }
+    }
   }
 
   open() {

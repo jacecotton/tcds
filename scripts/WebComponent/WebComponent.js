@@ -15,22 +15,35 @@ import diff from "./diff.js";
 const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends BaseElement {
   #stateSettings;
   #propSettings;
+  #renderPasses = 0;
+  #batch = {state: {}, props: {}};
+  #debounce = null;
 
   constructor() {
     super();
     this.attachShadow({ mode: "open", ...options });
 
+    // Grab a copy of child class-defined `state` and `props` objects to use
+    // as settings (type, default, reflected, etc.)
     this.#stateSettings = this.constructor.state || {};
     this.#propSettings = this.constructor.props || {};
 
+    // Reset `state` and `props` to empty objects, then intercept any updates
+    // them from the child class, validate the changes, and fire "update"
+    // events.
     this.state = new Proxy({}, this.#stateHandler());
     this.props = new Proxy({}, this.#propsHandler());
 
+    // Listen to those updates and collect a batch of them.
     this.addEventListener("update", this.#batchUpdates.bind(this));
 
+    // Populate props and state from attributes, observe further attribute
+    // changes and update respective props and state.
     this.#attributeHandler([...this.attributes]);
     this.#attributeObserver.observe(this, { attributes: true });
 
+    // Populate `state` and `props` with child class-provided defaults, if
+    // applicable.
     this.#populateDefaults();
 
     // Manually schedule an update if the component has been connected but
@@ -94,6 +107,10 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
         return true;
       },
 
+      // Manipulations of object or array properties (via `split`, `push`, etc.)
+      // will not trigger the `set` handler, as the value is being mutated but
+      // not redeclared. So we have to proxy the child property, initializing it
+      // to its current value and handling it with the above `set` method.
       get: (store, state) => {
         if(state === "_isProxy") {
           return true;
@@ -148,11 +165,20 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
   }
 
   #populateDefaults() {
-    Object.keys(this.#stateSettings).filter((state) => {
-      return "default" in this.#stateSettings[state];
-    }).forEach((state) => {
-      if(this.state[state] === undefined) {
-        this.state[state] = this.#stateSettings[state]["default"];
+    Object.keys(this.#stateSettings).forEach((state) => {
+      const { type, default: defaultValue } = this.#stateSettings[state];
+
+      if(this.state[state] !== undefined) {
+        return;
+      }
+
+      if(type === Boolean) {
+        // If boolean, anything other than an explicit default value of `true`
+        // should be populated as `false` (meaning `defaultValue` can be left
+        // `undefined`).
+        this.state[state] = defaultValue === true;
+      } else if(defaultValue !== undefined) {
+        this.state[state] = defaultValue;
       }
     });
 
@@ -165,16 +191,14 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
 
       if(type === Boolean) {
         this.toggleAttribute(prop, defaultValue === true);
+        // Toggling an attribute "off" won't trigger the observer and cause a
+        // `props` update, so we have to do it directly here as well.
         this.props[prop] = defaultValue === true;
-      } else if(defaultValue) {
+      } else if(defaultValue !== undefined) {
         this.setAttribute(prop, defaultValue);
       }
     });
   }
-
-  #renderPasses = 0;
-  #batch = {state: {}, props: {}};
-  #debounce = null;
 
   #batchUpdates(event) {
     if(event.detail?.state) {
@@ -198,35 +222,34 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
   }
 
   #update() {
+    // Reset batch and default flag.
+    const { state, props } = Object.assign({}, this.#batch);
+    this.#batch = {state: {}, props: {}};
     this.#debounce = null;
-    const batch = Object.assign({}, this.#batch);
 
-    if(batch.state && batch.state.newState) {
-      const reflectedState = Object.keys(batch.state.newState)
-        .filter(state => this.#stateSettings?.[state]?.["reflected"]);
-      reflectedState.length > 0 && this.#reflectState(reflectedState);
-    }
+    const stateToReflect = Object.keys(state?.newState || {})
+      .filter(state => this.#stateSettings?.[state]?.["reflected"]);
+    stateToReflect.length > 0 && this.#reflectState(stateToReflect);
 
     this.#render();
 
-    if(this.#renderPasses < 1) {
+    if(this.#renderPasses === 1) {
       const childComponentsAreDefined = [...this.shadowRoot.querySelectorAll(":not(:defined)")]
         .map(child => customElements.whenDefined(child.localName));
 
       Promise.all(childComponentsAreDefined).then(() => {
         this.mountedCallback?.();
-        this.#updateCallbacks(batch);
-      }).catch(error => console.log(error));
+        this.updatedCallback?.(state, props);
+      }).catch((error) => {
+        console.error("Child components are not defined.", error);
+      });
     } else {
-      this.#updateCallbacks(batch);
+      this.updatedCallback?.(state, props);
     }
-
-    this.#renderPasses++;
-    this.#batch = {state: {}, props: {}};
   }
 
-  #reflectState(stateKeys) {
-    stateKeys.forEach((state) => {
+  #reflectState(stateToReflect) {
+    stateToReflect.forEach((state) => {
       let value = this.state[state];
       let attribute = this.getAttribute(state);
 
@@ -247,34 +270,12 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
   }
 
   #render() {
-    const baseStyles = Array.from(document.styleSheets).find(sheet => sheet.title === "tcds")?.href
+    const baseStyles = document.querySelector("link[title=tcds]")?.href
       || "https://unpkg.com/@txch/tcds/dist/tcds.css";
 
-    diff(`
-      <style id="tcds">@import url("${baseStyles}")</style>
-      ${this.render?.()}
-    `, this.shadowRoot);
-  }
+    diff(`<style id="tcds">@import url("${baseStyles}");</style>${this.render?.()}`, this.shadowRoot);
 
-  #updateCallbacks(batch) {
-    const { state, props } = batch;
-    const updateCallbacks = this.updatedCallback?.(state, props) || {};
-
-    if("state" in updateCallbacks) {
-      for(let key in updateCallbacks.state) {
-        if(state.newState && key in state.newState) {
-          updateCallbacks.state[key]();
-        }
-      }
-    }
-
-    if("props" in updateCallbacks) {
-      for(let key in updateCallbacks.props) {
-        if(props.newProps && key in props.newProps) {
-          updateCallbacks.props[key]();
-        }
-      }
-    }
+    this.#renderPasses++;
   }
 
   parts = new Proxy({}, {

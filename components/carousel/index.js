@@ -119,19 +119,17 @@ export default class Carousel extends WebComponent(HTMLElement) {
     });
   }
 
-  updatedCallback() {
-    return {
-      state: {
-        playing: () => {
-          if(this.state.playing) {
-            this.startPlayer();
-            this.observeSwipe = false;
-          } else {
-            this.cancelPlayer();
-          }
-        },
-      },
-    };
+  updatedCallback(state) {
+    if(state.newState) {
+      if("playing" in state.newState) {
+        if(this.state.playing) {
+          this.startPlayer();
+          this.observeSwipe = false;
+        } else {
+          this.cancelPlayer();
+        }
+      }
+    }
   }
 
   #swipeDebounce;
