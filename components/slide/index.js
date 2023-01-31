@@ -37,6 +37,7 @@ export default class Slide extends WebComponent(HTMLElement) {
           this.scrollIntoView({
             behavior: "smooth",
             inline: this.parent.props.multiple ? "center" : "start",
+            block: "nearest",
           });
         }
       }
