@@ -1,3 +1,12 @@
+## [1.3.5](https://github.com/jacecotton/tcds/compare/v1.3.4...v1.3.5) (2023-01-31)
+
+
+### Bug Fixes
+
+* **components:** IDREF cross-shadow boundary issue - [#18](https://github.com/jacecotton/tcds/issues/18) ([b24d026](https://github.com/jacecotton/tcds/commit/b24d026236ac913b92b0724b24918fb1fba06b1a))
+
+
+
 ## [1.3.4](https://github.com/jacecotton/tcds/compare/v1.3.3...v1.3.4) (2023-01-30)
 
 
@@ -34,15 +43,6 @@
 
 * **components:** Carousel optimization ([d67094b](https://github.com/jacecotton/tcds/commit/d67094b6a19d2b0a5e51cc41665a0f79a1d50eda))
 * **components:** Omit card action label if no link is present ([2d0832a](https://github.com/jacecotton/tcds/commit/2d0832a1a4134e9a4bb2bf900cacb0e7e9976b37))
-
-
-
-# [1.3.0](https://github.com/jacecotton/tcds/compare/v1.2.0...v1.3.0) (2023-01-19)
-
-
-### Features
-
-* **components:** Add carousel option for multiple slides in the viewport ([dea41b0](https://github.com/jacecotton/tcds/commit/dea41b0a4a66fd19a71cd3e3332518ce5b246ab7))
 
 
 
