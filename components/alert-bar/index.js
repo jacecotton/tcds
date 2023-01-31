@@ -6,20 +6,16 @@ export default class AlertBar extends WebComponent(HTMLElement) {
   connectedCallback() {
     this.shadowRoot.adoptedStyleSheets = [shadowStyles];
     document.adoptedStyleSheets = [...document.adoptedStyleSheets, ...[lightStyles]];
-
-    // Add auto-incrementing unique IDs to each alert bar instance.
-    const alertBars = Array.from(document.querySelectorAll("tcds-alert-bar"));
-    this.id = `alert-bar${alertBars.length > 1 ? `-${alertBars.indexOf(this) + 1}` : ""}`;
   }
 
   render() {
     return /* html */`
-      <div part="bar">
+      <div part="bar" id="alert-bar">
         <h2><tcds-icon icon="bell"></tcds-icon> Updates</h2>
         <div part="alerts">
           <slot name="alert"></slot>
         </div>
-        <tcds-button part="close" controls="${this.id}" icon="only x" variant="ui" onclick="this.getRootNode().host.close()">Dismiss updates</tcds-button>
+        <tcds-button part="close" aria-controls="alert-bar" icon="only x" variant="ui" onclick="this.getRootNode().host.close()">Dismiss updates</tcds-button>
       </div>
     `;
   }
@@ -37,7 +33,7 @@ export default class AlertBar extends WebComponent(HTMLElement) {
   }
 
   close() {
-    this.hidden = true;
+    this.parts["bar"].hidden = true;
   }
 }
 
