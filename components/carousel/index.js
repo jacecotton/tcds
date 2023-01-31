@@ -2,6 +2,11 @@ import WebComponent from "../../scripts/WebComponent/WebComponent.js";
 import shadowStyles from "./style.css";
 import lightStyles from "./style.light.css";
 
+/**
+ * Discussion:
+ * - On ARIA spec, see discussion note in ../tabs/index.js
+ */
+
 export default class Carousel extends WebComponent(HTMLElement) {
   static state = {
     playing: {
@@ -50,7 +55,6 @@ export default class Carousel extends WebComponent(HTMLElement) {
       <div part="navigation">
         <tcds-button
           part="previous"
-          controls="${this.id}"
           icon="only chevron-left"
           variant="ghost"
           size="large"
@@ -62,8 +66,6 @@ export default class Carousel extends WebComponent(HTMLElement) {
             <button
               role="tab"
               part="indicator"
-              id="${this.id}-indicator-${index + 1}"
-              aria-controls="${this.id}-slide-${index + 1}"
               aria-selected="${slide.state.active}"
               aria-disabled="${!slide.state.active}"
               aria-label="Slide ${index + 1} of ${this.slides.length}"
@@ -76,7 +78,6 @@ export default class Carousel extends WebComponent(HTMLElement) {
         </div>
         <tcds-button
           part="next"
-          controls="${this.id}"
           label="Go to next slide"
           icon="only chevron-right"
           variant="ghost"

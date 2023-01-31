@@ -1,5 +1,4 @@
 import WebComponent from "../../scripts/WebComponent/WebComponent.js";
-import slugify from "../../scripts/utilities/slugify.js";
 import styles from "./style.css";
 
 export default class Tab extends WebComponent(HTMLElement) {
@@ -22,8 +21,6 @@ export default class Tab extends WebComponent(HTMLElement) {
     return /* html */`
       <section
         role="tabpanel"
-        id="${slugify(this.props.label)}-panel"
-        aria-labelledby="${slugify(this.props.label)}-tab"
         ${this.state.active ? "" : "hidden"}
       >
         <slot></slot>

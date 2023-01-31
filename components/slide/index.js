@@ -20,8 +20,6 @@ export default class Slide extends WebComponent(HTMLElement) {
       <section
         role="tabpanel"
         part="slide"
-        id="${this.parent.id}-slide-${this.position}"
-        aria-labelledby="${this.parent.id}-indicator-${this.position}"
         ${this.state.active === false ? `
           aria-hidden="true"
           tabindex="-1"
@@ -36,14 +34,10 @@ export default class Slide extends WebComponent(HTMLElement) {
     if(state.newState) {
       if("active" in state.newState) {
         if(this.state.active) {
-          if("scrollIntoViewIfNeeded" in document.documentElement) {
-            this.scrollIntoViewIfNeeded();
-          } else {
-            this.scrollIntoView({
-              behavior: "smooth",
-              inline: this.parent.props.multiple ? "center" : "start",
-            });
-          }
+          this.scrollIntoView({
+            behavior: "smooth",
+            inline: this.parent.props.multiple ? "center" : "start",
+          });
         }
       }
     }
