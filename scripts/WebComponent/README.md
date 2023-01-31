@@ -3,7 +3,7 @@
 
 This utility is not a library, but brings to Web Components some of the requisite features and best practices for building modern UIs found in libraries like [React](https://reactjs.org/) and [Vue](https://vuejs.org/).
 
-It differs from other Web Component-based libraries, like [Lit](https://lit.dev/) or [Stencil](https://stenciljs.com/), in its aim to bridge only very specific gaps in native browser features. To that end it introduces minimal unique concepts and features, and leans heavily on the use of conventional JavaScript by component authors.
+It differs from libraries also based on Web Components, like [Lit](https://lit.dev/) or [Stencil](https://stenciljs.com/), in its aim to bridge only very specific gaps in native browser features. To that end it introduces minimal unique concepts and features, and leans heavily on the use of vanilla JavaScript by component authors.
 
 ## Defining a component
 Defining a Web Component works like [defining any other custom element]((https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements)), only instead of extending the [`HTMLElement` interface](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) directly, extend it with the `WebComponent` mixin.
@@ -12,7 +12,9 @@ Defining a Web Component works like [defining any other custom element]((https:/
 import { WebComponent } from "@txch/tcds";
 
 class MyComponent extends WebComponent(HTMLElement) {
-
+  constructor() {
+    super();
+  }
 }
 
 customElements.define("my-component", MyComponent);
@@ -20,13 +22,11 @@ customElements.define("my-component", MyComponent);
 
 `<my-component>` can now be used as a valid HTML element on any page with the above script loaded.
 
-**Note:** Unlike when extending `HTMLElement` directly, adding a `constructor` method and calling `super` is not necessary.
-
 While it is not recommended to customize built-in elements (as it's [not supported by Safari](https://caniuse.com/custom-elementsv1)*), it is valid to pass the interface of any other HTML element to the `WebComponent` mixin:
 
 ```js
 class MyComponent extends WebComponent(HTMLUListElement) {
-
+  ...
 }
 
 customElements.define("my-component", MyComponent, { extends: "ul" });
@@ -48,6 +48,8 @@ class MyComponent extends WebComponent(HTMLElement) {
   }
 }
 ```
+
+The `render` method is called every time [state](#state) or [props](#props) are updated (or any time an `update` event is dispatched on the component class). Updates are first batched within a single [animation frame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) for efficiency and performance, then only elements within the template that have actually changed (are different from the live component DOM) will be re-rendered.
 
 [Template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) are recommended as it allows for multi-line strings and string interpolation, rather than concatenation.
 
@@ -75,7 +77,7 @@ class MyComponent extends WebComponent(HTMLElement) {
 This is an optional convenience. Alternatively, as [`mountedCallback` occurs after first render](#lifecycle), you can always query the `shadowRoot` to access any element in the rendered result.
 
 ## Lifecycle
-In addition to `HTMLElement`'s provided lifecycle methods (`connectedCallback`, `disconnectedCallback`, etc.), `WebComponent` provides a couple additional methods to work with its reactivity. These follow usual conventions used by other UI libraries, but is most similar to [Vue's](https://vuejs.org/api/options-lifecycle.html) on a technical level.
+In addition to `HTMLElement`'s provided lifecycle methods (`connectedCallback`, `disconnectedCallback`, etc.), `WebComponent` provides a couple additional methods to work with its reactivity. These follow usual conventions used by other UI libraries, but work most similarly to [Vue's](https://vuejs.org/api/options-lifecycle.html) on a technical level.
 
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
@@ -87,7 +89,8 @@ class MyComponent extends WebComponent(HTMLElement) {
 
   updatedCallback(state, props) {
     // The component's state or prop has been updated.
-    // This also runs once after mounting.
+    // This also runs once after mounting, and after any
+    // time an "update" event is dispatched on `this`.
   }
 }
 ```
@@ -114,7 +117,7 @@ class MyComponent extends WebComponent(HTMLElement) {
 }
 ```
 
-Note that `WebComponent`'s state and prop system (see below) negates the built-in method for handling attribute updates (the `observedAttributes` property and `attributeChangedCallback` method). With `WebComponent`, all attributes are observed by default and synchronized with the `props` property (or `state` property if indicated).
+Note that `WebComponent`'s state and prop system (see below) negates the built-in method for handling attribute updates (the `observedAttributes` property and `attributeChangedCallback` method). With `WebComponent`, all attributes (except [globals](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes)) are observed by default and synchronized with the `props` property (or `state` property if indicated).
 
 ## Props
 Props are accessible internally from the public `props` property. This object is readonly, and is populated from attributes set by the component user on the component instance.

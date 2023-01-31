@@ -183,6 +183,8 @@ export default class Carousel extends WebComponent(HTMLElement) {
   }
 
   select(active) {
+    this.dispatchEvent(new Event("update"));
+
     this.slides.forEach((slide) => {
       slide.state.active = slide === active;
     });

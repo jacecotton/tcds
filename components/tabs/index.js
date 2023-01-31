@@ -77,9 +77,11 @@ export default class Tabs extends WebComponent(HTMLElement) {
     `;
   }
 
-  select(activeTab) {
+  select(active) {
+    this.dispatchEvent(new Event("update"));
+
     this.tabs.forEach((tab) => {
-      tab.state.active = tab === activeTab;
+      tab.state.active = tab === active;
     });
   }
 

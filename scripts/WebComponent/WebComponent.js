@@ -18,6 +18,8 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
   #renderPasses = 0;
   #batch = {state: {}, props: {}};
   #debounce = null;
+  #baseStyles = document.querySelector("link[title=tcds]")?.href
+    || "https://unpkg.com/@txch/tcds/dist/tcds.css";
 
   constructor() {
     super();
@@ -70,8 +72,25 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
   }
 
   #attributeHandler(attributes) {
+    const globalAttributes = [
+      [
+        "accesskey", "autocapitalize", "autofocus", "class", "contenteditable",
+        "dir", "draggable", "hidden", "href", "id", "inert", "is", "lang",
+        "name", "onblur", "onfocus", "onclick", "onchange", "ondrop", "onerror",
+        "onload", "onscroll", "onselect", "onsubmit", "onwheel", "part", "role",
+        "slot", "spellcheck", "src", "style", "tabindex", "title", "translate",
+      ],
+      ["aria-", "data-", "onmouse", "onpointer", "ondrag", "onkey"],
+    ];
+
     attributes.forEach((attribute) => {
-      const { name, value } = attribute;
+      const {name, value} = attribute;
+      const [full, partial] = globalAttributes;
+
+      if(full.includes(name) || partial.filter(global => name.includes(global)).length) {
+        return;
+      }
+
       const isState = this.#stateSettings[name]?.["reflected"];
       const settings = isState ? this.#stateSettings : this.#propSettings;
       const data = isState ? this.state : this.props;
@@ -87,7 +106,11 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
         const type = this.#stateSettings[state]?.["type"];
         const isValidType = !type || typeChecker(value, type);
 
-        if(store[state] === value || !isValidType) {
+        const isNewValue = type !== Array
+          ? (store[state] !== value)
+          : (store[state]?.slice().sort().join() !== value.slice().sort().join());
+
+        if(!isNewValue || !isValidType) {
           return true;
         }
 
@@ -95,7 +118,6 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
         store[state] = value;
 
         this.dispatchEvent(new CustomEvent("update", {
-          bubbles: true,
           detail: {
             state: {
               oldState: { [state]: oldValue },
@@ -116,7 +138,11 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
           return true;
         }
 
-        if(["object", "array"].includes(Object.prototype.toString.call(store[state]).slice(8, -1).toLowerCase()) && !store[state]._isProxy) {
+        const isObject = ["object", "array"].includes(
+          Object.prototype.toString.call(store[state]).slice(8, -1).toLowerCase()
+        );
+
+        if(isObject && !store[state]._isProxy) {
           store[state] = new Proxy(store[state], this.#stateHandler());
         }
 
@@ -140,24 +166,29 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
           value = typeConverter(value, type);
         }
 
-        const outOfSync = type !== Array
-          ? (attribute !== value)
-          : (attribute.slice().sort().join() !== value.slice().sort().join());
+        const isInSync = type !== Array
+          ? (attribute === value)
+          : (attribute.slice().sort().join() === value.slice().sort().join());
 
-        if(!outOfSync) {
-          const oldValue = props[prop];
-          props[prop] = value;
+        const isNewValue = type !== Array
+          ? (props[prop] !== value)
+          : (props[prop]?.slice().sort().join() !== value.slice().sort().join());
 
-          this.dispatchEvent(new CustomEvent("update", {
-            bubbles: true,
-            detail: {
-              props: {
-                oldProps: { [prop]: oldValue },
-                newProps: { [prop]: value },
-              },
-            },
-          }));
+        if(!isNewValue || !isInSync) {
+          return true;
         }
+
+        const oldValue = props[prop];
+        props[prop] = value;
+
+        this.dispatchEvent(new CustomEvent("update", {
+          detail: {
+            props: {
+              oldProps: { [prop]: oldValue },
+              newProps: { [prop]: value },
+            },
+          },
+        }));
 
         return true;
       },
@@ -222,8 +253,9 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
   }
 
   #update() {
-    // Reset batch and default flag.
+    // Grab copy of state and prop update batch before emptying.
     const { state, props } = Object.assign({}, this.#batch);
+
     this.#batch = {state: {}, props: {}};
     this.#debounce = null;
 
@@ -231,7 +263,12 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
       .filter(state => this.#stateSettings?.[state]?.["reflected"]);
     stateToReflect.length > 0 && this.#reflectState(stateToReflect);
 
-    this.#render();
+    diff(`
+      <style id="tcds">@import url(${this.#baseStyles})</style>
+      ${this.render?.()}
+    `, this.shadowRoot);
+
+    this.#renderPasses++;
 
     if(this.#renderPasses === 1) {
       const childComponentsAreDefined = [...this.shadowRoot.querySelectorAll(":not(:defined)")]
@@ -267,15 +304,6 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
         }
       }
     });
-  }
-
-  #render() {
-    const baseStyles = document.querySelector("link[title=tcds]")?.href
-      || "https://unpkg.com/@txch/tcds/dist/tcds.css";
-
-    diff(`<style id="tcds">@import url("${baseStyles}");</style>${this.render?.()}`, this.shadowRoot);
-
-    this.#renderPasses++;
   }
 
   parts = new Proxy({}, {
