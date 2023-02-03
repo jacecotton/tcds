@@ -9,6 +9,7 @@ import "./components/accordion-section/index.js";
 import "./components/alert-bar/index.js";
 import "./components/button/index.js";
 import "./components/card/index.js";
+import "./components/countdown/index.js";
 import "./components/slide/index.js";
 import "./components/carousel/index.js";
 import "./components/dialog/index.js";

@@ -54,7 +54,7 @@ tcds-section > [slot="subheading"] {
   }
 }
 
-tcds-section [controls*="video-modal"] {
+tcds-section [aria-controls*="video-modal"] {
   --tcds-button-height: 4rem;
   --tcds-button-font-size: var(--tcds-font-size-large);
 
