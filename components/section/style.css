@@ -52,7 +52,8 @@
     --tcds-section-aspect-ratio: 16 / 5;
   }
 
-  :host([has-background="video"]) {
+  :host([has-background="video"]),
+  :host([has-video]) {
     --tcds-section-aspect-ratio: 16 / 9;
   }
 }

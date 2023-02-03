@@ -30,13 +30,13 @@ export default class Section extends WebComponent(HTMLElement) {
     }
 
     if(this.video) {
+      this.setAttribute("has-video", "");
+
       const sectionsWithVideo = Array.from(document.querySelectorAll("tcds-section")).filter(section => section.video);
       this.index = sectionsWithVideo.indexOf(this) + 1;
 
-      this.setAttribute("overlay", "darken");
-
       this.insertAdjacentHTML("beforeend", /* html */`
-        <tcds-button icon="only play" size="large" controls="video-modal-${this.index}">Open video player</tcds-button>
+        <tcds-button icon="only play" size="large" aria-controls="video-modal-${this.index}">Open video player</tcds-button>
       `);
     }
   }
@@ -53,7 +53,8 @@ export default class Section extends WebComponent(HTMLElement) {
 
       document.body.appendChild(dialog);
 
-      const button = this.querySelector(`[controls=video-modal-${this.index}]`);
+      const button = this.querySelector(`[aria-controls=video-modal-${this.index}]`);
+
       button.addEventListener("click", () => {
         dialog.open();
       });
