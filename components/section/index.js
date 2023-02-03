@@ -52,12 +52,6 @@ export default class Section extends WebComponent(HTMLElement) {
       dialog.appendChild(video);
 
       document.body.appendChild(dialog);
-
-      const button = this.querySelector(`[aria-controls=video-modal-${this.index}]`);
-
-      button.addEventListener("click", () => {
-        dialog.open();
-      });
     }
   }
 

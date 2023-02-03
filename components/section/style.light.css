@@ -21,7 +21,7 @@ tcds-section > [slot="heading"] {
   color: var(--tcds-section-heading-color);
   line-height: var(--tcds-line-height-x-tight) !important;
   margin: 0 0 var(--tcds-space-x-loose) !important;
-  font-size: calc(3.5rem * var(--tcds-font-size-scaler));
+  font-size: calc(4rem * var(--tcds-font-size-scaler));
 }
 
 tcds-section > [slot="heading"] span {

@@ -1,5 +1,7 @@
 .site-footer {
   font-family: var(--tcds-font-sans-serif);
+  position: relative;
+  z-index: 1;
 
   ul {
     display: inline-flex;
