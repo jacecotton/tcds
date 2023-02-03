@@ -144,14 +144,15 @@ export default class Carousel extends WebComponent(HTMLElement) {
         clearTimeout(this.#swipeDebounce);
 
         this.#swipeDebounce = setTimeout(() => {
-          this.slides.forEach((slide) => {
+          const proximitiesToCenter = this.slides.map((slide) => {
             const { left: slideLeft, right: slideRight } = slide.getBoundingClientRect();
             const slideCenterpoint = Math.floor((slideLeft + slideRight) / 2);
 
-            if(Math.abs(slideCenterpoint - viewportCenterpoint) < 20) {
-              this.select(slide);
-            }
+            return Math.abs(slideCenterpoint - viewportCenterpoint);
           });
+
+          const closestToCenter = proximitiesToCenter.indexOf(Math.min(...proximitiesToCenter));
+          this.select(this.slides[closestToCenter]);
         }, 200);
       } else {
         entries.forEach((entry) => {
