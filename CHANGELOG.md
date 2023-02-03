@@ -1,3 +1,12 @@
+## [1.3.7](https://github.com/jacecotton/tcds/compare/v1.3.6...v1.3.7) (2023-02-03)
+
+
+### Bug Fixes
+
+* **components:** Improve multiple tcds-carousel "snap to center" heuristic ([c800be9](https://github.com/jacecotton/tcds/commit/c800be97b95dbeed94cc7894d0c70e035ca01b60))
+
+
+
 ## [1.3.6](https://github.com/jacecotton/tcds/compare/v1.3.5...v1.3.6) (2023-01-31)
 
 
@@ -35,15 +44,6 @@
 ### Bug Fixes
 
 * **components:** Carousel styling cleanup ([5cf49a6](https://github.com/jacecotton/tcds/commit/5cf49a6fa23a63a8f3535f280bcfb515057c91dc))
-
-
-
-## [1.3.2](https://github.com/jacecotton/tcds/compare/v1.3.1...v1.3.2) (2023-01-24)
-
-
-### Bug Fixes
-
-* **components:** Multiple carousel slide default size ([b2978c5](https://github.com/jacecotton/tcds/commit/b2978c54846664078278a607935930fa8d43ead2))
 
 
 
