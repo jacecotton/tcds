@@ -1,3 +1,12 @@
+## [1.3.9](https://github.com/jacecotton/tcds/compare/v1.3.8...v1.3.9) (2023-02-03)
+
+
+### Bug Fixes
+
+* **components:** Section video tweak ([731b27c](https://github.com/jacecotton/tcds/commit/731b27cd2725143604d90c90dc9b5a0bccd847a0))
+
+
+
 ## [1.3.8](https://github.com/jacecotton/tcds/compare/v1.3.7...v1.3.8) (2023-02-03)
 
 
@@ -34,17 +43,6 @@
 ### Bug Fixes
 
 * **components:** IDREF cross-shadow boundary issue - [#18](https://github.com/jacecotton/tcds/issues/18) ([b24d026](https://github.com/jacecotton/tcds/commit/b24d026236ac913b92b0724b24918fb1fba06b1a))
-
-
-
-## [1.3.4](https://github.com/jacecotton/tcds/compare/v1.3.3...v1.3.4) (2023-01-30)
-
-
-### Bug Fixes
-
-* **components:** Add focus style to tcds-button ([264bdc2](https://github.com/jacecotton/tcds/commit/264bdc27f4964ae3cfd4f051af6adbb1eab71d20))
-* **components:** tcds-dialog bugs ([b20b8e6](https://github.com/jacecotton/tcds/commit/b20b8e66606f113a5264ca7e235d33904dc79a6e))
-* **scripts:** WebComponent update ([95464a7](https://github.com/jacecotton/tcds/commit/95464a72b318fb3f01d1e8a428fd7ba1c75451d8))
 
 
 
