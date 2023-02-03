@@ -1,3 +1,13 @@
+## [1.3.8](https://github.com/jacecotton/tcds/compare/v1.3.7...v1.3.8) (2023-02-03)
+
+
+### Bug Fixes
+
+* **components:** Carousel default active ([7369fe0](https://github.com/jacecotton/tcds/commit/7369fe00715d38c2b29f14f48cd8d7f2558e86ec))
+* **components:** Lighten section watermark ([584a347](https://github.com/jacecotton/tcds/commit/584a3479ecb7bb0eff8879daed1ff19236ae476f))
+
+
+
 ## [1.3.7](https://github.com/jacecotton/tcds/compare/v1.3.6...v1.3.7) (2023-02-03)
 
 
@@ -35,15 +45,6 @@
 * **components:** Add focus style to tcds-button ([264bdc2](https://github.com/jacecotton/tcds/commit/264bdc27f4964ae3cfd4f051af6adbb1eab71d20))
 * **components:** tcds-dialog bugs ([b20b8e6](https://github.com/jacecotton/tcds/commit/b20b8e66606f113a5264ca7e235d33904dc79a6e))
 * **scripts:** WebComponent update ([95464a7](https://github.com/jacecotton/tcds/commit/95464a72b318fb3f01d1e8a428fd7ba1c75451d8))
-
-
-
-## [1.3.3](https://github.com/jacecotton/tcds/compare/v1.3.2...v1.3.3) (2023-01-24)
-
-
-### Bug Fixes
-
-* **components:** Carousel styling cleanup ([5cf49a6](https://github.com/jacecotton/tcds/commit/5cf49a6fa23a63a8f3535f280bcfb515057c91dc))
 
 
 
