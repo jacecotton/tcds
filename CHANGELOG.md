@@ -1,3 +1,12 @@
+## [1.4.1](https://github.com/jacecotton/tcds/compare/v1.4.0...v1.4.1) (2023-02-03)
+
+
+### Bug Fixes
+
+* **components:** Section video dialog fix ([bafb589](https://github.com/jacecotton/tcds/commit/bafb589fdec5e73213e33544679bdd189726dfa8))
+
+
+
 # [1.4.0](https://github.com/jacecotton/tcds/compare/v1.3.9...v1.4.0) (2023-02-03)
 
 
@@ -32,17 +41,6 @@
 ### Bug Fixes
 
 * **components:** Improve multiple tcds-carousel "snap to center" heuristic ([c800be9](https://github.com/jacecotton/tcds/commit/c800be97b95dbeed94cc7894d0c70e035ca01b60))
-
-
-
-## [1.3.6](https://github.com/jacecotton/tcds/compare/v1.3.5...v1.3.6) (2023-01-31)
-
-
-### Bug Fixes
-
-* **components:** tcds-alert-bar accessibility ([5a7c353](https://github.com/jacecotton/tcds/commit/5a7c3539d1b6a0c314590719c542435e0f04574d))
-* **components:** tcds-slide vertical window scroll issue ([323633d](https://github.com/jacecotton/tcds/commit/323633d38dc8d31d856ce82cad9442a5a49c71d2))
-* **components:** WebComponent overhaul ([645f853](https://github.com/jacecotton/tcds/commit/645f8534d782ea1c21f4f4e1bbf827fd95a92bdb))
 
 
 
