@@ -82,6 +82,7 @@
   mask-repeat: no-repeat;
   -webkit-mask-size: contain;
   mask-size: contain;
+  opacity: 0.6;
   z-index: -1;
 }
 
