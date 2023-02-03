@@ -35,9 +35,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
     const carousels = Array.from(document.querySelectorAll("tcds-carousel"));
     this.id = `carousel${carousels.length > 1 ? `-${carousels.indexOf(this) + 1}` : ""}`;
 
-    // Select the first slide or the first slide marked active.
-    const activeSlides = this.slides.filter(slide => slide.hasAttribute("active"));
-    this.select(activeSlides.length < 1 ? this.slides[0] : activeSlides[0]);
+    this.activeSlides = [...this.slides].filter(slide => slide.hasAttribute("active"));
   }
 
   render() {
@@ -108,6 +106,11 @@ export default class Carousel extends WebComponent(HTMLElement) {
     this.slides.forEach((slide) => {
       this.swipe.observe(slide);
     });
+
+    setTimeout(() => {
+      // Select the first slide or the first slide marked active.
+      this.select(this.activeSlides.length < 1 ? this.slides[0] : this.activeSlides[0]);
+    }, 400);
 
     this.scrollOutOfView.observe(this);
 
