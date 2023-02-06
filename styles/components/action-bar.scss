@@ -77,6 +77,10 @@
       }
     }
 
+    @at-root .tcds-action-bar--small a {
+      font-size: var(--tcds-font-size-small) !important;
+    }
+
     &:hover {
       --tcds-action-bar-icon-background: var(--tcds-color-red);
       --tcds-action-bar-icon-color: #fff;
@@ -96,6 +100,10 @@
             flex: 1 0 100%;
             font-size: 2.5rem;
           }
+        }
+
+        @at-root .tcds-action-bar--small a > tcds-icon:nth-of-type(1) {
+          font-size: 1.7rem !important;
         }
       }
 

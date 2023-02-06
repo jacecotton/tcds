@@ -1,5 +1,6 @@
 :host {
   --tcds-card-font: var(--tcds-font-serif);
+  --tcds-card-content-padding: var(--tcds-space-x-loose);
 
   display: block;
   width: 100%;
@@ -73,8 +74,8 @@ figure {
   color: var(--tcds-color-gray);
   border-top: var(--tcds-card-content-divider, none);
   padding:
-    var(--tcds-card-content-padding-y, var(--tcds-card-content-padding, var(--tcds-space-x-loose)))
-    var(--tcds-card-content-padding-x, var(--tcds-card-content-padding, var(--tcds-space-x-loose)));
+    var(--tcds-card-content-padding-y, var(--tcds-card-content-padding))
+    var(--tcds-card-content-padding-x, var(--tcds-card-content-padding));
 }
 
 ::slotted(img) {

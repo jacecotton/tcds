@@ -35,6 +35,14 @@ tcds-card > [slot="title"][href]::before {
   left: 0;
 }
 
+tcds-card > [slot="subtitle"] {
+  font-family: var(--tcds-card-font);
+  font-weight: var(--tcds-font-weight-semibold);
+  font-size: var(--tcds-card-subtitle-font-size, var(--tcds-font-size-medium));
+  color: var(--tcds-color-secondary);
+  margin-bottom: 0;
+}
+
 tcds-card > [slot="description"],
 tcds-card > [slot="description"] p {
   font-size: var(--tcds-card-description-font-size, var(--tcds-font-size-medium));
@@ -60,4 +68,16 @@ tcds-card > [slot="footer"] a {
   position: relative;
   margin: -0.5em;
   padding: 0.5em;
+}
+
+tcds-card > [slot="footer"] .tcds-action-bar {
+  width: calc(100% + var(--tcds-card-content-padding) * 2);
+  max-width: none;
+  border-radius: 0;
+  box-shadow: none;
+  position: relative;
+  left: 0;
+  transform: none;
+  border-top: 1px solid var(--tcds-color-shade-x-weak);
+  margin: 0 calc(var(--tcds-card-content-padding) * -1) calc(var(--tcds-card-content-padding) * -1);
 }

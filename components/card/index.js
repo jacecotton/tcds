@@ -38,6 +38,7 @@ export default class Card extends WebComponent(HTMLElement) {
           </figure>
         ` : ``}
         <div part="content">
+          <slot name="subtitle"></slot>
           <slot name="title"></slot>
           <slot name="description"></slot>
           <slot name="footer">
