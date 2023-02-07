@@ -11,14 +11,13 @@ tcds-tabs,
 tcds-tab {
   &:not(:defined) {
     display: block;
-    height: 0;
-    overflow: hidden;
+    opacity: 0;
     animation: tcds-component-reveal 1ms ease forwards;
     animation-delay: 1s;
 
     @keyframes tcds-component-reveal {
       to {
-        height: auto;
+        opacity: 1;
       }
     }
   }
