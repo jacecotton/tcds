@@ -1,3 +1,12 @@
+## [1.5.1](https://github.com/jacecotton/tcds/compare/v1.5.0...v1.5.1) (2023-02-07)
+
+
+### Bug Fixes
+
+* **components:** Button theme scoping fix ([9695ed5](https://github.com/jacecotton/tcds/commit/9695ed5d9a243d0aa174c31a7f399fb945cb16ec))
+
+
+
 # [1.5.0](https://github.com/jacecotton/tcds/compare/v1.4.2...v1.5.0) (2023-02-06)
 
 
@@ -32,15 +41,6 @@
 ### Features
 
 * **components:** Add countdown component ([2e3c246](https://github.com/jacecotton/tcds/commit/2e3c2466a32981874adbfd6004eccd2e383da08f))
-
-
-
-## [1.3.9](https://github.com/jacecotton/tcds/compare/v1.3.8...v1.3.9) (2023-02-03)
-
-
-### Bug Fixes
-
-* **components:** Section video tweak ([731b27c](https://github.com/jacecotton/tcds/commit/731b27cd2725143604d90c90dc9b5a0bccd847a0))
 
 
 
