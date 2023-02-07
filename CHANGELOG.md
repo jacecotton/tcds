@@ -1,3 +1,13 @@
+# [1.5.0](https://github.com/jacecotton/tcds/compare/v1.4.2...v1.5.0) (2023-02-06)
+
+
+### Features
+
+* **components:** Add subtitle and footer action bar features to card component ([b0005ac](https://github.com/jacecotton/tcds/commit/b0005accc3a2c2f674add850b6cc12e0e3706cdc))
+* **icons:** Add calendar and telephone icons to library ([d4ad205](https://github.com/jacecotton/tcds/commit/d4ad205eeac55673ba0730a98f2e045ef725b530))
+
+
+
 ## [1.4.2](https://github.com/jacecotton/tcds/compare/v1.4.1...v1.4.2) (2023-02-03)
 
 
@@ -31,16 +41,6 @@
 ### Bug Fixes
 
 * **components:** Section video tweak ([731b27c](https://github.com/jacecotton/tcds/commit/731b27cd2725143604d90c90dc9b5a0bccd847a0))
-
-
-
-## [1.3.8](https://github.com/jacecotton/tcds/compare/v1.3.7...v1.3.8) (2023-02-03)
-
-
-### Bug Fixes
-
-* **components:** Carousel default active ([7369fe0](https://github.com/jacecotton/tcds/commit/7369fe00715d38c2b29f14f48cd8d7f2558e86ec))
-* **components:** Lighten section watermark ([584a347](https://github.com/jacecotton/tcds/commit/584a3479ecb7bb0eff8879daed1ff19236ae476f))
 
 
 
