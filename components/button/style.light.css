@@ -1,19 +1,19 @@
-[data-theme="dark"] tcds-button:not([variant*="ghost"], [variant*="ui"], [variant*="secondary"], :hover) {
+[data-theme="dark"] > tcds-button:not([variant*="ghost"], [variant*="ui"], [variant*="secondary"], :hover) {
   --tcds-button-background-color: #fff;
   --tcds-button-text-color: var(--tcds-color-primary);
   --tcds-button-icon-background-color: #fff;
   --tcds-button-icon-color: var(--tcds-color-primary);
 }
 
-[data-theme="dark"] tcds-button[variant*="ghost"] {
+[data-theme="dark"] > tcds-button[variant*="ghost"] {
   --tcds-button-text-color: #fff;
 }
 
-[data-theme="dark"] tcds-button:hover {
+[data-theme="dark"] > tcds-button:hover {
   --tcds-button-overlay: rgb(0 0 0 / 0%);
 }
 
-[data-theme="dark"] tcds-button[variant*="ui"] {
+[data-theme="dark"] > tcds-button[variant*="ui"] {
   --tcds-button-text-color: var(--tcds-color-secondary);
   --tcds-button-background-color: var(--tcds-color-tint-x-strong);
 }
