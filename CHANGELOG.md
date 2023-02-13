@@ -1,3 +1,12 @@
+## [1.5.5](https://github.com/jacecotton/tcds/compare/v1.5.4...v1.5.5) (2023-02-13)
+
+
+### Bug Fixes
+
+* **styles:** Tweak callout styles ([3908436](https://github.com/jacecotton/tcds/commit/39084362d4e439218fad02bc11f1bb7f14d17967))
+
+
+
 ## [1.5.4](https://github.com/jacecotton/tcds/compare/v1.5.3...v1.5.4) (2023-02-13)
 
 
@@ -32,16 +41,6 @@
 ### Bug Fixes
 
 * **components:** Button theme scoping fix ([9695ed5](https://github.com/jacecotton/tcds/commit/9695ed5d9a243d0aa174c31a7f399fb945cb16ec))
-
-
-
-# [1.5.0](https://github.com/jacecotton/tcds/compare/v1.4.2...v1.5.0) (2023-02-06)
-
-
-### Features
-
-* **components:** Add subtitle and footer action bar features to card component ([b0005ac](https://github.com/jacecotton/tcds/commit/b0005accc3a2c2f674add850b6cc12e0e3706cdc))
-* **icons:** Add calendar and telephone icons to library ([d4ad205](https://github.com/jacecotton/tcds/commit/d4ad205eeac55673ba0730a98f2e045ef725b530))
 
 
 
