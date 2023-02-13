@@ -3,8 +3,8 @@
 .tcds-callout {
   @include full-bleed;
 
-  padding-top: var(--tcds-space-normal);
-  padding-bottom: var(--tcds-space-normal);
-  margin-top: var(--tcds-space-loose);
-  margin-bottom: var(--tcds-space-loose);
+  padding-top: var(--tcds-space-x-loose);
+  padding-bottom: var(--tcds-space-x-loose);
+  margin-top: var(--tcds-space-x-loose);
+  margin-bottom: var(--tcds-space-x-loose);
 }
