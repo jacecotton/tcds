@@ -1,3 +1,12 @@
+## [1.5.4](https://github.com/jacecotton/tcds/compare/v1.5.3...v1.5.4) (2023-02-13)
+
+
+### Bug Fixes
+
+* **styles:** Accommodate easily adding veritcal margin to max width ([7e97c89](https://github.com/jacecotton/tcds/commit/7e97c89a095ed0f67f54ba29217bcc2edab39296))
+
+
+
 ## [1.5.3](https://github.com/jacecotton/tcds/compare/v1.5.2...v1.5.3) (2023-02-13)
 
 
@@ -33,15 +42,6 @@
 
 * **components:** Add subtitle and footer action bar features to card component ([b0005ac](https://github.com/jacecotton/tcds/commit/b0005accc3a2c2f674add850b6cc12e0e3706cdc))
 * **icons:** Add calendar and telephone icons to library ([d4ad205](https://github.com/jacecotton/tcds/commit/d4ad205eeac55673ba0730a98f2e045ef725b530))
-
-
-
-## [1.4.2](https://github.com/jacecotton/tcds/compare/v1.4.1...v1.4.2) (2023-02-03)
-
-
-### Bug Fixes
-
-* **components:** carousel scrolling issue ([62382fa](https://github.com/jacecotton/tcds/commit/62382fae88639930393906cf85fd47df6b84c0ef))
 
 
 
