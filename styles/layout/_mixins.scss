@@ -1,5 +1,6 @@
 @mixin max-width {
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   width: calc(100% - (var(--site-outer-gutter) * 2));
   max-width: var(--site-container-max-width);
 }
