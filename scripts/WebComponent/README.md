@@ -292,7 +292,7 @@ class MyComponent extends WebComponent(HTMLElement) {
 
 This setup is recommended but entirely optional.
 
-Note that adopting or inserting styles into the shadow root ("shadow styles") scopes and encapsulates the styles to the shadow boundary. For outer DOM context awareness (e.g. whether the component is a `:first-child`), or to style slotted content deeper and more specific than `::slotted` allows (e.g. `[slot="content"] a`), you can adopt other styles into the `document` ("light styles").
+Note that adopting or inserting styles into the shadow root ("shadow styles") scopes and encapsulates the styles to the shadow boundary. To create unscoped styles (useful for having outer DOM context awareness, e.g. whether the component is a `:first-child`, or to style slotted content deeper and more specific than `::slotted` allows, e.g. `[slot="content"] a`), you can adopt other styles into the root node with `this.getRootNode()` ("light styles"). In most cases this will be the `document`, or a parent component's shadow root.
 
 ```js
 /* index.js */
@@ -300,7 +300,7 @@ import lightStyles from "./style.light.css";
 
 class MyComponent extends WebComponent(HTMLElement) {
   connectedCallback() {
-    document.adoptedStyleSheets = [...document.adoptedStylesheets, ...[lightStyles]];
+    this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStylesheets, ...[lightStyles]];
   }
 }
 ```
