@@ -311,6 +311,8 @@ my-component:not(:only-child) {
 }
 ```
 
+Note that you **must** merge your added styles with whatever other stylesheets the root node may have adopted. Otherwise, any other stylesheets attached to the root node (such as those from other components) will be wiped out.
+
 ## Events
 The `WebComponent` utility is technically agnostic as to event handling. Inline DOM events can be added for declarative event handling, or imperative events can be added with `addEventListener` in the `mountedCallback` hook.
 
