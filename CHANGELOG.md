@@ -1,3 +1,12 @@
+## [1.5.2](https://github.com/jacecotton/tcds/compare/v1.5.1...v1.5.2) (2023-02-07)
+
+
+### Bug Fixes
+
+* **components:** Adjust FOUC strategy for custom elements ([4d7b0e9](https://github.com/jacecotton/tcds/commit/4d7b0e99377f0dbadd8e314a6e1160fd50c77b3d))
+
+
+
 ## [1.5.1](https://github.com/jacecotton/tcds/compare/v1.5.0...v1.5.1) (2023-02-07)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * **components:** Section video dialog fix ([bafb589](https://github.com/jacecotton/tcds/commit/bafb589fdec5e73213e33544679bdd189726dfa8))
-
-
-
-# [1.4.0](https://github.com/jacecotton/tcds/compare/v1.3.9...v1.4.0) (2023-02-03)
-
-
-### Features
-
-* **components:** Add countdown component ([2e3c246](https://github.com/jacecotton/tcds/commit/2e3c2466a32981874adbfd6004eccd2e383da08f))
 
 
 
