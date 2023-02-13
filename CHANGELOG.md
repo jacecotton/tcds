@@ -1,3 +1,13 @@
+## [1.5.3](https://github.com/jacecotton/tcds/compare/v1.5.2...v1.5.3) (2023-02-13)
+
+
+### Bug Fixes
+
+* **styles:** Accommodate easily adding veritcal margin to main content ([20b6a95](https://github.com/jacecotton/tcds/commit/20b6a95928816a47532390f31f196f09e4b5273f))
+* **template:** Add thin border to top of footer legal area ([a7ba267](https://github.com/jacecotton/tcds/commit/a7ba2670a0b4be8fd73619c11f0ed4a96fff19ea))
+
+
+
 ## [1.5.2](https://github.com/jacecotton/tcds/compare/v1.5.1...v1.5.2) (2023-02-07)
 
 
@@ -32,15 +42,6 @@
 ### Bug Fixes
 
 * **components:** carousel scrolling issue ([62382fa](https://github.com/jacecotton/tcds/commit/62382fae88639930393906cf85fd47df6b84c0ef))
-
-
-
-## [1.4.1](https://github.com/jacecotton/tcds/compare/v1.4.0...v1.4.1) (2023-02-03)
-
-
-### Bug Fixes
-
-* **components:** Section video dialog fix ([bafb589](https://github.com/jacecotton/tcds/commit/bafb589fdec5e73213e33544679bdd189726dfa8))
 
 
 
