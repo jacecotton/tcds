@@ -353,3 +353,103 @@ class MyComponent extends WebComponent(HTMLElement) {
   }
 }
 ```
+
+## Advanced
+<details>
+  <summary>Forcing an update</summary>
+
+Sometimes you may want to force an update and re-render a component without a change to some state or prop. To do so, dispatch an `update` event on the component instance:
+
+```js
+class MyComponent extends WebComponent(HTMLElement) {
+  mountedCallback() {
+    if(someUseCase) {
+      this.dispatchEvent(new Event("update"));
+    }
+  }
+}
+```
+</details>
+
+<details>
+  <summary>Shadow configuration</summary>
+
+To change the `attachShadow` settings, you can pass an object to the `WebComponent` mixin which will be used in the constructor's `attachShadow` call.
+
+```js
+class MyComponent extends WebComponent(HTMLElement, {
+  delegatesFocus: true, // default is false
+  mode: "closed", // default is open
+}) {
+
+}
+```
+</details>
+
+<details>
+  <summary>Change base style injection</summary>
+
+By default, the `WebComponent` looks for Design System base styles to inject by querying the `head` for a `link` with a `[title="tcds"]` attribute. If one is not found, it will pull the stylesheet from a CDN.
+
+If you want to configure your own URL for base styles, you can set the `baseStyles` property.
+
+```js
+class MyComponent extends WebComponent(HTMLElement) {
+  baseStyles = "/path/to/styles.css";
+}
+```
+
+You can also disable base style injection altogether by setting the property to an empty string (not recommended).
+</details>
+
+<details>
+  <summary>Await dependency component availability</summary>
+
+Some components may have a dependency on another component. In these cases you may want to wait to perform some action until the dependency component has mounted. To do so, you can listen for a `mount` event on the dependency component:
+
+```js
+class MyComponent extends WebComponent(HTMLElement) {
+  connectedCallback() {
+    this.closest("dependency-component").addEventListener("mount", () => {
+      // <dependency-component> has been mounted.
+    });
+  }
+}
+```
+</details>
+
+
+<details>
+  <summary>Guard against DOM diffing</summary>
+
+During a component's re-rendering process, any differences in the provided render template are applied to the live DOM (referred to as "DOM diffing").
+
+You may want to designate a static area in a component template that will be ignored during the DOM diffing process. For instance, you may have a component that content is dynamically injected into after mounting by a third-party library. To do so, you can use the `static-slot` element:
+
+```js
+class MyComponent extends WebComponent(HTMLElement) {
+  connectedCallback() {
+    this.state.count = 0;
+
+    setInterval(() => {
+      this.state.count++;
+    }, 1000);
+  }
+
+  render() {
+    return `
+      <div>As the count changes, this div will be diffed: ${this.state.count}.</div>
+      <static-slot></static-slot>
+    `;
+  }
+
+  mountedCallback() {
+    this.shadowRoot.querySelector("static-slot").textContent = `
+      This will not be touched during re-renders.
+    `;
+  }
+}
+```
+
+To clarify, elements written *inside the render template* will also not be touched if the data associated with that element has not changed between renders. Only elements injected after the fact will be wiped out on next render, unless guarded by a `static-slot`.
+</details>
