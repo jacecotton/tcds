@@ -451,7 +451,9 @@ class MyComponent extends WebComponent(HTMLElement) {
 }
 ```
 
-To clarify, elements written *inside the render template* will also not be touched if the data associated with that element has not changed between renders. Only elements injected after the fact will be wiped out on next render, unless guarded by a `static-slot`.
+To clarify, elements written *inside the render template* will also not be touched if the data associated with them has not changed between renders. Only elements injected after the fact, i.e. in the `mountedCallback`, will be wiped out on next render, unless guarded by a `static-slot`.
 
-Technically, all custom elements are guarded in this way (as the rendering of each component is handled internally), but `static-slot` serves as a no-op custom element that `WebComponent` provides.
+Anything that happens inside the `mountedCallback` will not be repeated after the first render. And it is not recommended to re-inject content into the shadow root on every update via the `updatedCallback`, as it is inefficient and could cause unexpected issues.
+
+Technically, all custom elements are ignored in this way (as the rendering of each component is handled internally), but `static-slot` serves as a no-op custom element that `WebComponent` provides for convenience and clarity.
 </details>
