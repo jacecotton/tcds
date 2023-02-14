@@ -452,4 +452,6 @@ class MyComponent extends WebComponent(HTMLElement) {
 ```
 
 To clarify, elements written *inside the render template* will also not be touched if the data associated with that element has not changed between renders. Only elements injected after the fact will be wiped out on next render, unless guarded by a `static-slot`.
+
+Technically, all custom elements are guarded in this way (as the rendering of each component is handled internally), but `static-slot` serves as a no-op custom element that `WebComponent` provides.
 </details>
