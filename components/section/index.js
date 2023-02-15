@@ -3,33 +3,37 @@ import shadowStyles from "./style.css";
 import lightStyles from "./style.light.css";
 
 export default class Section extends WebComponent(HTMLElement) {
-  connectedCallback() {
+  constructor() {
+    super();
+
     this.shadowRoot.adoptedStyleSheets = [shadowStyles];
-    document.adoptedStyleSheets = [...document.adoptedStyleSheets, ...[lightStyles]];
+    this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStyleSheets, ...[lightStyles]];
+  }
 
-    this.background = !!this.querySelector("[slot=background]");
-    this.videoBackground = !!this.querySelector("video[slot=background]");
-    this.video = !!this.querySelector("[slot=video]");
-    this.videoDescription = !!this.querySelector("[slot=video-description]");
-    this.heading = !!this.querySelector("[slot=heading]");
-    this.subheading = !!this.querySelector("[slot=subheading]");
-    this.overline = !!this.querySelector("[slot=overline]");
-    this.image = !!this.querySelector("[slot=image]");
-    this.cta = !!this.querySelector("[slot=cta]");
+  connectedCallback() {
+    this.hasBackground = !!this.querySelector("[slot=background]");
+    this.hasVideoBackground = !!this.querySelector("video[slot=background]");
+    this.hasVideo = !!this.querySelector("[slot=video]");
+    this.hasVideoDescription = !!this.querySelector("[slot=video-description]");
+    this.hasHeading = !!this.querySelector("[slot=heading]");
+    this.hasSubheading = !!this.querySelector("[slot=subheading]");
+    this.hasOverline = !!this.querySelector("[slot=overline]");
+    this.hasImage = !!this.querySelector("[slot=image]");
+    this.hasCta = !!this.querySelector("[slot=cta]");
 
-    if(this.background) {
-      this.setAttribute("has-background", this.videoBackground ? "video" : "");
+    if(this.hasBackground) {
+      this.setAttribute("has-background", this.hasVideoBackground ? "video" : "");
 
       if(this.getAttribute("data-theme") !== "light") {
         this.setAttribute("data-theme", "dark");
       }
     }
 
-    if(this.image) {
+    if(this.hasImage) {
       this.setAttribute("has-image", "");
     }
 
-    if(this.video) {
+    if(this.hasVideo) {
       this.setAttribute("has-video", "");
 
       const sectionsWithVideo = Array.from(document.querySelectorAll("tcds-section")).filter(section => section.video);
@@ -42,7 +46,7 @@ export default class Section extends WebComponent(HTMLElement) {
   }
 
   mountedCallback() {
-    if(this.video) {
+    if(this.hasVideo) {
       const dialog = document.createElement("tcds-dialog");
       dialog.id = `video-modal-${this.index}`;
       dialog.style.setProperty("--tcds-dialog-padding", "0");
@@ -60,21 +64,21 @@ export default class Section extends WebComponent(HTMLElement) {
       <section>
         <slot name="background"></slot>
         <div class="max-width">
-          ${this.heading || this.subheading || this.overline || this.image || this.cta ? /* html */`
+          ${this.hasHeading || this.hasSubheading || this.hasOverline || this.hasImage || this.hasCta ? /* html */`
             <div part="content">
-              ${this.heading || this.subheading || this.overline ? /* html */`
+              ${this.hasHeading || this.hasSubheading || this.hasOverline ? /* html */`
                 <hgroup>
                   <slot name="overline"></slot>
                   <slot name="heading"></slot>
                   <slot name="subheading"></slot>
                 </hgroup>
               ` : ``}
-              ${this.image ? /* html */`
+              ${this.hasImage ? /* html */`
                 <figure>
                   <slot name="image"></slot>
                 </figure>
               ` : ``}
-              ${this.cta ? /* html */`
+              ${this.hasCta ? /* html */`
                 <nav>
                   <slot name="cta"></slot>
                 </nav>
