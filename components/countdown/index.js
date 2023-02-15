@@ -25,9 +25,13 @@ export default class Countdown extends WebComponent(HTMLElement) {
   mountedCallback() {
     this.updateCount();
 
-    setInterval(() => {
+    this.counter = setInterval(() => {
       this.updateCount();
     }, 1000);
+  }
+
+  disconnectedCallback() {
+    clearInterval(this.counter);
   }
 
   updateCount() {
