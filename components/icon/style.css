@@ -1,8 +1,11 @@
 /* stylelint-disable property-no-vendor-prefix */
 
 :host {
-  display: inline-flex;
   vertical-align: sub;
+}
+
+:host(:not([hidden])) {
+  display: inline-flex;
 }
 
 [part="icon"] {
