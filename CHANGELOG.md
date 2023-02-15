@@ -1,3 +1,12 @@
+## [1.5.7](https://github.com/jacecotton/tcds/compare/v1.5.6...v1.5.7) (2023-02-15)
+
+
+### Bug Fixes
+
+* **scripts:** WebComponent cleanup ([00303d9](https://github.com/jacecotton/tcds/commit/00303d979c98f4ab53db55e117b916bd621835ab))
+
+
+
 ## [1.5.6](https://github.com/jacecotton/tcds/compare/v1.5.5...v1.5.6) (2023-02-15)
 
 
@@ -42,15 +51,6 @@
 
 * **styles:** Accommodate easily adding veritcal margin to main content ([20b6a95](https://github.com/jacecotton/tcds/commit/20b6a95928816a47532390f31f196f09e4b5273f))
 * **template:** Add thin border to top of footer legal area ([a7ba267](https://github.com/jacecotton/tcds/commit/a7ba2670a0b4be8fd73619c11f0ed4a96fff19ea))
-
-
-
-## [1.5.2](https://github.com/jacecotton/tcds/compare/v1.5.1...v1.5.2) (2023-02-07)
-
-
-### Bug Fixes
-
-* **components:** Adjust FOUC strategy for custom elements ([4d7b0e9](https://github.com/jacecotton/tcds/commit/4d7b0e99377f0dbadd8e314a6e1160fd50c77b3d))
 
 
 
