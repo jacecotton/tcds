@@ -14,7 +14,7 @@ tcds-card > [slot="tag"] {
 
 tcds-card > [slot="title"] {
   font-family: var(--tcds-card-font);
-  font-weight: var(--tcds-font-weight-semibold);
+  font-weight: var(--tcds-card-title-font-weight, var(--tcds-font-weight-semibold));
   font-size: var(--tcds-card-title-font-size, var(--tcds-font-size-large));
   line-height: var(--tcds-line-height-tight);
   color: var(--tcds-color-secondary);
