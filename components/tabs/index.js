@@ -20,7 +20,8 @@ import lightStyles from "./style.light.css";
  * - Because of the clear association between [role=tab] and [role=tabpanel]
  *   elements, thanks to their proximity and the imperceptibility of inactive/
  *   unassociated siblings, screen reader experience does not seem to be
- *   impacted by the lack of [aria-controls] and [aria-labelledby].
+ *   significantly impacted by the lack of [aria-controls] and
+ *   [aria-labelledby].
  * - Therefore, until the ARIAMixin spec is widely available and we can
  *   programmatically associate elements using ariaControlsElements (see 7),
  *   [aria-controls] and [aria-labelledby] have been deliberately omitted from
@@ -40,18 +41,22 @@ export default class Tabs extends WebComponent(HTMLElement) {
     inactive: {type: Boolean},
   };
 
-  connectedCallback() {
-    this.shadowRoot.adoptedStyleSheets = [shadowStyles];
-    document.adoptedStyleSheets = [...document.adoptedStyleSheets, ...[lightStyles]];
+  constructor() {
+    super();
 
+    this.shadowRoot.adoptedStyleSheets = [shadowStyles];
+    this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStyleSheets, ...[lightStyles]];
+  }
+
+  connectedCallback() {
     this.tabs = Array.from(this.querySelectorAll("tcds-tab"));
 
     const activeTabs = this.tabs.filter(tab => tab.hasAttribute("active"));
 
     if(activeTabs.length === 0 && this.props["inactive"] === false) {
-      this.select(this.tabs[0]);
+      this.tabs[0].select();
     } else if(activeTabs.length >= 1) {
-      this.select(activeTabs[0]);
+      activeTabs[0].select();
     }
   }
 
@@ -77,46 +82,32 @@ export default class Tabs extends WebComponent(HTMLElement) {
     `;
   }
 
-  select(active) {
-    this.dispatchEvent(new Event("update"));
-
-    this.tabs.forEach((tab) => {
-      tab.state.active = tab === active;
-    });
-  }
-
   tabClick(event) {
-    this.select(this.tabs[this.parts["tab"].indexOf(event.currentTarget)]);
+    this.tabs[this.parts["tab"].indexOf(event.currentTarget)].select();
   }
 
   tabKeydown(event) {
     if(event.key === "ArrowRight") {
       event.preventDefault();
-      this.next().then((next) => {
-        this.parts["tab"][next].focus();
-      });
+      const nextIndex = this.next();
+      this.parts["tab"][nextIndex].focus();
     } else if(event.key === "ArrowLeft") {
       event.preventDefault();
-      this.previous().then((previous) => {
-        this.parts["tab"][previous].focus();
-      });
+      const previousIndex = this.previous();
+      this.parts["tab"][previousIndex].focus();
     }
   }
 
   next() {
-    return new Promise((resolve) => {
-      const nextIndex = (this.tabs.indexOf(this.querySelector("[active]")) + 1) % this.tabs.length;
-      this.select(this.tabs[nextIndex]);
-      resolve(nextIndex);
-    });
+    const nextIndex = (this.tabs.indexOf(this.querySelector("[active]")) + 1) % this.tabs.length;
+    this.tabs[nextIndex].select();
+    return nextIndex;
   }
 
   previous() {
-    return new Promise((resolve) => {
-      const previousIndex = (this.tabs.indexOf(this.querySelector("[active]")) - 1 + this.tabs.length) % this.tabs.length;
-      this.select(this.tabs[previousIndex]);
-      resolve(previousIndex);
-    });
+    const previousIndex = (this.tabs.indexOf(this.querySelector("[active]")) - 1 + this.tabs.length) % this.tabs.length;
+    this.tabs[previousIndex].select();
+    return previousIndex;
   }
 }
 

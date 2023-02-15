@@ -13,19 +13,35 @@ export default class Tab extends WebComponent(HTMLElement) {
     label: {type: String},
   };
 
-  connectedCallback() {
+  constructor() {
+    super();
     this.shadowRoot.adoptedStyleSheets = [styles];
+  }
+
+  connectedCallback() {
+    this.parent = this.closest("tcds-tabs");
   }
 
   render() {
     return /* html */`
-      <section
-        role="tabpanel"
-        ${this.state.active ? "" : "hidden"}
-      >
+      <section role="tabpanel" ${this.state.active ? "" : "hidden"}>
         <slot></slot>
       </section>
     `;
+  }
+
+  updatedCallback(state) {
+    if(state.newState) {
+      if("active" in state.newState) {
+        this.parent.dispatchEvent(new Event("update"));
+      }
+    }
+  }
+
+  select() {
+    this.parent.querySelectorAll("tcds-tab").forEach((tab) => {
+      tab.state.active = tab === this;
+    });
   }
 }
 
