@@ -11,8 +11,6 @@ export default class Slide extends WebComponent(HTMLElement) {
 
   connectedCallback() {
     this.parent = this.closest("tcds-carousel");
-    this.siblings = Array.from(this.parent.querySelectorAll("tcds-slide"));
-    this.position = this.siblings.indexOf(this) + 1;
   }
 
   render() {
@@ -39,9 +37,17 @@ export default class Slide extends WebComponent(HTMLElement) {
             inline: this.parent.props.multiple ? "center" : "start",
             block: "nearest",
           });
+
+          this.parent.dispatchEvent(new Event("update"));
         }
       }
     }
+  }
+
+  select() {
+    this.parent.querySelectorAll("tcds-slide").forEach((slide) => {
+      slide.state.active = slide === this;
+    });
   }
 }
 

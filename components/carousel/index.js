@@ -22,20 +22,16 @@ export default class Carousel extends WebComponent(HTMLElement) {
 
   constructor() {
     super();
+
     this.shadowRoot.adoptedStyleSheets = [shadowStyles];
-    document.adoptedStyleSheets = [...document.adoptedStyleSheets, ...[lightStyles]];
+    this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStyleSheets, ...[lightStyles]];
   }
 
   connectedCallback() {
     this.ariaRoleDescription = "carousel";
 
     this.slides = Array.from(this.querySelectorAll("tcds-slide"));
-
-    // Add auto-incrementing unique IDs to each carousel instance.
-    const carousels = Array.from(document.querySelectorAll("tcds-carousel"));
-    this.id = `carousel${carousels.length > 1 ? `-${carousels.indexOf(this) + 1}` : ""}`;
-
-    this.select(this.slides[0]);
+    this.slides[0].select();
   }
 
   render() {
@@ -59,21 +55,6 @@ export default class Carousel extends WebComponent(HTMLElement) {
           label="Go to previous slide"
           onclick="this.getRootNode().host.previousClick()"
         ></tcds-button>
-        <div role="tablist" part="indicators" aria-label="Pick slide">
-          ${this.slides.map((slide, index) => /* html */`
-            <button
-              role="tab"
-              part="indicator"
-              aria-selected="${slide.state.active}"
-              aria-disabled="${!slide.state.active}"
-              aria-label="Slide ${index + 1} of ${this.slides.length}"
-              title="Slide ${index + 1} of ${this.slides.length}"
-              tabindex="${slide.state.active ? "0" : "-1"}"
-              onclick="this.getRootNode().host.indicatorClick(event)"
-              onkeydown="this.getRootNode().host.indicatorKeydown(event)"
-            ></button>
-          `).join("")}
-        </div>
         <tcds-button
           part="next"
           label="Go to next slide"
@@ -82,6 +63,20 @@ export default class Carousel extends WebComponent(HTMLElement) {
           size="large"
           onclick="this.getRootNode().host.nextClick()"
         ></tcds-button>
+        <div role="tablist" part="indicators" aria-label="Pick slide">
+          ${this.slides.map((slide, index) => /* html */`
+            <button
+              role="tab"
+              part="indicator"
+              aria-selected="${slide.state.active}"
+              aria-label="Slide ${index + 1} of ${this.slides.length}"
+              title="Slide ${index + 1} of ${this.slides.length}"
+              tabindex="${slide.state.active ? "0" : "-1"}"
+              onclick="this.getRootNode().host.indicatorClick(event)"
+              onkeydown="this.getRootNode().host.indicatorKeydown(event)"
+            ></button>
+          `).join("")}
+        </div>
       </div>
       <div
         part="viewport"
@@ -135,6 +130,10 @@ export default class Carousel extends WebComponent(HTMLElement) {
 
   get swipe() {
     return new IntersectionObserver((entries) => {
+      if(this.observeSwipe === false) {
+        return;
+      }
+
       if(this.props.multiple) {
         const { left: viewportLeft, right: viewportRight } = this.parts["viewport"].getBoundingClientRect();
         const viewportCenterpoint = Math.floor((viewportLeft + viewportRight) / 2);
@@ -150,12 +149,12 @@ export default class Carousel extends WebComponent(HTMLElement) {
           });
 
           const closestToCenter = proximitiesToCenter.indexOf(Math.min(...proximitiesToCenter));
-          this.select(this.slides[closestToCenter]);
+          this.slides[closestToCenter].select();
         }, 200);
       } else {
         entries.forEach((entry) => {
-          if(entry.isIntersecting && this.observeSwipe !== false) {
-            this.select(entry.target);
+          if(entry.isIntersecting) {
+            entry.target.select();
           }
         });
       }
@@ -181,14 +180,6 @@ export default class Carousel extends WebComponent(HTMLElement) {
     }, { threshold: .9 });
   }
 
-  select(active) {
-    this.dispatchEvent(new Event("update"));
-
-    this.slides.forEach((slide) => {
-      slide.state.active = slide === active;
-    });
-  }
-
   viewportSwipe() {
     this.stop();
     this.observeSwipe = true;
@@ -200,7 +191,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
   }
 
   indicatorClick(event) {
-    this.select(this.slides[this.parts["indicator"].indexOf(event.currentTarget)]);
+    this.slides[this.parts["indicator"].indexOf(event.currentTarget)].select();
     this.state.playing = false;
     this.observeSwipe = false;
   }
@@ -208,14 +199,12 @@ export default class Carousel extends WebComponent(HTMLElement) {
   indicatorKeydown(event) {
     if(event.key === "ArrowRight") {
       event.preventDefault();
-      this.next().then((next) => {
-        this.parts["indicator"][next].focus();
-      });
+      const nextIndex = this.next();
+      this.parts["indicator"][nextIndex].focus();
     } else if(event.key === "ArrowLeft") {
       event.preventDefault();
-      this.previous().then((previous) => {
-        this.parts["indicator"][previous].focus();
-      });
+      const previousIndex = this.previous();
+      this.parts["indicator"][previousIndex].focus();
     }
 
     this.state.playing = false;
@@ -273,19 +262,15 @@ export default class Carousel extends WebComponent(HTMLElement) {
    * Public API.
    */
   next() {
-    return new Promise((resolve) => {
-      const nextIndex = (this.slides.indexOf(this.querySelector("[active]")) + 1) % this.slides.length;
-      this.select(this.slides[nextIndex]);
-      resolve(nextIndex);
-    });
+    const nextIndex = (this.slides.indexOf(this.querySelector("[active]")) + 1) % this.slides.length;
+    this.slides[nextIndex].select();
+    return nextIndex;
   }
 
   previous() {
-    return new Promise((resolve) => {
-      const previousIndex = (this.slides.indexOf(this.querySelector("[active]")) - 1 + this.slides.length) % this.slides.length;
-      this.select(this.slides[previousIndex]);
-      resolve(previousIndex);
-    });
+    const previousIndex = (this.slides.indexOf(this.querySelector("[active]")) - 1 + this.slides.length) % this.slides.length;
+    this.slides[previousIndex].select();
+    return previousIndex;
   }
 
   play() {
