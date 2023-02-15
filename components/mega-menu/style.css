@@ -1,3 +1,7 @@
+:host {
+  contain: content;
+}
+
 [part="mega-menu"] {
   position: absolute;
   display: flex;

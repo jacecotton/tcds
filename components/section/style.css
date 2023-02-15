@@ -7,9 +7,13 @@
   --tcds-section-heading-color: var(--tcds-color-primary);
   --tcds-section-text-align: left;
 
-  display: block;
+  contain: layout style;
   position: relative;
   z-index: 1;
+}
+
+:host(:not([hidden])) {
+  display: block;
 }
 
 :host([watermark]) {

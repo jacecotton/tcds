@@ -1,4 +1,8 @@
 :host {
+  contain: content;
+}
+
+:host(:not([hidden])) {
   display: block;
 }
 

@@ -1,6 +1,7 @@
 /* stylelint-disable property-no-vendor-prefix */
 
 :host {
+  contain: content;
   vertical-align: sub;
 }
 

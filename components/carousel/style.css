@@ -5,6 +5,7 @@
   grid-template-columns: min-content 1fr;
   align-items: center;
   gap: var(--tcds-space-loose) 0;
+  contain: content;
 }
 
 :host(:not([hidden])) {
