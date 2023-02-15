@@ -1,3 +1,22 @@
+## [1.5.6](https://github.com/jacecotton/tcds/compare/v1.5.5...v1.5.6) (2023-02-15)
+
+
+### Bug Fixes
+
+* **components:** More safely respect [hidden] attribute on all custom elements ([cb741cf](https://github.com/jacecotton/tcds/commit/cb741cfe793cd150ab0d4bf0884cf340742f7af7))
+* **components:** More safely respect [hidden] attribute on all custom elements ([b755d8f](https://github.com/jacecotton/tcds/commit/b755d8f3513f764fb1e5b5040ab1022de3e22cd6))
+* **components:** Tweak card style (make title bold for UI cards) ([7637bb1](https://github.com/jacecotton/tcds/commit/7637bb135e83c257441847af5acd78fa0e478325))
+
+
+### Performance Improvements
+
+* **components:** Add `contain` browser hints to all components ([fdbb1e0](https://github.com/jacecotton/tcds/commit/fdbb1e0a3fc7c5103fd07faf7101fd302b262d0c))
+* **components:** Countdown memory optimization ([88c4a72](https://github.com/jacecotton/tcds/commit/88c4a7256cf491d4709b7e773662356f9b93ec9d))
+* **components:** Optimize stylesheet adoption ([2d4834d](https://github.com/jacecotton/tcds/commit/2d4834d327e01de9aef8341f52b74f9babc8aa43))
+* **components:** Tweak custom element FOUC strategy ([413f4e9](https://github.com/jacecotton/tcds/commit/413f4e9be3a97cc36bb6e2ce76dd61f142a23dc2))
+
+
+
 ## [1.5.5](https://github.com/jacecotton/tcds/compare/v1.5.4...v1.5.5) (2023-02-13)
 
 
@@ -32,15 +51,6 @@
 ### Bug Fixes
 
 * **components:** Adjust FOUC strategy for custom elements ([4d7b0e9](https://github.com/jacecotton/tcds/commit/4d7b0e99377f0dbadd8e314a6e1160fd50c77b3d))
-
-
-
-## [1.5.1](https://github.com/jacecotton/tcds/compare/v1.5.0...v1.5.1) (2023-02-07)
-
-
-### Bug Fixes
-
-* **components:** Button theme scoping fix ([9695ed5](https://github.com/jacecotton/tcds/commit/9695ed5d9a243d0aa174c31a7f399fb945cb16ec))
 
 
 
