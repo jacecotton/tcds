@@ -19,10 +19,14 @@ export default class Accordion extends WebComponent(HTMLElement) {
     },
   };
 
-  connectedCallback() {
-    this.shadowRoot.adoptedStyleSheets = [shadowStyles];
-    document.adoptedStyleSheets = [...document.adoptedStyleSheets, ...[lightStyles]];
+  constructor() {
+    super();
 
+    this.shadowRoot.adoptedStyleSheets = [shadowStyles];
+    this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStyleSheets, ...[lightStyles]];
+  }
+
+  connectedCallback() {
     // Add auto-incrementing unique IDs to each accordion instance.
     const accordions = Array.from(document.querySelectorAll("tcds-accordion"));
     this.id = `accordion${accordions.length > 1 ? `-${accordions.indexOf(this) + 1}` : ""}`;

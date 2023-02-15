@@ -11,10 +11,14 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
     },
   };
 
-  connectedCallback() {
-    this.shadowRoot.adoptedStyleSheets = [shadowStyles];
-    document.adoptedStyleSheets = [...document.adoptedStyleSheets, ...[lightStyles]];
+  constructor() {
+    super();
 
+    this.shadowRoot.adoptedStyleSheets = [shadowStyles];
+    this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStyleSheets, ...[lightStyles]];
+  }
+
+  connectedCallback() {
     this.parent = this.closest("tcds-accordion");
     this.siblings = Array.from(this.parent.sections).filter(instance => instance !== this);
 

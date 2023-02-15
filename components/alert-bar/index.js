@@ -3,9 +3,11 @@ import shadowStyles from "./style.css";
 import lightStyles from "./style.light.css";
 
 export default class AlertBar extends WebComponent(HTMLElement) {
-  connectedCallback() {
+  constructor() {
+    super();
+
     this.shadowRoot.adoptedStyleSheets = [shadowStyles];
-    document.adoptedStyleSheets = [...document.adoptedStyleSheets, ...[lightStyles]];
+    this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStyleSheets, ...[lightStyles]];
   }
 
   render() {

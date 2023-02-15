@@ -10,10 +10,14 @@ export default class Card extends WebComponent(HTMLElement) {
     },
   };
 
-  connectedCallback() {
-    this.shadowRoot.adoptedStyleSheets = [shadowStyles];
-    document.adoptedStyleSheets = [...document.adoptedStyleSheets, ...[lightStyles]];
+  constructor() {
+    super();
 
+    this.shadowRoot.adoptedStyleSheets = [shadowStyles];
+    this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStyleSheets, ...[lightStyles]];
+  }
+
+  connectedCallback() {
     if(!this.querySelector("[slot=image]")) {
       this.state["no-image"] = true;
     }
@@ -56,7 +60,7 @@ export default class Card extends WebComponent(HTMLElement) {
   orient() {
     const orientation = this.getAttribute("orientation");
 
-    if(this.parentElement.getBoundingClientRect().width > 600) {
+    if(this.parentElement?.getBoundingClientRect?.().width > 600) {
       orientation !== "horizontal" && this.setAttribute("orientation", "horizontal");
     } else {
       orientation !== "vertical" && this.setAttribute("orientation", "vertical");

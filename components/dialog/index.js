@@ -14,7 +14,9 @@ export default class Dialog extends WebComponent(HTMLElement, {delegatesFocus: t
     autoclose: {type: Number},
   };
 
-  connectedCallback() {
+  constructor() {
+    super();
+
     this.shadowRoot.adoptedStyleSheets = [styles];
   }
 
