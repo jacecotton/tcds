@@ -10,14 +10,17 @@ tcds-section,
 tcds-tabs,
 tcds-tab {
   &:not(:defined) {
-    display: block;
-    opacity: 0;
+    visibility: hidden;
     animation: tcds-component-reveal 1ms ease forwards;
     animation-delay: 1s;
 
+    &:not([hidden]) {
+      display: block;
+    }
+
     @keyframes tcds-component-reveal {
       to {
-        opacity: 1;
+        visibility: visible;
       }
     }
   }
@@ -39,4 +42,8 @@ tcds-section {
       display: none;
     }
   }
+}
+
+static-slot:not([hidden]) {
+  display: block;
 }
