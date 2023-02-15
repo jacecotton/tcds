@@ -16,7 +16,7 @@ import { globalAttributesFull, globalAttributesPartial } from "./globalAttribute
 const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends BaseElement {
   constructor() {
     super();
-    this.attachShadow({ mode: "open", ...options });
+    this.attachShadow({mode: "open", ...options});
 
     // Grab a copy of child class-defined `state` and `props` objects to use
     // as settings (type, default, reflected, etc.)
@@ -24,7 +24,7 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
     this.#propSettings = this.constructor.props || {};
 
     // Reset `state` and `props` to empty objects, then intercept any updates
-    // them from the child class, validate the changes, and fire "update"
+    // to them from the child class, validate the changes, and fire "update"
     // events.
     this.state = new Proxy({}, this.#stateHandler());
     this.props = new Proxy({}, this.#propsHandler());
@@ -185,7 +185,7 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
 
   #populateDefaults() {
     Object.keys(this.#stateSettings).forEach((state) => {
-      const { type, default: defaultValue } = this.#stateSettings[state];
+      const {type, default: defaultValue} = this.#stateSettings[state];
 
       if(this.state[state] !== undefined) {
         return;
@@ -202,7 +202,7 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
     });
 
     Object.keys(this.#propSettings).forEach((prop) => {
-      const { type, default: defaultValue } = this.#propSettings[prop];
+      const {type, default: defaultValue} = this.#propSettings[prop];
 
       if(this.getAttribute(prop) !== null) {
         return;
@@ -242,7 +242,7 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
 
   #update() {
     // Grab copy of state and prop update batch before emptying.
-    const { state, props } = Object.assign({}, this.#batch);
+    const {state, props} = Object.assign({}, this.#batch);
 
     this.#batch = {state: {}, props: {}};
     this.#debounce = null;
