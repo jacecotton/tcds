@@ -253,7 +253,9 @@ However, we recommend using [Constructable Stylesheets](https://web.dev/construc
 
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
-  connectedCallback() {
+  constructor() {
+    super();
+
     const styles = new CSSStyleSheet();
     styles.replaceSync(this.styles);
     this.shadowRoot.adoptedStyleSheets = [styles];
@@ -278,7 +280,8 @@ To separate the CSS into different files and import them as adoptable stylesheet
 import styles from "./style.css";
 
 class MyComponent extends WebComponent(HTMLElement) {
-  connectedCallback() {
+  constructor() {
+    super();
     this.shadowRoot.adoptedStyleSheets = [styles];
   }
 }
@@ -299,7 +302,8 @@ Note that adopting or inserting styles into the shadow root ("shadow styles") sc
 import lightStyles from "./style.light.css";
 
 class MyComponent extends WebComponent(HTMLElement) {
-  connectedCallback() {
+  constructor() {
+    super();
     this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStylesheets, ...[lightStyles]];
   }
 }
@@ -456,4 +460,16 @@ To clarify, elements written *inside the render template* will also not be touch
 Anything that happens inside the `mountedCallback` will not be repeated after the first render. And it is not recommended to re-inject content into the shadow root on every update via the `updatedCallback`, as it is inefficient and could cause unexpected issues.
 
 Technically, all custom elements are ignored in this way (as the rendering of each component is handled internally), but `static-slot` serves as a no-op custom element that `WebComponent` provides for convenience and clarity.
+</details>
+
+<details>
+  <summary>Performance tips</summary>
+
+Be mindful of the entire lifecycle of a component to perform actions in the most effective place possible. Depending on the action, you may want to do things as early or as late as possible.
+
+* `constructor` — Anything you want done as eagerly as possible, and *is not* specific to a particular component instance (i.e., applicable to all component instances). For example, downloading and adopting a stylesheet.
+* `connectedCallback` — Anything you want done as eagerly as possible, but *is* specific to a particular component instance. For example, querying relative DOM elements like parents and siblings, fetching data specific to the instance, or setting initial state based on some specific condition.
+* `mountedCallback` — Anything you can possibly defer until after the first render. For example, adding interactive functionality, timers, event listeners, and observers. The more you can do within this hook, the more you will optimize time to first render.
+
+For memory optimization, also consider using `disconnectedCallback` to undo anything you did in `connectedCallback` and `mountedCallback`. For example, remove any event listeners, disconnect any observers, clear any intervals or recursive timeouts, etc.
 </details>

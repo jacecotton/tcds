@@ -1,4 +1,5 @@
 import diff from "./diff.js";
+import { globalAttributesFull, globalAttributesPartial } from "./globalAttributeList.js";
 
 /**
  * A base class for creating native Web Components. Documentation at
@@ -13,14 +14,6 @@ import diff from "./diff.js";
  */
 
 const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends BaseElement {
-  #stateSettings;
-  #propSettings;
-  #renderPasses = 0;
-  #batch = {state: {}, props: {}};
-  #debounce = null;
-  #baseStyles = document.querySelector("link[title=tcds]")?.href
-    || "https://unpkg.com/@txch/tcds/dist/tcds.css";
-
   constructor() {
     super();
     this.attachShadow({ mode: "open", ...options });
@@ -56,6 +49,23 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
       && this.dispatchEvent(new CustomEvent("update"));
   }
 
+  #stateSettings;
+  #propSettings;
+  #renderPasses = 0;
+  #batch = {state: {}, props: {}};
+  #debounce = null;
+  #baseStyles = this.constructor.baseStyles
+    || document.querySelector("link[title=tcds]")?.href
+    || "https://unpkg.com/@txch/tcds/dist/tcds.css";
+
+  /**
+   * @todo Does this make sense? The observer is added in the constructor, not a
+   * connectedCallback. The constructor has exclusive knowledge, and anything
+   * undone on disconnect probably needs to be redone on reconnect. Trying to
+   * avoid doing anything in connectedCallback in the base class so subclasses
+   * don't need to call `super` in their own connectedCallback, but this sort of
+   * cleanup does seem necessary. 🤷‍♂️
+   */
   disconnectedCallback() {
     this.#attributeObserver.disconnect();
   }
@@ -72,25 +82,11 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
   }
 
   #attributeHandler(attributes) {
-    const globalAttributes = [
-      [
-        "accesskey", "autocapitalize", "autofocus", "class", "contenteditable",
-        "dir", "draggable", "hidden", "href", "id", "inert", "is", "lang",
-        "name", "onblur", "onfocus", "onclick", "onchange", "ondrop", "onerror",
-        "onload", "onscroll", "onselect", "onsubmit", "onwheel", "part", "role",
-        "slot", "spellcheck", "src", "style", "tabindex", "title", "translate",
-      ],
-      ["aria-", "data-", "onmouse", "onpointer", "ondrag", "onkey"],
-    ];
-
-    attributes.forEach((attribute) => {
+    attributes.filter((attribute) => {
+      return !globalAttributesFull.includes(attribute.name.toLowerCase())
+        && !globalAttributesPartial.some(global => attribute.name.toLowerCase().includes(global));
+    }).forEach((attribute) => {
       const {name, value} = attribute;
-      const [full, partial] = globalAttributes;
-
-      if(full.includes(name) || partial.filter(global => name.includes(global)).length) {
-        return;
-      }
-
       const isState = this.#stateSettings[name]?.["reflected"];
       const settings = isState ? this.#stateSettings : this.#propSettings;
       const data = isState ? this.state : this.props;
@@ -104,13 +100,13 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
     return {
       set: (store, state, value) => {
         const type = this.#stateSettings[state]?.["type"];
-        const isValidType = !type || typeChecker(value, type);
+        const isInvalidType = type && !typeChecker(value, type);
 
-        const isNewValue = type !== Array
-          ? (store[state] !== value)
-          : (store[state]?.slice().sort().join() !== value.slice().sort().join());
+        const isSame = type !== Array
+          ? (store[state] === value)
+          : (store[state]?.slice().sort().join() === value.slice().sort().join());
 
-        if(!isNewValue || !isValidType) {
+        if(isSame || isInvalidType) {
           return true;
         }
 
@@ -166,15 +162,15 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
           value = typeConverter(value, type);
         }
 
-        const isInSync = type !== Array
-          ? (attribute === value)
-          : (attribute.slice().sort().join() === value.slice().sort().join());
+        const isOutOfSync = type !== Array
+          ? (attribute !== value)
+          : (attribute.slice().sort().join() !== value.slice().sort().join());
 
-        const isNewValue = type !== Array
-          ? (props[prop] !== value)
-          : (props[prop]?.slice().sort().join() !== value.slice().sort().join());
+        const isSame = type !== Array
+          ? (props[prop] === value)
+          : (props[prop]?.slice().sort().join() === value.slice().sort().join());
 
-        if(!isNewValue || !isInSync) {
+        if(isSame || isOutOfSync) {
           return true;
         }
 
@@ -205,8 +201,8 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
 
       if(type === Boolean) {
         // If boolean, anything other than an explicit default value of `true`
-        // should be populated as `false` (meaning `defaultValue` can be left
-        // `undefined`).
+        // should be inferred as `false` (meaning `defaultValue` can be left
+        // undefined).
         this.state[state] = defaultValue === true;
       } else if(defaultValue !== undefined) {
         this.state[state] = defaultValue;
@@ -259,14 +255,18 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
     this.#batch = {state: {}, props: {}};
     this.#debounce = null;
 
-    const stateToReflect = Object.keys(state?.newState || {})
-      .filter(state => this.#stateSettings?.[state]?.["reflected"]);
-    stateToReflect.length > 0 && this.#reflectState(stateToReflect);
-
+    // External stylesheets cannot be adopted programmatically, so insert here
+    // with link. The browser should recognize it does not have to download the
+    // file again, so this serves only to associate the base TCDS styles with
+    // all component shadow roots.
     diff(`
       <style id="tcds">@import url(${this.#baseStyles})</style>
       ${this.render?.()}
     `, this.shadowRoot);
+
+    const stateToReflect = Object.keys(state?.newState || {})
+      .filter(state => this.#stateSettings?.[state]?.["reflected"]);
+    stateToReflect.length && this.#reflectState(stateToReflect);
 
     this.#renderPasses++;
 
@@ -275,6 +275,7 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
         .map(child => customElements.whenDefined(child.localName));
 
       Promise.all(childComponentsAreDefined).then(() => {
+        this.dispatchEvent(new Event("mount"));
         this.mountedCallback?.();
         this.updatedCallback?.(state, props);
       }).catch((error) => {
@@ -343,5 +344,7 @@ function typeChecker(value, type) {
     [String]: typeof value === "string",
   }[type];
 }
+
+customElements.define("static-slot", class StaticSlot extends WebComponent {/* noop */});
 
 export default WebComponent;
