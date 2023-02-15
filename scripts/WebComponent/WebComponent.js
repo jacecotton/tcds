@@ -58,14 +58,6 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
     || document.querySelector("link[title=tcds]")?.href
     || "https://unpkg.com/@txch/tcds/dist/tcds.css";
 
-  /**
-   * @todo Does this make sense? The observer is added in the constructor, not a
-   * connectedCallback. The constructor has exclusive knowledge, and anything
-   * undone on disconnect probably needs to be redone on reconnect. Trying to
-   * avoid doing anything in connectedCallback in the base class so subclasses
-   * don't need to call `super` in their own connectedCallback, but this sort of
-   * cleanup does seem necessary. 🤷‍♂️
-   */
   disconnectedCallback() {
     this.#attributeObserver.disconnect();
   }
@@ -345,6 +337,6 @@ function typeChecker(value, type) {
   }[type];
 }
 
-customElements.define("static-slot", class StaticSlot extends WebComponent {/* noop */});
+customElements.define("static-slot", class StaticSlot extends HTMLElement {/* noop */});
 
 export default WebComponent;

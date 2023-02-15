@@ -72,7 +72,7 @@ class MyComponent extends WebComponent(HTMLElement) {
 }
 ```
 
-`parts` is a public store that is lazily populated (to reduce unnecessary DOM queries). If there are multiple elements of the same `part`, they will be listed as an array.
+`parts` is a memoized public store that is lazily populated (to reduce unnecessary DOM queries). If there are multiple elements of the same `part`, they will be listed as an array.
 
 This is an optional convenience. Alternatively, as [`mountedCallback` occurs after first render](#lifecycle), you can always query the `shadowRoot` to access any element in the rendered result.
 
@@ -467,8 +467,8 @@ Technically, all custom elements are ignored in this way (as the rendering of ea
 
 Be mindful of the entire lifecycle of a component to perform actions in the most effective place possible. Depending on the action, you may want to do things as early or as late as possible.
 
-* `constructor` — Anything you want done as eagerly as possible, and *is not* specific to a particular component instance (i.e., applicable to all component instances). For example, downloading and adopting a stylesheet.
-* `connectedCallback` — Anything you want done as eagerly as possible, but *is* specific to a particular component instance. For example, querying relative DOM elements like parents and siblings, fetching data specific to the instance, or setting initial state based on some specific condition.
+* `constructor` — Anything required for first render, and *is not* specific to a particular component instance (i.e., applicable to all component instances). For example, downloading and adopting a stylesheet.
+* `connectedCallback` — Anything required for first render, but *is* specific to a particular component instance. For example, querying relative DOM elements like parents and siblings, fetching data specific to the instance, or setting initial state based on some specific condition.
 * `mountedCallback` — Anything you can possibly defer until after the first render. For example, adding interactive functionality, timers, event listeners, and observers. The more you can do within this hook, the more you will optimize time to first render.
 
 For memory optimization, also consider using `disconnectedCallback` to undo anything you did in `connectedCallback` and `mountedCallback`. For example, remove any event listeners, disconnect any observers, clear any intervals or recursive timeouts, etc.
