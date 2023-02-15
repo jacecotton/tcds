@@ -1,8 +1,11 @@
 :host {
-  display: flex;
   flex-direction: column;
   gap: var(--tcds-space-x-tight);
   contain: content;
+}
+
+:host(:not([hidden])) {
+  display: flex;
 }
 
 [part="controls"] {

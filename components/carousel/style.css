@@ -1,11 +1,14 @@
 :host {
-  display: grid;
   grid-template-areas:
     "slides     slides"
     "play-pause navigation";
   grid-template-columns: min-content 1fr;
   align-items: center;
   gap: var(--tcds-space-loose) 0;
+}
+
+:host(:not([hidden])) {
+  display: grid;
 }
 
 :host([navigation*="top"][navigation*="right"]) {
@@ -106,4 +109,8 @@
 [part="next"]:not(:hover),
 [part="previous"]:not(:hover) {
   --tcds-button-text-color: #a8a8a8;
+}
+
+[part="next"] {
+  order: 3;
 }

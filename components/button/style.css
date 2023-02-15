@@ -7,8 +7,11 @@
   --tcds-button-icon-color: var(--tcds-color-primary);
   --tcds-button-icon-background-color: #fff;
 
-  display: inline-flex;
   vertical-align: middle;
+}
+
+:host(:not([hidden])) {
+  display: inline-flex;
 }
 
 :host([size*="large"]) {
