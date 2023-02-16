@@ -467,7 +467,7 @@ Technically, all custom elements are ignored in this way (as the rendering of ea
 
 As with other component frameworks, be mindful of the entire lifecycle of a component to perform operations in the most effective place possible. Depending on the operation, you may want to do it as early or as late as possible.
 
-The lifecycle order is **synchronous**: `constructor -> connectedCallback -> render -> (1st render? -> mountedCallback) -> updatedCallback -> disconnectedCallback`.
+The lifecycle order is **asynchronous**: `constructor -> connectedCallback -> render -> (1st render? -> mountedCallback) -> updatedCallback -> disconnectedCallback`.
 
 * `constructor` — Anything required for first render, and *is not* specific to a particular component instance (i.e., applicable to all component instances). For example, downloading and adopting a stylesheet.
 * `connectedCallback` — Anything required for first render, but *is* specific to a particular component instance. For example, querying relative DOM elements like parents and siblings, fetching data specific to the instance, or setting initial state based on some specific condition.
