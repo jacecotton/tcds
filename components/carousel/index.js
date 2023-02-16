@@ -135,14 +135,14 @@ export default class Carousel extends WebComponent(HTMLElement) {
       }
 
       if(this.props.multiple) {
-        const { left: viewportLeft, right: viewportRight } = this.parts["viewport"].getBoundingClientRect();
+        const {left: viewportLeft, right: viewportRight} = this.parts["viewport"].getBoundingClientRect();
         const viewportCenterpoint = Math.floor((viewportLeft + viewportRight) / 2);
 
         clearTimeout(this.#swipeDebounce);
 
         this.#swipeDebounce = setTimeout(() => {
           const proximitiesToCenter = this.slides.map((slide) => {
-            const { left: slideLeft, right: slideRight } = slide.getBoundingClientRect();
+            const {left: slideLeft, right: slideRight} = slide.getBoundingClientRect();
             const slideCenterpoint = Math.floor((slideLeft + slideRight) / 2);
 
             return Math.abs(slideCenterpoint - viewportCenterpoint);
@@ -177,7 +177,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
           this.isInView = true;
         }
       });
-    }, { threshold: .9 });
+    }, {threshold: .9});
   }
 
   viewportSwipe() {

@@ -1,7 +1,7 @@
 import WebComponent from "../../scripts/WebComponent/WebComponent.js";
 import slugify from "../../scripts/utilities/slugify.js";
 import styles from "./style.css";
-import { pin, pinSelected, mapStyles } from "./style.js";
+import {pin, pinSelected, mapStyles} from "./style.js";
 
 export default class Map extends WebComponent(HTMLElement) {
   static props = {
@@ -124,7 +124,7 @@ export default class Map extends WebComponent(HTMLElement) {
     });
 
     locations.forEach((location, index) => {
-      const { map } = this;
+      const {map} = this;
 
       const marker = new window.google.maps.Marker({
         position: {
@@ -184,7 +184,7 @@ export default class Map extends WebComponent(HTMLElement) {
       removeStylesPreviousTo(node);
     }
 
-    observer.observe(this.shadowRoot, { childList: true });
+    observer.observe(this.shadowRoot, {childList: true});
   }
 
   updatedCallback(state) {
@@ -192,8 +192,8 @@ export default class Map extends WebComponent(HTMLElement) {
       this.parts["card"].forEach(card => card.orient());
 
       if("selectedTag" in state.newState) {
-        const { locations } = this.data;
-        const { selectedTag } = this.state;
+        const {locations} = this.data;
+        const {selectedTag} = this.state;
 
         const areaDefaultLocation =
           locations.find(location => location.featured && location.area === selectedTag)
