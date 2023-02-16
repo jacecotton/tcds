@@ -5,7 +5,7 @@
 
 const globalAttributesFull = [
   "accesskey", "autocapitalize", "autofocus", "class", "contenteditable",
-  "dir", "draggable", "hidden", "href", "id", "inert", "is", "lang",
+  "dir", "disabled", "draggable", "hidden", "href", "id", "inert", "is", "lang",
   "name", "onblur", "onfocus", "onclick", "onchange", "ondrop", "onerror",
   "onload", "onscroll", "onselect", "onsubmit", "onwheel", "part", "role",
   "slot", "spellcheck", "src", "style", "tabindex", "title", "translate",
