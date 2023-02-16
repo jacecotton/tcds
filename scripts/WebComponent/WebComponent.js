@@ -5,6 +5,9 @@ import { globalAttributesFull, globalAttributesPartial } from "./globalAttribute
  * A base class for creating native Web Components. Documentation at
  * https://github.com/jacecotton/tcds/tree/main/scripts/WebComponent
  *
+ * @todo Add a `required` option to props and state.
+ * @todo Filter global attributes at point of state reflection too.
+ *
  * @param {Element} [BaseElement=HTMLElement] - The HTML element interface to
  *   extend. `HTMLElement` if an autonomous custom element, something else if a
  *   customized built-in (not recommended).
@@ -154,13 +157,13 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
           value = typeConverter(value, type);
         }
 
-        const isOutOfSync = type !== Array
-          ? (attribute !== value)
-          : (attribute.slice().sort().join() !== value.slice().sort().join());
-
         const isSame = type !== Array
           ? (props[prop] === value)
           : (props[prop]?.slice().sort().join() === value.slice().sort().join());
+
+        const isOutOfSync = type !== Array
+          ? (attribute !== value)
+          : (attribute.slice().sort().join() !== value.slice().sort().join());
 
         if(isSame || isOutOfSync) {
           return true;
@@ -210,8 +213,9 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
 
       if(type === Boolean) {
         this.toggleAttribute(prop, defaultValue === true);
-        // Toggling an attribute "off" won't trigger the observer and cause a
-        // `props` update, so we have to do it directly here as well.
+        // Toggling an attribute "off" that was already absent won't trigger the
+        // observer and cause a `props` update, so we have to do it directly
+        // here as well.
         this.props[prop] = defaultValue === true;
       } else if(defaultValue !== undefined) {
         this.setAttribute(prop, defaultValue);

@@ -457,7 +457,7 @@ class MyComponent extends WebComponent(HTMLElement) {
 
 To clarify, elements written *inside the render template* will also not be touched if the data associated with them has not changed between renders. Only elements injected after the fact, i.e. in the `mountedCallback`, will be wiped out on next render, unless guarded by a `static-slot`.
 
-Anything that happens inside the `mountedCallback` will not be repeated after the first render. And it is not recommended to re-inject content into the shadow root on every update via the `updatedCallback`, as it is inefficient and could cause unexpected issues.
+Anything that happens inside the `mountedCallback` will not be repeated after renders subsequent to the first. And it is not recommended to re-inject content into the shadow root on every update via the `updatedCallback`, as it is inefficient and could cause unexpected issues.
 
 Technically, all custom elements are ignored in this way (as the rendering of each component is handled internally), but `static-slot` serves as a no-op custom element that `WebComponent` provides for convenience and clarity.
 </details>
@@ -466,6 +466,8 @@ Technically, all custom elements are ignored in this way (as the rendering of ea
   <summary>Performance tips</summary>
 
 Be mindful of the entire lifecycle of a component to perform actions in the most effective place possible. Depending on the action, you may want to do things as early or as late as possible.
+
+The lifecycle pipeline is as follows: `constructor -> connectedCallback -> render -> (1st render? -> mountedCallback) -> updatedCallback -> disconnectedCallback`.
 
 * `constructor` — Anything required for first render, and *is not* specific to a particular component instance (i.e., applicable to all component instances). For example, downloading and adopting a stylesheet.
 * `connectedCallback` — Anything required for first render, but *is* specific to a particular component instance. For example, querying relative DOM elements like parents and siblings, fetching data specific to the instance, or setting initial state based on some specific condition.
