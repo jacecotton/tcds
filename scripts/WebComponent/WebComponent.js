@@ -1,5 +1,5 @@
 import diff from "./diff.js";
-import { globalAttributesFull, globalAttributesPartial } from "./globalAttributeList.js";
+import {globalAttributesFull, globalAttributesPartial} from "./globalAttributeList.js";
 
 /**
  * A base class for creating native Web Components. Documentation at
@@ -38,7 +38,7 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
     // Populate props and state from attributes, observe further attribute
     // changes and update respective props and state.
     this.#attributeHandler([...this.attributes]);
-    this.#attributeObserver.observe(this, { attributes: true });
+    this.#attributeObserver.observe(this, {attributes: true});
 
     // Populate `state` and `props` with child class-provided defaults, if
     // applicable.
@@ -68,7 +68,7 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
   get #attributeObserver() {
     return new MutationObserver((mutations) => {
       this.#attributeHandler(
-        [...mutations].map(({ attributeName }) => ({
+        [...mutations].map(({attributeName}) => ({
           name: attributeName,
           value: this.getAttribute(attributeName),
         }))
@@ -111,8 +111,8 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
         this.dispatchEvent(new CustomEvent("update", {
           detail: {
             state: {
-              oldState: { [state]: oldValue },
-              newState: { [state]: value },
+              oldState: {[state]: oldValue},
+              newState: {[state]: value},
             },
           },
         }));
@@ -175,8 +175,8 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
         this.dispatchEvent(new CustomEvent("update", {
           detail: {
             props: {
-              oldProps: { [prop]: oldValue },
-              newProps: { [prop]: value },
+              oldProps: {[prop]: oldValue},
+              newProps: {[prop]: value},
             },
           },
         }));
@@ -225,13 +225,13 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
 
   #batchUpdates(event) {
     if(event.detail?.state) {
-      const { newState, oldState } = event.detail.state;
+      const {newState, oldState} = event.detail.state;
       this.#batch.state.newState = {...this.#batch.state.newState, ...newState};
       this.#batch.state.oldState = {...this.#batch.state.oldState, ...oldState};
     }
 
     if(event.detail?.props) {
-      const { newProps, oldProps } = event.detail.props;
+      const {newProps, oldProps} = event.detail.props;
       this.#batch.props.newProps = {...this.#batch.props.newProps, ...newProps};
       this.#batch.props.oldProps = {...this.#batch.props.oldProps, ...oldProps};
     }
