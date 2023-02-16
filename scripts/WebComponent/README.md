@@ -471,9 +471,9 @@ The lifecycle order is **asynchronous**: `constructor -> connectedCallback -> re
 
 * `constructor` — Anything required for first render, and *is not* specific to a particular component instance (i.e., applicable to all component instances). For example, downloading and adopting a stylesheet.
 * `connectedCallback` — Anything required for first render, but *is* specific to a particular component instance. For example, querying relative DOM elements like parents and siblings, fetching data specific to the instance, or setting initial state based on some specific condition.
-* `mountedCallback` — Anything you can possibly defer until after the first render. For example, adding interactive functionality, timers, event listeners, and observers. The more you can do within this hook, the more you will optimize time to first render.
-* `updatedCallback` — **Be cautious using this hook**, as it is called after every update and re-render. Beware performing expensive or redundant operations. Consider moving whatever you can back up to `mountedCallback`. If an operation may only *sometimes* need to be repeated on update, or doesn't need to happen immediately after re-render, consider optimization techniques such as memoization, debouncing, early returns, etc.
+* `mountedCallback` — Anything you can possibly defer until after the first render. For example, adding interactive functionality, timers, event listeners, and observers. The more you can assign to this hook, the faster render time will be.
+* `updatedCallback` — **Be cautious using this hook**, as it is called after every update and re-render. Beware performing expensive or redundant operations. Consider moving whatever you can back up to `mountedCallback`.
+    * If an operation may only *sometimes* need to be repeated on update, or doesn't need to happen immediately after re-render, consider optimization techniques such as memoization, debouncing, early returns, etc.
     * Also be aware that re-renders **do not wait** for this hook—`updatedCallback` is called *after* the render has completed.
-
-For memory optimization, also consider using `disconnectedCallback` to undo anything you did in `connectedCallback` and `mountedCallback`. For example, remove any event listeners, disconnect any observers, clear any intervals or recursive timeouts, etc.
+* `disconnectedCallback` — For memory optimization, consider undoing anything you did in `connectedCallback` or `mountedCallback`. For example, remove any event listeners, disconnect any observers, clear any intervals or recursive timeouts, etc.
 </details>
