@@ -14,6 +14,7 @@ import "./components/slide/index.js";
 import "./components/carousel/index.js";
 import "./components/dialog/index.js";
 import "./components/icon/index.js";
+import "./components/map/index.js";
 import "./components/mega-menu/index.js";
 import "./components/section/index.js";
 import "./components/tab/index.js";

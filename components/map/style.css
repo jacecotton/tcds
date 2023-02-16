@@ -1,0 +1,77 @@
+:host {
+  contain: content;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px 0 rgb(0 0 0 / 20%);
+}
+
+@media (min-width: 1000px) {
+  :host {
+    grid-template-columns: 1fr 376px;
+  }
+}
+
+:host(:not([hidden])) {
+  display: grid;
+}
+
+menu {
+  display: flex;
+  gap: var(--tcds-space-normal);
+  position: absolute;
+  top: var(--tcds-space-normal);
+  left: var(--tcds-space-normal);
+  overflow-x: auto;
+  list-style: none;
+  z-index: 999;
+}
+
+menu button {
+  font-weight: var(--tcds-font-weight-bold);
+  font-size: var(--tcds-font-size-small);
+  box-shadow: 0 3px 6px 0 rgba(0 0 0 / 16%);
+  background-color: #fff;
+  border: 1px solid var(--tcds-color-blue-light);
+  border-radius: 6px;
+  color: var(--tcds-color-blue-dark);
+  padding: var(--tcds-space-tight) var(--tcds-space-normal);
+  white-space: nowrap;
+}
+
+menu button[aria-pressed="true"] {
+  background-color: var(--tcds-color-blue-dark);
+  color: #fff;
+}
+
+[part="map-view"] {
+  position: relative;
+  overflow: hidden;
+  min-height: 589px;
+}
+
+[part="map"] {
+  height: 100%;
+}
+
+tcds-card::part(card) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* stylelint-disable */
+/**
+ * Google Maps injects these styles into the head of each map's root node. In
+ * our case, the root node is the component's shadow root, which means the
+ * styles get wiped out on re-render, as the injected styles are not present in
+ * the declared template. So, we're dumping them here.
+ */
+.LGLeeN-keyboard-shortcuts-view{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex}.LGLeeN-keyboard-shortcuts-view table,.LGLeeN-keyboard-shortcuts-view tbody,.LGLeeN-keyboard-shortcuts-view td,.LGLeeN-keyboard-shortcuts-view tr{background:inherit;border:none;margin:0;padding:0}.LGLeeN-keyboard-shortcuts-view table{display:table}.LGLeeN-keyboard-shortcuts-view tr{display:table-row}.LGLeeN-keyboard-shortcuts-view td{-moz-box-sizing:border-box;box-sizing:border-box;display:table-cell;color:#000;padding:6px;vertical-align:middle;white-space:nowrap}.LGLeeN-keyboard-shortcuts-view td .VdnQmO-keyboard-shortcuts-view--shortcut-key{background-color:#e8eaed;border-radius:2px;border:none;-moz-box-sizing:border-box;box-sizing:border-box;color:inherit;display:inline-block;font-family:Google Sans Text,Roboto,Arial,sans-serif;line-height:16px;margin:0 2px;min-height:20px;min-width:20px;padding:2px 4px;position:relative;text-align:center}
+
+.gm-control-active>img{-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box;display:none;left:50%;pointer-events:none;position:absolute;top:50%;-webkit-transform:translate(-50%,-50%);-moz-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);-o-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}.gm-control-active>img:nth-child(1){display:block}.gm-control-active:focus>img:nth-child(1),.gm-control-active:hover>img:nth-child(1),.gm-control-active:active>img:nth-child(1),.gm-control-active:disabled>img:nth-child(1){display:none}.gm-control-active:focus>img:nth-child(2),.gm-control-active:hover>img:nth-child(2){display:block}.gm-control-active:active>img:nth-child(3){display:block}.gm-control-active:disabled>img:nth-child(4){display:block}sentinel{}
+
+.gm-style .gm-style-cc a,.gm-style .gm-style-cc button,.gm-style .gm-style-cc span,.gm-style .gm-style-mtc div{font-size:10px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}.gm-style .gm-style-cc a,.gm-style .gm-style-cc button,.gm-style .gm-style-cc span{outline-offset:3px}sentinel{}
+
+@media print {  .gm-style .gmnoprint, .gmnoprint {    display:none  }}@media screen {  .gm-style .gmnoscreen, .gmnoscreen {    display:none  }}
+
+.gm-style-moc{background-color:rgba(0,0,0,.45);pointer-events:none;text-align:center;-webkit-transition:opacity ease-in-out;-o-transition:opacity ease-in-out;transition:opacity ease-in-out}.gm-style-mot{color:white;font-family:Roboto,Arial,sans-serif;font-size:22px;margin:0;position:relative;top:50%;-moz-transform:translateY(-50%);-o-transform:translateY(-50%);transform:translateY(-50%);-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%)}sentinel{}
+
+.gm-style img{max-width: none;}.gm-style {font: 400 11px Roboto, Arial, sans-serif; text-decoration: none;}
