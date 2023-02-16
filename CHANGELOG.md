@@ -1,3 +1,18 @@
+# [1.6.0](https://github.com/jacecotton/tcds/compare/v1.5.7...v1.6.0) (2023-02-16)
+
+
+### Bug Fixes
+
+* **components:** Add disabled to WebComponent's global attribute blacklist ([b087edd](https://github.com/jacecotton/tcds/commit/b087edd4ef5b24b0434a4a9f9ffc5ccbf8a434cd))
+* **components:** Button theme scoping issue ([cf5aa17](https://github.com/jacecotton/tcds/commit/cf5aa17811196c72b6bd604e250102c7dc46faad))
+
+
+### Features
+
+* **components:** Add map component ([4dceeca](https://github.com/jacecotton/tcds/commit/4dceecaf282bc12ce5d8b8ac3aa78afd45347872))
+
+
+
 ## [1.5.7](https://github.com/jacecotton/tcds/compare/v1.5.6...v1.5.7) (2023-02-15)
 
 
@@ -41,16 +56,6 @@
 ### Bug Fixes
 
 * **styles:** Accommodate easily adding veritcal margin to max width ([7e97c89](https://github.com/jacecotton/tcds/commit/7e97c89a095ed0f67f54ba29217bcc2edab39296))
-
-
-
-## [1.5.3](https://github.com/jacecotton/tcds/compare/v1.5.2...v1.5.3) (2023-02-13)
-
-
-### Bug Fixes
-
-* **styles:** Accommodate easily adding veritcal margin to main content ([20b6a95](https://github.com/jacecotton/tcds/commit/20b6a95928816a47532390f31f196f09e4b5273f))
-* **template:** Add thin border to top of footer legal area ([a7ba267](https://github.com/jacecotton/tcds/commit/a7ba2670a0b4be8fd73619c11f0ed4a96fff19ea))
 
 
 
