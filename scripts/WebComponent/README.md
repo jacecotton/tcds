@@ -465,7 +465,7 @@ Technically, all custom elements are ignored in this way (as the rendering of ea
 <details>
   <summary>Performance tips</summary>
 
-As with other component frameworks, be mindful of the entire lifecycle of a component to perform actions in the most effective place possible. Depending on the action, you may want to do things as early or as late as possible.
+As with other component frameworks, be mindful of the entire lifecycle of a component to perform operations in the most effective place possible. Depending on the operation, you may want to do it as early or as late as possible.
 
 The lifecycle order is **synchronous**: `constructor -> connectedCallback -> render -> (1st render? -> mountedCallback) -> updatedCallback -> disconnectedCallback`.
 
