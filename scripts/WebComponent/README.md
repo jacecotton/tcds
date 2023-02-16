@@ -391,7 +391,7 @@ class MyComponent extends WebComponent(HTMLElement, {
 </details>
 
 <details>
-  <summary>Change base style injection</summary>
+  <summary>Change or disable base style injection</summary>
 
 By default, the `WebComponent` looks for Design System base styles to inject by querying the `head` for a `link` with a `[title="tcds"]` attribute. If one is not found, it will pull the stylesheet from a CDN.
 
@@ -403,7 +403,7 @@ class MyComponent extends WebComponent(HTMLElement) {
 }
 ```
 
-You can also disable base style injection altogether by setting the property to an empty string (not recommended).
+You can also disable base style injection altogether by setting the property to an empty string.
 </details>
 
 <details>
