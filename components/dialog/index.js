@@ -19,6 +19,13 @@ export default class Dialog extends WebComponent(HTMLElement, {delegatesFocus: t
   }
 
   render() {
+    // Note on the focus boundaries: When the end boundary receives focus, we
+    // want to shift focus to the close button, which is inside the shadow root,
+    // therefore we `focusFirstOf` the root node (which will be the close
+    // button). Conversely, when the start boundary receives focus, we want to
+    // shift focus to the last focusable element of whatever is provided in the
+    // default slot, so we `focusLastOf` the root node's *host* element,
+    // `tcds-dialog`.
     return /* html */`
       <div part="dialog">
         <tcds-focus-boundary onfocus="this.focusLastOf(this.getRootNode().host)" tabindex="0"></tcds-focus-boundary>
