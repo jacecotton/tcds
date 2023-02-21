@@ -1,3 +1,12 @@
+## [1.6.1](https://github.com/jacecotton/tcds/compare/v1.6.0...v1.6.1) (2023-02-21)
+
+
+### Bug Fixes
+
+* **components:** Tweak WebComponent connectedCallback API ([d03952c](https://github.com/jacecotton/tcds/commit/d03952c18069c9edf53ccbef308e34c61e98a83a))
+
+
+
 # [1.6.0](https://github.com/jacecotton/tcds/compare/v1.5.7...v1.6.0) (2023-02-16)
 
 
@@ -47,15 +56,6 @@
 ### Bug Fixes
 
 * **styles:** Tweak callout styles ([3908436](https://github.com/jacecotton/tcds/commit/39084362d4e439218fad02bc11f1bb7f14d17967))
-
-
-
-## [1.5.4](https://github.com/jacecotton/tcds/compare/v1.5.3...v1.5.4) (2023-02-13)
-
-
-### Bug Fixes
-
-* **styles:** Accommodate easily adding veritcal margin to max width ([7e97c89](https://github.com/jacecotton/tcds/commit/7e97c89a095ed0f67f54ba29217bcc2edab39296))
 
 
 
