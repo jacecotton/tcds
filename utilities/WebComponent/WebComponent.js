@@ -1,6 +1,6 @@
 import diff from "./diff.js";
-import {globalAttributesFull, globalAttributesPartial} from "./globalAttributeList.js";
-import {typeChecker, typeConverter} from "./typeUtils.js";
+import {globalAttributesFull, globalAttributesPartial} from "./globalAttributes.js";
+import {typeChecker, typeConverter} from "./type-utils.js";
 
 /**
  * A base class for creating native Web Components. Documentation at

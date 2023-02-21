@@ -1,5 +1,5 @@
 import gulp from "gulp";
-const { task, watch, src, dest, series } = gulp;
+const {task, watch, src, dest, series} = gulp;
 
 import webpack from "webpack-stream";
 
@@ -30,7 +30,7 @@ const tasks = {
       .pipe(dest("./dist/"));
   },
 
-  "scripts": () => {
+  "javascript": () => {
     return src("./index.js")
       .pipe(webpack({
         entry: "./index.js",
@@ -74,16 +74,16 @@ const tasks = {
 };
 
 task("styles", tasks["styles"]);
-task("scripts", tasks["scripts"]);
+task("javascript", tasks["javascript"]);
 task("images", tasks["images"]);
 task("fonts", tasks["fonts"]);
 
 task("watch", function watcher() {
   watch("./styles/", tasks["styles"]);
-  watch("./scripts/", tasks["scripts"]);
+  watch("./utilities/", tasks["javascript"]);
   watch("./static/images/", tasks["images"]);
   watch("./static/fonts/", tasks["fonts"]);
 });
 
-task("build", series(["styles", "scripts", "images", "fonts"]));
+task("build", series(["styles", "javascript", "images", "fonts"]));
 task("default", series(["build", "watch"]));

@@ -6,16 +6,16 @@
   "scripts": {
     "dev": "gulp",
     "build": "gulp build",
-    "build:scripts": "gulp scripts",
+    "build:javascript": "gulp javascript",
     "build:styles": "gulp styles",
     "build:images": "gulp images",
     "build:fonts": "gulp fonts",
-    "lint": "npm run lint:styles && npm run lint:scripts",
+    "lint": "npm run lint:styles && npm run lint:javascript",
     "lint:styles": "stylelint 'styles/**/*.scss'",
-    "lint:scripts": "eslint 'scripts/**/*.js'",
-    "fix": "npm run fix:styles && npm run fix:scripts",
+    "lint:javascript": "eslint 'utilities/**/*.js'",
+    "fix": "npm run fix:styles && npm run fix:javascript",
     "fix:styles": "stylelint 'styles/**/*.scss' --fix",
-    "fix:scripts": "eslint 'scripts/**/*.js' --fix",
+    "fix:javascript": "eslint 'utilities/**/*.js' --fix",
     "version": "cat package.json | grep -e '^  \"version\": ' | awk '{print $2}' | sed 's/[\",]//g'"
   },
   "repository": {
