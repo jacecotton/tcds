@@ -1,5 +1,5 @@
-import WebComponent from "../../scripts/WebComponent/WebComponent.js";
-import slugify from "../../scripts/utilities/slugify.js";
+import WebComponent from "../../utilities/WebComponent/WebComponent.js";
+import slugify from "../../utilities/string-utils/slugify.js";
 import styles from "./style.css";
 
 export default class Icon extends WebComponent(HTMLElement) {

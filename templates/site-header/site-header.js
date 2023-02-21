@@ -1,5 +1,5 @@
 /* eslint-disable no-inner-declarations */
-import AnimateElement from "./AnimateElement/AnimateElement.js";
+import AnimateElement from "../../utilities/AnimateElement/AnimateElement.js";
 
 window.addEventListener("load", function() {
   const header = document.querySelector(".site-header");

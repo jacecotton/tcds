@@ -1,6 +1,6 @@
-import WebComponent from "./scripts/WebComponent/WebComponent.js";
-import AnimateElement from "./scripts/AnimateElement/AnimateElement.js";
-import slugify from "./scripts/utilities/slugify.js";
+import WebComponent from "./utilities/WebComponent/WebComponent.js";
+import AnimateElement from "./utilities/AnimateElement/AnimateElement.js";
+import slugify from "./utilities/string-utils/slugify.js";
 
 import "construct-style-sheets-polyfill/dist/adoptedStyleSheets.js";
 
@@ -21,6 +21,6 @@ import "./components/section/index.js";
 import "./components/tabs/tab/index.js";
 import "./components/tabs/index.js";
 
-import "./scripts/site-header.js";
+import "./templates/site-header/site-header.js";
 
 export { WebComponent, AnimateElement, slugify };

@@ -1,4 +1,4 @@
-import WebComponent from "../../scripts/WebComponent/WebComponent.js";
+import WebComponent from "../../utilities/WebComponent/WebComponent.js";
 import styles from "./style.css";
 
 export default class Dialog extends WebComponent(HTMLElement, {delegatesFocus: true}) {

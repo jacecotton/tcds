@@ -1,4 +1,4 @@
-import WebComponent from "../../scripts/WebComponent/WebComponent.js";
+import WebComponent from "../../utilities/WebComponent/WebComponent.js";
 
 export default class Countdown extends WebComponent(HTMLElement) {
   static state = {

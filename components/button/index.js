@@ -1,4 +1,4 @@
-import WebComponent from "../../scripts/WebComponent/WebComponent.js";
+import WebComponent from "../../utilities/WebComponent/WebComponent.js";
 import shadowStyles from "./style.css";
 import lightStyles from "./style.light.css";
 

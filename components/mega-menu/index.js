@@ -1,5 +1,5 @@
-import WebComponent from "../../scripts/WebComponent/WebComponent.js";
-import AnimateElement from "../../scripts/AnimateElement/AnimateElement.js";
+import WebComponent from "../../utilities/WebComponent/WebComponent.js";
+import AnimateElement from "../../utilities/AnimateElement/AnimateElement.js";
 import shadowStyles from "./style.css";
 import lightStyles from "./style.light.css";
 
