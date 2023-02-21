@@ -9,15 +9,15 @@ import {typeChecker, typeConverter} from "./typeUtils.js";
  * @todo Add a `required` option to props and state.
  * @todo Filter global attributes at point of state reflection too.
  *
- * @param {Element} [BaseElement=HTMLElement] - The HTML element interface to
- *   extend. `HTMLElement` if an autonomous custom element, something else if a
- *   customized built-in (not recommended).
+ * @param {Element} [ElementInterface=HTMLElement] - The HTML element interface
+ *   to extend. `HTMLElement` if an autonomous custom element, something else if
+ *   a customized built-in.
  * @param {object} options - `attachShadow` settings. Useful to set `mode` to
  *   `closed` if desired (default is `open`), or things like `delegatesFocus`
  *   for buttons and other inputs.
  */
 
-const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends BaseElement {
+const WebComponent = (ElementInterface = HTMLElement, options = {}) => class extends ElementInterface {
   constructor() {
     super();
     this.attachShadow({mode: "open", ...options});
@@ -74,6 +74,12 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
     });
   }
 
+  /**
+   * @param {object[]} attributes DOM attributes to sync with the `props` or
+   *   `state` objects.
+   * @param {string} attributes[].name The attribute name (key).
+   * @param {string} attributes[].value The attribute value.
+   */
   #attributeHandler(attributes) {
     attributes.filter((attribute) => {
       return !globalAttributesFull.includes(attribute.name.toLowerCase())
@@ -155,15 +161,15 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
           value = typeConverter(value, type);
         }
 
-        const isSame = type !== Array
+        const isSameAsOld = type !== Array
           ? (props[prop] === value)
           : (props[prop]?.slice().sort().join() === value.slice().sort().join());
 
-        const isOutOfSync = type !== Array
+        const isOutOfSyncWithAttr = type !== Array
           ? (attribute !== value)
           : (attribute.slice().sort().join() !== value.slice().sort().join());
 
-        if(isSame || isOutOfSync) {
+        if(isSameAsOld || isOutOfSyncWithAttr) {
           return true;
         }
 
@@ -280,6 +286,10 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
     }
   }
 
+  /**
+   * @param {string[]} stateToReflect Keys of the state properties to "reflect"
+   *   as DOM attributes.
+   */
   #reflectState(stateToReflect) {
     stateToReflect.forEach((state) => {
       let value = this.state[state];
