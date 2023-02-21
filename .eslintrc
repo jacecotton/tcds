@@ -21,6 +21,10 @@
     "no-var": "error",
     "curly": "error",
     "no-new": "warn",
-    "eol-last": ["error", "always"]
+    "eol-last": ["error", "always"],
+    "key-spacing": "error",
+    "space-infix-ops": "error",
+    "object-curly-spacing": ["error", "never"],
+    "array-bracket-spacing": ["error", "never"]
   }
 }

@@ -23,4 +23,4 @@ import "./components/tabs/index.js";
 
 import "./templates/site-header/site-header.js";
 
-export { WebComponent, AnimateElement, slugify };
+export {WebComponent, AnimateElement, slugify};
