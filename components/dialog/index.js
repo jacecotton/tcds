@@ -15,7 +15,6 @@ export default class Dialog extends WebComponent(HTMLElement, {delegatesFocus: t
 
   constructor() {
     super();
-
     this.shadowRoot.adoptedStyleSheets = [styles];
   }
 
