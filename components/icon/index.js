@@ -5,7 +5,6 @@ import styles from "./style.css";
 export default class Icon extends WebComponent(HTMLElement) {
   constructor() {
     super();
-
     this.shadowRoot.adoptedStyleSheets = [styles];
   }
 

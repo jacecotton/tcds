@@ -19,6 +19,8 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
   }
 
   connectedCallback() {
+    super.connectedCallback();
+
     this.parent = this.closest("tcds-accordion");
     this.siblings = Array.from(this.parent.sections).filter(instance => instance !== this);
 

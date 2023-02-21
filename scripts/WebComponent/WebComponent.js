@@ -35,22 +35,6 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
 
     // Listen to those updates and collect a batch of them.
     this.addEventListener("update", this.#batchUpdates.bind(this));
-
-    // Populate props and state from attributes, observe further attribute
-    // changes and update respective props and state.
-    this.#attributeHandler([...this.attributes]);
-    this.#attributeObserver.observe(this, {attributes: true});
-
-    // Populate `state` and `props` with child class-provided defaults, if
-    // applicable.
-    this.#populateDefaults();
-
-    // Manually schedule an update if the component has been connected but
-    // doesn't have any state or props (which would trigger an update).
-    this.isConnected
-      && Object.keys(this.state).length === 0
-      && Object.keys(this.props).length === 0
-      && this.dispatchEvent(new CustomEvent("update"));
   }
 
   #stateSettings;
@@ -62,8 +46,21 @@ const WebComponent = (BaseElement = HTMLElement, options = {}) => class extends 
     || document.querySelector("link[title=tcds]")?.href
     || "https://unpkg.com/@txch/tcds/dist/tcds.css";
 
-  disconnectedCallback() {
-    this.#attributeObserver.disconnect();
+  connectedCallback() {
+    // Populate props and state from attributes, observe further attribute
+    // changes and update respective props and state.
+    this.#attributeHandler([...this.attributes]);
+    this.#attributeObserver.observe(this, {attributes: true});
+
+    // Populate `state` and `props` with child class-provided defaults, if
+    // applicable.
+    this.#populateDefaults();
+
+    // Manually schedule an update if the component has been connected but
+    // doesn't have any state or props (which would trigger an update).
+    if(!Object.keys(this.state).length && !Object.keys(this.props).length) {
+      this.dispatchEvent(new Event("update"));
+    }
   }
 
   get #attributeObserver() {

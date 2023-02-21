@@ -11,6 +11,8 @@ export default class Section extends WebComponent(HTMLElement) {
   }
 
   connectedCallback() {
+    super.connectedCallback();
+
     this.hasBackground = !!this.querySelector("[slot=background]");
     this.hasVideoBackground = !!this.querySelector("video[slot=background]");
     this.hasVideo = !!this.querySelector("[slot=video]");

@@ -9,6 +9,8 @@ export default class Countdown extends WebComponent(HTMLElement) {
   };
 
   connectedCallback() {
+    super.connectedCallback();
+
     this.countdownDate = new Date(this.props.date || this.textContent).getTime();
   }
 

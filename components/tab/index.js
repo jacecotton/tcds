@@ -19,6 +19,8 @@ export default class Tab extends WebComponent(HTMLElement) {
   }
 
   connectedCallback() {
+    super.connectedCallback();
+
     this.parent = this.closest("tcds-tabs");
   }
 

@@ -1,15 +1,15 @@
 ## WebComponent
-`WebComponent` is a base class for creating [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components). It simply extends the native [custom elements API](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) to add declarative templating, reactive state and props, and efficient DOM diffing.
+`WebComponent` is a base class for creating [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components). It extends the native [custom elements API](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) only to add declarative templating and reactive state and props.
 
-This utility is not a library, but brings to Web Components some of the requisite features and best practices for building modern UIs found in libraries like [React](https://reactjs.org/) and [Vue](https://vuejs.org/).
+This utility is not a library, but brings to Web Components some of the expressiveness, requisite features, and best practices for building modern UIs found in libraries like [React](https://reactjs.org/) and [Vue](https://vuejs.org/).
 
-It differs from libraries also based on Web Components, like [Lit](https://lit.dev/) or [Stencil](https://stenciljs.com/), in its aim to bridge only very specific gaps in native browser features. To that end it introduces minimal unique concepts and features, and leans heavily on the use of vanilla JavaScript by component authors.
+It differs from libraries also based on Web Components, like [Lit](https://lit.dev/) or [Stencil](https://stenciljs.com/), in introducing few unique concepts and utilities, instead deferring most work to component authors and the native Web Components API.
 
-## Defining a component
-Defining a Web Component works like [defining any other custom element]((https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements)), only instead of extending the [`HTMLElement` interface](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) directly, extend it with the `WebComponent` mixin.
+### Defining a component
+Defining a Web Component works like [defining any other custom element]((https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements)), only instead of extending [`HTMLElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) directly, extend it with the `WebComponent` mixin.
 
 ```js
-import { WebComponent } from "@txch/tcds";
+import {WebComponent} from "@txch/tcds";
 
 class MyComponent extends WebComponent(HTMLElement) {
   constructor() {
@@ -22,7 +22,7 @@ customElements.define("my-component", MyComponent);
 
 `<my-component>` can now be used as a valid HTML element on any page with the above script loaded.
 
-While it is not recommended to customize built-in elements (as it's [not supported by Safari](https://caniuse.com/custom-elementsv1)*), it is valid to pass the interface of any other HTML element to the `WebComponent` mixin:
+You can customize built-in elements by passing the interface of any other HTML element to the `WebComponent` mixin.
 
 ```js
 class MyComponent extends WebComponent(HTMLUListElement) {
@@ -34,11 +34,9 @@ customElements.define("my-component", MyComponent, { extends: "ul" });
 
 The customized built-in can now be used as `<ul is="my-component">`.
 
-<sub>\* A polyfill may be added in the future.</sub>
+**Note:** Only do this for [elements that can have a shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow#elements_you_can_attach_a_shadow_to). **`WebComponent` is incompatible with elements that cannot.**
 
-## Templating
-Define your component template in a `render` method.
-
+### Templating
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
   render() {
@@ -49,13 +47,13 @@ class MyComponent extends WebComponent(HTMLElement) {
 }
 ```
 
-The `render` method is called every time [state](#state) or [props](#props) are updated (or any time an `update` event is dispatched on the component class). Updates are first batched within a single [animation frame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) for efficiency and performance, then only elements within the template that have actually changed (are different from the live component DOM) will be re-rendered.
+The `render` method is called every time [state](#state) or [props](#props) are updated (or any time an `update` event is dispatched on the element). Updates are first batched within a single [animation frame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) for efficiency and performance, then only elements within the template that have actually changed (compared to the live component DOM) will be re-rendered.
 
 [Template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) are recommended as it allows for multi-line strings and string interpolation, rather than concatenation.
 
 <sub>The `/* html */` annotation before the return value can optionally be added to create syntax highlighting, if a plugin like [es6-string-html](https://marketplace.visualstudio.com/items?itemName=Tobermory.es6-string-html) is enabled in your text editor.</sub>
 
-### Shadow parts
+#### Shadow parts
 You can access any [shadow parts](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/part) created in the template via the public property `parts`.
 
 ```js
@@ -76,8 +74,22 @@ class MyComponent extends WebComponent(HTMLElement) {
 
 This is an optional convenience. Alternatively, as [`mountedCallback` occurs after first render](#lifecycle), you can always query the `shadowRoot` to access any element in the rendered result.
 
-## Lifecycle
-In addition to `HTMLElement`'s provided lifecycle methods (`connectedCallback`, `disconnectedCallback`, etc.), `WebComponent` provides a couple additional methods to work with its reactivity. These follow usual conventions used by other UI libraries, but work most similarly to [Vue's](https://vuejs.org/api/options-lifecycle.html) on a technical level.
+### Lifecycle
+`WebComponent` makes use of the base interface's `connectedCallback` and `disconnectedCallback` lifecycle methods, therefore if you use them in your child class, **you must call the parent class's corresponding methods.**
+
+```js
+class MyComponent extends WebComponent(HTMLElement) {
+  connectedCallback() {
+    super.connectedCallback();
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+  }
+}
+```
+
+In addition to built-in lifecycle methods, `WebComponent` provides a couple additional methods to interface with its reactivity. These follow usual conventions used by other UI libraries, but work most similarly to [Vue's](https://vuejs.org/api/options-lifecycle.html) on a technical level.
 
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
@@ -119,7 +131,7 @@ class MyComponent extends WebComponent(HTMLElement) {
 
 Note that `WebComponent`'s state and prop system (see below) negates the built-in method for handling attribute updates (the `observedAttributes` property and `attributeChangedCallback` method). With `WebComponent`, all attributes (except [globals](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes)) are observed by default and synchronized with the `props` property (or `state` property if indicated).
 
-## Props
+### Props
 Props are accessible internally from the public `props` property. This object is readonly, and is populated from attributes set by the component user on the component instance.
 
 ```html
@@ -129,6 +141,7 @@ Props are accessible internally from the public `props` property. This object is
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
   connectedCallback() {
+    super.connectedCallback();
     console.log(this.props); // => { "foo": "bar" }
   }
 }
@@ -149,12 +162,13 @@ class MyComponent extends WebComponent(HTMLElement) {
 }
 ```
 
-## State
+### State
 State is internally accessible and mutable from the public `state` property.
 
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
   connectedCallback() {
+    super.connectedCallback();
     this.state.count = 0;
   }
 
@@ -194,7 +208,7 @@ If `count` exists as a property of the `state` object, the `[count]` attribute w
 
 This is useful to allow component users to set the initial state of a component via an attribute. For instance, the dialog component allows users to set whether it should open on page load by adding a boolean attribute: `<tcds-dialog open>`.
 
-## Typing
+### Typing
 Available state and prop types are `String`, `Number`, `Boolean`, and `Array`.
 
 Specifying types will validate the type of any specified state or prop elsewhere in the component code, and process the corresponding attribute values as their respective types within the `props` and `state` objects (if the `state` is `reflected`).
@@ -219,6 +233,7 @@ class MyComponent extends WebComponent(HTMLElement) {
   };
 
   connectedCallback() {
+    super.connectedCallback();
     console.log(this.state.lorem, typeof this.state.lorem); // => true, "boolean"
     console.log(this.props.ipsum, typeof this.props.ipsum); // =>    2, "number"
   }
@@ -231,7 +246,7 @@ If an `Array` type is set, space-separated value items are split into an array. 
 
 Note that the purpose of this type system is synchronization between the live DOM and reactive data stores. As such, type validation and conversion happens at runtime, therefore it is not usable as a general purpose type system. If that's needed, use an IDE and CLI-based tool like [TypeScript](https://www.typescriptlang.org/).
 
-## Styling
+### Styling
 The `WebComponent` utility is technically agnostic as to styling. The simplest way to style a component is to embed inline styles in the template.
 
 ```js
@@ -297,6 +312,8 @@ This setup is recommended but entirely optional.
 
 Note that adopting or inserting styles into the shadow root ("shadow styles") scopes and encapsulates the styles to the shadow boundary. To create unscoped styles (useful for having outer DOM context awareness, e.g. whether the component is a `:first-child`, or to style slotted content deeper and more specific than `::slotted` allows, e.g. `[slot="content"] a`), you can adopt other styles into the root node with `this.getRootNode()` ("light styles"). In most cases this will be the `document`, or a parent component's shadow root.
 
+> **Note: This is dangerous.** Adopting a stylesheet into the root node is a side effect. You **must** be careful to merge your added stylesheet with whatever other stylesheets the root node may have adopted. Otherwise, any other stylesheets attached to the root node (such as those from other components) will be wiped out. See below for a safe way to do this.
+
 ```js
 /* index.js */
 import lightStyles from "./style.light.css";
@@ -315,9 +332,7 @@ my-component:not(:only-child) {
 }
 ```
 
-Note that you **must** merge your added styles with whatever other stylesheets the root node may have adopted. Otherwise, any other stylesheets attached to the root node (such as those from other components) will be wiped out.
-
-## Events
+### Events
 The `WebComponent` utility is technically agnostic as to event handling. Inline DOM events can be added for declarative event handling, or imperative events can be added with `addEventListener` in the `mountedCallback` hook.
 
 For the former, in order to access the component context, and its public methods and properties, you will have to first get the local root node (the shadow root), then access its host (the custom element itself) from there.
@@ -358,7 +373,7 @@ class MyComponent extends WebComponent(HTMLElement) {
 }
 ```
 
-## Advanced
+### Advanced
 <details>
   <summary>Forcing an update</summary>
 
@@ -422,17 +437,17 @@ class MyComponent extends WebComponent(HTMLElement) {
 ```
 </details>
 
-
 <details>
   <summary>Guard against DOM diffing</summary>
 
 During a component's re-rendering process, any differences in the provided render template are applied to the live DOM (referred to as "DOM diffing").
 
-You may want to designate a static area in a component template that will be ignored during the DOM diffing process. For instance, you may have a component that content is dynamically injected into after mounting by a third-party library. To do so, you can use the `static-slot` element:
+You may want to designate a static area in a component template that will be ignored during the DOM diffing process. For instance, you may have a component which a third-party library injects content into. To do so, you can use the `static-slot` element:
 
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
   connectedCallback() {
+    super.connectedCallback();
     this.state.count = 0;
 
     setInterval(() => {
@@ -457,7 +472,7 @@ class MyComponent extends WebComponent(HTMLElement) {
 
 To clarify, elements written *inside the render template* will also not be touched if the data associated with them has not changed between renders. Only elements injected after the fact, i.e. in the `mountedCallback`, will be wiped out on next render, unless guarded by a `static-slot`.
 
-Anything that happens inside the `mountedCallback` will not be repeated after renders subsequent to the first. And it is not recommended to re-inject content into the shadow root on every update via the `updatedCallback`, as it is inefficient and could cause unexpected issues.
+Anything that happens inside the `mountedCallback` will not be repeated after renders subsequent to the first. And it is not recommended to re-inject content into the shadow root on every update via the `updatedCallback`, as it is inefficient and could behave unexpectedly.
 
 Technically, all custom elements are ignored in this way (as the rendering of each component is handled internally), but `static-slot` serves as a no-op custom element that `WebComponent` provides for convenience and clarity.
 </details>
@@ -467,13 +482,14 @@ Technically, all custom elements are ignored in this way (as the rendering of ea
 
 As with other component frameworks, be mindful of the entire lifecycle of a component to perform operations in the most effective place possible. Depending on the operation, you may want to do it as early or as late as possible.
 
-The lifecycle order is **asynchronous**: `constructor -> connectedCallback -> render -> (1st render? -> mountedCallback) -> updatedCallback -> disconnectedCallback`.
+The lifecycle order is **asynchronous**: `constructor -> connectedCallback -> render -> (first render ? mountedCallback) -> updatedCallback -> disconnectedCallback`.
 
-* `constructor` — Anything required for first render, and *is not* specific to a particular component instance (i.e., applicable to all component instances). For example, downloading and adopting a stylesheet.
-* `connectedCallback` — Anything required for first render, but *is* specific to a particular component instance. For example, querying relative DOM elements like parents and siblings, fetching data specific to the instance, or setting initial state based on some specific condition.
-* `mountedCallback` — Anything you can possibly defer until after the first render. For example, adding interactive functionality, timers, event listeners, and observers. The more you can assign to this hook, the faster render time will be.
+* `constructor` — Anything required for first render, *is not* specific to a particular component instance (i.e., applicable to all component instances), and *has no need* for awareness of the particular DOM relative to the component. For example, the `constructor` should download and adopt stylesheets.
+* `connectedCallback` — Anything required for first render, but *is* specific to a particular component instance, or *does need* awareness of the particular DOM relative to the component. For example, querying parents, siblings, children, or attributes, fetching data specific to the instance, or setting initial state based on some specific condition.
+* `mountedCallback` — Anything you can possibly defer until after the first render. For example, adding interactive functionality, timers, event listeners, and observers. The more you can assign to this hook, the more you will optimize time to first render.
 * `updatedCallback` — **Be cautious using this hook**, as it is called after every update and re-render. Beware performing expensive or redundant operations. Consider moving whatever you can back up to `mountedCallback`.
     * If an operation may only *sometimes* need to be repeated on update, or doesn't need to happen immediately after re-render, consider optimization techniques such as memoization, debouncing, early returns, etc.
     * Also be aware that re-renders **do not wait** for this hook—`updatedCallback` is called *after* the render has completed.
-* `disconnectedCallback` — For memory optimization, consider undoing anything you did in `connectedCallback` or `mountedCallback` that may still be held in browser memory. For example, remove any event listeners, disconnect any observers, clear any intervals or recursive timeouts, etc.
+* `disconnectedCallback` — To prevent memory leaks and generally optimize memory, undo any side effects done in `connectedCallback` or `mountedCallback` that may still be held in browser memory. For example, remove any event listeners, disconnect any observers, clear any intervals or recursive timeouts, etc.
+    * Event listeners and observers added to the component element or its children will be automatically garbage collected when the element is removed, so you do not need to remove them yourself. You only need to undo *side effects*, i.e. things done outside the component instance, like to the `window` or `document`.
 </details>

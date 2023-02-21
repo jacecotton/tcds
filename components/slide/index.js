@@ -10,6 +10,8 @@ export default class Slide extends WebComponent(HTMLElement) {
   };
 
   connectedCallback() {
+    super.connectedCallback();
+
     this.parent = this.closest("tcds-carousel");
   }
 

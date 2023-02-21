@@ -28,8 +28,9 @@ export default class Carousel extends WebComponent(HTMLElement) {
   }
 
   connectedCallback() {
-    this.ariaRoleDescription = "carousel";
+    super.connectedCallback();
 
+    this.ariaRoleDescription = "carousel";
     this.slides = Array.from(this.querySelectorAll("tcds-slide"));
     this.slides[0].select();
   }

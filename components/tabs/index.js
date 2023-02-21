@@ -49,6 +49,8 @@ export default class Tabs extends WebComponent(HTMLElement) {
   }
 
   connectedCallback() {
+    super.connectedCallback();
+
     this.tabs = Array.from(this.querySelectorAll("tcds-tab"));
 
     const activeTabs = this.tabs.filter(tab => tab.hasAttribute("active"));

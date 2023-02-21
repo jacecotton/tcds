@@ -18,6 +18,8 @@ export default class Card extends WebComponent(HTMLElement) {
   }
 
   connectedCallback() {
+    super.connectedCallback();
+
     if(!this.querySelector("[slot=image]")) {
       this.state["no-image"] = true;
     }

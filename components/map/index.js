@@ -17,6 +17,8 @@ export default class Map extends WebComponent(HTMLElement) {
   }
 
   connectedCallback() {
+    super.connectedCallback();
+
     if(this.dataset.locations) {
       try {
         this.data = JSON.parse(this.dataset.locations);

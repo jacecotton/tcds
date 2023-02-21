@@ -12,7 +12,7 @@ const globalAttributesFull = [
 ];
 
 const globalAttributesPartial = [
-  "aria-", "data-", "onmouse", "onpointer", "ondrag", "onkey"
+  "aria-", "data-", "onmouse", "onpointer", "ondrag", "onkey",
 ];
 
-export { globalAttributesFull, globalAttributesPartial };
+export {globalAttributesFull, globalAttributesPartial};
