@@ -78,7 +78,7 @@ const WebComponent = (ElementInterface = HTMLElement, options = {}) => class ext
    * @param {object[]} attributes DOM attributes to sync with the `props` or
    *   `state` objects.
    * @param {string} attributes[].name The attribute name (key).
-   * @param {string} attributes[].value The attribute value.
+   * @param {(string|null)} attributes[].value The attribute value.
    */
   #attributeHandler(attributes) {
     attributes.filter((attribute) => {
