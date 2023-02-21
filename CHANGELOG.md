@@ -1,3 +1,12 @@
+## [1.6.3](https://github.com/jacecotton/tcds/compare/v1.6.2...v1.6.3) (2023-02-21)
+
+
+### Bug Fixes
+
+* **build:** Update scripts to utils/javascript in gulpfile and package.json ([d0f7992](https://github.com/jacecotton/tcds/commit/d0f79922fd8dd4ca3575c6f403feeda72dde1bdc))
+
+
+
 ## [1.6.2](https://github.com/jacecotton/tcds/compare/v1.6.1...v1.6.2) (2023-02-21)
 
 
@@ -37,25 +46,6 @@
 ### Bug Fixes
 
 * **scripts:** WebComponent cleanup ([00303d9](https://github.com/jacecotton/tcds/commit/00303d979c98f4ab53db55e117b916bd621835ab))
-
-
-
-## [1.5.6](https://github.com/jacecotton/tcds/compare/v1.5.5...v1.5.6) (2023-02-15)
-
-
-### Bug Fixes
-
-* **components:** More safely respect [hidden] attribute on all custom elements ([cb741cf](https://github.com/jacecotton/tcds/commit/cb741cfe793cd150ab0d4bf0884cf340742f7af7))
-* **components:** More safely respect [hidden] attribute on all custom elements ([b755d8f](https://github.com/jacecotton/tcds/commit/b755d8f3513f764fb1e5b5040ab1022de3e22cd6))
-* **components:** Tweak card style (make title bold for UI cards) ([7637bb1](https://github.com/jacecotton/tcds/commit/7637bb135e83c257441847af5acd78fa0e478325))
-
-
-### Performance Improvements
-
-* **components:** Add `contain` browser hints to all components ([fdbb1e0](https://github.com/jacecotton/tcds/commit/fdbb1e0a3fc7c5103fd07faf7101fd302b262d0c))
-* **components:** Countdown memory optimization ([88c4a72](https://github.com/jacecotton/tcds/commit/88c4a7256cf491d4709b7e773662356f9b93ec9d))
-* **components:** Optimize stylesheet adoption ([2d4834d](https://github.com/jacecotton/tcds/commit/2d4834d327e01de9aef8341f52b74f9babc8aa43))
-* **components:** Tweak custom element FOUC strategy ([413f4e9](https://github.com/jacecotton/tcds/commit/413f4e9be3a97cc36bb6e2ce76dd61f142a23dc2))
 
 
 
