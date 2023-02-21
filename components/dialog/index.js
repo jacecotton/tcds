@@ -1,5 +1,4 @@
 import WebComponent from "../../scripts/WebComponent/WebComponent.js";
-import getFocusableChildren from "./getFocusableChildren.js";
 import styles from "./style.css";
 
 export default class Dialog extends WebComponent(HTMLElement, {delegatesFocus: true}) {
@@ -23,6 +22,8 @@ export default class Dialog extends WebComponent(HTMLElement, {delegatesFocus: t
   render() {
     return /* html */`
       <div part="dialog">
+        <tcds-focus-boundary onfocus="this.focusLastOf(this.getRootNode().host)" tabindex="0"></tcds-focus-boundary>
+
         <tcds-button
           part="close"
           controls="${this.id}"
@@ -33,6 +34,8 @@ export default class Dialog extends WebComponent(HTMLElement, {delegatesFocus: t
           onclick="this.getRootNode().host.close()"
         ></tcds-button>
         <slot></slot>
+
+        <tcds-focus-boundary onfocus="this.focusFirstOf(this.getRootNode())" tabindex="0"></tcds-focus-boundary>
       </div>
     `;
   }
@@ -57,28 +60,6 @@ export default class Dialog extends WebComponent(HTMLElement, {delegatesFocus: t
     this.addEventListener("keyup", (event) => {
       if(event.key === "Escape") {
         this.state.open = false;
-      }
-    });
-
-    this.addEventListener("keydown", (event) => {
-      if(event.key === "Tab") {
-        if(event.shiftKey) {
-          if(document.activeElement === this) {
-            this.lastFocusableChild.focus();
-            event.preventDefault();
-          } else if(document.activeElement === this.firstFocusableChild) {
-            this.parts["close"].focus();
-            event.preventDefault();
-          }
-        } else {
-          if(document.activeElement === this) {
-            this.firstFocusableChild.focus();
-            event.preventDefault();
-          } else if(document.activeElement === this.lastFocusableChild) {
-            this.parts["close"].focus();
-            event.preventDefault();
-          }
-        }
       }
     });
 
@@ -107,12 +88,9 @@ export default class Dialog extends WebComponent(HTMLElement, {delegatesFocus: t
         this.handleOtherComponents(state.newState);
 
         if(this.state.open) {
-          this.focusableChildren = getFocusableChildren(this);
-          this.firstFocusableChild = this.focusableChildren[0] || this.parts["close"];
-          this.lastFocusableChild = this.focusableChildren[this.focusableChildren.length - 1] || this.parts["close"];
           this.previouslyFocused = document.activeElement;
 
-          const target = this.querySelector("[autofocus]") || this.firstFocusableChild;
+          const target = this.querySelector("[autofocus]") || this.shadowRoot.querySelectorAll("tcds-focus-boundary")[1];
           target.focus();
 
           if(this.props.autoclose) {

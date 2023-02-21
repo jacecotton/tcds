@@ -11,7 +11,7 @@ const focusableSelectors = [
   `audio[controls]:not([tabindex^="-"])`,
   `video[controls]:not([tabindex^="-"])`,
   `[contenteditable]:not([tabindex^="-"])`,
-  `[tabindex]:not([tabindex^="-"]`,
+  `[tabindex]:not([tabindex^="-"]):not(tcds-focus-boundary)`,
 ];
 
 export default function getFocusableChildren(root) {

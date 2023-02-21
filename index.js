@@ -12,6 +12,7 @@ import "./components/card/index.js";
 import "./components/countdown/index.js";
 import "./components/slide/index.js";
 import "./components/carousel/index.js";
+import "./components/focus-boundary/index.js";
 import "./components/dialog/index.js";
 import "./components/icon/index.js";
 import "./components/map/index.js";
