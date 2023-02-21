@@ -25,6 +25,7 @@
     "key-spacing": "error",
     "space-infix-ops": "error",
     "object-curly-spacing": ["error", "never"],
-    "array-bracket-spacing": ["error", "never"]
+    "array-bracket-spacing": ["error", "never"],
+    "space-in-parens": "error"
   }
 }
