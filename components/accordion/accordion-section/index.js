@@ -1,5 +1,5 @@
-import WebComponent from "../../scripts/WebComponent/WebComponent.js";
-import slugify from "../../scripts/utilities/slugify.js";
+import WebComponent from "../../../scripts/WebComponent/WebComponent.js";
+import slugify from "../../../scripts/utilities/slugify.js";
 import shadowStyles from "./style.css";
 import lightStyles from "./style.light.css";
 

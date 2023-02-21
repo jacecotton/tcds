@@ -1,4 +1,4 @@
-import WebComponent from "../../scripts/WebComponent/WebComponent.js";
+import WebComponent from "../../../scripts/WebComponent/WebComponent.js";
 
 export default class Slide extends WebComponent(HTMLElement) {
   static state = {
