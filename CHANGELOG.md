@@ -1,3 +1,12 @@
+## [1.6.2](https://github.com/jacecotton/tcds/compare/v1.6.1...v1.6.2) (2023-02-21)
+
+
+### Bug Fixes
+
+* **components:** Improve dialog focus trapping ([e909d32](https://github.com/jacecotton/tcds/commit/e909d32678d5b09917af085e8696a01c55c811a3))
+
+
+
 ## [1.6.1](https://github.com/jacecotton/tcds/compare/v1.6.0...v1.6.1) (2023-02-21)
 
 
@@ -47,15 +56,6 @@
 * **components:** Countdown memory optimization ([88c4a72](https://github.com/jacecotton/tcds/commit/88c4a7256cf491d4709b7e773662356f9b93ec9d))
 * **components:** Optimize stylesheet adoption ([2d4834d](https://github.com/jacecotton/tcds/commit/2d4834d327e01de9aef8341f52b74f9babc8aa43))
 * **components:** Tweak custom element FOUC strategy ([413f4e9](https://github.com/jacecotton/tcds/commit/413f4e9be3a97cc36bb6e2ce76dd61f142a23dc2))
-
-
-
-## [1.5.5](https://github.com/jacecotton/tcds/compare/v1.5.4...v1.5.5) (2023-02-13)
-
-
-### Bug Fixes
-
-* **styles:** Tweak callout styles ([3908436](https://github.com/jacecotton/tcds/commit/39084362d4e439218fad02bc11f1bb7f14d17967))
 
 
 
