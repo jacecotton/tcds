@@ -53,38 +53,13 @@ The `render` method is called every time [state](#state) or [props](#props) are 
 
 <sub>The `/* html */` annotation before the return value can optionally be added to create syntax highlighting, if a plugin like [es6-string-html](https://marketplace.visualstudio.com/items?itemName=Tobermory.es6-string-html) is enabled in your text editor.</sub>
 
-#### Shadow parts
-You can access any [shadow parts](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/part) created in the template via the public property `parts`.
-
-```js
-class MyComponent extends WebComponent(HTMLElement) {
-  render() {
-    return /* html */`
-      <p part="message">Hello world!</p>
-    `;
-  }
-
-  mountedCallback() {
-    console.log(this.parts["message"]); // => p Hello world!
-  }
-}
-```
-
-`parts` is a memoized public store that is lazily populated (to reduce unnecessary DOM queries). If there are multiple elements of the same `part`, they will be listed as an array.
-
-This is an optional convenience. Alternatively, as [`mountedCallback` occurs after first render](#lifecycle), you can always query the `shadowRoot` to access any element in the rendered result.
-
 ### Lifecycle
-`WebComponent` makes use of the base interface's `connectedCallback` and `disconnectedCallback` lifecycle methods, therefore if you use them in your child class, **you must call the parent class's corresponding methods.**
+`WebComponent` makes use of the base interface's `connectedCallback` lifecycle method, therefore if you use it in your child class, **you must call the parent class's corresponding method.**
 
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
   connectedCallback() {
     super.connectedCallback();
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
   }
 }
 ```
