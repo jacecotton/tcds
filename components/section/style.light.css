@@ -86,3 +86,12 @@ tcds-section [slot="video-description"]::before {
   opacity: 0.8;
   z-index: -1;
 }
+
+tcds-section > [slot="banner"] {
+  grid-area: banner;
+  max-width: var(--site-container-max-width);
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -63%);
+  z-index: 1;
+}

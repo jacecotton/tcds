@@ -22,6 +22,7 @@ export default class Section extends WebComponent(HTMLElement) {
     this.hasOverline = !!this.querySelector("[slot=overline]");
     this.hasImage = !!this.querySelector("[slot=image]");
     this.hasCta = !!this.querySelector("[slot=cta]");
+    this.hasBanner = !!this.querySelector("[slot=banner]");
 
     if(this.hasBackground) {
       this.setAttribute("has-background", this.hasVideoBackground ? "video" : "");
@@ -45,6 +46,10 @@ export default class Section extends WebComponent(HTMLElement) {
         <tcds-button icon="only play" size="large" aria-controls="video-modal-${this.index}">Open video player</tcds-button>
       `);
     }
+
+    if(this.hasBanner) {
+      this.setAttribute("has-banner", "");
+    }
   }
 
   mountedCallback() {
@@ -62,11 +67,14 @@ export default class Section extends WebComponent(HTMLElement) {
   }
 
   render() {
+    const bg = [...this.classList].filter(className => className.startsWith("bg-"));
+    const theme = this.getAttribute("data-theme");
+
     return /* html */`
-      <section>
+      <section class="${bg}" data-theme="${theme}">
         <slot name="background"></slot>
         <div class="max-width">
-          ${this.hasHeading || this.hasSubheading || this.hasOverline || this.hasImage || this.hasCta ? /* html */`
+          ${this.hasHeading || this.hasSubheading || this.hasOverline || this.hasImage || this.hasCta || this.hasBanner ? /* html */`
             <div part="content">
               ${this.hasHeading || this.hasSubheading || this.hasOverline ? /* html */`
                 <hgroup>
@@ -91,6 +99,9 @@ export default class Section extends WebComponent(HTMLElement) {
         </div>
         <slot name="video-description"></slot>
       </section>
+      ${this.hasBanner ? /* html */`
+        <slot name="banner"></slot>
+      ` : ``}
     `;
   }
 }
