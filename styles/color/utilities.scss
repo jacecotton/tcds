@@ -10,7 +10,7 @@
 .text-primary,
 .text-secondary,
 .text-tertiary {
-  color: var(--tcds-color-text);
+  color: var(--tcds-color-text) !important;
 }
 
 .bg-primary[data-theme] {
