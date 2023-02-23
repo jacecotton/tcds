@@ -84,19 +84,23 @@ export default class Tabs extends WebComponent(HTMLElement) {
     `;
   }
 
+  mountedCallback() {
+    this.tabButtons = this.shadowRoot.querySelectorAll("[part~=tab]");
+  }
+
   tabClick(event) {
-    this.tabs[this.parts["tab"].indexOf(event.currentTarget)].select();
+    this.tabs[this.tabButtons.indexOf(event.currentTarget)].select();
   }
 
   tabKeydown(event) {
     if(event.key === "ArrowRight") {
       event.preventDefault();
       const nextIndex = this.next();
-      this.parts["tab"][nextIndex].focus();
+      this.tabButtons[nextIndex].focus();
     } else if(event.key === "ArrowLeft") {
       event.preventDefault();
       const previousIndex = this.previous();
-      this.parts["tab"][previousIndex].focus();
+      this.tabButtons[previousIndex].focus();
     }
   }
 

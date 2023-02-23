@@ -47,6 +47,8 @@ export default class Dialog extends WebComponent(HTMLElement, {delegatesFocus: t
   }
 
   mountedCallback() {
+    this.dialog = this.shadowRoot.querySelector("[part~=dialog]");
+
     this.state.open = this.hasAttribute("open")
       && localStorage.getItem(`tcds_dialog_${this.id}_state`) !== "closed";
 
@@ -59,7 +61,7 @@ export default class Dialog extends WebComponent(HTMLElement, {delegatesFocus: t
       this.state.open = false;
     });
 
-    this.parts["dialog"].addEventListener("click", (event) => {
+    this.dialog.addEventListener("click", (event) => {
       event.stopPropagation();
     });
 

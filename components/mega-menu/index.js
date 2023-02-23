@@ -35,6 +35,8 @@ export default class MegaMenu extends WebComponent(HTMLElement) {
   }
 
   mountedCallback() {
+    this.megaMenu = this.shadowRoot.querySelector("[part~=mega-menu]");
+
     this.controllers = [
       ...document.querySelectorAll(`[aria-controls="${this.id}"], [controls="${this.id}"]`),
       ...this.shadowRoot.querySelectorAll(`[aria-controls="${this.id}"], [controls="${this.id}"]`)
@@ -50,7 +52,7 @@ export default class MegaMenu extends WebComponent(HTMLElement) {
       this.state.open = false;
     });
 
-    this.parts["mega-menu"].addEventListener("click", (event) => {
+    this.megaMenu.addEventListener("click", (event) => {
       event.stopPropagation();
     });
 
@@ -77,7 +79,7 @@ export default class MegaMenu extends WebComponent(HTMLElement) {
           otherMegaMenus.forEach(otherMegaMenu => otherMegaMenu.close());
           this.hidden = false;
         } else if(state.oldState.open === true) {
-          AnimateElement(this.parts["mega-menu"], (window.innerWidth < 1200 ? "slide-out-right" : ["slide-out-up", "fade-out"]), {
+          AnimateElement(this.megaMenu, (window.innerWidth < 1200 ? "slide-out-right" : ["slide-out-up", "fade-out"]), {
             lazyload: false,
             timing: window.innerWidth < 1200 ? "productive" : "expressive",
           }).then(() => {

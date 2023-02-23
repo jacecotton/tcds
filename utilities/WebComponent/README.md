@@ -1,9 +1,7 @@
 ## WebComponent
-`WebComponent` is a base class for creating [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components). It extends the native [custom elements API](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) only to add declarative templating and reactive state and props.
+`WebComponent` is a base class for creating [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components). It is not a library or framework, but rather a thin abstraction extending the native [custom elements API](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) to add declarative templating with data reactivity.
 
-This utility is not a library, but brings to Web Components some of the expressiveness, requisite features, and best practices for building modern UIs found in libraries like [React](https://reactjs.org/) and [Vue](https://vuejs.org/).
-
-It differs from libraries also based on Web Components, like [Lit](https://lit.dev/) or [Stencil](https://stenciljs.com/), in introducing few unique concepts and utilities, instead deferring most work to component authors and the native Web Components API.
+Unlike libraries also based on Web Components, like [Lit](https://lit.dev/) or [Stencil](https://stenciljs.com/), it introduces no extra utilities and few unique concepts. Instead, most work is deferred to component authors and native APIs.
 
 ### Defining a component
 Defining a Web Component works like [defining any other custom element]((https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements)), only instead of extending [`HTMLElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) directly, extend it with the `WebComponent` mixin.

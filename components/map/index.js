@@ -47,7 +47,6 @@ export default class Map extends WebComponent(HTMLElement) {
       <div part="card-view">
         ${locations.map((location) => /* html */`
           <tcds-card
-            part="card"
             id="location-${location.id}"
             variant="ui"
             ${location.id !== this.state.activeLocation ? "hidden" : ""}
@@ -90,6 +89,7 @@ export default class Map extends WebComponent(HTMLElement) {
 
 
   mountedCallback() {
+    this.map = this.shadowRoot.querySelector("[part~=map]");
     const {locations} = this.data;
 
     const defaultLocation =
@@ -113,7 +113,7 @@ export default class Map extends WebComponent(HTMLElement) {
       return 0;
     });
 
-    this.map = new window.google.maps.Map(this.parts["map"], {
+    this.map = new window.google.maps.Map(this.map, {
       zoom: this.props.zoom,
       center: {
         lat: defaultLocation.lat,
@@ -191,7 +191,7 @@ export default class Map extends WebComponent(HTMLElement) {
 
   updatedCallback(state) {
     if(state.newState) {
-      this.parts["card"].forEach(card => card.orient());
+      this.shadowRoot.querySelectorAll("tcds-card").forEach(card => card.orient());
 
       if("selectedTag" in state.newState) {
         const {locations} = this.data;

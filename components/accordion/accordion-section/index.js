@@ -43,7 +43,7 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
             onclick="this.getRootNode().host.toggle()"
           >
             ${this.props.label}
-            <tcds-icon part="icon" icon="${this.state.open ? "minus" : "plus"}"></tcds-icon>
+            <tcds-icon part="icon" icon="chevron-down"></tcds-icon>
           </button>
         </h${this.parent.props["heading-level"]}>
 
@@ -59,27 +59,29 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
   updatedCallback(state) {
     if(state.newState) {
       if("open" in state.newState) {
+        const panel = this.shadowRoot.querySelector("[part~=panel]");
+
         if(this.state.open) {
-          this.parts["panel"].style.height = "0px";
-          this.parts["panel"].hidden = false;
+          panel.style.height = "0px";
+          panel.hidden = false;
 
           requestAnimationFrame(() => {
-            this.parts["panel"].style.height = `${this.parts["panel"].scrollHeight}px`;
+            panel.style.height = `${panel.scrollHeight}px`;
           });
 
           if(this.parent.props.multiple === false) {
             this.siblings.filter(sibling => sibling.state.open).forEach(sibling => sibling.close());
           }
         } else if(state.oldState.open) {
-          this.parts["panel"].style.height = "0px";
+          panel.style.height = "0px";
 
-          this.parts["panel"].ontransitionend = () => {
-            this.parts["panel"].hidden = true;
-            this.parts["panel"].style.height = null;
-            this.parts["panel"].ontransitionend = null;
+          panel.ontransitionend = () => {
+            panel.hidden = true;
+            panel.style.height = null;
+            panel.ontransitionend = null;
           };
         } else {
-          this.parts["panel"].hidden = true;
+          panel.hidden = true;
         }
       }
     }

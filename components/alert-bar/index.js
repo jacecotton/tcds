@@ -35,7 +35,7 @@ export default class AlertBar extends WebComponent(HTMLElement) {
   }
 
   close() {
-    this.parts["bar"].hidden = true;
+    this.shadowRoot.querySelector("[part~=bar]").hidden = true;
   }
 }
 
