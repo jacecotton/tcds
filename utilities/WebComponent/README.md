@@ -181,7 +181,7 @@ class MyComponent extends WebComponent(HTMLElement) {
 
 If `count` exists as a property of the `state` object, the `[count]` attribute will now automatically be synced to `state.count` (in both directions; an update to one will be reflected by the other). This also prevents the `[count]` attribute from being registered as a prop.
 
-This is useful to allow component users to set the initial state of a component via an attribute. For instance, the dialog component allows users to set whether it should open on page load by adding a boolean attribute: `<tcds-dialog open>`. `open` is not a prop in this case because it is internal state that will change based on user behavior, as defined by the component *author* and not the component *user*.
+This is useful to allow component users to set the initial state of a component via an attribute. For instance, the dialog component allows users to set whether it should open on page load by adding a boolean attribute: `<tcds-dialog open>`.
 
 ### Typing
 Available state and prop types are `String`, `Number`, `Boolean`, and `Array`.
@@ -466,7 +466,7 @@ The lifecycle order is **asynchronous**: `constructor -> connectedCallback -> re
     * If an operation may only *sometimes* need to be repeated on update, or doesn't need to happen immediately after re-render, consider optimization techniques such as memoization, debouncing, early returns, etc.
     * Also be aware that re-renders **do not wait** for this hook—`updatedCallback` is called *after* the render has completed.
 * `disconnectedCallback` — To prevent memory leaks and generally optimize memory, undo any side effects done in `connectedCallback` or `mountedCallback` that may still be held in browser memory. For example, remove any event listeners, disconnect any observers, clear any intervals or recursive timeouts, etc.
-    * Event listeners and observers added to the component element or its children will be automatically garbage collected when the element is removed, so you do not need to remove them yourself. You only need to undo *side effects*, i.e. things done outside the component instance, like to the `window` or `document`.
+    * Event listeners and observers added to the component element or its children will automatically be garbage collected when the element is removed, so you do not need to clean them up yourself. You only need to undo *side effects*, i.e. things done outside the component instance, like to the `window` or `document`.
 </details>
 
 <details>
