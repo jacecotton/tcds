@@ -477,7 +477,7 @@ class MyComponent extends WebComponent(HTMLElement) {
 }
 ```
 
-In this contrived example, performance is probably (but negligibly) worsened by doing this, as the deeper node tree triggers further recursion in the diffing process. Nevertheless, it can sometimes be helpful to isolate the parts of your component that don't change from those that do. If anything, it can reduce unexpected behavior by ensuring things that should not be subject to change are left alone.
+In this contrived example, performance is probably (but negligibly) worsened by doing this, as the deeper node tree triggers further recursion in the diffing process, and the `textContent` is small. But depending on exact circumstances, it may be more performant to isolate the parts of your component that don't change from those that do. If anything, it can reduce unexpected behavior by ensuring things that are not be subject to change are left alone.
 </details>
 
 <details>
