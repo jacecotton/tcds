@@ -7,7 +7,6 @@
   --tcds-button-icon-color: var(--tcds-color-primary);
   --tcds-button-icon-background-color: #fff;
 
-  contain: content;
   vertical-align: middle;
 }
 
