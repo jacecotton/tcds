@@ -22,7 +22,6 @@ export default class Carousel extends WebComponent(HTMLElement) {
 
   constructor() {
     super();
-
     this.shadowRoot.adoptedStyleSheets = [shadowStyles];
     this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStyleSheets, ...[lightStyles]];
   }
@@ -30,70 +29,83 @@ export default class Carousel extends WebComponent(HTMLElement) {
   connectedCallback() {
     super.connectedCallback();
 
-    this.ariaRoleDescription = "carousel";
     this.slides = Array.from(this.querySelectorAll("tcds-slide"));
-    this.slides[0].select();
+
+    const activeSlides = this.slides.filter(slide => slide.hasAttribute("active"));
+
+    if(activeSlides.length < 1) {
+      this.slides[0].select();
+    } else if(activeSlides.length > 1) {
+      activeSlides[0].select();
+    }
   }
 
   render() {
     return /* html */`
-      ${this.props.timing ? /* html */`
-        <tcds-button
-          part="play-pause"
-          icon="only ${this.state.playing ? "pause" : "play"}"
-          size="small"
-          variant="ui"
-          label="${this.state.playing ? "Stop automatic slide show" : "Start automatic slide show"}"
-          onclick="this.getRootNode().host.playClick()"
-        ></tcds-button>
-      ` : ``}
-      <div part="navigation">
-        <tcds-button
-          part="previous"
-          icon="only chevron-left"
-          variant="ghost"
-          size="large"
-          label="Go to previous slide"
-          onclick="this.getRootNode().host.previousClick()"
-        ></tcds-button>
-        <tcds-button
-          part="next"
-          label="Go to next slide"
-          icon="only chevron-right"
-          variant="ghost"
-          size="large"
-          onclick="this.getRootNode().host.nextClick()"
-        ></tcds-button>
-        <div role="tablist" part="indicators" aria-label="Pick slide">
-          ${this.slides.map((slide, index) => /* html */`
-            <button
-              role="tab"
-              part="indicator"
-              aria-selected="${slide.state.active}"
-              aria-label="Slide ${index + 1} of ${this.slides.length}"
-              title="Slide ${index + 1} of ${this.slides.length}"
-              tabindex="${slide.state.active ? "0" : "-1"}"
-              onclick="this.getRootNode().host.indicatorClick(event)"
-              onkeydown="this.getRootNode().host.indicatorKeydown(event)"
-            ></button>
-          `).join("")}
+      <section aria-roledescription="carousel">
+        ${this.props.timing ? /* html */`
+          <tcds-button
+            part="play-pause"
+            icon="only ${this.state.playing ? "pause" : "play"}"
+            size="small"
+            variant="ui"
+            label="${this.state.playing ? "Stop automatic slide show" : "Start automatic slide show"}"
+            onclick="this.getRootNode().host.playClick()"
+          ></tcds-button>
+        ` : ``}
+        <div part="navigation">
+          <tcds-button
+            part="previous"
+            icon="only chevron-left"
+            variant="ghost"
+            size="large"
+            label="Go to previous slide"
+            onclick="this.getRootNode().host.previousClick()"
+          ></tcds-button>
+          <tcds-button
+            part="next"
+            label="Go to next slide"
+            icon="only chevron-right"
+            variant="ghost"
+            size="large"
+            onclick="this.getRootNode().host.nextClick()"
+          ></tcds-button>
+          <div role="tablist" part="indicators" aria-label="Pick slide">
+            ${this.slides.map((slide, index) => /* html */`
+              <button
+                role="tab"
+                part="indicator"
+                aria-selected="${slide.state.active}"
+                aria-label="Slide ${index + 1} of ${this.slides.length}"
+                title="Slide ${index + 1} of ${this.slides.length}"
+                tabindex="${slide.state.active ? "0" : "-1"}"
+                onclick="this.getRootNode().host.indicatorClick(event)"
+                onkeydown="this.getRootNode().host.indicatorKeydown(event)"
+              ></button>
+            `).join("")}
+          </div>
         </div>
-      </div>
-      <div
-        part="viewport"
-        aria-live="${this.state.playing ? "off" : "polite"}"
-        ontouchstart="this.getRootNode().host.viewportSwipe()"
-        onmouseover="this.getRootNode().host.viewportHover()"
-        onmouseleave="this.getRootNode().host.resume()"
-        onfocus="this.getRootNode().host.pause()"
-        onblur="this.getRootNode().host.resume()"
-      >
-        <slot></slot>
-      </div>
+        <div
+          part="viewport"
+          ${this.props.timing ? /* html */`
+            aria-live="${this.state.playing ? "off" : "polite"}"
+            onmouseleave="this.getRootNode().host.resume()"
+            onfocus="this.getRootNode().host.pause()"
+            onblur="this.getRootNode().host.resume()"
+          ` : ``}
+          onmouseover="this.getRootNode().host.viewportHover()"
+          ontouchstart="this.getRootNode().host.viewportSwipe()"
+        >
+          <slot></slot>
+        </div>
+      </section>
     `;
   }
 
   mountedCallback() {
+    this.viewport = this.shadowRoot.querySelector("[part~=viewport]");
+    this.indicators = Array.from(this.shadowRoot.querySelectorAll("[part~=indicator]"));
+
     this.state.playing =
       this.hasAttribute("playing")
       && this.hasAttribute("timing")
@@ -131,12 +143,12 @@ export default class Carousel extends WebComponent(HTMLElement) {
 
   get swipe() {
     return new IntersectionObserver((entries) => {
-      if(this.observeSwipe === false) {
+      if(this.observeSwipe !== true) {
         return;
       }
 
       if(this.props.multiple) {
-        const {left: viewportLeft, right: viewportRight} = this.parts["viewport"].getBoundingClientRect();
+        const {left: viewportLeft, right: viewportRight} = this.viewport.getBoundingClientRect();
         const viewportCenterpoint = Math.floor((viewportLeft + viewportRight) / 2);
 
         clearTimeout(this.#swipeDebounce);
@@ -160,7 +172,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
         });
       }
     }, {
-      root: this.parts["viewport"],
+      root: this.viewport,
       threshold: !this.props.multiple ? 1
         : [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
       rootMargin: "1px",
@@ -192,7 +204,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
   }
 
   indicatorClick(event) {
-    this.slides[this.parts["indicator"].indexOf(event.currentTarget)].select();
+    this.slides[this.indicators.indexOf(event.currentTarget)].select();
     this.state.playing = false;
     this.observeSwipe = false;
   }
@@ -201,11 +213,11 @@ export default class Carousel extends WebComponent(HTMLElement) {
     if(event.key === "ArrowRight") {
       event.preventDefault();
       const nextIndex = this.next();
-      this.parts["indicator"][nextIndex].focus();
+      this.indicators[nextIndex].focus();
     } else if(event.key === "ArrowLeft") {
       event.preventDefault();
       const previousIndex = this.previous();
-      this.parts["indicator"][previousIndex].focus();
+      this.indicators[previousIndex].focus();
     }
 
     this.state.playing = false;
