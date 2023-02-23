@@ -12,14 +12,15 @@ const formAttributesNoValue = ["checked", "selected"];
 
 function stringToHTML(string) {
   const parsedHTML = new DOMParser().parseFromString(string, "text/html");
+  const {head, body} = parsedHTML;
 
-  if(parsedHTML.head && parsedHTML.head.childNodes.length) {
-    Array.from(parsedHTML.head.childNodes).reverse().forEach((node) => {
-      parsedHTML.body.insertBefore(node, parsedHTML.body.firstChild);
+  if(head && head.childNodes.length) {
+    Array.from(head.childNodes).reverse().forEach((node) => {
+      body.insertBefore(node, body.firstChild);
     });
   }
 
-  return parsedHTML.body || parsedHTML.createElement("body");
+  return body || parsedHTML.createElement("body");
 }
 
 function isDifferentNode(node1, node2) {
