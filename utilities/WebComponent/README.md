@@ -453,34 +453,6 @@ Technically, all custom elements are ignored in this way (as the rendering of ea
 </details>
 
 <details>
-  <summary>Optimize for DOM diffing</summary>
-
-Above, we gave an example of a `div` with a line of text which included interpolated data (`state.count`). Because the interpolated data is an undistinguished part of the rest of the `textContent`, the `div` node's entire `textContent` will be replaced with a re-created version.
-
-In this particular contrived example, this is fine. However in more complex real-world cases, an optimization opportunity could be to isolate the portion that changes into its own node, so that the reconciler can more granularly understand and ignore what has not changed. For example, `state.count` could be wrapped in its own `span`, then the `span` content would be the only thing identified for updating:
-
-```js
-class MyComponent extends WebComponent(HTMLElement) {
-  ...
-
-  render() {
-    return `
-      <div>
-        As the count changes, this div will be diffed:
-        <span>${this.state.count}</span>.
-      </div>
-      ...
-    `;
-  }
-
-  ...
-}
-```
-
-In this contrived example, performance is probably (but negligibly) worsened by doing this, as the deeper node tree triggers further recursion in the diffing process, and the `textContent` is small. But depending on exact circumstances, it may be more performant to isolate the parts of your component that don't change from those that do. If anything, it can reduce unexpected behavior by ensuring things that are not be subject to change are left alone.
-</details>
-
-<details>
   <summary>Lifecycle optimization tips</summary>
 
 As with other component frameworks, be mindful of the entire lifecycle of a component to perform operations in the most effective place possible. Depending on the operation, you may want to do it as early or as late as possible.
