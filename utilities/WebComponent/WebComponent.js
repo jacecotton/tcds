@@ -152,11 +152,11 @@ const WebComponent = (ElementInterface = HTMLElement, options = {}) => class ext
         const type = this.#propSettings[prop]?.["type"];
         let attribute = this.getAttribute(prop);
 
-        if(type !== Boolean && attribute === null) {
-          return true;
+        if(attribute === null && value !== null && type !== Boolean) {
+          return;
         }
 
-        if(type) {
+        if(type && (value !== null || type === Boolean)) {
           attribute = typeConverter(attribute, type);
           value = typeConverter(value, type);
         }
@@ -310,21 +310,6 @@ const WebComponent = (ElementInterface = HTMLElement, options = {}) => class ext
       }
     });
   }
-
-  parts = new Proxy({}, {
-    get: (parts, part) => {
-      if(!parts[part]) {
-        const query = this.shadowRoot.querySelectorAll(`[part~=${part}]`);
-        const value = query.length > 1 ? Array.from(query) : query[0];
-
-        if(value) {
-          parts[part] = value;
-        }
-      }
-
-      return parts[part];
-    },
-  });
 };
 
 customElements.define("static-slot", class StaticSlot extends HTMLElement {/* noop */});
