@@ -35,33 +35,25 @@ The customized built-in can now be used as `<ul is="my-component">`.
 **Note:** Only do this for [elements that can have a shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow#elements_you_can_attach_a_shadow_to). **`WebComponent` is incompatible with elements that cannot.**
 
 ### Templating
+The `render` method should return your component's template in a string. ([Template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) are recommended as it allows for multi-line strings and string interpolation, rather than concatenation.)
+
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
   render() {
-    return /* html */`
+    return `
       <p>Hello world!</p>
     `;
   }
 }
 ```
 
-The `render` method is called every time [state](#state) or [props](#props) are updated (or any time an `update` event is dispatched on the element). Updates are first batched within a single [animation frame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) for efficiency and performance, then only elements within the template that have actually changed (compared to the live component DOM) will be re-rendered.
+It is "declarative" because it serves to *describe* what your component should look like based on any given state or condition, rather than what it should *do* in response to state changes and other events (which would be considered "imperative").
 
-[Template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) are recommended as it allows for multi-line strings and string interpolation, rather than concatenation.
+It is "reactive" because it is called every time [state](#state) or [props](#props) are updated (or any time an `update` event is dispatched on the element). When `render` is called, `WebComponent` applies any and only differences between the given template and the component's live DOM in light of any changes to state or other conditions (this process is known as "DOM diffing").
 
-<sub>The `/* html */` annotation before the return value can optionally be added to create syntax highlighting, if a plugin like [es6-string-html](https://marketplace.visualstudio.com/items?itemName=Tobermory.es6-string-html) is enabled in your text editor.</sub>
+`WebComponent` waits to call `render` for all back-to-back updates to be batched within a single [animation frame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame).
 
 ### Lifecycle
-`WebComponent` makes use of the base interface's `connectedCallback` lifecycle method, therefore if you use it in your child class, **you must call the parent class's corresponding method.**
-
-```js
-class MyComponent extends WebComponent(HTMLElement) {
-  connectedCallback() {
-    super.connectedCallback();
-  }
-}
-```
-
 In addition to built-in lifecycle methods, `WebComponent` provides a couple additional methods to interface with its reactivity. These follow usual conventions used by other UI libraries, but work most similarly to [Vue's](https://vuejs.org/api/options-lifecycle.html) on a technical level.
 
 ```js
@@ -102,7 +94,15 @@ class MyComponent extends WebComponent(HTMLElement) {
 }
 ```
 
-Note that `WebComponent`'s state and prop system (see below) negates the built-in method for handling attribute updates (the `observedAttributes` property and `attributeChangedCallback` method). With `WebComponent`, all attributes (except [globals](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes)) are observed by default and synchronized with the `props` property (or `state` property if indicated).
+`WebComponent` makes use of the base interface's `connectedCallback` lifecycle method, therefore if you use it in your child class, **you must call the parent class's corresponding method via `super`.**
+
+```js
+class MyComponent extends WebComponent(HTMLElement) {
+  connectedCallback() {
+    super.connectedCallback();
+  }
+}
+```
 
 ### Props
 Props are accessible internally from the public `props` property. This object is readonly, and is populated from attributes set by the component user on the component instance.
@@ -122,7 +122,7 @@ class MyComponent extends WebComponent(HTMLElement) {
 
 The `props` object is readonly because component authors should generally not override component users. However, changes to the element's attributes will trigger a re-render and update the `props` object.
 
-Prop types and default values can be specified within a static `props` object in the component class:
+Prop types and default values can be specified within a static `props` object in the component class (see [&sect; Typing](#typing)):
 
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
@@ -134,6 +134,8 @@ class MyComponent extends WebComponent(HTMLElement) {
   };
 }
 ```
+
+Note that `WebComponent`'s prop system negates the built-in method for handling attribute updates (the `observedAttributes` property and `attributeChangedCallback` method). With `WebComponent`, all attributes (except [globals](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes)) are observed by default and synchronized with the `props` property (or `state` property if indicated).
 
 ### State
 State is internally accessible and mutable from the public `state` property.
@@ -151,7 +153,7 @@ class MyComponent extends WebComponent(HTMLElement) {
 }
 ```
 
-State types and default values can be specified within a static `state` object in the component class:
+State types and default values can be specified within a static `state` object in the component class (see [&sect; Typing](#typing)):
 
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
@@ -225,7 +227,7 @@ The `WebComponent` utility is technically agnostic as to styling. The simplest w
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
   render() {
-    return /* html */`
+    return `
       <style>
         :host {
           display: block;
@@ -250,7 +252,7 @@ class MyComponent extends WebComponent(HTMLElement) {
   }
 
   get styles() {
-    return /* css */`
+    return `
       :host {
         display: block;
       }
@@ -313,7 +315,7 @@ For the former, in order to access the component context, and its public methods
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
   render() {
-    return /* html */`
+    return `
       <button
         onclick="this.getRootNode().host.message()"
       >Click me</button>
@@ -331,7 +333,7 @@ Or, the imperative way:
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
   render() {
-    return /* html */`
+    return `
       <button part="button">Click me</button>
     `;
   }
@@ -465,4 +467,23 @@ The lifecycle order is **asynchronous**: `constructor -> connectedCallback -> re
     * Also be aware that re-renders **do not wait** for this hook—`updatedCallback` is called *after* the render has completed.
 * `disconnectedCallback` — To prevent memory leaks and generally optimize memory, undo any side effects done in `connectedCallback` or `mountedCallback` that may still be held in browser memory. For example, remove any event listeners, disconnect any observers, clear any intervals or recursive timeouts, etc.
     * Event listeners and observers added to the component element or its children will be automatically garbage collected when the element is removed, so you do not need to remove them yourself. You only need to undo *side effects*, i.e. things done outside the component instance, like to the `window` or `document`.
+</details>
+
+<details>
+  <summary>Syntax highlighting in render template</summary>
+
+An editor plugin like VS Code's [es6-string-html](https://marketplace.visualstudio.com/items?itemName=Tobermory.es6-string-html) can enable HTML syntax highlighting within annotated template literals.
+
+```js
+class MyComponent extends WebComponent(HTMLElement) {
+  render() {
+    return /* html */`
+      <p>
+        This will be syntax highlighted in a code
+        editor with the necessary plugin.
+      </p>
+    `;
+  }
+}
+```
 </details>
