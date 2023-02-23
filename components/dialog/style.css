@@ -17,6 +17,13 @@
   contain: content;
 }
 
+:host(:not([data-theme="dark"])) {
+  --tcds-color-text: var(--tcds-color-blue-dark);
+  --tcds-color-link: var(--tcds-color-link-default);
+  --tcds-color-link-hover: var(--tcds-color-blue-dark);
+  --tcds-color-highlight: var(--tcds-color-shade-x-weak);
+}
+
 :host([open]) {
   display: flex;
   animation: fade-in var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing) forwards;
@@ -34,6 +41,7 @@
   position: relative;
   z-index: 1;
   border-radius: 10px;
+  box-shadow: 0 0 10px rgb(0 0 0 / 60%);
 }
 
 @media (min-width: 1024px) {
