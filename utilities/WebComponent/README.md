@@ -181,7 +181,7 @@ class MyComponent extends WebComponent(HTMLElement) {
 
 If `count` exists as a property of the `state` object, the `[count]` attribute will now automatically be synced to `state.count` (in both directions; an update to one will be reflected by the other). This also prevents the `[count]` attribute from being registered as a prop.
 
-This is useful to allow component users to set the initial state of a component via an attribute. For instance, the dialog component allows users to set whether it should open on page load by adding a boolean attribute: `<tcds-dialog open>`.
+This is useful to allow component users to set the initial state of a component via an attribute. For instance, the dialog component allows users to set whether it should open on page load by adding a boolean attribute: `<tcds-dialog open>`. `open` is not a prop in this case because it is internal state that will change based on user behavior, as defined by the component *author* and not the component *user*.
 
 ### Typing
 Available state and prop types are `String`, `Number`, `Boolean`, and `Array`.
