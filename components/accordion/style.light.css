@@ -5,3 +5,9 @@ tcds-accordion:not(:only-child) {
 tcds-accordion:first-child:not(:only-child) {
   margin: 0 0 var(--tcds-space-normal);
 }
+
+[data-theme="dark"] > tcds-accordion,
+tcds-accordion[data-theme="dark"] {
+  background: transparent;
+  box-shadow: none;
+}
