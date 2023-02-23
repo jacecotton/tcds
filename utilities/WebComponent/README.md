@@ -457,7 +457,7 @@ Technically, all custom elements are ignored in this way (as the rendering of ea
 
 Above, we gave an example of a `div` with a line of text which included interpolated data (`state.count`). Because the interpolated data is an undistinguished part of the rest of the `textContent`, the `div` node's entire `textContent` will be replaced with a re-created version.
 
-This is fine at a smaller scale, though an optimization opportunity would be to isolate the portion that changes into its own node, so that the reconciler can more granularly understand and ignore what has not changed. For example, `state.count` could be wrapped in its own `span`, then the `span` content would be the only thing identified for updating:
+In this particular contrived example, this is fine. However in more complex real-world cases, an optimization opportunity could be to isolate the portion that changes into its own node, so that the reconciler can more granularly understand and ignore what has not changed. For example, `state.count` could be wrapped in its own `span`, then the `span` content would be the only thing identified for updating:
 
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
@@ -476,10 +476,12 @@ class MyComponent extends WebComponent(HTMLElement) {
   ...
 }
 ```
+
+In this contrived example, performance is probably (but negligibly) worsened by doing this, as the deeper node tree triggers further recursion in the diffing process. Nevertheless, it can sometimes be helpful to isolate the parts of your component that don't change from those that do. If anything, it can reduce unexpected behavior by ensuring things that should not be subject to change are left alone.
 </details>
 
 <details>
-  <summary>Performance tips</summary>
+  <summary>Lifecycle optimization tips</summary>
 
 As with other component frameworks, be mindful of the entire lifecycle of a component to perform operations in the most effective place possible. Depending on the operation, you may want to do it as early or as late as possible.
 
