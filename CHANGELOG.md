@@ -1,3 +1,19 @@
+## [1.6.5](https://github.com/jacecotton/tcds/compare/v1.6.4...v1.6.5) (2023-02-23)
+
+
+### Bug Fixes
+
+* **components:** Add banner slot to section component ([fec416c](https://github.com/jacecotton/tcds/commit/fec416c8d7a1f5448ed1c64f015e1d39ac4d6138))
+* **components:** Button box-shadow bug ([2869ae5](https://github.com/jacecotton/tcds/commit/2869ae5eb91b58aa706150e011cc204d5bd6b809))
+* **components:** Carousel adjustments ([60b8411](https://github.com/jacecotton/tcds/commit/60b8411ce8286f7efdce5b42e19a4cc5e148cd78))
+* **components:** Dialog design update and color fix ([fe308a3](https://github.com/jacecotton/tcds/commit/fe308a368dbd0efb8f993577e1eaee30fb35957e))
+* **components:** Update accordion design ([8cd6de7](https://github.com/jacecotton/tcds/commit/8cd6de769cfdc2196b7c0aad0d8ddb04753fa7ea))
+* **icons:** Add medical circle icon ([6c11132](https://github.com/jacecotton/tcds/commit/6c11132bf12b97dcf34cb7abfa68bb18507be572))
+* **styles:** Change default --tcds-color-highlight from gray-light to shade-weak (more adaptive) ([8ba4af6](https://github.com/jacecotton/tcds/commit/8ba4af610baee17710b4a551bf1dd32c73c56f2c))
+* **styles:** Color utility specificity issue ([133847a](https://github.com/jacecotton/tcds/commit/133847aef69d0c893eb7b123e3d9e75a6c67f1c3))
+
+
+
 ## [1.6.4](https://github.com/jacecotton/tcds/compare/v1.6.3...v1.6.4) (2023-02-23)
 
 
@@ -31,21 +47,6 @@
 ### Bug Fixes
 
 * **components:** Tweak WebComponent connectedCallback API ([d03952c](https://github.com/jacecotton/tcds/commit/d03952c18069c9edf53ccbef308e34c61e98a83a))
-
-
-
-# [1.6.0](https://github.com/jacecotton/tcds/compare/v1.5.7...v1.6.0) (2023-02-16)
-
-
-### Bug Fixes
-
-* **components:** Add disabled to WebComponent's global attribute blacklist ([b087edd](https://github.com/jacecotton/tcds/commit/b087edd4ef5b24b0434a4a9f9ffc5ccbf8a434cd))
-* **components:** Button theme scoping issue ([cf5aa17](https://github.com/jacecotton/tcds/commit/cf5aa17811196c72b6bd604e250102c7dc46faad))
-
-
-### Features
-
-* **components:** Add map component ([4dceeca](https://github.com/jacecotton/tcds/commit/4dceecaf282bc12ce5d8b8ac3aa78afd45347872))
 
 
 
