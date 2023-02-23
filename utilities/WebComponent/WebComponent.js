@@ -7,14 +7,15 @@ import {typeChecker, typeConverter} from "./type-utils.js";
  * https://github.com/jacecotton/tcds/tree/main/scripts/WebComponent
  *
  * @todo Add a `required` option to props and state.
- * @todo Filter global attributes at point of state reflection too.
+ *   - How to handle error if absent?
+ * @todo Add ability to disable attribute-to-prop registration by setting the
+ *   prop to `false`.
  *
  * @param {Element} [ElementInterface=HTMLElement] - The HTML element interface
  *   to extend. `HTMLElement` if an autonomous custom element, something else if
  *   a customized built-in.
  * @param {object} options - `attachShadow` settings. Useful to set `mode` to
- *   `closed` if desired (default is `open`), or things like `delegatesFocus`
- *   for buttons and other inputs.
+ *   `closed` if desired (default is `open`), or things like `delegatesFocus`.
  */
 
 const WebComponent = (ElementInterface = HTMLElement, options = {}) => class extends ElementInterface {
