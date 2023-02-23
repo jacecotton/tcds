@@ -1,3 +1,12 @@
+## [1.6.4](https://github.com/jacecotton/tcds/compare/v1.6.3...v1.6.4) (2023-02-23)
+
+
+### Bug Fixes
+
+* **utilities:** WebComponent ([24300d9](https://github.com/jacecotton/tcds/commit/24300d924b1740a0dd538f1772260d4f33602bba))
+
+
+
 ## [1.6.3](https://github.com/jacecotton/tcds/compare/v1.6.2...v1.6.3) (2023-02-21)
 
 
@@ -37,15 +46,6 @@
 ### Features
 
 * **components:** Add map component ([4dceeca](https://github.com/jacecotton/tcds/commit/4dceecaf282bc12ce5d8b8ac3aa78afd45347872))
-
-
-
-## [1.5.7](https://github.com/jacecotton/tcds/compare/v1.5.6...v1.5.7) (2023-02-15)
-
-
-### Bug Fixes
-
-* **scripts:** WebComponent cleanup ([00303d9](https://github.com/jacecotton/tcds/commit/00303d979c98f4ab53db55e117b916bd621835ab))
 
 
 
