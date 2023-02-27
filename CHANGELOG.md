@@ -1,3 +1,12 @@
+## [1.6.7](https://github.com/jacecotton/tcds/compare/v1.6.6...v1.6.7) (2023-02-27)
+
+
+### Bug Fixes
+
+* **components:** carousel scroll issue ([499ab79](https://github.com/jacecotton/tcds/commit/499ab79f53d9bdf4065f68755c0d8ae4a3b3464b))
+
+
+
 ## [1.6.6](https://github.com/jacecotton/tcds/compare/v1.6.5...v1.6.6) (2023-02-27)
 
 
@@ -38,15 +47,6 @@
 ### Bug Fixes
 
 * **build:** Update scripts to utils/javascript in gulpfile and package.json ([d0f7992](https://github.com/jacecotton/tcds/commit/d0f79922fd8dd4ca3575c6f403feeda72dde1bdc))
-
-
-
-## [1.6.2](https://github.com/jacecotton/tcds/compare/v1.6.1...v1.6.2) (2023-02-21)
-
-
-### Bug Fixes
-
-* **components:** Improve dialog focus trapping ([e909d32](https://github.com/jacecotton/tcds/commit/e909d32678d5b09917af085e8696a01c55c811a3))
 
 
 
