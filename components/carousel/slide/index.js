@@ -34,13 +34,6 @@ export default class Slide extends WebComponent(HTMLElement) {
       if("active" in state.newState) {
         if(this.state.active) {
           this.parent.dispatchEvent(new Event("update"));
-
-          requestAnimationFrame(() => {
-            const viewportOffset = this.parent.viewport.getBoundingClientRect().left;
-            const slideOffset = this.getBoundingClientRect().left;
-
-            this.parent.viewport.scrollLeft += slideOffset - viewportOffset;
-          });
         }
       }
     }
@@ -49,6 +42,16 @@ export default class Slide extends WebComponent(HTMLElement) {
   select() {
     this.parent.querySelectorAll("tcds-slide").forEach((slide) => {
       slide.state.active = slide === this;
+
+      if(slide === this) {
+        console.log("scrolling into view", this.textContent);
+
+        this.scrollIntoView({
+          behavior: "smooth",
+          inline: this.parent.props.multiple ? "center" : "start",
+          block: "nearest",
+        });
+      }
     });
   }
 }

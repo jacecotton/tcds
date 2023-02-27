@@ -30,7 +30,11 @@ export default class Carousel extends WebComponent(HTMLElement) {
     super.connectedCallback();
 
     this.slides = Array.from(this.querySelectorAll("tcds-slide"));
-    (this.slides.find(slide => slide.state.active) || this.slides[0]).select();
+    this.initialActive = this.slides.find(slide => slide.state.active);
+
+    if(!this.initialActive) {
+      this.slides[0].state.active = true;
+    }
   }
 
   render() {
@@ -172,6 +176,8 @@ export default class Carousel extends WebComponent(HTMLElement) {
     });
   }
 
+  #scrolledIntoView = 0;
+
   get scrollOutOfView() {
     return new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -181,6 +187,13 @@ export default class Carousel extends WebComponent(HTMLElement) {
         } else {
           this.resume();
           this.isInView = true;
+          this.#scrolledIntoView++;
+
+          if(this.#scrolledIntoView === 1 && this.initialActive) {
+            setTimeout(() => {
+              this.initialActive.select();
+            }, 1000);
+          }
         }
       });
     }, {threshold: .9});
