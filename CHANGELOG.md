@@ -1,3 +1,12 @@
+## [1.6.6](https://github.com/jacecotton/tcds/compare/v1.6.5...v1.6.6) (2023-02-27)
+
+
+### Bug Fixes
+
+* **components:** carousel default slide issue ([d643609](https://github.com/jacecotton/tcds/commit/d643609460a4c0c73918b725caf3091057b3a7b5))
+
+
+
 ## [1.6.5](https://github.com/jacecotton/tcds/compare/v1.6.4...v1.6.5) (2023-02-23)
 
 
@@ -38,15 +47,6 @@
 ### Bug Fixes
 
 * **components:** Improve dialog focus trapping ([e909d32](https://github.com/jacecotton/tcds/commit/e909d32678d5b09917af085e8696a01c55c811a3))
-
-
-
-## [1.6.1](https://github.com/jacecotton/tcds/compare/v1.6.0...v1.6.1) (2023-02-21)
-
-
-### Bug Fixes
-
-* **components:** Tweak WebComponent connectedCallback API ([d03952c](https://github.com/jacecotton/tcds/commit/d03952c18069c9edf53ccbef308e34c61e98a83a))
 
 
 
