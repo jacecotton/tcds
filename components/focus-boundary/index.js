@@ -22,14 +22,19 @@ function getFocusableChildren(root) {
 export default class FocusBoundary extends HTMLElement {
   constructor() {
     super();
+
+    this.sibling = Array.from(this.parentElement.querySelectorAll("tcds-focus-boundary"))
+      .filter(boundary => boundary !== this)[0];
   }
 
   focusFirstOf(node) {
-    getFocusableChildren(node)[0].focus();
+    const firstFocusableChild = getFocusableChildren(node)[0] || this.sibling;
+    firstFocusableChild.focus();
   }
 
   focusLastOf(node) {
-    getFocusableChildren(node)[getFocusableChildren(node).length - 1].focus();
+    const lastFocusableChild = getFocusableChildren(node)[getFocusableChildren(node).length - 1] || this.sibling;
+    lastFocusableChild.focus();
   }
 }
 

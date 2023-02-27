@@ -85,7 +85,7 @@ export default class Tabs extends WebComponent(HTMLElement) {
   }
 
   mountedCallback() {
-    this.tabButtons = this.shadowRoot.querySelectorAll("[part~=tab]");
+    this.tabButtons = Array.from(this.shadowRoot.querySelectorAll("[part~=tab]"));
   }
 
   tabClick(event) {

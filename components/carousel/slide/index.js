@@ -11,7 +11,6 @@ export default class Slide extends WebComponent(HTMLElement) {
 
   connectedCallback() {
     super.connectedCallback();
-
     this.parent = this.closest("tcds-carousel");
   }
 
@@ -33,14 +32,15 @@ export default class Slide extends WebComponent(HTMLElement) {
   updatedCallback(state) {
     if(state.newState) {
       if("active" in state.newState) {
-        if(this.state.active && this.parent.isInView) {
-          this.scrollIntoView({
-            behavior: "smooth",
-            inline: this.parent.props.multiple ? "center" : "start",
-            block: "nearest",
-          });
-
+        if(this.state.active) {
           this.parent.dispatchEvent(new Event("update"));
+
+          requestAnimationFrame(() => {
+            const viewportOffset = this.parent.viewport.getBoundingClientRect().left;
+            const slideOffset = this.getBoundingClientRect().left;
+
+            this.parent.viewport.scrollLeft += slideOffset - viewportOffset;
+          });
         }
       }
     }

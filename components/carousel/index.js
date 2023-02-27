@@ -30,14 +30,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
     super.connectedCallback();
 
     this.slides = Array.from(this.querySelectorAll("tcds-slide"));
-
-    const activeSlides = this.slides.filter(slide => slide.hasAttribute("active"));
-
-    if(activeSlides.length < 1) {
-      this.slides[0].select();
-    } else if(activeSlides.length > 1) {
-      activeSlides[0].select();
-    }
+    (this.slides.find(slide => slide.state.active) || this.slides[0]).select();
   }
 
   render() {
@@ -149,16 +142,16 @@ export default class Carousel extends WebComponent(HTMLElement) {
 
       if(this.props.multiple) {
         const {left: viewportLeft, right: viewportRight} = this.viewport.getBoundingClientRect();
-        const viewportCenterpoint = Math.floor((viewportLeft + viewportRight) / 2);
+        this.centerpoint = Math.floor((viewportLeft + viewportRight) / 2);
 
         clearTimeout(this.#swipeDebounce);
 
         this.#swipeDebounce = setTimeout(() => {
           const proximitiesToCenter = this.slides.map((slide) => {
             const {left: slideLeft, right: slideRight} = slide.getBoundingClientRect();
-            const slideCenterpoint = Math.floor((slideLeft + slideRight) / 2);
+            slide.centerpoint = Math.floor((slideLeft + slideRight) / 2);
 
-            return Math.abs(slideCenterpoint - viewportCenterpoint);
+            return Math.abs(slide.centerpoint - this.centerpoint);
           });
 
           const closestToCenter = proximitiesToCenter.indexOf(Math.min(...proximitiesToCenter));
