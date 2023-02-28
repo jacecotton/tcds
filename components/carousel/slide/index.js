@@ -46,7 +46,12 @@ export default class Slide extends WebComponent(HTMLElement) {
       if(slide === this) {
         this.scrollIntoView({
           behavior: "smooth",
-          inline: this.parent.props.multiple ? "center" : "start",
+          inline:
+            /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
+              ? "nearest"
+              : this.parent.props.multiple
+                ? "center"
+                : "start",
           block: "nearest",
         });
       }
