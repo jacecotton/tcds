@@ -1,3 +1,12 @@
+## [1.6.11](https://github.com/jacecotton/tcds/compare/v1.6.10...v1.6.11) (2023-02-28)
+
+
+### Bug Fixes
+
+* **components:** Style tweaks ([7fd7dc3](https://github.com/jacecotton/tcds/commit/7fd7dc3525ef58c3c1f95b35d6dfe812106b210e))
+
+
+
 ## [1.6.10](https://github.com/jacecotton/tcds/compare/v1.6.9...v1.6.10) (2023-02-28)
 
 
@@ -33,15 +42,6 @@
 ### Bug Fixes
 
 * **components:** carousel scroll issue ([499ab79](https://github.com/jacecotton/tcds/commit/499ab79f53d9bdf4065f68755c0d8ae4a3b3464b))
-
-
-
-## [1.6.6](https://github.com/jacecotton/tcds/compare/v1.6.5...v1.6.6) (2023-02-27)
-
-
-### Bug Fixes
-
-* **components:** carousel default slide issue ([d643609](https://github.com/jacecotton/tcds/commit/d643609460a4c0c73918b725caf3091057b3a7b5))
 
 
 
