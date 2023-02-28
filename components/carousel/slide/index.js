@@ -44,15 +44,13 @@ export default class Slide extends WebComponent(HTMLElement) {
       slide.state.active = slide === this;
 
       if(slide === this) {
-        this.scrollIntoView({
-          behavior: "smooth",
-          inline:
-            /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
-              ? "nearest"
-              : this.parent.props.multiple
-                ? "center"
-                : "start",
-          block: "nearest",
+        const {offsetLeft: slideLeft} = this;
+        const {width: slideWidth} = this.getBoundingClientRect();
+        const {width: viewportWidth, left: viewportLeft} = this.parent.viewport.getBoundingClientRect();
+
+        this.parent.viewport.scrollTo({
+          left: (slideLeft - viewportLeft) - (viewportWidth / 2) + (slideWidth / 2),
+          top: 0,
         });
       }
     });

@@ -1,5 +1,4 @@
 import WebComponent from "../../utilities/WebComponent/WebComponent.js";
-import debounce from "../../utilities/event-utils/debounce.js";
 import shadowStyles from "./style.css";
 import lightStyles from "./style.light.css";
 
@@ -32,10 +31,6 @@ export default class Carousel extends WebComponent(HTMLElement) {
 
     this.slides = Array.from(this.querySelectorAll("tcds-slide"));
     this.initialActive = this.slides.find(slide => slide.state.active);
-
-    if(!this.initialActive) {
-      this.slides[0].state.active = true;
-    }
   }
 
   render() {
@@ -104,6 +99,12 @@ export default class Carousel extends WebComponent(HTMLElement) {
     this.viewport = this.shadowRoot.querySelector("[part~=viewport]");
     this.indicators = Array.from(this.shadowRoot.querySelectorAll("[part~=indicator]"));
 
+    if(!this.initialActive) {
+      this.slides[0].select();
+    } else {
+      this.initialActive.select();
+    }
+
     this.state.playing =
       this.hasAttribute("playing")
       && this.hasAttribute("timing")
@@ -161,7 +162,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
 
           const closestToCenter = proximitiesToCenter.indexOf(Math.min(...proximitiesToCenter));
           this.slides[closestToCenter].select();
-        }, 200);
+        }, 500);
       } else {
         entries.forEach((entry) => {
           if(entry.isIntersecting) {
@@ -177,8 +178,6 @@ export default class Carousel extends WebComponent(HTMLElement) {
     });
   }
 
-  #scrolledIntoView = 0;
-
   get scrollOutOfView() {
     return new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -188,15 +187,6 @@ export default class Carousel extends WebComponent(HTMLElement) {
         } else {
           this.resume();
           this.isInView = true;
-          this.#scrolledIntoView++;
-
-          if(this.#scrolledIntoView === 1 && this.initialActive) {
-            window.addEventListener("scroll", debounce(() => {
-              if(this.isInView && this.#scrolledIntoView === 1) {
-                this.initialActive.select();
-              }
-            }, 1000));
-          }
         }
       });
     }, {threshold: .9});
