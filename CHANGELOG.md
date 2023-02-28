@@ -1,3 +1,17 @@
+# [1.7.0](https://github.com/jacecotton/tcds/compare/v1.6.12...v1.7.0) (2023-02-28)
+
+
+### Bug Fixes
+
+* **components:** Carousel scrollIntoView debouncing ([71b0ec9](https://github.com/jacecotton/tcds/commit/71b0ec9308e8fc43123a14829f9f78a69e1bbf10))
+
+
+### Features
+
+* **utilites:** Add debounce utility ([e57fb55](https://github.com/jacecotton/tcds/commit/e57fb554fda3b686cae943d329777c9a16bbc379))
+
+
+
 ## [1.6.12](https://github.com/jacecotton/tcds/compare/v1.6.11...v1.6.12) (2023-02-28)
 
 
@@ -33,15 +47,6 @@
 ### Bug Fixes
 
 * **components:** carousel safari bug ([abf4ff9](https://github.com/jacecotton/tcds/commit/abf4ff956fa5ddc8e3f1213d41c220c1c90221af))
-
-
-
-## [1.6.8](https://github.com/jacecotton/tcds/compare/v1.6.7...v1.6.8) (2023-02-28)
-
-
-### Bug Fixes
-
-* **components:** carousel + card cleanup ([3ee0dba](https://github.com/jacecotton/tcds/commit/3ee0dba02bce835e9d0596d7ca320f8a9ccb0ca8))
 
 
 
