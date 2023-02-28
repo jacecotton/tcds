@@ -1,3 +1,12 @@
+## [1.6.8](https://github.com/jacecotton/tcds/compare/v1.6.7...v1.6.8) (2023-02-28)
+
+
+### Bug Fixes
+
+* **components:** carousel + card cleanup ([3ee0dba](https://github.com/jacecotton/tcds/commit/3ee0dba02bce835e9d0596d7ca320f8a9ccb0ca8))
+
+
+
 ## [1.6.7](https://github.com/jacecotton/tcds/compare/v1.6.6...v1.6.7) (2023-02-27)
 
 
@@ -38,15 +47,6 @@
 ### Bug Fixes
 
 * **utilities:** WebComponent ([24300d9](https://github.com/jacecotton/tcds/commit/24300d924b1740a0dd538f1772260d4f33602bba))
-
-
-
-## [1.6.3](https://github.com/jacecotton/tcds/compare/v1.6.2...v1.6.3) (2023-02-21)
-
-
-### Bug Fixes
-
-* **build:** Update scripts to utils/javascript in gulpfile and package.json ([d0f7992](https://github.com/jacecotton/tcds/commit/d0f79922fd8dd4ca3575c6f403feeda72dde1bdc))
 
 
 
