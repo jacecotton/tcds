@@ -1,3 +1,12 @@
+## [1.6.9](https://github.com/jacecotton/tcds/compare/v1.6.8...v1.6.9) (2023-02-28)
+
+
+### Bug Fixes
+
+* **components:** carousel safari bug ([abf4ff9](https://github.com/jacecotton/tcds/commit/abf4ff956fa5ddc8e3f1213d41c220c1c90221af))
+
+
+
 ## [1.6.8](https://github.com/jacecotton/tcds/compare/v1.6.7...v1.6.8) (2023-02-28)
 
 
@@ -38,15 +47,6 @@
 * **icons:** Add medical circle icon ([6c11132](https://github.com/jacecotton/tcds/commit/6c11132bf12b97dcf34cb7abfa68bb18507be572))
 * **styles:** Change default --tcds-color-highlight from gray-light to shade-weak (more adaptive) ([8ba4af6](https://github.com/jacecotton/tcds/commit/8ba4af610baee17710b4a551bf1dd32c73c56f2c))
 * **styles:** Color utility specificity issue ([133847a](https://github.com/jacecotton/tcds/commit/133847aef69d0c893eb7b123e3d9e75a6c67f1c3))
-
-
-
-## [1.6.4](https://github.com/jacecotton/tcds/compare/v1.6.3...v1.6.4) (2023-02-23)
-
-
-### Bug Fixes
-
-* **utilities:** WebComponent ([24300d9](https://github.com/jacecotton/tcds/commit/24300d924b1740a0dd538f1772260d4f33602bba))
 
 
 
