@@ -1,4 +1,5 @@
 import WebComponent from "../../utilities/WebComponent/WebComponent.js";
+import debounce from "../../utilities/event-utils/debounce.js";
 import shadowStyles from "./style.css";
 import lightStyles from "./style.light.css";
 
@@ -190,9 +191,9 @@ export default class Carousel extends WebComponent(HTMLElement) {
           this.#scrolledIntoView++;
 
           if(this.#scrolledIntoView === 1 && this.initialActive) {
-            setTimeout(() => {
+            window.addEventListener("scroll", debounce(() => {
               this.initialActive.select();
-            }, 1000);
+            }, 1000));
           }
         }
       });
