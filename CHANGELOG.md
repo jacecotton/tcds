@@ -1,3 +1,12 @@
+## [1.6.12](https://github.com/jacecotton/tcds/compare/v1.6.11...v1.6.12) (2023-02-28)
+
+
+### Bug Fixes
+
+* **components:** Icon clipping issue ([43c3c9a](https://github.com/jacecotton/tcds/commit/43c3c9a1094651da396df8495e259fd6d35d0e30))
+
+
+
 ## [1.6.11](https://github.com/jacecotton/tcds/compare/v1.6.10...v1.6.11) (2023-02-28)
 
 
@@ -33,15 +42,6 @@
 ### Bug Fixes
 
 * **components:** carousel + card cleanup ([3ee0dba](https://github.com/jacecotton/tcds/commit/3ee0dba02bce835e9d0596d7ca320f8a9ccb0ca8))
-
-
-
-## [1.6.7](https://github.com/jacecotton/tcds/compare/v1.6.6...v1.6.7) (2023-02-27)
-
-
-### Bug Fixes
-
-* **components:** carousel scroll issue ([499ab79](https://github.com/jacecotton/tcds/commit/499ab79f53d9bdf4065f68755c0d8ae4a3b3464b))
 
 
 
