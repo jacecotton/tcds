@@ -4,7 +4,7 @@ export default class Countdown extends WebComponent(HTMLElement) {
   static state = {
     count: {
       type: String,
-      default: "00 : 00 : 00",
+      default: "00 : 00 : 00 : 00",
     },
   };
 
@@ -43,8 +43,9 @@ export default class Countdown extends WebComponent(HTMLElement) {
     const daysUntil = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, "0");
     const hoursUntil = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, "0");
     const minutesUntil = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, "0");
+    const secondsUntil = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, "0");
 
-    this.state.count = `${daysUntil} : ${hoursUntil} : ${minutesUntil}`;
+    this.state.count = `${daysUntil} : ${hoursUntil} : ${minutesUntil} : ${secondsUntil}`;
   }
 }
 
