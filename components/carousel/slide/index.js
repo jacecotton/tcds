@@ -44,8 +44,6 @@ export default class Slide extends WebComponent(HTMLElement) {
       slide.state.active = slide === this;
 
       if(slide === this) {
-        console.log("scrolling into view", this.textContent);
-
         this.scrollIntoView({
           behavior: "smooth",
           inline: this.parent.props.multiple ? "center" : "start",

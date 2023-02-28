@@ -52,6 +52,7 @@ section {
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   overscroll-behavior-x: none;
+  position: relative;
 }
 
 @media (prefers-reduced-motion: no-preference) {

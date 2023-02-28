@@ -2,7 +2,6 @@
   --tcds-card-font: var(--tcds-font-serif);
   --tcds-card-content-padding: var(--tcds-space-x-loose);
 
-  contain: content;
   width: 100%;
   height: 100%;
   flex: 1 0;
