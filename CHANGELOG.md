@@ -1,3 +1,12 @@
+## [1.7.2](https://github.com/jacecotton/tcds/compare/v1.7.1...v1.7.2) (2023-02-28)
+
+
+### Bug Fixes
+
+* **components:** Better carousel debouncing ([13f5c1d](https://github.com/jacecotton/tcds/commit/13f5c1d48cef3754da9cd55da04a008c7ba88c54))
+
+
+
 ## [1.7.1](https://github.com/jacecotton/tcds/compare/v1.7.0...v1.7.1) (2023-02-28)
 
 
@@ -36,17 +45,6 @@
 ### Bug Fixes
 
 * **components:** Style tweaks ([7fd7dc3](https://github.com/jacecotton/tcds/commit/7fd7dc3525ef58c3c1f95b35d6dfe812106b210e))
-
-
-
-## [1.6.10](https://github.com/jacecotton/tcds/compare/v1.6.9...v1.6.10) (2023-02-28)
-
-
-### Bug Fixes
-
-* **components:** Action bar overflow style issue ([3dc9ba4](https://github.com/jacecotton/tcds/commit/3dc9ba48a722b67d7c44ea7cdf88c8542ab06d05))
-* **components:** Add seconds to countdown component ([5bf2c01](https://github.com/jacecotton/tcds/commit/5bf2c01ed330a35f017cc2932d803c39ce4c8f3f))
-* **components:** Hero tweaks ([6c42965](https://github.com/jacecotton/tcds/commit/6c429656d4818f6d40d2a39ae3ff3b77e2c62d95))
 
 
 
