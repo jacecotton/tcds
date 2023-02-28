@@ -1,3 +1,12 @@
+## [1.7.3](https://github.com/jacecotton/tcds/compare/v1.7.2...v1.7.3) (2023-02-28)
+
+
+### Bug Fixes
+
+* **components:** Better carousel scroll method ([0f981b4](https://github.com/jacecotton/tcds/commit/0f981b49f4d86e984e9eba41ee70a58f80103ad3))
+
+
+
 ## [1.7.2](https://github.com/jacecotton/tcds/compare/v1.7.1...v1.7.2) (2023-02-28)
 
 
@@ -36,15 +45,6 @@
 ### Bug Fixes
 
 * **components:** Icon clipping issue ([43c3c9a](https://github.com/jacecotton/tcds/commit/43c3c9a1094651da396df8495e259fd6d35d0e30))
-
-
-
-## [1.6.11](https://github.com/jacecotton/tcds/compare/v1.6.10...v1.6.11) (2023-02-28)
-
-
-### Bug Fixes
-
-* **components:** Style tweaks ([7fd7dc3](https://github.com/jacecotton/tcds/commit/7fd7dc3525ef58c3c1f95b35d6dfe812106b210e))
 
 
 
