@@ -192,7 +192,9 @@ export default class Carousel extends WebComponent(HTMLElement) {
 
           if(this.#scrolledIntoView === 1 && this.initialActive) {
             window.addEventListener("scroll", debounce(() => {
-              this.initialActive.select();
+              if(entry.isIntersecting && this.#scrolledIntoView === 1) {
+                this.initialActive.select();
+              }
             }, 1000));
           }
         }
