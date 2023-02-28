@@ -47,7 +47,7 @@ tcds-section > [slot="subheading"] {
 
 @media (min-width: 768px) {
   tcds-section > [slot="image"] {
-    width: 115%;
+    width: 100%;
     max-width: none;
     position: absolute;
     transform: translateY(-50%);
