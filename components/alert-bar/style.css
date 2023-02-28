@@ -1,7 +1,5 @@
 :host {
   --tcds-alert-bar-height: var(--tcds-size-large);
-
-  contain: content;
 }
 
 :host(:not([hidden])) {
