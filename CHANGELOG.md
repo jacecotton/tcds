@@ -1,3 +1,13 @@
+# [1.8.0](https://github.com/jacecotton/tcds/compare/v1.7.4...v1.8.0) (2023-03-01)
+
+
+### Features
+
+* **components:** Add gallery variant to carousel component ([0e01a8f](https://github.com/jacecotton/tcds/commit/0e01a8ff6de24db755922a82df8a22181d0dc94c))
+* **components:** Add spinner component ([7d6cf28](https://github.com/jacecotton/tcds/commit/7d6cf28215f0a322e27e769bf631db3744747c99))
+
+
+
 ## [1.7.4](https://github.com/jacecotton/tcds/compare/v1.7.3...v1.7.4) (2023-03-01)
 
 
@@ -31,20 +41,6 @@
 ### Bug Fixes
 
 * **components:** Carousel scrollIntoView debounce better condition handling ([0819d97](https://github.com/jacecotton/tcds/commit/0819d97401caeaa66a6b024225c1f9e1ab85f4a4))
-
-
-
-# [1.7.0](https://github.com/jacecotton/tcds/compare/v1.6.12...v1.7.0) (2023-02-28)
-
-
-### Bug Fixes
-
-* **components:** Carousel scrollIntoView debouncing ([71b0ec9](https://github.com/jacecotton/tcds/commit/71b0ec9308e8fc43123a14829f9f78a69e1bbf10))
-
-
-### Features
-
-* **utilites:** Add debounce utility ([e57fb55](https://github.com/jacecotton/tcds/commit/e57fb554fda3b686cae943d329777c9a16bbc379))
 
 
 
