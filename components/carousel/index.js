@@ -18,6 +18,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
   static props = {
     timing: {type: Number},
     multiple: {type: Boolean},
+    variant: {type: String},
   };
 
   constructor() {
@@ -74,7 +75,12 @@ export default class Carousel extends WebComponent(HTMLElement) {
                 tabindex="${slide.state.active ? "0" : "-1"}"
                 onclick="this.getRootNode().host.indicatorClick(event)"
                 onkeydown="this.getRootNode().host.indicatorKeydown(event)"
-              ></button>
+              >
+                ${this.props.variant === "gallery" ? /* html */`
+                  <tcds-spinner></tcds-spinner>
+                  <img src="${slide.querySelector("img")?.src}" alt="">
+                ` : ``}
+              </button>
             `).join("")}
           </div>
         </div>
@@ -224,13 +230,15 @@ export default class Carousel extends WebComponent(HTMLElement) {
   }
 
   nextClick() {
-    this.next();
+    const nextIndex = this.next();
+    this.indicators[nextIndex].scrollIntoView();
     this.state.playing = false;
     this.observeSwipe = false;
   }
 
   previousClick() {
-    this.previous();
+    const previousIndex = this.previous();
+    this.indicators[previousIndex].scrollIntoView();
     this.state.playing = false;
     this.observeSwipe = false;
   }
