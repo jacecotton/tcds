@@ -22,6 +22,7 @@ export default class Slide extends WebComponent(HTMLElement) {
         ${this.state.active === false ? `
           aria-hidden="true"
           tabindex="-1"
+          inert
         ` : ``}
       >
         <slot></slot>
@@ -44,12 +45,11 @@ export default class Slide extends WebComponent(HTMLElement) {
       slide.state.active = slide === this;
 
       if(slide === this) {
-        const {offsetLeft: slideLeft} = this;
-        const {width: slideWidth} = this.getBoundingClientRect();
+        const slideWidth = this.getBoundingClientRect().width;
         const {width: viewportWidth, left: viewportLeft} = this.parent.viewport.getBoundingClientRect();
 
         this.parent.viewport.scrollTo({
-          left: (slideLeft - viewportLeft) - (viewportWidth / 2) + (slideWidth / 2),
+          left: (this.offsetLeft - viewportLeft) - (viewportWidth / 2) + (slideWidth / 2),
           top: 0,
         });
       }
