@@ -1,3 +1,12 @@
+## [1.7.4](https://github.com/jacecotton/tcds/compare/v1.7.3...v1.7.4) (2023-03-01)
+
+
+### Bug Fixes
+
+* **components:** Carousel ([6373d53](https://github.com/jacecotton/tcds/commit/6373d534229152f2ee68a51e06fef9ed5f99d1b3))
+
+
+
 ## [1.7.3](https://github.com/jacecotton/tcds/compare/v1.7.2...v1.7.3) (2023-02-28)
 
 
@@ -36,15 +45,6 @@
 ### Features
 
 * **utilites:** Add debounce utility ([e57fb55](https://github.com/jacecotton/tcds/commit/e57fb554fda3b686cae943d329777c9a16bbc379))
-
-
-
-## [1.6.12](https://github.com/jacecotton/tcds/compare/v1.6.11...v1.6.12) (2023-02-28)
-
-
-### Bug Fixes
-
-* **components:** Icon clipping issue ([43c3c9a](https://github.com/jacecotton/tcds/commit/43c3c9a1094651da396df8495e259fd6d35d0e30))
 
 
 
