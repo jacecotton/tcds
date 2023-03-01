@@ -1,3 +1,12 @@
+## [1.8.1](https://github.com/jacecotton/tcds/compare/v1.8.0...v1.8.1) (2023-03-01)
+
+
+### Bug Fixes
+
+* **components:** Mega menu issue ([389f68d](https://github.com/jacecotton/tcds/commit/389f68dacafffc65051bdcf3934373fb892b4b92))
+
+
+
 # [1.8.0](https://github.com/jacecotton/tcds/compare/v1.7.4...v1.8.0) (2023-03-01)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * **components:** Better carousel debouncing ([13f5c1d](https://github.com/jacecotton/tcds/commit/13f5c1d48cef3754da9cd55da04a008c7ba88c54))
-
-
-
-## [1.7.1](https://github.com/jacecotton/tcds/compare/v1.7.0...v1.7.1) (2023-02-28)
-
-
-### Bug Fixes
-
-* **components:** Carousel scrollIntoView debounce better condition handling ([0819d97](https://github.com/jacecotton/tcds/commit/0819d97401caeaa66a6b024225c1f9e1ab85f4a4))
 
 
 
