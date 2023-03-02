@@ -22,10 +22,6 @@
 }
 
 @media (min-width: 768px) {
-  :host {
-    --tcds-alert-bar-height: var(--tcds-size-x-large);
-  }
-
   [part="bar"] {
     display: flex;
   }

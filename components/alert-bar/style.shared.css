@@ -2,6 +2,12 @@ tcds-alert-bar {
   --tcds-alert-bar-height: var(--tcds-size-large);
 }
 
+@media (min-width: 768px) {
+  tcds-alert-bar {
+    --tcds-alert-bar-height: var(--tcds-size-x-large);
+  }
+}
+
 tcds-alert-bar:not(:defined) {
   display: block;
   max-height: var(--tcds-alert-bar-height);
