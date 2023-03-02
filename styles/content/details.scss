@@ -3,7 +3,7 @@ details {
     margin-bottom: 1em;
   }
 
-  &[open] > summary {
+  &[open] {
     --tcds-details-icon-rotate: 90deg;
   }
 }
