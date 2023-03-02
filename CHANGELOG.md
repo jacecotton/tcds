@@ -1,3 +1,12 @@
+## [1.8.3](https://github.com/jacecotton/tcds/compare/v1.8.2...v1.8.3) (2023-03-02)
+
+
+### Bug Fixes
+
+* **components:** Alert bar issue ([545276e](https://github.com/jacecotton/tcds/commit/545276e48add8fe71d30aaed9de17f1002e353a7))
+
+
+
 ## [1.8.2](https://github.com/jacecotton/tcds/compare/v1.8.1...v1.8.2) (2023-03-02)
 
 
@@ -35,15 +44,6 @@
 ### Bug Fixes
 
 * **components:** Carousel ([6373d53](https://github.com/jacecotton/tcds/commit/6373d534229152f2ee68a51e06fef9ed5f99d1b3))
-
-
-
-## [1.7.3](https://github.com/jacecotton/tcds/compare/v1.7.2...v1.7.3) (2023-02-28)
-
-
-### Bug Fixes
-
-* **components:** Better carousel scroll method ([0f981b4](https://github.com/jacecotton/tcds/commit/0f981b49f4d86e984e9eba41ee70a58f80103ad3))
 
 
 
