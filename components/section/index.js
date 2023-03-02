@@ -5,7 +5,6 @@ import lightStyles from "./style.light.css";
 export default class Section extends WebComponent(HTMLElement) {
   constructor() {
     super();
-
     this.shadowRoot.adoptedStyleSheets = [shadowStyles];
     this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStyleSheets, ...[lightStyles]];
   }
