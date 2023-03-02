@@ -22,7 +22,6 @@ export default class Slide extends WebComponent(HTMLElement) {
         ${this.state.active === false ? `
           aria-hidden="true"
           tabindex="-1"
-          inert
         ` : ``}
       >
         <slot></slot>
