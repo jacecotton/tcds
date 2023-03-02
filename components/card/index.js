@@ -33,7 +33,7 @@ export default class Card extends WebComponent(HTMLElement) {
   }
 
   render() {
-    const link = !!this.querySelector("a[slot=title][href]");
+    const link = this.querySelector("a[slot=title][href]").href;
 
     return /* html */`
       <article part="card">
@@ -50,7 +50,7 @@ export default class Card extends WebComponent(HTMLElement) {
           <slot name="footer">
             ${this.props["action-label"] !== "" && link ? /* html */`
               <footer part="footer">
-                <tcds-button variant="ghost" ${this.props.size !== "large" ? `size="small"` : ""} icon="right chevron-right" label="${this.props["action-label"] || "Read more"}"></tcds-button>
+                <tcds-button variant="ghost" ${this.props.size !== "large" ? `size="small"` : ""} icon="right chevron-right" label="${this.props["action-label"] || "Read more"}" link="${link}"></tcds-button>
               </footer>
             ` : ``}
           </slot>
