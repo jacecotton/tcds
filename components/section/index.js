@@ -21,7 +21,6 @@ export default class Section extends WebComponent(HTMLElement) {
     this.hasOverline = !!this.querySelector("[slot=overline]");
     this.hasImage = !!this.querySelector("[slot=image]");
     this.hasCta = !!this.querySelector("[slot=cta]");
-    this.hasBanner = !!this.querySelector("[slot=banner]");
 
     if(this.hasBackground) {
       this.setAttribute("has-background", this.hasVideoBackground ? "video" : "");
@@ -44,10 +43,6 @@ export default class Section extends WebComponent(HTMLElement) {
       this.insertAdjacentHTML("beforeend", /* html */`
         <tcds-button icon="only play" size="large" aria-controls="video-modal-${this.index}">Open video player</tcds-button>
       `);
-    }
-
-    if(this.hasBanner) {
-      this.setAttribute("has-banner", "");
     }
   }
 
@@ -73,7 +68,7 @@ export default class Section extends WebComponent(HTMLElement) {
       <section class="${bg}" data-theme="${theme}">
         <slot name="background"></slot>
         <div class="max-width">
-          ${this.hasHeading || this.hasSubheading || this.hasOverline || this.hasImage || this.hasCta || this.hasBanner ? /* html */`
+          ${this.hasHeading || this.hasSubheading || this.hasOverline || this.hasImage || this.hasCta ? /* html */`
             <div part="content">
               ${this.hasHeading || this.hasSubheading || this.hasOverline ? /* html */`
                 <hgroup>
@@ -82,7 +77,7 @@ export default class Section extends WebComponent(HTMLElement) {
                   <slot name="subheading"></slot>
                 </hgroup>
               ` : ``}
-              ${this.hasImage ? /* html */`
+              ${this.props.image !== "bottom" ? /* html */`
                 <figure>
                   <slot name="image"></slot>
                 </figure>
@@ -98,8 +93,8 @@ export default class Section extends WebComponent(HTMLElement) {
         </div>
         <slot name="video-description"></slot>
       </section>
-      ${this.hasBanner ? /* html */`
-        <slot name="banner"></slot>
+      ${this.props.image === "bottom" ? /* html */`
+        <slot name="image"></slot>
       ` : ``}
     `;
   }

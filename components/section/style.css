@@ -62,7 +62,7 @@
   }
 }
 
-:host([has-banner]) {
+:host([image="bottom"]) {
   --tcds-section-padding-top: 5rem;
   --tcds-section-padding-bottom: 16rem;
 
@@ -70,7 +70,7 @@
   display: grid;
   grid-template-areas:
     "content"
-    "banner";
+    "image";
   grid-template-rows: 3fr 1fr;
 }
 
@@ -174,7 +174,7 @@ section::before {
 }
 
 @media (min-width: 768px) {
-  :host([has-image]) [part="content"] {
+  :host([has-image]:not([image="bottom"])) [part="content"] {
     grid-template-columns: repeat(2, 1fr);
     grid-template-areas:
       "text image"

@@ -88,8 +88,8 @@ tcds-section [slot="video-description"]::before {
   z-index: -1;
 }
 
-tcds-section > [slot="banner"] {
-  grid-area: banner;
+tcds-section[image="bottom"] > [slot="image"] {
+  grid-area: image;
   max-width: var(--site-container-max-width);
   position: absolute;
   left: 50%;
