@@ -86,12 +86,12 @@ h6,
   }
 }
 
-:where(:not(h1) + h2),
-:where(:not(h2) + h3) {
+:where(:not(h1, hr) + h2),
+:where(:not(h2, hr) + h3) {
   margin-top: 3.5rem;
 }
 
-:where(:not(h3) + h4) {
+:where(:not(h3, hr) + h4) {
   margin-top: 2rem;
 }
 
