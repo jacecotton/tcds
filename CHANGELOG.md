@@ -1,3 +1,13 @@
+## [1.9.1](https://github.com/jacecotton/tcds/compare/v1.9.0...v1.9.1) (2023-03-06)
+
+
+### Bug Fixes
+
+* **components:** Section banner -> image=bottom ([31c4bb5](https://github.com/jacecotton/tcds/commit/31c4bb573e1f456892d9e746af703c5edc28907d))
+* **typography:** Exclude extra margin top on headings that are adjacent siblings of HRs ([defc40b](https://github.com/jacecotton/tcds/commit/defc40b2ca26bc5e0f90dae08771efd1bd1b2cd1))
+
+
+
 # [1.9.0](https://github.com/jacecotton/tcds/compare/v1.8.3...v1.9.0) (2023-03-02)
 
 
@@ -40,16 +50,6 @@
 ### Bug Fixes
 
 * **components:** Mega menu issue ([389f68d](https://github.com/jacecotton/tcds/commit/389f68dacafffc65051bdcf3934373fb892b4b92))
-
-
-
-# [1.8.0](https://github.com/jacecotton/tcds/compare/v1.7.4...v1.8.0) (2023-03-01)
-
-
-### Features
-
-* **components:** Add gallery variant to carousel component ([0e01a8f](https://github.com/jacecotton/tcds/commit/0e01a8ff6de24db755922a82df8a22181d0dc94c))
-* **components:** Add spinner component ([7d6cf28](https://github.com/jacecotton/tcds/commit/7d6cf28215f0a322e27e769bf631db3744747c99))
 
 
 
