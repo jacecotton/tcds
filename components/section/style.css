@@ -1,6 +1,5 @@
 /* stylelint-disable property-no-vendor-prefix */
 :host {
-  --tcds-section-vertical-padding: 7rem;
   --tcds-section-watermark-size: min(768px, 110vw);
   --tcds-section-watermark-y-offset: 25%;
   --tcds-section-watermark-color: var(--tcds-color-shade-x-weak);
@@ -10,10 +9,6 @@
   position: relative;
   z-index: 1;
   background: transparent !important;
-}
-
-:host(:not([hidden])) {
-  display: block;
 }
 
 :host([data-theme="dark"]) {
@@ -67,7 +62,7 @@
   --tcds-section-padding-bottom: 15rem;
 
   position: relative;
-  display: grid;
+  display: grid !important;
   grid-template-areas:
     "content"
     "image";
