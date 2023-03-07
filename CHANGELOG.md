@@ -1,3 +1,12 @@
+## [1.9.4](https://github.com/jacecotton/tcds/compare/v1.9.3...v1.9.4) (2023-03-07)
+
+
+### Bug Fixes
+
+* **components:** Improve section perceived performance with undefined styles to mitigate FOUC and CLS ([fa1e029](https://github.com/jacecotton/tcds/commit/fa1e029d552815b7f00827a7900ed7f4615c70a7))
+
+
+
 ## [1.9.3](https://github.com/jacecotton/tcds/compare/v1.9.2...v1.9.3) (2023-03-07)
 
 
@@ -38,15 +47,6 @@
 ### Features
 
 * **utilities:** Remove debounce util ([0d1b747](https://github.com/jacecotton/tcds/commit/0d1b747baa43f4c7de904ca0a601289212019d14))
-
-
-
-## [1.8.3](https://github.com/jacecotton/tcds/compare/v1.8.2...v1.8.3) (2023-03-02)
-
-
-### Bug Fixes
-
-* **components:** Alert bar issue ([545276e](https://github.com/jacecotton/tcds/commit/545276e48add8fe71d30aaed9de17f1002e353a7))
 
 
 
