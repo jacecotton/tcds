@@ -1,3 +1,12 @@
+## [1.9.3](https://github.com/jacecotton/tcds/compare/v1.9.2...v1.9.3) (2023-03-07)
+
+
+### Bug Fixes
+
+* **components:** section spacing ([37f397d](https://github.com/jacecotton/tcds/commit/37f397d8e176f2a0d819bdc64195143b32f34969))
+
+
+
 ## [1.9.2](https://github.com/jacecotton/tcds/compare/v1.9.1...v1.9.2) (2023-03-07)
 
 
@@ -38,18 +47,6 @@
 ### Bug Fixes
 
 * **components:** Alert bar issue ([545276e](https://github.com/jacecotton/tcds/commit/545276e48add8fe71d30aaed9de17f1002e353a7))
-
-
-
-## [1.8.2](https://github.com/jacecotton/tcds/compare/v1.8.1...v1.8.2) (2023-03-02)
-
-
-### Bug Fixes
-
-* **components:** Alert bar improvements ([973f919](https://github.com/jacecotton/tcds/commit/973f919d227137c053a06e64fafa8bea3b0613c4))
-* **components:** Alert bar improvements ([7f76775](https://github.com/jacecotton/tcds/commit/7f76775da10ae12a24837861cdca5364198917cb))
-* **components:** Carousel tweaks ([211e83a](https://github.com/jacecotton/tcds/commit/211e83aa41c78269d1408be1ad0d9225203e1071))
-* **content:** Details selector specificity issue ([e28fc47](https://github.com/jacecotton/tcds/commit/e28fc47e24c29a5ddc377f465843634a4220ae03))
 
 
 
