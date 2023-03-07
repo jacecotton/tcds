@@ -1,3 +1,12 @@
+## [1.9.2](https://github.com/jacecotton/tcds/compare/v1.9.1...v1.9.2) (2023-03-07)
+
+
+### Bug Fixes
+
+* **components:** section image=bottom responsive issue ([49e21b4](https://github.com/jacecotton/tcds/commit/49e21b48dd748eff26265c77c55bfad277e3c480))
+
+
+
 ## [1.9.1](https://github.com/jacecotton/tcds/compare/v1.9.0...v1.9.1) (2023-03-06)
 
 
@@ -41,15 +50,6 @@
 * **components:** Alert bar improvements ([7f76775](https://github.com/jacecotton/tcds/commit/7f76775da10ae12a24837861cdca5364198917cb))
 * **components:** Carousel tweaks ([211e83a](https://github.com/jacecotton/tcds/commit/211e83aa41c78269d1408be1ad0d9225203e1071))
 * **content:** Details selector specificity issue ([e28fc47](https://github.com/jacecotton/tcds/commit/e28fc47e24c29a5ddc377f465843634a4220ae03))
-
-
-
-## [1.8.1](https://github.com/jacecotton/tcds/compare/v1.8.0...v1.8.1) (2023-03-01)
-
-
-### Bug Fixes
-
-* **components:** Mega menu issue ([389f68d](https://github.com/jacecotton/tcds/commit/389f68dacafffc65051bdcf3934373fb892b4b92))
 
 
 
