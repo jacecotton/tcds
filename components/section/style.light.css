@@ -20,7 +20,6 @@ tcds-section > video[slot="background"] {
 tcds-section > [slot="heading"] {
   color: var(--tcds-section-heading-color);
   line-height: var(--tcds-line-height-x-tight) !important;
-  margin: 0 0 var(--tcds-space-x-loose) !important;
   font-size: calc(4rem * var(--tcds-font-size-scaler));
 }
 
@@ -93,6 +92,7 @@ tcds-section[image="bottom"] > [slot="image"] {
   width: var(--site-container-max-width);
   position: absolute;
   left: 50%;
+  top: 1rem;
   transform: translate(-50%, -63%);
   z-index: 1;
 }
