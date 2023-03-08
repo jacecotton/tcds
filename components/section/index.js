@@ -12,15 +12,15 @@ export default class Section extends WebComponent(HTMLElement) {
   connectedCallback() {
     super.connectedCallback();
 
-    this.hasBackground = !!this.querySelector("[slot=background]");
-    this.hasVideoBackground = !!this.querySelector("video[slot=background]");
-    this.hasVideo = !!this.querySelector("[slot=video]");
-    this.hasVideoDescription = !!this.querySelector("[slot=video-description]");
-    this.hasHeading = !!this.querySelector("[slot=heading]");
-    this.hasSubheading = !!this.querySelector("[slot=subheading]");
-    this.hasOverline = !!this.querySelector("[slot=overline]");
-    this.hasImage = !!this.querySelector("[slot=image]");
-    this.hasCta = !!this.querySelector("[slot=cta]");
+    this.hasBackground = !!this.querySelector(":scope > [slot=background]");
+    this.hasVideoBackground = !!this.querySelector(":scope > video[slot=background]");
+    this.hasVideo = !!this.querySelector(":scope > [slot=video]");
+    this.hasVideoDescription = !!this.querySelector(":scope > [slot=video-description]");
+    this.hasHeading = !!this.querySelector(":scope > [slot=heading]");
+    this.hasSubheading = !!this.querySelector(":scope > [slot=subheading]");
+    this.hasOverline = !!this.querySelector(":scope > [slot=overline]");
+    this.hasImage = !!this.querySelector(":scope > [slot=image]");
+    this.hasCta = !!this.querySelector(":scope > [slot=cta]");
 
     if(this.hasBackground) {
       this.setAttribute("has-background", this.hasVideoBackground ? "video" : "");
