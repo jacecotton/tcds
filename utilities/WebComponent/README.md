@@ -49,9 +49,9 @@ class MyComponent extends WebComponent(HTMLElement) {
 }
 ```
 
-Every change to [state](#state) or a [prop](#props) dispatches an `update` event. `WebComponent` calls `render` in response to `update` events, which are batched within a single [animation frame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) (so as to call `render` in response to all back-to-back `update` events together, instead of in response to each individually).
+Every change to [state](#state) or a [prop](#props) dispatches an `update` event. `WebComponent` calls `render` in response to all `update` events within a single [animation frame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) together (instead of in response to each individually).
 
-When `render` is called, `WebComponent` converts the returned template into a document fragment (i.e. "rendering" the string into dynamic HTML). It then compares the DOM tree of this fragment to the component's live [shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM), and applies any differences to the shadow DOM. This render-compare-apply process is known as "DOM diffing".
+When `render` is called, `WebComponent` converts the returned template into a document fragment (i.e. "rendering" the string into operable HTML). It then compares the fragment's DOM tree to the component's live [shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM), and applies any and only the differences to the shadow DOM. This render-compare-apply process is known as "DOM diffing".
 
 ### Lifecycle
 In addition to built-in lifecycle methods, `WebComponent` provides a couple additional methods to interface with its reactivity. These follow usual conventions used by other UI libraries, but work most similarly to [Vue's](https://vuejs.org/api/options-lifecycle.html) on a technical level.
