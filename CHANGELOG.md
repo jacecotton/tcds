@@ -1,3 +1,13 @@
+## [1.9.10](https://github.com/jacecotton/tcds/compare/v1.9.9...v1.9.10) (2023-03-08)
+
+
+### Bug Fixes
+
+* **components:** Make video sections taller on small screen sizes ([4dd455d](https://github.com/jacecotton/tcds/commit/4dd455d17e9bf9b7ce798ba33d4e4eb81b65f3d3))
+* **templates:** Fix site header navs mobile FOUC ([dd3c9a9](https://github.com/jacecotton/tcds/commit/dd3c9a9374b3e2bf670e76e4a03ffcfd04a80b00))
+
+
+
 ## [1.9.9](https://github.com/jacecotton/tcds/compare/v1.9.8...v1.9.9) (2023-03-08)
 
 
@@ -31,15 +41,6 @@
 ### Bug Fixes
 
 * **components:** Reduce section watermark opacity ([db90155](https://github.com/jacecotton/tcds/commit/db9015548a37842ae6c4bca4b70c6d487e08d6b6))
-
-
-
-## [1.9.5](https://github.com/jacecotton/tcds/compare/v1.9.4...v1.9.5) (2023-03-08)
-
-
-### Bug Fixes
-
-* **utilities:** Remove unnecessary array flattener in typeConverter util ([4a5edaa](https://github.com/jacecotton/tcds/commit/4a5edaa203147f8dfadff3d6dd63180d873d1708))
 
 
 
