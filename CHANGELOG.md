@@ -1,3 +1,12 @@
+## [1.9.11](https://github.com/jacecotton/tcds/compare/v1.9.10...v1.9.11) (2023-03-08)
+
+
+### Bug Fixes
+
+* **templates:** Site header main nav mobile FOUC ([06e3b9a](https://github.com/jacecotton/tcds/commit/06e3b9ac7f1f6ef150f1300c3df13a70952b411b))
+
+
+
 ## [1.9.10](https://github.com/jacecotton/tcds/compare/v1.9.9...v1.9.10) (2023-03-08)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * **styles:** Change text color on secondary background to #fff ([b8067fe](https://github.com/jacecotton/tcds/commit/b8067feb0d6113ac9984378fa4c2b0569df752af))
-
-
-
-## [1.9.6](https://github.com/jacecotton/tcds/compare/v1.9.5...v1.9.6) (2023-03-08)
-
-
-### Bug Fixes
-
-* **components:** Reduce section watermark opacity ([db90155](https://github.com/jacecotton/tcds/commit/db9015548a37842ae6c4bca4b70c6d487e08d6b6))
 
 
 
