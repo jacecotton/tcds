@@ -1,3 +1,12 @@
+## [1.9.5](https://github.com/jacecotton/tcds/compare/v1.9.4...v1.9.5) (2023-03-08)
+
+
+### Bug Fixes
+
+* **utilities:** Remove unnecessary array flattener in typeConverter util ([4a5edaa](https://github.com/jacecotton/tcds/commit/4a5edaa203147f8dfadff3d6dd63180d873d1708))
+
+
+
 ## [1.9.4](https://github.com/jacecotton/tcds/compare/v1.9.3...v1.9.4) (2023-03-07)
 
 
@@ -32,21 +41,6 @@
 
 * **components:** Section banner -> image=bottom ([31c4bb5](https://github.com/jacecotton/tcds/commit/31c4bb573e1f456892d9e746af703c5edc28907d))
 * **typography:** Exclude extra margin top on headings that are adjacent siblings of HRs ([defc40b](https://github.com/jacecotton/tcds/commit/defc40b2ca26bc5e0f90dae08771efd1bd1b2cd1))
-
-
-
-# [1.9.0](https://github.com/jacecotton/tcds/compare/v1.8.3...v1.9.0) (2023-03-02)
-
-
-### Bug Fixes
-
-* **components:** Add link to card button ([6f8d6c2](https://github.com/jacecotton/tcds/commit/6f8d6c20310b31063d3f1ce0800c328b99bc5ae8))
-* **components:** Temporarily undo accessibility fix in inactive carousel slides (remove inert attr) ([888e48c](https://github.com/jacecotton/tcds/commit/888e48c80432c1159114fe0eeb7a04d325f0594a))
-
-
-### Features
-
-* **utilities:** Remove debounce util ([0d1b747](https://github.com/jacecotton/tcds/commit/0d1b747baa43f4c7de904ca0a601289212019d14))
 
 
 
