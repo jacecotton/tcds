@@ -1,3 +1,12 @@
+## [1.9.8](https://github.com/jacecotton/tcds/compare/v1.9.7...v1.9.8) (2023-03-08)
+
+
+### Bug Fixes
+
+* **components:** Improve countdown component responsiveness and semantics ([07d4302](https://github.com/jacecotton/tcds/commit/07d4302cb3a75737e77255417556bd911b2e8300))
+
+
+
 ## [1.9.7](https://github.com/jacecotton/tcds/compare/v1.9.6...v1.9.7) (2023-03-08)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Improve section perceived performance with undefined styles to mitigate FOUC and CLS ([fa1e029](https://github.com/jacecotton/tcds/commit/fa1e029d552815b7f00827a7900ed7f4615c70a7))
-
-
-
-## [1.9.3](https://github.com/jacecotton/tcds/compare/v1.9.2...v1.9.3) (2023-03-07)
-
-
-### Bug Fixes
-
-* **components:** section spacing ([37f397d](https://github.com/jacecotton/tcds/commit/37f397d8e176f2a0d819bdc64195143b32f34969))
 
 
 
