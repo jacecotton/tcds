@@ -27,6 +27,12 @@
   --tcds-section-aspect-ratio: 4 / 3;
 }
 
+@media (max-width: 768px) {
+  :host([has-background][has-video]) {
+    --tcds-section-aspect-ratio: 4 / 5;
+  }
+}
+
 @media (min-width: 768px) {
   :host([has-background]) {
     --tcds-section-aspect-ratio: 16 / 9;
