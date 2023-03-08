@@ -92,6 +92,15 @@
       max-width: 100vw;
       overflow-y: auto;
       overscroll-behavior: none;
+      visibility: hidden;
+      animation: site-header-release 1ms linear forwards;
+      animation-delay: 1s;
+
+      @keyframes site-header-release {
+        to {
+          visibility: visible;
+        }
+      }
 
       ul {
         list-style: none;

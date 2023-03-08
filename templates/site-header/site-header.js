@@ -52,7 +52,7 @@ window.addEventListener("load", function() {
     function openNavs() {
       navs.hidden = false;
 
-      AnimateElement(navs, "slide-in-left", { lazyload: false }).then(() => {
+      AnimateElement(navs, "slide-in-left", {lazyload: false}).then(() => {
         togglers.forEach((toggler) => {
           toggler.setAttribute("expanded", "true");
         });
@@ -60,7 +60,7 @@ window.addEventListener("load", function() {
     }
 
     function closeNavs() {
-      AnimateElement(navs, "slide-out-right", { lazyload: false }).then(() => {
+      AnimateElement(navs, "slide-out-right", {lazyload: false}).then(() => {
         navs.hidden = true;
 
         togglers.forEach((toggler) => {
