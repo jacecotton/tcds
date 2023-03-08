@@ -1,3 +1,12 @@
+## [1.9.9](https://github.com/jacecotton/tcds/compare/v1.9.8...v1.9.9) (2023-03-08)
+
+
+### Bug Fixes
+
+* **components:** Improve query selector for slots (ensure selecting for direct descendents only with :scope) ([f726d5f](https://github.com/jacecotton/tcds/commit/f726d5f53d3bb014da44cc7d4a2d9c9b679c7eb9))
+
+
+
 ## [1.9.8](https://github.com/jacecotton/tcds/compare/v1.9.7...v1.9.8) (2023-03-08)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **utilities:** Remove unnecessary array flattener in typeConverter util ([4a5edaa](https://github.com/jacecotton/tcds/commit/4a5edaa203147f8dfadff3d6dd63180d873d1708))
-
-
-
-## [1.9.4](https://github.com/jacecotton/tcds/compare/v1.9.3...v1.9.4) (2023-03-07)
-
-
-### Bug Fixes
-
-* **components:** Improve section perceived performance with undefined styles to mitigate FOUC and CLS ([fa1e029](https://github.com/jacecotton/tcds/commit/fa1e029d552815b7f00827a7900ed7f4615c70a7))
 
 
 
