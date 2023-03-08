@@ -52,20 +52,20 @@ window.addEventListener("load", function() {
     function openNavs() {
       navs.hidden = false;
 
-      AnimateElement(navs, "slide-in-left", {lazyload: false}).then(() => {
-        togglers.forEach((toggler) => {
-          toggler.setAttribute("expanded", "true");
-        });
+      togglers.forEach((toggler) => {
+        toggler.setAttribute("expanded", "true");
       });
+
+      AnimateElement(navs, "slide-in-left", {lazyload: false});
     }
 
     function closeNavs() {
+      togglers.forEach((toggler) => {
+        toggler.setAttribute("expanded", "false");
+      });
+
       AnimateElement(navs, "slide-out-right", {lazyload: false}).then(() => {
         navs.hidden = true;
-
-        togglers.forEach((toggler) => {
-          toggler.setAttribute("expanded", "false");
-        });
       });
     }
   }
