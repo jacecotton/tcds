@@ -1,3 +1,12 @@
+## [1.9.7](https://github.com/jacecotton/tcds/compare/v1.9.6...v1.9.7) (2023-03-08)
+
+
+### Bug Fixes
+
+* **styles:** Change text color on secondary background to #fff ([b8067fe](https://github.com/jacecotton/tcds/commit/b8067feb0d6113ac9984378fa4c2b0569df752af))
+
+
+
 ## [1.9.6](https://github.com/jacecotton/tcds/compare/v1.9.5...v1.9.6) (2023-03-08)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** section spacing ([37f397d](https://github.com/jacecotton/tcds/commit/37f397d8e176f2a0d819bdc64195143b32f34969))
-
-
-
-## [1.9.2](https://github.com/jacecotton/tcds/compare/v1.9.1...v1.9.2) (2023-03-07)
-
-
-### Bug Fixes
-
-* **components:** section image=bottom responsive issue ([49e21b4](https://github.com/jacecotton/tcds/commit/49e21b48dd748eff26265c77c55bfad277e3c480))
 
 
 
