@@ -456,18 +456,32 @@ Technically, all custom elements are ignored in this way (as the rendering of ea
 <details>
   <summary>Lifecycle optimization tips</summary>
 
-As with other component frameworks, be mindful of the entire lifecycle of a component to perform operations in the most effective place possible. Depending on the operation, you may want to do it as early or as late as possible.
+As with any component tool, be mindful of the entire lifecycle of a component to perform operations in the most effective place possible. Where to do what revolves mostly around first render: anything required for it should be done as *early* as possible, while anything not required for it should be done as *late* as possible.
 
-The lifecycle order is **asynchronous**: `constructor -> connectedCallback -> render -> (first render ? mountedCallback) -> updatedCallback -> disconnectedCallback`.
+The lifecycle order is **synchronous**: `constructor -> connectedCallback -> render -> (first render ? mountedCallback) -> updatedCallback -> disconnectedCallback`.
 
-* `constructor` — Anything required for first render, *is not* specific to a particular component instance (i.e., applicable to all component instances), and *has no need* for awareness of the particular DOM relative to the component. For example, the `constructor` should download and adopt stylesheets.
-* `connectedCallback` — Anything required for first render, but *is* specific to a particular component instance, or *does need* awareness of the particular DOM relative to the component. For example, querying parents, siblings, children, or attributes, fetching data specific to the instance, or setting initial state based on some specific condition.
-* `mountedCallback` — Anything you can possibly defer until after the first render. For example, adding interactive functionality, timers, event listeners, and observers. The more you can assign to this hook, the more you will optimize time to first render.
-* `updatedCallback` — **Be cautious using this hook**, as it is called after every update and re-render. Beware performing expensive or redundant operations, or doing anything that might cause an infinite loop (like changing state without checking for redundancies). Consider moving whatever you can back up to `mountedCallback`.
-    * If an operation may only *sometimes* need to be repeated on update, or doesn't need to happen immediately after re-render, consider optimization techniques such as memoization, debouncing, early returns, etc.
-    * Also be aware that re-renders **do not wait** for this hook—`updatedCallback` is called *after* the render has completed.
-* `disconnectedCallback` — To prevent memory leaks and generally optimize memory, undo any side effects done in `connectedCallback` or `mountedCallback` that may still be held in browser memory. For example, remove any event listeners, disconnect any observers, clear any intervals or recursive timeouts, etc.
-    * Event listeners and observers added to the component element or its children will automatically be garbage collected when the element is removed, so you do not need to clean them up yourself. You only need to undo *side effects*, i.e. things done outside the component instance, like to the `window` or `document`.
+* `constructor`
+    * **When it's called:** Element creation (when the element HTML is parsed or `createElement()` is invoked).
+    * **What to use it for:** Anything required for first render and applicable to all instances irrespective of DOM placement.
+    * **Example:** Adopting stylesheets.
+* `connectedCallback`
+    * **When it's called:** Element adoption (when the element is actually attached to the DOM, e.g. after parsing or through `appendChild`).
+    * **What to use it for:** Anything required for first render but specific to the particular instance or relative to DOM placement.
+    * **Example:** Querying parents, siblings, children, or attributes.
+* `mountedCallback`
+    * **When it's called:** After first render and all child components have been defined.
+    * **What to use it for:** Anything you can possibly defer until after first render.
+    * **Example:** Adding interactive functionality, timeouts and intervals, event listeners, observers, etc. (The more you can assign to this hook, the more you will optimize time to first render.)
+* `updatedCallback`
+    * **When it's called:** After each `update` event is dispatched within a single animation frame.
+    * **What to use it for:** Respond to changes to `state` and `props` after consequent renders.
+    * **Example:** Imperative DOM manipulations on state change.
+    * **Caution:** This method is called after every update and re-render. Beware performing expensive operations or accidentally triggering infinite recursion (like changing state without checking for redundancies). Consider moving whatever you can back up to `mountedCallback`.
+* `disconnectedCallback`
+    * **When it's called:** When the element is removed (e.g. `Element.remove()`).
+    * **What to use it for:** Clean up any external side effects to clear up browser memory.
+    * **Example:** Remove event listeners and disconnect any observers to the `window`, `document`, or other elements.
+    * **Note:** Event listeners and observers added to the component element or its children will automatically be garbage collected when the element is removed, so you do not need to clean them up yourself.
 </details>
 
 <details>
