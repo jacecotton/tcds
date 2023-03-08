@@ -1,4 +1,5 @@
 import WebComponent from "../../utilities/WebComponent/WebComponent.js";
+import styles from "./style.css";
 
 export default class Countdown extends WebComponent(HTMLElement) {
   static state = {
@@ -8,6 +9,11 @@ export default class Countdown extends WebComponent(HTMLElement) {
     },
   };
 
+  constructor() {
+    super();
+    this.shadowRoot.adoptedStyleSheets = [styles];
+  }
+
   connectedCallback() {
     super.connectedCallback();
     this.countdownDate = new Date(this.props.date || this.textContent).getTime();
@@ -15,10 +21,10 @@ export default class Countdown extends WebComponent(HTMLElement) {
 
   render() {
     return /* html */`
-      <p class="font-ui font-weight-semibold">
-        <span aria-hidden="true" class="font-size-large">Countdown timer</span><br>
+      <p>
+        <small aria-hidden="true">Countdown timer</small>
         <span class="visually-hidden">Time until ${this.props.date || this.textContent}</span>
-        <span style="font-size: 4rem">${this.state.count}</span>
+        <b>${this.state.count}</b>
       </p>
     `;
   }
