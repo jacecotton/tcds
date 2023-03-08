@@ -1,7 +1,7 @@
 ## WebComponent
 `WebComponent` is a base class for creating [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components). It is not a library or framework, but rather a thin abstraction extending the native [custom elements API](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) to add declarative templating with data reactivity.
 
-Unlike libraries also based on Web Components, like [Lit](https://lit.dev/) or [Stencil](https://stenciljs.com/), it introduces no extra utilities and few unique concepts. Instead, most work is deferred to component authors and native APIs.
+In comparison to libraries also based on Web Components, like [Lit](https://lit.dev/) or [Stencil](https://stenciljs.com/), `WebComponent` deliberately has a much more basic API, introducing no extra utilities and fewer unique concepts. Instead, most work is deferred to vanilla JavaScript and component authors, further embracing the browser's own component model instead of offering a new one.
 
 ### Defining a component
 Defining a Web Component works like [defining any other custom element]((https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements)), only instead of extending [`HTMLElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) directly, extend it with the `WebComponent` mixin.
@@ -27,7 +27,7 @@ class MyComponent extends WebComponent(HTMLUListElement) {
   ...
 }
 
-customElements.define("my-component", MyComponent, { extends: "ul" });
+customElements.define("my-component", MyComponent, {extends: "ul"});
 ```
 
 The customized built-in can now be used as `<ul is="my-component">`.
@@ -35,23 +35,23 @@ The customized built-in can now be used as `<ul is="my-component">`.
 **Note:** Only do this for [elements that can have a shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow#elements_you_can_attach_a_shadow_to). **`WebComponent` is incompatible with elements that cannot.**
 
 ### Templating
-The `render` method should return your component's template in a string. ([Template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) are recommended as it allows for multi-line strings and string interpolation, rather than concatenation.)
+The `render` method should return your component's template in a string. ([Template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) are recommended as it allows for multiline strings and interpolation, avoiding the need for concatenation.)
 
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
   render() {
     return `
-      <p>Hello world!</p>
+      <p>
+        Hello world!
+      </p>
     `;
   }
 }
 ```
 
-It is "declarative" because it serves to *describe* what your component should look like based on any given state or condition, rather than what it should *do* in response to state changes and other events (which would be considered "imperative").
+Every change to [state](#state) or a [prop](#props) dispatches an `update` event. `WebComponent` calls `render` in response to `update` events, which are batched within a single [animation frame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) (so as to call `render` in response to all back-to-back `update` events together, instead of in response to each individually).
 
-It is "reactive" because it is called every time [state](#state) or [props](#props) are updated (or any time an `update` event is dispatched on the element). When `render` is called, `WebComponent` applies any and only differences between the given template and the component's live DOM in light of any changes to state or other conditions (this process is known as "DOM diffing").
-
-`WebComponent` waits to call `render` for all back-to-back updates to be batched within a single [animation frame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame).
+When `render` is called, `WebComponent` converts the returned template into a document fragment (i.e. "rendering" the string into dynamic HTML). It then compares the DOM tree of this fragment to the component's live [shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM), and applies any differences to the shadow DOM. This render-compare-apply process is known as "DOM diffing".
 
 ### Lifecycle
 In addition to built-in lifecycle methods, `WebComponent` provides a couple additional methods to interface with its reactivity. These follow usual conventions used by other UI libraries, but work most similarly to [Vue's](https://vuejs.org/api/options-lifecycle.html) on a technical level.
@@ -66,8 +66,9 @@ class MyComponent extends WebComponent(HTMLElement) {
 
   updatedCallback(state, props) {
     // The component's state or prop has been updated.
-    // This also runs once after mounting, and after any
-    // time an "update" event is dispatched on `this`.
+    // This also runs once after mounting, and after all
+    // "update" events are dispatched on `this` within a
+    // single animationFrame.
   }
 }
 ```
