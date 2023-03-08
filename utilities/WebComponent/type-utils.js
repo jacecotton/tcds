@@ -1,5 +1,12 @@
 /**
- * Converts a given value to a given type.
+ * Converts a given value to a given type. This is specifically for handling
+ * HTML values and is not a general purpose type converter. It has more specific
+ * handling than basic type coercion or more technically "correct" conversion.
+ *
+ * - Strings are converted to arrays by splitting at each empty space.
+ * - Boolean `false` is returned from any of "false", "0", `0`, `null`, and
+ *   `undefined`.
+ * - Arrays are converted to strings by joining and delimiting with empty space.
  *
  * @param {*} value The value to convert.
  * @param {function} type The constructor for the type to convert the value to.
@@ -19,7 +26,11 @@ function typeConverter(value, type) {
 }
 
 /**
- * Checks whether the type of a given value matches the given type.
+ * Checks whether the type of a given value matches a given type. This function
+ * wouldn't be necessary (as most type checking can be done with `typeof`)
+ * except that arrays must be checked with `isArray`. So, this abstraction was
+ * created so we can avoid the extra manual check for arrays each time we need
+ * to type check.
  *
  * @param {*} value The value to check for a given type.
  * @param {function} type The constructor for the type to check a value against.

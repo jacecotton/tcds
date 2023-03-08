@@ -76,6 +76,9 @@ const WebComponent = (ElementInterface = HTMLElement, options = {}) => class ext
   }
 
   /**
+   * Takes an array of attributes and syncs them to the internal `props` object
+   * (or `state` if indicated).
+   *
    * @param {object[]} attributes DOM attributes to sync with the `props` or
    *   `state` objects.
    * @param {string} attributes[].name The attribute name (key).
@@ -83,8 +86,9 @@ const WebComponent = (ElementInterface = HTMLElement, options = {}) => class ext
    */
   #attributeHandler(attributes) {
     attributes.filter((attribute) => {
-      return !globalAttributesFull.includes(attribute.name.toLowerCase())
-        && !globalAttributesPartial.some(global => attribute.name.toLowerCase().includes(global));
+      const name = attribute.name.toLowerCase();
+      return !globalAttributesFull.includes(name)
+        && !globalAttributesPartial.some(global => name.includes(global));
     }).forEach((attribute) => {
       const {name, value} = attribute;
       const isState = this.#stateSettings[name]?.["reflected"];

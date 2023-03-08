@@ -465,13 +465,13 @@ The lifecycle order is **synchronous**: `constructor -> connectedCallback -> ren
     * **What to use it for:** Anything required for first render and applicable to all instances irrespective of DOM placement.
     * **Example:** Adopting stylesheets.
 * `connectedCallback`
-    * **When it's called:** Element adoption (when the element is actually attached to the DOM, e.g. after parsing or through `appendChild`).
+    * **When it's called:** Element adoption (when the element is actually attached to the DOM, e.g. after parsing or through `appendChild()`).
     * **What to use it for:** Anything required for first render but specific to the particular instance or relative to DOM placement.
     * **Example:** Querying parents, siblings, children, or attributes.
 * `mountedCallback`
     * **When it's called:** After first render and all child components have been defined.
     * **What to use it for:** Anything you can possibly defer until after first render.
-    * **Example:** Adding interactive functionality, timeouts and intervals, event listeners, observers, etc. (The more you can assign to this hook, the more you will optimize time to first render.)
+    * **Example:** Adding interactive functionality, timeouts and intervals, event listeners, observers, etc. (The more you can assign to this hook, the more you will shorten time to first render.)
 * `updatedCallback`
     * **When it's called:** After each `update` event is dispatched within a single animation frame.
     * **What to use it for:** Respond to changes to `state` and `props` after consequent renders.
