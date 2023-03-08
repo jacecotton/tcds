@@ -16,7 +16,7 @@ function typeConverter(value, type) {
   return typeChecker(value, type) ? value : {
     [Array]: typeof value === "string"
       ? value.trim().replace(/\s\s+/g, " ").split(" ")
-      : [value].flat(),
+      : [value],
     [Boolean]: !["false", "0", 0, null, undefined].includes(value),
     [Number]: Number(value),
     [String]: Array.isArray(value)
