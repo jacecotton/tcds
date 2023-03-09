@@ -27,15 +27,6 @@ const WebComponent = (ElementInterface = HTMLElement, options = {}) => class ext
     // as settings (type, default, reflected, etc.)
     this.#stateSettings = this.constructor.state || {};
     this.#propSettings = this.constructor.props || {};
-
-    // Reset `state` and `props` to empty objects, then intercept any updates
-    // to them from the child class, validate the changes, and fire "update"
-    // events.
-    this.state = new Proxy({}, this.#stateHandler());
-    this.props = new Proxy({}, this.#propsHandler());
-
-    // Listen to those updates and collect a batch of them.
-    this.addEventListener("update", this.#batchUpdates.bind(this));
   }
 
   #stateSettings;
@@ -48,6 +39,15 @@ const WebComponent = (ElementInterface = HTMLElement, options = {}) => class ext
     || "https://unpkg.com/@txch/tcds/dist/tcds.css";
 
   connectedCallback() {
+    // Reset `state` and `props` to empty objects, then intercept any updates
+    // to them from the child class, validate the changes, and fire "update"
+    // events.
+    this.state = new Proxy({}, this.#stateHandler());
+    this.props = new Proxy({}, this.#propsHandler());
+
+    // Listen to those updates and collect a batch of them.
+    this.addEventListener("update", this.#batchUpdates.bind(this));
+
     // Populate props and state from attributes, observe further attribute
     // changes and update respective props and state.
     this.#attributeHandler([...this.attributes]);
