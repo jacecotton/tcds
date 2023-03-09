@@ -54,18 +54,18 @@ Every change to [state](#state) or a [prop](#props) dispatches an `update` event
 When `render` is called, `WebComponent` converts the returned template into a document fragment (i.e. "rendering" the string into operable HTML). It then compares the fragment's DOM tree to the component's live [shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM), and applies any and only the differences to the shadow DOM. This render-compare-apply process is known as "DOM diffing".
 
 ### Lifecycle
-In addition to built-in lifecycle methods, `WebComponent` provides a couple additional methods to interface with its reactivity. These follow usual conventions used by other UI libraries, but work most similarly to [Vue's](https://vuejs.org/api/options-lifecycle.html) on a technical level.
+In addition to built-in lifecycle methods, `WebComponent` provides a couple additional methods to interface with its reactivity.
 
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
   mountedCallback() {
-    // Component has completed first render, and child
-    // components have connected. updatedCallback() hook
-    // has not yet been called.
+    // Custom element has been inserted into the DOM,
+    // the component has completed first render, and
+    // child components have connected.
   }
 
   updatedCallback(state, props) {
-    // The component's state or prop has been updated.
+    // The component's state or props have been updated.
     // This also runs once after mounting, and after all
     // "update" events are dispatched on `this` within a
     // single animationFrame.
