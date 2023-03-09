@@ -60,12 +60,12 @@ window.addEventListener("load", function() {
     }
 
     function closeNavs() {
-      togglers.forEach((toggler) => {
-        toggler.setAttribute("expanded", "false");
-      });
-
       AnimateElement(navs, "slide-out-right", {lazyload: false}).then(() => {
         navs.hidden = true;
+
+        togglers.forEach((toggler) => {
+          toggler.setAttribute("expanded", "false");
+        });
       });
     }
   }
