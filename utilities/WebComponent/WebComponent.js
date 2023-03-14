@@ -26,7 +26,7 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
   }
 
   _requestUpdate(property) {
-    this.#batch = [...this.#batch, ...[property]];
+    this.#batch.push(property);
 
     if(this.#debounce !== null) {
       cancelAnimationFrame(this.#debounce);
