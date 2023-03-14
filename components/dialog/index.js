@@ -29,7 +29,6 @@ export default class Dialog extends WebComponent(HTMLElement, {delegatesFocus: t
     return /* html */`
       <div part="dialog">
         <tcds-focus-boundary onfocus="this.focusLastOf(this.getRootNode().host)" tabindex="0"></tcds-focus-boundary>
-
         <tcds-button
           part="close"
           controls="${this.id}"
@@ -40,7 +39,6 @@ export default class Dialog extends WebComponent(HTMLElement, {delegatesFocus: t
           onclick="this.getRootNode().host.close()"
         ></tcds-button>
         <slot></slot>
-
         <tcds-focus-boundary onfocus="this.focusFirstOf(this.getRootNode())" tabindex="0"></tcds-focus-boundary>
       </div>
     `;
@@ -58,7 +56,7 @@ export default class Dialog extends WebComponent(HTMLElement, {delegatesFocus: t
     this.setAttribute("aria-modal", "true");
 
     document.body.addEventListener("click", () => {
-      this.state.open = false;
+      this.close();
     });
 
     this.dialog.addEventListener("click", (event) => {
@@ -67,14 +65,14 @@ export default class Dialog extends WebComponent(HTMLElement, {delegatesFocus: t
 
     this.addEventListener("keyup", (event) => {
       if(event.key === "Escape") {
-        this.state.open = false;
+        this.close();
       }
     });
 
     this.controllers?.forEach((controller) => {
       controller.addEventListener("click", (event) => {
         event.stopPropagation();
-        this.state.open = !this.state.open;
+        this.toggle();
       });
     });
   }
@@ -142,6 +140,10 @@ export default class Dialog extends WebComponent(HTMLElement, {delegatesFocus: t
 
   open() {
     this.state.open = true;
+  }
+
+  toggle() {
+    this.state.open = !this.state.open;
   }
 }
 
