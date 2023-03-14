@@ -24,8 +24,7 @@ tcds-tab {
   }
 }
 
-tcds-mega-menu,
-tcds-dialog {
+tcds-mega-menu {
   &:not(:defined) {
     display: none;
   }
