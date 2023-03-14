@@ -1,3 +1,13 @@
+## [1.9.12](https://github.com/jacecotton/tcds/compare/v1.9.11...v1.9.12) (2023-03-09)
+
+
+### Bug Fixes
+
+* **templates:** Site header main nav mobile closing animation issue ([3613083](https://github.com/jacecotton/tcds/commit/361308375af8f700afaa7c252e214cdee2f55bb3))
+* **utilities:** Move state and props proxying and update event listener attachment to connectedCallback from constructor ([c6d1190](https://github.com/jacecotton/tcds/commit/c6d11901800950e4d67bd376701e3fda7ba19853))
+
+
+
 ## [1.9.11](https://github.com/jacecotton/tcds/compare/v1.9.10...v1.9.11) (2023-03-08)
 
 
@@ -32,15 +42,6 @@
 ### Bug Fixes
 
 * **components:** Improve countdown component responsiveness and semantics ([07d4302](https://github.com/jacecotton/tcds/commit/07d4302cb3a75737e77255417556bd911b2e8300))
-
-
-
-## [1.9.7](https://github.com/jacecotton/tcds/compare/v1.9.6...v1.9.7) (2023-03-08)
-
-
-### Bug Fixes
-
-* **styles:** Change text color on secondary background to #fff ([b8067fe](https://github.com/jacecotton/tcds/commit/b8067feb0d6113ac9984378fa4c2b0569df752af))
 
 
 
