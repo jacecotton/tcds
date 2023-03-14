@@ -465,7 +465,7 @@ The lifecycle order is **synchronous**: `constructor -> connectedCallback -> ren
     * **What to use it for:** Anything required for first render and applicable to all instances irrespective of DOM placement.
     * **Example:** Adopting stylesheets.
 * `connectedCallback`
-    * **When it's called:** Element adoption (when the element is actually attached to the DOM, e.g. after parsing or through `appendChild()`).
+    * **When it's called:** Element insertion (when the element is actually attached to the DOM, e.g. after parsing or through `appendChild()`).
     * **What to use it for:** Anything required for first render but specific to the particular instance or relative to DOM placement.
     * **Example:** Querying parents, siblings, children, or attributes.
 * `mountedCallback`
