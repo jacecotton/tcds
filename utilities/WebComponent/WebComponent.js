@@ -91,10 +91,10 @@ const WebComponent = (ElementInterface = HTMLElement, options = {}) => class ext
         && !globalAttributesPartial.some(global => name.includes(global));
     }).forEach((attribute) => {
       const {name, value} = attribute;
-      const isState = this.#stateSettings[name]?.["reflected"];
+      const isState = this.#stateSettings[name]?.reflected;
       const settings = isState ? this.#stateSettings : this.#propSettings;
       const data = isState ? this.state : this.props;
-      const type = settings[name]?.["type"];
+      const type = settings[name]?.type;
 
       data[name] = type ? typeConverter(value, type) : value;
     });
@@ -103,7 +103,7 @@ const WebComponent = (ElementInterface = HTMLElement, options = {}) => class ext
   #stateHandler() {
     return {
       set: (store, state, value) => {
-        const type = this.#stateSettings[state]?.["type"];
+        const type = this.#stateSettings[state]?.type;
         const isInvalidType = type && !typeChecker(value, type);
 
         const isSame = type !== Array
@@ -154,13 +154,20 @@ const WebComponent = (ElementInterface = HTMLElement, options = {}) => class ext
   #propsHandler() {
     return {
       set: (props, prop, value) => {
-        const type = this.#propSettings[prop]?.["type"];
+        const type = this.#propSettings[prop]?.type;
         let attribute = this.getAttribute(prop);
 
+        // Do not add to `props` object if there is no corresponding attribute
+        // (unless the desired type is `Boolean`, in which case we want the prop
+        // to be registered as `false` in the absence of an attribute).
         if(attribute === null && value !== null && type !== Boolean) {
           return;
         }
 
+        // Convert the value to its declared type unless `null` (which would
+        // happen on synchronization with a removed attribute). An exception is
+        // if the declared type is `Boolean`, for which we would want to convert
+        // `null` to `false`.
         if(type && (value !== null || type === Boolean)) {
           attribute = typeConverter(attribute, type);
           value = typeConverter(value, type);
@@ -270,7 +277,7 @@ const WebComponent = (ElementInterface = HTMLElement, options = {}) => class ext
     `, this.shadowRoot);
 
     const stateToReflect = Object.keys(state?.newState || {})
-      .filter(state => this.#stateSettings?.[state]?.["reflected"]);
+      .filter(state => this.#stateSettings?.[state]?.reflected);
     stateToReflect.length && this.#reflectState(stateToReflect);
 
     this.#renderPasses++;
