@@ -10,7 +10,6 @@ export default class Button extends WebComponent(HTMLElement, {delegatesFocus: t
 
   constructor() {
     super();
-
     this.shadowRoot.adoptedStyleSheets = [shadowStyles];
     this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStyleSheets, ...[lightStyles]];
   }
