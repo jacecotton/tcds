@@ -65,3 +65,9 @@ class MyComponent extends WebComponent(HTMLElement) {
   }
 }
 ```
+
+Each time `WebComponent` performs a `get` of the `template`, the component will be re-rendered respective to the new state of the relevant data as of that `get`. This is done efficiently through DOM diffing, whereby:
+
+1. The returned template string is converted into a document fragment
+2. The document fragment is compared against the "live" shadow tree
+3. Any and only the differences are applied to the shadow tree
