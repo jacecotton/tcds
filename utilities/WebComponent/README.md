@@ -98,38 +98,6 @@ class MyComponent extends WebComponent(HTMLElement) {
 }
 ```
 
-### Reactive properties
-To make your component template reactive to element properties, you can call a `_requestUpdate` inside [class setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) or [proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy).
-
-```js
-class MyComponent extends WebComponent(HTMLElement) {
-  static get template() {
-    return `
-      <p>Country: ${this.country || "United States"}</p>
-    `;
-  }
-
-  set country(value) {
-    this.country = value;
-    this._requestUpdate("country");
-  }
-
-  mountedCallback() {
-    this.country = "Mexico";
-  }
-
-  updatedCallback(props) {
-    if(props.includes("country")) {
-      console.log("this.country was updated to", this.country);
-    }
-  }
-}
-```
-
-The rendered output will be `<p>Country: Mexico</p>` after the component mounts, then `this.country was updated to: Mexico` will be logged to the console.
-
-Note that by passing the property key to the `_requestUpdate` method, we have access to a `props` array in the `updatedCallback` method which lets us know which property keys were responsible for, or associated with, that update.
-
 ### Property-attribute reflection
 [Best practices](https://web.dev/custom-elements-best-practices/#attributes-and-properties) stipulate that for attributes with a corresponding property, they should be kept in sync. To do so, we first need to observe the attributes in question:
 
@@ -170,7 +138,53 @@ class Dialog extends WebComponent(HTMLElement) {
 
   connectedCallback() {
     super.connectedCallback();
-    this._upgradePropertes(["open"]);
+    this._upgradeProperties(["open"]);
   }
 }
 ```
+
+This should be done for all observed and synced attributes.
+
+### Reactive properties
+To make your component template react to property changes, you can call a `_requestUpdate` inside [class setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set), [proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy), or `attributeChangedCallback`.
+
+```js
+class Dialog extends WebComponent(HTMLElement) {
+  static get observedAttributes() {
+    return ["open"];
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    this._upgradeProperties(["open"]);
+  }
+
+  static get template() {
+    return `
+      <div ${this.open ? "" : "hidden"}>
+        ...
+      </div>
+    `;
+  }
+
+  get open() {
+    return this.hasAttribute("open");
+  }
+
+  set open(value) {
+    this.toggleAttribute("open", Boolean(value));
+  }
+
+  attributeChangedCallback(attribute) {
+    this._requestUpdate(attribute);
+  }
+
+  updatedCallback(props) {
+    if(props.includes("open")) {
+      console.log(`Dialog was ${this.open ? "opened" : "closed"}`);
+    }
+  }
+}
+```
+
+Note that by passing the attribute name to the `_requestUpdate` method, we have access to a `props` array in the `updatedCallback` method which lets us know which property keys were responsible for, or associated with, that update.
