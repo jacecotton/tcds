@@ -235,3 +235,86 @@ class Dialog extends WebComponent(HTMLElement) {
 ```
 
 Note that by passing the property name to the `_requestUpdate` method, we have access to a `props` array in the `updatedCallback` method which lets us know which properties were responsible for, or associated with, that update.
+
+### Styling
+The simplest way to style a component is to embed inline styles in the template.
+
+```js
+class MyComponent extends WebComponent(HTMLElement) {
+  get template() {
+    return `
+      <style>
+        :host {
+          ...
+        }
+      </style>
+    `;
+  }
+}
+```
+
+However, we recommend using the [Constructable Stylesheets API](https://web.dev/constructable-stylesheets/).
+
+```js
+class MyComponent extends WebComponent(HTMLElement) {
+  constructor() {
+    super();
+
+    const styles = new CSSStyleSheet();
+    styles.replaceSync(this.styles);
+    this.shadowRoot.adoptedStyleSheets = [styles];
+  }
+
+  get styles() {
+    return `
+      :host {
+        display: block;
+      }
+    `;
+  }
+}
+```
+
+For Safari support, the Design System uses [`construct-style-sheets-polyfill`](https://github.com/calebdwilliams/construct-style-sheets).
+
+To separate the CSS into different files and import them as adoptable stylesheets, the Design System uses [`constructable-style-loader`](https://github.com/alextech/constructable-style-loader).
+
+```js
+/* index.js */
+import styles from "./style.css";
+
+class MyComponent extends WebComponent(HTMLElement) {
+  constructor() {
+    super();
+    this.shadowRoot.adoptedStyleSheets = [styles];
+  }
+}
+```
+```css
+/* style.css */
+:host {
+  ...
+}
+```
+
+This setup is recommended but entirely optional.
+
+Note that adopting or inserting styles into the shadow root ("shadow styles") scopes and encapsulates the styles to the shadow boundary. To create unscoped styles (useful for having outer DOM context awareness, e.g. whether the component is a `:first-child`, or to style slotted content deeper and more specific than `::slotted` allows), you can adopt other styles into the root node with `this.getRootNode()`. In most cases this will be the document, or a parent component's shadow root.
+
+```js
+/* index.js */
+import lightStyles from "./style.light.css";
+
+class MyComponent extends WebComponent(HTMLElement) {
+  constructor() {
+    super();
+    this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStylesheets, ...[lightStyles]];
+  }
+}
+```
+```css
+/* style.light.css */
+my-component:not(:only-child) {
+  ...
+}
+```
