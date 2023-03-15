@@ -143,11 +143,11 @@ export default function diff(template, existing) {
       existingNodes[index].before(ahead);
     }
 
-    diffAttributes(node, existingNodes[index]);
-
-    if(node.nodeName.includes("-")) {
+    if(node.hasAttribute?.("static")) {
       return;
     }
+
+    diffAttributes(node, existingNodes[index]);
 
     const templateContent = getNodeContent(node);
 
