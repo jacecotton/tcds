@@ -146,7 +146,7 @@ class Dialog extends WebComponent(HTMLElement) {
 This should be done for all observed and synced attributes.
 
 ### Reactive properties
-To make your component template react to property changes, you can call a `_requestUpdate` inside [class setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set), [proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy), or `attributeChangedCallback`.
+To make your component template react to property changes, you can call a `_requestUpdate` inside [class `set`ters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) or [`set` proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy). Or, if your reactive property is synced to an attribute, you should `_requestUpdate` in an `attributeChangedCallback`.
 
 ```js
 class Dialog extends WebComponent(HTMLElement) {
@@ -173,9 +173,14 @@ class Dialog extends WebComponent(HTMLElement) {
 
   set open(value) {
     this.toggleAttribute("open", Boolean(value));
+    // If `this.open` didn't correspond to an `[open]` attribute,
+    // you could `_requestUpdate` here.
   }
 
   attributeChangedCallback(attribute) {
+    // By calling `_requestUpdate` here, we can update the template
+    // for changes to any property listed in `observedAttributes`,
+    // instead of having to call it in each property setter or proxy.
     this._requestUpdate(attribute);
   }
 
