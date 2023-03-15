@@ -1,7 +1,7 @@
 ## WebComponent
 `WebComponent` is a [class mixin](https://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/) for [`HTMLElement` interfaces](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) to help create [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) in a reactive and declarative manner.
 
-Rather than providing extra utilities and boilerplate abstractions, as with libraries also bulit on the [Web Components API](https://developer.mozilla.org/en-US/docs/Web/Web_Components) like [Lit](https://lit.dev/) or [Stencil](https://stenciljs.com/), this utility is deliberately barebones. It instead encourages convention and defers most work to vanilla JavaScript, further embracing the browser's own component model instead of inventing a new one.
+Rather than providing extra utilities and boilerplate abstractions, as with libraries also bulit on the [Web Components API](https://developer.mozilla.org/en-US/docs/Web/Web_Components) like [Lit](https://lit.dev/) or [Stencil](https://stenciljs.com/), this utility is deliberately barebones, instead encouraging convention and deferring most work to vanilla JavaScript.
 
 This utility has only three goals:
 
