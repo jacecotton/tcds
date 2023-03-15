@@ -131,7 +131,7 @@ The rendered output will be `<p>Country: Mexico</p>` after the component mounts,
 Note that by passing the property key to the `_requestUpdate` method, we have access to a `props` array in the `updatedCallback` method which lets us know which property keys were responsible for, or associated with, that update.
 
 ### Property-attribute reflection
-[Best practices](https://web.dev/custom-elements-best-practices/#attributes-and-properties) stipulate that for attributes with a corresponding property, and vice versa, they should be kept in sync. To do so, we first need to observe the attributes in question:
+[Best practices](https://web.dev/custom-elements-best-practices/#attributes-and-properties) stipulate that for attributes with a corresponding property, they should be kept in sync. To do so, we first need to observe the attributes in question:
 
 ```js
 class Dialog extends WebComponent(HTMLElement) {
@@ -141,20 +141,36 @@ class Dialog extends WebComponent(HTMLElement) {
 }
 ```
 
-Then, we need to define a getter and setter for a corresponding `open` property, and respectively derive the value from the attribute and set the attribute:
+Then, we need to define getters and setters for the corresponding properties, and respectively derive the value from the attributes and set the attributes:
 
 ```js
 class Dialog extends WebComponent(HTMLElement) {
   // ...
 
   get open() {
+    // Or `getAttribute` if not a boolean attribute.
     return this.hasAttribute("open");
   }
 
   set open(value) {
+    // Or `setAttribute` if not a boolean attribute.
     this.toggleAttribute("open", Boolean(value));
   }
 }
 ```
 
-We should not set `this.open = value` in the setter directly. Instead, `this.open` will always read from the current attribute value.
+We should not set `this.open = value` in the setter directly. Instead, `this.open` will always read from the current attribute value. This way, we can ensure properties and attributes are always in sync. Thanks to having dedicated getters and setters, we can also tightly control *how* they're kept in sync on a case-by-case basis.
+
+### Lazy properties
+Lazily upgrading properties, as explained in the [best practices](https://web.dev/custom-elements-best-practices/#make-properties-lazy), can be accomplished with the provided `_upgradeProperties` method in `connectedCallback`.
+
+```js
+class Dialog extends WebComponent(HTMLElement) {
+  // ...
+
+  connectedCallback() {
+    super.connectedCallback();
+    this._upgradePropertes(["open"]);
+  }
+}
+```
