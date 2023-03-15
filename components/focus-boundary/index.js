@@ -24,6 +24,7 @@ export default class FocusBoundary extends HTMLElement {
     super();
     this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStyleSheets, ...[lightStyles]];
   }
+
   connectedCallback() {
     const boundaries = Array.from(this.parentElement.querySelectorAll("focus-boundary"));
     const focusableChildren = [

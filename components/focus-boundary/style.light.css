@@ -6,10 +6,10 @@ focus-boundary {
   height: 1px;
 }
 
-focus-boundary:nth-of-type(1) {
+focus-boundary:first-of-type {
   top: 0;
 }
 
-focus-boundary:nth-of-type(2) {
+focus-boundary:last-of-type {
   bottom: 0;
 }
