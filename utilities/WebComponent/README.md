@@ -72,7 +72,7 @@ Each time `WebComponent` performs a `get` of the `template`, the component will 
 2. The document fragment is compared against the "live" shadow tree
 3. Any and only the differences are applied to the shadow tree
 
-The `_requestUpdate` method can be used to schedule this process, and should generally be done in response to data changes.
+The `_requestUpdate` method can be used to tell `WebComponent` to "refresh" the component. `WebComponent` will debounce all back-to-back update requests (those within a single [animation frame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame)), and then start the rendering process (rather than inefficiently re-rendering once every update).
 
 ### Lifecycle
 In addition to built-in lifecycle methods, `WebComponent` provides two additional methods to handle its reactivity:
@@ -84,14 +84,11 @@ class MyComponent extends WebComponent(HTMLElement) {
     // its first render, and all child components are defined.
   }
 
-  updatedCallback(props) {
+  updatedCallback() {
     // The component has completed a re-render.
   }
 }
 ```
-
-The `props` parameter of the `updatedCallback` is an array of property keys that are responsible for, or associated with, that update.
-This can be done by passing a key to the `_requestUpdate` method, which then schedules a single update for after all back-to-back update requests (those within a single [animation frame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame)) have been debounced.
 
 ### Reactive properties
 To make your component template reactive to element properties, you can call a `_requestUpdate` inside [class setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) or [proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy).
@@ -121,6 +118,8 @@ class MyComponent extends WebComponent(HTMLElement) {
 }
 ```
 
-The rendered output will be `<p>Country: Mexico</p>` after the component mounts.
+The rendered output will be `<p>Country: Mexico</p>` after the component mounts, then `this.country was updated to: Mexico` will be logged to the console.
+
+Note that by passing the property key to the `_requestUpdate` method, we have access to a `props` array in the `updatedCallback` method which lets us know which property keys were responsible for, or associated with, that update.
 
 ### Property-attribute reflection
