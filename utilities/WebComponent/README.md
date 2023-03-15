@@ -156,7 +156,7 @@ This should be done for all observed and synced attributes.
 ### Reactive properties
 To make your component template react to property changes, you can call a `_requestUpdate` wherever that property is updated. This could be inside corresponding [class setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) or [`set` proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy), or if your property is synced to an attribute, inside the `attributeChangedCallback`.
 
-Standalone reactive property (internal state):
+The following demonstrates a standalone reactive property.
 
 ```js
 class Counter extends WebComponent(HTMLElement) {
@@ -165,7 +165,7 @@ class Counter extends WebComponent(HTMLElement) {
     this._upgradeProperties(["count"]);
   }
 
-  static get template() {
+  get template() {
     return `
       <button>Clicked ${this.count} times</button>
     `;
@@ -177,14 +177,20 @@ class Counter extends WebComponent(HTMLElement) {
     });
   }
 
+  #count = 0;
+
+  get count() {
+    return this.#count;
+  }
+
   set count(value) {
-    this.count = value;
+    this.#count = Number(value);
     this._requestUpdate("count");
   }
 }
 ```
 
-Reactive property synchronized with attribute (external API):
+The following demonstrates a reactive property synchronized with attribute.
 
 ```js
 class Dialog extends WebComponent(HTMLElement) {
@@ -211,14 +217,12 @@ class Dialog extends WebComponent(HTMLElement) {
 
   set open(value) {
     this.toggleAttribute("open", Boolean(value));
-    // If `this.open` didn't correspond to an `[open]` attribute,
-    // you could `_requestUpdate` here.
   }
 
   attributeChangedCallback(attribute) {
     // By calling `_requestUpdate` here, we can update the template
     // for changes to any property listed in `observedAttributes`,
-    // instead of having to call it in each property setter or proxy.
+    // instead of having to call it in each property setter.
     this._requestUpdate(attribute);
   }
 
@@ -230,4 +234,4 @@ class Dialog extends WebComponent(HTMLElement) {
 }
 ```
 
-Note that by passing the attribute name to the `_requestUpdate` method, we have access to a `props` array in the `updatedCallback` method which lets us know which property keys were responsible for, or associated with, that update.
+Note that by passing the property name to the `_requestUpdate` method, we have access to a `props` array in the `updatedCallback` method which lets us know which properties were responsible for, or associated with, that update.
