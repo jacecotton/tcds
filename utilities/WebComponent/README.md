@@ -154,7 +154,37 @@ class Dialog extends WebComponent(HTMLElement) {
 This should be done for all observed and synced attributes.
 
 ### Reactive properties
-To make your component template react to property changes, you can call a `_requestUpdate` inside [class `set`ters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) or [`set` proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy). Or, if your reactive property is synced to an attribute, you should `_requestUpdate` in an `attributeChangedCallback`.
+To make your component template react to property changes, you can call a `_requestUpdate` wherever that property is updated. This could be inside corresponding [class setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) or [`set` proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy), or if your property is synced to an attribute, inside the `attributeChangedCallback`.
+
+Standalone reactive property (internal state):
+
+```js
+class Counter extends WebComponent(HTMLElement) {
+  connectedCallback() {
+    super.connectedCallback();
+    this._upgradeProperties(["count"]);
+  }
+
+  static get template() {
+    return `
+      <button>Clicked ${this.count} times</button>
+    `;
+  }
+
+  mountedCallback() {
+    this.shadowRoot.querySelector("button").addEventListener("click", () => {
+      this.count++;
+    });
+  }
+
+  set count(value) {
+    this.count = value;
+    this._requestUpdate("count");
+  }
+}
+```
+
+Reactive property synchronized with attribute (external API):
 
 ```js
 class Dialog extends WebComponent(HTMLElement) {
