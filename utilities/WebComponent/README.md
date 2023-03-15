@@ -1,15 +1,7 @@
 ## WebComponent
-`WebComponent` is a [class mixin](https://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/) for [`HTMLElement` interfaces](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) to help create [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) in a reactive and declarative manner.
+`WebComponent` is a [class mixin](https://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/) for [`HTMLElement` interfaces](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) to help create [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) with declarative templating and reactive DOM diffing.
 
-Rather than providing extra utilities and boilerplate abstractions, as with libraries also bulit on the [Web Components API](https://developer.mozilla.org/en-US/docs/Web/Web_Components) like [Lit](https://lit.dev/) or [Stencil](https://stenciljs.com/), this utility is deliberately barebones, instead encouraging convention and deferring most work to vanilla JavaScript.
-
-This utility has only three goals:
-
-* Provide declarative templating with automatic and efficient DOM diffing
-* Encourage and, where appropriate, enforce compliance with [best practices for custom elements](https://web.dev/custom-elements-best-practices/)
-* Support and encourage compliance with existing convention among browser-native HTML elements
-
-In doing so it further embraces the browser's own component model, rather than concocting a new one, while still providing the minimum DX requirements for building modern, component-based UIs.
+This utility deliberately provides little abstraction, instead enforcing or otherwise encouraging certain conventions existing among browser-native HTML elements and enumerated in the [Custom Elements Best Practices](https://web.dev/custom-elements-best-practices/) document. The utility is agnostic as to prop and state handling, event handling, and styling, but guidance is provided in the below conventions for each.
 
 ### Defining a component
 Defining a Web Component works like defining any other custom element, only instead of extending `HTMLElement` directly, extend it with the `WebComponent` wrapper:
