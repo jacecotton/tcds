@@ -13,7 +13,7 @@ export default class Dialog extends WebComponent(HTMLElement) {
 
   connectedCallback() {
     super.connectedCallback();
-    this._upgradeProperty("open");
+    this._upgradeProperties(["open"]);
   }
 
   static get template() {
@@ -39,7 +39,18 @@ export default class Dialog extends WebComponent(HTMLElement) {
 
   close(value) {
     this.open = false;
-    this.returnValue = value;
+
+    if(value) {
+      this.value = value;
+    } else {
+      this.dispatchEvent(new Event("cancel"));
+    }
+
+    this.dispatchEvent(new CustomEvent("close", {
+      detail: {
+        value: value,
+      },
+    }));
   }
 
   show() {

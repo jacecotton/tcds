@@ -17,12 +17,14 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
     || document.querySelector("link[title=tcds]")?.href
     || "https://unpkg.com/@txch/tcds/dist/tcds.css";
 
-  _upgradeProperty(property) {
-    if(Object.prototype.hasOwnProperty.call(this, property)) {
-      const value = this[property];
-      delete this[property];
-      this[property] = value;
-    }
+  _upgradeProperties(properties) {
+    properties.forEach((property) => {
+      if(Object.prototype.hasOwnProperty.call(this, property)) {
+        const value = this[property];
+        delete this[property];
+        this[property] = value;
+      }
+    });
   }
 
   _requestUpdate(property) {
