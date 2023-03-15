@@ -30,7 +30,8 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
   }
 
   _requestUpdate(property) {
-    this.#batch.push(property);
+    // Using spread instead of push here to avoid duplicates.
+    this.#batch = [...this.#batch, ...[property]];
 
     if(this.#debounce !== null) {
       cancelAnimationFrame(this.#debounce);
