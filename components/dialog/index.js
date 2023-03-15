@@ -75,8 +75,6 @@ export default class Dialog extends WebComponent(HTMLElement) {
 
       const target = this.querySelector("[autofocus]")
         || this.shadowRoot.querySelectorAll("focus-boundary")[1];
-
-      console.log("focusing", target);
       target.focus();
 
       if(this.autoclose) {
