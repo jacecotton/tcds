@@ -66,8 +66,30 @@ class MyComponent extends WebComponent(HTMLElement) {
 }
 ```
 
-Each time `WebComponent` performs a `get` of the `template`, the component will be re-rendered respective to the new state of the relevant data as of that `get`. This is done efficiently through DOM diffing, whereby:
+Each time `WebComponent` performs a `get` of the `template`, the component will be re-rendered respective to the new state of the relevant data as of that `get`. This is done efficiently through DOM "diffing", whereby:
 
 1. The returned template string is converted into a document fragment
 2. The document fragment is compared against the "live" shadow tree
 3. Any and only the differences are applied to the shadow tree
+
+The `_requestUpdate` method can be used to schedule this process, and should generally be done in response to data changes.
+
+## Lifecycle
+In addition to built-in lifecycle methods, `WebComponent` provides two additional methods to handle its reactivity:
+
+```js
+class MyComponent extends WebComponent(HTMLElement) {
+  mountedCallback() {
+    // The component is connected to the DOM, has completed
+    // its first render, and all child components are defined.
+  }
+
+  updatedCallback(props) {
+    // The component has completed a re-render.
+  }
+}
+```
+
+The `props` parameter of the `updatedCallback` is an array of property keys that are responsible for, or associated with, that update.
+This can be done by passing a key to the `_requestUpdate` method, which then schedules a single update for after all back-to-back update requests (those within a single [animation frame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame)) have been debounced.
+
