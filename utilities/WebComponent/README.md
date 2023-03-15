@@ -74,7 +74,7 @@ Each time `WebComponent` performs a `get` of the `template`, the component will 
 
 The `_requestUpdate` method can be used to schedule this process, and should generally be done in response to data changes.
 
-## Lifecycle
+### Lifecycle
 In addition to built-in lifecycle methods, `WebComponent` provides two additional methods to handle its reactivity:
 
 ```js
@@ -93,3 +93,34 @@ class MyComponent extends WebComponent(HTMLElement) {
 The `props` parameter of the `updatedCallback` is an array of property keys that are responsible for, or associated with, that update.
 This can be done by passing a key to the `_requestUpdate` method, which then schedules a single update for after all back-to-back update requests (those within a single [animation frame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame)) have been debounced.
 
+### Reactive properties
+To make your component template reactive to element properties, you can call a `_requestUpdate` inside [class setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) or [proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy).
+
+```js
+class MyComponent extends WebComponent(HTMLElement) {
+  static get template() {
+    return `
+      <p>Country: ${this.country || "United States"}</p>
+    `;
+  }
+
+  set country(value) {
+    this.country = value;
+    this._requestUpdate("country");
+  }
+
+  mountedCallback() {
+    this.country = "Mexico";
+  }
+
+  updatedCallback(props) {
+    if(props.includes("country")) {
+      console.log("this.country was updated to", this.country);
+    }
+  }
+}
+```
+
+The rendered output will be `<p>Country: Mexico</p>` after the component mounts.
+
+### Property-attribute reflection
