@@ -24,7 +24,7 @@ export default class Dialog extends WebComponent(HTMLElement) {
       <div part="dialog">
         <focus-boundary static></focus-boundary>
 
-        <button data-is="tcds-ui-button"
+        <button is="tcds-ui-button"
           part="close"
           onclick="this.getRootNode().host.close()"
           variant="secondary"

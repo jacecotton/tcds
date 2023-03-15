@@ -1,0 +1,23 @@
+button[is="tcds-ui-button"],
+a[is="tcds-link-button"] {
+  --tcds-button-background: var(--tcds-color-primary);
+  --tcds-button-text: #fff;
+  --tcds-button-font-size: var(--tcds-font-size-medium);
+  --tcds-button-height: var(--tcds-size-medium);
+
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  background-color: var(--tcds-button-background);
+  color: var(--tcds-button-text);
+  border: 0;
+  font-size: var(--tcds-button-font-size);
+  font-family: var(--tcds-font-ui);
+  font-weight: var(--tcds-font-semibold);
+  height: var(--tcds-button-height);
+  min-width: var(--tcds-button-height);
+  border-radius: var(--tcds-button-height);
+  cursor: pointer;
+}

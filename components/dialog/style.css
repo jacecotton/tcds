@@ -1,14 +1,14 @@
 :host {
   --tcds-dialog-padding: var(--tcds-space-x-loose);
 
-  position: fixed;
-  inset: 0;
-  background-color: var(--tcds-color-shade-strong);
-  backdrop-filter: blur(0.5px);
-  z-index: var(--tcds-layer-dialog);
   display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  inset: 0;
+  z-index: var(--tcds-layer-dialog);
+  background-color: var(--tcds-color-shade-strong);
+  backdrop-filter: blur(0.5px);
   font-family: var(--tcds-font-ui);
 }
 

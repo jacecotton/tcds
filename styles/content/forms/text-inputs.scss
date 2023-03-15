@@ -19,6 +19,7 @@ select {
   padding: 0 var(--tcds-space-normal);
   height: var(--tcds-size-medium);
   width: 100%;
+  max-width: 100%;
   transition: background-color var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing);
 
   &:hover {
@@ -44,6 +45,7 @@ select {
 
 textarea {
   height: initial;
+  min-height: var(--tcds-size-medium);
   padding: var(--tcds-space-normal);
 }
 

@@ -7,7 +7,7 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
   }
 
   #debounce = null;
-  #batch = new Set([]);
+  #batch = [];
   #renderPasses = 0;
   #baseStyles = this.constructor.baseStyles
     || document.querySelector("link[title=tcds]")?.href
@@ -15,7 +15,7 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
 
   connectedCallback() {
     if(this.#renderPasses === 0) {
-      this._requestUpdate();
+      this._requestUpdate(this.constructor.observedAttributes);
     }
   }
 
@@ -30,7 +30,7 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
   }
 
   _requestUpdate(property) {
-    this.#batch.add(property);
+    this.#batch = [...this.#batch, ...[property].flat()];
 
     if(this.#debounce !== null) {
       cancelAnimationFrame(this.#debounce);
@@ -40,6 +40,9 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
   }
 
   #update() {
+    const props = Object.assign({}, this.#batch);
+
+    this.#batch = [];
     this.#debounce = null;
 
     diff(`
@@ -58,15 +61,13 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
       Promise.all(childComponentsAreDefined).then(() => {
         this.dispatchEvent(new Event("mount"));
         this.mountedCallback?.();
-        this.updatedCallback?.(this.#batch);
+        this.updatedCallback?.(props);
       }).catch((error) => {
         console.error("Child components are not defined.", error);
       });
     } else {
-      this.updatedCallback?.(this.#batch);
+      this.updatedCallback?.(props);
     }
-
-    this.#batch = [];
   }
 };
 
