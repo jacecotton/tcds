@@ -22,7 +22,7 @@ export default class Dialog extends WebComponent(HTMLElement) {
   get template() {
     return /* html */`
       <div part="dialog">
-        <div data-focus-boundary></div>
+        <focus-boundary static></focus-boundary>
 
         <button data-is="tcds-ui-button"
           onclick="this.getRootNode().host.close()"
@@ -31,7 +31,7 @@ export default class Dialog extends WebComponent(HTMLElement) {
         >Close dialog</button>
         <slot></slot>
 
-        <div data-focus-boundary></div>
+        <focus-boundary static></focus-boundary>
       </div>
     `;
   }
@@ -64,28 +64,51 @@ export default class Dialog extends WebComponent(HTMLElement) {
   #autocloseTimer = null;
   #previouslyFocused;
 
-  updatedCallback(props) {
-    if(props.includes("open")) {
-      localStorage.setItem(`tcds_dialog_${this.id}_open`, this.open.toString());
-      document.body.style.overflowY = this.open ? "hidden" : null;
+  updatedCallback() {
+    localStorage.setItem(`tcds_dialog_${this.id}_open`, this.open.toString());
+    document.body.style.overflowY = this.open ? "hidden" : null;
 
-      if(this.open) {
-        this.#previouslyFocused = document.activeElement;
+    this.#handleOtherComponents();
 
-        const target = this.querySelector("[autofocus]")
-          || this.shadowRoot.querySelectorAll("div[data-focus-boundary]")[1];
-        target.focus();
+    if(this.open) {
+      this.#previouslyFocused = document.activeElement;
 
-        if(this.autoclose) {
-          this.#autocloseTimer = setTimeout(() => {
-            this.close();
-            clearTimeout(this.#autocloseTimer);
-          }, this.autoclose * 1000);
-        }
-      } else {
-        this.#autocloseTimer && clearTimeout(this.#autocloseTimer);
-        this.#previouslyFocused?.focus?.();
+      const target = this.querySelector("[autofocus]")
+        || this.shadowRoot.querySelectorAll("focus-boundary")[1];
+
+      console.log("focusing", target);
+      target.focus();
+
+      if(this.autoclose) {
+        this.#autocloseTimer = setTimeout(() => {
+          this.close();
+          clearTimeout(this.#autocloseTimer);
+        }, this.autoclose * 1000);
       }
+    } else {
+      this.#autocloseTimer && clearTimeout(this.#autocloseTimer);
+      this.#previouslyFocused?.focus?.();
+    }
+  }
+
+  #pausedCarousels = [];
+
+  #handleOtherComponents() {
+    const cards = this.querySelectorAll("tcds-card");
+    const carousels = this.getRootNode().querySelectorAll("tcds-carousel");
+
+    if(this.open) {
+      cards?.forEach(card => card.orient());
+
+      carousels?.forEach((carousel) => {
+        if(carousel.playing) {
+          carousel.pause();
+          this.#pausedCarousels.push(carousel);
+        }
+      });
+    } else {
+      this.#pausedCarousels.forEach(pausedCarousel => pausedCarousel.resume());
+      this.#pausedCarousels = [];
     }
   }
 
