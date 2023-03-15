@@ -203,7 +203,7 @@ class Dialog extends WebComponent(HTMLElement) {
     this._upgradeProperties(["open"]);
   }
 
-  static get template() {
+  get template() {
     return `
       <div ${this.open ? "" : "hidden"}>
         ...
