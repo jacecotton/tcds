@@ -7,7 +7,7 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
   }
 
   #debounce = null;
-  #batch = [];
+  #batch = new Set([]);
   #renderPasses = 0;
   #baseStyles = this.constructor.baseStyles
     || document.querySelector("link[title=tcds]")?.href
@@ -30,8 +30,7 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
   }
 
   _requestUpdate(property) {
-    // Using spread instead of push here to avoid duplicates.
-    this.#batch = [...this.#batch, ...[property]];
+    this.#batch.add(property);
 
     if(this.#debounce !== null) {
       cancelAnimationFrame(this.#debounce);
