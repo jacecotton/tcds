@@ -11,9 +11,6 @@
 @use "./styles/color/color";
 
 /** Components */
-@use "./components/alert-bar/style.shared" as *;
-@use "./components/dialog/style.shared" as *;
-@use "./components/section/style.shared" as *;
 @use "./styles/components/base" as *;
 @use "./styles/components/action-bar";
 @use "./styles/components/breadcrumb";

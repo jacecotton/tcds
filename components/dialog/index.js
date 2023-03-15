@@ -16,10 +16,10 @@ export default class Dialog extends WebComponent(HTMLElement) {
     this._upgradeProperties(["open"]);
   }
 
-  static get template() {
+  get template() {
     return /* html */`
       <div part="dialog">
-        <button onclick="this.getRootNode().host.close()">close</button>
+        <button onclick="this.getRootNode().host.close()" aria-expanded="${this.open}">close</button>
         <slot></slot>
       </div>
     `;

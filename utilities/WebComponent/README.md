@@ -31,23 +31,21 @@ The customized built-in can now be used as `<ul is="my-component">`.
 **Note:** Only do this for [elements that can have a shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow#elements_you_can_attach_a_shadow_to). **`WebComponent` is incompatible with elements that cannot.**
 
 ### Templating
-Provide your component's template, to be rendered within its shadow root, in a static `template` property.
+Provide your component's template, to be rendered within its shadow root, in a `template` property.
 
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
-  static get template() {
-    return `
-      <p>Hello world!</p>
-    `;
-  }
+  template = `
+    <p>Hello world!</p>
+  `;
 }
 ```
 
-By using template literals and other basic JavaScript features, you can interpolate data, conditionally render, and recursively render.
+By using a `template` getter method, you can perform arbitrary operations prior to returning a value. By using template literals and other basic JavaScript features, you can interpolate data, conditionally render, and recursively render.
 
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
-  static get template() {
+  get template() {
     const fruits = ["Banana", "Apple", "Orange"];
 
     return `
@@ -90,6 +88,16 @@ class MyComponent extends WebComponent(HTMLElement) {
 }
 ```
 
+Note that `WebComponent` makes use of `connectedCallback` internally, so if you use it in your subclass, you must call `super.connectedCallback` first:
+
+```js
+class MyComponent extends WebComponent(HTMLElement) {
+  connectedCallback() {
+    super.connectedCallback();
+  }
+}
+```
+
 ### Reactive properties
 To make your component template reactive to element properties, you can call a `_requestUpdate` inside [class setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) or [proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy).
 
@@ -123,3 +131,30 @@ The rendered output will be `<p>Country: Mexico</p>` after the component mounts,
 Note that by passing the property key to the `_requestUpdate` method, we have access to a `props` array in the `updatedCallback` method which lets us know which property keys were responsible for, or associated with, that update.
 
 ### Property-attribute reflection
+[Best practices](https://web.dev/custom-elements-best-practices/#attributes-and-properties) stipulate that for attributes with a corresponding property, and vice versa, they should be kept in sync. To do so, we first need to observe the attributes in question:
+
+```js
+class Dialog extends WebComponent(HTMLElement) {
+  static get observedAttributes() {
+    return ["open"];
+  }
+}
+```
+
+Then, we need to define a getter and setter for a corresponding `open` property, and respectively derive the value from the attribute and set the attribute:
+
+```js
+class Dialog extends WebComponent(HTMLElement) {
+  // ...
+
+  get open() {
+    return this.hasAttribute("open");
+  }
+
+  set open(value) {
+    this.toggleAttribute("open", Boolean(value));
+  }
+}
+```
+
+We should not set `this.open = value` in the setter directly. Instead, `this.open` will always read from the current attribute value.

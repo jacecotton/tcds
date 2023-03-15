@@ -6,16 +6,18 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
     this.attachShadow({mode: "open"});
   }
 
-  connectedCallback() {
-    this._requestUpdate();
-  }
-
   #debounce = null;
   #batch = [];
   #renderPasses = 0;
   #baseStyles = this.constructor.baseStyles
     || document.querySelector("link[title=tcds]")?.href
     || "https://unpkg.com/@txch/tcds/dist/tcds.css";
+
+  connectedCallback() {
+    if(this.#renderPasses === 0) {
+      this._requestUpdate();
+    }
+  }
 
   _upgradeProperties(properties) {
     properties.forEach((property) => {
@@ -44,7 +46,7 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
       ${this.#baseStyles ? `
         <style id="tcds">@import url(${this.#baseStyles})</style>
       ` : ""}
-      ${this.constructor.template || ""}
+      ${this.template || ""}
     `, this.shadowRoot);
 
     this.#renderPasses++;
