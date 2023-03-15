@@ -7,7 +7,7 @@ Concretely, this utility provides exactly three things:
 * Lifecycle hooks for interfacing with this process (`mountedCallback` and `updatedCallback`)
 * [Lazy attribute binding](https://web.dev/custom-elements-best-practices/#make-properties-lazy) (`_upgradeProperties` method)
 
-Everything else—reactive properties, attribute synchronization, conditional and recursive rendering, styling, event handling, etc.—is deferred to vanilla JavaScript and convention.
+Everything else—reactive properties, attribute synchronization, conditional and recursive rendering, styling, event handling, etc.—is deferred to vanilla JavaScript and documented convention.
 
 ### Defining a component
 Defining a Web Component works like defining any other custom element, only instead of extending `HTMLElement` directly, extend it with the `WebComponent` wrapper:
@@ -156,7 +156,7 @@ This should be done for all observed and synced attributes.
 ### Reactive properties
 To make your component template react to property changes, you can call a `_requestUpdate` wherever that property is updated. This could be inside corresponding [class setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) or [`set` proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy), or if your property is synced to an attribute, inside the `attributeChangedCallback`.
 
-The following demonstrates a standalone reactive property.
+The following demonstrates a standalone reactive property (state).
 
 ```js
 class Counter extends WebComponent(HTMLElement) {
@@ -190,7 +190,7 @@ class Counter extends WebComponent(HTMLElement) {
 }
 ```
 
-The following demonstrates a reactive property synchronized with attribute.
+The following demonstrates a reactive property synchronized with an attribute.
 
 ```js
 class Dialog extends WebComponent(HTMLElement) {

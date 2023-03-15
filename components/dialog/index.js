@@ -14,19 +14,79 @@ export default class Dialog extends WebComponent(HTMLElement) {
   connectedCallback() {
     super.connectedCallback();
     this._upgradeProperties(["open"]);
+
+    this.open = this.open
+      && localStorage.getItem(`tcds_dialog_${this.id}_open`) !== "false";
   }
 
   get template() {
     return /* html */`
       <div part="dialog">
-        <button onclick="this.getRootNode().host.close()" aria-expanded="${this.open}">close</button>
+        <div data-focus-boundary></div>
+
+        <button data-is="tcds-ui-button"
+          onclick="this.getRootNode().host.close()"
+          variant="secondary"
+          icon="only x"
+        >Close dialog</button>
         <slot></slot>
+
+        <div data-focus-boundary></div>
       </div>
     `;
   }
 
+  mountedCallback() {
+    this.dialog = this.shadowRoot.querySelector("[part=dialog]");
+
+    this.setAttribute("role", "dialog");
+    this.setAttribute("aria-modal", "true");
+
+    this.dialog.addEventListener("click", (event) => {
+      event.stopPropagation();
+    });
+
+    document.body.addEventListener("click", () => {
+      this.close();
+    });
+
+    this.addEventListener("keyup", (event) => {
+      if(event.key === "Escape") {
+        this.close();
+      }
+    });
+  }
+
   attributeChangedCallback(attribute) {
     this._requestUpdate(attribute);
+  }
+
+  #autocloseTimer = null;
+  #previouslyFocused;
+
+  updatedCallback(props) {
+    if(props.includes("open")) {
+      localStorage.setItem(`tcds_dialog_${this.id}_open`, this.open.toString());
+      document.body.style.overflowY = this.open ? "hidden" : null;
+
+      if(this.open) {
+        this.#previouslyFocused = document.activeElement;
+
+        const target = this.querySelector("[autofocus]")
+          || this.shadowRoot.querySelectorAll("div[data-focus-boundary]")[1];
+        target.focus();
+
+        if(this.autoclose) {
+          this.#autocloseTimer = setTimeout(() => {
+            this.close();
+            clearTimeout(this.#autocloseTimer);
+          }, this.autoclose * 1000);
+        }
+      } else {
+        this.#autocloseTimer && clearTimeout(this.#autocloseTimer);
+        this.#previouslyFocused?.focus?.();
+      }
+    }
   }
 
   get open() {
@@ -35,6 +95,10 @@ export default class Dialog extends WebComponent(HTMLElement) {
 
   set open(value) {
     this.toggleAttribute("open", Boolean(value));
+  }
+
+  get autoclose() {
+    return Number(this.getAttribute("autoclose")) || false;
   }
 
   close(value) {
