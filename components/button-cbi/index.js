@@ -5,13 +5,14 @@ const Button = BaseElement => class extends BaseElement {
     return ["icon"];
   }
 
-  connectedCallback() {
+  constructor() {
+    super();
     this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStyleSheets, ...[styles]];
   }
 
-  attributeChangedCallback(attribute) {
-    if(attribute === "icon" && this.icon) {
-      const iconTemplate = `<tcds-icon part="icon" icon="${this.icon.filter(modifier => !["only", "inline", "right"].includes(modifier)).join(" ")}"></tcds-icon>`;
+  attributeChangedCallback(name) {
+    if(name === "icon" && this.icon) {
+      const iconTemplate = `<tcds-icon part="icon" icon="${this.icon.filter(modifier => !["only", "right"].includes(modifier)).join(" ")}"></tcds-icon>`;
 
       if(!this.icon.includes("only")) {
         this.innerHTML = `${iconTemplate} ${this.label}`;
@@ -28,12 +29,22 @@ const Button = BaseElement => class extends BaseElement {
   }
 
   get icon() {
-    return this.getAttribute("icon").trim().replace(/\s\s+/g, " ").split(" ");
+    return this.hasAttribute("icon")
+      && this.getAttribute("icon").trim().replace(/\s\s+/g, " ").split(" ");
   }
 };
 
-class UIButton extends Button(HTMLButtonElement) {}
-class LinkButton extends Button(HTMLAnchorElement) {}
+class UIButton extends Button(HTMLButtonElement) {
+  constructor() {
+    super();
+  }
+}
+
+class LinkButton extends Button(HTMLAnchorElement) {
+  constructor() {
+    super();
+  }
+}
 
 customElements.define("tcds-ui-button", UIButton, {extends: "button"});
 customElements.define("tcds-link-button", LinkButton, {extends: "a"});

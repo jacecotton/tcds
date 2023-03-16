@@ -80,28 +80,34 @@ Each time `WebComponent` performs a `get` of the `template`, the component will 
 
 The `_requestUpdate` method can be used to tell `WebComponent` to "refresh" the component. `WebComponent` will debounce all back-to-back update requests (those within a single [animation frame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame)), and then start the rendering process (rather than inefficiently re-rendering once every update).
 
+By default, `WebComponent` will `_requestUpdate` after changes to attributes listed in `observedAttributes`. This can be overridden by providing your own `attributeChangedCallback` method (see [Lifecycle](#lifecycle)).
+
 ### Lifecycle
 In addition to built-in lifecycle methods, `WebComponent` provides two additional methods to handle its reactivity:
 
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
   mountedCallback() {
-    // The component is connected to the DOM, has completed
-    // its first render, and all child components are defined.
+    // The component is connected to the DOM and has completed
+    // its first render.
   }
 
   updatedCallback() {
-    // The component has completed a re-render.
+    // The component has completed a render.
   }
 }
 ```
 
-Note that `WebComponent` makes use of `connectedCallback` internally, so if you use it in your subclass, you must call `super.connectedCallback` first:
+Note that `WebComponent` makes use of `connectedCallback` and `attributeChangedCallback` internally, so if you use either in your subclass, you must call `super` first:
 
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
   connectedCallback() {
     super.connectedCallback();
+  }
+
+  attributeChangedCallback() {
+    super.attributeChangedCallback();
   }
 }
 ```
@@ -154,7 +160,7 @@ class Dialog extends WebComponent(HTMLElement) {
 This should be done for all observed and synced attributes.
 
 ### Reactive properties
-To make your component template react to property changes, you can call a `_requestUpdate` wherever that property is updated. This could be inside corresponding [class setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) or [`set` proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy), or if your property is synced to an attribute, inside the `attributeChangedCallback`.
+To make your component template react to property changes, you can call a `_requestUpdate` wherever that property is updated. This could be inside corresponding [class setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) or [`set` proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy), or if your property is synced to an attribute, inside the `attributeChangedCallback`. (All `observedAttributes` will call a `_requestUpdate` on change by default.)
 
 The following demonstrates a standalone reactive property (state).
 
@@ -175,6 +181,12 @@ class Counter extends WebComponent(HTMLElement) {
     this.shadowRoot.querySelector("button").addEventListener("click", () => {
       this.count++;
     });
+  }
+
+  updatedCallback(props) {
+    if(props.includes("count")) {
+      console.log("Count was updated");
+    }
   }
 
   #count = 0;
@@ -217,19 +229,6 @@ class Dialog extends WebComponent(HTMLElement) {
 
   set open(value) {
     this.toggleAttribute("open", Boolean(value));
-  }
-
-  attributeChangedCallback(attribute) {
-    // By calling `_requestUpdate` here, we can update the template
-    // for changes to any property listed in `observedAttributes`,
-    // instead of having to call it in each property setter.
-    this._requestUpdate(attribute);
-  }
-
-  updatedCallback(props) {
-    if(props.includes("open")) {
-      console.log(`Dialog was ${this.open ? "opened" : "closed"}`);
-    }
   }
 }
 ```
@@ -318,3 +317,8 @@ my-component:not(:only-child) {
   ...
 }
 ```
+
+### Events
+
+### Guard against DOM diffing
+The DOM diffing process will skip over any element with a `static` attribute. This can be useful for child components that imperatively update themselves after mounting, or for third party libraries that inject content into parts of your component after mounting.

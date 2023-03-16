@@ -23,7 +23,6 @@ export default class Dialog extends WebComponent(HTMLElement) {
     return /* html */`
       <div part="dialog">
         <focus-boundary static></focus-boundary>
-
         <button is="tcds-ui-button"
           part="close"
           onclick="this.getRootNode().host.close()"
@@ -31,7 +30,6 @@ export default class Dialog extends WebComponent(HTMLElement) {
           icon="only x"
         >Close dialog</button>
         <slot></slot>
-
         <focus-boundary static></focus-boundary>
       </div>
     `;
@@ -56,10 +54,6 @@ export default class Dialog extends WebComponent(HTMLElement) {
         this.close();
       }
     });
-  }
-
-  attributeChangedCallback(attribute) {
-    this._requestUpdate(attribute);
   }
 
   #autocloseTimer = null;

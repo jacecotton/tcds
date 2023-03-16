@@ -19,6 +19,10 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
     }
   }
 
+  attributeChangedCallback(attribute) {
+    this._requestUpdate(attribute);
+  }
+
   _upgradeProperties(properties) {
     properties.forEach((property) => {
       if(Object.prototype.hasOwnProperty.call(this, property)) {
@@ -40,7 +44,7 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
   }
 
   #update() {
-    const props = Object.assign({}, this.#batch);
+    const props = [...this.#batch];
 
     this.#batch = [];
     this.#debounce = null;
@@ -55,16 +59,9 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
     this.#renderPasses++;
 
     if(this.#renderPasses === 1) {
-      const childComponentsAreDefined = [...this.shadowRoot.querySelectorAll(":not(:defined)")]
-        .map(child => customElements.whenDefined(child.localName));
-
-      Promise.all(childComponentsAreDefined).then(() => {
-        this.dispatchEvent(new Event("mount"));
-        this.mountedCallback?.();
-        this.updatedCallback?.(props);
-      }).catch((error) => {
-        console.error("Child components are not defined.", error);
-      });
+      this.dispatchEvent(new Event("mount"));
+      this.mountedCallback?.();
+      this.updatedCallback?.(props);
     } else {
       this.updatedCallback?.(props);
     }

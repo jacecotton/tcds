@@ -143,7 +143,7 @@ export default function diff(template, existing) {
       existingNodes[index].before(ahead);
     }
 
-    if(node.hasAttribute?.("static")) {
+    if(node.hasAttribute?.("static") || node.hasAttribute?.("is")) {
       return;
     }
 
