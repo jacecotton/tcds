@@ -1,16 +1,11 @@
-## WebComponent
-`WebComponent` is a [class mixin](https://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/) for [`HTMLElement` interfaces](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) to help create [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) with declarative, state-driven templating.
+`WebComponent` is a [class mixin](https://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/) for [element interfaces](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) for creating declaratively-written reactive [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements).
 
-Concretely, this utility provides exactly three things:
+This documentation assumes familiarity with the [Web Components API](https://developer.mozilla.org/en-US/docs/Web/Web_Components), as this utility introduces very few concepts.
 
-* A way to declaratively define a component template and efficiently render it (`template` property and `_requestUpdate` method)
-* Lifecycle hooks for interfacing with this process (`mountedCallback` and `updatedCallback`)
-* [Lazy attribute binding](https://web.dev/custom-elements-best-practices/#make-properties-lazy) (`_upgradeProperties` method)
+## Getting started
+Defining a Web Component works like defining any other custom element, only instead of extending an element interface directly, extend it with the `WebComponent` wrapper.
 
-Everything else—reactive properties, attribute synchronization, conditional and recursive rendering, styling, event handling, etc.—is deferred to vanilla JavaScript and documented convention.
-
-### Defining a component
-Defining a Web Component works like defining any other custom element, only instead of extending `HTMLElement` directly, extend it with the `WebComponent` wrapper:
+For example, extend `HTMLElement` to create an autonomous custom element:
 
 ```js
 import {WebComponent} from "@txch/tcds";
@@ -22,9 +17,7 @@ class MyComponent extends WebComponent(HTMLElement) {
 customElements.define("my-component", MyComponent);
 ```
 
-`<my-component>` can now be used as a valid HTML element on any page with the above script loaded.
-
-You can customize built-in elements by passing the interface of any other HTML element to the `WebComponent` mixin.
+Or any other interface to customize a built-in element:
 
 ```js
 class MyComponent extends WebComponent(HTMLUListElement) {
@@ -34,100 +27,94 @@ class MyComponent extends WebComponent(HTMLUListElement) {
 customElements.define("my-component", MyComponent, {extends: "ul"});
 ```
 
-The customized built-in can now be used as `<ul is="my-component">`.
-
 **Note:** Only do this for [elements that can have a shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow#elements_you_can_attach_a_shadow_to). **`WebComponent` is incompatible with elements that cannot.**
 
-### Templating
-Provide your component's template, to be rendered within its shadow root, in a `template` property.
+## Templating
+Define your component markup in a `template` property.
 
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
   template = `
-    <p>Hello world!</p>
+    <p>Hello world</p>
   `;
 }
 ```
 
-By using a `template` getter method, you can perform arbitrary operations prior to returning a value. By using template literals and other basic JavaScript features, you can interpolate data, conditionally render, and recursively render.
+When the element connects, a shadow root will be attached and the markup will be inserted inside.
 
-```js
-class MyComponent extends WebComponent(HTMLElement) {
-  get template() {
-    const fruits = ["Banana", "Apple", "Orange"];
+From then on, every time the component updates, the template will be compared against the existing shadow tree, then any differences between them will be applied to the shadow DOM.
 
-    return `
-      ${fruits.length ? `
-        <p>Fruits:</p>
-        <ul>
-          ${fruits.map(fruit => `
-            <li>${fruit}</li>
-          `).join("")}
-        </ul>
-      ` : `
-        <p>No fruits to display.</p>
-      `}
-    `;
-  }
-}
-```
-
-Each time `WebComponent` performs a `get` of the `template`, the component will be re-rendered respective to the new state of the relevant data as of that `get`. This is done efficiently through DOM "diffing", whereby:
-
-1. The returned template string is converted into a document fragment
-2. The document fragment is compared against the "live" shadow tree
-3. Any and only the differences are applied to the shadow tree
-
-The `_requestUpdate` method can be used to tell `WebComponent` to "refresh" the component. `WebComponent` will debounce all back-to-back update requests (those within a single [animation frame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame)), and then start the rendering process (rather than inefficiently re-rendering once every update).
-
-By default, `WebComponent` will `_requestUpdate` after changes to attributes listed in `observedAttributes`. This can be overridden by providing your own `attributeChangedCallback` method (see [Lifecycle](#lifecycle)).
-
-### Lifecycle
-In addition to built-in lifecycle methods, `WebComponent` provides two additional methods to handle its reactivity:
-
-```js
-class MyComponent extends WebComponent(HTMLElement) {
-  mountedCallback() {
-    // The component is connected to the DOM and has completed
-    // its first render.
-  }
-
-  updatedCallback() {
-    // The component has completed a render.
-  }
-}
-```
-
-Note that `WebComponent` makes use of `connectedCallback` and `attributeChangedCallback` internally, so if you use either in your subclass, you must call `super` first:
+## Lifecycle
+`WebComponent` uses both `connectedCallback` and `attributeChangedCallback` internally. So if you wish to use them in your subclass while preserving default behavior, you must call the respective `super` methods.
 
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
   connectedCallback() {
     super.connectedCallback();
+    ...
   }
 
   attributeChangedCallback() {
     super.attributeChangedCallback();
+    ...
   }
 }
 ```
 
-### Property-attribute reflection
-[Best practices](https://web.dev/custom-elements-best-practices/#attributes-and-properties) stipulate that for attributes with a corresponding property, they should be kept in sync. To do so, we first need to observe the attributes in question:
+In both cases, `WebComponent` uses these methods in order to schedule a component update (for the initial render and after every [observed attribute change](#reactive-attributes), respectively).
+
+`WebComponent` also provides two additional lifecycle callbacks:
 
 ```js
-class Dialog extends WebComponent(HTMLElement) {
-  static get observedAttributes() {
-    return ["open"];
+class MyComponent extends WebComponent(HTMLElement) {
+  mountedCallback() {
+    // Called after first render.
+  }
+
+  updatedCallback(old) {
+    // Called after each render.
   }
 }
 ```
 
-Then, we need to define getters and setters for the corresponding properties, and respectively derive the value from the attributes and set the attributes:
+The `old` parameter provides access to the updated attributes' previous values (so for example, given `foo="bar"`, `this.setAttribute("foo", "baz")` would result in an `updatedCallback` call, within which you could compare `old.foo` (`bar`) to `this.foo` (`baz`)).
+
+## Reactive attributes
+Reactive attributes are attributes that trigger a component re-render when changed.
+
+To specify reactive attributes, list them in a static `observedAttributes` property.
+
+```js
+class MyComponent extends WebComponent(HTMLElement) {
+  static observedAttributes = ["foo", "bar"];
+}
+```
+
+When the `[foo]` or `[bar]` attributes change, the element's shadow tree will be re-rendered. As with standard custom elements, you can hook into these attribute changes with the `attributeChangedCallback` method.
+
+You can also choose to only make certain observed attributes reactive by overriding the `attributeChangedCallback` method and calling `_requestUpdate` for select attribute(s).
+
+```js
+class MyComponent extends WebComponent(HTMLElement) {
+  static observedAttributes = ["foo", "bar", "baz"];
+
+  attributeChangedCallback(name, previousValue) {
+    // [foo] will no longer trigger a re-render.
+    if(name === "bar" || name === "baz") {
+      this._requestUpdate({[name]: previousValue});
+    }
+  }
+}
+```
+
+## Attribute-property reflection
+Like with the attributes of native HTML elements, a custom element's primitive attributes should generally correspond to an internal property (see [best practices](https://web.dev/custom-elements-best-practices/#avoid-reentrancy-issues)). Attributes and properties should be kept in sync at least downwards (attribute to property), and depending on the property, also upwards (property to attribute).
+
+To do so, first observe the attribute, define a getter for the corresponding property that returns a value derived from the attribute (optionally with type casting), and a setter that updates the attribute (optionally with type validation).
 
 ```js
 class Dialog extends WebComponent(HTMLElement) {
-  // ...
+  static observedAttributes = ["open"];
 
   get open() {
     // Or `getAttribute` if not a boolean attribute.
@@ -141,14 +128,14 @@ class Dialog extends WebComponent(HTMLElement) {
 }
 ```
 
-We should not set `this.open = value` in the setter directly. Instead, `this.open` will always read from the current attribute value. This way, we can ensure properties and attributes are always in sync. Thanks to having dedicated getters and setters, we can also tightly control *how* they're kept in sync on a case-by-case basis.
+Here, we do not allow setting `this.open` directly. Instead, attempts to set the property update the attribute, the attribute change is observed, then when the property is read it pulls from the attribute's new value. This way the property and attribute are always in sync without causing infinite recursion or other problems.
 
 ### Lazy properties
-Lazily upgrading properties, as explained in the [best practices](https://web.dev/custom-elements-best-practices/#make-properties-lazy), can be accomplished with the provided `_upgradeProperties` method in `connectedCallback`.
+The above approach does create one potential problem, which is if a component user attempts to set a property on the element before its definition has been loaded (ergo before the getter and setter can intercede). This can be addressed by [making the property lazy](https://web.dev/custom-elements-best-practices/#make-properties-lazy) using a provided `_upgradeProperties` method inside the `connectedCallback`. As a matter of general best practice, this should always be done.
 
 ```js
 class Dialog extends WebComponent(HTMLElement) {
-  // ...
+  ...
 
   connectedCallback() {
     super.connectedCallback();
@@ -157,38 +144,15 @@ class Dialog extends WebComponent(HTMLElement) {
 }
 ```
 
-This should be done for all observed and synced attributes.
+## Reactive state
+As mentioned above, any changes to observed attributes will automatically trigger a re-render. However, you may want to update the component after a change to a property that is *not* associated with an attribute, or some other arbitrary condition or behavior.
 
-### Reactive properties
-To make your component template react to property changes, you can call a `_requestUpdate` wherever that property is updated. This could be inside corresponding [class setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) or [`set` proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy), or if your property is synced to an attribute, inside the `attributeChangedCallback`. (All `observedAttributes` will call a `_requestUpdate` on change by default.)
+The `_requestUpdate` method can be called to schedule an update. Update requests (including those dispatched from attribute changes) are debounced within a single animation frame before an update is actually made to make the rendering step more efficient.
 
-The following demonstrates a standalone reactive property (state).
+Class setters and set proxies can be used to detect changes to properties, then you can call `_requestUpdate` from there.
 
 ```js
-class Counter extends WebComponent(HTMLElement) {
-  connectedCallback() {
-    super.connectedCallback();
-    this._upgradeProperties(["count"]);
-  }
-
-  get template() {
-    return `
-      <button>Clicked ${this.count} times</button>
-    `;
-  }
-
-  mountedCallback() {
-    this.shadowRoot.querySelector("button").addEventListener("click", () => {
-      this.count++;
-    });
-  }
-
-  updatedCallback(props) {
-    if(props.includes("count")) {
-      console.log("Count was updated");
-    }
-  }
-
+class ClickCounter extends WebComponent(HTMLElement) {
   #count = 0;
 
   get count() {
@@ -196,129 +160,27 @@ class Counter extends WebComponent(HTMLElement) {
   }
 
   set count(value) {
+    const old = this.#count;
     this.#count = Number(value);
-    this._requestUpdate("count");
+    this._requestUpdate({count: old});
+  }
+
+  template = `
+    <button id="clicker">Clicked ${this.count} times</button>
+  `;
+
+  mountedCallback() {
+    this.shadowRoot.clicker.addEventListener("click", () => {
+      this.count++;
+    })
+  }
+
+  updatedCallback(old) {
+    if("count" in old) {
+      console.log(`count updated from ${old.count} to ${this.count}`);
+    }
   }
 }
 ```
 
-The following demonstrates a reactive property synchronized with an attribute.
-
-```js
-class Dialog extends WebComponent(HTMLElement) {
-  static get observedAttributes() {
-    return ["open"];
-  }
-
-  connectedCallback() {
-    super.connectedCallback();
-    this._upgradeProperties(["open"]);
-  }
-
-  get template() {
-    return `
-      <div ${this.open ? "" : "hidden"}>
-        ...
-      </div>
-    `;
-  }
-
-  get open() {
-    return this.hasAttribute("open");
-  }
-
-  set open(value) {
-    this.toggleAttribute("open", Boolean(value));
-  }
-}
-```
-
-Note that by passing the property name to the `_requestUpdate` method, we have access to a `props` array in the `updatedCallback` method which lets us know which properties were responsible for, or associated with, that update.
-
-### Styling
-The simplest way to style a component is to embed inline styles in the template.
-
-```js
-class MyComponent extends WebComponent(HTMLElement) {
-  get template() {
-    return `
-      <style>
-        :host {
-          ...
-        }
-      </style>
-    `;
-  }
-}
-```
-
-However, we recommend using the [Constructable Stylesheets API](https://web.dev/constructable-stylesheets/).
-
-```js
-class MyComponent extends WebComponent(HTMLElement) {
-  constructor() {
-    super();
-
-    const styles = new CSSStyleSheet();
-    styles.replaceSync(this.styles);
-    this.shadowRoot.adoptedStyleSheets = [styles];
-  }
-
-  get styles() {
-    return `
-      :host {
-        display: block;
-      }
-    `;
-  }
-}
-```
-
-For Safari support, the Design System uses [`construct-style-sheets-polyfill`](https://github.com/calebdwilliams/construct-style-sheets).
-
-To separate the CSS into different files and import them as adoptable stylesheets, the Design System uses [`constructable-style-loader`](https://github.com/alextech/constructable-style-loader).
-
-```js
-/* index.js */
-import styles from "./style.css";
-
-class MyComponent extends WebComponent(HTMLElement) {
-  constructor() {
-    super();
-    this.shadowRoot.adoptedStyleSheets = [styles];
-  }
-}
-```
-```css
-/* style.css */
-:host {
-  ...
-}
-```
-
-This setup is recommended but entirely optional.
-
-Note that adopting or inserting styles into the shadow root ("shadow styles") scopes and encapsulates the styles to the shadow boundary. To create unscoped styles (useful for having outer DOM context awareness, e.g. whether the component is a `:first-child`, or to style slotted content deeper and more specific than `::slotted` allows), you can adopt other styles into the root node with `this.getRootNode()`. In most cases this will be the document, or a parent component's shadow root.
-
-```js
-/* index.js */
-import lightStyles from "./style.light.css";
-
-class MyComponent extends WebComponent(HTMLElement) {
-  constructor() {
-    super();
-    this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStylesheets, ...[lightStyles]];
-  }
-}
-```
-```css
-/* style.light.css */
-my-component:not(:only-child) {
-  ...
-}
-```
-
-### Events
-
-### Guard against DOM diffing
-The DOM diffing process will skip over any element with a `static` attribute. This can be useful for child components that imperatively update themselves after mounting, or for third party libraries that inject content into parts of your component after mounting.
+Note that you only need to pass the old value to the `_requestUpdate` method if you want it to be accessible from within the `updatedCallback` method.

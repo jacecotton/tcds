@@ -29,7 +29,11 @@ export default class Dialog extends WebComponent(HTMLElement) {
           variant="secondary"
           icon="only x"
         >Close dialog</button>
-        <slot></slot>
+
+        <div part="content">
+          <slot></slot>
+        </div>
+
         <focus-boundary static></focus-boundary>
       </div>
     `;

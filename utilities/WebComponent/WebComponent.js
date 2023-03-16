@@ -7,7 +7,7 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
   }
 
   #debounce = null;
-  #batch = [];
+  #batch = {};
   #renderPasses = 0;
   #baseStyles = this.constructor.baseStyles
     || document.querySelector("link[title=tcds]")?.href
@@ -15,12 +15,18 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
 
   connectedCallback() {
     if(this.#renderPasses === 0) {
-      this._requestUpdate(this.constructor.observedAttributes);
+      this._requestUpdate();
     }
   }
 
-  attributeChangedCallback(attribute) {
-    this._requestUpdate(attribute);
+  attributeChangedCallback(name, oldValue) {
+    if(oldValue === "") {
+      oldValue = true;
+    } else if(oldValue === null) {
+      oldValue = false;
+    }
+
+    this._requestUpdate(name, oldValue);
   }
 
   _upgradeProperties(properties) {
@@ -33,8 +39,10 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
     });
   }
 
-  _requestUpdate(property) {
-    this.#batch = [...this.#batch, ...[property].flat()];
+  _requestUpdate(name, oldValue = null) {
+    if(name) {
+      this.#batch = {...this.#batch, ...{[name]: oldValue}};
+    }
 
     if(this.#debounce !== null) {
       cancelAnimationFrame(this.#debounce);
@@ -44,9 +52,9 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
   }
 
   #update() {
-    const props = [...this.#batch];
+    const previous = Object.assign({}, this.#batch);
 
-    this.#batch = [];
+    this.#batch = {};
     this.#debounce = null;
 
     diff(`
@@ -61,9 +69,9 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
     if(this.#renderPasses === 1) {
       this.dispatchEvent(new Event("mount"));
       this.mountedCallback?.();
-      this.updatedCallback?.(props);
+      this.updatedCallback?.(previous);
     } else {
-      this.updatedCallback?.(props);
+      this.updatedCallback?.(previous);
     }
   }
 };

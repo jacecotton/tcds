@@ -1,15 +1,15 @@
 :host {
   --tcds-dialog-padding: var(--tcds-space-x-loose);
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  inset: 0;
-  z-index: var(--tcds-layer-dialog);
   background-color: var(--tcds-color-shade-strong);
   backdrop-filter: blur(0.5px);
   font-family: var(--tcds-font-ui);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  inset: 0;
+  z-index: var(--tcds-layer-dialog);
 }
 
 :host(:not([data-theme="dark"])) {
@@ -29,13 +29,12 @@
 
 [part="dialog"] {
   background-color: var(--tcds-dialog-background, #fff);
-  width: calc(100vw - var(--site-outer-gutter) * 2);
-  overflow-wrap: break-word;
-  padding: var(--tcds-dialog-padding);
-  position: relative;
-  z-index: 1;
   border-radius: 10px;
   box-shadow: 0 0 10px rgb(0 0 0 / 60%);
+  overflow-wrap: break-word;
+  position: relative;
+  width: calc(100vw - var(--site-outer-gutter) * 2);
+  z-index: 1;
 }
 
 @media (min-width: 1024px) {
@@ -44,6 +43,15 @@
     min-width: var(--tcds-dialog-min-width, 700px);
     max-width: var(--tcds-dialog-max-width, 1000px);
   }
+}
+
+[part="content"] {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: var(--tcds-dialog-max-height, 75vh);
+  padding: var(--tcds-dialog-padding);
+  overflow-y: auto;
 }
 
 [part="close"] {
