@@ -23,12 +23,15 @@ export default class Dialog extends WebComponent(HTMLElement) {
     return /* html */`
       <div part="dialog">
         <focus-boundary static></focus-boundary>
+
         <button is="tcds-ui-button"
           part="close"
           onclick="this.getRootNode().host.close()"
           variant="secondary"
-          icon="only x"
-        >Close dialog</button>
+          icon="x"
+          aria-label="Close dialog"
+          title="Close dialog"
+        ></button>
 
         <div part="content">
           <slot></slot>

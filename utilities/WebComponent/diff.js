@@ -27,6 +27,7 @@ function isDifferentNode(node1, node2) {
   return (
     node1.nodeType !== node2.nodeType
     || node1.tagName !== node2.tagName
+    || node1.getAttribute?.("is") !== node2.getAttribute?.("is")
     || node1.id !== node2.id
     || node1.src !== node2.src
   );
@@ -143,7 +144,7 @@ export default function diff(template, existing) {
       existingNodes[index].before(ahead);
     }
 
-    if(node.hasAttribute?.("static") || node.hasAttribute?.("is")) {
+    if(node.hasAttribute?.("static")) {
       return;
     }
 

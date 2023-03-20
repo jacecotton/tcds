@@ -12,14 +12,15 @@ const Button = BaseElement => class extends BaseElement {
 
   attributeChangedCallback(name) {
     if(name === "icon" && this.icon) {
-      const iconTemplate = `<tcds-icon part="icon" icon="${this.icon.filter(modifier => !["only", "right"].includes(modifier)).join(" ")}"></tcds-icon>`;
-
-      if(!this.icon.includes("only")) {
-        this.innerHTML = `${iconTemplate} ${this.label}`;
-      } else {
+      if(this.icon.includes("only")) {
         this.setAttribute("aria-label", this.label);
         this.setAttribute("title", this.label);
-        this.innerHTML = iconTemplate;
+        this.innerHTML = "";
+      } else {
+        this.innerHTML = `
+          <tcds-icon icon="${this.icon.filter(modifier => !["only", "right"].includes(modifier)).join(" ")}"></tcds-icon>
+          ${this.label}
+        `;
       }
     }
   }
@@ -29,8 +30,7 @@ const Button = BaseElement => class extends BaseElement {
   }
 
   get icon() {
-    return this.hasAttribute("icon")
-      && this.getAttribute("icon").trim().replace(/\s\s+/g, " ").split(" ");
+    return this.getAttribute("icon").trim().replace(/\s\s+/g, " ").split(" ");
   }
 };
 

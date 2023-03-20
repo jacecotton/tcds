@@ -80,7 +80,7 @@ class MyComponent extends WebComponent(HTMLElement) {
 The `old` parameter provides access to the updated attributes' previous values (so for example, given `foo="bar"`, `this.setAttribute("foo", "baz")` would result in an `updatedCallback` call, within which you could compare `old.foo` (`bar`) to `this.foo` (`baz`)).
 
 ## Reactive attributes
-Reactive attributes are attributes that trigger a component re-render when changed.
+Reactive attributes are attributes that trigger a re-render when changed.
 
 To specify reactive attributes, list them in a static `observedAttributes` property.
 
