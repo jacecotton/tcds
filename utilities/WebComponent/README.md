@@ -1,7 +1,7 @@
 # WebComponent
 `WebComponent` is a [class mixin](https://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/) for [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements).
 
-It seeks to bridge only one gap in the native [Web Components API](https://developer.mozilla.org/en-US/docs/Web/Web_Components): stateful, declarative templating. To that end, its core feature is accepting a `template` string, converting it to HTML, and diffing it against the element's shadow DOM when requested to do so. It then provides a limited set of methods to control and interact with this process.
+Primarily, it seeks to bridge only one gap in the native [Web Components API](https://developer.mozilla.org/en-US/docs/Web/Web_Components): stateful, declarative templating. To that end, its core feature is accepting a `template` string, converting it to HTML, and diffing it against the element's shadow DOM when requested to do so. It then provides a limited set of methods to control and interact with this process.
 
 It does not attempt to abstract away boilerplate, provide extra utilities and conveniences, alter the basic experience of creating custom elements, or directly extend the native API.
 
@@ -219,7 +219,9 @@ class ClickCounter extends WebComponent(HTMLElement) {
 Note that you only need to pass the old value to the `_requestUpdate` method if you want it to be accessible from within the `updatedCallback` method.
 
 ## Styling
-The simplest way to style a component is to embed inline styles in the template.
+`WebComponent` automatically injects the Design System's shared stylesheet into the shadow DOM. This can be changed or disabled by setting the `baseStyles` property.
+
+The simplest way to add scoped component styles is to embed inline styles in the template.
 
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
@@ -281,15 +283,17 @@ class MyComponent extends WebComponent(HTMLElement) {
 
 This setup is recommended but entirely optional.
 
-Note that adopting or inserting styles into the shadow root ("shadow styles") scopes and encapsulates the styles to the shadow boundary. To create unscoped styles (useful for having outer DOM context awareness, e.g. whether the component is a `:first-child`, or to style slotted content deeper and more specific than `::slotted` allows), you can adopt other styles into the root node with `this.getRootNode()`. In most cases this will be the document, or a parent component's shadow root.
+Note that adopting or inserting styles into the shadow root scopes and encapsulates the styles to the shadow boundary.
+
+To create unscoped styles (useful for having outer DOM context awareness, e.g. whether the component is a `:first-child`, or to style slotted content with greater specificity), you can adopt other styles into the element's root node after connection. In most cases this will be the document, or a parent component's shadow root.
 
 ```js
 /* index.js */
 import lightStyles from "./style.light.css";
 
 class MyComponent extends WebComponent(HTMLElement) {
-  constructor() {
-    super();
+  connectedCallback() {
+    super.connectedCallback();
     this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStylesheets, ...[lightStyles]];
   }
 }

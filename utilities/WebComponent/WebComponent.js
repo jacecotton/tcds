@@ -52,7 +52,7 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
   }
 
   #update() {
-    const previous = Object.assign({}, this.#batch);
+    const old = Object.assign({}, this.#batch);
 
     this.#batch = {};
     this.#debounce = null;
@@ -69,9 +69,9 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
     if(this.#renderPasses === 1) {
       this.dispatchEvent(new Event("mount"));
       this.mountedCallback?.();
-      this.updatedCallback?.(previous);
+      this.updatedCallback?.(old);
     } else {
-      this.updatedCallback?.(previous);
+      this.updatedCallback?.(old);
     }
   }
 };
