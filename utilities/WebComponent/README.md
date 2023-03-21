@@ -37,9 +37,11 @@ Define your component markup in a `template` property.
 
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
-  template = `
-    <p>Hello world</p>
-  `;
+  get template() {
+    return `
+      <p>Hello world</p>
+    `;
+  }
 }
 ```
 
@@ -193,9 +195,11 @@ class ClickCounter extends WebComponent(HTMLElement) {
     this._requestUpdate(count, oldValue);
   }
 
-  template = `
-    <button id="clicker">Clicked ${this.count} times</button>
-  `;
+  get template() {
+    return `
+      <button id="clicker">Clicked ${this.count} times</button>
+    `;
+  }
 
   connectedCallback() {
     super.connectedCallback();
