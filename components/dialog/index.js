@@ -2,8 +2,18 @@ import WebComponent from "../../utilities/WebComponent/WebComponent.js";
 import styles from "./style.css";
 
 export default class Dialog extends WebComponent(HTMLElement) {
-  static get observedAttributes() {
-    return ["open"];
+  static observedAttributes = ["open"];
+
+  get open() {
+    return this.hasAttribute("open");
+  }
+
+  set open(value) {
+    this.toggleAttribute("open", Boolean(value));
+  }
+
+  get autoclose() {
+    return Number(this.getAttribute("autoclose")) || false;
   }
 
   constructor() {
@@ -19,28 +29,27 @@ export default class Dialog extends WebComponent(HTMLElement) {
       && localStorage.getItem(`tcds_dialog_${this.id}_open`) !== "false";
   }
 
-  get template() {
-    return /* html */`
-      <div part="dialog">
-        <focus-boundary static></focus-boundary>
+  template = /* html */`
+    <div part="dialog">
+      <focus-boundary static></focus-boundary>
 
-        <button is="tcds-ui-button"
-          part="close"
-          onclick="this.getRootNode().host.close()"
-          variant="secondary"
-          icon="x"
-          aria-label="Close dialog"
-          title="Close dialog"
-        ></button>
+      <button is="tcds-ui-button"
+        part="close"
+        onclick="this.getRootNode().host.close()"
+        variant="secondary"
+        aria-label="Close dialog"
+        title="Close dialog"
+      >
+        <tcds-icon icon="x"></tcds-icon>
+      </button>
 
-        <div part="content">
-          <slot></slot>
-        </div>
-
-        <focus-boundary static></focus-boundary>
+      <div part="content">
+        <slot></slot>
       </div>
-    `;
-  }
+
+      <focus-boundary static></focus-boundary>
+    </div>
+  `;
 
   mountedCallback() {
     this.dialog = this.shadowRoot.querySelector("[part=dialog]");
@@ -66,28 +75,30 @@ export default class Dialog extends WebComponent(HTMLElement) {
   #autocloseTimer = null;
   #previouslyFocused;
 
-  updatedCallback() {
-    localStorage.setItem(`tcds_dialog_${this.id}_open`, this.open.toString());
-    document.body.style.overflowY = this.open ? "hidden" : null;
+  updatedCallback(old) {
+    if("open" in old) {
+      localStorage.setItem(`tcds_dialog_${this.id}_open`, this.open.toString());
+      document.body.style.overflowY = this.open ? "hidden" : null;
 
-    this.#handleOtherComponents();
+      this.#handleOtherComponents();
 
-    if(this.open) {
-      this.#previouslyFocused = document.activeElement;
+      if(this.open) {
+        this.#previouslyFocused = document.activeElement;
 
-      const target = this.querySelector("[autofocus]")
-        || this.shadowRoot.querySelectorAll("focus-boundary")[1];
-      target.focus();
+        const target = this.querySelector("[autofocus]")
+          || this.shadowRoot.querySelectorAll("focus-boundary")[1];
+        target.focus();
 
-      if(this.autoclose) {
-        this.#autocloseTimer = setTimeout(() => {
-          this.close();
-          clearTimeout(this.#autocloseTimer);
-        }, this.autoclose * 1000);
+        if(this.autoclose) {
+          this.#autocloseTimer = setTimeout(() => {
+            this.close();
+            clearTimeout(this.#autocloseTimer);
+          }, this.autoclose * 1000);
+        }
+      } else {
+        this.#autocloseTimer && clearTimeout(this.#autocloseTimer);
+        this.#previouslyFocused?.focus?.();
       }
-    } else {
-      this.#autocloseTimer && clearTimeout(this.#autocloseTimer);
-      this.#previouslyFocused?.focus?.();
     }
   }
 
@@ -110,18 +121,6 @@ export default class Dialog extends WebComponent(HTMLElement) {
       this.#pausedCarousels.forEach(pausedCarousel => pausedCarousel.resume());
       this.#pausedCarousels = [];
     }
-  }
-
-  get open() {
-    return this.hasAttribute("open");
-  }
-
-  set open(value) {
-    this.toggleAttribute("open", Boolean(value));
-  }
-
-  get autoclose() {
-    return Number(this.getAttribute("autoclose")) || false;
   }
 
   close(value) {

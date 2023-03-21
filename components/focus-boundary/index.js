@@ -20,12 +20,9 @@ function getFocusableChildren(root) {
 }
 
 export default class FocusBoundary extends HTMLElement {
-  constructor() {
-    super();
-    this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStyleSheets, ...[lightStyles]];
-  }
-
   connectedCallback() {
+    this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStyleSheets, ...[lightStyles]];
+
     const boundaries = Array.from(this.parentElement.querySelectorAll("focus-boundary"));
     const focusableChildren = [
       ...getFocusableChildren(this.parentElement),

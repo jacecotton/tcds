@@ -10,9 +10,10 @@
 textarea,
 select {
   appearance: none;
-  border: 1px solid var(--tcds-color-shade-weak);
+  border: 1px solid var(--tcds-color-shade-x-weak);
+  box-shadow: 0 4px 6px -4px var(--tcds-color-shade);
   border-radius: 10px;
-  background-color: rgb(255 255 255 / 50%);
+  background-color: #fff;
   font-family: var(--tcds-font-ui);
   font-size: var(--tcds-font-size-small);
   line-height: var(--tcds-line-height-normal);
@@ -20,15 +21,17 @@ select {
   height: var(--tcds-size-medium);
   width: 100%;
   max-width: 100%;
-  transition: background-color var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing);
+  transition:
+    border-radius var(--tcds-animation-expressive-duration) var(--tcds-animation-expressive-easing),
+    box-shadow var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing),
+    border-color var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing);
 
-  &:hover {
-    background-color: rgb(255 255 255 / 85%);
-  }
-
-  &:focus-visible {
-    border-color: var(--tcds-color-blue);
-    background-color: #fff;
+  &:focus {
+    box-shadow: 0 2px 0 var(--tcds-color-primary);
+    border-bottom-color: var(--tcds-color-primary);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    outline: none;
   }
 
   @media (hover: none) {
