@@ -30,7 +30,6 @@ export default class Tabs extends WebComponent(HTMLElement) {
       <div role="tablist">
         ${this.tabpanels.map(tab => /* html */`
           <button role="tab"
-            part="tab"
             aria-selected="${tab.active}"
             tabindex="${tab.active ? "0" : "-1"}"
             onclick="this.getRootNode().host.tabClick(event)"
@@ -40,14 +39,12 @@ export default class Tabs extends WebComponent(HTMLElement) {
           </button>
         `).join("")}
       </div>
-      <div part="viewport">
-        <slot></slot>
-      </div>
+      <slot></slot>
     `;
   }
 
   mountedCallback() {
-    this.tabs = Array.from(this.shadowRoot.querySelectorAll("[part=tab]"));
+    this.tabs = Array.from(this.shadowRoot.querySelectorAll("[role=tab]"));
   }
 
   tabClick(event) {
