@@ -8,6 +8,7 @@ import "./components/button/index.js";
 import "./components/focus-boundary/index.js";
 import "./components/dialog/index.js";
 import "./components/icon/index.js";
+import "./components/tabs/index.js";
 
 import "./components/DEPRECATED/button/index.js";
 

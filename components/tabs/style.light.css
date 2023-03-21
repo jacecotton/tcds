@@ -1,0 +1,15 @@
+tcds-tabs:not(:only-child, :first-child) {
+  margin-top: var(--tcds-space-x-loose);
+}
+
+tcds-tabs:not(:only-child) {
+  margin-bottom: var(--tcds-space-x-loose);
+}
+
+.bg-primary[data-theme="dark"] tcds-tabs {
+  --tcds-tabs-tab-indicator-active-color: var(--tcds-color-tint);
+}
+
+[class*="bg-"][data-theme="dark"] tcds-tabs {
+  --tcds-tabs-tab-text-color: "inherit";
+}

@@ -14,9 +14,11 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
     || "https://unpkg.com/@txch/tcds/dist/tcds.css";
 
   connectedCallback() {
-    if(this.#renderPasses === 0) {
-      this._requestUpdate();
-    }
+    requestAnimationFrame(() => {
+      if(this.#renderPasses === 0) {
+        this._requestUpdate();
+      }
+    });
   }
 
   attributeChangedCallback(name, oldValue) {
