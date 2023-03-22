@@ -85,7 +85,7 @@
   --tcds-section-watermark-y-offset: 50%;
 }
 
-:host([class*="bg-"][watermark]) section::after {
+:host([class*="bg-"][watermark]:not([has-background])) section::after {
   display: block;
   content: "";
   width: var(--tcds-section-watermark-size);
