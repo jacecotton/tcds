@@ -1,3 +1,13 @@
+## [1.9.13](https://github.com/jacecotton/tcds/compare/v1.9.12...v1.9.13) (2023-03-22)
+
+
+### Bug Fixes
+
+* **components:** Attach button light styles on connect instead of creation ([0d40126](https://github.com/jacecotton/tcds/commit/0d40126f8a4bd0df527dcb265a131b94b84a5c50))
+* **components:** Prevent watermark on sections with background images ([8bb9d13](https://github.com/jacecotton/tcds/commit/8bb9d13d86c226d9fb2d3aad4e4f929935b38ccc))
+
+
+
 ## [1.9.12](https://github.com/jacecotton/tcds/compare/v1.9.11...v1.9.12) (2023-03-09)
 
 
@@ -33,15 +43,6 @@
 ### Bug Fixes
 
 * **components:** Improve query selector for slots (ensure selecting for direct descendents only with :scope) ([f726d5f](https://github.com/jacecotton/tcds/commit/f726d5f53d3bb014da44cc7d4a2d9c9b679c7eb9))
-
-
-
-## [1.9.8](https://github.com/jacecotton/tcds/compare/v1.9.7...v1.9.8) (2023-03-08)
-
-
-### Bug Fixes
-
-* **components:** Improve countdown component responsiveness and semantics ([07d4302](https://github.com/jacecotton/tcds/commit/07d4302cb3a75737e77255417556bd911b2e8300))
 
 
 
