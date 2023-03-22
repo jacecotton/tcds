@@ -1,3 +1,12 @@
+## [1.9.14](https://github.com/jacecotton/tcds/compare/v1.9.13...v1.9.14) (2023-03-22)
+
+
+### Bug Fixes
+
+* **icons:** Add email icon ([82f5aae](https://github.com/jacecotton/tcds/commit/82f5aaeb4311dd6000460f02b0b34698bea1947b))
+
+
+
 ## [1.9.13](https://github.com/jacecotton/tcds/compare/v1.9.12...v1.9.13) (2023-03-22)
 
 
@@ -34,15 +43,6 @@
 
 * **components:** Make video sections taller on small screen sizes ([4dd455d](https://github.com/jacecotton/tcds/commit/4dd455d17e9bf9b7ce798ba33d4e4eb81b65f3d3))
 * **templates:** Fix site header navs mobile FOUC ([dd3c9a9](https://github.com/jacecotton/tcds/commit/dd3c9a9374b3e2bf670e76e4a03ffcfd04a80b00))
-
-
-
-## [1.9.9](https://github.com/jacecotton/tcds/compare/v1.9.8...v1.9.9) (2023-03-08)
-
-
-### Bug Fixes
-
-* **components:** Improve query selector for slots (ensure selecting for direct descendents only with :scope) ([f726d5f](https://github.com/jacecotton/tcds/commit/f726d5f53d3bb014da44cc7d4a2d9c9b679c7eb9))
 
 
 
