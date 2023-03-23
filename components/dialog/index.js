@@ -1,8 +1,9 @@
 import WebComponent from "../../utilities/WebComponent/WebComponent.js";
-import styles from "./style.css";
+import shadowStyles from "./style.css";
+import lightStyles from "./style.light.css";
 
 export default class Dialog extends WebComponent(HTMLElement) {
-  static observedAttributes = ["open"];
+  static observedAttributes = ["open", "position"];
 
   get open() {
     return this.hasAttribute("open");
@@ -16,40 +17,63 @@ export default class Dialog extends WebComponent(HTMLElement) {
     return Number(this.getAttribute("autoclose")) || false;
   }
 
+  get position() {
+    return this.getAttribute("position");
+  }
+
   constructor() {
     super();
-    this.shadowRoot.adoptedStyleSheets = [styles];
+    this.shadowRoot.adoptedStyleSheets = [shadowStyles];
   }
 
   connectedCallback() {
     super.connectedCallback();
+    this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStyleSheets, ...[lightStyles]];
+
     this._upgradeProperties(["open"]);
 
     this.open = this.open
       && localStorage.getItem(`tcds_dialog_${this.id}_open`) !== "false";
   }
 
-  template = /* html */`
-    <div part="dialog">
-      <focus-boundary static></focus-boundary>
+  get template() {
+    this.hasHeader = !!this.querySelector("[slot=header]");
+    this.hasFooter = !!this.querySelector("[slot=footer]");
 
-      <button is="tcds-ui-button"
-        part="close"
-        onclick="this.getRootNode().host.close()"
-        variant="secondary"
-        aria-label="Close dialog"
-        title="Close dialog"
-      >
-        <tcds-icon icon="x"></tcds-icon>
-      </button>
+    return /* html */`
+      <div part="dialog">
+        <focus-boundary static></focus-boundary>
 
-      <div part="content">
-        <slot></slot>
+        <button is="tcds-ui-button"
+          part="close"
+          onclick="this.getRootNode().host.close()"
+          variant="${this.position === "right" || this.hasHeader ? "ui" : "secondary"}"
+          aria-label="Close dialog"
+          title="Close dialog"
+        >
+          <tcds-icon icon="x"></tcds-icon>
+        </button>
+
+        ${this.hasHeader ? /* html */`
+          <header>
+            <slot name="header"></slot>
+          </header>
+        ` : ``}
+
+        <div part="content">
+          <slot></slot>
+        </div>
+
+        ${this.hasFooter ? /* html */`
+          <footer>
+            <slot name="footer"></slot>
+          </footer>
+        ` : ``}
+
+        <focus-boundary static></focus-boundary>
       </div>
-
-      <focus-boundary static></focus-boundary>
-    </div>
-  `;
+    `;
+  }
 
   mountedCallback() {
     this.dialog = this.shadowRoot.querySelector("[part=dialog]");
@@ -69,6 +93,12 @@ export default class Dialog extends WebComponent(HTMLElement) {
       if(event.key === "Escape") {
         this.close();
       }
+    });
+
+    this.shadowRoot.querySelectorAll("slot").forEach((slot) => {
+      slot.addEventListener("slotchange", () => {
+        this._requestUpdate(slot.name);
+      });
     });
   }
 

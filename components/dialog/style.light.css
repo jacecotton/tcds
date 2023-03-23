@@ -1,0 +1,13 @@
+tcds-dialog:not([open]) {
+  display: none !important;
+}
+
+tcds-dialog [slot="header"]:is(h1, h2, h3) {
+  margin: 0;
+  font-size: var(--tcds-font-size-large);
+  font-weight: var(--tcds-font-weight-bold);
+}
+
+tcds-dialog div[slot="footer"] {
+  width: 100%;
+}
