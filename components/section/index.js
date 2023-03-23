@@ -34,7 +34,7 @@ export default class Section extends WebComponent(HTMLElement) {
         ` : ``}
 
         ${hasTertiary ? /* html */`
-          <div part="tertiary">
+          <div part="tertiary" class="fill-height">
             <slot name="tertiary"></slot>
           </div>
         ` : ``}

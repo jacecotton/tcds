@@ -19,11 +19,11 @@ section {
     var(--tcds-section-padding-bottom, var(--tcds-section-vertical-padding))
     auto;
   grid-template-areas:
-    ". .         .        ."
-    ". primary   tertiary ."
-    ". secondary tertiary ."
-    ". secondary .        ."
-    ". secondary .        .";
+    ". .         .         ."
+    ". primary   tertiary  ."
+    ". secondary secondary ."
+    ". secondary secondary ."
+    ". secondary secondary .";
   gap: var(--tcds-section-region-gap);
   z-index: 1;
 }
