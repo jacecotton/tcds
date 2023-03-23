@@ -60,9 +60,9 @@ export default class Dialog extends WebComponent(HTMLElement) {
           </header>
         ` : ``}
 
-        <div part="content">
+        <main>
           <slot></slot>
-        </div>
+        </main>
 
         ${this.hasFooter ? /* html */`
           <footer>
