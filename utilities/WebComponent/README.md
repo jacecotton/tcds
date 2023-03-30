@@ -1,9 +1,7 @@
 # WebComponent
-`WebComponent` is a [class mixin](https://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/) for [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements).
+`WebComponent` is a [class mixin](https://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/) for [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements). It simply adds support for declarative templating with reactive data-binding.
 
-Primarily, it seeks to bridge only one gap in the native [Web Components API](https://developer.mozilla.org/en-US/docs/Web/Web_Components): stateful, declarative templating. To that end, its core feature is accepting a `template` string, converting it to HTML, and diffing it against the element's shadow DOM when requested to do so. It then provides a limited set of methods to control and interact with this process.
-
-It does not attempt to abstract away boilerplate, provide extra utilities and conveniences, alter the basic experience of creating custom elements, or directly extend the native API.
+It does not attempt to abstract away boilerplate, provide extra utilities and conveniences, alter the basic experience of creating custom elements, or directly extend the native API. It deliberately embraces the browser's component model rather than offering a new one.
 
 ## Getting started
 Defining a Web Component works like defining any other custom element, only instead of extending an element interface directly, extend it with the `WebComponent` wrapper.
@@ -72,9 +70,7 @@ class MyComponent extends WebComponent(HTMLElement) {
 }
 ```
 
-This means two things:
-* You can use JavaScript to do anything a standard templating language could do, thus decoupling your component library from any particular templating choice (e.g. Twig, Handlebars, PHP, etc.)
-* JavaScript-based interactivity and live state can be declaratively bound to your component templates, meaning you can expressively write interactive components without the need for the vast majority of imperative "spaghetti code" DOM manipulation.
+This means you can use JavaScript for anything you could do with a standard templating language, and you can eliminate the vast majority of imperative DOM manipulation with reactive and declarative DOM expression.
 
 ## Lifecycle
 `WebComponent` uses both `connectedCallback` and `attributeChangedCallback` internally. So if you wish to use them in your subclass while preserving default behavior, you must call the respective `super` methods.
