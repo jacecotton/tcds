@@ -31,9 +31,9 @@ export default class Dialog extends WebComponent(HTMLElement) {
   }
 
   connectedCallback() {
-    super.connectedCallback();
     this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStyleSheets, ...[lightStyles]];
 
+    this.update();
     this._upgradeProperties(["open"]);
 
     this.open = this.anchored
@@ -48,6 +48,10 @@ export default class Dialog extends WebComponent(HTMLElement) {
 
   disconnectedCallback() {
     window.removeEventListener("hashchange", this.anchor);
+  }
+
+  attributeChangedCallback(name, oldValue) {
+    this.update(name, oldValue);
   }
 
   get template() {
@@ -112,7 +116,7 @@ export default class Dialog extends WebComponent(HTMLElement) {
 
     this.shadowRoot.querySelectorAll("slot").forEach((slot) => {
       slot.addEventListener("slotchange", () => {
-        this._requestUpdate(`$${slot.name}`, slot.assignedNodes());
+        this.update(`$${slot.name}`, slot.assignedNodes());
       });
     });
   }

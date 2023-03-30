@@ -15,14 +15,19 @@ export default class Tabs extends WebComponent(HTMLElement) {
 
   connectedCallback() {
     super.connectedCallback();
-
     this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStyleSheets, ...[lightStyles]];
+
+    this.update();
 
     this.tabpanels = Array.from(this.querySelectorAll("tcds-tab"));
 
     if(!this.inactive) {
       (this.tabpanels.find(tab => tab.active) || this.tabpanels[0]).select();
     }
+  }
+
+  attributeChangedCallback() {
+    this.update();
   }
 
   get template() {

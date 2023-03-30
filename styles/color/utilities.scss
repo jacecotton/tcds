@@ -31,7 +31,8 @@
   background-color: var(--tcds-color-secondary-background);
 }
 
-.bg-tertiary[data-theme] {
+.bg-tertiary[data-theme],
+.bg-white[data-theme] {
   --tcds-color-link: var(--tcds-color-tertiary-link);
   --tcds-color-link-hover: var(--tcds-color-tertiary-link-hover);
   --tcds-color-highlight: var(--tcds-color-tertiary-highlight);

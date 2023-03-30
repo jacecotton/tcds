@@ -22,8 +22,12 @@ export default class Tab extends WebComponent(HTMLElement) {
   }
 
   connectedCallback() {
-    super.connectedCallback();
+    this.update();
     this._upgradeProperties(["active"]);
+  }
+
+  attributeChangedCallback(name, oldValue) {
+    this.update(name, oldValue);
   }
 
   get template() {
@@ -36,7 +40,7 @@ export default class Tab extends WebComponent(HTMLElement) {
 
   updatedCallback(old) {
     if("active" in old) {
-      this.closest("tcds-tabs")._requestUpdate();
+      this.closest("tcds-tabs").update();
     }
   }
 

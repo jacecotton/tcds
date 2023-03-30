@@ -1,7 +1,7 @@
 # WebComponent
-`WebComponent` is a [class mixin](https://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/) for [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements). It simply adds support for declarative templating with reactive data-binding.
+`WebComponent` is a [class mixin](https://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/) for [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements). It simply adds support for declarative templating.
 
-It does not attempt to abstract away boilerplate, provide extra utilities and conveniences, alter the basic experience of creating custom elements, or directly extend the native API. It deliberately embraces the browser's component model rather than offering a new one.
+It does not attempt to abstract away boilerplate, provide extra utilities and conveniences, alter the basic experience of creating custom elements, or directly extend the native API. In comparison to libraries also built on the [Web Components API](https://developer.mozilla.org/en-US/docs/Web/Web_Components), it more fully embraces the browser's own component model.
 
 ## Getting started
 Defining a Web Component works like defining any other custom element, only instead of extending an element interface directly, extend it with the `WebComponent` wrapper.
@@ -30,8 +30,8 @@ customElements.define("my-component", MyComponent, {extends: "ul"});
 
 **Note:** Only do this for [elements that can have a shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow#elements_you_can_attach_a_shadow_to). **`WebComponent` is incompatible with elements that cannot.**
 
-## Templating
-Define your component markup in a `template` property.
+## Templating and rendering
+You can define your component's internal markup in a `template` property.
 
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
@@ -43,7 +43,27 @@ class MyComponent extends WebComponent(HTMLElement) {
 }
 ```
 
-When the element connects, a shadow root will be attached and the markup will be inserted inside.
+By itself, defining a template does nothing—it needs to be inserted into the element's shadow DOM to display anything.
+
+To do so, you can use the `update` method. You will want to make your first call when the element connects, for which you can use the `connectedCallback` hook:
+
+```js
+class MyComponent extends WebComponent(HTMLElement) {
+  get template() {
+    return `
+      <p>Hello world</p>
+    `;
+  }
+
+  connectedCallback() {
+    this.update();
+  }
+}
+```
+
+The `update` method does not instantaneously insert markup into the shadow DOM. Rather, it first debounces all calls within a single [animation frame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame), so that back-to-back update requests only trigger one render.
+
+The `update` method also does not naively insert markup.
 
 From then on, every time the component updates, the template string will be converted into a document fragment (i.e. dynamic HTML), then compared against the "live" shadow tree, and then any differences between them will be efficiently applied to the shadow DOM ("re-rendering" the component).
 

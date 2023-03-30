@@ -35,11 +35,15 @@ export default class Button extends WebComponent(HTMLElement) {
   }
 
   connectedCallback() {
-    super.connectedCallback();
-
     console.warn("DEPRECATION WARNING: Autonomous custom element TCDS-BUTTON is DEPRECATED and will be removed in an upcoming release. Please migrate to customized button element TCDS-UI-BUTTON or customized anchor element TCDS-LINK-BUTTON.");
 
     this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStyleSheets, ...[lightStyles]];
+
+    this.update();
+  }
+
+  attributeChangedCallback() {
+    this.update();
   }
 
   get template() {

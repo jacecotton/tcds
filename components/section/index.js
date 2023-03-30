@@ -7,6 +7,10 @@ export default class Section extends WebComponent(HTMLElement) {
     this.shadowRoot.adoptedStyleSheets = [styles];
   }
 
+  connectedCallback() {
+    this.update();
+  }
+
   get template() {
     // const hasPrimary = !!this.querySelector("[slot=primary]");
     const hasSecondary = !!this.querySelector("[slot=secondary]");
@@ -45,7 +49,7 @@ export default class Section extends WebComponent(HTMLElement) {
   mountedCallback() {
     this.shadowRoot.querySelectorAll("slot").forEach((slot) => {
       slot.addEventListener("slotchange", () => {
-        this._requestUpdate(slot.name);
+        this.update(slot.name);
       });
     });
   }
