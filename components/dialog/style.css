@@ -35,13 +35,8 @@
 }
 
 [part="dialog"] {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  grid-template-columns: 1fr;
-  grid-template-areas:
-    "header"
-    "main"
-    "footer";
+  display: flex;
+  flex-direction: column;
   background-color: var(--tcds-dialog-background, #fff);
   box-shadow: 0 0 10px rgb(0 0 0 / 60%);
   overflow-wrap: break-word;
@@ -51,6 +46,12 @@
     var(--tcds-dialog-animation)
     var(--tcds-animation-expressive-duration)
     var(--tcds-animation-expressive-easing) forwards;
+}
+
+[part="dialog"][data-has-video] {
+  --tcds-dialog-padding: 0;
+
+  aspect-ratio: 16 / 9;
 }
 
 :host(:not([position])) [part="dialog"] {
@@ -81,7 +82,6 @@
 }
 
 main {
-  grid-area: main;
   display: block;
   width: 100%;
   height: 100%;
@@ -100,7 +100,6 @@ footer {
 }
 
 header {
-  grid-area: header;
   border-bottom: 1px solid var(--tcds-color-shade-x-weak);
   min-height: var(--tcds-dialog-header-height);
   border-top-left-radius: var(--tcds-dialog-border-radius);
@@ -108,7 +107,6 @@ header {
 }
 
 footer {
-  grid-area: footer;
   box-shadow: 0 -5px 10px rgb(0 0 0 / 8%);
   min-height: var(--tcds-dialog-footer-height);
   border-bottom-left-radius: var(--tcds-dialog-border-radius);

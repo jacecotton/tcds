@@ -21,6 +21,10 @@ export default class Dialog extends WebComponent(HTMLElement) {
     return this.getAttribute("position");
   }
 
+  get anchored() {
+    return window.location.hash.split(/[#?&]+/).includes(this.id);
+  }
+
   constructor() {
     super();
     this.shadowRoot.adoptedStyleSheets = [shadowStyles];
@@ -32,16 +36,27 @@ export default class Dialog extends WebComponent(HTMLElement) {
 
     this._upgradeProperties(["open"]);
 
-    this.open = this.open
-      && localStorage.getItem(`tcds_dialog_${this.id}_open`) !== "false";
+    this.open = this.anchored
+      || (this.open && localStorage.getItem(`tcds_dialog_${this.id}_open`) !== "false");
+
+    this.anchor = () => {
+      this.anchored && this.show();
+    };
+
+    window.addEventListener("hashchange", this.anchor);
+  }
+
+  disconnectedCallback() {
+    window.removeEventListener("hashchange", this.anchor);
   }
 
   get template() {
     this.hasHeader = !!this.querySelector("[slot=header]");
     this.hasFooter = !!this.querySelector("[slot=footer]");
+    this.hasVideo = !!this.querySelector("iframe[src*='youtube'], video");
 
     return /* html */`
-      <div part="dialog">
+      <div part="dialog" ${this.hasVideo ? `data-has-video` : ""}>
         <focus-boundary static></focus-boundary>
 
         <button is="tcds-ui-button"
@@ -97,7 +112,7 @@ export default class Dialog extends WebComponent(HTMLElement) {
 
     this.shadowRoot.querySelectorAll("slot").forEach((slot) => {
       slot.addEventListener("slotchange", () => {
-        this._requestUpdate(slot.name);
+        this._requestUpdate(`$${slot.name}`, slot.assignedNodes());
       });
     });
   }
@@ -128,6 +143,10 @@ export default class Dialog extends WebComponent(HTMLElement) {
       } else {
         this.#autocloseTimer && clearTimeout(this.#autocloseTimer);
         this.#previouslyFocused?.focus?.();
+
+        if(this.anchored) {
+          window.history.replaceState(null, null, " ");
+        }
       }
     }
   }
@@ -135,21 +154,33 @@ export default class Dialog extends WebComponent(HTMLElement) {
   #pausedCarousels = [];
 
   #handleOtherComponents() {
-    const cards = this.querySelectorAll("tcds-card");
-    const carousels = this.getRootNode().querySelectorAll("tcds-carousel");
-
     if(this.open) {
-      cards?.forEach(card => card.orient());
+      // Responsively orient cards. Note this is only necessary while responsive
+      // container queries are not used. Can remove when we move to that.
+      this.querySelectorAll("tcds-card")?.forEach(card => card.orient());
 
-      carousels?.forEach((carousel) => {
+      // Pause all external carousels on the page.
+      this.getRootNode().querySelectorAll("tcds-carousel")?.forEach((carousel) => {
         if(carousel.playing) {
           carousel.pause();
           this.#pausedCarousels.push(carousel);
         }
       });
     } else {
+      // Resume paused external carousels.
       this.#pausedCarousels.forEach(pausedCarousel => pausedCarousel.resume());
       this.#pausedCarousels = [];
+
+      // Pause internal videos.
+      this.querySelectorAll("video")?.forEach(video => video.pause());
+
+      this.querySelectorAll("iframe[src*=youtube]")?.forEach((youtubeVideo) => {
+        // For YouTube embeds, rather than worry about keeping up with current
+        // APIs and ensuring JS APIs are enabled in the embed URL, we can trick
+        // the embed into pausing by "refreshing" the `src` attribute.
+        const src = youtubeVideo.src;
+        youtubeVideo.src = src;
+      });
     }
   }
 
@@ -162,11 +193,7 @@ export default class Dialog extends WebComponent(HTMLElement) {
       this.dispatchEvent(new Event("cancel"));
     }
 
-    this.dispatchEvent(new CustomEvent("close", {
-      detail: {
-        value: value,
-      },
-    }));
+    this.dispatchEvent(new CustomEvent("close", {detail: {value: value}}));
   }
 
   show() {
