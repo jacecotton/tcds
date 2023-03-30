@@ -222,6 +222,71 @@ class ClickCounter extends WebComponent(HTMLElement) {
 
 Note that you only need to pass the old value to the `_requestUpdate` method if you want it to be accessible from within the `updatedCallback` method.
 
+## Reactive slots
+You can also make slot changes reactive. Normally, this is not required, as changes to slotted content are automatically projected to the shadow DOM. However, if your template contains conditional logic based on the presence of slotted content, you can trigger a re-render associated with slot changes using the `slotchange` event and `_requestUpdate`:
+
+```js
+class MyComponent extends WebComponent(HTMLElement) {
+  get template() {
+    const hasContent = !!this.querySelector("[slot=content]");
+
+    return `
+      ${hasContent ? `
+        <p>
+          <slot name="content"></slot>
+        </p>
+      ` : `
+        <span>No content</span>
+      `}
+    `;
+  }
+
+  mountedCallback() {
+    this.shadowRoot.querySelectorAll("slot").forEach((slot) => {
+      slot.addEventListener("slotchange", () => {
+        this._requestUpdate(slot.name, slot.assignedNodes());
+      });
+    });
+  }
+}
+```
+
+As previously mentioned, you only need to pass arguments to the `_requestUpdate` call if you want access to that information in the `updatedCallback`. The `slot.assignedNodes()` argument gives an array of nodes assigned to the slot.
+
+```js
+class MyComponent extends WebComponent(HTMLElement) {
+  ...
+
+  updatedCallback(changed) {
+    if("content" in changed) {
+      // content slot changed
+    }
+  }
+}
+```
+
+Note that there's no built-in way to differentiate between attributes, other properties, and slots in `updatedCallback`, which can become difficult to manage. A recommended convention is to prepend slot names with a `$` when you pass them to the `_requestUpdate` call.
+
+```js
+class MyComponent extends WebComponent(HTMLElement) {
+  ...
+
+  mountedCallback() {
+    this.shadowRoot.querySelectorAll("slot").forEach((slot) => {
+      slot.addEventListener("slotchange", () => {
+        this._requestUpdate(`$${slot.name}`, slot.assignedNodes());
+      });
+    });
+  }
+
+  updatedCallback(changed) {
+    if("$content" in changed) {
+      // content slot changed
+    }
+  }
+}
+```
+
 ## Styling
 `WebComponent` automatically injects the Design System's shared stylesheet into the shadow DOM. This can be changed or disabled by setting the `baseStyles` property.
 
