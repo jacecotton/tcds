@@ -1,7 +1,7 @@
 # WebComponent
-`WebComponent` is a [class mixin](https://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/) for [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements). It simply adds support for declarative templating.
+`WebComponent` is a [class mixin](https://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/) for creating [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) with reactivity and declarative templating.
 
-It does not attempt to abstract away boilerplate, provide extra utilities and conveniences, alter the basic experience of creating custom elements, or directly extend the native API. In comparison to libraries also built on the [Web Components API](https://developer.mozilla.org/en-US/docs/Web/Web_Components), it more fully embraces the browser's own component model.
+This is not a library, and unlike libraries also based on the [Web Components API](https://developer.mozilla.org/en-US/docs/Web/Web_Components), it does not attempt to abstract away boilerplate or offer extra utilities. Rather than alter the basic experience of creating custom elements, it more fully embraces the browser's own component model instead of offering a new one.
 
 ## Getting started
 Defining a Web Component works like defining any other custom element, only instead of extending an element interface directly, extend it with the `WebComponent` wrapper.
@@ -28,7 +28,7 @@ class MyComponent extends WebComponent(HTMLUListElement) {
 customElements.define("my-component", MyComponent, {extends: "ul"});
 ```
 
-**Note:** Only do this for [elements that can have a shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow#elements_you_can_attach_a_shadow_to). **`WebComponent` is incompatible with elements that cannot.**
+By using the `WebComponent` mixin, a [shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow) will be automatically attached. As such, only use this mixin for [elements that can have a shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow#elements_you_can_attach_a_shadow_to).
 
 ## Templating and rendering
 You can define your component's internal markup in a `template` property.
