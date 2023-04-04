@@ -1,3 +1,12 @@
+## [1.9.16](https://github.com/jacecotton/tcds/compare/v1.9.15...v1.9.16) (2023-04-04)
+
+
+### Bug Fixes
+
+* **components:** Section video footer color fix ([6f328ae](https://github.com/jacecotton/tcds/commit/6f328ae7f36c5125d942735c3b696556c1b014ab))
+
+
+
 ## [1.9.15](https://github.com/jacecotton/tcds/compare/v1.9.14...v1.9.15) (2023-03-30)
 
 
@@ -33,15 +42,6 @@
 
 * **templates:** Site header main nav mobile closing animation issue ([3613083](https://github.com/jacecotton/tcds/commit/361308375af8f700afaa7c252e214cdee2f55bb3))
 * **utilities:** Move state and props proxying and update event listener attachment to connectedCallback from constructor ([c6d1190](https://github.com/jacecotton/tcds/commit/c6d11901800950e4d67bd376701e3fda7ba19853))
-
-
-
-## [1.9.11](https://github.com/jacecotton/tcds/compare/v1.9.10...v1.9.11) (2023-03-08)
-
-
-### Bug Fixes
-
-* **templates:** Site header main nav mobile FOUC ([06e3b9a](https://github.com/jacecotton/tcds/commit/06e3b9ac7f1f6ef150f1300c3df13a70952b411b))
 
 
 
