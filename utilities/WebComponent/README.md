@@ -1,7 +1,7 @@
 # WebComponent
 `WebComponent` is a [class mixin](https://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/) for creating [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) with reactivity and declarative templating.
 
-This is not a library, and unlike libraries also based on the [Web Components API](https://developer.mozilla.org/en-US/docs/Web/Web_Components), it does not attempt to abstract away boilerplate or offer extra utilities. Rather than alter the basic experience of creating custom elements, it more fully embraces the browser's own component model instead of offering a new one.
+This is not a library, and unlike libraries also based on the [Web Components API](https://developer.mozilla.org/en-US/docs/Web/Web_Components), it does not attempt to abstract away boilerplate or offer extra utilities. Rather than alter the basic experience of creating custom elements, it more fully embraces the browser's own component model.
 
 ## Getting started
 Defining a Web Component works like defining any other custom element, only instead of extending an element interface directly, extend it with the `WebComponent` wrapper.
@@ -30,7 +30,7 @@ customElements.define("my-component", MyComponent, {extends: "ul"});
 
 By using the `WebComponent` mixin, a [shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow) will be automatically attached. As such, only use this mixin for [elements that can have a shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow#elements_you_can_attach_a_shadow_to).
 
-## Templating and rendering
+## Templating
 You can define your component's internal markup in a `template` property.
 
 ```js
@@ -43,9 +43,33 @@ class MyComponent extends WebComponent(HTMLElement) {
 }
 ```
 
-By itself, defining a template does nothing—it needs to be inserted into the element's shadow DOM to display anything.
+Using [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals), you can use returns, indentation, and interpolation all without string concatenation. The ability to interpolate data allows for dynamic data-binding, as well as conditional and iterative rendering:
 
-To do so, you can use the `update` method. You will want to make your first call when the element connects, for which you can use the `connectedCallback` hook:
+```js
+class MyComponent extends WebComponent(HTMLElement) {
+  get template() {
+    // This could be fetched from some endpoint, defined on the component
+    // instance through props, etc.
+    const fruits = ["banana", "apple", "orange", "grapes"];
+
+    return `
+      ${fruits.length ? `
+        <p>Fruits:</p>
+        <ul>
+          ${fruits.map(fruit => `
+            <li>${fruit}</li>
+          `).join("")}
+        </ul>
+      ` : `
+        <p>No fruits to display.</p>
+      `}
+    `;
+  }
+}
+```
+
+## Rendering
+Once your component's template is defined, it needs to be rendered to the element's shadow DOM. To do so, you can use the `update` method. Use the `connectedCallback` hook to make your first render when the element connects to a document:
 
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
@@ -61,36 +85,11 @@ class MyComponent extends WebComponent(HTMLElement) {
 }
 ```
 
-The `update` method does not instantaneously insert markup into the shadow DOM. Rather, it first debounces all calls within a single [animation frame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame), so that back-to-back update requests only trigger one render.
+The `update` method works like this:
 
-The `update` method also does not naively insert markup.
-
-From then on, every time the component updates, the template string will be converted into a document fragment (i.e. dynamic HTML), then compared against the "live" shadow tree, and then any differences between them will be efficiently applied to the shadow DOM ("re-rendering" the component).
-
-Because of this static string-to-dynamic HTML conversion, you can bind data to the template with string interpolation, as well as do conditional and recursive rendering:
-
-```js
-class MyComponent extends WebComponent(HTMLElement) {
-  get template() {
-    const fruits = ["apples", "bananas", "kiwi"];
-
-    return `
-      ${fruits.length ? `
-        <p>List of fruits:</p>
-        <ul>
-          ${fruits.map(fruit => `
-            <li>${fruit}</li>
-          `).join("")}
-        </ul>
-      ` : `
-        <p>No fruits to display.</p>
-      `}
-    `;
-  }
-}
-```
-
-This means you can use JavaScript for anything you could do with a standard templating language, and you can eliminate the vast majority of imperative DOM manipulation with reactive and declarative DOM expression.
+* First, for efficiency, it debounces subsequent calls within a single [animation frame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) so that nothing happens next until all back-to-back update "requests" have been made.
+* From there, it converts the returned `template` string into a document fragment, "rendering" it to live HTML. (It also inserts the Design System's [shared stylesheet](https://github.com/jacecotton/tcds/blob/main/index.scss) so that all component shadow DOMs have the same basic styles.)
+* It then compares this document fragment against the component's current shadow tree, and applies any differences between them to the shadow DOM (a process known as "DOM diffing").
 
 ## Lifecycle
 `WebComponent` uses both `connectedCallback` and `attributeChangedCallback` internally. So if you wish to use them in your subclass while preserving default behavior, you must call the respective `super` methods.
