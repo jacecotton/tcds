@@ -90,6 +90,97 @@ The `update` method works like this:
 * First, for efficiency, it debounces subsequent calls within a single [animation frame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) so that nothing happens next until all back-to-back update "requests" have been made.
 * From there, it converts the returned `template` string into a document fragment, "rendering" it to live HTML. (It also inserts the Design System's [shared stylesheet](https://github.com/jacecotton/tcds/blob/main/index.scss) so that all component shadow DOMs have the same basic styles.)
 * It then compares this document fragment against the component's current shadow tree, and applies any differences between them to the shadow DOM (a process known as "DOM diffing").
+* If this is the first render pass, it calls the `mountedCallback` hook.
+* It lastly calls the `updatedCallback` hook.
+
+## Reactivity
+You can call `update` wherever and in response to whatever you want. For instance, this could be useful for creating reactive props and state. The following demonstrates this with attribute-property reflection:
+
+```js
+class Dialog extends WebComponent(HTMLElement) {
+  static observedAttributes = ["open"];
+
+  get open() {
+    return this.hasAttribute("open");
+  }
+
+  set open(value) {
+    this.toggleAttribute("open", Boolean(value));
+  }
+
+  attributeChangedCallback() {
+    this.update();
+  }
+
+  // ...
+}
+```
+
+Here's an example of reactive internal state without attribute reflection:
+
+```js
+class ClickCounter extends WebComponent(HTMLElement) {
+  #count = 0;
+
+  get count() {
+    return this.#count;
+  }
+
+  set count(value) {
+    this.#count = value;
+    this.update();
+  }
+
+  get template() {
+    return `
+      <button id="clicker">Clicked ${this.count} times</button>
+    `;
+  }
+
+  mountedCallback() {
+    this.shadowRoot.clicker.addEventListener("click", () => {
+      this.count++;
+    });
+  }
+}
+```
+
+(See [&sect; Lifecycle](#lifecycle) for details on `mountedCallback`.)
+
+You can also make [slots](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot) reactive by calling `update` within a [`slotchange` event listener](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/slotchange_event). This is usually not needed, as changes to slotted content will be automatically reflected to the shadow DOM. However, if your template involves conditional logic based on the presence or content of a slot, this may be useful:
+
+```js
+class MyComponent extends WebComponent(HTMLElement) {
+  get template() {
+    const hasContent = !!this.querySelector("[slot=content]");
+
+    return `
+      ${hasContent ? `
+        <p>
+          <slot name="content"></slot>
+        </p>
+      ` : `
+        <h2>No content</h2>
+      `}
+    `;
+  }
+
+  mountedCallback() {
+    this.shadowRoot.querySelectorAll("slot[name=content]").forEach((slot) => {
+      slot.addEventListener("slotchange", () => {
+        this.update();
+      });
+    });
+  }
+}
+```
+
+## Lifecycle
+* `updatedCallback`
+  * batching
+* optimization
+
+
 
 ## Lifecycle
 `WebComponent` uses both `connectedCallback` and `attributeChangedCallback` internally. So if you wish to use them in your subclass while preserving default behavior, you must call the respective `super` methods.
