@@ -93,6 +93,8 @@ The `update` method works like this:
 * If this is the first render pass, it calls the `mountedCallback` hook.
 * It lastly calls the `updatedCallback` hook.
 
+See [&sect; Lifecycle](#lifecycle) for details on `mountedCallback` and `updatedCallback`.
+
 ## Reactivity
 You can call `update` wherever and in response to whatever you want. For instance, this could be useful for creating reactive props and state. The following demonstrates this with attribute-property reflection:
 
@@ -108,11 +110,17 @@ class Dialog extends WebComponent(HTMLElement) {
     this.toggleAttribute("open", Boolean(value));
   }
 
+  get template() {
+    return `
+      <div ${!this.open ? "hidden" : ""}>
+        ...
+      </div>
+    `;
+  }
+
   attributeChangedCallback() {
     this.update();
   }
-
-  // ...
 }
 ```
 
@@ -176,46 +184,38 @@ class MyComponent extends WebComponent(HTMLElement) {
 ```
 
 ## Lifecycle
-* `updatedCallback`
-  * batching
-* optimization
+Aside from built-in lifecycle callbacks, the `WebComponent` mixin provides two methods for hooking into the update process: `mountedCallback` and `updatedCallback`. You may want to use these in response to component renders for performing *imperative* operations that cannot be expressed *declaratively* in the template (such as DOM manipulation).
 
+`mountedCallback` is called after the component's first render. To optimize time to first render, defer any operations you possibly can to this hook, such as setting up listeners, observers, intervals, etc. (rather than doing so in the `constructor` or `connectedCallback`).
 
+`updatedCallback` is called after every render. As such, avoid performing expensive or redundant operations, or accidentally causing infinite recursion.
 
-## Lifecycle
-`WebComponent` uses both `connectedCallback` and `attributeChangedCallback` internally. So if you wish to use them in your subclass while preserving default behavior, you must call the respective `super` methods.
+The `update` method optionally accepts an object as an argument. When `update` calls are debounced, a batch is accumulated of the data passed to them. This batch is then handed off to `updatedCallback`. This can be used to execute code associated only with specific properties, attributes, slots, etc.
 
-```js
-class MyComponent extends WebComponent(HTMLElement) {
-  connectedCallback() {
-    super.connectedCallback();
-    ...
-  }
-
-  attributeChangedCallback() {
-    super.attributeChangedCallback();
-    ...
-  }
-}
-```
-
-In both cases, `WebComponent` uses these methods in order to schedule a component update (for the initial render and after every [observed attribute change](#reactive-attributes), respectively).
-
-`WebComponent` also provides two additional lifecycle callbacks:
+For example, given the above `ClickCounter` snippet, we can record and pass the previous `count` value to the `update` method, which will be included in a batch accessible from `updatedCallback`. We can then check for the existence of `count` in the batch before executing associated code:
 
 ```js
-class MyComponent extends WebComponent(HTMLElement) {
-  mountedCallback() {
-    // Called after first render.
+class ClickCounter extends WebComponent(HTMLElement) {
+  // ...
+
+  set count(value) {
+    const oldCount = this.#count;
+    this.#count = value;
+    this.update({count: oldCount});
   }
+
+  // ...
 
   updatedCallback(old) {
-    // Called after each render.
+    if("count" in old) {
+      console.log(`count changed from ${old.count} to ${this.count}`);
+        // onclick => "count changed from 0 to 1"
+        // onclick => "count changed from 1 to 2"
+        // ...
+    }
   }
 }
 ```
-
-The `old` parameter provides access to the updated attributes' previous values. So for example, given `[foo="bar"]`, running `this.setAttribute("foo", "baz")` would result in an `updatedCallback` call, within which you could compare `old.foo` to `this.foo` (`bar` &rarr; `baz`).
 
 ## Reactive attributes
 To make an attribute trigger a re-render when changed, first mark them for observation:
