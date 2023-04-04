@@ -118,6 +118,10 @@ class Dialog extends WebComponent(HTMLElement) {
     `;
   }
 
+  connectedCallback() {
+    this.update();
+  }
+
   attributeChangedCallback() {
     this.update();
   }
@@ -144,6 +148,8 @@ class ClickCounter extends WebComponent(HTMLElement) {
       <button id="clicker">Clicked ${this.count} times</button>
     `;
   }
+
+  // ...
 
   mountedCallback() {
     this.shadowRoot.clicker.addEventListener("click", () => {
@@ -173,6 +179,8 @@ class MyComponent extends WebComponent(HTMLElement) {
     `;
   }
 
+  // ...
+
   mountedCallback() {
     this.shadowRoot.querySelectorAll("slot[name=content]").forEach((slot) => {
       slot.addEventListener("slotchange", () => {
@@ -186,11 +194,23 @@ class MyComponent extends WebComponent(HTMLElement) {
 ## Lifecycle
 Aside from built-in lifecycle callbacks, the `WebComponent` mixin provides two methods for hooking into the update process: `mountedCallback` and `updatedCallback`. You may want to use these in response to component renders for performing *imperative* operations that cannot be expressed *declaratively* in the template (such as DOM manipulation).
 
-`mountedCallback` is called after the component's first render. To optimize time to first render, defer any operations you possibly can to this hook, such as setting up listeners, observers, intervals, etc. (rather than doing so in the `constructor` or `connectedCallback`).
+```js
+class MyComponent extends WebComponent(HTMLElement) {
+  mountedCallback() {
+    // Called after first render.
+  }
 
-`updatedCallback` is called after every render. As such, avoid performing expensive or redundant operations, or accidentally causing infinite recursion.
+  updatedCallback() {
+    // Called after every render.
+  }
+}
+```
 
-The `update` method optionally accepts an object as an argument. When `update` calls are debounced, a batch is accumulated of the data passed to them. This batch is then handed off to `updatedCallback`. This can be used to execute code associated only with specific properties, attributes, slots, etc.
+To optimize time to first render, defer any operations you possibly can to `mountedCallback`, such as setting up listeners, observers, intervals, etc. (rather than doing so in the `constructor` or `connectedCallback`).
+
+As `updatedCallback` is called after every render, avoid performing expensive or redundant operations, or accidentally causing infinite recursion.
+
+The `update` method optionally accepts an object as an argument. When `update` calls are debounced, a batch is accumulated of the data passed to them. This batch is then handed off to `updatedCallback`. This can be used to execute code associated only with changes to specific properties, attributes, slots, etc.
 
 For example, given the above `ClickCounter` snippet, we can record and pass the previous `count` value to the `update` method, which will be included in a batch accessible from `updatedCallback`. We can then check for the existence of `count` in the batch before executing associated code:
 
@@ -217,54 +237,30 @@ class ClickCounter extends WebComponent(HTMLElement) {
 }
 ```
 
-## Reactive attributes
-To make an attribute trigger a re-render when changed, first mark them for observation:
+An example with slots:
 
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
-  static observedAttributes = ["foo", "bar"];
-}
-```
+  // ...
 
-When the `[foo]` or `[bar]` attributes change, the element's shadow tree will be re-rendered. As with standard custom elements, you can hook into these attribute changes with the `attributeChangedCallback` method.
+  mountedCallback() {
+    this.shadowRoot.querySelectorAll("slot").forEach((slot) => {
+      slot.addEventListener("slotchange", () => {
+        this.update({[slot.name]: slot.assignedNodes()});
+      });
+    });
+  }
 
-You can also choose to only make certain observed attributes reactive by overriding the `attributeChangedCallback` method and calling `_requestUpdate` only for select attribute(s) (passing the attribute `name` and `oldValue`).
+  updatedCallback(old) {
+    const slots = old; // alias
 
-```js
-class MyComponent extends WebComponent(HTMLElement) {
-  static observedAttributes = ["foo", "bar", "baz"];
-
-  attributeChangedCallback(name, oldValue) {
-    // Changing [foo] will no longer trigger a re-render.
-    if(name === "bar" || name === "baz") {
-      this._requestUpdate(name, oldValue);
+    if("content" in slots) {
+      console.log("content slot changed", slots.content);
     }
   }
 }
 ```
 
-## Attribute-property reflection
-Like with the attributes of native HTML elements, a custom element's primitive attributes should generally correspond to an internal property (see [best practices](https://web.dev/custom-elements-best-practices/#avoid-reentrancy-issues)). Attributes and properties should be kept in sync at least downwards (attribute to property), and if "stateful", also upwards (property to attribute).
-
-To do so, first observe the attribute, define a getter for the corresponding property that returns a value derived from the attribute (optionally with type casting), and a setter that updates the attribute (optionally with type validation).
-
-```js
-class Dialog extends WebComponent(HTMLElement) {
-  static observedAttributes = ["open"];
-
-  get open() {
-    // Or `getAttribute` if not a boolean attribute.
-    return this.hasAttribute("open");
-  }
-
-  set open(value) {
-    // Or `setAttribute` if not a boolean attribute.
-    this.toggleAttribute("open", Boolean(value));
-  }
-}
-```
-
-Here, we do not allow setting `this.open` directly. Instead, attempts to set the property update the attribute, the attribute change is observed, then when the property is read it returns the attribute's new value. This way the property and attribute are always in sync without causing infinite recursion or other problems.
 
 ### Lazy properties
 The above approach does create one potential problem, which is if a component user attempts to set a property on the element before its definition has been loaded (ergo before the getter and setter can intercede). This can be addressed by [making the property lazy](https://web.dev/custom-elements-best-practices/#make-properties-lazy) using a provided `_upgradeProperties` method inside the `connectedCallback`. As a matter of general best practice, this should always be done.
@@ -276,119 +272,6 @@ class Dialog extends WebComponent(HTMLElement) {
   connectedCallback() {
     super.connectedCallback();
     this._upgradeProperties(["open"]);
-  }
-}
-```
-
-## Reactive state
-As mentioned above, any changes to observed attributes will automatically trigger a re-render. However, you may want to update the component after a change to a property that is *not* associated with an attribute, or according to some other condition or event.
-
-The `_requestUpdate` method can be called to arbitrarily schedule an update. To make the rendering step more efficient, update requests (including those dispatched from attribute changes) are debounced within a single animation frame.
-
-Class setters and set proxies can be used to detect changes to properties, then you can call `_requestUpdate` from there.
-
-```js
-class ClickCounter extends WebComponent(HTMLElement) {
-  #count = 0;
-
-  get count() {
-    return this.#count;
-  }
-
-  set count(value) {
-    const oldValue = this.#count;
-    this.#count = Number(value);
-    this._requestUpdate(count, oldValue);
-  }
-
-  get template() {
-    return `
-      <button id="clicker">Clicked ${this.count} times</button>
-    `;
-  }
-
-  connectedCallback() {
-    super.connectedCallback();
-    this._upgradeProperties(["count"]);
-  }
-
-  mountedCallback() {
-    this.shadowRoot.clicker.addEventListener("click", () => {
-      this.count++;
-    })
-  }
-
-  updatedCallback(old) {
-    if("count" in old) {
-      console.log(`count updated from ${old.count} to ${this.count}`);
-    }
-  }
-}
-```
-
-Note that you only need to pass the old value to the `_requestUpdate` method if you want it to be accessible from within the `updatedCallback` method.
-
-## Reactive slots
-You can also make slot changes reactive. Normally, this is not required, as changes to slotted content are automatically projected to the shadow DOM. However, if your template contains conditional logic based on the presence of slotted content, you can trigger a re-render associated with slot changes using the `slotchange` event and `_requestUpdate`:
-
-```js
-class MyComponent extends WebComponent(HTMLElement) {
-  get template() {
-    const hasContent = !!this.querySelector("[slot=content]");
-
-    return `
-      ${hasContent ? `
-        <p>
-          <slot name="content"></slot>
-        </p>
-      ` : `
-        <span>No content</span>
-      `}
-    `;
-  }
-
-  mountedCallback() {
-    this.shadowRoot.querySelectorAll("slot").forEach((slot) => {
-      slot.addEventListener("slotchange", () => {
-        this._requestUpdate(slot.name, slot.assignedNodes());
-      });
-    });
-  }
-}
-```
-
-As previously mentioned, you only need to pass arguments to the `_requestUpdate` call if you want access to that information in the `updatedCallback`. The `slot.assignedNodes()` argument gives an array of nodes assigned to the slot.
-
-```js
-class MyComponent extends WebComponent(HTMLElement) {
-  ...
-
-  updatedCallback(changed) {
-    if("content" in changed) {
-      // content slot changed
-    }
-  }
-}
-```
-
-Note that there's no built-in way to differentiate between attributes, other properties, and slots in `updatedCallback`, which can become difficult to manage. A recommended convention is to prepend slot names with a `$` when you pass them to the `_requestUpdate` call.
-
-```js
-class MyComponent extends WebComponent(HTMLElement) {
-  ...
-
-  mountedCallback() {
-    this.shadowRoot.querySelectorAll("slot").forEach((slot) => {
-      slot.addEventListener("slotchange", () => {
-        this._requestUpdate(`$${slot.name}`, slot.assignedNodes());
-      });
-    });
-  }
-
-  updatedCallback(changed) {
-    if("$content" in changed) {
-      // content slot changed
-    }
   }
 }
 ```
