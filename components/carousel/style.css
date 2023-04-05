@@ -1,3 +1,173 @@
-:host {
+:host(:not([hidden])) {
   display: block;
+}
+
+section {
+  display: grid;
+  grid-template-areas:
+    "slides     slides"
+    "play-pause navigation";
+  grid-template-columns: min-content 100%;
+  align-items: center;
+  gap: var(--tcds-space-loose) 0;
+}
+
+:host([navigation*="top"][navigation*="right"]) section {
+  --tcds-carousel-navigation-justify: end;
+
+  grid-template-areas:
+    ".          navigation"
+    "slides     slides"
+    "play-pause .";
+  gap: var(--tcds-space-tight);
+}
+
+@media (hover: none), (max-width: 1024px) {
+  :host {
+    --tcds-carousel-play-pause-opacity: 1;
+  }
+}
+
+:host(:hover),
+:host(:focus-within) {
+  --tcds-carousel-play-pause-opacity: 1;
+}
+
+:host([multiple]) {
+  --tcds-carousel-slide-gap: 4vw;
+  --tcds-carousel-slide-size: min(700px, 70vw);
+  --tcds-carousel-slide-align: center;
+}
+
+:host([multiple]) [part="viewport"] {
+  padding: 0 0 0 50%;
+}
+
+[part="viewport"] {
+  grid-area: slides;
+  display: flex;
+  gap: var(--tcds-carousel-slide-gap, 0);
+  align-items: center;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-x: none;
+  position: relative;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [part="viewport"] {
+    scroll-behavior: smooth;
+  }
+}
+
+[part="viewport"]::-webkit-scrollbar {
+  display: none;
+}
+
+::slotted(tcds-slide) {
+  flex: 1 0 var(--tcds-carousel-slide-size, 100%);
+  scroll-snap-align: var(--tcds-carousel-slide-align, start);
+  scroll-snap-stop: always;
+}
+
+:host([variant*="gallery"]) ::slotted(tcds-slide) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+[part="navigation"] {
+  grid-area: navigation;
+  display: flex;
+  align-items: center;
+  justify-content: var(--tcds-carousel-navigation-justify, center);
+  gap: var(--tcds-space-loose);
+}
+
+[part="indicators"] {
+  display: flex;
+  gap: var(--tcds-space-x-loose);
+  overflow-x: auto;
+}
+
+:host([variant*="gallery"]) [part="indicators"] {
+  gap: var(--tcds-space-tight);
+}
+
+[part="indicator"] {
+  display: inline-flex;
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+:host(:not([variant*="gallery"])) [part="indicator"] {
+  height: 0.85rem;
+  width: 0.85rem;
+  min-width: 0.85rem;
+  border-radius: 0.85rem;
+  background-color: #a8a8a8;
+  transition: background-color var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing);
+}
+
+:host(:not([variant*="gallery"])) [part="indicator"]:hover,
+:host(:not([variant*="gallery"])) [part="indicator"][aria-selected="true"] {
+  background-color: var(--tcds-color-primary);
+}
+
+:host([variant*="gallery"]) [part="indicator"] {
+  position: relative;
+  width: 90px;
+  min-width: 90px;
+  height: 90px;
+  overflow: hidden;
+  transition: opacity var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing);
+}
+
+:host([variant*="gallery"]) [part="indicator"][aria-selected="false"] {
+  opacity: 0.4;
+}
+
+:host([variant*="gallery"]) [part="indicator"]:focus {
+  outline: 5px solid rgb(255 255 255 / 80%);
+  outline-offset: -5px;
+}
+
+:host([variant*="gallery"]) [part="indicator"] tcds-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+:host([variant*="gallery"]) [part="indicator"] img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform var(--tcds-animation-expressive-duration) var(--tcds-animation-expressive-easing);
+}
+
+:host([variant*="gallery"]) [part="indicator"]:is(:hover, [aria-selected="true"]) img {
+  transform: scale(1.05);
+}
+
+[part="play-pause"] {
+  grid-area: play-pause;
+  opacity: var(--tcds-carousel-play-pause-opacity, 0);
+  transition: opacity var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing);
+}
+
+[part="next"]:not(:hover),
+[part="previous"]:not(:hover) {
+  --tcds-button-text-color: #a8a8a8;
+}
+
+[part="next"] {
+  order: 3;
 }

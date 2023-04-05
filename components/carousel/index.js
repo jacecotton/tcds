@@ -6,7 +6,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
   static observedAttributes = ["playing", "timing", "multiple", "variant"];
 
   get playing() {
-    return this.hasAttribute("playing");
+    return this.hasAttribute("playing") && this.hasAttribute("timing");
   }
 
   set playing(value) {
@@ -43,10 +43,15 @@ export default class Carousel extends WebComponent(HTMLElement) {
     this.update({variant: value});
   }
 
-  constructor() {
-    super();
-    this.shadowRoot.adoptedStyles = [styles];
+  get nextIndex() {
+    return (this.slides.indexOf(this.querySelector("[active]")) + 1) % this.slides.length;
   }
+
+  get previousIndex() {
+    return (this.slides.indexOf(this.querySelector("[active]")) - 1 + this.slides.length) % this.slides.length;
+  }
+
+  flags = {};
 
   get template() {
     const playPauseLabel = `${this.playing ? "Stop" : "Start"} automatic slide show`;
@@ -122,6 +127,11 @@ export default class Carousel extends WebComponent(HTMLElement) {
     `;
   }
 
+  constructor() {
+    super();
+    this.shadowRoot.adoptedStyleSheets = [styles];
+  }
+
   connectedCallback() {
     this.update();
     this.slides = Array.from(this.querySelectorAll("tcds-slide"));
@@ -136,16 +146,184 @@ export default class Carousel extends WebComponent(HTMLElement) {
     this.indicators = Array.from(this.shadowRoot.querySelectorAll("[part~=indicator]"));
 
     (this.slides.find(slide => slide.active) || this.slides[0]).select();
+
+    this.playing = this.playing && !window.matchMedia("(prefers-reduced-motion: reduce), (hover: none)").matches;
+
+    this.slides.forEach(slide => this.swipe.observe(slide));
+    this.scrollOutOfView.observe(this);
+
+    document.addEventListener("visibilitychange", () => {
+      if(document.hidden) {
+        this.pause();
+      } else if(this.flags.isInView !== false) {
+        this.resume();
+      }
+    });
   }
 
+  updatedCallback(old) {
+    if("playing" in old) {
+      if(this.playing) {
+        const advance = () => {
+          this.player = setTimeout(() => {
+            this.slides[this.nextIndex].select();
+            advance();
+          }, this.timing * 1000);
+        };
+
+        advance();
+        this.flags.observeSwipe = false;
+      } else {
+        clearTimeout(this.player);
+      }
+    }
+  }
+
+  /* Observers */
+
+  #swipeDebounce;
+
+  get swipe() {
+    return new IntersectionObserver((entries) => {
+      if(this.observeSwipe !== true) {
+        return;
+      }
+
+      if(this.multiple) {
+        const {left: viewportLeft, right: viewportRight} = this.viewport.getBoundingClientRect();
+        const viewportCenterpoint = Math.floor((viewportLeft + viewportRight) / 2);
+
+        clearTimeout(this.#swipeDebounce);
+
+        this.#swipeDebounce = setTimeout(() => {
+          const proximitiesToCenter = this.slides.map((slide) => {
+            const {left: slideLeft, right: slideRight} = slide.getBoundingClientRect();
+            const slideCenterpoint = Math.floor((slideLeft + slideRight) / 2);
+
+            return Math.abs(slideCenterpoint - viewportCenterpoint);
+          });
+
+          const closestToCenter = proximitiesToCenter.indexOf(Math.min(...proximitiesToCenter));
+          this.slides[closestToCenter].select();
+        }, 500);
+      } else {
+        entries.forEach((entry) => {
+          if(entry.isIntersecting) {
+            entry.target.select();
+          }
+        });
+      }
+    }, {
+      root: this.viewport,
+      threshold: !this.multiple ? 1
+        : [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+      rootMargin: "1px",
+    });
+  }
+
+  get scrollOutOfView() {
+    return new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if(!entry.isIntersecting) {
+          this.pause();
+          this.flags.isInView = false;
+        } else {
+          this.resume();
+          this.flags.isInView = true;
+        }
+      });
+    }, {threshold: .9});
+  }
+
+  /* Event handlers */
+
   playClick() {
-    this.playing = !this.playing;
+    this.toggle();
+  }
+
+  nextClick() {
+    this.slides[this.nextIndex].select();
+    this.stop();
+    this.flags.observeSwipe = false;
+
+    if(this.variant === "gallery") {
+      setTimeout(() => {
+        this.indicators[this.nextIndex].scrollIntoView();
+      }, 500);
+    }
+  }
+
+  previousClick() {
+    this.slides[this.previousIndex].select();
+    this.stop();
+    this.flags.observeSwipe = false;
+
+    if(this.variant === "gallery") {
+      setTimeout(() => {
+        this.indicators[this.previousIndex].scrollIntoView();
+      }, 500);
+    }
   }
 
   indicatorClick(event) {
     this.slides[this.indicators.indexOf(event.target)].select();
+    this.stop();
+    this.flags.observeSwipe = false;
+  }
+
+  indicatorKeydown(event) {
+    if(event.key === "ArrowRight") {
+      event.preventDefault();
+      this.slides[this.nextIndex].select();
+      this.indicators[this.nextIndex].focus();
+    } else if(event.key === "ArrowLeft") {
+      event.preventDefault();
+      this.slides[this.previousIndex].select();
+      this.indicators[this.previousIndex].focus();
+    }
+
+    this.stop();
+    this.flags.observeSwipe = false;
+  }
+
+  viewportSwipe() {
+    this.stop();
+    this.flags.observeSwipe = true;
+  }
+
+  viewportHover() {
+    this.pause();
+    this.flags.observeSwipe = true;
+  }
+
+  /* Public API */
+
+  play() {
+    this.playing = true;
+  }
+
+  stop() {
     this.playing = false;
-    this.observeSwipe = false;
+  }
+
+  toggle() {
+    this.playing = !this.playing;
+  }
+
+  pause() {
+    if(this.playing) {
+      this.stop();
+      this.flags.isPaused = true;
+    }
+  }
+
+  resume() {
+    if(this.flags.isPaused) {
+      requestAnimationFrame(() => {
+        this.play();
+        this.flags.isPaused = null;
+      });
+    }
   }
 }
 

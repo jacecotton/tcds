@@ -1,5 +1,4 @@
 import WebComponent from "../../../utilities/WebComponent/WebComponent.js";
-import styles from "./style.css";
 
 export default class Slide extends WebComponent(HTMLElement) {
   static observedAttributes = ["active"];
@@ -10,7 +9,7 @@ export default class Slide extends WebComponent(HTMLElement) {
 
   set active(value) {
     value = Boolean(value);
-    this.setAttribute("active", value);
+    this.toggleAttribute("active", value);
     this.update({active: value});
   }
 
@@ -27,11 +26,6 @@ export default class Slide extends WebComponent(HTMLElement) {
         <slot></slot>
       </section>
     `;
-  }
-
-  constructor() {
-    super();
-    this.shadowRoot.adoptedStyleSheets = [styles];
   }
 
   connectedCallback() {
