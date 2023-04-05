@@ -1,5 +1,8 @@
 main,
 .main-content {
+  position: relative;
+  z-index: 1;
+
   &:not(.main--unstyled) {
     background-color: #fff;
     padding: var(--content-inner-gutter);
