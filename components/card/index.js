@@ -62,10 +62,14 @@ export default class Card extends WebComponent(HTMLElement) {
   orient() {
     const orientation = this.getAttribute("orientation");
 
-    if(this.parentElement?.getBoundingClientRect?.().width > 600) {
+    if(this.getBoundingClientRect?.().width > 600) {
       orientation !== "horizontal" && this.setAttribute("orientation", "horizontal");
+
+      console.log("bounding client rect width is over 600, setting to horizontal");
     } else {
       orientation !== "vertical" && this.setAttribute("orientation", "vertical");
+
+      console.log("bounding client rect width is less than 600, setting to vertical");
     }
   }
 }
