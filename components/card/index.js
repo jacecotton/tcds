@@ -33,7 +33,7 @@ export default class Card extends WebComponent(HTMLElement) {
   }
 
   render() {
-    const link = this.querySelector("a[slot=title][href]").href;
+    const link = this.querySelector("a[slot=title][href]")?.href;
 
     return /* html */`
       <article part="card">
