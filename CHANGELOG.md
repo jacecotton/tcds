@@ -1,3 +1,12 @@
+## [1.9.19](https://github.com/jacecotton/tcds/compare/v1.9.18...v1.9.19) (2023-04-05)
+
+
+### Bug Fixes
+
+* **styles:** Main content z-index issue ([909600f](https://github.com/jacecotton/tcds/commit/909600f401417e556763ebba9d0d07784b1c20c5))
+
+
+
 ## [1.9.18](https://github.com/jacecotton/tcds/compare/v1.9.17...v1.9.18) (2023-04-05)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **icons:** Adjust email icon ([17ca069](https://github.com/jacecotton/tcds/commit/17ca06948c5122a7caa39485f14f38e4948a6db5))
-
-
-
-## [1.9.14](https://github.com/jacecotton/tcds/compare/v1.9.13...v1.9.14) (2023-03-22)
-
-
-### Bug Fixes
-
-* **icons:** Add email icon ([82f5aae](https://github.com/jacecotton/tcds/commit/82f5aaeb4311dd6000460f02b0b34698bea1947b))
 
 
 
