@@ -9,9 +9,11 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
   #debounce = null;
   #batch = {};
   #renderPasses = 0;
-  #baseStyles = this.constructor.baseStyles
+  #baseStyles = this.constructor.baseStyles === false ? false : (
+    this.constructor.baseStyles
     || document.querySelector("link[title=tcds]")?.href
-    || "https://unpkg.com/@txch/tcds/dist/tcds.css";
+    || "https://unpkg.com/@txch/tcds/dist/tcds.css"
+  );
 
   _upgradeProperties(properties) {
     properties.forEach((property) => {
@@ -23,9 +25,9 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
     });
   }
 
-  update(name, oldValue = null) {
-    if(name) {
-      this.#batch = {...this.#batch, ...{[name]: oldValue}};
+  update(record) {
+    if(record) {
+      this.#batch = {...this.#batch, ...record};
     }
 
     if(this.#debounce !== null) {
@@ -42,9 +44,7 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
     this.#debounce = null;
 
     diff(`
-      ${this.#baseStyles ? `
-        <style id="tcds">@import url(${this.#baseStyles})</style>
-      ` : ""}
+      ${this.#baseStyles ? `<style id="tcds">@import url(${this.#baseStyles})</style>` : ""}
       ${this.template || ""}
     `, this.shadowRoot);
 

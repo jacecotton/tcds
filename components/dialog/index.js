@@ -1,6 +1,5 @@
 import WebComponent from "../../utilities/WebComponent/WebComponent.js";
-import shadowStyles from "./style.css";
-import lightStyles from "./style.light.css";
+import styles from "./style.css";
 
 export default class Dialog extends WebComponent(HTMLElement) {
   static observedAttributes = ["open", "position"];
@@ -17,22 +16,16 @@ export default class Dialog extends WebComponent(HTMLElement) {
     return Number(this.getAttribute("autoclose")) || false;
   }
 
-  get position() {
-    return this.getAttribute("position");
-  }
-
   get anchored() {
     return window.location.hash.split(/[#?&]+/).includes(this.id);
   }
 
   constructor() {
     super();
-    this.shadowRoot.adoptedStyleSheets = [shadowStyles];
+    this.shadowRoot.adoptedStyleSheets = [styles];
   }
 
   connectedCallback() {
-    this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStyleSheets, ...[lightStyles]];
-
     this.update();
     this._upgradeProperties(["open"]);
 
@@ -51,7 +44,7 @@ export default class Dialog extends WebComponent(HTMLElement) {
   }
 
   attributeChangedCallback(name, oldValue) {
-    this.update(name, oldValue);
+    this.update({[name]: oldValue});
   }
 
   get template() {
@@ -66,7 +59,7 @@ export default class Dialog extends WebComponent(HTMLElement) {
         <button is="tcds-ui-button"
           part="close"
           onclick="this.getRootNode().host.close()"
-          variant="${this.position === "right" || this.hasHeader ? "ui" : "secondary"}"
+          variant="${this.getAttribute("position") === "right" || this.hasHeader ? "ui" : "secondary"}"
           aria-label="Close dialog"
           title="Close dialog"
         >
@@ -95,12 +88,10 @@ export default class Dialog extends WebComponent(HTMLElement) {
   }
 
   mountedCallback() {
-    this.dialog = this.shadowRoot.querySelector("[part=dialog]");
-
     this.setAttribute("role", "dialog");
     this.setAttribute("aria-modal", "true");
 
-    this.dialog.addEventListener("click", (event) => {
+    this.shadowRoot.querySelector("[part=dialog]").addEventListener("click", (event) => {
       event.stopPropagation();
     });
 
@@ -116,7 +107,7 @@ export default class Dialog extends WebComponent(HTMLElement) {
 
     this.shadowRoot.querySelectorAll("slot").forEach((slot) => {
       slot.addEventListener("slotchange", () => {
-        this.update(`$${slot.name}`, slot.assignedNodes());
+        this.update({[slot.name]: slot.assignedNodes()});
       });
     });
   }
@@ -134,9 +125,10 @@ export default class Dialog extends WebComponent(HTMLElement) {
       if(this.open) {
         this.#previouslyFocused = document.activeElement;
 
-        const target = this.querySelector("[autofocus]")
-          || this.shadowRoot.querySelectorAll("focus-boundary")[1];
-        target.focus();
+        (
+          this.querySelector("[autofocus]")
+          || this.shadowRoot.querySelectorAll("focus-boundary")[1]
+        ).focus();
 
         if(this.autoclose) {
           this.#autocloseTimer = setTimeout(() => {
@@ -178,12 +170,12 @@ export default class Dialog extends WebComponent(HTMLElement) {
       // Pause internal videos.
       this.querySelectorAll("video")?.forEach(video => video.pause());
 
-      this.querySelectorAll("iframe[src*=youtube]")?.forEach((youtubeVideo) => {
+      this.querySelectorAll("iframe[src*=youtube]")?.forEach((video) => {
         // For YouTube embeds, rather than worry about keeping up with current
         // APIs and ensuring JS APIs are enabled in the embed URL, we can trick
         // the embed into pausing by "refreshing" the `src` attribute.
-        const src = youtubeVideo.src;
-        youtubeVideo.src = src;
+        const src = video.src;
+        video.src = src;
       });
     }
   }

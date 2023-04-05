@@ -27,7 +27,7 @@ export default class Tab extends WebComponent(HTMLElement) {
   }
 
   attributeChangedCallback(name, oldValue) {
-    this.update(name, oldValue);
+    this.update({[name]: oldValue});
   }
 
   get template() {

@@ -38,7 +38,7 @@
 
   font-family: var(--tcds-font-ui);
   font-size: var(--tcds-button-font-size);
-  font-weight: var(--tcds-font-weight-semibold);
+  font-weight: var(--tcds-font-weight-bold);
   text-decoration: none;
   line-height: 1;
   white-space: nowrap;

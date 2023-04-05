@@ -49,7 +49,7 @@ export default class Section extends WebComponent(HTMLElement) {
   mountedCallback() {
     this.shadowRoot.querySelectorAll("slot").forEach((slot) => {
       slot.addEventListener("slotchange", () => {
-        this.update(slot.name);
+        this.update({[slot.name]: slot.assignedNodes()});
       });
     });
   }

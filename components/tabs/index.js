@@ -1,6 +1,5 @@
 import WebComponent from "../../utilities/WebComponent/WebComponent.js";
-import shadowStyles from "./style.css";
-import lightStyles from "./style.light.css";
+import styles from "./style.css";
 import "./tab/index.js";
 
 export default class Tabs extends WebComponent(HTMLElement) {
@@ -10,13 +9,10 @@ export default class Tabs extends WebComponent(HTMLElement) {
 
   constructor() {
     super();
-    this.shadowRoot.adoptedStyleSheets = [shadowStyles];
+    this.shadowRoot.adoptedStyleSheets = [styles];
   }
 
   connectedCallback() {
-    super.connectedCallback();
-    this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStyleSheets, ...[lightStyles]];
-
     this.update();
 
     this.tabpanels = Array.from(this.querySelectorAll("tcds-tab"));

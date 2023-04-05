@@ -69,14 +69,12 @@ class MyComponent extends WebComponent(HTMLElement) {
 ```
 
 ## Rendering
-Once your component's template is defined, it needs to be rendered to the element's shadow DOM. To do so, you can use the `update` method. Use the `connectedCallback` hook to make your first render when the element connects to a document:
+Once your component's template is defined, it needs to be rendered to the element's shadow DOM. To do so, you can use the `update` method. Use the [`connectedCallback` hook](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks) to make your first render when the element connects to a document:
 
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
   get template() {
-    return `
-      <p>Hello world</p>
-    `;
+    // ...
   }
 
   connectedCallback() {

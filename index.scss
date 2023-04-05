@@ -10,13 +10,6 @@
 /** Colors */
 @use "./styles/color/color";
 
-/** Components */
-@use "./components/dialog/style.shared" as *;
-@use "./styles/components/base" as *;
-@use "./styles/components/action-bar";
-@use "./styles/components/breadcrumb";
-@use "./styles/components/pagination";
-
 /** Content */
 @use "./styles/content/blockquote";
 @use "./styles/content/callout";
@@ -41,6 +34,15 @@
 /** Templates */
 @use "./styles/templates/site-header";
 @use "./styles/templates/site-footer";
+
+/** Components */
+@use "./components/button/style.shared" as *;
+@use "./components/dialog/style.shared" as *;
+@use "./components/tabs/style.shared" as *;
+@use "./styles/components/base" as *;
+@use "./styles/components/action-bar";
+@use "./styles/components/breadcrumb";
+@use "./styles/components/pagination";
 
 /** Utilities */
 @use "./styles/base/utilities" as *;
