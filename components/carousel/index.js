@@ -10,9 +10,11 @@ export default class Carousel extends WebComponent(HTMLElement) {
   }
 
   set playing(value) {
+    const oldValue = this.playing;
     value = Boolean(value);
+
     this.toggleAttribute("playing", value);
-    this.update({timing: value});
+    this.update({playing: oldValue});
   }
 
   get timing() {
