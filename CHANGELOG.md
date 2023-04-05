@@ -1,3 +1,12 @@
+## [1.9.17](https://github.com/jacecotton/tcds/compare/v1.9.16...v1.9.17) (2023-04-05)
+
+
+### Bug Fixes
+
+* **components:** Card link bug ([cf69f60](https://github.com/jacecotton/tcds/commit/cf69f6079d680adbd648626e236df44c26476380))
+
+
+
 ## [1.9.16](https://github.com/jacecotton/tcds/compare/v1.9.15...v1.9.16) (2023-04-04)
 
 
@@ -32,16 +41,6 @@
 
 * **components:** Attach button light styles on connect instead of creation ([0d40126](https://github.com/jacecotton/tcds/commit/0d40126f8a4bd0df527dcb265a131b94b84a5c50))
 * **components:** Prevent watermark on sections with background images ([8bb9d13](https://github.com/jacecotton/tcds/commit/8bb9d13d86c226d9fb2d3aad4e4f929935b38ccc))
-
-
-
-## [1.9.12](https://github.com/jacecotton/tcds/compare/v1.9.11...v1.9.12) (2023-03-09)
-
-
-### Bug Fixes
-
-* **templates:** Site header main nav mobile closing animation issue ([3613083](https://github.com/jacecotton/tcds/commit/361308375af8f700afaa7c252e214cdee2f55bb3))
-* **utilities:** Move state and props proxying and update event listener attachment to connectedCallback from constructor ([c6d1190](https://github.com/jacecotton/tcds/commit/c6d11901800950e4d67bd376701e3fda7ba19853))
 
 
 
