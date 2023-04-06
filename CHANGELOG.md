@@ -1,3 +1,12 @@
+## [1.9.20](https://github.com/jacecotton/tcds/compare/v1.9.19...v1.9.20) (2023-04-06)
+
+
+### Bug Fixes
+
+* **components:** Remove stray console logs ([02fe31d](https://github.com/jacecotton/tcds/commit/02fe31d0551c46ae0680496d2004e38e3bbbd304))
+
+
+
 ## [1.9.19](https://github.com/jacecotton/tcds/compare/v1.9.18...v1.9.19) (2023-04-05)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Section video footer color fix ([6f328ae](https://github.com/jacecotton/tcds/commit/6f328ae7f36c5125d942735c3b696556c1b014ab))
-
-
-
-## [1.9.15](https://github.com/jacecotton/tcds/compare/v1.9.14...v1.9.15) (2023-03-30)
-
-
-### Bug Fixes
-
-* **icons:** Adjust email icon ([17ca069](https://github.com/jacecotton/tcds/commit/17ca06948c5122a7caa39485f14f38e4948a6db5))
 
 
 
