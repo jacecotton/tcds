@@ -50,7 +50,7 @@ export default class Dialog extends WebComponent(HTMLElement) {
   get template() {
     this.hasHeader = !!this.querySelector("[slot=header]");
     this.hasFooter = !!this.querySelector("[slot=footer]");
-    this.hasVideo = !!this.querySelector("iframe[src*='youtube'], video");
+    this.hasVideo = !!this.querySelector("iframe[src*='youtube'], video, slot[name=video]");
 
     return /* html */`
       <div part="dialog" ${this.hasVideo ? `data-has-video` : ""}>

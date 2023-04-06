@@ -8,9 +8,7 @@ export default class Slide extends WebComponent(HTMLElement) {
   }
 
   set active(value) {
-    value = Boolean(value);
-    this.toggleAttribute("active", value);
-    this.update({active: value});
+    this.toggleAttribute("active", Boolean(value));
   }
 
   get template() {

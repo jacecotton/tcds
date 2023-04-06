@@ -10,11 +10,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
   }
 
   set playing(value) {
-    const oldValue = this.playing;
-    value = Boolean(value);
-
-    this.toggleAttribute("playing", value);
-    this.update({playing: oldValue});
+    this.toggleAttribute("playing", Boolean(value));
   }
 
   get timing() {
@@ -23,7 +19,6 @@ export default class Carousel extends WebComponent(HTMLElement) {
 
   set timing(value) {
     this.setAttribute("timing", value.toString());
-    this.update({timing: Number(value)});
   }
 
   get multiple() {
@@ -31,9 +26,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
   }
 
   set multiple(value) {
-    value = Boolean(value);
-    this.toggleAttribute("multiple");
-    this.update({multiple: value});
+    this.toggleAttribute("multiple", Boolean(value));
   }
 
   get variant() {
@@ -42,7 +35,6 @@ export default class Carousel extends WebComponent(HTMLElement) {
 
   set variant(value) {
     this.setAttribute("variant", value);
-    this.update({variant: value});
   }
 
   get nextIndex() {
@@ -276,12 +268,12 @@ export default class Carousel extends WebComponent(HTMLElement) {
   indicatorKeydown(event) {
     if(event.key === "ArrowRight") {
       event.preventDefault();
-      this.slides[this.nextIndex].select();
       this.indicators[this.nextIndex].focus();
+      this.slides[this.nextIndex].select();
     } else if(event.key === "ArrowLeft") {
       event.preventDefault();
-      this.slides[this.previousIndex].select();
       this.indicators[this.previousIndex].focus();
+      this.slides[this.previousIndex].select();
     }
 
     this.stop();

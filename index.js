@@ -11,6 +11,7 @@ import "./components/icon/index.js";
 import "./components/tabs/index.js";
 import "./components/section/index.js";
 import "./components/carousel/index.js";
+import "./components/card/index.js";
 
 import "./components/_DEPRECATED/button/index.js";
 
