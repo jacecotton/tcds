@@ -45,6 +45,11 @@ export default class Carousel extends WebComponent(HTMLElement) {
     return (this.slides.indexOf(this.querySelector("[active]")) - 1 + this.slides.length) % this.slides.length;
   }
 
+  /**
+   * @property {boolean} observeSwipe
+   * @property {boolean} isInView
+   * @property {boolean} isPaused
+   */
   flags = {};
 
   get template() {
@@ -143,7 +148,10 @@ export default class Carousel extends WebComponent(HTMLElement) {
 
     this.playing = this.playing && !window.matchMedia("(prefers-reduced-motion: reduce), (hover: none)").matches;
 
-    this.slides.forEach(slide => this.swipe.observe(slide));
+    this.slides.forEach((slide) => {
+      this.swipe.observe(slide);
+    });
+
     this.scrollOutOfView.observe(this);
 
     document.addEventListener("visibilitychange", () => {
@@ -179,7 +187,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
 
   get swipe() {
     return new IntersectionObserver((entries) => {
-      if(this.observeSwipe !== true) {
+      if(this.flags.observeSwipe !== true) {
         return;
       }
 

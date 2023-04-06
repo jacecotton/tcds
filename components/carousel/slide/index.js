@@ -37,7 +37,7 @@ export default class Slide extends WebComponent(HTMLElement) {
 
   updatedCallback(old) {
     if("active" in old) {
-      if(this.active) {
+      if(this.active && old.active !== true) {
         this.carousel.update();
       }
     }
