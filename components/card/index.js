@@ -47,30 +47,43 @@ export default class Card extends WebComponent(HTMLElement) {
     const viLink = `#video-dialog-${vi}`;
     const link = this.querySelector("a[slot=title][href]")?.href;
     const hasImage = !!this.querySelector("[slot=image]");
+    const fullBleed = this.variant?.includes("full-bleed");
 
     return /* html */`
-      <article>
+      <article part="card">
         <slot name="tag"></slot>
 
         ${hasImage || video ? /* html */`
-          <figure data-theme="dark">
+          <figure>
             ${hasImage ? /* html */`
               <slot name="image"></slot>
             ` : ``}
 
-            ${video ? /* html */`
-              <a is="tcds-link-button" part="play-button" aria-label="Open video" title="Open video" href="${viLink}" size="x-large"><tcds-icon icon="play"></tcds-icon></a>
+            ${fullBleed || video ? /* html */`
+              <div part="video-feature" data-theme="dark">
+                ${this.variant?.includes("full-bleed") ? /* html */`
+                  <slot name="title"></slot>
+                ` : ``}
 
-              ${!hasImage ? /* html */`
-                <img src="https://img.youtube.com/vi/${vi}/maxresdefault.jpg" alt="">
-              ` : ``}
+                ${video ? /* html */`
+                  <a is="tcds-link-button" part="play-button" aria-label="Open video" title="Open video" href="${viLink}" size="x-large"><tcds-icon icon="play"></tcds-icon></a>
+                ` : ``}
+              </div>
+            ` : ``}
+
+            ${video && !hasImage ? /* html */`
+              <img src="https://img.youtube.com/vi/${vi}/maxresdefault.jpg" alt="">
             ` : ``}
           </figure>
         ` : ``}
 
         <div part="content">
           <slot name="subtitle"></slot>
-          <slot name="title"></slot>
+
+          ${!this.variant?.includes("full-bleed") ? /* html */`
+            <slot name="title"></slot>
+          ` : ``}
+
           <slot name="description"></slot>
           <slot name="footer">
             ${this.actionLabel !== "" && link ? /* html */`

@@ -1,0 +1,7 @@
+tcds-accordion-section {
+  color: var(--tcds-color-text);
+}
+
+tcds-accordion-section:not(:last-of-type) {
+  border-bottom: 1px solid var(--tcds-color-highlight);
+}

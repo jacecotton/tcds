@@ -38,6 +38,11 @@ tcds-card > [slot="title"] {
   text-decoration: none;
 }
 
+tcds-card[variant*="full-bleed"] > [slot="title"] {
+  text-align: center;
+  font-size: 4rem;
+}
+
 tcds-card > [slot="title"]:focus {
   outline: none;
 }
@@ -64,6 +69,13 @@ tcds-card > [slot="description"] p {
   font-size: var(--tcds-card-description-font-size, var(--tcds-font-size-medium));
   line-height: 1.5;
   color: var(--tcds-card-description-color);
+}
+
+tcds-card[variant*="full-bleed"] > [slot="description"],
+tcds-card[variant*="full-bleed"] > [slot="description"] p {
+  max-width: var(--site-container-max-width);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 tcds-card > [slot="footer"],

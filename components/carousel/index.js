@@ -244,26 +244,38 @@ export default class Carousel extends WebComponent(HTMLElement) {
   }
 
   nextClick() {
-    this.slides[this.nextIndex].select();
+    const nextIndex = this.nextIndex;
+
+    this.slides[nextIndex].select();
     this.stop();
     this.flags.observeSwipe = false;
 
     if(this.variant === "gallery") {
       setTimeout(() => {
-        this.indicators[this.nextIndex].scrollIntoView();
-      }, 500);
+        this.indicators[nextIndex].scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+          inline: "start",
+        });
+      }, 1000);
     }
   }
 
   previousClick() {
-    this.slides[this.previousIndex].select();
+    const previousIndex = this.previousIndex;
+
+    this.slides[previousIndex].select();
     this.stop();
     this.flags.observeSwipe = false;
 
     if(this.variant === "gallery") {
       setTimeout(() => {
-        this.indicators[this.previousIndex].scrollIntoView();
-      }, 500);
+        this.indicators[previousIndex].scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+          inline: "start",
+        });
+      }, 1000);
     }
   }
 
