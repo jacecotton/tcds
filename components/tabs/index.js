@@ -14,6 +14,7 @@ export default class Tabs extends WebComponent(HTMLElement) {
 
   connectedCallback() {
     this.update();
+    this._upgradeProperties(["inactive"]);
 
     this.tabpanels = Array.from(this.querySelectorAll("tcds-tab"));
 

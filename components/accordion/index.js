@@ -45,6 +45,7 @@ export default class Accordion extends WebComponent(HTMLElement) {
 
   connectedCallback() {
     this.update();
+    this._upgradeProperties(["multiple", "headingLevel"]);
 
     if(!this.id) {
       const accordions = Array.from(document.querySelectorAll("tcds-accordion"));

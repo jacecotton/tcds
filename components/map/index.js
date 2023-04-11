@@ -121,6 +121,8 @@ export default class Map extends WebComponent(HTMLElement) {
 
   connectedCallback() {
     this.update();
+    this._upgradeProperties(["zoom", "defaultArea", "selectedLocation", "selectedTag"]);
+
     this.markers = [];
   }
 

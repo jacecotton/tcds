@@ -113,6 +113,7 @@ export default class Card extends WebComponent(HTMLElement) {
 
   connectedCallback() {
     this.update();
+    this._upgradeProperties(["orientation", "actionLabel", "size", "variant"]);
 
     if(!this.querySelector("[slot=image], [slot=video]")) {
       this.toggleAttribute("data-no-image", true);

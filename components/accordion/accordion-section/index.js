@@ -55,6 +55,7 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
 
   connectedCallback() {
     this.update();
+    this._upgradeProperties(["open", "label"]);
 
     this.accordion = this.closest("tcds-accordion");
     this.siblings = Array.from(this.accordion.sections).filter(section => section !== this);

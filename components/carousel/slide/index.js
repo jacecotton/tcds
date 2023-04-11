@@ -28,6 +28,8 @@ export default class Slide extends WebComponent(HTMLElement) {
 
   connectedCallback() {
     this.update();
+    this._upgradeProperties(["active"]);
+
     this.carousel = this.closest("tcds-carousel");
   }
 

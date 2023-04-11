@@ -1,7 +1,7 @@
 /**
  * We're setting up the button component like a customized built-in, even though
  * this script (as of v1) does not actually add any features to either the
- * HTMLButtonElement or HTMLAnchorElement.
+ * `HTMLButtonElement` or `HTMLAnchorElement`.
  *
  * This is primarily for future-proofness (extra features may be added in future
  * releases, and component instances should be set up to automatically take
