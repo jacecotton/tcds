@@ -230,23 +230,15 @@ export default class Carousel extends WebComponent(HTMLElement) {
   }
 
   nextClick() {
-    const nextIndex = this.next();
+    this.next();
     this.state.playing = false;
     this.observeSwipe = false;
-
-    setTimeout(() => {
-      this.indicators[nextIndex].scrollIntoView();
-    }, 500);
   }
 
   previousClick() {
-    const previousIndex = this.previous();
+    this.previous();
     this.state.playing = false;
     this.observeSwipe = false;
-
-    setTimeout(() => {
-      this.indicators[previousIndex].scrollIntoView();
-    }, 500);
   }
 
   playClick() {
