@@ -10,7 +10,11 @@ export default class Carousel extends WebComponent(HTMLElement) {
   }
 
   set playing(value) {
-    this.toggleAttribute("playing", Boolean(value));
+    if(this.hasAttribute("timing")) {
+      this.toggleAttribute("playing", Boolean(value));
+    } else {
+      console.error(`Cannot set property "playing" on element tcds-carousel: "timing" property is not present.`);
+    }
   }
 
   get timing() {
@@ -64,7 +68,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
             variant="ui"
             aria-label="${playPauseLabel}"
             title="${playPauseLabel}"
-            onclick="this.getRootNode().host.playClick()"
+            onclick="this.getRootNode().host.toggle()"
           >
             <tcds-icon icon="${this.playing ? "pause" : "play"}"></tcds-icon>
           </button>
@@ -241,44 +245,16 @@ export default class Carousel extends WebComponent(HTMLElement) {
 
   /* Event handlers */
 
-  playClick() {
-    this.toggle();
-  }
-
   nextClick() {
-    const nextIndex = this.nextIndex;
-
-    this.slides[nextIndex].select();
+    this.slides[this.nextIndex].select();
     this.stop();
     this.flags.observeSwipe = false;
-
-    if(this.variant === "gallery") {
-      setTimeout(() => {
-        this.indicators[nextIndex].scrollIntoView({
-          behavior: "smooth",
-          block: "nearest",
-          inline: "start",
-        });
-      }, 1000);
-    }
   }
 
   previousClick() {
-    const previousIndex = this.previousIndex;
-
-    this.slides[previousIndex].select();
+    this.slides[this.previousIndex].select();
     this.stop();
     this.flags.observeSwipe = false;
-
-    if(this.variant === "gallery") {
-      setTimeout(() => {
-        this.indicators[previousIndex].scrollIntoView({
-          behavior: "smooth",
-          block: "nearest",
-          inline: "start",
-        });
-      }, 1000);
-    }
   }
 
   indicatorClick(event) {
