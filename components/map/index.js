@@ -157,7 +157,7 @@ export default class Map extends WebComponent(HTMLElement) {
         lat: defaultLocation.lat,
         lng: defaultLocation.lng,
       },
-      disabledDefaultUI: true,
+      disableDefaultUI: true,
       zoomControl: true,
       streetViewControl: false,
       styles: mapStyles,

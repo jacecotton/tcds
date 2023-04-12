@@ -46,6 +46,7 @@ export default class Card extends WebComponent(HTMLElement) {
     const vi = video?.src.slice(viPos, viPos + 11);
     const viLink = `#video-dialog-${vi}`;
     const link = this.querySelector("a[slot=title][href]")?.href;
+    const title = this.querySelector("[slot=title]").textContent;
     const hasImage = !!this.querySelector("[slot=image]");
     const fullBleed = this.variant?.includes("full-bleed");
 
@@ -85,11 +86,12 @@ export default class Card extends WebComponent(HTMLElement) {
           ` : ``}
 
           <slot name="description"></slot>
+
           <slot name="footer">
             ${this.actionLabel !== "" && link ? /* html */`
               <footer part="footer" ${this.variant && this.variant.includes("overlay") ? `data-theme="dark"` : ""}>
                 <a is="tcds-link-button" href="${link}" variant="ghost" ${this.size !== "large" ? `size="small"` : ""}>
-                  ${this.actionLabel}
+                  ${this.actionLabel} <span class="visually-hidden">about ${title}</span>
                   <tcds-icon icon="chevron-right"></tcds-icon>
                 </a>
               </footer>
@@ -133,6 +135,7 @@ export default class Card extends WebComponent(HTMLElement) {
     const cardWidth = this.getBoundingClientRect?.().width;
     const standardBreakpoint = 600;
     const windowWidth = window.innerWidth;
+
     const variant = {
       overlay: this.variant && this.variant.includes("overlay"),
       fullBleed: this.variant && this.variant.includes("full-bleed"),

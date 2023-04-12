@@ -114,7 +114,7 @@ footer {
 }
 
 [part="close"] {
-  position: absolute;
+  position: absolute !important;
   top: var(--tcds-dialog-close-button-position);
   right: var(--tcds-dialog-close-button-position);
   z-index: 2;

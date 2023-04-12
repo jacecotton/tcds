@@ -16,6 +16,7 @@ import "./components/section/index.js";
 import "./components/carousel/index.js";
 import "./components/card/index.js";
 import "./components/map/index.js";
+import "./components/countdown/index.js";
 
 import "./components/_DEPRECATED/button/index.js";
 

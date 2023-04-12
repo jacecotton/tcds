@@ -1,3 +1,9 @@
+/**
+ * DEPRECATED
+ *
+ * Use a[is=tcds-link-button] or button[is=tcds-ui-button] instead.
+ */
+
 import WebComponent from "../../../utilities/WebComponent/WebComponent.js";
 import shadowStyles from "./style.css";
 import lightStyles from "./style.light.css";

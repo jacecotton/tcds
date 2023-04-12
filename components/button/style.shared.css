@@ -1,7 +1,7 @@
 /* stylelint-disable max-line-length */
 /* stylelint-disable declaration-empty-line-before */
 
-:where(button[is="tcds-ui-button"], a[is="tcds-link-button"]) {
+:is(button[is="tcds-ui-button"], a[is="tcds-link-button"]) {
   --tcds-button-background-color: var(--tcds-color-primary);
   --tcds-button-text-color: #fff;
   --tcds-button-icon-color: var(--tcds-color-primary);
@@ -38,7 +38,7 @@
 
   font-family: var(--tcds-font-ui);
   font-size: var(--tcds-button-font-size);
-  font-weight: var(--tcds-font-weight-semibold);
+  font-weight: var(--tcds-button-font-weight, var(--tcds-font-weight-normal));
   text-decoration: none;
   line-height: 1;
   white-space: nowrap;
@@ -51,18 +51,22 @@
     box-shadow 0.08s ease-in;
 }
 
-:where(button[is="tcds-ui-button"], a[is="tcds-link-button"]):active {
+:is(button[is="tcds-ui-button"], a[is="tcds-link-button"]):active {
   --tcds-button-scale: 0.99;
 }
 
-:where(button[is="tcds-ui-button"], a[is="tcds-link-button"]):focus-visible {
+:is(button[is="tcds-ui-button"], a[is="tcds-link-button"]):not([variant*="ghost"], [variant*="ui"]) {
+  --tcds-button-font-weight: var(--tcds-font-weight-semibold);
+}
+
+:is(button[is="tcds-ui-button"], a[is="tcds-link-button"]):focus-visible {
   box-shadow:
     0 0 0 1px var(--tcds-color-secondary),
     0 0 0 3px #fff;
   outline: none;
 }
 
-:where(button[is="tcds-ui-button"], a[is="tcds-link-button"])::after {
+:is(button[is="tcds-ui-button"], a[is="tcds-link-button"])::after {
   content: "";
   position: absolute;
   top: 0;
@@ -74,61 +78,61 @@
   transition: background-color 0.08s ease-in;
 }
 
-:where(button[is="tcds-ui-button"], a[is="tcds-link-button"])[size*="small"] {
+:is(button[is="tcds-ui-button"], a[is="tcds-link-button"])[size*="small"] {
   --tcds-button-height: var(--tcds-size-small);
   --tcds-button-font-size: var(--tcds-font-size-small);
 }
 
-:where(button[is="tcds-ui-button"], a[is="tcds-link-button"])[size*="large"] {
+:is(button[is="tcds-ui-button"], a[is="tcds-link-button"])[size*="large"] {
   --tcds-button-height: var(--tcds-size-large);
   --tcds-button-horizontal-padding: var(--tcds-space-x-loose);
   --tcds-button-font-size: 1.125rem;
 }
 
-:where(button[is="tcds-ui-button"], a[is="tcds-link-button"])[size*="x-large"] {
+:is(button[is="tcds-ui-button"], a[is="tcds-link-button"])[size*="x-large"] {
   --tcds-button-height: var(--tcds-size-x-large);
   --tcds-button-font-size: var(--tcds-font-size-large);
 }
 
-:where(button[is="tcds-ui-button"], a[is="tcds-link-button"])[size*="full-width"] {
+:is(button[is="tcds-ui-button"], a[is="tcds-link-button"])[size*="full-width"] {
   display: flex;
   width: 100%;
 }
 
-:where(button[is="tcds-ui-button"], a[is="tcds-link-button"]):not([variant*="ghost"], [variant*="ui"], [aria-label]) {
+:is(button[is="tcds-ui-button"], a[is="tcds-link-button"]):not([variant*="ghost"], [variant*="ui"], [aria-label]) {
   --tcds-button-icon-background-color: var(--tcds-color-primary);
   --tcds-button-icon-color: #fff;
 }
 
-:where(button[is="tcds-ui-button"], a[is="tcds-link-button"]):not([variant*="ghost"], [variant*="ui"], [aria-label]):hover {
+:is(button[is="tcds-ui-button"], a[is="tcds-link-button"]):not([variant*="ghost"], [variant*="ui"], [aria-label]):hover {
   --tcds-button-box-shadow: 0.125rem 0 0.625rem 0 var(--tcds-color-shade-weak);
 }
 
-:where(button[is="tcds-ui-button"], a[is="tcds-link-button"])[variant*="ghost"] {
+:is(button[is="tcds-ui-button"], a[is="tcds-link-button"])[variant*="ghost"] {
   --tcds-button-horizontal-padding: 0;
   --tcds-button-background-color: transparent;
   --tcds-button-text-color: var(--tcds-color-secondary);
 }
 
-:where(button[is="tcds-ui-button"], a[is="tcds-link-button"])[variant*="ghost"]:hover {
+:is(button[is="tcds-ui-button"], a[is="tcds-link-button"])[variant*="ghost"]:hover {
   --tcds-button-text-color: var(--tcds-color-primary);
 }
 
-:where(button[is="tcds-ui-button"], a[is="tcds-link-button"])[variant*="secondary"] {
+:is(button[is="tcds-ui-button"], a[is="tcds-link-button"])[variant*="secondary"] {
   --tcds-button-background-color: var(--tcds-color-secondary);
   --tcds-button-text-color: var(--tcds-color-tint-x-strong);
   --tcds-button-icon-background-color: transparent;
   --tcds-button-icon-color: inherit;
 }
 
-:where(button[is="tcds-ui-button"], a[is="tcds-link-button"])[variant*="ui"] {
+:is(button[is="tcds-ui-button"], a[is="tcds-link-button"])[variant*="ui"] {
   --tcds-button-background-color: transparent;
   --tcds-button-text-color: inherit;
   --tcds-button-icon-background-color: transparent;
   --tcds-button-icon-color: inherit;
 }
 
-:where(button[is="tcds-ui-button"], a[is="tcds-link-button"])[aria-label] {
+:is(button[is="tcds-ui-button"], a[is="tcds-link-button"])[aria-label] {
   --tcds-button-width: var(--tcds-button-height);
   --tcds-button-horizontal-padding: 0;
   --tcds-button-icon-padding: 0;
@@ -136,17 +140,17 @@
   --tcds-button-icon-color: currentcolor;
 }
 
-:where(button[is="tcds-ui-button"], a[is="tcds-link-button"]):not([aria-label], [variant*="ui"], [variant*="secondary"]):hover {
+:is(button[is="tcds-ui-button"], a[is="tcds-link-button"]):not([aria-label], [variant*="ui"], [variant*="secondary"]):hover {
   --tcds-button-icon-background-color: var(--tcds-color-primary);
   --tcds-button-icon-color: #fff;
 }
 
-:where(button[is="tcds-ui-button"], a[is="tcds-link-button"]):not([variant*="ghost"]):hover,
-:where(button[is="tcds-ui-button"], a[is="tcds-link-button"])[variant*="ui"]:hover {
+:is(button[is="tcds-ui-button"], a[is="tcds-link-button"]):not([variant*="ghost"]):hover,
+:is(button[is="tcds-ui-button"], a[is="tcds-link-button"])[variant*="ui"]:hover {
   --tcds-button-overlay: var(--tcds-color-shade-x-weak);
 }
 
-:where(button[is="tcds-ui-button"], a[is="tcds-link-button"]) tcds-icon {
+:is(button[is="tcds-ui-button"], a[is="tcds-link-button"]) tcds-icon {
   background-color: var(--tcds-button-icon-background-color);
   color: var(--tcds-button-icon-color);
   padding: var(--tcds-button-icon-padding, 0.1em);
@@ -156,26 +160,26 @@
     color 0.08s ease-in;
 }
 
-[data-theme="dark"] > :where(button[is="tcds-ui-button"], a[is="tcds-link-button"]):not([variant*="ghost"], [variant*="ui"], [variant*="secondary"], :hover),
-:where(button[is="tcds-ui-button"], a[is="tcds-link-button"])[data-theme="dark"]:not([variant*="ghost"], [variant*="ui"], [variant*="secondary"], :hover) {
+[data-theme="dark"] > :is(button[is="tcds-ui-button"], a[is="tcds-link-button"]):not([variant*="ghost"], [variant*="ui"], [variant*="secondary"], :hover),
+:is(button[is="tcds-ui-button"], a[is="tcds-link-button"])[data-theme="dark"]:not([variant*="ghost"], [variant*="ui"], [variant*="secondary"], :hover) {
   --tcds-button-background-color: #fff;
   --tcds-button-text-color: var(--tcds-color-primary);
   --tcds-button-icon-background-color: #fff;
   --tcds-button-icon-color: var(--tcds-color-primary);
 }
 
-[data-theme="dark"] > :where(button[is="tcds-ui-button"], a[is="tcds-link-button"])[variant*="ghost"],
-:where(button[is="tcds-ui-button"], a[is="tcds-link-button"])[variant*="ghost"][data-theme="dark"] {
+[data-theme="dark"] > :is(button[is="tcds-ui-button"], a[is="tcds-link-button"])[variant*="ghost"],
+:is(button[is="tcds-ui-button"], a[is="tcds-link-button"])[variant*="ghost"][data-theme="dark"] {
   --tcds-button-text-color: #fff;
 }
 
-[data-theme="dark"] > :where(button[is="tcds-ui-button"], a[is="tcds-link-button"]):hover,
-:where(button[is="tcds-ui-button"], a[is="tcds-link-button"])[data-theme="dark"]:hover {
+[data-theme="dark"] > :is(button[is="tcds-ui-button"], a[is="tcds-link-button"]):hover,
+:is(button[is="tcds-ui-button"], a[is="tcds-link-button"])[data-theme="dark"]:hover {
   --tcds-button-overlay: rgb(0 0 0 / 0%);
 }
 
-[data-theme="dark"] > :where(button[is="tcds-ui-button"], a[is="tcds-link-button"])[variant*="ui"],
-:where(button[is="tcds-ui-button"], a[is="tcds-link-button"])[data-theme="dark"][variant*="ui"] {
+[data-theme="dark"] > :is(button[is="tcds-ui-button"], a[is="tcds-link-button"])[variant*="ui"],
+:is(button[is="tcds-ui-button"], a[is="tcds-link-button"])[data-theme="dark"][variant*="ui"] {
   --tcds-button-text-color: var(--tcds-color-secondary);
   --tcds-button-background-color: var(--tcds-color-tint-x-strong);
 }

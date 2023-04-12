@@ -1,0 +1,25 @@
+p {
+  font-family: var(--tcds-font-ui);
+  font-weight: var(--tcds-font-weight-semibold);
+}
+
+small {
+  display: block;
+  font-size: var(--tcds-font-size-medium-plus);
+}
+
+b {
+  font-size: calc(var(--tcds-font-size-scaler) * 3rem);
+  font-weight: inherit;
+  white-space: nowrap;
+}
+
+@media (min-width: 1080px) {
+  small {
+    font-size: var(--tcds-font-size-large);
+  }
+
+  b {
+    font-size: calc(var(--tcds-font-size-scaler) * 4rem);
+  }
+}

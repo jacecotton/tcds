@@ -13,7 +13,6 @@
 
 article {
   display: grid;
-  grid-template-areas: "content";
   position: relative;
   background-color: #fff;
   width: 100%;
@@ -24,7 +23,11 @@ article {
   font-family: var(--tcds-card-font);
 }
 
-:host([orientation="vertical"]:not([data-no-image])) article {
+:host([data-no-image]) article {
+  grid-template-areas: "content";
+}
+
+:host(:not([orientation="horizontal"], [data-no-image])) article {
   grid-template-areas:
     "image"
     "content";
@@ -104,7 +107,6 @@ article {
 
 :host([variant*="ui"]) {
   --tcds-card-font: var(--tcds-font-ui);
-  --tcds-card-title-font-weight: var(--tcds-font-weight-bold);
 }
 
 :host([image*="contain"]) {

@@ -21,19 +21,21 @@ menu {
   left: var(--tcds-space-normal);
   overflow-x: auto;
   list-style: none;
-  z-index: 999;
+  z-index: 1;
+  width: calc(100% - 20px * 2);
 }
 
 menu button {
   font-weight: var(--tcds-font-weight-bold);
-  font-size: var(--tcds-font-size-small);
+  font-size: var(--tcds-font-size-x-small);
   box-shadow: 0 3px 6px 0 rgba(0 0 0 / 16%);
   background-color: #fff;
   border: 1px solid var(--tcds-color-blue-light);
   border-radius: 6px;
   color: var(--tcds-color-blue-dark);
-  padding: var(--tcds-space-tight) var(--tcds-space-normal);
+  padding: 0.5rem var(--tcds-space-normal);
   white-space: nowrap;
+  height: auto;
 }
 
 menu button[aria-pressed="true"] {

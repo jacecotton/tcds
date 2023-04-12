@@ -58,10 +58,14 @@ tcds-card > [slot="title"][href]::before {
 
 tcds-card > [slot="subtitle"] {
   font-family: var(--tcds-card-font);
-  font-weight: var(--tcds-font-weight-semibold);
+  font-weight: var(--tcds-font-weight-normal);
   font-size: var(--tcds-card-subtitle-font-size, var(--tcds-font-size-medium));
   color: var(--tcds-card-subtitle-color);
   margin-bottom: 0;
+}
+
+tcds-card > [slot="subtitle"] + [slot="title"] {
+  margin-top: calc(var(--tcds-space-tight) * -1);
 }
 
 tcds-card > [slot="description"],
@@ -95,8 +99,8 @@ tcds-card::part(footer) a {
   text-decoration: none;
 }
 
-tcds-card > [slot="description"] a,
-tcds-card > [slot="footer"] a {
+:where(tcds-card > [slot="description"] a,
+tcds-card > [slot="footer"] a) {
   position: relative;
   margin: -0.5em;
   padding: 0.5em;
