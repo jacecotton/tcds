@@ -1,47 +1,45 @@
-## [1.9.12](https://github.com/jacecotton/tcds/compare/v1.9.11...v1.9.12) (2023-03-09)
+## [1.9.20](https://github.com/jacecotton/tcds/compare/v1.9.19...v1.9.20) (2023-04-06)
 
 
 ### Bug Fixes
 
-* **templates:** Site header main nav mobile closing animation issue ([3613083](https://github.com/jacecotton/tcds/commit/361308375af8f700afaa7c252e214cdee2f55bb3))
-* **utilities:** Move state and props proxying and update event listener attachment to connectedCallback from constructor ([c6d1190](https://github.com/jacecotton/tcds/commit/c6d11901800950e4d67bd376701e3fda7ba19853))
+* **components:** Remove stray console logs ([02fe31d](https://github.com/jacecotton/tcds/commit/02fe31d0551c46ae0680496d2004e38e3bbbd304))
 
 
 
-## [1.9.11](https://github.com/jacecotton/tcds/compare/v1.9.10...v1.9.11) (2023-03-08)
-
-
-### Bug Fixes
-
-* **templates:** Site header main nav mobile FOUC ([06e3b9a](https://github.com/jacecotton/tcds/commit/06e3b9ac7f1f6ef150f1300c3df13a70952b411b))
-
-
-
-## [1.9.10](https://github.com/jacecotton/tcds/compare/v1.9.9...v1.9.10) (2023-03-08)
+## [1.9.19](https://github.com/jacecotton/tcds/compare/v1.9.18...v1.9.19) (2023-04-05)
 
 
 ### Bug Fixes
 
-* **components:** Make video sections taller on small screen sizes ([4dd455d](https://github.com/jacecotton/tcds/commit/4dd455d17e9bf9b7ce798ba33d4e4eb81b65f3d3))
-* **templates:** Fix site header navs mobile FOUC ([dd3c9a9](https://github.com/jacecotton/tcds/commit/dd3c9a9374b3e2bf670e76e4a03ffcfd04a80b00))
+* **styles:** Main content z-index issue ([909600f](https://github.com/jacecotton/tcds/commit/909600f401417e556763ebba9d0d07784b1c20c5))
 
 
 
-## [1.9.9](https://github.com/jacecotton/tcds/compare/v1.9.8...v1.9.9) (2023-03-08)
-
-
-### Bug Fixes
-
-* **components:** Improve query selector for slots (ensure selecting for direct descendents only with :scope) ([f726d5f](https://github.com/jacecotton/tcds/commit/f726d5f53d3bb014da44cc7d4a2d9c9b679c7eb9))
-
-
-
-## [1.9.8](https://github.com/jacecotton/tcds/compare/v1.9.7...v1.9.8) (2023-03-08)
+## [1.9.18](https://github.com/jacecotton/tcds/compare/v1.9.17...v1.9.18) (2023-04-05)
 
 
 ### Bug Fixes
 
-* **components:** Improve countdown component responsiveness and semantics ([07d4302](https://github.com/jacecotton/tcds/commit/07d4302cb3a75737e77255417556bd911b2e8300))
+* **components:** Card responsive bug ([5a80696](https://github.com/jacecotton/tcds/commit/5a80696bcfbb071971f93bb58a90d85f30c2ed1e))
+
+
+
+## [1.9.17](https://github.com/jacecotton/tcds/compare/v1.9.16...v1.9.17) (2023-04-05)
+
+
+### Bug Fixes
+
+* **components:** Card link bug ([cf69f60](https://github.com/jacecotton/tcds/commit/cf69f6079d680adbd648626e236df44c26476380))
+
+
+
+## [1.9.16](https://github.com/jacecotton/tcds/compare/v1.9.15...v1.9.16) (2023-04-04)
+
+
+### Bug Fixes
+
+* **components:** Section video footer color fix ([6f328ae](https://github.com/jacecotton/tcds/commit/6f328ae7f36c5125d942735c3b696556c1b014ab))
 
 
 
