@@ -47,12 +47,12 @@ tcds-mega-menu button:not([is]):hover {
   }
 
   tcds-mega-menu nav a,
-  tcds-mega-menu nav button {
+  tcds-mega-menu nav button:not([is]) {
     display: flex;
   }
 
   tcds-mega-menu nav a:hover,
-  tcds-mega-menu nav button:hover {
+  tcds-mega-menu nav button:not([is]):hover {
     color: var(--tcds-color-gray);
   }
 }

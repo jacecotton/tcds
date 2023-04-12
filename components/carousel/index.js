@@ -13,7 +13,11 @@ export default class Carousel extends WebComponent(HTMLElement) {
     if(this.hasAttribute("timing")) {
       this.toggleAttribute("playing", Boolean(value));
     } else {
-      console.error(`Cannot set property "playing" on element tcds-carousel: "timing" property is not present.`);
+      if(value === true) {
+        console.error(`Cannot set property "playing" on element tcds-carousel: "timing" property is not present.`);
+      } else {
+        this.removeAttribute("playing");
+      }
     }
   }
 

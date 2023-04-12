@@ -5,12 +5,12 @@
       {% set logo_height = "41" %}
       {% set logo_width = "310" %}
 
-      {% if "nri" in logo.image|lower %}
+      {% if logo.image and "nri" in logo.image|lower %}
         {% set logo_height = "48" %}
         {% set logo_width = "225" %}
       {% endif %}
 
-      <img height="{{ logo.height ?: logo_height }}" width="{{ logo.width ?: logo_width }}" src="{{ logo.image ?: "https://unpkg.com/@txch/tcds/dist/images/logos/texas-childrens/TC_Horz_CMYK_2K22.svg" }}" alt="Texas Children's logo">
+      <img height="{{ logo.height ?: logo_height }}" width="{{ logo.width ?: logo_width }}" src="{{ logo.image ?: "https://unpkg.com/@txch/tcds/dist/images/logos/TC_Horz_CMYK_2K22.svg" }}" alt="Texas Children's logo">
     </a>
   </div>
 

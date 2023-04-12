@@ -35,8 +35,16 @@ export default class MegaMenu extends WebComponent(HTMLElement) {
   }
 
   connectedCallback() {
-    this.update();
+    this.update({open: null});
     this._upgradeProperties(["open"]);
+  }
+
+  attributeChangedCallback(name, oldValue) {
+    if(name === "open") {
+      oldValue = oldValue === "" || oldValue !== null;
+    }
+
+    this.update({[name]: oldValue});
   }
 
   mountedCallback() {
@@ -49,7 +57,8 @@ export default class MegaMenu extends WebComponent(HTMLElement) {
     ];
 
     this.controllers.forEach((controller) => {
-      controller.addEventListener("click", () => {
+      controller.addEventListener("click", (event) => {
+        event.stopPropagation();
         this.toggle();
       });
     });

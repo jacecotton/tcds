@@ -47,6 +47,6 @@ section {
   }
 
   [part="close"] {
-    display: none;
+    display: none !important;
   }
 }
