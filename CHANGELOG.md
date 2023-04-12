@@ -1,3 +1,12 @@
+## [1.9.21](https://github.com/jacecotton/tcds/compare/v1.9.20...v1.9.21) (2023-04-12)
+
+
+### Bug Fixes
+
+* **components:** Carousel issue ([ca69ab2](https://github.com/jacecotton/tcds/commit/ca69ab2977839e2b10a8255e96838dfd05d63a09))
+
+
+
 ## [1.9.20](https://github.com/jacecotton/tcds/compare/v1.9.19...v1.9.20) (2023-04-06)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Card link bug ([cf69f60](https://github.com/jacecotton/tcds/commit/cf69f6079d680adbd648626e236df44c26476380))
-
-
-
-## [1.9.16](https://github.com/jacecotton/tcds/compare/v1.9.15...v1.9.16) (2023-04-04)
-
-
-### Bug Fixes
-
-* **components:** Section video footer color fix ([6f328ae](https://github.com/jacecotton/tcds/commit/6f328ae7f36c5125d942735c3b696556c1b014ab))
 
 
 
