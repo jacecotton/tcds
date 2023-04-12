@@ -21,6 +21,14 @@ export default class Carousel extends WebComponent(HTMLElement) {
     variant: {type: String},
   };
 
+  get nextIndex() {
+    return (this.slides.indexOf(this.querySelector("[active]")) + 1) % this.slides.length;
+  }
+
+  get previousIndex() {
+    return (this.slides.indexOf(this.querySelector("[active]")) - 1 + this.slides.length) % this.slides.length;
+  }
+
   constructor() {
     super();
     this.shadowRoot.adoptedStyleSheets = [shadowStyles];
@@ -29,9 +37,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
 
   connectedCallback() {
     super.connectedCallback();
-
     this.slides = Array.from(this.querySelectorAll("tcds-slide"));
-    this.initialActive = this.slides.find(slide => slide.state.active);
   }
 
   render() {
@@ -44,7 +50,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
             size="small"
             variant="ui"
             label="${this.state.playing ? "Stop automatic slide show" : "Start automatic slide show"}"
-            onclick="this.getRootNode().host.playClick()"
+            onclick="this.getRootNode().host.toggle()"
           ></tcds-button>
         ` : ``}
         <div part="navigation">
@@ -77,7 +83,6 @@ export default class Carousel extends WebComponent(HTMLElement) {
                 onkeydown="this.getRootNode().host.indicatorKeydown(event)"
               >
                 ${this.props.variant === "gallery" ? /* html */`
-                  <tcds-spinner></tcds-spinner>
                   <img src="${slide.querySelector("img")?.src}" alt="">
                 ` : ``}
               </button>
@@ -105,11 +110,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
     this.viewport = this.shadowRoot.querySelector("[part~=viewport]");
     this.indicators = Array.from(this.shadowRoot.querySelectorAll("[part~=indicator]"));
 
-    if(!this.initialActive) {
-      this.slides[0].select();
-    } else {
-      this.initialActive.select();
-    }
+    (this.slides.find(slide => slide.active) || this.slides[0]).select();
 
     this.state.playing =
       this.hasAttribute("playing")
@@ -135,10 +136,17 @@ export default class Carousel extends WebComponent(HTMLElement) {
     if(state.newState) {
       if("playing" in state.newState) {
         if(this.state.playing) {
-          this.startPlayer();
+          const advance = () => {
+            this.player = setTimeout(() => {
+              this.slides[this.nextIndex].select();
+              advance();
+            }, this.timing * 1000);
+          };
+
+          advance();
           this.observeSwipe = false;
         } else {
-          this.cancelPlayer();
+          clearTimeout(this.player);
         }
       }
     }
@@ -154,16 +162,16 @@ export default class Carousel extends WebComponent(HTMLElement) {
 
       if(this.props.multiple) {
         const {left: viewportLeft, right: viewportRight} = this.viewport.getBoundingClientRect();
-        this.centerpoint = Math.floor((viewportLeft + viewportRight) / 2);
+        const viewportCenterpoint = Math.floor((viewportLeft + viewportRight) / 2);
 
         clearTimeout(this.#swipeDebounce);
 
         this.#swipeDebounce = setTimeout(() => {
           const proximitiesToCenter = this.slides.map((slide) => {
             const {left: slideLeft, right: slideRight} = slide.getBoundingClientRect();
-            slide.centerpoint = Math.floor((slideLeft + slideRight) / 2);
+            const slideCenterpoint = Math.floor((slideLeft + slideRight) / 2);
 
-            return Math.abs(slide.centerpoint - this.centerpoint);
+            return Math.abs(slideCenterpoint - viewportCenterpoint);
           });
 
           const closestToCenter = proximitiesToCenter.indexOf(Math.min(...proximitiesToCenter));
@@ -209,86 +217,36 @@ export default class Carousel extends WebComponent(HTMLElement) {
   }
 
   indicatorClick(event) {
-    this.slides[this.indicators.indexOf(event.currentTarget)].select();
-    this.state.playing = false;
+    this.slides[this.indicators.indexOf(event.target)].select();
+    this.stop();
     this.observeSwipe = false;
   }
 
   indicatorKeydown(event) {
     if(event.key === "ArrowRight") {
       event.preventDefault();
-      const nextIndex = this.next();
-      this.indicators[nextIndex].focus();
+      this.indicators[this.nextIndex].focus();
+      this.slides[this.nextIndex].select();
     } else if(event.key === "ArrowLeft") {
       event.preventDefault();
-      const previousIndex = this.previous();
-      this.indicators[previousIndex].focus();
+      this.indicators[this.previousIndex].focus();
+      this.slides[this.previousIndex].select();
     }
 
-    this.state.playing = false;
+    this.stop();
     this.observeSwipe = false;
   }
 
   nextClick() {
-    this.next();
-    this.state.playing = false;
+    this.slides[this.nextIndex].select();
+    this.stop();
     this.observeSwipe = false;
   }
 
   previousClick() {
-    this.previous();
-    this.state.playing = false;
+    this.slides[this.previousIndex].select();
+    this.stop();
     this.observeSwipe = false;
-  }
-
-  playClick() {
-    this.state.playing = !this.state.playing;
-  }
-
-  pause() {
-    if(this.state.playing === true) {
-      this.state.playing = false;
-      this.isPaused = true;
-    }
-  }
-
-  resume() {
-    if(this.isPaused === true) {
-      // This requestAnimationFrame is to prevent setTimeout weirdness if the
-      // play state is toggled too rapidly.
-      requestAnimationFrame(() => {
-        this.state.playing = true;
-        this.isPaused = null;
-      });
-    }
-  }
-
-  startPlayer() {
-    if(this.state.playing === true) {
-      this.player = setTimeout(() => {
-        this.next();
-        this.startPlayer();
-      }, this.props.timing * 1000);
-    }
-  }
-
-  cancelPlayer() {
-    clearTimeout(this.player);
-  }
-
-  /**
-   * Public API.
-   */
-  next() {
-    const nextIndex = (this.slides.indexOf(this.querySelector("[active]")) + 1) % this.slides.length;
-    this.slides[nextIndex].select();
-    return nextIndex;
-  }
-
-  previous() {
-    const previousIndex = (this.slides.indexOf(this.querySelector("[active]")) - 1 + this.slides.length) % this.slides.length;
-    this.slides[previousIndex].select();
-    return previousIndex;
   }
 
   play() {
@@ -297,6 +255,26 @@ export default class Carousel extends WebComponent(HTMLElement) {
 
   stop() {
     this.state.playing = false;
+  }
+
+  toggle() {
+    this.state.playing = !this.state.playing;
+  }
+
+  pause() {
+    if(this.state.playing) {
+      this.stop();
+      this.isPaused = true;
+    }
+  }
+
+  resume() {
+    if(this.isPaused) {
+      requestAnimationFrame(() => {
+        this.play();
+        this.isPaused = null;
+      });
+    }
   }
 }
 

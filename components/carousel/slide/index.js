@@ -19,10 +19,10 @@ export default class Slide extends WebComponent(HTMLElement) {
       <section
         role="tabpanel"
         part="slide"
-        ${this.state.active === false ? `
+        ${this.state.active ? `` : /* html */`
           aria-hidden="true"
           tabindex="-1"
-        ` : ``}
+        `}
       >
         <slot></slot>
       </section>
@@ -44,12 +44,14 @@ export default class Slide extends WebComponent(HTMLElement) {
       slide.state.active = slide === this;
 
       if(slide === this) {
-        const slideWidth = this.getBoundingClientRect().width;
-        const {width: viewportWidth, left: viewportLeft} = this.parent.viewport.getBoundingClientRect();
+        requestAnimationFrame(() => {
+          const slideWidth = this.getBoundingClientRect().width;
+          const {width: viewportWidth, left: viewportLeft} = this.parent.viewport.getBoundingClientRect();
 
-        this.parent.viewport.scrollTo({
-          left: (this.offsetLeft - viewportLeft) - (viewportWidth / 2) + (slideWidth / 2),
-          top: 0,
+          this.parent.viewport.scrollTo({
+            left: (this.offsetLeft - viewportLeft) - (viewportWidth / 2) + (slideWidth / 2),
+            top: 0,
+          });
         });
       }
     });

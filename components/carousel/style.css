@@ -5,14 +5,26 @@
 section {
   display: grid;
   grid-template-areas:
-    "slides     slides"
-    "play-pause navigation";
-  grid-template-columns: min-content 100%;
+    "slides"
+    "navigation"
+    "play-pause";
+  grid-template-columns: 100%;
   align-items: center;
+  justify-content: center;
   gap: var(--tcds-space-loose) 0;
 }
 
-:host([navigation*="top"][navigation*="right"]) section {
+@media (min-width: 700px) {
+  section {
+    grid-template-areas:
+      "slides     slides"
+      "play-pause navigation";
+    grid-template-columns: min-content 1fr;
+    justify-content: start;
+  }
+}
+
+:host([navigation*="top"][navigation*="right"]:not([variant*="gallery"])) section {
   --tcds-carousel-navigation-justify: end;
 
   grid-template-areas:
@@ -88,8 +100,9 @@ section {
 
 [part="indicators"] {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: var(--tcds-space-x-loose);
-  overflow-x: auto;
 }
 
 :host([variant*="gallery"]) [part="indicators"] {
@@ -122,7 +135,6 @@ section {
 :host([variant*="gallery"]) [part="indicator"] {
   position: relative;
   width: 90px;
-  min-width: 90px;
   height: 90px;
   overflow: hidden;
   transition: opacity var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing);
@@ -137,19 +149,12 @@ section {
   outline-offset: -5px;
 }
 
-:host([variant*="gallery"]) [part="indicator"] tcds-spinner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: -1;
-}
-
 :host([variant*="gallery"]) [part="indicator"] img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
+  pointer-events: none;
   transition: transform var(--tcds-animation-expressive-duration) var(--tcds-animation-expressive-easing);
 }
 
@@ -159,6 +164,7 @@ section {
 
 [part="play-pause"] {
   grid-area: play-pause;
+  margin: 0 auto;
   opacity: var(--tcds-carousel-play-pause-opacity, 0);
   transition: opacity var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing);
 }
