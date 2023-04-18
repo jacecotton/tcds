@@ -21,6 +21,7 @@ import "./components/mega-menu/index.js";
 import "./components/section/index.js";
 import "./components/tabs/tab/index.js";
 import "./components/tabs/index.js";
+import "./components/gallery/index.js";
 
 import "./templates/site-header/site-header.js";
 
