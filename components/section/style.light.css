@@ -72,6 +72,10 @@ tcds-section [slot="video-description"] {
   right: 0;
   left: 0;
   padding: var(--tcds-space-x-loose) var(--content-inner-gutter);
+}
+
+tcds-section [slot="video-description"],
+tcds-section [slot="video-description"] p {
   font-size: var(--tcds-font-size-large);
 }
 
