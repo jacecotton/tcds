@@ -3,7 +3,7 @@ import styles from "./style.css";
 import "./slide/index.js";
 
 export default class Carousel extends WebComponent(HTMLElement) {
-  static observedAttributes = ["playing", "timing", "multiple"];
+  static observedAttributes = ["playing", "timing", "multiple", "variant"];
 
   get playing() {
     return this.hasAttribute("playing") && this.hasAttribute("timing");
@@ -31,6 +31,14 @@ export default class Carousel extends WebComponent(HTMLElement) {
 
   set multiple(value) {
     this.toggleAttribute("multiple", Boolean(value));
+  }
+
+  get variant() {
+    return this.getAttribute("variant");
+  }
+
+  set variant(value) {
+    this.setAttribute("variant", value);
   }
 
   get nextIndex() {
@@ -97,7 +105,11 @@ export default class Carousel extends WebComponent(HTMLElement) {
                 tabindex="${slide.active ? "0" : "-1"}"
                 onclick="this.getRootNode().host.indicatorClick(event)"
                 onkeydown="this.getRootNode().host.indicatorKeydown(event)"
-              ></button>
+              >
+                ${this.variant === "gallery" ? /* html */`
+                  <img src="${slide.querySelector("img")?.src}" alt="">
+                ` : ``}
+              </button>
             `).join("")}
           </div>
         </div>
@@ -126,7 +138,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
   #initialActive;
 
   connectedCallback() {
-    this._upgradeProperties(["playing", "timing", "multiple"]);
+    this._upgradeProperties(["playing", "timing", "multiple", "variant"]);
     this.update();
 
     this.slides = Array.from(this.querySelectorAll("tcds-slide"));

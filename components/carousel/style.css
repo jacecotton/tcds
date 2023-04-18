@@ -24,7 +24,7 @@ section {
   }
 }
 
-:host([navigation*="top"][navigation*="right"]) section {
+:host([navigation*="top"][navigation*="right"]:not([variant*="gallery"])) section {
   --tcds-carousel-navigation-justify: end;
 
   grid-template-areas:
@@ -83,6 +83,13 @@ section {
   scroll-snap-stop: always;
 }
 
+:host([variant*="gallery"]) ::slotted(tcds-slide) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 [part="navigation"] {
   grid-area: navigation;
   display: flex;
@@ -98,6 +105,10 @@ section {
   gap: var(--tcds-space-x-loose);
 }
 
+:host([variant*="gallery"]) [part="indicators"] {
+  gap: var(--tcds-space-tight);
+}
+
 [part="indicator"] {
   display: inline-flex;
   overflow: hidden;
@@ -105,6 +116,9 @@ section {
   border: 0;
   background: none;
   cursor: pointer;
+}
+
+:host(:not([variant*="gallery"])) [part="indicator"] {
   height: 0.85rem;
   width: 0.85rem;
   min-width: 0.85rem;
@@ -113,9 +127,39 @@ section {
   transition: background-color var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing);
 }
 
-[part="indicator"]:hover,
-[part="indicator"][aria-selected="true"] {
+:host(:not([variant*="gallery"])) [part="indicator"]:hover,
+:host(:not([variant*="gallery"])) [part="indicator"][aria-selected="true"] {
   background-color: var(--tcds-color-primary);
+}
+
+:host([variant*="gallery"]) [part="indicator"] {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  overflow: hidden;
+  transition: opacity var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing);
+}
+
+:host([variant*="gallery"]) [part="indicator"][aria-selected="false"] {
+  opacity: 0.4;
+}
+
+:host([variant*="gallery"]) [part="indicator"]:focus {
+  outline: 5px solid rgb(255 255 255 / 80%);
+  outline-offset: -5px;
+}
+
+:host([variant*="gallery"]) [part="indicator"] img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+  transition: transform var(--tcds-animation-expressive-duration) var(--tcds-animation-expressive-easing);
+}
+
+:host([variant*="gallery"]) [part="indicator"]:is(:hover, [aria-selected="true"]) img {
+  transform: scale(1.05);
 }
 
 [part="play-pause"] {
