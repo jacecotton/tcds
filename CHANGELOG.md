@@ -1,3 +1,12 @@
+## [1.9.23](https://github.com/jacecotton/tcds/compare/v1.9.22...v1.9.23) (2023-04-18)
+
+
+### Bug Fixes
+
+* **components:** carousel scrolling bug ([fead2cd](https://github.com/jacecotton/tcds/commit/fead2cdb4122a223ef8cd177267ac08cded9ec46))
+
+
+
 ## [1.9.22](https://github.com/jacecotton/tcds/compare/v1.9.21...v1.9.22) (2023-04-12)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **styles:** Main content z-index issue ([909600f](https://github.com/jacecotton/tcds/commit/909600f401417e556763ebba9d0d07784b1c20c5))
-
-
-
-## [1.9.18](https://github.com/jacecotton/tcds/compare/v1.9.17...v1.9.18) (2023-04-05)
-
-
-### Bug Fixes
-
-* **components:** Card responsive bug ([5a80696](https://github.com/jacecotton/tcds/commit/5a80696bcfbb071971f93bb58a90d85f30c2ed1e))
 
 
 
