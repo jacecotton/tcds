@@ -1,0 +1,40 @@
+tcds-gallery:not([hidden]) {
+  display: block;
+}
+
+tcds-gallery {
+  margin: var(--tcds-space-loose) 0;
+}
+
+tcds-gallery + tcds-gallery::before {
+  content: "";
+  display: block;
+  width: min(500px, 70%);
+  height: 1px;
+  background: var(--tcds-color-highlight);
+  margin: 3.5rem auto;
+}
+
+tcds-gallery > a {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  display: block;
+  position: relative;
+}
+
+tcds-gallery > a > img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform var(--tcds-animation-expressive-duration) var(--tcds-animation-expressive-easing);
+}
+
+tcds-gallery > a:hover > img {
+  transform: scale(1.1);
+}
+
+.gbtn {
+  box-sizing: content-box;
+}
