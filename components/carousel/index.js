@@ -38,6 +38,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
   connectedCallback() {
     super.connectedCallback();
     this.slides = Array.from(this.querySelectorAll("tcds-slide"));
+    this.initialActive = this.slides.find(slide => slide.state.active) || this.slides[0];
   }
 
   render() {
@@ -110,8 +111,6 @@ export default class Carousel extends WebComponent(HTMLElement) {
     this.viewport = this.shadowRoot.querySelector("[part~=viewport]");
     this.indicators = Array.from(this.shadowRoot.querySelectorAll("[part~=indicator]"));
 
-    (this.slides.find(slide => slide.active) || this.slides[0]).select();
-
     this.state.playing =
       this.hasAttribute("playing")
       && this.hasAttribute("timing")
@@ -130,6 +129,10 @@ export default class Carousel extends WebComponent(HTMLElement) {
         this.resume();
       }
     });
+
+    requestAnimationFrame(() => {
+      this.initialActive.select();
+    });
   }
 
   updatedCallback(state) {
@@ -140,7 +143,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
             this.player = setTimeout(() => {
               this.slides[this.nextIndex].select();
               advance();
-            }, this.timing * 1000);
+            }, this.props.timing * 1000);
           };
 
           advance();
@@ -175,6 +178,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
           });
 
           const closestToCenter = proximitiesToCenter.indexOf(Math.min(...proximitiesToCenter));
+
           this.slides[closestToCenter].select();
         }, 500);
       } else {
