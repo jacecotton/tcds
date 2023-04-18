@@ -1,3 +1,12 @@
+# [1.10.0](https://github.com/jacecotton/tcds/compare/v1.9.23...v1.10.0) (2023-04-18)
+
+
+### Features
+
+* **components:** Add gallery component ([b6bf994](https://github.com/jacecotton/tcds/commit/b6bf994b2ad1c61a6e8f2a8b83a3e862883f1fd8))
+
+
+
 ## [1.9.23](https://github.com/jacecotton/tcds/compare/v1.9.22...v1.9.23) (2023-04-18)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Remove stray console logs ([02fe31d](https://github.com/jacecotton/tcds/commit/02fe31d0551c46ae0680496d2004e38e3bbbd304))
-
-
-
-## [1.9.19](https://github.com/jacecotton/tcds/compare/v1.9.18...v1.9.19) (2023-04-05)
-
-
-### Bug Fixes
-
-* **styles:** Main content z-index issue ([909600f](https://github.com/jacecotton/tcds/commit/909600f401417e556763ebba9d0d07784b1c20c5))
 
 
 
