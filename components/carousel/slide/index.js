@@ -27,8 +27,8 @@ export default class Slide extends WebComponent(HTMLElement) {
   }
 
   connectedCallback() {
-    this.update();
     this._upgradeProperties(["active"]);
+    this.update();
 
     this.carousel = this.closest("tcds-carousel");
   }
@@ -39,7 +39,7 @@ export default class Slide extends WebComponent(HTMLElement) {
 
   updatedCallback(old) {
     if("active" in old) {
-      if(this.active && old.active !== true) {
+      if(this.active) {
         this.carousel.update();
       }
     }
@@ -54,8 +54,9 @@ export default class Slide extends WebComponent(HTMLElement) {
           const {offsetLeft: slideLeft, offsetWidth: slideWidth} = this;
           const {offsetLeft: viewportLeft, offsetWidth: viewportWidth} = this.carousel.viewport;
 
-          this.carousel.viewport.scrollLeft = (slideLeft - viewportLeft)
-            - (this.carousel.multiple ? (viewportWidth / 2) + (slideWidth / 2) : 0);
+          this.carousel.viewport.scrollLeft = this.carousel.multiple
+            ? (slideLeft - viewportLeft) - (viewportWidth / 2) + (slideWidth / 2)
+            : (slideLeft - viewportLeft);
         });
       }
     });

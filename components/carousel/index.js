@@ -138,8 +138,8 @@ export default class Carousel extends WebComponent(HTMLElement) {
   #initialActive;
 
   connectedCallback() {
-    this.update();
     this._upgradeProperties(["playing", "timing", "multiple", "variant"]);
+    this.update();
 
     this.slides = Array.from(this.querySelectorAll("tcds-slide"));
     this.#initialActive = this.slides.find(slide => slide.active) || this.slides[0];
