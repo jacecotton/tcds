@@ -1,17 +1,5 @@
-import WebComponent from "../../utilities/WebComponent/WebComponent.js";
-
-export default class Gallery extends WebComponent(HTMLElement) {
-  get template() {
-    return /* html */`
-      <div class="grid gap-loose" style="--grid-columns-default: 3; --above-large-grid-columns: 6">
-        <slot></slot>
-      </div>
-    `;
-  }
-
+export default class Gallery extends HTMLElement {
   connectedCallback() {
-    this.update();
-
     if(!this.id) {
       const galleries = Array.from(document.querySelectorAll("tcds-gallery"));
       this.id = `gallery${galleries.length > 1 ? `-${galleries.indexOf(this) + 1}` : ""}`;
@@ -31,11 +19,10 @@ export default class Gallery extends WebComponent(HTMLElement) {
       script.id = "glightbox-script";
       document.head.appendChild(script);
     }
-  }
 
-  mountedCallback() {
     setTimeout(() => {
       const selector = `#${this.id} > a`;
+
       window.GLightbox({
         selector: selector,
         loop: true,

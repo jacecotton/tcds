@@ -1,13 +1,24 @@
 tcds-gallery:not([hidden]) {
-  display: block;
+  display: grid;
 }
 
 tcds-gallery {
+  --tcds-gallery-columns: 3;
+
+  grid-template-columns: repeat(var(--tcds-gallery-columns), 1fr);
+  gap: var(--tcds-space-loose);
   margin: var(--tcds-space-loose) 0;
+}
+
+@media (min-width: 1200px) {
+  tcds-gallery {
+    --tcds-gallery-columns: 6;
+  }
 }
 
 tcds-gallery + tcds-gallery::before {
   content: "";
+  grid-column: 1 / -1;
   display: block;
   width: min(500px, 70%);
   height: 1px;
