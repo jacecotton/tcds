@@ -212,12 +212,11 @@ export default class Carousel extends WebComponent(HTMLElement) {
           const proximitiesToCenter = this.slides.map((slide) => {
             const {left: slideLeft, right: slideRight} = slide.getBoundingClientRect();
             const slideCenterpoint = Math.floor((slideLeft + slideRight) / 2);
-
             return Math.abs(slideCenterpoint - viewportCenterpoint);
           });
 
           const closestToCenter = proximitiesToCenter.indexOf(Math.min(...proximitiesToCenter));
-          this.slides[closestToCenter].select();
+          this.slides[closestToCenter].select({scroll: false});
         }, 500);
       } else {
         entries.forEach((entry) => {

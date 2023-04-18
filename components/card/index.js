@@ -46,7 +46,7 @@ export default class Card extends WebComponent(HTMLElement) {
     const vi = video?.src.slice(viPos, viPos + 11);
     const viLink = `#video-dialog-${vi}`;
     const link = this.querySelector("a[slot=title][href]")?.href;
-    const title = this.querySelector("[slot=title]").textContent;
+    const title = this.querySelector("[slot=title]")?.textContent;
     const hasImage = !!this.querySelector("[slot=image]");
     const fullBleed = this.variant?.includes("full-bleed");
 
@@ -86,6 +86,7 @@ export default class Card extends WebComponent(HTMLElement) {
           ` : ``}
 
           <slot name="description"></slot>
+          <slot></slot>
 
           <slot name="footer">
             ${this.actionLabel !== "" && link ? /* html */`

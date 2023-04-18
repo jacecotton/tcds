@@ -45,11 +45,18 @@ export default class Slide extends WebComponent(HTMLElement) {
     }
   }
 
-  select() {
+  /**
+   * Activates the slide.
+   *
+   * @param {object}  param0 Configuration options
+   * @param {boolean} param0.scroll Whether to scroll the viewport when
+   *   selecting the slide.
+   */
+  select({scroll = true} = {}) {
     this.carousel.querySelectorAll("tcds-slide").forEach((slide) => {
       slide.active = slide === this;
 
-      if(slide === this) {
+      if(slide === this && scroll) {
         requestAnimationFrame(() => {
           const {offsetLeft: slideLeft, offsetWidth: slideWidth} = this;
           const {offsetLeft: viewportLeft, offsetWidth: viewportWidth} = this.carousel.viewport;
