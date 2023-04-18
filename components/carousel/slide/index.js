@@ -51,13 +51,11 @@ export default class Slide extends WebComponent(HTMLElement) {
 
       if(slide === this) {
         requestAnimationFrame(() => {
-          const slideWidth = this.getBoundingClientRect().width;
-          const {width: viewportWidth, left: viewportLeft} = this.carousel.viewport.getBoundingClientRect();
+          const {offsetLeft: slideLeft, offsetWidth: slideWidth} = this;
+          const {offsetLeft: viewportLeft, offsetWidth: viewportWidth} = this.carousel.viewport;
 
-          this.carousel.viewport.scrollTo({
-            left: (this.offsetLeft - viewportLeft) - (viewportWidth / 2) + (slideWidth / 2),
-            top: 0,
-          });
+          this.carousel.viewport.scrollLeft = (slideLeft - viewportLeft)
+            - (this.carousel.multiple ? (viewportWidth / 2) + (slideWidth / 2) : 0);
         });
       }
     });

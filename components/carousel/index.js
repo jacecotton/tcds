@@ -10,14 +10,10 @@ export default class Carousel extends WebComponent(HTMLElement) {
   }
 
   set playing(value) {
-    if(this.hasAttribute("timing")) {
+    if(this.hasAttribute("timing") || !value) {
       this.toggleAttribute("playing", Boolean(value));
     } else {
-      if(value === true) {
-        console.error(`Cannot set property "playing" on element tcds-carousel: "timing" property is not present.`);
-      } else {
-        this.removeAttribute("playing");
-      }
+      console.error(`Cannot set property "playing" on element tcds-carousel: "timing" property is not present.`);
     }
   }
 
@@ -139,11 +135,14 @@ export default class Carousel extends WebComponent(HTMLElement) {
     this.shadowRoot.adoptedStyleSheets = [styles];
   }
 
+  #initialActive;
+
   connectedCallback() {
     this.update();
     this._upgradeProperties(["playing", "timing", "multiple", "variant"]);
 
     this.slides = Array.from(this.querySelectorAll("tcds-slide"));
+    this.#initialActive = this.slides.find(slide => slide.active) || this.slides[0];
   }
 
   attributeChangedCallback(name, oldValue) {
@@ -153,8 +152,6 @@ export default class Carousel extends WebComponent(HTMLElement) {
   mountedCallback() {
     this.viewport = this.shadowRoot.querySelector("[part~=viewport]");
     this.indicators = Array.from(this.shadowRoot.querySelectorAll("[part~=indicator]"));
-
-    (this.slides.find(slide => slide.active) || this.slides[0]).select();
 
     this.playing = this.playing && !window.matchMedia("(prefers-reduced-motion: reduce), (hover: none)").matches;
 
@@ -170,6 +167,10 @@ export default class Carousel extends WebComponent(HTMLElement) {
       } else if(this.flags.isInView !== false) {
         this.resume();
       }
+    });
+
+    requestAnimationFrame(() => {
+      this.#initialActive.select();
     });
   }
 
