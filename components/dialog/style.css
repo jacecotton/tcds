@@ -59,3 +59,9 @@
   transform: translate(50%, -50%);
   z-index: 1;
 }
+
+[part="content"] {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  position: relative;
+}

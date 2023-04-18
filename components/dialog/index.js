@@ -38,7 +38,11 @@ export default class Dialog extends WebComponent(HTMLElement, {delegatesFocus: t
           variant="secondary"
           onclick="this.getRootNode().host.close()"
         ></tcds-button>
-        <slot></slot>
+
+        <div part="content">
+          <slot></slot>
+        </div>
+
         <tcds-focus-boundary onfocus="this.focusFirstOf(this.getRootNode())" tabindex="0"></tcds-focus-boundary>
       </div>
     `;
