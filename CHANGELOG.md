@@ -1,3 +1,13 @@
+## [1.10.1](https://github.com/jacecotton/tcds/compare/v1.10.0...v1.10.1) (2023-04-18)
+
+
+### Bug Fixes
+
+* **components:** Dialog responsivity ([8834831](https://github.com/jacecotton/tcds/commit/8834831a4039cbf2ccb93dca5312d3bc2e58f8ac))
+* **components:** Section font fix ([44409a0](https://github.com/jacecotton/tcds/commit/44409a049e561f003ced2287ab647ced62e17ba6))
+
+
+
 # [1.10.0](https://github.com/jacecotton/tcds/compare/v1.9.23...v1.10.0) (2023-04-18)
 
 
@@ -31,15 +41,6 @@
 ### Bug Fixes
 
 * **components:** Carousel issue ([ca69ab2](https://github.com/jacecotton/tcds/commit/ca69ab2977839e2b10a8255e96838dfd05d63a09))
-
-
-
-## [1.9.20](https://github.com/jacecotton/tcds/compare/v1.9.19...v1.9.20) (2023-04-06)
-
-
-### Bug Fixes
-
-* **components:** Remove stray console logs ([02fe31d](https://github.com/jacecotton/tcds/commit/02fe31d0551c46ae0680496d2004e38e3bbbd304))
 
 
 
