@@ -50,12 +50,7 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
 };
 
 function upgradeProperties(properties) {
-  console.log({
-    "this": this,
-    "properties": properties,
-  });
-
-  properties.forEach((property) => {
+  [...properties].forEach((property) => {
     if(Object.prototype.hasOwnProperty.call(this, property)) {
       const value = this[property];
       delete this[property];

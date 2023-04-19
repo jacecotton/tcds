@@ -259,7 +259,7 @@ class MyComponent extends WebComponent(HTMLElement) {
 ```
 
 ### Lazy properties
-The above approach does create one potential problem, which is if a component user attempts to set a property on the element before its definition has been loaded (ergo before the getter and setter can intercede). This can be addressed by [deleting then resetting the property](https://web.dev/custom-elements-best-practices/#make-properties-lazy) within the `connectedCallback`. For convenience, an `upgradeProperties` utility is provided. As a matter of general best practice, this should always be done.
+The above approach does create one potential problem, which is if a component user attempts to set a property on the element before its definition has been loaded (ergo before the getter and setter can intercede). This can be addressed by [deleting then resetting the property](https://web.dev/custom-elements-best-practices/#make-properties-lazy) within the `connectedCallback`. For convenience, an `upgradeProperties` utility is provided which does this. As a matter of general best practice, this should always be done.
 
 ```js
 import {WebComponent, upgradeProperties} from "@txch/tcds";
@@ -337,25 +337,3 @@ class MyComponent extends WebComponent(HTMLElement) {
 ```
 
 This setup is recommended but entirely optional.
-
-Note that adopting or inserting styles into the shadow root scopes and encapsulates the styles to the shadow boundary.
-
-To create unscoped styles (useful for having outer DOM context awareness, e.g. whether the component is a `:first-child`, or to style slotted content with greater specificity), you can adopt other styles into the element's root node after connection. In most cases this will be the document, or a parent component's shadow root.
-
-```js
-/* index.js */
-import lightStyles from "./style.light.css";
-
-class MyComponent extends WebComponent(HTMLElement) {
-  connectedCallback() {
-    super.connectedCallback();
-    this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStylesheets, ...[lightStyles]];
-  }
-}
-```
-```css
-/* style.light.css */
-my-component:not(:only-child) {
-  ...
-}
-```

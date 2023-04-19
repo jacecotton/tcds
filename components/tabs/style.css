@@ -47,6 +47,7 @@
   border-bottom: 5px solid var(--tcds-tabs-tab-indicator-color, transparent);
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 100%;
   transition: border-color var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing);
 }

@@ -11,6 +11,7 @@
  */
 
 const Button = BaseElement => class extends BaseElement {};
+
 class UIButton extends Button(HTMLButtonElement) {}
 class LinkButton extends Button(HTMLAnchorElement) {}
 

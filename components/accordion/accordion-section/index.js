@@ -61,7 +61,7 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
     this.siblings = Array.from(this.accordion.sections).filter(section => section !== this);
 
     this.open = (this.accordion.multiple && this.open)
-      || this.accordion.sections.find(section => section.open);
+      || this === this.accordion.sections.find(section => section.open);
   }
 
   attributeChangedCallback(name, oldValue) {

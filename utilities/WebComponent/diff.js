@@ -171,6 +171,8 @@ export default function diff(template, existing) {
     if(node.childNodes.length) {
       diff(node, existingNodes[index]);
     }
+
+    node.touchCallback?.();
   });
 
   trimExtraNodes(existingNodes, templateNodes);
