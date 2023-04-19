@@ -1,3 +1,12 @@
+## [1.10.2](https://github.com/jacecotton/tcds/compare/v1.10.1...v1.10.2) (2023-04-19)
+
+
+### Bug Fixes
+
+* **components:** carousel viewport internal padding ([17eee6b](https://github.com/jacecotton/tcds/commit/17eee6be7519c003d0ea5f682ec130de318ce715))
+
+
+
 ## [1.10.1](https://github.com/jacecotton/tcds/compare/v1.10.0...v1.10.1) (2023-04-18)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * **components:** carousel ([07899b8](https://github.com/jacecotton/tcds/commit/07899b894bd7ac4d4864cf32369993d6c654bdff))
-
-
-
-## [1.9.21](https://github.com/jacecotton/tcds/compare/v1.9.20...v1.9.21) (2023-04-12)
-
-
-### Bug Fixes
-
-* **components:** Carousel issue ([ca69ab2](https://github.com/jacecotton/tcds/commit/ca69ab2977839e2b10a8255e96838dfd05d63a09))
 
 
 
