@@ -1,4 +1,4 @@
-import WebComponent from "../../utilities/WebComponent/WebComponent.js";
+import {WebComponent, upgradeProperties} from "../../utilities/WebComponent/WebComponent.js";
 import styles from "./style.css";
 
 export default class Accordion extends WebComponent(HTMLElement) {
@@ -44,8 +44,8 @@ export default class Accordion extends WebComponent(HTMLElement) {
   }
 
   connectedCallback() {
+    upgradeProperties.apply(this, ["multiple", "headingLevel"]);
     this.update();
-    this._upgradeProperties(["multiple", "headingLevel"]);
 
     if(!this.id) {
       const accordions = Array.from(document.querySelectorAll("tcds-accordion"));

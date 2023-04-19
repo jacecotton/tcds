@@ -1,4 +1,4 @@
-import WebComponent from "../../utilities/WebComponent/WebComponent.js";
+import {WebComponent, upgradeProperties} from "../../utilities/WebComponent/WebComponent.js";
 import styles from "./style.css";
 import "./slide/index.js";
 
@@ -50,11 +50,17 @@ export default class Carousel extends WebComponent(HTMLElement) {
   }
 
   /**
-   * @property {boolean} observeSwipe
-   * @property {boolean} isInView
-   * @property {boolean} isPaused
+   * Internal flags (non-stateful switches).
+   *
+   * @property {boolean} observingSwipe - Whether scrolling within the viewport
+   *   should be observed. While the carousel is automatically advancing, it
+   *   should not be observed.
+   * @property {boolean} isInView - Specifically whether the carousel is visible
+   *   in the window's scrollport (does not apply to window visibility).
+   * @property {boolean} isPaused - Specifically whether the carousel is
+   *   temporarily stopped (i.e. paused, not just "not playing").
    */
-  flags = {};
+  #flags = {};
 
   get template() {
     const playPauseLabel = `${this.playing ? "Stop" : "Start"} automatic slide show`;
@@ -138,7 +144,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
   #initialActive;
 
   connectedCallback() {
-    this._upgradeProperties(["playing", "timing", "multiple", "variant"]);
+    upgradeProperties.apply(this, ["playing", "timing", "multiple", "variant"]);
     this.update();
 
     this.slides = Array.from(this.querySelectorAll("tcds-slide"));
@@ -153,7 +159,10 @@ export default class Carousel extends WebComponent(HTMLElement) {
     this.viewport = this.shadowRoot.querySelector("[part~=viewport]");
     this.indicators = Array.from(this.shadowRoot.querySelectorAll("[part~=indicator]"));
 
-    this.playing = this.playing && !window.matchMedia("(prefers-reduced-motion: reduce), (hover: none)").matches;
+    // Only autoplay if no "reduce motion" system preference, and user can hover
+    // with pointer device.
+    this.playing = this.playing
+      && !window.matchMedia("(prefers-reduced-motion: reduce), (hover: none)").matches;
 
     this.slides.forEach((slide) => {
       this.swipe.observe(slide);
@@ -164,7 +173,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
     document.addEventListener("visibilitychange", () => {
       if(document.hidden) {
         this.pause();
-      } else if(this.flags.isInView !== false) {
+      } else if(this.#flags.isInView !== false) {
         this.resume();
       }
     });
@@ -185,7 +194,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
         };
 
         advance();
-        this.flags.observeSwipe = false;
+        this.#flags.observingSwipe = false;
       } else {
         clearTimeout(this.player);
       }
@@ -198,7 +207,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
 
   get swipe() {
     return new IntersectionObserver((entries) => {
-      if(this.flags.observeSwipe !== true) {
+      if(this.#flags.observingSwipe !== true) {
         return;
       }
 
@@ -238,10 +247,10 @@ export default class Carousel extends WebComponent(HTMLElement) {
       entries.forEach((entry) => {
         if(!entry.isIntersecting) {
           this.pause();
-          this.flags.isInView = false;
+          this.#flags.isInView = false;
         } else {
           this.resume();
-          this.flags.isInView = true;
+          this.#flags.isInView = true;
         }
       });
     }, {threshold: .9});
@@ -252,19 +261,19 @@ export default class Carousel extends WebComponent(HTMLElement) {
   nextClick() {
     this.slides[this.nextIndex].select();
     this.stop();
-    this.flags.observeSwipe = false;
+    this.#flags.observingSwipe = false;
   }
 
   previousClick() {
     this.slides[this.previousIndex].select();
     this.stop();
-    this.flags.observeSwipe = false;
+    this.#flags.observingSwipe = false;
   }
 
   indicatorClick(event) {
     this.slides[this.indicators.indexOf(event.target)].select();
     this.stop();
-    this.flags.observeSwipe = false;
+    this.#flags.observingSwipe = false;
   }
 
   indicatorKeydown(event) {
@@ -279,17 +288,17 @@ export default class Carousel extends WebComponent(HTMLElement) {
     }
 
     this.stop();
-    this.flags.observeSwipe = false;
+    this.#flags.observingSwipe = false;
   }
 
   viewportSwipe() {
     this.stop();
-    this.flags.observeSwipe = true;
+    this.#flags.observingSwipe = true;
   }
 
   viewportHover() {
     this.pause();
-    this.flags.observeSwipe = true;
+    this.#flags.observingSwipe = true;
   }
 
   /* Public API */
@@ -309,15 +318,15 @@ export default class Carousel extends WebComponent(HTMLElement) {
   pause() {
     if(this.playing) {
       this.stop();
-      this.flags.isPaused = true;
+      this.#flags.isPaused = true;
     }
   }
 
   resume() {
-    if(this.flags.isPaused) {
+    if(this.#flags.isPaused) {
       requestAnimationFrame(() => {
         this.play();
-        this.flags.isPaused = null;
+        this.#flags.isPaused = null;
       });
     }
   }

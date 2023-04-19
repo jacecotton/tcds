@@ -1,4 +1,4 @@
-import WebComponent from "../../utilities/WebComponent/WebComponent.js";
+import {WebComponent, upgradeProperties} from "../../utilities/WebComponent/WebComponent.js";
 import slugify from "../../utilities/string-utils/slugify.js";
 import styles from "./style.css";
 import {pin, pinSelected, mapStyles} from "./style.js";
@@ -120,8 +120,8 @@ export default class Map extends WebComponent(HTMLElement) {
   }
 
   connectedCallback() {
+    upgradeProperties.apply(this, ["zoom", "defaultArea", "selectedLocation", "selectedTag"]);
     this.update();
-    this._upgradeProperties(["zoom", "defaultArea", "selectedLocation", "selectedTag"]);
 
     this.markers = [];
   }

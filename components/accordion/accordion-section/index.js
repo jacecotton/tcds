@@ -1,4 +1,4 @@
-import WebComponent from "../../../utilities/WebComponent/WebComponent.js";
+import {WebComponent, upgradeProperties} from "../../../utilities/WebComponent/WebComponent.js";
 import slugify from "../../../utilities/string-utils/slugify.js";
 import styles from "./style.css";
 
@@ -54,8 +54,8 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
   }
 
   connectedCallback() {
+    upgradeProperties.apply(this, ["open", "label"]);
     this.update();
-    this._upgradeProperties(["open", "label"]);
 
     this.accordion = this.closest("tcds-accordion");
     this.siblings = Array.from(this.accordion.sections).filter(section => section !== this);

@@ -1,4 +1,4 @@
-import WebComponent from "../../../utilities/WebComponent/WebComponent.js";
+import {WebComponent, upgradeProperties} from "../../../utilities/WebComponent/WebComponent.js";
 import styles from "./style.css";
 
 export default class Tab extends WebComponent(HTMLElement) {
@@ -22,8 +22,8 @@ export default class Tab extends WebComponent(HTMLElement) {
   }
 
   connectedCallback() {
+    upgradeProperties.apply(this, ["active"]);
     this.update();
-    this._upgradeProperties(["active"]);
   }
 
   attributeChangedCallback(name, oldValue) {

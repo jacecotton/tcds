@@ -1,12 +1,10 @@
 # WebComponent
-`WebComponent` is a [class mixin](https://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/) for creating [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) with reactivity and declarative templating.
-
-This is not a library, and unlike libraries also based on the [Web Components API](https://developer.mozilla.org/en-US/docs/Web/Web_Components), it does not attempt to abstract away boilerplate or offer extra utilities. Rather than alter the basic experience of creating custom elements, it more fully embraces the browser's own component model.
+`WebComponent` is a [class mixin](https://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/) for creating [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) with declarative templating and reactive rendering.
 
 ## Getting started
 Defining a Web Component works like defining any other custom element, only instead of extending an element interface directly, extend it with the `WebComponent` wrapper.
 
-For example, extend `HTMLElement` to create an autonomous custom element:
+For example, extend `WebComponent` and pass `HTMLElement` to create an autonomous custom element:
 
 ```js
 import {WebComponent} from "@txch/tcds";
@@ -43,7 +41,7 @@ class MyComponent extends WebComponent(HTMLElement) {
 }
 ```
 
-Using [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals), you can use returns, indentation, and interpolation all without string concatenation. The ability to interpolate data allows for dynamic data-binding, as well as conditional and iterative rendering:
+By using [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals), you can use returns, indentation, and interpolation all without concatenation. The ability to interpolate data allows for dynamic data-binding, as well as conditional and iterative rendering:
 
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
@@ -69,7 +67,7 @@ class MyComponent extends WebComponent(HTMLElement) {
 ```
 
 ## Rendering
-Once your component's template is defined, it needs to be rendered to the element's shadow DOM. To do so, you can use the `update` method. Use the [`connectedCallback` hook](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks) to make your first render when the element connects to a document:
+Once your component's template is defined, it needs to be rendered to the element's shadow DOM. To do so, you can use the `update` method. Use the [`connectedCallback` method](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks) to make your first render when the element connects to a document:
 
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
@@ -83,13 +81,12 @@ class MyComponent extends WebComponent(HTMLElement) {
 }
 ```
 
-The `update` method works like this:
-
-* First, for efficiency, it debounces subsequent calls within a single [animation frame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) so that nothing happens next until all back-to-back update "requests" have been made.
-* From there, it converts the returned `template` string into a document fragment, "rendering" it to live HTML. (It also inserts the Design System's [shared stylesheet](https://github.com/jacecotton/tcds/blob/main/index.scss) so that all component shadow DOMs have the same basic styles.)
-* It then compares this document fragment against the component's current shadow tree, and applies any differences between them to the shadow DOM (a process known as "DOM diffing").
-* If this is the first render pass, it calls the `mountedCallback` hook.
-* It lastly calls the `updatedCallback` hook.
+The `update` method
+* first debounces all back-to-back calls within a single [animation frame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) to create a "batch" of updates;
+* then converts the returned `template` string into actual (but unrendered) HTML (also inserting the Design System's [shared stylesheet](https://github.com/jacecotton/tcds/blob/main/index.scss));
+* then compares the tree of the converted HTML to the component's current shadow tree, applying any differences between them to the shadow DOM ("DOM diffing");
+* after the first render pass, calls the `mountedCallback` method;
+* lastly calls the `updatedCallback` method, passing as an argument details about the update batch responsible for this render pass.
 
 See [&sect; Lifecycle](#lifecycle) for details on `mountedCallback` and `updatedCallback`.
 
@@ -180,10 +177,8 @@ class MyComponent extends WebComponent(HTMLElement) {
   // ...
 
   mountedCallback() {
-    this.shadowRoot.querySelectorAll("slot[name=content]").forEach((slot) => {
-      slot.addEventListener("slotchange", () => {
-        this.update();
-      });
+    this.shadowRoot.addEventListener("slotchange", () => {
+      this.update();
     });
   }
 }
@@ -204,7 +199,7 @@ class MyComponent extends WebComponent(HTMLElement) {
 }
 ```
 
-To optimize time to first render, defer any operations you possibly can to `mountedCallback`, such as setting up listeners, observers, intervals, etc. (rather than doing so in the `constructor` or `connectedCallback`).
+To optimize time to first render, defer any operations you possibly can to `mountedCallback`, such as setting up listeners, observers, timers, etc. (rather than doing so in the `constructor` or `connectedCallback`).
 
 As `updatedCallback` is called after every render, avoid performing expensive or redundant operations, or accidentally causing infinite recursion.
 
@@ -242,10 +237,8 @@ class MyComponent extends WebComponent(HTMLElement) {
   // ...
 
   mountedCallback() {
-    this.shadowRoot.querySelectorAll("slot").forEach((slot) => {
-      slot.addEventListener("slotchange", () => {
-        this.update({[slot.name]: slot.assignedNodes()});
-      });
+    this.shadowRoot.addEventListener("slotchange", (event) => {
+      this.update({[event.target.name]: event.target.assignedNodes()});
     });
   }
 
@@ -259,17 +252,17 @@ class MyComponent extends WebComponent(HTMLElement) {
 }
 ```
 
-
 ### Lazy properties
-The above approach does create one potential problem, which is if a component user attempts to set a property on the element before its definition has been loaded (ergo before the getter and setter can intercede). This can be addressed by [making the property lazy](https://web.dev/custom-elements-best-practices/#make-properties-lazy) using a provided `_upgradeProperties` method inside the `connectedCallback`. As a matter of general best practice, this should always be done.
+The above approach does create one potential problem, which is if a component user attempts to set a property on the element before its definition has been loaded (ergo before the getter and setter can intercede). This can be addressed by [deleting then resetting the property](https://web.dev/custom-elements-best-practices/#make-properties-lazy) within the `connectedCallback`. For convenience, an `upgradeProperties` utility is provided. As a matter of general best practice, this should always be done.
 
 ```js
+import {WebComponent, upgradeProperties} from "@txch/tcds";
+
 class Dialog extends WebComponent(HTMLElement) {
   ...
 
   connectedCallback() {
-    super.connectedCallback();
-    this._upgradeProperties(["open"]);
+    upgradeProperties.apply(this, ["open"]);
   }
 }
 ```

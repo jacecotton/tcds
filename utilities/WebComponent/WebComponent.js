@@ -15,16 +15,6 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
     || "https://unpkg.com/@txch/tcds/dist/tcds.css"
   );
 
-  _upgradeProperties(properties) {
-    properties.forEach((property) => {
-      if(Object.prototype.hasOwnProperty.call(this, property)) {
-        const value = this[property];
-        delete this[property];
-        this[property] = value;
-      }
-    });
-  }
-
   update(record) {
     if(record) {
       this.#batch = {...this.#batch, ...record};
@@ -59,4 +49,20 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
   }
 };
 
+function upgradeProperties(properties) {
+  console.log({
+    "this": this,
+    "properties": properties,
+  });
+
+  properties.forEach((property) => {
+    if(Object.prototype.hasOwnProperty.call(this, property)) {
+      const value = this[property];
+      delete this[property];
+      this[property] = value;
+    }
+  });
+}
+
 export default WebComponent;
+export {WebComponent, upgradeProperties};
