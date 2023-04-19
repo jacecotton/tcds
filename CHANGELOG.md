@@ -1,3 +1,12 @@
+## [1.10.3](https://github.com/jacecotton/tcds/compare/v1.10.2...v1.10.3) (2023-04-19)
+
+
+### Bug Fixes
+
+* **templates:** Site header accommodation for language switcher ([f10326d](https://github.com/jacecotton/tcds/commit/f10326db236102e3b555b3c3a963c8238cc517d1))
+
+
+
 ## [1.10.2](https://github.com/jacecotton/tcds/compare/v1.10.1...v1.10.2) (2023-04-19)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * **components:** carousel scrolling bug ([fead2cd](https://github.com/jacecotton/tcds/commit/fead2cdb4122a223ef8cd177267ac08cded9ec46))
-
-
-
-## [1.9.22](https://github.com/jacecotton/tcds/compare/v1.9.21...v1.9.22) (2023-04-12)
-
-
-### Bug Fixes
-
-* **components:** carousel ([07899b8](https://github.com/jacecotton/tcds/commit/07899b894bd7ac4d4864cf32369993d6c654bdff))
 
 
 
