@@ -66,6 +66,12 @@ class MyComponent extends WebComponent(HTMLElement) {
 }
 ```
 
+As demonstrated above, we recommend
+
+* [literal expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#string_interpolation) for string interpolation (in place of concatenation),
+* [ternary operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator) for conditional rendering,
+* [`Array.map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) for iterative rendering (with [`Array.join`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join) to concatenate the resulting array into a string).
+
 ## Rendering
 Once your component's template is defined, it needs to be rendered to the element's shadow DOM. To do so, you can use the `update` method. Use the [`connectedCallback` method](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks) to make your first render when the element connects to a document:
 
