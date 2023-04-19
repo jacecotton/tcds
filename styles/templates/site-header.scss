@@ -216,6 +216,8 @@
     &__nav--utility-menu {
       grid-area: top-nav;
       color: var(--tcds-color-secondary);
+      display: flex;
+      align-items: center;
 
       a,
       button {
