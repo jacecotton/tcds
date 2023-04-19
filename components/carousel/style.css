@@ -49,10 +49,7 @@ section {
   --tcds-carousel-slide-gap: 4vw;
   --tcds-carousel-slide-size: min(700px, 70vw);
   --tcds-carousel-slide-align: center;
-}
-
-:host([multiple]) [part="viewport"] {
-  padding: 0 0 0 50%;
+  --tcds-carousel-padding-inline-end: 50%;
 }
 
 [part="viewport"] {
@@ -65,6 +62,11 @@ section {
   scrollbar-width: none;
   overscroll-behavior-x: none;
   position: relative;
+  padding:
+    var(--tcds-carousel-padding-block, var(--tcds-space-loose))
+    var(--tcds-carousel-padding-inline-start, 0)
+    var(--tcds-carousel-padding-block, var(--tcds-space-loose))
+    var(--tcds-carousel-padding-inline-end, 0);
 }
 
 @media (prefers-reduced-motion: no-preference) {

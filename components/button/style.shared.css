@@ -8,7 +8,7 @@
   --tcds-button-icon-background-color: #fff;
   --tcds-button-font-size: var(--tcds-font-size-medium);
   --tcds-button-height: var(--tcds-size-medium);
-  --tcds-button-horizontal-padding: var(--tcds-space-normal);
+  --tcds-button-padding-inline: var(--tcds-space-normal);
 
   appearance: none;
   cursor: pointer;
@@ -27,7 +27,7 @@
 
   height: var(--tcds-button-height);
   width: var(--tcds-button-width, auto);
-  padding: 0 var(--tcds-button-horizontal-padding);
+  padding: 0 var(--tcds-button-padding-inline);
 
   border: 0;
   border-radius: var(--tcds-button-height);
@@ -85,7 +85,7 @@
 
 :is(button[is="tcds-ui-button"], a[is="tcds-link-button"])[size*="large"] {
   --tcds-button-height: var(--tcds-size-large);
-  --tcds-button-horizontal-padding: var(--tcds-space-x-loose);
+  --tcds-button-padding-inline: var(--tcds-space-x-loose);
   --tcds-button-font-size: 1.125rem;
 }
 
@@ -109,7 +109,7 @@
 }
 
 :is(button[is="tcds-ui-button"], a[is="tcds-link-button"])[variant*="ghost"] {
-  --tcds-button-horizontal-padding: 0;
+  --tcds-button-padding-inline: 0;
   --tcds-button-background-color: transparent;
   --tcds-button-text-color: var(--tcds-color-secondary);
 }
@@ -134,7 +134,7 @@
 
 :is(button[is="tcds-ui-button"], a[is="tcds-link-button"])[aria-label] {
   --tcds-button-width: var(--tcds-button-height);
-  --tcds-button-horizontal-padding: 0;
+  --tcds-button-padding-inline: 0;
   --tcds-button-icon-padding: 0;
   --tcds-button-icon-background-color: transparent;
   --tcds-button-icon-color: currentcolor;

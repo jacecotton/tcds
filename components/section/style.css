@@ -1,5 +1,5 @@
 :host {
-  --tcds-section-vertical-padding: 7rem;
+  --tcds-section-padding-block: 7rem;
   --tcds-section-region-gap: var(--tcds-space-x-loose);
 
   display: block;
@@ -14,9 +14,9 @@ section {
     4fr 3fr
     max(var(--site-outer-gutter), (50vw - var(--site-container-max-width) / 2 - var(--tcds-section-region-gap)));
   grid-template-rows:
-    var(--tcds-section-padding-top, var(--tcds-section-vertical-padding))
+    var(--tcds-section-padding-block-start, var(--tcds-section-padding-block))
     repeat(2, auto)
-    var(--tcds-section-padding-bottom, var(--tcds-section-vertical-padding))
+    var(--tcds-section-padding-block-end, var(--tcds-section-padding-block))
     auto;
   grid-template-areas:
     ". .         .         ."

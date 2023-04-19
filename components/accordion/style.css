@@ -1,9 +1,9 @@
 :host {
-  --tcds-accordion-horizontal-padding: var(--tcds-space-loose);
+  --tcds-accordion-padding-inline: var(--tcds-space-loose);
 
   flex-direction: column;
   background: #fff;
-  padding: var(--tcds-space-x-tight) var(--tcds-accordion-horizontal-padding) !important;
+  padding: var(--tcds-space-x-tight) var(--tcds-accordion-padding-inline) !important;
   box-shadow: 0 2px 6px 0 rgb(0 0 0 / 20%);
   border-radius: 10px;
 }
@@ -16,6 +16,6 @@
   display: flex;
   justify-content: flex-end;
   border-bottom: 1px solid var(--tcds-color-gray-light);
-  margin: 0 calc(var(--tcds-accordion-horizontal-padding) * -1);
+  margin: 0 calc(var(--tcds-accordion-padding-inline) * -1);
   padding: var(--tcds-space-x-tight);
 }

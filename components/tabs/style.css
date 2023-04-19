@@ -5,15 +5,15 @@
 :host([size*="small"]) {
   --tcds-tabs-tab-font-size: var(--tcds-font-size-small);
   --tcds-tabs-tab-height: var(--tcds-size-small);
-  --tcds-tabs-tab-horizontal-padding: var(--tcds-space-tight);
+  --tcds-tabs-tab-padding-inline: var(--tcds-space-tight);
 }
 
 :host([size*="large"]) {
   --tcds-tabs-tab-flex-grow: 1;
   --tcds-tabs-tab-font-size: var(--tcds-font-size-medium-plus);
   --tcds-tabs-tab-height: var(--tcds-size-large);
-  --tcds-tabs-tab-horizontal-padding: var(--tcds-space-loose);
-  --tcds-tab-padding-top: var(--tcds-space-loose);
+  --tcds-tabs-tab-padding-inline: var(--tcds-space-loose);
+  --tcds-tab-padding-block-start: var(--tcds-space-loose);
 }
 
 [role="tablist"] {
@@ -31,7 +31,7 @@
   font-weight: var(--tcds-font-weight-semibold);
   font-size: var(--tcds-tabs-tab-font-size, var(--tcds-font-size-medium));
   flex: var(--tcds-tabs-tab-flex-grow, 0) 0;
-  padding: 0 var(--tcds-tabs-tab-horizontal-padding, var(--tcds-space-normal));
+  padding: 0 var(--tcds-tabs-tab-padding-inline, var(--tcds-space-normal));
   height: var(--tcds-tabs-tab-height, var(--tcds-size-medium));
   width: 100%;
   white-space: nowrap;
