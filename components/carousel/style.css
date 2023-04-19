@@ -11,7 +11,6 @@ section {
   grid-template-columns: 100%;
   align-items: center;
   justify-content: center;
-  gap: var(--tcds-space-loose) 0;
 }
 
 @media (min-width: 700px) {
@@ -52,7 +51,7 @@ section {
 }
 
 :host([multiple]) [part="viewport"] {
-  padding: 0 0 0 50%;
+  padding: var(--tcds-space-loose) 0 var(--tcds-space-loose) 50%;
 }
 
 [part="viewport"] {
