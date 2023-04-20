@@ -1,6 +1,6 @@
 :host {
   --tcds-section-padding-block: 7rem;
-  --tcds-section-region-gap: var(--tcds-space-x-loose);
+  --tcds-section-region-gap: var(--tcds-space-x-loose) 0;
 
   display: block;
   background: transparent !important;
@@ -28,6 +28,20 @@ section {
   z-index: 1;
 }
 
+@media (max-width: 800px) {
+  section {
+    grid-template-areas:
+      "tertiary  tertiary  tertiary  tertiary"
+      ".         primary   primary   ."
+      "secondary secondary secondary secondary"
+      "secondary secondary secondary secondary";
+    grid-template-rows:
+      repeat(3, auto)
+      var(--tcds-section-padding-block-end, var(--tcds-section-padding-block))
+      auto;
+  }
+}
+
 [part="background"] {
   grid-column: 1 / -1;
   grid-row: 1 / -2;
@@ -37,40 +51,39 @@ section {
   z-index: -1;
 }
 
-[part="primary"],
-[part="secondary"],
-[part="tertiary"] {
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  font-family: var(--tcds-font-sans-serif);
-  font-weight: bold;
-  font-weight: 2rem;
-  height: 100%;
-}
-
 [part="primary"] {
   grid-area: primary;
-  background: rgb(0 255 0 / 30%);
 }
 
 [part="secondary"] {
   grid-area: secondary;
-  background: rgb(255 0 0 / 30%);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: start;
 }
 
 [part="tertiary"] {
   grid-area: tertiary;
-  background: rgb(0 0 255 / 30%);
 }
 
 .fill-width {
   grid-column: 2 / 4;
-  border: 5px dotted purple;
 }
 
-.fill-height {
-  grid-row: 2 / 4;
-  border: 5px dotted pink;
+@media (min-width: 800px) {
+  :host {
+    --tcds-section-region-gap: var(--tcds-space-x-loose);
+  }
+
+  .fill-height {
+    grid-row: 2 / 4;
+  }
+}
+
+@media (max-width: 799px) {
+  .fill-height:not([part="tertiary"]) {
+    grid-row: 2 / 4;
+  }
 }
