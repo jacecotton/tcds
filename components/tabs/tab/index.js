@@ -16,6 +16,14 @@ export default class Tab extends WebComponent(HTMLElement) {
     return this.getAttribute("label");
   }
 
+  get template() {
+    return /* html */`
+      <section role="tabpanel" ${this.active ? "" : "hidden"}>
+        <slot></slot>
+      </section>
+    `;
+  }
+
   constructor() {
     super();
     this.shadowRoot.adoptedStyleSheets = [styles];
@@ -28,14 +36,6 @@ export default class Tab extends WebComponent(HTMLElement) {
 
   attributeChangedCallback(name, oldValue) {
     this.update({[name]: oldValue});
-  }
-
-  get template() {
-    return /* html */`
-      <section role="tabpanel" ${this.active ? "" : "hidden"}>
-        <slot></slot>
-      </section>
-    `;
   }
 
   updatedCallback(old) {

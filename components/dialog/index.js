@@ -20,33 +20,6 @@ export default class Dialog extends WebComponent(HTMLElement) {
     return window.location.hash.split(/[#?&]+/).includes(this.id);
   }
 
-  constructor() {
-    super();
-    this.shadowRoot.adoptedStyleSheets = [styles];
-  }
-
-  connectedCallback() {
-    this.update();
-    upgradeProperties.apply(this, ["open"]);
-
-    this.open = this.anchored
-      || (this.open && localStorage.getItem(`tcds_dialog_${this.id}_open`) !== "false");
-
-    this.anchor = () => {
-      this.anchored && this.show();
-    };
-
-    window.addEventListener("hashchange", this.anchor);
-  }
-
-  disconnectedCallback() {
-    window.removeEventListener("hashchange", this.anchor);
-  }
-
-  attributeChangedCallback(name, oldValue) {
-    this.update({[name]: oldValue});
-  }
-
   get template() {
     this.hasHeader = !!this.querySelector("[slot=header]");
     this.hasFooter = !!this.querySelector("[slot=footer]");
@@ -85,6 +58,33 @@ export default class Dialog extends WebComponent(HTMLElement) {
         <focus-boundary static></focus-boundary>
       </div>
     `;
+  }
+
+  constructor() {
+    super();
+    this.shadowRoot.adoptedStyleSheets = [styles];
+  }
+
+  connectedCallback() {
+    this.update();
+    upgradeProperties.apply(this, ["open"]);
+
+    this.open = this.anchored
+      || (this.open && localStorage.getItem(`tcds_dialog_${this.id}_open`) !== "false");
+
+    this.anchor = () => {
+      this.anchored && this.show();
+    };
+
+    window.addEventListener("hashchange", this.anchor);
+  }
+
+  disconnectedCallback() {
+    window.removeEventListener("hashchange", this.anchor);
+  }
+
+  attributeChangedCallback(name, oldValue) {
+    this.update({[name]: oldValue});
   }
 
   mountedCallback() {

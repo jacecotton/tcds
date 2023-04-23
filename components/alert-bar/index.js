@@ -2,11 +2,6 @@ import {WebComponent} from "../../utilities/WebComponent/WebComponent.js";
 import styles from "./style.css";
 
 export default class AlertBar extends WebComponent(HTMLElement) {
-  constructor() {
-    super();
-    this.shadowRoot.adoptedStyleSheets = [styles];
-  }
-
   get template() {
     return /* html */`
       <div part="bar">
@@ -19,6 +14,11 @@ export default class AlertBar extends WebComponent(HTMLElement) {
         </tcds-button>
       </div>
     `;
+  }
+
+  constructor() {
+    super();
+    this.shadowRoot.adoptedStyleSheets = [styles];
   }
 
   connectedCallback() {

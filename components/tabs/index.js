@@ -7,6 +7,24 @@ export default class Tabs extends WebComponent(HTMLElement) {
     return this.hasAttribute("inactive");
   }
 
+  get template() {
+    return /* html */`
+      <div role="tablist">
+        ${this.tabpanels.map(tab => /* html */`
+          <button role="tab"
+            aria-selected="${tab.active}"
+            tabindex="${tab.active ? "0" : "-1"}"
+            onclick="this.getRootNode().host.tabClick(event)"
+            onkeydown="this.getRootNode().host.tabKeyDown(event)"
+          >
+            <span>${tab.label}</span>
+          </button>
+        `).join("")}
+      </div>
+      <slot></slot>
+    `;
+  }
+
   constructor() {
     super();
     this.shadowRoot.adoptedStyleSheets = [styles];
@@ -25,24 +43,6 @@ export default class Tabs extends WebComponent(HTMLElement) {
 
   attributeChangedCallback() {
     this.update();
-  }
-
-  get template() {
-    return /* html */`
-      <div role="tablist">
-        ${this.tabpanels.map(tab => /* html */`
-          <button role="tab"
-            aria-selected="${tab.active}"
-            tabindex="${tab.active ? "0" : "-1"}"
-            onclick="this.getRootNode().host.tabClick(event)"
-            onkeydown="this.getRootNode().host.tabKeyDown(event)"
-          >
-            <span>${tab.label}</span>
-          </button>
-        `).join("")}
-      </div>
-      <slot></slot>
-    `;
   }
 
   mountedCallback() {
