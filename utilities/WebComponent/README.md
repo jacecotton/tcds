@@ -259,16 +259,16 @@ class MyComponent extends WebComponent(HTMLElement) {
 ```
 
 ### Lazy properties
-The above approach does create one potential problem, which is if a component user attempts to set a property on the element before its definition has been loaded (ergo before the getter and setter can intercede). This can be addressed by [deleting then resetting the property](https://web.dev/custom-elements-best-practices/#make-properties-lazy) within the `connectedCallback`. For convenience, an `upgradeProperties` utility is provided which does this. As a matter of general best practice, this should always be done.
+If a component user attempts to set a property on the element before its definition has been loaded, its getter and setter won't intercede. This can be addressed by [deleting then resetting the property](https://web.dev/custom-elements-best-practices/#make-properties-lazy) when the element connects (using `connectedCallback`). For convenience, an `upgradeProperties` utility method is provided which does this. As a matter of general best practice, this should always be done.
 
 ```js
-import {WebComponent, upgradeProperties} from "@txch/tcds";
+import WebComponent from "@txch/tcds";
 
 class Dialog extends WebComponent(HTMLElement) {
   ...
 
   connectedCallback() {
-    upgradeProperties.apply(this, ["open"]);
+    this.upgradeProperties("open", ...);
   }
 }
 ```

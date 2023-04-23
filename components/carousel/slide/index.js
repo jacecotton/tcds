@@ -1,4 +1,4 @@
-import {WebComponent, upgradeProperties} from "../../../utilities/WebComponent/WebComponent.js";
+import WebComponent from "../../../utilities/WebComponent/WebComponent.js";
 
 export default class Slide extends WebComponent(HTMLElement) {
   static observedAttributes = ["active"];
@@ -27,7 +27,7 @@ export default class Slide extends WebComponent(HTMLElement) {
   }
 
   connectedCallback() {
-    upgradeProperties.apply(this, ["active"]);
+    this.upgradeProperties("active");
     this.update();
 
     this.carousel = this.closest("tcds-carousel");

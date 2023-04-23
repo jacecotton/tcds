@@ -1,4 +1,4 @@
-import {WebComponent, upgradeProperties} from "../../utilities/WebComponent/WebComponent.js";
+import WebComponent from "../../utilities/WebComponent/WebComponent.js";
 import styles from "./style.css";
 import "./tab/index.js";
 
@@ -31,7 +31,7 @@ export default class Tabs extends WebComponent(HTMLElement) {
   }
 
   connectedCallback() {
-    upgradeProperties.apply(this, ["inactive"]);
+    this.upgradeProperties("inactive");
     this.update();
 
     this.tabpanels = Array.from(this.querySelectorAll("tcds-tab"));

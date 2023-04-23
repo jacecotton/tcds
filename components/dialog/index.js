@@ -1,4 +1,4 @@
-import {WebComponent, upgradeProperties} from "../../utilities/WebComponent/WebComponent.js";
+import WebComponent from "../../utilities/WebComponent/WebComponent.js";
 import styles from "./style.css";
 
 export default class Dialog extends WebComponent(HTMLElement) {
@@ -66,8 +66,8 @@ export default class Dialog extends WebComponent(HTMLElement) {
   }
 
   connectedCallback() {
+    this.upgradeProperties("open");
     this.update();
-    upgradeProperties.apply(this, ["open"]);
 
     this.open = this.anchored
       || (this.open && localStorage.getItem(`tcds_dialog_${this.id}_open`) !== "false");

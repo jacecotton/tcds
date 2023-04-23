@@ -1,4 +1,4 @@
-import {WebComponent, upgradeProperties} from "../../utilities/WebComponent/WebComponent.js";
+import WebComponent from "../../utilities/WebComponent/WebComponent.js";
 import styles from "./style.css";
 
 export default class Accordion extends WebComponent(HTMLElement) {
@@ -44,7 +44,7 @@ export default class Accordion extends WebComponent(HTMLElement) {
   }
 
   connectedCallback() {
-    upgradeProperties.apply(this, ["multiple", "headingLevel"]);
+    this.upgradeProperties("multiple", "headingLevel");
     this.update();
 
     if(!this.id) {

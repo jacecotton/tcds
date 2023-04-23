@@ -1,4 +1,4 @@
-import {WebComponent, upgradeProperties} from "../../utilities/WebComponent/WebComponent.js";
+import WebComponent from "../../utilities/WebComponent/WebComponent.js";
 import AnimateElement from "../../utilities/AnimateElement/AnimateElement.js";
 import styles from "./style.css";
 
@@ -35,7 +35,7 @@ export default class MegaMenu extends WebComponent(HTMLElement) {
   }
 
   connectedCallback() {
-    upgradeProperties.apply(this, ["open"]);
+    this.upgradeProperties("open");
     this.update({open: null});
   }
 

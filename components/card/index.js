@@ -1,4 +1,4 @@
-import {WebComponent, upgradeProperties} from "../../utilities/WebComponent/WebComponent.js";
+import WebComponent from "../../utilities/WebComponent/WebComponent.js";
 import styles from "./style.css";
 
 export default class Card extends WebComponent(HTMLElement) {
@@ -115,7 +115,7 @@ export default class Card extends WebComponent(HTMLElement) {
   }
 
   connectedCallback() {
-    upgradeProperties.apply(this, ["orientation", "actionLabel", "size", "variant"]);
+    this.upgradeProperties("orientation", "actionLabel", "size", "variant");
     this.update();
 
     if(!this.querySelector("[slot=image], [slot=video]")) {

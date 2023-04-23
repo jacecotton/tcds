@@ -47,17 +47,16 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
 
     this.updatedCallback?.(old);
   }
+
+  upgradeProperties() {
+    [...arguments].forEach((property) => {
+      if(Object.prototype.hasOwnProperty.call(this, property)) {
+        const value = this[property];
+        delete this[property];
+        this[property] = value;
+      }
+    });
+  }
 };
 
-function upgradeProperties(properties) {
-  [...properties].forEach((property) => {
-    if(Object.prototype.hasOwnProperty.call(this, property)) {
-      const value = this[property];
-      delete this[property];
-      this[property] = value;
-    }
-  });
-}
-
 export default WebComponent;
-export {WebComponent, upgradeProperties};

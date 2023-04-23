@@ -1,4 +1,4 @@
-import {WebComponent, upgradeProperties} from "../../utilities/WebComponent/WebComponent.js";
+import WebComponent from "../../utilities/WebComponent/WebComponent.js";
 import styles from "./style.css";
 import "./slide/index.js";
 
@@ -144,7 +144,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
   #initialActive;
 
   connectedCallback() {
-    upgradeProperties.apply(this, ["playing", "timing", "multiple", "variant"]);
+    this.upgradeProperties("playing", "timing", "multiple", "variant");
     this.update();
 
     this.slides = Array.from(this.querySelectorAll("tcds-slide"));
