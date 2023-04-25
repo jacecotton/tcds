@@ -21,6 +21,10 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
     this.setAttribute("label", value);
   }
 
+  get accordion() {
+    return this.closest("tcds-accordion");
+  }
+
   get template() {
     const id = `${this.accordion.id}-${slugify(this.label)}`;
 
@@ -57,9 +61,6 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
     this.upgradeProperties("open", "label");
     this.update();
 
-    this.accordion = this.closest("tcds-accordion");
-    this.siblings = Array.from(this.accordion.sections).filter(section => section !== this);
-
     this.open = (this.accordion.multiple && this.open)
       || this === this.accordion.sections.find(section => section.open);
   }
@@ -85,7 +86,9 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
         });
 
         if(!this.accordion.multiple) {
-          this.siblings.filter(sibling => sibling.open).forEach(sibling => sibling.close());
+          Array.from(this.accordion.sections)
+            .filter(section => section !== this && section.open)
+            .forEach(section => section.close());
         }
       } else if(old.open) {
         panel.style.height = "0px";

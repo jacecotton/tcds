@@ -2,8 +2,8 @@ import WebComponent from "../../utilities/WebComponent/WebComponent.js";
 import styles from "./style.css";
 
 export default class Section extends WebComponent(HTMLElement) {
-  #has(...slots) {
-    return !!this.querySelector([...slots].map(slot => `[slot=${slot}]`).join(", "));
+  #has() {
+    return !!this.querySelector([...arguments].map(slot => `[slot=${slot}]`).join(", "));
   }
 
   get template() {
@@ -13,7 +13,11 @@ export default class Section extends WebComponent(HTMLElement) {
           ${this.#has("background") ? `<slot name="background"></slot>` : ``}
         </div>
 
-        <div part="primary" class="${!this.#has("tertiary") ? "fill-width" : ""} ${!this.#has("secondary") ? "fill-height" : ""}">
+        <div part="default">
+          <slot></slot>
+        </div>
+
+        <div part="primary">
           ${this.#has("overline") || this.#has("heading") || this.#has("subheading") ? /* html */`
             <hgroup>
               <slot name="overline"></slot>
@@ -23,10 +27,11 @@ export default class Section extends WebComponent(HTMLElement) {
           ` : ``}
 
           <slot name="primary"></slot>
-          <slot></slot>
 
           ${this.#has("cta") ? /* html */`
-            <slot name="cta"></slot>
+            <nav aria-label="Intro links">
+              <slot name="cta"></slot>
+            </nav>
           ` : ``}
         </div>
 
@@ -66,7 +71,6 @@ export default class Section extends WebComponent(HTMLElement) {
 
   mountedCallback() {
     this.shadowRoot.addEventListener("slotchange", (event) => {
-      console.log(event);
       this.update({[event.target.name]: event.target.assignedNodes()});
     });
   }

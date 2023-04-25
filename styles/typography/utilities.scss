@@ -1,7 +1,22 @@
-@use "_variables" as *;
+@use "variables" as *;
+@use "../layout/variables" as *;
 
 .text-center {
   text-align: center;
+}
+
+@each $breakpoint, $width in $breakpoints {
+  @media (--above-#{$breakpoint}) {
+    .above-#{$breakpoint}\:text-center {
+      text-align: center;
+    }
+  }
+
+  @media (--below-#{$breakpoint}) {
+    .below-#{$breakpoint}\:text-center {
+      text-align: center;
+    }
+  }
 }
 
 @each $font, $stack in $font-stacks {

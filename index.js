@@ -1,4 +1,4 @@
-import {WebComponent, upgradeProperties} from "./utilities/WebComponent/WebComponent.js";
+import WebComponent from "./utilities/WebComponent/WebComponent.js";
 import AnimateElement from "./utilities/AnimateElement/AnimateElement.js";
 import slugify from "./utilities/string-utils/slugify.js";
 
@@ -24,4 +24,4 @@ import "./components/_DEPRECATED/button/index.js";
 
 import "./templates/site-header/site-header.js";
 
-export {WebComponent, upgradeProperties, AnimateElement, slugify};
+export {WebComponent, AnimateElement, slugify};

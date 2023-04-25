@@ -20,6 +20,10 @@ export default class Accordion extends WebComponent(HTMLElement) {
     this.setAttribute("heading-level", value);
   }
 
+  get sections() {
+    return Array.from(this.querySelectorAll("tcds-accordion-section"));
+  }
+
   get template() {
     return /* html */`
       ${this.multiple ? /* html */`
@@ -51,8 +55,6 @@ export default class Accordion extends WebComponent(HTMLElement) {
       const accordions = Array.from(document.querySelectorAll("tcds-accordion"));
       this.id = `accordion${accordions.length > 1 ? `-${accordions.indexOf(this) + 1}` : ""}`;
     }
-
-    this.sections = Array.from(this.querySelectorAll("tcds-accordion-section"));
   }
 
   attributeChangedCallback(name, oldValue) {

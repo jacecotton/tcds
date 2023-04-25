@@ -60,10 +60,10 @@ h2 {
   height: var(--tcds-alert-bar-height);
   align-items: center;
   gap: var(--tcds-space-tight);
-}
 
-h2 tcds-icon {
-  color: var(--tcds-color-primary);
+  & tcds-icon {
+    color: var(--tcds-color-primary);
+  }
 }
 
 [part="alerts"] {

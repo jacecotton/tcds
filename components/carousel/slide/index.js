@@ -11,6 +11,10 @@ export default class Slide extends WebComponent(HTMLElement) {
     this.toggleAttribute("active", Boolean(value));
   }
 
+  get carousel() {
+    return this.closest("tcds-carousel");
+  }
+
   get template() {
     return /* html */`
       <section
@@ -29,8 +33,6 @@ export default class Slide extends WebComponent(HTMLElement) {
   connectedCallback() {
     this.upgradeProperties("active");
     this.update();
-
-    this.carousel = this.closest("tcds-carousel");
   }
 
   attributeChangedCallback(name, oldValue) {

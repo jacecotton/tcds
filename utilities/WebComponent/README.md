@@ -66,11 +66,32 @@ class MyComponent extends WebComponent(HTMLElement) {
 }
 ```
 
-As demonstrated above, we recommend
+Note that everything interpolated in a template ultimately needs to be a string value, hence the above `map`ping and `join`ing of an array (`Array.forEach`, for example, is not used because its callback returns no value).
 
-* [literal expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#string_interpolation) for string interpolation (in place of concatenation),
-* [ternary operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator) for conditional rendering,
-* [`Array.map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) for iterative rendering (with [`Array.join`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join) to concatenate the resulting array into a string).
+To avoid the above expression nesting, it may sometimes be helpful to break the template into chunks. Because the final returned template is just a string, this can be done with interpolation.
+
+```js
+class ... {
+  get template() {
+    const fruits = [...];
+
+    const fruitItems = fruits.map(fruit => `
+      <li>${fruit}</li>
+    `).join("");
+
+    const defaultMessage = `
+      <p>No fruits to display.</p>
+    `;
+
+    return `
+      ${fruits.length ? `
+        <p>Fruits:</p>
+        <ul>${fruitItems}</ul>
+      ` : defaultMessage}
+    `;
+  }
+}
+```
 
 ## Rendering
 Once your component's template is defined, it needs to be rendered to the element's shadow DOM. To do so, you can use the `update` method. Use the [`connectedCallback` method](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks) to make your first render when the element connects to a document:
@@ -274,7 +295,7 @@ class Dialog extends WebComponent(HTMLElement) {
 ```
 
 ## Styling
-`WebComponent` automatically injects the Design System's shared stylesheet into the shadow DOM. This can be changed or disabled by setting the `baseStyles` property.
+`WebComponent` automatically injects the Design System's shared stylesheet into the shadow DOM. This behavior can be changed or disabled by setting the `baseStyles` property.
 
 The simplest way to add scoped component styles is to embed inline styles in the template.
 
@@ -292,10 +313,16 @@ class MyComponent extends WebComponent(HTMLElement) {
 }
 ```
 
-However, we recommend using the [Constructable Stylesheets API](https://web.dev/constructable-stylesheets/).
+However, for more programmatic control we recommend using the [Constructable Stylesheets API](https://web.dev/constructable-stylesheets/).
 
 ```js
 class MyComponent extends WebComponent(HTMLElement) {
+  styles = `
+    :host {
+      ...
+    }
+  `;
+
   constructor() {
     super();
 
@@ -303,20 +330,12 @@ class MyComponent extends WebComponent(HTMLElement) {
     styles.replaceSync(this.styles);
     this.shadowRoot.adoptedStyleSheets = [styles];
   }
-
-  get styles() {
-    return `
-      :host {
-        display: block;
-      }
-    `;
-  }
 }
 ```
 
 For Safari support, the Design System uses [`construct-style-sheets-polyfill`](https://github.com/calebdwilliams/construct-style-sheets).
 
-To separate the CSS into different files and import them as adoptable stylesheets, the Design System uses [`constructable-style-loader`](https://github.com/alextech/constructable-style-loader).
+To separate the CSS into different files and import them as adoptable stylesheets, the Design System uses [`constructable-style-loader`](https://github.com/alextech/constructable-style-loader) as part of its build process (which essentially results in the same snippet above).
 
 ```js
 /* index.js */

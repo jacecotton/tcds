@@ -50,7 +50,20 @@ const tasks = {
             },
             {
               test: /\.css$/i,
-              use: ["constructable-style-loader"],
+              use: [
+                "constructable-style-loader",
+                {
+                  loader: "postcss-loader",
+                  options: {
+                    postcssOptions: {
+                      plugins: [
+                        "postcss-preset-env",
+                        "postcss-nesting",
+                      ],
+                    },
+                  },
+                },
+              ],
             },
           ],
         },

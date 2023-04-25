@@ -4,42 +4,115 @@
 
   display: block;
   background: transparent !important;
+  position: relative;
+  z-index: 1;
+
+  @media (min-width: 800px) {
+    --tcds-section-region-gap: var(--tcds-space-x-loose);
+  }
+}
+
+:host([data-theme="dark"]) {
+  --tcds-section-heading-color: #fff;
+}
+
+:host([data-theme="light"].bg-secondary) {
+  --tcds-section-watermark-color: var(--tcds-color-blue-light);
+}
+
+:host([data-theme="light"].bg-primary) {
+  --tcds-section-watermark-color: var(--tcds-color-red-light);
+}
+
+:host([watermark*="large"]) {
+  --tcds-section-watermark-size: 127vw;
+  --tcds-section-watermark-offset-block: 50%;
+}
+
+:host([overlay*="darken"]) {
+  --tcds-section-overlay-color: rgb(30 35 40 / var(--tcds-section-overlay-opacity, 60%));
+}
+
+:host([overlay*="desaturate"]) {
+  --tcds-section-overlay-backdrop-filter: saturate(0);
 }
 
 section {
   display: grid;
-  align-items: center;
   grid-template-columns:
     max(var(--site-outer-gutter), (50vw - var(--site-container-max-width) / 2 - var(--tcds-section-region-gap)))
-    4fr 3fr
+    4fr
+    3fr
     max(var(--site-outer-gutter), (50vw - var(--site-container-max-width) / 2 - var(--tcds-section-region-gap)));
   grid-template-rows:
-    var(--tcds-section-padding-block-start, var(--tcds-section-padding-block))
     repeat(2, auto)
     var(--tcds-section-padding-block-end, var(--tcds-section-padding-block))
     auto;
   grid-template-areas:
-    ". .         .         ."
-    ". primary   tertiary  ."
-    ". secondary secondary ."
-    ". secondary secondary ."
-    ". secondary secondary .";
+    "tertiary  tertiary  tertiary  tertiary"
+    ".         primary   primary   ."
+    "secondary secondary secondary secondary"
+    "secondary secondary secondary secondary";
+  align-items: center;
   gap: var(--tcds-section-region-gap);
   z-index: 1;
-}
+  position: relative;
 
-@media (max-width: 800px) {
-  section {
-    grid-template-areas:
-      "tertiary  tertiary  tertiary  tertiary"
-      ".         primary   primary   ."
-      "secondary secondary secondary secondary"
-      "secondary secondary secondary secondary";
+  @media (min-width: 800px) {
     grid-template-rows:
-      repeat(3, auto)
+      var(--tcds-section-padding-block-start, var(--tcds-section-padding-block))
+      auto
       var(--tcds-section-padding-block-end, var(--tcds-section-padding-block))
       auto;
+    grid-template-areas:
+      ". .         .         ."
+      ". primary   tertiary  ."
+      ". secondary secondary ."
+      ". secondary secondary .";
   }
+}
+
+:host([class*="bg-"][watermark]) [part="background"]::after {
+  display: block;
+  content: "";
+  width: var(--tcds-section-watermark-size);
+  height: var(--tcds-section-watermark-size);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translate(25%, var(--tcds-section-watermark-offset-block));
+  color: inherit;
+  background: var(--tcds-section-watermark-color);
+  mask: var(--tcds-icon-texas-childrens);
+  mask-position: 50% 50%;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  opacity: 0.35;
+  z-index: -1;
+}
+
+:host([overlay*="bottom-gradient"]) section::after {
+  display: block;
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  height: 50%;
+  background-image: linear-gradient(to top, rgb(0 0 0 / 50%) 0%, rgb(0 0 0 / 0%) 100%);
+}
+
+section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  background-color: var(--tcds-section-overlay-color);
+  backdrop-filter: var(--tcds-section-overlay-backdrop-filter);
 }
 
 [part="background"] {
@@ -49,6 +122,7 @@ section {
   height: 100%;
   width: 100%;
   z-index: -1;
+  overflow: hidden;
 }
 
 [part="primary"] {
@@ -68,22 +142,35 @@ section {
   grid-area: tertiary;
 }
 
+[part="default"] {
+  grid-column: 2 / -2;
+  grid-row: 2 / -2;
+}
+
+hgroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tcds-space-tight);
+  text-align: var(--tcds-section-text-align, left);
+}
+
+nav {
+  display: flex;
+  gap: var(--tcds-space-x-loose);
+}
+
 .fill-width {
   grid-column: 2 / 4;
 }
 
-@media (min-width: 800px) {
-  :host {
-    --tcds-section-region-gap: var(--tcds-space-x-loose);
+.fill-height {
+  @media (min-width: 800px) {
+    grid-row: 2 / -2;
   }
 
-  .fill-height {
-    grid-row: 2 / 4;
-  }
-}
-
-@media (max-width: 799px) {
-  .fill-height:not([part="tertiary"]) {
-    grid-row: 2 / 4;
+  @media (max-width: 799px) {
+    &:not([part="tertiary"]) {
+      grid-row: 2 / -2;
+    }
   }
 }
