@@ -16,6 +16,8 @@ body {
 
 h1,
 .h1 {
+  --tcds-color-text: var(--tcds-color-primary);
+
   font-size: var(--tcds-font-size-xx-large);
   font-weight: var(--tcds-font-weight-semibold);
   line-height: var(--tcds-line-height-tight);
@@ -23,10 +25,6 @@ h1,
 
   &:not(:only-child) {
     margin: 0 0 2rem;
-  }
-
-  :is(main, .main-content) & {
-    --tcds-color-text: var(--tcds-color-primary);
   }
 }
 

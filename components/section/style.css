@@ -1,19 +1,11 @@
 :host {
-  --tcds-section-padding-block: 7rem;
   --tcds-section-region-gap: var(--tcds-space-x-loose) 0;
 
-  display: block;
   background: transparent !important;
-  position: relative;
-  z-index: 1;
 
   @media (min-width: 800px) {
     --tcds-section-region-gap: var(--tcds-space-x-loose);
   }
-}
-
-:host([data-theme="dark"]) {
-  --tcds-section-heading-color: #fff;
 }
 
 :host([data-theme="light"].bg-secondary) {
@@ -72,7 +64,17 @@ section {
   }
 }
 
-:host([class*="bg-"][watermark]) [part="background"]::after {
+[part="background"] {
+  grid-column: 1 / -1;
+  grid-row: 1 / -2;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  z-index: -2;
+  overflow: hidden;
+}
+
+:host([class*="bg-"][watermark]:not([overlay*="bottom-gradient"])) [part="background"]::after {
   display: block;
   content: "";
   width: var(--tcds-section-watermark-size);
@@ -88,41 +90,31 @@ section {
   mask-repeat: no-repeat;
   mask-size: contain;
   opacity: 0.35;
-  z-index: -1;
+  z-index: 1;
 }
 
-:host([overlay*="bottom-gradient"]) section::after {
+:host([overlay*="bottom-gradient"]) [part="background"]::after {
   display: block;
   content: "";
   position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 0;
+  z-index: 1;
   height: 50%;
   background-image: linear-gradient(to top, rgb(0 0 0 / 50%) 0%, rgb(0 0 0 / 0%) 100%);
 }
 
-section::before {
+[part="background"]::before {
   content: "";
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 0;
+  z-index: 1;
   background-color: var(--tcds-section-overlay-color);
   backdrop-filter: var(--tcds-section-overlay-backdrop-filter);
-}
-
-[part="background"] {
-  grid-column: 1 / -1;
-  grid-row: 1 / -2;
-  position: relative;
-  height: 100%;
-  width: 100%;
-  z-index: -1;
-  overflow: hidden;
 }
 
 [part="primary"] {
@@ -150,13 +142,20 @@ section::before {
 hgroup {
   display: flex;
   flex-direction: column;
-  gap: var(--tcds-space-tight);
-  text-align: var(--tcds-section-text-align, left);
+
+  @media (max-width: 799px) {
+    text-align: center;
+  }
 }
 
 nav {
   display: flex;
   gap: var(--tcds-space-x-loose);
+  margin-top: var(--tcds-space-x-loose);
+
+  @media (max-width: 799px) {
+    justify-content: center;
+  }
 }
 
 .fill-width {

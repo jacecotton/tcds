@@ -4,6 +4,10 @@ import styles from "./style.css";
 export default class Dialog extends WebComponent(HTMLElement) {
   static observedAttributes = ["open", "position"];
 
+  #has() {
+    return !!this.querySelector([...arguments].map(slot => `[slot=${slot}]`).join(", "));
+  }
+
   get open() {
     return this.hasAttribute("open");
   }
@@ -20,26 +24,48 @@ export default class Dialog extends WebComponent(HTMLElement) {
     return window.location.hash.split(/[#?&]+/).includes(this.id);
   }
 
+  get variant() {
+    return this.getAttribute("variant")?.trim().replace(/\s\s+/g, " ").split(" ");
+  }
+
+  set variant(value) {
+    if(Array.isArray(value)) {
+      value = value.join(" ");
+    }
+
+    this.setAttribute("variant", value);
+  }
+
   get template() {
-    this.hasHeader = !!this.querySelector("[slot=header]");
-    this.hasFooter = !!this.querySelector("[slot=footer]");
-    this.hasVideo = !!this.querySelector("iframe[src*='youtube'], video, slot[name=video]");
+    const closeButton = /* html */`
+      <button is="tcds-ui-button"
+        part="close"
+        onclick="this.getRootNode().host.close()"
+        variant="${
+          this.getAttribute("position") === "right" || this.#has("header")
+          ? "ui"
+          : this.variant?.includes("lightbox") ?
+            "ghost"
+            : "secondary"
+        }"
+        ${this.variant?.includes("lightbox") ? `
+          data-theme="dark"
+          size="large"
+        ` : ``}
+        aria-label="Close dialog"
+        title="Close dialog"
+      ><tcds-icon icon="x"></tcds-icon></button>
+    `;
 
     return /* html */`
-      <div part="dialog" ${this.hasVideo ? `data-has-video` : ""}>
-        <focus-boundary static></focus-boundary>
+      <focus-boundary static></focus-boundary>
 
-        <button is="tcds-ui-button"
-          part="close"
-          onclick="this.getRootNode().host.close()"
-          variant="${this.getAttribute("position") === "right" || this.hasHeader ? "ui" : "secondary"}"
-          aria-label="Close dialog"
-          title="Close dialog"
-        >
-          <tcds-icon icon="x"></tcds-icon>
-        </button>
+      ${this.variant?.includes("lightbox") ? closeButton : ``}
 
-        ${this.hasHeader ? /* html */`
+      <div part="dialog">
+        ${!this.variant?.includes("lightbox") ? closeButton : ``}
+
+        ${this.#has("header") ? /* html */`
           <header>
             <slot name="header"></slot>
           </header>
@@ -49,14 +75,14 @@ export default class Dialog extends WebComponent(HTMLElement) {
           <slot></slot>
         </main>
 
-        ${this.hasFooter ? /* html */`
+        ${this.#has("footer") ? /* html */`
           <footer>
             <slot name="footer"></slot>
           </footer>
         ` : ``}
-
-        <focus-boundary static></focus-boundary>
       </div>
+
+      <focus-boundary static></focus-boundary>
     `;
   }
 
@@ -69,6 +95,11 @@ export default class Dialog extends WebComponent(HTMLElement) {
     this.upgradeProperties("open");
     this.update();
 
+    if(!this.id) {
+      const dialogs = Array.from(this.getRootNode().querySelectorAll("tcds-dialog"));
+      this.id = `dialog${dialogs.length > 1 ? `-${dialogs.indexOf(this) + 1}` : ""}`;
+    }
+
     this.open = this.anchored
       || (this.open && localStorage.getItem(`tcds_dialog_${this.id}_open`) !== "false");
 
@@ -77,6 +108,24 @@ export default class Dialog extends WebComponent(HTMLElement) {
     };
 
     window.addEventListener("hashchange", this.anchor);
+
+    /**
+     * For lightboxes, the dialog should have a fixed aspect ratio of that of
+     * its first media element (image, video, embed, etc.)
+     */
+    if(this.variant?.includes("lightbox")) {
+      const firstMedia = this.querySelector("img, video, embed, iframe, picture");
+
+      if(firstMedia) {
+        const width = firstMedia.width > 0 ? firstMedia.width : firstMedia.naturalWidth;
+        const height = firstMedia.height > 0 ? firstMedia.height : firstMedia.naturalHeight;
+        const gcd = (x, y) => y === 0 ? x : gcd(y, x % y);
+        const aspectRatio = `${width / gcd(width, height)} / ${height / gcd(width, height)}`;
+        const style = new CSSStyleSheet().replaceSync(`:host {--tcds-dialog-aspect-ratio: ${aspectRatio}}`);
+
+        this.shadowRoot.adoptedStyleSheets = [...this.shadowRoot.adoptedStyleSheets, ...[style]];
+      }
+    }
   }
 
   disconnectedCallback() {
@@ -95,7 +144,7 @@ export default class Dialog extends WebComponent(HTMLElement) {
       event.stopPropagation();
     });
 
-    document.body.addEventListener("click", () => {
+    this.getRootNode().body.addEventListener("click", () => {
       this.close();
     });
 
@@ -123,19 +172,19 @@ export default class Dialog extends WebComponent(HTMLElement) {
       this.#handleOtherComponents();
 
       if(this.open) {
-        this.#previouslyFocused = document.activeElement;
+        this.#previouslyFocused = this.getRootNode().activeElement;
 
         (
           this.querySelector("[autofocus]")
           || this.shadowRoot.querySelectorAll("focus-boundary")[1]
         ).focus();
 
-        if(this.autoclose) {
-          this.#autocloseTimer = setTimeout(() => {
-            this.close();
-            clearTimeout(this.#autocloseTimer);
-          }, this.autoclose * 1000);
-        }
+        // if(this.autoclose) {
+        //   this.#autocloseTimer = setTimeout(() => {
+        //     this.close();
+        //     clearTimeout(this.#autocloseTimer);
+        //   }, this.autoclose * 1000);
+        // }
       } else {
         this.#autocloseTimer && clearTimeout(this.#autocloseTimer);
         this.#previouslyFocused?.focus?.();

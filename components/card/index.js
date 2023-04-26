@@ -124,7 +124,7 @@ export default class Card extends WebComponent(HTMLElement) {
 
     if(!this.orientation) {
       this.orient();
-      new ResizeObserver(this.orient.bind(this)).observe(document.body);
+      new ResizeObserver(this.orient.bind(this)).observe(this.getRootNode().body);
     }
   }
 

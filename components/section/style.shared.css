@@ -1,27 +1,60 @@
-tcds-section > [slot="background"],
+tcds-section {
+  --tcds-section-padding-block: 7rem;
+
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+tcds-section[data-theme="dark"] {
+  --tcds-section-heading-color: #fff;
+}
+
+tcds-section:not(:defined) {
+  /**
+   * Shadow DOM structure uses a grid layout to create "padding" and a max-width
+   * container. If not defined then fallback to a simpler layout and add
+   * vertical padding and max-width constraint directly here.
+   */
+  padding:
+    var(--tcds-section-padding-block-start, var(--tcds-section-padding-block))
+    max(var(--site-outer-gutter), (100vw - var(--site-container-max-width)) / 2)
+    var(--tcds-section-padding-block-start, var(--tcds-section-padding-block));
+}
+
+tcds-section:not(:defined) > [slot="background"] {
+  position: absolute;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
 tcds-section > [slot="background"] img,
 tcds-section > img[slot="background"],
 tcds-section > video[slot="background"] {
   position: absolute;
-  top: 0;
   left: 0;
+  top: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  object-fit: cover;
+  object-position: var(--tcds-section-background-position, center);
 }
 
-tcds-section > [slot="background"] img,
-tcds-section > img[slot="background"],
-tcds-section > video[slot="background"] {
-  object-fit: cover;
-  object-position: center;
+tcds-section:not(:defined) > img[slot="secondary"],
+tcds-section:not(:defined) > [slot="secondary"] img,
+tcds-section:not(:defined) > img[slot="tertiary"],
+tcds-section:not(:defined) > [slot="tertiary"] img {
+  display: none;
 }
 
 tcds-section > [slot="heading"] {
-  color: var(--tcds-section-heading-color);
   line-height: var(--tcds-line-height-x-tight) !important;
   font-size: calc(4rem * var(--tcds-font-size-scaler));
-  margin: 0;
+  color: var(--tcds-section-heading-color, var(--tcds-color-text));
+  margin: 0 0 var(--tcds-space-x-loose);
 }
 
 tcds-section > [slot="overline"],
@@ -30,16 +63,14 @@ tcds-section > [slot="heading"] span {
   font-family: var(--tcds-font-ui);
   font-size: var(--tcds-font-size-large);
   font-weight: var(--tcds-font-weight-semibold);
-  color: var(--tcds-color-text);
-  margin-bottom: 0.5em;
+  margin-bottom: var(--tcds-space-x-tight);
   letter-spacing: 0.0005em;
 }
 
 tcds-section > [slot="heading"] sup {
-  font-size: 10%;
+  font-size: 16%;
   letter-spacing: 0.05em;
   position: relative;
-  left: 1em;
   top: -1em;
 }
 

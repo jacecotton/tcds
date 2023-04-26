@@ -1,5 +1,3 @@
-import lightStyles from "./style.light.css";
-
 const focusableSelectors = [
   `a[href]:not([tabindex^="-"])`,
   `area[href]:not([tabindex^="-"])`,
@@ -21,11 +19,11 @@ function getFocusableChildren(root) {
 
 export default class FocusBoundary extends HTMLElement {
   connectedCallback() {
-    this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStyleSheets, ...[lightStyles]];
+    const parent = this.parentElement || this.getRootNode();
 
-    const boundaries = Array.from(this.parentElement.querySelectorAll("focus-boundary"));
+    const boundaries = Array.from(parent.querySelectorAll("focus-boundary"));
     const focusableChildren = [
-      ...getFocusableChildren(this.parentElement),
+      ...getFocusableChildren(parent),
       ...getFocusableChildren(this.getRootNode().host),
     ];
 

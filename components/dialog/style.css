@@ -22,8 +22,16 @@
   --tcds-color-highlight: var(--tcds-color-shade-x-weak);
 }
 
-:host([open]:not([position])) {
-  --tcds-dialog-animation: slide-in-down;
+:host([open]:not([position], [variant*="lightbox"])) {
+  --tcds-dialog-animation: slide-in-up;
+}
+
+:host([open][variant*="lightbox"]) {
+  --tcds-dialog-animation: grow-in;
+}
+
+:host([variant*="lightbox"]) {
+  --tcds-dialog-padding: 0;
 }
 
 :host([open][position="right"]) {
@@ -42,17 +50,12 @@
   overflow-wrap: break-word;
   width: calc(100vw - var(--site-outer-gutter) * 2);
   max-height: var(--tcds-dialog-max-height, none);
+  aspect-ratio: var(--tcds-dialog-aspect-ratio, auto);
   z-index: 1;
   animation:
     var(--tcds-dialog-animation)
     var(--tcds-animation-expressive-duration)
     var(--tcds-animation-expressive-easing) forwards;
-}
-
-[part="dialog"][data-has-video] {
-  --tcds-dialog-padding: 0;
-
-  aspect-ratio: 16 / 9;
 }
 
 :host(:not([position])) [part="dialog"] {
@@ -71,15 +74,19 @@
 }
 
 @media (min-width: 1024px) {
-  :host(:not([position])) [part="dialog"] {
+  :host(:not([position], [variant*="lightbox"])) [part="dialog"] {
     width: var(--tcds-dialog-base-width, fit-content);
     min-width: var(--tcds-dialog-min-width, 700px);
     max-width: var(--tcds-dialog-max-width, 1000px);
   }
 
-  :host([position]) [part="dialog"] {
+  :host([position], [variant*="lightbox"]) [part="dialog"] {
     width: 700px;
   }
+}
+
+:host([variant*="lightbox"]) [part="dialog"] {
+  width: auto;
 }
 
 main {
@@ -120,6 +127,13 @@ footer {
   z-index: 2;
 }
 
+/**
+ * There are various conditions defined by the shadow template which determine
+ * what variant the close button is. `secondary` is the default, `ui` is used
+ * for dialogs that have headers or are positioned to the right, and `ghost` is
+ * used for the `lightbox` dialog variant.
+ */
+
 [part="close"][variant="secondary"] {
   --tcds-dialog-close-button-position: 0;
   --tcds-button-translate: 50%, -50%;
@@ -127,4 +141,8 @@ footer {
 
 [part="close"][variant="ui"] {
   --tcds-dialog-close-button-position: var(--tcds-space-tight);
+}
+
+[part="close"][variant="ghost"] {
+  --tcds-dialog-close-button-position: var(--site-outer-gutter);
 }

@@ -63,7 +63,7 @@ export default class MegaMenu extends WebComponent(HTMLElement) {
       });
     });
 
-    document.body.addEventListener("click", () => {
+    this.getRootNode().body.addEventListener("click", () => {
       this.close();
     });
 
