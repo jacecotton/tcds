@@ -1,3 +1,12 @@
+## [1.10.7](https://github.com/jacecotton/tcds/compare/v1.10.6...v1.10.7) (2023-04-26)
+
+
+### Bug Fixes
+
+* **components:** Accordion text colors ([2c65415](https://github.com/jacecotton/tcds/commit/2c6541556436c3e3fc2f75b6d6427ce9dee814f1))
+
+
+
 ## [1.10.6](https://github.com/jacecotton/tcds/compare/v1.10.5...v1.10.6) (2023-04-26)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * **templates:** Site header accommodation for language switcher ([f10326d](https://github.com/jacecotton/tcds/commit/f10326db236102e3b555b3c3a963c8238cc517d1))
-
-
-
-## [1.10.2](https://github.com/jacecotton/tcds/compare/v1.10.1...v1.10.2) (2023-04-19)
-
-
-### Bug Fixes
-
-* **components:** carousel viewport internal padding ([17eee6b](https://github.com/jacecotton/tcds/commit/17eee6be7519c003d0ea5f682ec130de318ce715))
 
 
 
