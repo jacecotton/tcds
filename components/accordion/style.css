@@ -1,5 +1,6 @@
 :host {
   --tcds-accordion-horizontal-padding: var(--tcds-space-loose);
+  --tcds-color-text: var(--tcds-color-secondary);
 
   flex-direction: column;
   background: #fff;

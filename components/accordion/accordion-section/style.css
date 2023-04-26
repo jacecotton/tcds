@@ -16,7 +16,7 @@
   font-family: var(--tcds-font-ui);
   font-weight: var(--tcds-font-weight-semibold);
   width: 100%;
-  color: var(--tcds-color-text);
+  color: var(--tcds-color-secondary);
   transition: all var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing);
 }
 
