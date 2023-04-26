@@ -1,3 +1,12 @@
+## [1.10.6](https://github.com/jacecotton/tcds/compare/v1.10.5...v1.10.6) (2023-04-26)
+
+
+### Bug Fixes
+
+* **components:** Remove dark styles for accordion component ([680fa0c](https://github.com/jacecotton/tcds/commit/680fa0c037b87e225fc8d3bbba42589cd9367b47))
+
+
+
 ## [1.10.5](https://github.com/jacecotton/tcds/compare/v1.10.4...v1.10.5) (2023-04-25)
 
 
@@ -32,16 +41,6 @@
 ### Bug Fixes
 
 * **components:** carousel viewport internal padding ([17eee6b](https://github.com/jacecotton/tcds/commit/17eee6be7519c003d0ea5f682ec130de318ce715))
-
-
-
-## [1.10.1](https://github.com/jacecotton/tcds/compare/v1.10.0...v1.10.1) (2023-04-18)
-
-
-### Bug Fixes
-
-* **components:** Dialog responsivity ([8834831](https://github.com/jacecotton/tcds/commit/8834831a4039cbf2ccb93dca5312d3bc2e58f8ac))
-* **components:** Section font fix ([44409a0](https://github.com/jacecotton/tcds/commit/44409a049e561f003ced2287ab647ced62e17ba6))
 
 
 
