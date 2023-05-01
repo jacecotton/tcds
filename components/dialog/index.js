@@ -109,10 +109,8 @@ export default class Dialog extends WebComponent(HTMLElement) {
 
     window.addEventListener("hashchange", this.anchor);
 
-    /**
-     * For lightboxes, the dialog should have a fixed aspect ratio of that of
-     * its first media element (image, video, embed, etc.)
-     */
+    // For lightboxes, the dialog should have a fixed aspect ratio of that of
+    // its first media element (image, video, embed, etc.)
     if(this.variant?.includes("lightbox")) {
       const firstMedia = this.querySelector("img, video, embed, iframe, picture");
 
@@ -121,8 +119,9 @@ export default class Dialog extends WebComponent(HTMLElement) {
         const height = firstMedia.height > 0 ? firstMedia.height : firstMedia.naturalHeight;
         const gcd = (x, y) => y === 0 ? x : gcd(y, x % y);
         const aspectRatio = `${width / gcd(width, height)} / ${height / gcd(width, height)}`;
-        const style = new CSSStyleSheet().replaceSync(`:host {--tcds-dialog-aspect-ratio: ${aspectRatio}}`);
+        const style = new CSSStyleSheet();
 
+        style.replaceSync(`:host {--tcds-dialog-aspect-ratio: ${aspectRatio}}`);
         this.shadowRoot.adoptedStyleSheets = [...this.shadowRoot.adoptedStyleSheets, ...[style]];
       }
     }
@@ -179,12 +178,12 @@ export default class Dialog extends WebComponent(HTMLElement) {
           || this.shadowRoot.querySelectorAll("focus-boundary")[1]
         ).focus();
 
-        // if(this.autoclose) {
-        //   this.#autocloseTimer = setTimeout(() => {
-        //     this.close();
-        //     clearTimeout(this.#autocloseTimer);
-        //   }, this.autoclose * 1000);
-        // }
+        if(this.autoclose) {
+          this.#autocloseTimer = setTimeout(() => {
+            this.close();
+            clearTimeout(this.#autocloseTimer);
+          }, this.autoclose * 1000);
+        }
       } else {
         this.#autocloseTimer && clearTimeout(this.#autocloseTimer);
         this.#previouslyFocused?.focus?.();

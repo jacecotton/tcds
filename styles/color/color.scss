@@ -46,6 +46,8 @@
 }
 
 [data-theme="dark"] {
+  --tcds-color-text: var(--tcds-color-white);
+
   --tcds-color-primary-background: var(--tcds-color-red);
   --tcds-color-primary-text: var(--tcds-color-tint-x-strong);
   --tcds-color-primary-link: var(--tcds-color-tint-x-strong);
@@ -65,7 +67,10 @@
   --tcds-color-tertiary-highlight: var(--tcds-color-tint);
 }
 
-[data-theme="light"] {
+[data-theme="light"],
+main:not(.main--unstyled) {
+  --tcds-color-text: var(--tcds-color-gray-dark);
+
   --tcds-color-primary-background: var(--tcds-color-red-x-light);
   --tcds-color-primary-text: var(--tcds-color-gray-dark);
   --tcds-color-primary-link: var(--tcds-color-link-default);

@@ -50,6 +50,13 @@ tcds-section:not(:defined) > [slot="tertiary"] img {
   display: none;
 }
 
+tcds-section > img[slot="secondary"],
+tcds-section > [slot="secondary"] img,
+tcds-section > img[slot="tertiary"],
+tcds-section > [slot="tertiary"] img {
+  width: 100%;
+}
+
 tcds-section > [slot="heading"] {
   line-height: var(--tcds-line-height-x-tight) !important;
   font-size: calc(4rem * var(--tcds-font-size-scaler));
@@ -65,6 +72,7 @@ tcds-section > [slot="heading"] span {
   font-weight: var(--tcds-font-weight-semibold);
   margin-bottom: var(--tcds-space-x-tight);
   letter-spacing: 0.0005em;
+  color: var(--tcds-color-text);
 }
 
 tcds-section > [slot="heading"] sup {
@@ -75,5 +83,7 @@ tcds-section > [slot="heading"] sup {
 }
 
 tcds-section > [slot="subheading"] {
+  font-family: var(--tcds-font-headings);
   font-size: 1.5rem !important;
+  margin: 0;
 }

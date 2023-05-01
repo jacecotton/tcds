@@ -2,6 +2,8 @@ import WebComponent from "../../utilities/WebComponent/WebComponent.js";
 import styles from "./style.css";
 
 export default class Section extends WebComponent(HTMLElement) {
+  static observedAttributes = ["data-theme", "class"];
+
   #has() {
     return !!this.querySelector([...arguments].map(slot => `[slot=${slot}]`).join(", "));
   }
@@ -79,6 +81,10 @@ export default class Section extends WebComponent(HTMLElement) {
     this.shadowRoot.addEventListener("slotchange", (event) => {
       this.update({[event.target.name]: event.target.assignedNodes()});
     });
+  }
+
+  attributeChangedCallback() {
+    this.update();
   }
 }
 

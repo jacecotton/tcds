@@ -80,7 +80,7 @@
     max-width: var(--tcds-dialog-max-width, 1000px);
   }
 
-  :host([position], [variant*="lightbox"]) [part="dialog"] {
+  :host([position]:not([variant*="lightbox"])) [part="dialog"] {
     width: 700px;
   }
 }
@@ -95,6 +95,18 @@ main {
   height: 100%;
   padding: var(--tcds-dialog-padding);
   overflow-y: auto;
+  position: relative;
+
+  &::after {
+    content: "";
+    display: block;
+    height: 5rem;
+    background: linear-gradient(to top, white, transparent);
+    position: fixed;
+    bottom: var(--tcds-dialog-footer-height);
+    left: 0;
+    right: var(--tcds-dialog-padding);
+  }
 }
 
 header,
@@ -118,6 +130,7 @@ footer {
   min-height: var(--tcds-dialog-footer-height);
   border-bottom-left-radius: var(--tcds-dialog-border-radius);
   border-bottom-right-radius: var(--tcds-dialog-border-radius);
+  z-index: 1;
 }
 
 [part="close"] {
