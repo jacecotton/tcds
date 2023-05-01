@@ -14,7 +14,7 @@ tcds-section > [slot="background"] img,
 tcds-section > img[slot="background"],
 tcds-section > video[slot="background"] {
   object-fit: cover;
-  object-position: center;
+  object-position: var(--tcds-section-background-position, center center);
 }
 
 tcds-section > [slot="heading"] {
