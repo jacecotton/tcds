@@ -1,3 +1,12 @@
+## [1.10.8](https://github.com/jacecotton/tcds/compare/v1.10.7...v1.10.8) (2023-04-26)
+
+
+### Bug Fixes
+
+* **components:** Accordion tweak ([02c824b](https://github.com/jacecotton/tcds/commit/02c824b4c4720ad42a717864e6b0536e2b6aedec))
+
+
+
 ## [1.10.7](https://github.com/jacecotton/tcds/compare/v1.10.6...v1.10.7) (2023-04-26)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * **styles:** Better enforce utility class ([714ed2a](https://github.com/jacecotton/tcds/commit/714ed2aa09fb769f11850a417217e13cc6a28183))
-
-
-
-## [1.10.3](https://github.com/jacecotton/tcds/compare/v1.10.2...v1.10.3) (2023-04-19)
-
-
-### Bug Fixes
-
-* **templates:** Site header accommodation for language switcher ([f10326d](https://github.com/jacecotton/tcds/commit/f10326db236102e3b555b3c3a963c8238cc517d1))
 
 
 
