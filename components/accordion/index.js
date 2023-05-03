@@ -58,7 +58,7 @@ export default class Accordion extends WebComponent(HTMLElement) {
   }
 
   attributeChangedCallback(name, oldValue) {
-    this.update({[name]: oldValue});
+    this.update({[name]: name === "multiple" ? oldValue !== null : oldValue});
   }
 
   showAll() {
