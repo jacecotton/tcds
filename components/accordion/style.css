@@ -1,15 +1,13 @@
 :host {
   --tcds-accordion-padding-inline: var(--tcds-space-loose);
+  --tcds-color-text: var(--tcds-color-secondary);
 
+  display: flex;
   flex-direction: column;
   background: #fff;
   padding: var(--tcds-space-x-tight) var(--tcds-accordion-padding-inline) !important;
   box-shadow: 0 2px 6px 0 rgb(0 0 0 / 20%);
   border-radius: 10px;
-}
-
-:host(:not([hidden])) {
-  display: flex;
 }
 
 [part="controls"] {
