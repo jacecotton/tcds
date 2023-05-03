@@ -61,16 +61,12 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
     this.upgradeProperties("open", "label");
     this.update();
 
-    this.open = (this.accordion.multiple && this.open)
-      || this === this.accordion.sections.find(section => section.open);
+    this.open = this.accordion.multiple ? this.open
+      : this === this.accordion.sections.find(section => section.open);
   }
 
   attributeChangedCallback(name, oldValue) {
-    if(name === "open") {
-      oldValue = oldValue !== null || oldValue === "";
-    }
-
-    this.update({[name]: oldValue});
+    this.update({[name]: name === "open" ? oldValue !== null : oldValue});
   }
 
   updatedCallback(old) {
