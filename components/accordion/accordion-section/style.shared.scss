@@ -1,0 +1,5 @@
+tcds-accordion-section {
+  &:not(:last-of-type) {
+    border-bottom: 1px solid var(--tcds-color-highlight);
+  }
+}
