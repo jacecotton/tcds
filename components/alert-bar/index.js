@@ -4,15 +4,15 @@ import styles from "./style.css";
 export default class AlertBar extends WebComponent(HTMLElement) {
   get template() {
     return /* html */`
-      <div part="bar">
+      <section>
         <h2><tcds-icon icon="bell"></tcds-icon> Updates</h2>
         <div part="alerts">
           <slot name="alert"></slot>
         </div>
-        <tcds-button part="close" variant="ui" onclick="this.getRootNode().host.close()" aria-label="Dismiss updates" title="Dismiss updates">
+        <button is="tcds-ui-button" part="close" variant="ui" onclick="this.getRootNode().host.close()" aria-label="Dismiss updates" title="Dismiss updates">
           <tcds-icon icon="x"></tcds-icon>
-        </tcds-button>
-      </div>
+        </button>
+      </section>
     `;
   }
 
@@ -26,19 +26,17 @@ export default class AlertBar extends WebComponent(HTMLElement) {
   }
 
   mountedCallback() {
-    const details = Array.from(this.querySelectorAll("details"));
+    const alerts = Array.from(this.querySelectorAll("[slot~=alert]"));
 
-    details.forEach((detail) => {
-      detail.addEventListener("toggle", () => {
-        if(detail.open) {
-          details.forEach(_detail => _detail.open = _detail === detail);
-        }
+    alerts.forEach((alert) => {
+      alert.addEventListener("click", () => {
+        alerts.filter(other => alert !== other).forEach(other => other.open = false);
       });
     });
   }
 
   close() {
-    this.shadowRoot.querySelector("[part~=bar]").hidden = true;
+    this.hidden = true;
   }
 }
 
