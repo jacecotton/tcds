@@ -85,7 +85,9 @@ export default class MegaMenu extends WebComponent(HTMLElement) {
       });
 
       if(this.open) {
-        Array.from(this.getRootNode().querySelectorAll("tcds-mega-menu")).filter(otherMegaMenu => otherMegaMenu !== this).forEach(otherMegaMenu => otherMegaMenu.close());
+        Array.from(this.getRootNode().querySelectorAll("tcds-mega-menu"))
+          .filter(otherMegaMenu => otherMegaMenu !== this)
+          .forEach(otherMegaMenu => otherMegaMenu.close());
         this.hidden = false;
       } else if(old.open) {
         AnimateElement(this.megaMenu, (window.innerWidth < 1200 ? "slide-out-right" : ["slide-out-up", "fade-out"]), {
