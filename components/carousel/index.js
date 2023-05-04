@@ -3,17 +3,19 @@ import styles from "./style.css";
 import "./slide/index.js";
 
 export default class Carousel extends WebComponent(HTMLElement) {
-  static observedAttributes = ["playing", "timing", "multiple", "variant"];
+  static observedAttributes = ["playing", "timing", "multiple"];
 
   get playing() {
     return this.hasAttribute("playing") && this.hasAttribute("timing");
   }
 
   set playing(value) {
-    if(this.hasAttribute("timing") || !value) {
+    // Do not allow `playing` to be set to true without `timing`. A decision was
+    // made to not provide a default `timing` value, as we want to force case-
+    // by-case determination of the most appropriate timing value based on
+    // individual carousel content.
+    if(this.hasAttribute("timing") || value === false) {
       this.toggleAttribute("playing", Boolean(value));
-    } else {
-      console.error(`Cannot set property "playing" on element tcds-carousel: "timing" property is not present.`);
     }
   }
 
@@ -33,12 +35,8 @@ export default class Carousel extends WebComponent(HTMLElement) {
     this.toggleAttribute("multiple", Boolean(value));
   }
 
-  get variant() {
-    return this.getAttribute("variant");
-  }
-
-  set variant(value) {
-    this.setAttribute("variant", value);
+  get slides() {
+    return Array.from(this.querySelectorAll("tcds-slide"));
   }
 
   get nextIndex() {
@@ -55,9 +53,9 @@ export default class Carousel extends WebComponent(HTMLElement) {
    * @property {boolean} observingSwipe - Whether scrolling within the viewport
    *   should be observed. While the carousel is automatically advancing, it
    *   should not be observed.
-   * @property {boolean} isInView - Specifically whether the carousel is visible
-   *   in the window's scrollport (does not apply to window visibility).
-   * @property {boolean} isPaused - Specifically whether the carousel is
+   * @property {boolean} isInView - Whether the carousel is visible in the
+   *   window's scrollport (does not apply to window visibility).
+   * @property {boolean} isPaused - Whether the carousel is specifically
    *   temporarily stopped (i.e. paused, not just "not playing").
    */
   #flags = {};
@@ -100,22 +98,17 @@ export default class Carousel extends WebComponent(HTMLElement) {
           >
             <tcds-icon icon="chevron-right"></tcds-icon>
           </button>
-          <div role="tablist" part="indicators" aria-label="Pick slide">
+          <div role="tablist" aria-label="Pick slide">
             ${this.slides.map((slide, index) => /* html */`
               <button
                 role="tab"
-                part="indicator"
                 aria-selected="${slide.active}"
                 aria-label="Slide ${index + 1} of ${this.slides.length}"
                 title="Slide ${index + 1} of ${this.slides.length}"
                 tabindex="${slide.active ? "0" : "-1"}"
                 onclick="this.getRootNode().host.indicatorClick(event)"
                 onkeydown="this.getRootNode().host.indicatorKeydown(event)"
-              >
-                ${this.variant === "gallery" ? /* html */`
-                  <img src="${slide.querySelector("img")?.src}" alt="">
-                ` : ``}
-              </button>
+              ></button>
             `).join("")}
           </div>
         </div>
@@ -144,10 +137,9 @@ export default class Carousel extends WebComponent(HTMLElement) {
   #initialActive;
 
   connectedCallback() {
-    this.upgradeProperties("playing", "timing", "multiple", "variant");
+    this.upgradeProperties("playing", "timing", "multiple");
     this.update();
 
-    this.slides = Array.from(this.querySelectorAll("tcds-slide"));
     this.#initialActive = this.slides.find(slide => slide.active) || this.slides[0];
   }
 
@@ -156,8 +148,8 @@ export default class Carousel extends WebComponent(HTMLElement) {
   }
 
   mountedCallback() {
-    this.viewport = this.shadowRoot.querySelector("[part~=viewport]");
-    this.indicators = Array.from(this.shadowRoot.querySelectorAll("[part~=indicator]"));
+    this.viewport = this.shadowRoot.querySelector("[part=viewport]");
+    this.indicators = Array.from(this.shadowRoot.querySelectorAll("[role=tab]"));
 
     // Only autoplay if no "reduce motion" system preference, and user can hover
     // with pointer device.
@@ -324,6 +316,9 @@ export default class Carousel extends WebComponent(HTMLElement) {
 
   resume() {
     if(this.#flags.isPaused) {
+      // This `requestAnimationFrame` is to prevent `setTimeout` weirdness after
+      // rapid back-and-forth state changes (e.g. hovering over-and-out too
+      // quickly).
       requestAnimationFrame(() => {
         this.play();
         this.#flags.isPaused = null;

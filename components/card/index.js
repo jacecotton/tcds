@@ -4,6 +4,10 @@ import styles from "./style.css";
 export default class Card extends WebComponent(HTMLElement) {
   static observedAttributes = ["orientation", "action-label", "size", "variant"];
 
+  #has() {
+    return !!this.querySelector([...arguments].map(slot => `[slot=${slot}]`).join(", "));
+  }
+
   get orientation() {
     return this.getAttribute("orientation");
   }
@@ -13,7 +17,15 @@ export default class Card extends WebComponent(HTMLElement) {
   }
 
   get actionLabel() {
-    return this.getAttribute("action-label")?.trim() || "Read more";
+    let value = this.hasAttribute("action-label") && this.getAttribute("action-label").trim();
+
+    if(value === false) {
+      value = "Read more";
+    } else if(value === "") {
+      value = false;
+    }
+
+    return value;
   }
 
   set actionLabel(value) {
@@ -41,55 +53,27 @@ export default class Card extends WebComponent(HTMLElement) {
   }
 
   get template() {
-    const video = this.querySelector("iframe[slot=video]");
-    const viPos = video?.src.indexOf("embed/") + "embed/".length;
-    const vi = video?.src.slice(viPos, viPos + 11);
-    const viLink = `#video-dialog-${vi}`;
     const link = this.querySelector("a[slot=title][href]")?.href;
     const title = this.querySelector("[slot=title]")?.textContent;
-    const hasImage = !!this.querySelector("[slot=image]");
-    const fullBleed = this.variant?.includes("full-bleed");
 
     return /* html */`
       <article part="card">
         <slot name="tag"></slot>
 
-        ${hasImage || video ? /* html */`
+        ${this.#has("image") ? /* html */`
           <figure>
-            ${hasImage ? /* html */`
-              <slot name="image"></slot>
-            ` : ``}
-
-            ${fullBleed || video ? /* html */`
-              <div part="video-feature" data-theme="dark">
-                ${this.variant?.includes("full-bleed") ? /* html */`
-                  <slot name="title"></slot>
-                ` : ``}
-
-                ${video ? /* html */`
-                  <a is="tcds-link-button" part="play-button" aria-label="Open video" title="Open video" href="${viLink}" size="x-large"><tcds-icon icon="play"></tcds-icon></a>
-                ` : ``}
-              </div>
-            ` : ``}
-
-            ${video && !hasImage ? /* html */`
-              <img src="https://img.youtube.com/vi/${vi}/maxresdefault.jpg" alt="">
-            ` : ``}
+            <slot name="image"></slot>
           </figure>
         ` : ``}
 
         <div part="content">
-          <slot name="subtitle"></slot>
-
-          ${!this.variant?.includes("full-bleed") ? /* html */`
-            <slot name="title"></slot>
-          ` : ``}
-
+          <slot name="overline"></slot>
+          <slot name="title"></slot>
           <slot name="description"></slot>
           <slot></slot>
 
           <slot name="footer">
-            ${this.actionLabel !== "" && link ? /* html */`
+            ${this.actionLabel && link ? /* html */`
               <footer part="footer" ${this.variant && this.variant.includes("overlay") ? `data-theme="dark"` : ""}>
                 <a is="tcds-link-button" href="${link}" variant="ghost" ${this.size !== "large" ? `size="small"` : ""}>
                   ${this.actionLabel} <span class="visually-hidden">about ${title}</span>
@@ -100,12 +84,6 @@ export default class Card extends WebComponent(HTMLElement) {
           </slot>
         </div>
       </article>
-
-      ${video ? /* html */`
-        <tcds-dialog id="video-dialog-${vi}">
-          <slot name="video"></slot>
-        </tcds-dialog>
-      ` : ``}
     `;
   }
 
@@ -118,7 +96,7 @@ export default class Card extends WebComponent(HTMLElement) {
     this.upgradeProperties("orientation", "actionLabel", "size", "variant");
     this.update();
 
-    if(!this.querySelector("[slot=image], [slot=video]")) {
+    if(!this.#has("image")) {
       this.toggleAttribute("data-no-image", true);
     }
 
@@ -133,25 +111,12 @@ export default class Card extends WebComponent(HTMLElement) {
   }
 
   orient() {
-    const cardWidth = this.getBoundingClientRect?.().width;
-    const standardBreakpoint = 600;
-    const windowWidth = window.innerWidth;
-
-    const variant = {
-      overlay: this.variant && this.variant.includes("overlay"),
-      fullBleed: this.variant && this.variant.includes("full-bleed"),
-    };
-
-    if(cardWidth > standardBreakpoint && !variant.overlay) {
+    if(this.getBoundingClientRect?.().width > 600 && !this.variant?.includes("overlay")) {
       if(this.orientation !== "horizontal") {
         this.orientation = "horizontal";
       }
     } else if(this.orientation !== "vertical") {
       this.orientation = "vertical";
-    }
-
-    if(cardWidth === windowWidth && variant.overlay && !variant.fullBleed) {
-      this.variant = [...this.variant, ...["full-bleed"]];
     }
   }
 }

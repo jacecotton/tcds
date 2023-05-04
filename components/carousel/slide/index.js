@@ -19,7 +19,6 @@ export default class Slide extends WebComponent(HTMLElement) {
     return /* html */`
       <section
         role="tabpanel"
-        part="slide"
         ${this.active ? `` : /* html */`
           aria-hidden="true"
           tabindex="-1"
@@ -41,9 +40,7 @@ export default class Slide extends WebComponent(HTMLElement) {
 
   updatedCallback(old) {
     if("active" in old) {
-      if(this.active) {
-        this.carousel.update();
-      }
+      this.carousel.update();
     }
   }
 
@@ -55,7 +52,7 @@ export default class Slide extends WebComponent(HTMLElement) {
    *   selecting the slide.
    */
   select({scroll = true} = {}) {
-    this.carousel.querySelectorAll("tcds-slide").forEach((slide) => {
+    this.carousel.slides.forEach((slide) => {
       slide.active = slide === this;
 
       if(slide === this && scroll) {
