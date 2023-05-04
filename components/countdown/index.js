@@ -44,26 +44,26 @@ export default class Countdown extends WebComponent(HTMLElement) {
   }
 
   mountedCallback() {
-    this.updateCount();
+    const updateCount = () => {
+      const distance = new Date(this.date).getTime() - new Date().getTime();
+
+      const daysUntil = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, "0");
+      const hoursUntil = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, "0");
+      const minutesUntil = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, "0");
+      const secondsUntil = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, "0");
+
+      this.count = `${daysUntil} : ${hoursUntil} : ${minutesUntil} : ${secondsUntil}`;
+
+      setTimeout(() => {
+        updateCount();
+      }, 1000);
+    };
+
+    updateCount();
   }
 
   attributeChangedCallback(name, oldValue) {
     this.update({[name]: oldValue});
-  }
-
-  updateCount() {
-    const distance = new Date(this.date).getTime() - new Date().getTime();
-
-    const daysUntil = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, "0");
-    const hoursUntil = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, "0");
-    const minutesUntil = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, "0");
-    const secondsUntil = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, "0");
-
-    this.count = `${daysUntil} : ${hoursUntil} : ${minutesUntil} : ${secondsUntil}`;
-
-    setTimeout(() => {
-      this.updateCount();
-    }, 1000);
   }
 }
 
