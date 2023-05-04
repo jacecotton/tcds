@@ -53,6 +53,15 @@ a[is="tcds-link-button"] {
       box-shadow 0.08s ease-in;
   }
 
+  :where(&:not([variant*="ghost"], [variant*="ui"])) {
+    --tcds-button-font-weight: var(--tcds-font-weight-semibold);
+  }
+
+  :where(&:not([variant*="ghost"], [variant*="ui"], [aria-label])) {
+    --tcds-button-icon-background-color: var(--tcds-color-primary);
+    --tcds-button-icon-color: #fff;
+  }
+
   :where(&:active) {
     --tcds-button-scale: 0.99;
   }
@@ -87,15 +96,6 @@ a[is="tcds-link-button"] {
     z-index: -1;
     background-color: var(--tcds-button-overlay, transparent);
     transition: background-color var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing);
-  }
-
-  :where(&:not([variant*="ghost"], [variant*="ui"])) {
-    --tcds-button-font-weight: var(--tcds-font-weight-semibold);
-  }
-
-  :where(&:not([variant*="ghost"], [variant*="ui"], [aria-label])) {
-    --tcds-button-icon-background-color: var(--tcds-color-primary);
-    --tcds-button-icon-color: #fff;
   }
 
   :where(&[size*="small"]) {

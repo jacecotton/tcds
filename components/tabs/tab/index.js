@@ -13,7 +13,7 @@ export default class Tab extends WebComponent(HTMLElement) {
   }
 
   get label() {
-    return this.getAttribute("label");
+    return this.getAttribute("label") || this.querySelector("[slot=label]").innerHTML;
   }
 
   get template() {
