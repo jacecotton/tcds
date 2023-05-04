@@ -13,6 +13,10 @@ export default class Tab extends WebComponent(HTMLElement) {
   }
 
   get label() {
+    // This is technically a hacky use of [slot], but because the shadow root of
+    // the tab item is distinct from that of the tab container, this is the only
+    // way to allow directly surfacing the label in the tab item markup while
+    // placing it inside the tablist of the tab container.
     return this.getAttribute("label") || this.querySelector("[slot=label]").innerHTML;
   }
 
