@@ -20,6 +20,10 @@ export default class Dialog extends WebComponent(HTMLElement) {
     return Number(this.getAttribute("autoclose")) || false;
   }
 
+  set autoclose(value) {
+    this.setAttribute("autoclose", Number(value));
+  }
+
   get anchored() {
     return window.location.hash.split(/[#?&]+/).includes(this.id);
   }
@@ -113,6 +117,7 @@ export default class Dialog extends WebComponent(HTMLElement) {
     // its first media element (image, video, embed, etc.)
     if(this.variant?.includes("lightbox")) {
       const firstMedia = this.querySelector("img, video, embed, iframe, picture");
+      const isVideo = firstMedia.localName === "video" || firstMedia.localName === "iframe";
 
       if(firstMedia) {
         const width = firstMedia.width > 0 ? firstMedia.width : firstMedia.naturalWidth;
@@ -121,7 +126,16 @@ export default class Dialog extends WebComponent(HTMLElement) {
         const aspectRatio = `${width / gcd(width, height)} / ${height / gcd(width, height)}`;
         const style = new CSSStyleSheet();
 
-        style.replaceSync(`:host {--tcds-dialog-aspect-ratio: ${aspectRatio}}`);
+        style.replaceSync(`
+          :host {
+            --tcds-dialog-aspect-ratio: ${aspectRatio};
+
+            ${isVideo && width > height ? `
+              --tcds-dialog-min-width: var(--site-container-max-width);
+            ` : ``}
+          }
+        `);
+
         this.shadowRoot.adoptedStyleSheets = [...this.shadowRoot.adoptedStyleSheets, ...[style]];
       }
     }
