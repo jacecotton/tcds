@@ -8,7 +8,7 @@ section {
     max(var(--site-outer-gutter), (50vw - var(--site-container-max-width) / 2))
     1fr
     max(var(--site-outer-gutter), (50vw - var(--site-container-max-width) / 2));
-  grid-template-rows: 2rem repeat(3, auto) 2rem;
+  grid-template-rows: var(--tcds-spotlight-padding-inline) repeat(3, auto) var(--tcds-spotlight-padding-inline);
   grid-template-areas:
     ". .          ."
     ". heading    ."

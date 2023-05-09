@@ -6,7 +6,7 @@ window.addEventListener("load", function() {
 
   if(header) {
     const navs = document.getElementById("site-header-navs");
-    const togglers = document.querySelectorAll("[controls=site-header-navs]");
+    const togglers = document.querySelectorAll("[aria-controls=site-header-navs]");
 
     const breakpoint = window.matchMedia("(max-width: 1200px)");
 
@@ -17,12 +17,12 @@ window.addEventListener("load", function() {
       if(breakpoint.matches) {
         navs.hidden = true;
         togglers.forEach((toggler) => {
-          toggler.setAttribute("expanded", "false");
+          toggler.setAttribute("aria-expanded", "false");
         });
       } else {
         navs.hidden = false;
         togglers.forEach((toggler) => {
-          toggler.setAttribute("expanded", "true");
+          toggler.setAttribute("aria-expanded", "true");
         });
       }
     }
@@ -53,7 +53,7 @@ window.addEventListener("load", function() {
       navs.hidden = false;
 
       togglers.forEach((toggler) => {
-        toggler.setAttribute("expanded", "true");
+        toggler.setAttribute("aria-expanded", "true");
       });
 
       AnimateElement(navs, "slide-in-left", {lazyload: false});
@@ -64,7 +64,7 @@ window.addEventListener("load", function() {
         navs.hidden = true;
 
         togglers.forEach((toggler) => {
-          toggler.setAttribute("expanded", "false");
+          toggler.setAttribute("aria-expanded", "false");
         });
       });
     }

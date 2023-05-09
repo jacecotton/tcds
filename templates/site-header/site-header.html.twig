@@ -14,10 +14,10 @@
     </a>
   </div>
 
-  <tcds-button controls="site-header-navs" expanded="false" icon="only hamburger" variant="ui" size="large" class="site-header__navs-open">Open menu</tcds-button>
+  <button is="tcds-ui-button" aria-controls="site-header-navs" aria-expanded="false" variant="ui" size="large" class="site-header__navs-open" aria-label="Open menu" title="Open menu"><tcds-icon icon="hamburger"></tcds-icon></button>
 
   <div class="site-header__navs" id="site-header-navs">
-    <tcds-button controls="site-header-navs" expanded="false" icon="only x" variant="ui" class="site-header__navs-close">Close menu</tcds-button>
+    <button is="tcds-ui-button" aria-controls="site-header-navs" aria-expanded="false" variant="ui" class="site-header__navs-close" aria-label="Open menu" title="Open menu"><tcds-icon icon="x"></tcds-icon></button>
 
     {% block menus %}{% endblock %}
   </div>

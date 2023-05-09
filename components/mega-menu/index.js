@@ -40,11 +40,7 @@ export default class MegaMenu extends WebComponent(HTMLElement) {
   }
 
   attributeChangedCallback(name, oldValue) {
-    if(name === "open") {
-      oldValue = oldValue === "" || oldValue !== null;
-    }
-
-    this.update({[name]: oldValue});
+    this.update({[name]: name === "open" ? oldValue === "" : oldValue});
   }
 
   mountedCallback() {
@@ -71,7 +67,7 @@ export default class MegaMenu extends WebComponent(HTMLElement) {
       event.stopPropagation();
     });
 
-    this.addEventListener("keyup", (event) => {
+    this.getRootNode().addEventListener("keyup", (event) => {
       if(event.key === "Escape") {
         this.close();
       }
@@ -86,8 +82,8 @@ export default class MegaMenu extends WebComponent(HTMLElement) {
 
       if(this.open) {
         Array.from(this.getRootNode().querySelectorAll("tcds-mega-menu"))
-          .filter(otherMegaMenu => otherMegaMenu !== this)
-          .forEach(otherMegaMenu => otherMegaMenu.close());
+          .filter(other => other !== this)
+          .forEach(other => other.close());
         this.hidden = false;
       } else if(old.open) {
         AnimateElement(this.megaMenu, (window.innerWidth < 1200 ? "slide-out-right" : ["slide-out-up", "fade-out"]), {
