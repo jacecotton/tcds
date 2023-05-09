@@ -1,3 +1,9 @@
+/**
+ * As a strictly temporary measure, this component leverages the glightbox
+ * library. Ultimately, the idea is to leverage `tcds-dialog[variant=lightbox]`
+ * when feature parity is achieved.
+ */
+
 export default class Gallery extends HTMLElement {
   connectedCallback() {
     if(!this.id) {

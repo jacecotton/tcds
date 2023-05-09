@@ -16,7 +16,9 @@ body main,
   }
 
   @media (--below-medium) {
-    margin-left: calc(var(--site-outer-gutter) * -1);
-    margin-right: calc(var(--site-outer-gutter) * -1);
+    .max-width & {
+      margin-left: calc(var(--site-outer-gutter) * -1);
+      margin-right: calc(var(--site-outer-gutter) * -1);
+    }
   }
 }

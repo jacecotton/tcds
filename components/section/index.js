@@ -9,6 +9,7 @@ export default class Section extends WebComponent(HTMLElement) {
   }
 
   get template() {
+    const hasBackgroundImage = this.querySelector("[slot=background]:is(picture, video, img)");
     const shouldRenderHgroup = this.#has("overline", "heading", "subheading");
     const shouldRenderCTA = this.#has("cta");
     const shouldRenderPrimary = shouldRenderHgroup || shouldRenderCTA || this.#has("primary");
@@ -17,7 +18,14 @@ export default class Section extends WebComponent(HTMLElement) {
 
     return /* html */`
       <section>
-        <div part="background" class="${[...this.classList].filter(className => className.startsWith("bg-"))}" data-theme="${this.dataset.theme}">
+        <div
+          part="background"
+          class="
+            ${[...this.classList].filter(className => className.startsWith("bg-"))}
+            ${hasBackgroundImage ? "has-background" : ""}
+          "
+          data-theme="${this.dataset.theme}"
+        >
           <slot name="background"></slot>
         </div>
 
@@ -26,7 +34,7 @@ export default class Section extends WebComponent(HTMLElement) {
         </div>
 
         ${shouldRenderPrimary ? /* html */`
-          <div part="primary">
+          <div part="primary" ${!shouldRenderSecondary ? `class="fill-height"` : ``}>
             ${shouldRenderHgroup ? /* html */`
               <hgroup>
                 <slot name="overline"></slot>
@@ -46,7 +54,7 @@ export default class Section extends WebComponent(HTMLElement) {
         ` : ``}
 
         ${shouldRenderSecondary ? /* html */`
-          <div part="secondary" ${!shouldRenderTertiary ? `class="fill-width"` : ""}>
+          <div part="secondary">
             <slot name="secondary"></slot>
             <!-- LEGACY -->
             <slot name="image"></slot>
@@ -54,7 +62,7 @@ export default class Section extends WebComponent(HTMLElement) {
         ` : ``}
 
         ${shouldRenderTertiary ? /* html */`
-          <div part="tertiary" class="fill-height">
+          <div part="tertiary">
             <slot name="tertiary"></slot>
             <!-- LEGACY -->
             <slot name="image"></slot>
