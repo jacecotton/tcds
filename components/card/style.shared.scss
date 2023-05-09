@@ -74,7 +74,7 @@ tcds-card {
 
     display: flex;
     align-items: center;
-    gap: var(--tcds-space-normal);
+    gap: 1ch;
     position: absolute;
     top: var(--tcds-card-tag-position);
     font-family: var(--tcds-font-ui);

@@ -29,9 +29,11 @@ export default class Section extends WebComponent(HTMLElement) {
           <slot name="background"></slot>
         </div>
 
-        <div part="default">
-          <slot></slot>
-        </div>
+        ${!shouldRenderPrimary ? /* html */`
+          <div part="default">
+            <slot></slot>
+          </div>
+        ` : ``}
 
         ${shouldRenderPrimary ? /* html */`
           <div part="primary" ${!shouldRenderSecondary ? `class="fill-height"` : ``}>
@@ -68,6 +70,8 @@ export default class Section extends WebComponent(HTMLElement) {
             <slot name="image"></slot>
           </div>
         ` : ``}
+
+        <slot name="footer"></slot>
       </section>
     `;
   }
