@@ -70,8 +70,6 @@ export default class Section extends WebComponent(HTMLElement) {
             <slot name="image"></slot>
           </div>
         ` : ``}
-
-        <slot name="footer"></slot>
       </section>
     `;
   }

@@ -109,15 +109,6 @@ a[is="tcds-link-button"] {
     --tcds-button-font-size: 1.125rem;
   }
 
-  /**
-   * This size is generally discouraged for most buttons, but is mainly used
-   * for giant action buttons like the play button in section highlights.
-   */
-  :where(&[size*="x-large"]) {
-    --tcds-button-height: 4.25rem;
-    --tcds-button-font-size: var(--tcds-font-size-x-large);
-  }
-
   :where(&[size*="full-width"]) {
     display: flex;
     width: 100%;

@@ -19,6 +19,7 @@ import "./components/map/index.js";
 import "./components/countdown/index.js";
 import "./components/mega-menu/index.js";
 import "./components/gallery/index.js";
+import "./components/spotlight/index.js";
 
 import "./components/_DEPRECATED/button/index.js";
 

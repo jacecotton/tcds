@@ -1,0 +1,56 @@
+:host {
+  display: block;
+}
+
+section {
+  display: grid;
+  grid-template-columns:
+    max(var(--site-outer-gutter), (50vw - var(--site-container-max-width) / 2))
+    1fr
+    max(var(--site-outer-gutter), (50vw - var(--site-container-max-width) / 2));
+  grid-template-rows: 2rem repeat(3, auto) 2rem;
+  grid-template-areas:
+    ". .          ."
+    ". heading    ."
+    ". background ."
+    ". subheading ."
+    ". .          .";
+  gap: var(--tcds-space-loose);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+
+  @media (min-width: 800px) {
+    grid-template-rows: 7rem 1fr 1fr 7rem fit-content;
+    grid-template-areas:
+      ".          .          ."
+      ".          heading    ."
+      ".          button     ."
+      ".          .          ."
+      "subheading subheading subheading";
+    aspect-ratio: 4 / 3;
+  }
+
+  @media (min-width: 1000px) {
+    aspect-ratio: 16 / 9;
+  }
+
+  @media (min-width: 1920px) {
+    aspect-ratio: 16 / 5;
+  }
+}
+
+[part="button"] {
+  --tcds-button-height: 4.25rem;
+  --tcds-button-font-size: var(--tcds-font-size-x-large);
+
+  grid-area: background;
+  margin: 0 auto;
+
+  @media (min-width: 800px) {
+    grid-area: button;
+    align-self: start;
+  }
+}

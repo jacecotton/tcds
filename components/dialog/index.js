@@ -157,7 +157,7 @@ export default class Dialog extends WebComponent(HTMLElement) {
       event.stopPropagation();
     });
 
-    this.getRootNode().body.addEventListener("click", () => {
+    this.getRootNode().addEventListener("click", () => {
       this.close();
     });
 
