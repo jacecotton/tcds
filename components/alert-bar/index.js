@@ -1,40 +1,42 @@
 import WebComponent from "../../utilities/WebComponent/WebComponent.js";
-import shadowStyles from "./style.css";
-import lightStyles from "./style.light.css";
+import styles from "./style.css";
 
 export default class AlertBar extends WebComponent(HTMLElement) {
-  constructor() {
-    super();
-    this.shadowRoot.adoptedStyleSheets = [shadowStyles];
-    this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStyleSheets, ...[lightStyles]];
-  }
-
-  render() {
+  get template() {
     return /* html */`
-      <div part="bar" id="alert-bar">
+      <section>
         <h2><tcds-icon icon="bell"></tcds-icon> Updates</h2>
         <div part="alerts">
           <slot name="alert"></slot>
         </div>
-        <tcds-button part="close" aria-controls="alert-bar" icon="only x" variant="ui" onclick="this.getRootNode().host.close()">Dismiss updates</tcds-button>
-      </div>
+        <button is="tcds-ui-button" part="close" variant="ui" onclick="this.getRootNode().host.close()" aria-label="Dismiss updates" title="Dismiss updates">
+          <tcds-icon icon="x"></tcds-icon>
+        </button>
+      </section>
     `;
   }
 
-  mountedCallback() {
-    const details = Array.from(this.querySelectorAll("details"));
+  constructor() {
+    super();
+    this.shadowRoot.adoptedStyleSheets = [styles];
+  }
 
-    details.forEach((detail) => {
-      detail.addEventListener("toggle", () => {
-        if(detail.open) {
-          details.forEach(_detail => _detail.open = _detail === detail);
-        }
+  connectedCallback() {
+    this.update();
+  }
+
+  mountedCallback() {
+    const alerts = Array.from(this.querySelectorAll("[slot~=alert]"));
+
+    alerts.forEach((alert) => {
+      alert.addEventListener("click", () => {
+        alerts.filter(other => alert !== other).forEach(other => other.open = false);
       });
     });
   }
 
   close() {
-    this.shadowRoot.querySelector("[part~=bar]").hidden = true;
+    this.hidden = true;
   }
 }
 

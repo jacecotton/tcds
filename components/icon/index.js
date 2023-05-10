@@ -1,17 +1,17 @@
-import WebComponent from "../../utilities/WebComponent/WebComponent.js";
 import slugify from "../../utilities/string-utils/slugify.js";
-import styles from "./style.css";
 
-export default class Icon extends WebComponent(HTMLElement) {
+export default class Icon extends HTMLElement {
   constructor() {
     super();
-    this.shadowRoot.adoptedStyleSheets = [styles];
+    // We're attaching a shadow root here so that content placed between
+    // `tcds-icon` tags are not rendered (unless the component fails to define).
+    this.attachShadow({mode: "open"});
   }
 
-  render() {
-    return /* html */`
-      <div part="icon" style="--tcds-icon: var(--tcds-icon-${this.props.icon || slugify(this.innerHTML)})"></div>
-    `;
+  connectedCallback() {
+    if(!this.getAttribute("icon")) {
+      this.setAttribute("icon", slugify(this.textContent));
+    }
   }
 }
 

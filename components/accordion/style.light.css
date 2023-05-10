@@ -1,7 +1,0 @@
-tcds-accordion:not(:only-child) {
-  margin: var(--tcds-space-normal) 0;
-}
-
-tcds-accordion:first-child:not(:only-child) {
-  margin: 0 0 var(--tcds-space-normal);
-}

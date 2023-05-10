@@ -32,7 +32,7 @@
 
   &__navs {
     a,
-    button {
+    button:not([is]) {
       appearance: none;
       background: none;
       border: none;
@@ -93,7 +93,7 @@
       overflow-y: auto;
       overscroll-behavior: none;
 
-      :not([expanded="true"]) + & {
+      :not([aria-expanded="true"]) + & {
         visibility: hidden;
       }
 
@@ -108,7 +108,7 @@
       }
 
       a,
-      button {
+      button:not([is]) {
         min-height: var(--tcds-size-medium);
         padding: var(--tcds-space-tight) 0;
 
@@ -207,7 +207,7 @@
       }
 
       a,
-      button {
+      button:not([is]) {
         height: 100%;
         padding: var(--tcds-site-nav-link-padding, 0 1rem);
       }
@@ -220,7 +220,7 @@
       align-items: center;
 
       a,
-      button {
+      button:not([is]) {
         font-weight: var(--tcds-font-weight-bold);
       }
     }

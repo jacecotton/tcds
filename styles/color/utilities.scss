@@ -1,11 +1,3 @@
-[data-theme="light"] {
-  --tcds-color-text: var(--tcds-color-gray-dark);
-}
-
-[data-theme="dark"] {
-  --tcds-color-text: var(--tcds-color-white);
-}
-
 [class*="bg-"][data-theme],
 .text-primary,
 .text-secondary,
@@ -31,7 +23,8 @@
   background-color: var(--tcds-color-secondary-background);
 }
 
-.bg-tertiary[data-theme] {
+.bg-tertiary[data-theme],
+.bg-white[data-theme] {
   --tcds-color-link: var(--tcds-color-tertiary-link);
   --tcds-color-link-hover: var(--tcds-color-tertiary-link-hover);
   --tcds-color-highlight: var(--tcds-color-tertiary-highlight);

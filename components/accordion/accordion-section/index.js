@@ -1,51 +1,47 @@
 import WebComponent from "../../../utilities/WebComponent/WebComponent.js";
 import slugify from "../../../utilities/string-utils/slugify.js";
-import shadowStyles from "./style.css";
-import lightStyles from "./style.light.css";
+import styles from "./style.css";
 
 export default class AccordionSection extends WebComponent(HTMLElement) {
-  static state = {
-    open: {
-      type: Boolean,
-      reflected: true,
-    },
-  };
+  static observedAttributes = ["open", "label"];
 
-  constructor() {
-    super();
-
-    this.shadowRoot.adoptedStyleSheets = [shadowStyles];
-    this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStyleSheets, ...[lightStyles]];
+  get open() {
+    return this.hasAttribute("open");
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-
-    this.parent = this.closest("tcds-accordion");
-    this.siblings = Array.from(this.parent.sections).filter(instance => instance !== this);
-
-    this.state.open = this.parent.props.multiple
-      ? this.hasAttribute("open")
-      : this.parent.sections.filter(section => section.hasAttribute("open")).indexOf(this) === 0;
+  set open(value) {
+    this.toggleAttribute("open", Boolean(value));
   }
 
-  render() {
-    const id = `${this.parent.id}-${slugify(this.props.label)}`;
+  get label() {
+    return this.getAttribute("label");
+  }
+
+  set label(value) {
+    this.setAttribute("label", value);
+  }
+
+  get accordion() {
+    return this.closest("tcds-accordion");
+  }
+
+  get template() {
+    const id = `${this.accordion.id}-${slugify(this.label)}`;
 
     return /* html */`
-      <section part="section">
-        <h${this.parent.props["heading-level"]} part="heading">
+      <section>
+        <h${this.accordion.headingLevel} part="heading">
           <button
             part="button"
             id="${id}-button"
             aria-controls="${id}-panel"
-            aria-expanded="${this.state.open}"
+            aria-expanded="${this.open}"
             onclick="this.getRootNode().host.toggle()"
           >
-            ${this.props.label}
+            ${this.label}
             <tcds-icon part="icon" icon="chevron-down"></tcds-icon>
           </button>
-        </h${this.parent.props["heading-level"]}>
+        </h${this.accordion.headingLevel}>
 
         <div part="panel" id="${id}-panel" aria-labelledby="${id}-button">
           <div part="content">
@@ -56,47 +52,64 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
     `;
   }
 
-  updatedCallback(state) {
-    if(state.newState) {
-      if("open" in state.newState) {
-        const panel = this.shadowRoot.querySelector("[part~=panel]");
+  constructor() {
+    super();
+    this.shadowRoot.adoptedStyleSheets = [styles];
+  }
 
-        if(this.state.open) {
-          panel.style.height = "0px";
-          panel.hidden = false;
+  connectedCallback() {
+    this.upgradeProperties("open", "label");
+    this.update();
 
-          requestAnimationFrame(() => {
-            panel.style.height = `${panel.scrollHeight}px`;
-          });
+    this.open = this.accordion.multiple ? this.open
+      : this === this.accordion.sections.find(section => section.open);
+  }
 
-          if(this.parent.props.multiple === false) {
-            this.siblings.filter(sibling => sibling.state.open).forEach(sibling => sibling.close());
-          }
-        } else if(state.oldState.open) {
-          panel.style.height = "0px";
+  attributeChangedCallback(name, oldValue) {
+    this.update({[name]: name === "open" ? oldValue !== null : oldValue});
+  }
 
-          panel.ontransitionend = () => {
-            panel.hidden = true;
-            panel.style.height = null;
-            panel.ontransitionend = null;
-          };
-        } else {
-          panel.hidden = true;
+  updatedCallback(old) {
+    const panel = this.shadowRoot.querySelector("[part~=panel]");
+
+    if("open" in old) {
+      if(this.open) {
+        panel.style.height = "0px";
+        panel.hidden = false;
+
+        requestAnimationFrame(() => {
+          panel.style.height = `${panel.scrollHeight}px`;
+        });
+
+        if(!this.accordion.multiple) {
+          Array.from(this.accordion.sections)
+            .filter(section => section !== this && section.open)
+            .forEach(section => section.close());
         }
+      } else if(old.open) {
+        panel.style.height = "0px";
+
+        panel.ontransitionend = () => {
+          panel.hidden = true;
+          panel.style.height = null;
+          panel.ontransitionend = null;
+        };
       }
+    } else if(!this.open) {
+      panel.hidden = true;
     }
   }
 
-  open() {
-    this.state.open = true;
+  show() {
+    this.open = true;
   }
 
   close() {
-    this.state.open = false;
+    this.open = false;
   }
 
   toggle() {
-    this.state.open = !this.state.open;
+    this.open = !this.open;
   }
 }
 

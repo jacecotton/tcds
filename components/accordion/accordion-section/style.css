@@ -3,7 +3,6 @@
 }
 
 [part="button"] {
-  appearance: none;
   background: none;
   cursor: pointer;
   display: flex;
@@ -17,13 +16,13 @@
   font-weight: var(--tcds-font-weight-semibold);
   width: 100%;
   color: var(--tcds-color-text);
-  transition: all var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing);
-}
+  transition: color var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing);
 
-[part="button"][aria-expanded="true"] {
-  --tcds-accordion-icon-rotate: 180deg;
+  &[aria-expanded="true"] {
+    --tcds-accordion-icon-rotate: 180deg;
 
-  color: var(--tcds-color-primary);
+    color: var(--tcds-color-primary);
+  }
 }
 
 [part="icon"] {

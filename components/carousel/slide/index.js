@@ -1,25 +1,25 @@
 import WebComponent from "../../../utilities/WebComponent/WebComponent.js";
 
 export default class Slide extends WebComponent(HTMLElement) {
-  static state = {
-    active: {
-      type: Boolean,
-      default: false,
-      reflected: true,
-    },
-  };
+  static observedAttributes = ["active"];
 
-  connectedCallback() {
-    super.connectedCallback();
-    this.parent = this.closest("tcds-carousel");
+  get active() {
+    return this.hasAttribute("active");
   }
 
-  render() {
+  set active(value) {
+    this.toggleAttribute("active", Boolean(value));
+  }
+
+  get carousel() {
+    return this.closest("tcds-carousel");
+  }
+
+  get template() {
     return /* html */`
       <section
         role="tabpanel"
-        part="slide"
-        ${this.state.active ? `` : /* html */`
+        ${this.active ? `` : /* html */`
           aria-hidden="true"
           tabindex="-1"
         `}
@@ -29,26 +29,38 @@ export default class Slide extends WebComponent(HTMLElement) {
     `;
   }
 
-  updatedCallback(state) {
-    if(state.newState) {
-      if("active" in state.newState) {
-        if(this.state.active) {
-          this.parent.dispatchEvent(new Event("update"));
-        }
-      }
+  connectedCallback() {
+    this.upgradeProperties("active");
+    this.update();
+  }
+
+  attributeChangedCallback(name, oldValue) {
+    this.update({[name]: oldValue});
+  }
+
+  updatedCallback(old) {
+    if("active" in old) {
+      this.carousel.update();
     }
   }
 
-  select() {
-    this.parent.querySelectorAll("tcds-slide").forEach((slide) => {
-      slide.state.active = slide === this;
+  /**
+   * Activates the slide.
+   *
+   * @param {object}  param0 Configuration options
+   * @param {boolean} param0.scroll Whether to scroll the viewport when
+   *   selecting the slide.
+   */
+  select({scroll = true} = {}) {
+    this.carousel.slides.forEach((slide) => {
+      slide.active = slide === this;
 
-      if(slide === this) {
+      if(slide === this && scroll) {
         requestAnimationFrame(() => {
           const {offsetLeft: slideLeft, offsetWidth: slideWidth} = this;
-          const {offsetLeft: viewportLeft, offsetWidth: viewportWidth} = this.parent.viewport;
+          const {offsetLeft: viewportLeft, offsetWidth: viewportWidth} = this.carousel.viewport;
 
-          this.parent.viewport.scrollLeft = this.parent.props.multiple
+          this.carousel.viewport.scrollLeft = this.carousel.multiple
             ? (slideLeft - viewportLeft) - (viewportWidth / 2) + (slideWidth / 2)
             : (slideLeft - viewportLeft);
         });

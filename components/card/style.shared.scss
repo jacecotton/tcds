@@ -1,0 +1,96 @@
+tcds-card {
+  > [slot="title"] {
+    font-family: var(--tcds-card-title-font);
+    font-weight: var(--tcds-card-title-font-weight, var(--tcds-font-weight-semibold));
+    font-size: var(--tcds-card-title-font-size, var(--tcds-font-size-large));
+    line-height: var(--tcds-line-height-tight);
+    color: var(--tcds-card-title-color, var(--tcds-card-text-color));
+    text-decoration: none;
+
+    &:focus {
+      outline: none;
+    }
+
+    &[href]::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+  }
+
+  > [slot="overline"] {
+    font-family: var(--tcds-font-ui);
+    font-weight: var(--tcds-font-weight-normal);
+    font-size: var(--tcds-card-overline-font-size, var(--tcds-font-size-small));
+    color: var(--tcds-card-overline-color, var(--tcds-color-gray));
+    margin-bottom: 0;
+    text-transform: uppercase;
+  }
+
+  > [slot="description"] {
+    &,
+    p {
+      font-family: var(--tcds-card-description-font);
+      font-size: var(--tcds-card-description-font-size, var(--tcds-font-size-medium));
+      line-height: 1.5;
+      color: var(--tcds-card-text-color);
+    }
+  }
+
+  > [slot="footer"],
+  &::part(footer) {
+    display: flex;
+    gap: var(--tcds-space-normal);
+    margin-top: auto;
+  }
+
+  .tcds-action-bar {
+    width: calc(100% + var(--tcds-card-content-padding) * 2);
+    max-width: none;
+    border-radius: 0;
+    box-shadow: none;
+    position: relative;
+    left: 0;
+    transform: none;
+    border-top: 1px solid var(--tcds-color-shade-x-weak);
+    margin: 0 calc(var(--tcds-card-content-padding) * -1) calc(var(--tcds-card-content-padding) * -1);
+  }
+
+  :where(& > [slot="description"] a),
+  :where(& > [slot="footer"] a) {
+    position: relative;
+    margin: -0.5em;
+    padding: 0.5em;
+    color: var(--tcds-card-link-color);
+  }
+}
+
+[slot="tag"] {
+  tcds-card > & {
+    --tcds-card-tag-position: var(--tcds-space-tight);
+
+    display: flex;
+    align-items: center;
+    gap: 1ch;
+    position: absolute;
+    top: var(--tcds-card-tag-position);
+    font-family: var(--tcds-font-ui);
+    font-size: var(--tcds-font-size-small);
+    color: #fff;
+    filter:
+      drop-shadow(0 0 15px var(--tcds-color-shade))
+      drop-shadow(0 1px 2px var(--tcds-color-shade-weak));
+    z-index: 1;
+  }
+
+  tcds-card[orientation*="horizontal"] > & {
+    left: var(--tcds-card-tag-position);
+  }
+
+  tcds-card[orientation*="vertical"] > & {
+    right: var(--tcds-card-tag-position);
+  }
+}

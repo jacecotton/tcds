@@ -1,70 +1,164 @@
 import WebComponent from "../../utilities/WebComponent/WebComponent.js";
 import styles from "./style.css";
 
-export default class Dialog extends WebComponent(HTMLElement, {delegatesFocus: true}) {
-  static state = {
-    open: {
-      type: Boolean,
-      reflected: true,
-    },
-  };
+export default class Dialog extends WebComponent(HTMLElement) {
+  static observedAttributes = ["open", "position"];
 
-  static props = {
-    autoclose: {type: Number},
-  };
+  #has() {
+    return !!this.querySelector([...arguments].map(slot => `[slot=${slot}]`).join(", "));
+  }
+
+  get open() {
+    return this.hasAttribute("open");
+  }
+
+  set open(value) {
+    this.toggleAttribute("open", Boolean(value));
+  }
+
+  get autoclose() {
+    return Number(this.getAttribute("autoclose")) || false;
+  }
+
+  set autoclose(value) {
+    this.setAttribute("autoclose", Number(value));
+  }
+
+  get anchored() {
+    return window.location.hash.split(/[#?&]+/).includes(this.id);
+  }
+
+  get variant() {
+    return this.getAttribute("variant")?.trim().replace(/\s\s+/g, " ").split(" ");
+  }
+
+  set variant(value) {
+    if(Array.isArray(value)) {
+      value = value.join(" ");
+    }
+
+    this.setAttribute("variant", value);
+  }
+
+  get template() {
+    const closeButton = /* html */`
+      <button is="tcds-ui-button"
+        part="close"
+        onclick="this.getRootNode().host.close()"
+        variant="${
+          this.getAttribute("position") === "right" || this.#has("header")
+          ? "ui"
+          : this.variant?.includes("lightbox") ?
+            "ghost"
+            : "secondary"
+        }"
+        ${this.variant?.includes("lightbox") ? `
+          data-theme="dark"
+          size="large"
+        ` : ``}
+        aria-label="Close dialog"
+        title="Close dialog"
+      ><tcds-icon icon="x"></tcds-icon></button>
+    `;
+
+    return /* html */`
+      <focus-boundary static></focus-boundary>
+
+      ${this.variant?.includes("lightbox") ? closeButton : ``}
+
+      <div part="dialog">
+        ${!this.variant?.includes("lightbox") ? closeButton : ``}
+
+        ${this.#has("header") ? /* html */`
+          <header>
+            <slot name="header"></slot>
+          </header>
+        ` : ``}
+
+        <main>
+          <slot></slot>
+        </main>
+
+        ${this.#has("footer") ? /* html */`
+          <footer>
+            <slot name="footer"></slot>
+          </footer>
+        ` : ``}
+      </div>
+
+      <focus-boundary static></focus-boundary>
+    `;
+  }
 
   constructor() {
     super();
     this.shadowRoot.adoptedStyleSheets = [styles];
   }
 
-  render() {
-    // Note on the focus boundaries: When the end boundary receives focus, we
-    // want to shift focus to the close button, which is inside the shadow root,
-    // therefore we `focusFirstOf` the root node (which will be the close
-    // button). Conversely, when the start boundary receives focus, we want to
-    // shift focus to the last focusable element of whatever is provided in the
-    // default slot, so we `focusLastOf` the root node's *host* element,
-    // `tcds-dialog`.
-    return /* html */`
-      <div part="dialog">
-        <tcds-focus-boundary onfocus="this.focusLastOf(this.getRootNode().host)" tabindex="0"></tcds-focus-boundary>
-        <tcds-button
-          part="close"
-          controls="${this.id}"
-          expanded="${this.state.open}"
-          label="Close dialog"
-          icon="only x"
-          variant="secondary"
-          onclick="this.getRootNode().host.close()"
-        ></tcds-button>
+  connectedCallback() {
+    this.upgradeProperties("open");
+    this.update();
 
-        <div part="content">
-          <slot></slot>
-        </div>
+    if(!this.id) {
+      const dialogs = Array.from(this.getRootNode().querySelectorAll("tcds-dialog"));
+      this.id = `dialog${dialogs.length > 1 ? `-${dialogs.indexOf(this) + 1}` : ""}`;
+    }
 
-        <tcds-focus-boundary onfocus="this.focusFirstOf(this.getRootNode())" tabindex="0"></tcds-focus-boundary>
-      </div>
-    `;
+    this.open = this.anchored
+      || (this.open && localStorage.getItem(`tcds_dialog_${this.id}_open`) !== "false");
+
+    this.anchor = () => {
+      this.anchored && this.show();
+    };
+
+    window.addEventListener("hashchange", this.anchor);
+
+    // For lightboxes, the dialog should have a fixed aspect ratio of that of
+    // its first media element (image, video, embed, etc.)
+    if(this.variant?.includes("lightbox")) {
+      const firstMedia = this.querySelector("img, video, embed, iframe, picture");
+      const isVideo = firstMedia.localName === "video" || firstMedia.localName === "iframe";
+
+      if(firstMedia) {
+        const width = firstMedia.width > 0 ? firstMedia.width : firstMedia.naturalWidth;
+        const height = firstMedia.height > 0 ? firstMedia.height : firstMedia.naturalHeight;
+        const gcd = (x, y) => y === 0 ? x : gcd(y, x % y);
+        const aspectRatio = `${width / gcd(width, height)} / ${height / gcd(width, height)}`;
+        const style = new CSSStyleSheet();
+
+        style.replaceSync(`
+          :host {
+            --tcds-dialog-aspect-ratio: ${aspectRatio};
+
+            ${isVideo && width > height ? `
+              --tcds-dialog-min-width: var(--site-container-max-width);
+            ` : ``}
+          }
+        `);
+
+        this.shadowRoot.adoptedStyleSheets = [...this.shadowRoot.adoptedStyleSheets, ...[style]];
+      }
+    }
+  }
+
+  disconnectedCallback() {
+    window.removeEventListener("hashchange", this.anchor);
+  }
+
+  attributeChangedCallback(name, oldValue) {
+    this.update({[name]: oldValue});
   }
 
   mountedCallback() {
-    this.dialog = this.shadowRoot.querySelector("[part~=dialog]");
-
-    this.state.open = this.hasAttribute("open")
-      && localStorage.getItem(`tcds_dialog_${this.id}_state`) !== "closed";
-
-    this.controllers = document.querySelectorAll(`[aria-controls=${this.id}], [controls=${this.id}]`);
-
     this.setAttribute("role", "dialog");
     this.setAttribute("aria-modal", "true");
 
-    document.body.addEventListener("click", () => {
-      this.close();
+    this.shadowRoot.querySelector("[part=dialog]").addEventListener("click", (event) => {
+      event.stopPropagation();
     });
 
-    this.dialog.addEventListener("click", (event) => {
-      event.stopPropagation();
+    this.getRootNode().addEventListener("click", () => {
+      this.close();
     });
 
     this.addEventListener("keyup", (event) => {
@@ -73,81 +167,95 @@ export default class Dialog extends WebComponent(HTMLElement, {delegatesFocus: t
       }
     });
 
-    this.controllers?.forEach((controller) => {
-      controller.addEventListener("click", (event) => {
-        event.stopPropagation();
-        this.toggle();
+    this.shadowRoot.querySelectorAll("slot").forEach((slot) => {
+      slot.addEventListener("slotchange", () => {
+        this.update({[slot.name]: slot.assignedNodes()});
       });
     });
   }
 
-  autcloseTimer = null;
+  #autocloseTimer = null;
+  #previouslyFocused;
 
-  updatedCallback(state) {
-    if(state.newState) {
-      if("open" in state.newState) {
-        localStorage.setItem(`tcds_dialog_${this.id}_state`, this.state.open ? "open" : "closed");
+  updatedCallback(old) {
+    if("open" in old) {
+      localStorage.setItem(`tcds_dialog_${this.id}_open`, this.open.toString());
+      document.body.style.overflowY = this.open ? "hidden" : null;
 
-        this.hidden = !this.state.open;
-        document.body.style.overflowY = this.state.open ? "hidden" : null;
+      this.#handleOtherComponents();
 
-        this.controllers?.forEach((controller) => {
-          controller.setAttribute(controller.hasAttribute("controls") ? "expanded" : "aria-expanded", this.state.open);
-        });
+      if(this.open) {
+        this.#previouslyFocused = this.getRootNode().activeElement;
 
-        this.handleOtherComponents(state.newState);
+        (
+          this.querySelector("[autofocus]")
+          || this.shadowRoot.querySelectorAll("focus-boundary")[1]
+        ).focus();
 
-        if(this.state.open) {
-          this.previouslyFocused = document.activeElement;
+        if(this.autoclose) {
+          this.#autocloseTimer = setTimeout(() => {
+            this.close();
+            clearTimeout(this.#autocloseTimer);
+          }, this.autoclose * 1000);
+        }
+      } else {
+        this.#autocloseTimer && clearTimeout(this.#autocloseTimer);
+        this.#previouslyFocused?.focus?.();
 
-          const target = this.querySelector("[autofocus]") || this.shadowRoot.querySelectorAll("tcds-focus-boundary")[1];
-          target.focus();
-
-          if(this.props.autoclose) {
-            this.autocloseTimer = setTimeout(() => {
-              this.close();
-              clearTimeout(this.autocloseTimer);
-            }, this.props.autoclose * 1000);
-          }
-        } else {
-          clearTimeout(this.autocloseTimer);
-          this.previouslyFocused?.focus?.();
+        if(this.anchored) {
+          window.history.replaceState(null, null, " ");
         }
       }
     }
   }
 
-  pausedCarousels = [];
+  #pausedCarousels = [];
 
-  handleOtherComponents(state) {
-    const cards = this.querySelectorAll("tcds-card");
-    const carousels = document.querySelectorAll("tcds-carousel");
+  #handleOtherComponents() {
+    if(this.open) {
+      // Responsively orient cards. Note this is only necessary while responsive
+      // container queries are not used. Can remove when we move to that.
+      this.querySelectorAll("tcds-card")?.forEach(card => card.orient());
 
-    if(state.open) {
-      cards?.forEach(card => card.orient());
-
-      carousels?.forEach((carousel) => {
-        if(carousel.state.playing) {
+      // Pause all external carousels on the page.
+      this.getRootNode().querySelectorAll("tcds-carousel")?.forEach((carousel) => {
+        if(carousel.playing) {
           carousel.pause();
-          this.pausedCarousels.push(carousel);
+          this.#pausedCarousels.push(carousel);
         }
       });
     } else {
-      this.pausedCarousels.forEach(pausedCarousel => pausedCarousel.resume());
-      this.pausedCarousels = [];
+      // Resume paused external carousels.
+      this.#pausedCarousels.forEach(pausedCarousel => pausedCarousel.resume());
+      this.#pausedCarousels = [];
+
+      // Pause internal videos.
+      this.querySelectorAll("video")?.forEach(video => video.pause());
+
+      this.querySelectorAll("iframe[src*=youtube]")?.forEach((video) => {
+        // For YouTube embeds, rather than worry about keeping up with current
+        // APIs and ensuring JS APIs are enabled in the embed URL, we can trick
+        // the embed into pausing by "refreshing" the `src` attribute.
+        const src = video.src;
+        video.src = src;
+      });
     }
   }
 
-  close() {
-    this.state.open = false;
+  close(value) {
+    this.open = false;
+
+    if(value) {
+      this.value = value;
+    } else {
+      this.dispatchEvent(new Event("cancel"));
+    }
+
+    this.dispatchEvent(new CustomEvent("close", {detail: {value: value}}));
   }
 
-  open() {
-    this.state.open = true;
-  }
-
-  toggle() {
-    this.state.open = !this.state.open;
+  show() {
+    this.open = true;
   }
 }
 

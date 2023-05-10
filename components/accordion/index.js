@@ -1,55 +1,68 @@
 import WebComponent from "../../utilities/WebComponent/WebComponent.js";
-import shadowStyles from "./style.css";
-import lightStyles from "./style.light.css";
-
-/**
- * @todo Add deep linking.
- */
+import styles from "./style.css";
 
 export default class Accordion extends WebComponent(HTMLElement) {
-  static props = {
-    multiple: {
-      type: Boolean,
-      default: false,
-    },
+  static observedAttributes = ["multiple", "heading-level"];
 
-    "heading-level": {
-      type: String,
-      default: "3",
-    },
-  };
-
-  constructor() {
-    super();
-
-    this.shadowRoot.adoptedStyleSheets = [shadowStyles];
-    this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStyleSheets, ...[lightStyles]];
+  get multiple() {
+    return this.hasAttribute("multiple");
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-
-    // Add auto-incrementing unique IDs to each accordion instance.
-    const accordions = Array.from(document.querySelectorAll("tcds-accordion"));
-    this.id = `accordion${accordions.length > 1 ? `-${accordions.indexOf(this) + 1}` : ""}`;
-
-    this.sections = Array.from(this.querySelectorAll("tcds-accordion-section"));
+  set multiple(value) {
+    this.toggleAttribute("multiple", Boolean(value));
   }
 
-  render() {
+  get headingLevel() {
+    return this.getAttribute("heading-level") || "3";
+  }
+
+  set headingLevel(value) {
+    this.setAttribute("heading-level", value);
+  }
+
+  get sections() {
+    return Array.from(this.querySelectorAll("tcds-accordion-section"));
+  }
+
+  get template() {
     return /* html */`
-      ${this.props.multiple ? /* html */`
+      ${this.multiple ? /* html */`
         <div part="controls">
-          <tcds-button part="open-all" variant="ui" size="small" icon="plus" onclick="this.getRootNode().host.openAll()"><span class="visually-hidden">open</span> all</tcds-button>
-          <tcds-button part="close-all" variant="ui" size="small" icon="minus" onclick="this.getRootNode().host.closeAll()"><span class="visually-hidden">close</span> all</tcds-button>
+          <button is="tcds-ui-button" part="open-all" variant="ui" size="small" onclick="this.getRootNode().host.showAll()">
+            <tcds-icon icon="plus"></tcds-icon>
+            <span class="visually-hidden">open</span> all
+          </button>
+          <button is="tcds-ui-button" part="close-all" variant="ui" size="small" onclick="this.getRootNode().host.closeAll()">
+            <tcds-icon icon="minus"></tcds-icon>
+            <span class="visually-hidden">close</span> all
+          </button>
         </div>
       ` : ``}
       <slot></slot>
     `;
   }
 
-  openAll() {
-    this.sections.forEach(section => section.open());
+  constructor() {
+    super();
+    this.shadowRoot.adoptedStyleSheets = [styles];
+  }
+
+  connectedCallback() {
+    this.upgradeProperties("multiple", "headingLevel");
+    this.update();
+
+    if(!this.id) {
+      const accordions = Array.from(this.getRootNode().querySelectorAll("tcds-accordion"));
+      this.id = `accordion${accordions.length > 1 ? `-${accordions.indexOf(this) + 1}` : ""}`;
+    }
+  }
+
+  attributeChangedCallback(name, oldValue) {
+    this.update({[name]: name === "multiple" ? oldValue !== null : oldValue});
+  }
+
+  showAll() {
+    this.sections.forEach(section => section.show());
   }
 
   closeAll() {

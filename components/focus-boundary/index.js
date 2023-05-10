@@ -6,36 +6,37 @@ const focusableSelectors = [
   `select:not([disabled]):not([tabindex^="-"])`,
   `textarea:not([disabled]):not([tabindex^="-"])`,
   `button:not([disabled]):not([tabindex^="-"])`,
-  `tcds-button:not([tabindex^="-"])`,
   `iframe:not([tabindex^="-"])`,
   `audio[controls]:not([tabindex^="-"])`,
   `video[controls]:not([tabindex^="-"])`,
   `[contenteditable]:not([tabindex^="-"])`,
-  `[tabindex]:not([tabindex^="-"]):not(tcds-focus-boundary)`,
+  `[tabindex]:not([tabindex^="-"]):not(focus-boundary)`,
 ];
 
 function getFocusableChildren(root) {
-  const elements = [...root.querySelectorAll(focusableSelectors.join(","))];
-  return elements.filter(element => element.offsetWidth || element.offsetHeight || element.getClientRects().length);
+  return [...root.querySelectorAll(focusableSelectors.join(","))];
 }
 
 export default class FocusBoundary extends HTMLElement {
-  constructor() {
-    super();
+  connectedCallback() {
+    const parent = this.parentElement || this.getRootNode();
 
-    this.sibling = Array.from(this.parentElement.querySelectorAll("tcds-focus-boundary"))
-      .filter(boundary => boundary !== this)[0];
-  }
+    const boundaries = Array.from(parent.querySelectorAll("focus-boundary"));
+    const focusableChildren = [
+      ...getFocusableChildren(parent),
+      ...getFocusableChildren(this.getRootNode().host),
+    ];
 
-  focusFirstOf(node) {
-    const firstFocusableChild = getFocusableChildren(node)[0] || this.sibling;
-    firstFocusableChild.focus();
-  }
+    this.tabIndex = 0;
 
-  focusLastOf(node) {
-    const lastFocusableChild = getFocusableChildren(node)[getFocusableChildren(node).length - 1] || this.sibling;
-    lastFocusableChild.focus();
+    this.onfocus = () => {
+      if(boundaries.indexOf(this) === 0) {
+        focusableChildren[focusableChildren.length - 1].focus();
+      } else if(boundaries.indexOf(this) === boundaries.length - 1) {
+        focusableChildren[0].focus();
+      }
+    };
   }
 }
 
-customElements.define("tcds-focus-boundary", FocusBoundary);
+customElements.define("focus-boundary", FocusBoundary);

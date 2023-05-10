@@ -4,33 +4,59 @@ import styles from "./style.css";
 import {pin, pinSelected, mapStyles} from "./style.js";
 
 export default class Map extends WebComponent(HTMLElement) {
-  static props = {
-    zoom: {
-      type: Number,
-      default: 10,
-    },
-  };
+  static observedAttributes = ["zoom", "default-area"];
 
-  constructor() {
-    super();
-    this.shadowRoot.adoptedStyleSheets = [styles];
+  get zoom() {
+    return Number(this.getAttribute("zoom")) || 10;
   }
 
-  connectedCallback() {
-    super.connectedCallback();
+  set zoom(value) {
+    this.setAttribute("zoom", value);
+  }
+
+  get defaultArea() {
+    return this.getAttribute("default-area");
+  }
+
+  #selectedLocation;
+
+  get selectedLocation() {
+    return this.#selectedLocation;
+  }
+
+  set selectedLocation(value) {
+    const oldValue = this.#selectedLocation;
+    this.#selectedLocation = value;
+    this.update({selectedLocation: oldValue});
+  }
+
+  #selectedTag;
+
+  get selectedTag() {
+    return this.#selectedTag;
+  }
+
+  set selectedTag(value) {
+    const oldValue = this.#selectedTag;
+    this.#selectedTag = value;
+    this.update({selectedTag: oldValue});
+  }
+
+  get data() {
+    let data;
 
     if(this.dataset.locations) {
       try {
-        this.data = JSON.parse(this.dataset.locations);
+        data = JSON.parse(this.dataset.locations);
       } catch(error) {
         console.log(error);
       }
     }
 
-    this.markers = [];
+    return data;
   }
 
-  render() {
+  get template() {
     const {tags, locations} = this.data;
 
     return /* html */`
@@ -38,18 +64,18 @@ export default class Map extends WebComponent(HTMLElement) {
         <menu>
           ${tags.map(tag => /* html */`
             <li>
-              <button id="${slugify(tag)}-button" aria-pressed="${this.state.selectedTag === tag}" onclick="this.getRootNode().host.tagButtonClick(event)">${tag}</button>
+              <button id="${slugify(tag)}-button" aria-pressed="${this.selectedTag === tag}" onclick="this.getRootNode().host.tagButtonClick(event)">${tag}</button>
             </li>
           `).join("")}
         </menu>
-        <static-slot part="map"></static-slot>
+        <div part="map" static></div>
       </div>
       <div part="card-view">
         ${locations.map((location) => /* html */`
           <tcds-card
             id="location-${location.id}"
             variant="ui"
-            ${location.id !== this.state.activeLocation ? "hidden" : ""}
+            ${location.id !== this.selectedLocation ? "hidden" : ""}
           >
             ${location.image_desktop && location.image_desktop.length > 2 ? /* html */`
               <img slot="image" src="${location.image_desktop}">
@@ -63,10 +89,11 @@ export default class Map extends WebComponent(HTMLElement) {
               ${location.address_line2 ? `${location.address_line2}<br>` : ""}
               ${location.locality}, ${location.administrative_area} ${location.postal_code}
             </p>
-            <footer slot="footer" class="column">
-              <tcds-button icon="chevron-right right" variant="ghost" link="${location.link}">
+            <footer slot="footer">
+              <a is="tcds-link-button" variant="ghost" href="${location.link}">
                 Hours &amp; information
-              </tcds-button>
+                <tcds-icon icon="chevron-right"></tcds-icon>
+              </a>
 
               ${location.actions ? /* html */`
                 <ul class="tcds-action-bar tcds-action-bar--small">
@@ -87,13 +114,24 @@ export default class Map extends WebComponent(HTMLElement) {
     `;
   }
 
+  constructor() {
+    super();
+    this.shadowRoot.adoptedStyleSheets = [styles];
+  }
+
+  connectedCallback() {
+    this.upgradeProperties("zoom", "defaultArea", "selectedLocation", "selectedTag");
+    this.update();
+
+    this.markers = [];
+  }
 
   mountedCallback() {
-    this.map = this.shadowRoot.querySelector("[part~=map]");
-    const {locations} = this.data;
+    this.mapContainer = this.shadowRoot.querySelector("[part~=map]");
 
+    const {locations} = this.data;
     const defaultLocation =
-      locations.find(location => location.featured && location.area === this.props["default-area"])
+      locations.find(location => location.featured && location.area === this.defaultArea)
       || locations.find(location => location.featured)
       || locations[0];
 
@@ -113,8 +151,8 @@ export default class Map extends WebComponent(HTMLElement) {
       return 0;
     });
 
-    this.map = new window.google.maps.Map(this.map, {
-      zoom: this.props.zoom,
+    this.googleMap = new window.google.maps.Map(this.mapContainer, {
+      zoom: this.zoom,
       center: {
         lat: defaultLocation.lat,
         lng: defaultLocation.lng,
@@ -126,14 +164,12 @@ export default class Map extends WebComponent(HTMLElement) {
     });
 
     locations.forEach((location, index) => {
-      const {map} = this;
-
       const marker = new window.google.maps.Marker({
         position: {
           lat: location.lat,
           lng: location.lng,
         },
-        map,
+        map: this.googleMap,
         title: `${index + 1}. ${location.title}`,
         optimized: false,
         icon: pin,
@@ -149,16 +185,16 @@ export default class Map extends WebComponent(HTMLElement) {
       }
 
       marker.addListener("click", () => {
-        if(this.state.selectedLocation !== location) {
+        if(this.selectedLocation !== location) {
           this.switchLocation(marker);
         }
       });
     });
 
-    // Google Maps tries to inject inline styles to the head of the map
-    // container's root node for the UI controls. However, in this case the root
-    // node is the component's shadow root, meaning the style tags get wiped out
-    // on re-render because they're not present in the declared template. So, we
+    // Google Maps injects inline styles to the head of the map container's root
+    // node for the UI controls. However, in this case the root node is the
+    // component's shadow root, meaning the style tags get wiped out on
+    // re-render because they're not present in the declared template. So, we
     // dumped those styles in the style.css sheet. We also need to remove the
     // style tags as soon as they're added by the Google Maps script, as there
     // is a noticeable FOUC on first re-render. We're using a MutationObserver
@@ -189,47 +225,48 @@ export default class Map extends WebComponent(HTMLElement) {
     observer.observe(this.shadowRoot, {childList: true});
   }
 
-  updatedCallback(state) {
-    if(state.newState) {
+  updatedCallback(old) {
+    if("selectedLocation" in old) {
       this.shadowRoot.querySelectorAll("tcds-card").forEach(card => card.orient());
+    }
 
-      if("selectedTag" in state.newState) {
-        const {locations} = this.data;
-        const {selectedTag} = this.state;
+    if("selectedTag" in old) {
+      const {locations} = this.data;
+      const {selectedTag} = this;
 
-        const areaDefaultLocation =
-          locations.find(location => location.featured && location.area === selectedTag)
-          || locations.find(location => location.area === selectedTag);
+      const areaDefaultLocation =
+        locations.find(location => location.featured && location.area === selectedTag)
+        || locations.find(location => location.area === selectedTag);
 
-        let defaultMarker = null;
+      let defaultMarker = null;
 
-        this.markers.forEach((marker) => {
-          marker.setMap(marker.location.area === selectedTag ? this.map : null);
+      this.markers.forEach((marker) => {
+        marker.setMap(marker.location.area === selectedTag ? this.googleMap : null);
 
-          if(!defaultMarker && marker.location.area === selectedTag) {
-            defaultMarker = marker;
-            marker.setZIndex(1000);
-          }
-        });
+        if(!defaultMarker && marker.location.area === selectedTag) {
+          defaultMarker = marker;
+          marker.setZIndex(1000);
+        }
+      });
 
-        this.switchLocation(defaultMarker);
+      this.switchLocation(defaultMarker);
 
-        this.map.setCenter({
-          lat: areaDefaultLocation.lat,
-          lng: areaDefaultLocation.lng,
-        });
-      }
+      this.googleMap.setCenter({
+        lat: areaDefaultLocation.lat,
+        lng: areaDefaultLocation.lng,
+      });
     }
   }
 
   tagButtonClick(event) {
-    if(this.state.selectedTag === event.target.textContent) {
-      this.map.setZoom(this.props.zoom);
+    if(this.selectedTag === event.target.textContent) {
+      this.googleMap.setZoom(this.zoom);
+
       this.markers.forEach((marker) => {
-        marker.setMap(this.map);
+        marker.setMap(this.googleMap);
       });
     } else {
-      this.state.selectedTag = event.target.textContent;
+      this.selectedTag = event.target.textContent;
     }
   }
 
@@ -239,8 +276,7 @@ export default class Map extends WebComponent(HTMLElement) {
     });
 
     marker.setIcon(pinSelected);
-
-    this.state.activeLocation = marker.location.id;
+    this.selectedLocation = marker.location.id;
   }
 }
 

@@ -1,49 +1,28 @@
-import WebComponent from "../../utilities/WebComponent/WebComponent.js";
-import shadowStyles from "./style.css";
-import lightStyles from "./style.light.css";
+/**
+ * We're setting up the button component like a customized built-in, even though
+ * this script (as of v1) does not actually add any features to either the
+ * `button` or `a` elements.
+ *
+ * This is primarily for future-proofness (extra features may be added in future
+ * releases, and component instances should be set up to automatically take
+ * advantage of them when they become available), as well as for consistency
+ * with other components and scoping/identification purposes (`is` attribute
+ * instead of a `class`, etc.)
+ */
 
-export default class Button extends WebComponent(HTMLElement, {delegatesFocus: true}) {
-  static props = {
-    icon: {type: Array},
-    "new-tab": {type: Boolean},
-  };
+const Button = BaseElement => class extends BaseElement {
+  /* Hypothetical features shared between UI and link buttons could go here. */
+};
 
-  constructor() {
-    super();
-    this.shadowRoot.adoptedStyleSheets = [shadowStyles];
-  }
-
-  connectedCallback() {
-    super.connectedCallback();
-    this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStyleSheets, ...[lightStyles]];
-  }
-
-  render() {
-    return /* html */`
-      <${this.props.link ? "a" : "button"}
-        part="button"
-        ${this.props.link ? /* html */`
-          href="${this.props.link}"
-          ${this.props["new-tab"] ? `target="_blank" rel="noopener noreferrer"` : ""}
-        ` : /* html */`
-          ${this.props.type ? `type="${this.props.type}"` : ""}
-          ${this.props.controls ? `aria-controls="${this.props.controls}"` : ""}
-          ${this.props.expanded ? `aria-expanded="${this.props.expanded}"` : ""}
-        `}
-        ${this.props.icon?.includes("only") ? /* html */`
-          aria-label="${this.textContent || this.props.label}"
-          title="${this.textContent || this.props.label}"
-        ` : ``}
-      >
-        ${this.props.icon ? /* html */`
-          <tcds-icon part="icon" icon="${this.props.icon.filter(modifier => !["only", "inline", "right"].includes(modifier)).join(" ")}"></tcds-icon>
-        ` : ``}
-        ${!this.props.icon?.includes("only") ? /* html */`
-          <slot>${this.props.label || ""}</slot>
-        ` : ``}
-      </${this.props.link ? "a" : "button"}>
-    `;
-  }
+class UIButton extends Button(HTMLButtonElement) {
+  /* Features unique to UI buttons would go here. */
 }
 
-customElements.define("tcds-button", Button);
+class LinkButton extends Button(HTMLAnchorElement) {
+  /* Features unique to link buttons would go here. */
+}
+
+customElements.define("tcds-ui-button", UIButton, {extends: "button"});
+customElements.define("tcds-link-button", LinkButton, {extends: "a"});
+
+export {UIButton, LinkButton};

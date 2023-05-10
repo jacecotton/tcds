@@ -1,102 +1,100 @@
 import WebComponent from "../../utilities/WebComponent/WebComponent.js";
-import shadowStyles from "./style.css";
-import lightStyles from "./style.light.css";
+import styles from "./style.css";
 
 export default class Section extends WebComponent(HTMLElement) {
+  static observedAttributes = ["data-theme", "class"];
+
+  #has() {
+    return !!this.querySelector([...arguments].map(slot => `[slot=${slot}]`).join(", "));
+  }
+
+  get template() {
+    const hasBackgroundImage = this.querySelector("[slot=background]:is(picture, video, img)");
+    const shouldRenderHgroup = this.#has("overline", "heading", "subheading");
+    const shouldRenderCTA = this.#has("cta");
+    const shouldRenderPrimary = shouldRenderHgroup || shouldRenderCTA || this.#has("primary");
+    const shouldRenderSecondary = this.#has("secondary") || (this.#has("image") && !this.#has("tertiary"));
+    const shouldRenderTertiary = this.#has("tertiary", "image");
+
+    return /* html */`
+      <section>
+        <div
+          part="background"
+          class="
+            ${[...this.classList].filter(className => className.startsWith("bg-"))}
+            ${hasBackgroundImage ? "has-background" : ""}
+          "
+          data-theme="${this.dataset.theme}"
+        >
+          <slot name="background"></slot>
+        </div>
+
+        ${!shouldRenderPrimary ? /* html */`
+          <div part="default">
+            <slot></slot>
+          </div>
+        ` : ``}
+
+        ${shouldRenderPrimary ? /* html */`
+          <div part="primary" ${!shouldRenderSecondary ? `class="fill-height"` : ``}>
+            ${shouldRenderHgroup ? /* html */`
+              <hgroup>
+                <slot name="overline"></slot>
+                <slot name="heading"></slot>
+                <slot name="subheading"></slot>
+              </hgroup>
+            ` : ``}
+
+            <slot name="primary"></slot>
+
+            ${shouldRenderCTA ? /* html */`
+              <nav aria-label="Intro links">
+                <slot name="cta"></slot>
+              </nav>
+            ` : ``}
+          </div>
+        ` : ``}
+
+        ${shouldRenderSecondary ? /* html */`
+          <div part="secondary">
+            <slot name="secondary"></slot>
+            <!-- LEGACY -->
+            <slot name="image"></slot>
+          </div>
+        ` : ``}
+
+        ${shouldRenderTertiary ? /* html */`
+          <div part="tertiary">
+            <slot name="tertiary"></slot>
+            <!-- LEGACY -->
+            <slot name="image"></slot>
+          </div>
+        ` : ``}
+      </section>
+    `;
+  }
+
   constructor() {
     super();
-    this.shadowRoot.adoptedStyleSheets = [shadowStyles];
-    this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStyleSheets, ...[lightStyles]];
+    this.shadowRoot.adoptedStyleSheets = [styles];
   }
 
   connectedCallback() {
-    super.connectedCallback();
+    this.update();
 
-    this.hasBackground = !!this.querySelector(":scope > [slot=background]");
-    this.hasVideoBackground = !!this.querySelector(":scope > video[slot=background]");
-    this.hasVideo = !!this.querySelector(":scope > [slot=video]");
-    this.hasVideoDescription = !!this.querySelector(":scope > [slot=video-description]");
-    this.hasHeading = !!this.querySelector(":scope > [slot=heading]");
-    this.hasSubheading = !!this.querySelector(":scope > [slot=subheading]");
-    this.hasOverline = !!this.querySelector(":scope > [slot=overline]");
-    this.hasImage = !!this.querySelector(":scope > [slot=image]");
-    this.hasCta = !!this.querySelector(":scope > [slot=cta]");
-
-    if(this.hasBackground) {
-      this.setAttribute("has-background", this.hasVideoBackground ? "video" : "");
-
-      if(this.getAttribute("data-theme") !== "light") {
-        this.setAttribute("data-theme", "dark");
-      }
-    }
-
-    if(this.hasImage) {
-      this.setAttribute("has-image", "");
-    }
-
-    if(this.hasVideo) {
-      this.setAttribute("has-video", "");
-
-      const sectionsWithVideo = Array.from(document.querySelectorAll("tcds-section")).filter(section => section.video);
-      this.index = sectionsWithVideo.indexOf(this) + 1;
-
-      this.insertAdjacentHTML("beforeend", /* html */`
-        <tcds-button icon="only play" size="large" aria-controls="video-modal-${this.index}">Open video player</tcds-button>
-      `);
+    if(this.#has("background") && this.getAttribute("data-theme") !== "light") {
+      this.setAttribute("data-theme", "dark");
     }
   }
 
   mountedCallback() {
-    if(this.hasVideo) {
-      const dialog = document.createElement("tcds-dialog");
-      dialog.id = `video-modal-${this.index}`;
-      dialog.style.setProperty("--tcds-dialog-padding", "0");
-
-      const video = this.querySelector("[slot=video]");
-      video.removeAttribute("slot");
-      dialog.appendChild(video);
-
-      document.body.appendChild(dialog);
-    }
+    this.shadowRoot.addEventListener("slotchange", (event) => {
+      this.update({[event.target.name]: event.target.assignedNodes()});
+    });
   }
 
-  render() {
-    const bg = [...this.classList].filter(className => className.startsWith("bg-"));
-    const theme = this.getAttribute("data-theme");
-
-    return /* html */`
-      <section class="${bg}" data-theme="${theme}">
-        <slot name="background"></slot>
-        <div class="max-width">
-          ${this.hasHeading || this.hasSubheading || this.hasOverline || this.hasImage || this.hasCta ? /* html */`
-            <div part="content">
-              ${this.hasHeading || this.hasSubheading || this.hasOverline ? /* html */`
-                <hgroup>
-                  <slot name="overline"></slot>
-                  <slot name="heading"></slot>
-                  <slot name="subheading"></slot>
-                </hgroup>
-              ` : ``}
-              ${this.props.image !== "bottom" ? /* html */`
-                <figure>
-                  <slot name="image"></slot>
-                </figure>
-              ` : ``}
-              ${this.hasCta ? /* html */`
-                <nav>
-                  <slot name="cta"></slot>
-                </nav>
-              ` : ``}
-            </div>
-          ` : ``}
-          <slot></slot>
-        </div>
-        <slot name="video-description"></slot>
-      </section>
-      ${this.props.image === "bottom" ? /* html */`
-        <slot name="image"></slot>
-      ` : ``}
-    `;
+  attributeChangedCallback() {
+    this.update();
   }
 }
 

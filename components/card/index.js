@@ -1,56 +1,84 @@
 import WebComponent from "../../utilities/WebComponent/WebComponent.js";
-import shadowStyles from "./style.css";
-import lightStyles from "./style.light.css";
+import styles from "./style.css";
 
 export default class Card extends WebComponent(HTMLElement) {
-  static state = {
-    "no-image": {
-      type: Boolean,
-      reflected: true,
-    },
-  };
+  static observedAttributes = ["orientation", "action-label", "size", "variant"];
 
-  constructor() {
-    super();
-
-    this.shadowRoot.adoptedStyleSheets = [shadowStyles];
-    this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStyleSheets, ...[lightStyles]];
+  #has() {
+    return !!this.querySelector([...arguments].map(slot => `[slot=${slot}]`).join(", "));
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-
-    if(!this.querySelector("[slot=image]")) {
-      this.state["no-image"] = true;
-    }
-
-    if(!this.props.orientation && this.state["no-image"] !== true) {
-      this.orient();
-
-      const resize = new ResizeObserver(this.orient.bind(this));
-      resize.observe(document.body);
-    }
+  get orientation() {
+    return this.getAttribute("orientation");
   }
 
-  render() {
+  set orientation(value) {
+    this.setAttribute("orientation", value);
+  }
+
+  get actionLabel() {
+    let value = this.hasAttribute("action-label") && this.getAttribute("action-label").trim();
+
+    if(value === false) {
+      value = "Read more";
+    } else if(value === "") {
+      value = false;
+    }
+
+    return value;
+  }
+
+  set actionLabel(value) {
+    this.setAttribute("action-label", value.trim());
+  }
+
+  get size() {
+    return this.getAttribute("size")?.trim();
+  }
+
+  set size(value) {
+    this.setAttribute("size", value.trim());
+  }
+
+  get variant() {
+    return this.getAttribute("variant")?.trim().replace(/\s\s+/g, " ").split(" ");
+  }
+
+  set variant(value) {
+    if(Array.isArray(value)) {
+      value = value.join(" ");
+    }
+
+    this.setAttribute("variant", value);
+  }
+
+  get template() {
     const link = this.querySelector("a[slot=title][href]")?.href;
+    const title = this.querySelector("[slot=title]")?.textContent;
 
     return /* html */`
       <article part="card">
         <slot name="tag"></slot>
-        ${this.state["no-image"] !== true ? /* html */`
+
+        ${this.#has("image") ? /* html */`
           <figure>
             <slot name="image"></slot>
           </figure>
         ` : ``}
+
         <div part="content">
-          <slot name="subtitle"></slot>
+          <slot name="overline"></slot>
           <slot name="title"></slot>
           <slot name="description"></slot>
+          <slot></slot>
+
           <slot name="footer">
-            ${this.props["action-label"] !== "" && link ? /* html */`
-              <footer part="footer">
-                <tcds-button variant="ghost" ${this.props.size !== "large" ? `size="small"` : ""} icon="right chevron-right" label="${this.props["action-label"] || "Read more"}" link="${link}"></tcds-button>
+            ${this.actionLabel && link ? /* html */`
+              <footer part="footer" ${this.variant && this.variant.includes("overlay") ? `data-theme="dark"` : ""}>
+                <a is="tcds-link-button" href="${link}" variant="ghost" ${this.size !== "large" ? `size="small"` : ""}>
+                  ${this.actionLabel} <span class="visually-hidden">about ${title}</span>
+                  <tcds-icon icon="chevron-right"></tcds-icon>
+                </a>
               </footer>
             ` : ``}
           </slot>
@@ -59,13 +87,36 @@ export default class Card extends WebComponent(HTMLElement) {
     `;
   }
 
-  orient() {
-    const orientation = this.getAttribute("orientation");
+  constructor() {
+    super();
+    this.shadowRoot.adoptedStyleSheets = [styles];
+  }
 
-    if(this.getBoundingClientRect?.().width > 600) {
-      orientation !== "horizontal" && this.setAttribute("orientation", "horizontal");
-    } else {
-      orientation !== "vertical" && this.setAttribute("orientation", "vertical");
+  connectedCallback() {
+    this.upgradeProperties("orientation", "actionLabel", "size", "variant");
+    this.update();
+
+    if(!this.#has("image")) {
+      this.toggleAttribute("data-no-image", true);
+    }
+
+    if(!this.orientation) {
+      this.orient();
+      new ResizeObserver(this.orient.bind(this)).observe(this.getRootNode().body);
+    }
+  }
+
+  attributeChangedCallback(name, oldValue) {
+    this.update({[name]: oldValue});
+  }
+
+  orient() {
+    if(this.getBoundingClientRect?.().width > 600 && !this.variant?.includes("overlay")) {
+      if(this.orientation !== "horizontal") {
+        this.orientation = "horizontal";
+      }
+    } else if(this.orientation !== "vertical") {
+      this.orientation = "vertical";
     }
   }
 }

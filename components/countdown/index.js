@@ -2,12 +2,37 @@ import WebComponent from "../../utilities/WebComponent/WebComponent.js";
 import styles from "./style.css";
 
 export default class Countdown extends WebComponent(HTMLElement) {
-  static state = {
-    count: {
-      type: String,
-      default: "00 : 00 : 00 : 00",
-    },
-  };
+  static observedAttributes = ["date"];
+
+  get date() {
+    return this.getAttribute("date") || this.textContent;
+  }
+
+  set date(value) {
+    this.setAttribute("date", value);
+  }
+
+  #count = "";
+
+  get count() {
+    return this.#count;
+  }
+
+  set count(value) {
+    const oldValue = this.#count;
+    this.#count = value;
+    this.update({count: oldValue});
+  }
+
+  get template() {
+    return /* html */`
+      <p>
+        <small aria-hidden="true">Countdown timer</small>
+        <span class="visually-hidden">Time until ${this.date}</span>
+        <b>${this.count}</b>
+      </p>
+    `;
+  }
 
   constructor() {
     super();
@@ -15,42 +40,30 @@ export default class Countdown extends WebComponent(HTMLElement) {
   }
 
   connectedCallback() {
-    super.connectedCallback();
-    this.countdownDate = new Date(this.props.date || this.textContent).getTime();
-  }
-
-  render() {
-    return /* html */`
-      <p>
-        <small aria-hidden="true">Countdown timer</small>
-        <span class="visually-hidden">Time until ${this.props.date || this.textContent}</span>
-        <b>${this.state.count}</b>
-      </p>
-    `;
+    this.update();
   }
 
   mountedCallback() {
-    this.updateCount();
+    const updateCount = () => {
+      const distance = new Date(this.date).getTime() - new Date().getTime();
 
-    this.counter = setInterval(() => {
-      this.updateCount();
-    }, 1000);
+      const daysUntil = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, "0");
+      const hoursUntil = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, "0");
+      const minutesUntil = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, "0");
+      const secondsUntil = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, "0");
+
+      this.count = `${daysUntil} : ${hoursUntil} : ${minutesUntil} : ${secondsUntil}`;
+
+      setTimeout(() => {
+        updateCount();
+      }, 1000);
+    };
+
+    updateCount();
   }
 
-  disconnectedCallback() {
-    clearInterval(this.counter);
-  }
-
-  updateCount() {
-    const now = new Date().getTime();
-    const distance = this.countdownDate - now;
-
-    const daysUntil = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, "0");
-    const hoursUntil = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, "0");
-    const minutesUntil = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, "0");
-    const secondsUntil = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, "0");
-
-    this.state.count = `${daysUntil} : ${hoursUntil} : ${minutesUntil} : ${secondsUntil}`;
+  attributeChangedCallback(name, oldValue) {
+    this.update({[name]: oldValue});
   }
 }
 

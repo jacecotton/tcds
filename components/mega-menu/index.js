@@ -1,29 +1,24 @@
 import WebComponent from "../../utilities/WebComponent/WebComponent.js";
 import AnimateElement from "../../utilities/AnimateElement/AnimateElement.js";
-import shadowStyles from "./style.css";
-import lightStyles from "./style.light.css";
+import styles from "./style.css";
 
 export default class MegaMenu extends WebComponent(HTMLElement) {
-  static state = {
-    open: {
-      type: Boolean,
-      reflected: true,
-      default: false,
-    },
-  };
+  static observedAttributes = ["open"];
 
-  constructor() {
-    super();
-
-    this.shadowRoot.adoptedStyleSheets = [shadowStyles];
-    this.getRootNode().adoptedStyleSheets = [...this.getRootNode().adoptedStyleSheets, ...[lightStyles]];
+  get open() {
+    return this.hasAttribute("open");
   }
 
-  render() {
+  set open(value) {
+    this.toggleAttribute("open", Boolean(value));
+  }
+
+  get template() {
     return /* html */`
-      <section part="mega-menu">
+      <section>
         <div class="max-width">
-          <tcds-button part="close" variant="ui" icon="only x" label="Close menu" controls="${this.id}"></tcds-button>
+          <button is="tcds-ui-button" part="close" variant="ui" aria-label="Close menu" title="Close menu"><tcds-icon icon="x"></tcds-icon></button>
+
           <slot name="title"></slot>
 
           <div part="content">
@@ -34,70 +29,85 @@ export default class MegaMenu extends WebComponent(HTMLElement) {
     `;
   }
 
+  constructor() {
+    super();
+    this.shadowRoot.adoptedStyleSheets = [styles];
+  }
+
+  connectedCallback() {
+    this.upgradeProperties("open");
+    this.update({open: null});
+  }
+
+  attributeChangedCallback(name, oldValue) {
+    this.update({[name]: name === "open" ? oldValue === "" : oldValue});
+  }
+
   mountedCallback() {
-    this.megaMenu = this.shadowRoot.querySelector("[part~=mega-menu]");
+    this.megaMenu = this.shadowRoot.querySelector("section");
+    this.closeButton = this.shadowRoot.querySelector("[part=close]");
 
     this.controllers = [
-      ...document.querySelectorAll(`[aria-controls="${this.id}"], [controls="${this.id}"]`),
-      ...this.shadowRoot.querySelectorAll(`[aria-controls="${this.id}"], [controls="${this.id}"]`)
+      ...[this.closeButton],
+      ...this.getRootNode().querySelectorAll(`[aria-controls="${this.id}"]`),
     ];
 
     this.controllers.forEach((controller) => {
-      controller.addEventListener("click", () => {
-        this.state.open = !this.state.open;
+      controller.addEventListener("click", (event) => {
+        event.stopPropagation();
+        this.toggle();
       });
     });
 
-    document.body.addEventListener("click", () => {
-      this.state.open = false;
+    this.getRootNode().body.addEventListener("click", () => {
+      this.close();
     });
 
     this.megaMenu.addEventListener("click", (event) => {
       event.stopPropagation();
     });
 
-    this.addEventListener("keyup", (event) => {
+    this.getRootNode().addEventListener("keyup", (event) => {
       if(event.key === "Escape") {
-        this.state.open = false;
+        this.close();
       }
     });
   }
 
-  updatedCallback(state) {
-    if(state.newState) {
-      if("open" in state.newState) {
-        this.controllers.forEach((controller) => {
-          if(controller.hasAttribute("controls")) {
-            controller.setAttribute("expanded", this.state.open);
-          } else {
-            controller.setAttribute("aria-expanded", this.state.open);
-          }
-        });
+  updatedCallback(old) {
+    if("open" in old) {
+      this.controllers.forEach((controller) => {
+        controller.setAttribute("aria-expanded", this.open);
+      });
 
-        if(this.state.open) {
-          const otherMegaMenus = Array.from(document.querySelectorAll("tcds-mega-menu")).filter(otherMegaMenu => otherMegaMenu !== this);
-          otherMegaMenus.forEach(otherMegaMenu => otherMegaMenu.close());
-          this.hidden = false;
-        } else if(state.oldState.open === true) {
-          AnimateElement(this.megaMenu, (window.innerWidth < 1200 ? "slide-out-right" : ["slide-out-up", "fade-out"]), {
-            lazyload: false,
-            timing: window.innerWidth < 1200 ? "productive" : "expressive",
-          }).then(() => {
-            this.hidden = !this.state.open;
-          });
-        } else {
+      if(this.open) {
+        Array.from(this.getRootNode().querySelectorAll("tcds-mega-menu"))
+          .filter(other => other !== this)
+          .forEach(other => other.close());
+        this.hidden = false;
+      } else if(old.open) {
+        AnimateElement(this.megaMenu, (window.innerWidth < 1200 ? "slide-out-right" : ["slide-out-up", "fade-out"]), {
+          lazyload: false,
+          timing: window.innerWidth < 1200 ? "productive" : "expressive",
+        }).then(() => {
           this.hidden = true;
-        }
+        });
+      } else {
+        this.hidden = true;
       }
     }
   }
 
-  open() {
-    this.state.open = true;
+  toggle() {
+    this.open = !this.open;
+  }
+
+  show() {
+    this.open = true;
   }
 
   close() {
-    this.state.open = false;
+    this.open = false;
   }
 }
 

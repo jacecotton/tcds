@@ -16,6 +16,8 @@ body {
 
 h1,
 .h1 {
+  --tcds-color-text: var(--tcds-color-primary);
+
   font-size: var(--tcds-font-size-xx-large);
   font-weight: var(--tcds-font-weight-semibold);
   line-height: var(--tcds-line-height-tight);
@@ -23,10 +25,6 @@ h1,
 
   &:not(:only-child) {
     margin: 0 0 2rem;
-  }
-
-  :is(main, .main-content) & {
-    --tcds-color-text: var(--tcds-color-primary);
   }
 }
 
@@ -79,11 +77,14 @@ h6,
 .h5,
 .h6 {
   font-weight: var(--tcds-font-weight-semibold);
-  margin: 1rem 0;
 
   &:first-child {
     margin-top: 0;
   }
+}
+
+:where(:is(h2, h3, h4, h5, h6):not(:only-child)) {
+  margin: 1rem 0;
 }
 
 :where(:not(h1, hr) + h2),

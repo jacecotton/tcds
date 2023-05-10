@@ -2,16 +2,31 @@ import WebComponent from "../../../utilities/WebComponent/WebComponent.js";
 import styles from "./style.css";
 
 export default class Tab extends WebComponent(HTMLElement) {
-  static state = {
-    active: {
-      type: Boolean,
-      reflected: true,
-    },
-  };
+  static observedAttributes = ["active", "label"];
 
-  static props = {
-    label: {type: String},
-  };
+  get active() {
+    return this.hasAttribute("active");
+  }
+
+  set active(value) {
+    this.toggleAttribute("active", Boolean(value));
+  }
+
+  get label() {
+    // This is technically a hacky use of [slot], but because the shadow root of
+    // the tab item is distinct from that of the tab container, this is the only
+    // way to allow directly surfacing the label in the tab item markup while
+    // placing it inside the tablist of the tab container.
+    return this.getAttribute("label") || this.querySelector("[slot=label]").innerHTML;
+  }
+
+  get template() {
+    return /* html */`
+      <section role="tabpanel" ${this.active ? "" : "hidden"}>
+        <slot></slot>
+      </section>
+    `;
+  }
 
   constructor() {
     super();
@@ -19,30 +34,23 @@ export default class Tab extends WebComponent(HTMLElement) {
   }
 
   connectedCallback() {
-    super.connectedCallback();
-
-    this.parent = this.closest("tcds-tabs");
+    this.upgradeProperties("active");
+    this.update();
   }
 
-  render() {
-    return /* html */`
-      <section role="tabpanel" ${this.state.active ? "" : "hidden"}>
-        <slot></slot>
-      </section>
-    `;
+  attributeChangedCallback(name, oldValue) {
+    this.update({[name]: oldValue});
   }
 
-  updatedCallback(state) {
-    if(state.newState) {
-      if("active" in state.newState) {
-        this.parent.dispatchEvent(new Event("update"));
-      }
+  updatedCallback(old) {
+    if("active" in old) {
+      this.closest("tcds-tabs").update();
     }
   }
 
   select() {
-    this.parent.querySelectorAll("tcds-tab").forEach((tab) => {
-      tab.state.active = tab === this;
+    this.closest("tcds-tabs").querySelectorAll("tcds-tab").forEach((tab) => {
+      tab.active = tab === this;
     });
   }
 }
