@@ -18,6 +18,7 @@ tcds-icon {
   height: var(--tcds-icon-size, 1em);
   width: var(--tcds-icon-size, 1em);
   vertical-align: sub;
+  box-sizing: content-box;
 
   &:not([hidden]) {
     display: inline-flex;
