@@ -1,45 +1,46 @@
-## [1.9.20](https://github.com/jacecotton/tcds/compare/v1.9.19...v1.9.20) (2023-04-06)
+## [1.10.9](https://github.com/jacecotton/tcds/compare/v1.10.8...v1.10.9) (2023-05-01)
 
 
 ### Bug Fixes
 
-* **components:** Remove stray console logs ([02fe31d](https://github.com/jacecotton/tcds/commit/02fe31d0551c46ae0680496d2004e38e3bbbd304))
+* **components:** responsive section background position ([588d516](https://github.com/jacecotton/tcds/commit/588d5168fd258f81d1b049f6fd958169be08c8b0))
 
 
 
-## [1.9.19](https://github.com/jacecotton/tcds/compare/v1.9.18...v1.9.19) (2023-04-05)
-
-
-### Bug Fixes
-
-* **styles:** Main content z-index issue ([909600f](https://github.com/jacecotton/tcds/commit/909600f401417e556763ebba9d0d07784b1c20c5))
-
-
-
-## [1.9.18](https://github.com/jacecotton/tcds/compare/v1.9.17...v1.9.18) (2023-04-05)
+## [1.10.8](https://github.com/jacecotton/tcds/compare/v1.10.7...v1.10.8) (2023-04-26)
 
 
 ### Bug Fixes
 
-* **components:** Card responsive bug ([5a80696](https://github.com/jacecotton/tcds/commit/5a80696bcfbb071971f93bb58a90d85f30c2ed1e))
+* **components:** Accordion tweak ([02c824b](https://github.com/jacecotton/tcds/commit/02c824b4c4720ad42a717864e6b0536e2b6aedec))
 
 
 
-## [1.9.17](https://github.com/jacecotton/tcds/compare/v1.9.16...v1.9.17) (2023-04-05)
-
-
-### Bug Fixes
-
-* **components:** Card link bug ([cf69f60](https://github.com/jacecotton/tcds/commit/cf69f6079d680adbd648626e236df44c26476380))
-
-
-
-## [1.9.16](https://github.com/jacecotton/tcds/compare/v1.9.15...v1.9.16) (2023-04-04)
+## [1.10.7](https://github.com/jacecotton/tcds/compare/v1.10.6...v1.10.7) (2023-04-26)
 
 
 ### Bug Fixes
 
-* **components:** Section video footer color fix ([6f328ae](https://github.com/jacecotton/tcds/commit/6f328ae7f36c5125d942735c3b696556c1b014ab))
+* **components:** Accordion text colors ([2c65415](https://github.com/jacecotton/tcds/commit/2c6541556436c3e3fc2f75b6d6427ce9dee814f1))
+
+
+
+## [1.10.6](https://github.com/jacecotton/tcds/compare/v1.10.5...v1.10.6) (2023-04-26)
+
+
+### Bug Fixes
+
+* **components:** Remove dark styles for accordion component ([680fa0c](https://github.com/jacecotton/tcds/commit/680fa0c037b87e225fc8d3bbba42589cd9367b47))
+
+
+
+## [1.10.5](https://github.com/jacecotton/tcds/compare/v1.10.4...v1.10.5) (2023-04-25)
+
+
+### Bug Fixes
+
+* **static:** Add TCHP Center logo ([ab9d05c](https://github.com/jacecotton/tcds/commit/ab9d05c8b48299ee576e5e49c80ed6847dcf933c))
+* **static:** Add TCHP Center logo ([bbad1bf](https://github.com/jacecotton/tcds/commit/bbad1bf5ed8f48f99ab40aec9c1d755f0483af2c))
 
 
 
