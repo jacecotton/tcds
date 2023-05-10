@@ -1,3 +1,250 @@
+# [2.0.0](https://github.com/jacecotton/tcds/compare/v1.10.9...v2.0.0) (2023-05-10)
+
+
+### Features
+
+* Complete component refactor ([#21](https://github.com/jacecotton/tcds/issues/21)) ([386de86](https://github.com/jacecotton/tcds/commit/386de86833b5d555fd63e3c58fd9767457607ebb))
+
+
+### BREAKING CHANGES
+
+* Component refactor
+
+* Init commit
+
+* docs: WebComponent
+
+* docs: WebComponent
+
+* docs: WebComponent
+
+* docs: WebComponent
+
+* docs: WebComponent
+
+* docs: WebComponent
+
+* docs: WebComponent
+
+* refactor: WebComponent
+
+* docs: WebComponent
+
+* docs: WebComponent
+
+* docs: WebComponent
+
+* docs: WebComponent
+
+* refactor: upgradeProperty (one attribute) -> upgradeProperties (array of attributes)
+
+* docs: WebComponent
+
+* docs: WebComponent
+
+* docs: WebComponent
+
+* docs: WebComponent
+
+* docs: WebComponent
+
+* docs: WebComponent
+
+* docs: WebComponent
+
+* update
+
+* docs: WebComponent
+
+* docs: WebComponent
+
+* docs: WebComponent
+
+* docs: WebComponent
+
+* docs: WebComponent
+
+* docs: WebComponent
+
+* update
+
+* fix duplicates in prop batch
+
+* add focus-boundary
+
+* Change diff static/custom element skipping heuristic
+
+Rather than skip all custom elements, only skip elements with a [static] attribute. Also, move diffAttributes call until after determining whether or not to skip the current node.
+
+* finish dialog
+
+* focus-boundary
+
+* remove stray console log
+
+* docs: WebComponent
+
+* docs: WebComponent
+
+* dialog styles
+
+* fix
+
+* update
+
+* update
+
+* update
+
+* update
+
+* update
+
+* update
+
+* update
+
+* update
+
+* udpate
+
+* update
+
+* section start
+
+* feat(components): Dialog
+
+- Add [position] prop to optionally dock dialogs to the side
+- Add [slot=header] and [slot=footer]
+
+* update
+
+* update
+
+* update
+
+* feat(components): Dialog
+
+- Add anchor capability
+- Intelligently style dialogs with video embeds
+- Pause internal videos on dialog close
+
+* docs: WebComponent
+
+* docs: WebComponent
+
+* Update
+
+* Update
+
+* Update
+
+* Update
+
+* update
+
+* Update
+
+* Update
+
+* update
+
+* fix
+
+* update
+
+* update
+
+* update
+
+* update
+
+* update
+
+* update
+
+* update
+
+* update
+
+* update
+
+* update
+
+* update
+
+* carousel - remove gallery variant
+
+* Revert "carousel - remove gallery variant"
+
+This reverts commit 08db390adfd68707bf2cb7ef8a606e54f7317acf.
+
+* update
+
+* update
+
+* fix(components): Change padding custom property names to use logical axial terminology
+
+* update
+
+* update
+
+* update
+
+* update
+
+* update
+
+* update
+
+* update
+
+* update
+
+* style: accordion-section cleanup
+
+* style: accordion cleanup
+
+* refactor(components): alert-bar improvements
+
+* style: mega-menu cleanup
+
+* style: accordion-section selector nesting
+
+* refactor(components): accordion improvements
+
+* fix(components): misc. alert-bar fixes
+
+* style: alert-bar selector nesting
+
+* refactor(components): button selector nesting + specificty fixes + ruleset reordering
+
+* card + carousel refactor
+
+* tabs refactor
+
+* update
+
+* countdown refactor
+
+* stylelintrc update
+
+* dialog cleanup
+
+* update
+
+* update
+
+* update
+
+* update
+
+* update
+
+* update
+
+
+
 ## [1.10.9](https://github.com/jacecotton/tcds/compare/v1.10.8...v1.10.9) (2023-05-01)
 
 
@@ -31,16 +278,6 @@
 ### Bug Fixes
 
 * **components:** Remove dark styles for accordion component ([680fa0c](https://github.com/jacecotton/tcds/commit/680fa0c037b87e225fc8d3bbba42589cd9367b47))
-
-
-
-## [1.10.5](https://github.com/jacecotton/tcds/compare/v1.10.4...v1.10.5) (2023-04-25)
-
-
-### Bug Fixes
-
-* **static:** Add TCHP Center logo ([ab9d05c](https://github.com/jacecotton/tcds/commit/ab9d05c8b48299ee576e5e49c80ed6847dcf933c))
-* **static:** Add TCHP Center logo ([bbad1bf](https://github.com/jacecotton/tcds/commit/bbad1bf5ed8f48f99ab40aec9c1d755f0483af2c))
 
 
 
