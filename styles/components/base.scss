@@ -1,6 +1,5 @@
 tcds-accordion,
 tcds-accordion-section,
-tcds-button,
 tcds-card,
 tcds-carousel,
 tcds-slide,
@@ -28,8 +27,4 @@ tcds-mega-menu {
   &:not(:defined) {
     display: none;
   }
-}
-
-static-slot:not([hidden]) {
-  display: block;
 }
