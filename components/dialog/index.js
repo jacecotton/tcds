@@ -45,16 +45,16 @@ export default class Dialog extends WebComponent(HTMLElement) {
       <button is="tcds-ui-button"
         part="close"
         onclick="this.getRootNode().host.close()"
-        ${this.getAttribute("position") === "right" || this.#has("header") ? /* html */`
+        ${this.getAttributes("position") === "right" || this.#has("header") ? /* html */`
           variant="ghost"
-        ` : this.variant?.includes("lightbox") ? /* html */`
-            variant="secondary"
-            data-theme="dark"
-            size="large"
-          ` : /* html */`
-            data-theme="dark"
-          `
-        }
+        ` : /* html */`
+          data-theme="dark"
+        `}
+        ${this.variant?.includes("lightbox") ? /* html */`
+          variant="ghost"
+          data-theme="dark"
+          size="large"
+        ` : ``}
         aria-label="Close dialog"
         title="Close dialog"
       ><tcds-icon icon="x"></tcds-icon></button>
