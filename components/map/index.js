@@ -7,7 +7,7 @@ export default class Map extends WebComponent(HTMLElement) {
   static observedAttributes = ["zoom", "default-area"];
 
   get zoom() {
-    return this.getAttribute("zoom") || 10;
+    return Number(this.getAttribute("zoom")) || 10;
   }
 
   set zoom(value) {
