@@ -28,11 +28,11 @@ export default class Accordion extends WebComponent(HTMLElement) {
     return /* html */`
       ${this.multiple ? /* html */`
         <div part="controls">
-          <button is="tcds-ui-button" part="open-all" variant="ui" size="small" onclick="this.getRootNode().host.showAll()">
+          <button is="tcds-ui-button" part="open-all" variant="ghost" size="small" onclick="this.getRootNode().host.showAll()">
             <tcds-icon icon="plus"></tcds-icon>
             <span class="visually-hidden">open</span> all
           </button>
-          <button is="tcds-ui-button" part="close-all" variant="ui" size="small" onclick="this.getRootNode().host.closeAll()">
+          <button is="tcds-ui-button" part="close-all" variant="ghost" size="small" onclick="this.getRootNode().host.closeAll()">
             <tcds-icon icon="minus"></tcds-icon>
             <span class="visually-hidden">close</span> all
           </button>
