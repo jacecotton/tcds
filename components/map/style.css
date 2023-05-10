@@ -1,16 +1,12 @@
 :host {
+  display: grid;
   border-radius: 10px;
-  box-shadow: 0 2px 6px 0 rgb(0 0 0 / 20%);
-}
+  overflow: hidden;
+  box-shadow: 0 2px 6px 0 var(--tcds-color-shade-x-weak);
 
-@media (min-width: 1000px) {
-  :host {
+  @media (min-width: 1000px) {
     grid-template-columns: 1fr 376px;
   }
-}
-
-:host(:not([hidden])) {
-  display: grid;
 }
 
 menu {
@@ -23,24 +19,24 @@ menu {
   list-style: none;
   z-index: 1;
   width: calc(100% - 20px * 2);
-}
 
-menu button {
-  font-weight: var(--tcds-font-weight-bold);
-  font-size: var(--tcds-font-size-x-small);
-  box-shadow: 0 3px 6px 0 rgba(0 0 0 / 16%);
-  background-color: #fff;
-  border: 1px solid var(--tcds-color-blue-light);
-  border-radius: 6px;
-  color: var(--tcds-color-blue-dark);
-  padding: 0.5rem var(--tcds-space-normal);
-  white-space: nowrap;
-  height: auto;
-}
+  & button {
+    font-weight: var(--tcds-font-weight-bold);
+    font-size: var(--tcds-font-size-x-small);
+    box-shadow: 0 3px 6px 0 rgba(0 0 0 / 16%);
+    background-color: #fff;
+    border: 1px solid var(--tcds-color-blue-light);
+    border-radius: 6px;
+    color: var(--tcds-color-blue-dark);
+    padding: 0.5rem var(--tcds-space-normal);
+    white-space: nowrap;
+    height: auto;
 
-menu button[aria-pressed="true"] {
-  background-color: var(--tcds-color-blue-dark);
-  color: #fff;
+    &[aria-pressed="true"] {
+      background-color: var(--tcds-color-blue-dark);
+      color: #fff;
+    }
+  }
 }
 
 [part="map-view"] {
@@ -53,14 +49,23 @@ menu button[aria-pressed="true"] {
   height: 100%;
 }
 
-tcds-card::part(card) {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
+tcds-card {
+  &::part(card) {
+    border-top-left-radius: 0;
 
-tcds-card > footer[slot="footer"] {
-  flex-direction: column;
-  align-items: start;
+    @media (max-width: 999px) {
+      border-top-right-radius: 0;
+    }
+
+    @media (min-width: 1000px) {
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  > [slot="footer"] {
+    flex-direction: column;
+    align-items: start;
+  }
 }
 
 /* stylelint-disable */
