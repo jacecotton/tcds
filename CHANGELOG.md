@@ -1,3 +1,14 @@
+## [2.0.1](https://github.com/jacecotton/tcds/compare/v2.0.0...v2.0.1) (2023-05-10)
+
+
+### Bug Fixes
+
+* **components:** Adjust button variants ([ae9367d](https://github.com/jacecotton/tcds/commit/ae9367d5fd19b39324e4711edf9ca19878e22d19))
+* **components:** Icon box-sizing issue ([b3a5a54](https://github.com/jacecotton/tcds/commit/b3a5a543ad62fb0b098b9b54441cd204606e8f24))
+* **typography:** Loosen all line heights ([55cc9ca](https://github.com/jacecotton/tcds/commit/55cc9ca366c660fcb3e5d7c596f7afe7c994462e))
+
+
+
 # [2.0.0](https://github.com/jacecotton/tcds/compare/v1.10.9...v2.0.0) (2023-05-10)
 
 
@@ -269,15 +280,6 @@ This reverts commit 08db390adfd68707bf2cb7ef8a606e54f7317acf.
 ### Bug Fixes
 
 * **components:** Accordion text colors ([2c65415](https://github.com/jacecotton/tcds/commit/2c6541556436c3e3fc2f75b6d6427ce9dee814f1))
-
-
-
-## [1.10.6](https://github.com/jacecotton/tcds/compare/v1.10.5...v1.10.6) (2023-04-26)
-
-
-### Bug Fixes
-
-* **components:** Remove dark styles for accordion component ([680fa0c](https://github.com/jacecotton/tcds/commit/680fa0c037b87e225fc8d3bbba42589cd9367b47))
 
 
 
