@@ -143,16 +143,16 @@ footer {
   right: var(--tcds-dialog-close-button-position);
   z-index: 2;
 
-  &[variant="secondary"] {
+  &:not([variant="ghost"], [variant="secondary"]) {
     --tcds-dialog-close-button-position: 0;
     --tcds-button-translate: 50%, -50%;
   }
 
-  &[variant="ui"] {
+  &[variant="ghost"] {
     --tcds-dialog-close-button-position: var(--tcds-space-tight);
   }
 
-  &[variant="ghost"] {
+  &[variant="secondary"] {
     --tcds-dialog-close-button-position: var(--site-outer-gutter);
   }
 }

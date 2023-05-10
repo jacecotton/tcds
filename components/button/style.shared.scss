@@ -53,11 +53,11 @@ a[is="tcds-link-button"] {
       box-shadow 0.08s ease-in;
   }
 
-  :where(&:not([variant*="ghost"], [variant*="ui"])) {
+  :where(&:not([variant*="secondary"], [variant*="ghost"])) {
     --tcds-button-font-weight: var(--tcds-font-weight-semibold);
   }
 
-  :where(&:not([variant*="ghost"], [variant*="ui"], [aria-label])) {
+  :where(&:not([variant*="secondary"], [variant*="ghost"], [aria-label])) {
     --tcds-button-icon-background-color: var(--tcds-color-primary);
     --tcds-button-icon-color: #fff;
   }
@@ -73,16 +73,16 @@ a[is="tcds-link-button"] {
     outline: none;
   }
 
-  :where(&:not([variant*="ghost"], [variant*="ui"]):hover) {
+  :where(&:not([variant*="secondary"], [variant*="ghost"]):hover) {
     --tcds-button-box-shadow: 0.125rem 0 0.625rem 0 var(--tcds-color-shade-weak);
   }
 
-  :where(&:not([variant*="secondary"], [variant*="ui"], [aria-label]):hover) {
+  :where(&:not([variant*="ghost"], [aria-label]):hover) {
     --tcds-button-icon-background-color: var(--tcds-color-primary);
     --tcds-button-icon-color: #fff;
   }
 
-  :where(&:not([variant*="ghost"]):hover) {
+  :where(&:not([variant*="secondary"]):hover) {
     --tcds-button-overlay: var(--tcds-color-shade-x-weak);
   }
 
@@ -114,24 +114,17 @@ a[is="tcds-link-button"] {
     width: 100%;
   }
 
-  :where(&[variant*="ghost"]) {
+  :where(&[variant*="secondary"]) {
     --tcds-button-padding-inline: 0;
     --tcds-button-background-color: transparent;
     --tcds-button-text-color: var(--tcds-color-secondary);
   }
 
-  :where(&[variant*="ghost"]:hover) {
+  :where(&[variant*="secondary"]:hover) {
     --tcds-button-text-color: var(--tcds-color-primary);
   }
 
-  :where(&[variant*="secondary"]) {
-    --tcds-button-background-color: var(--tcds-color-secondary);
-    --tcds-button-text-color: var(--tcds-color-tint-x-strong);
-    --tcds-button-icon-background-color: transparent;
-    --tcds-button-icon-color: "inherit";
-  }
-
-  :where(&[variant*="ui"]) {
+  :where(&[variant*="ghost"]) {
     --tcds-button-background-color: transparent;
     --tcds-button-text-color: "inherit";
     --tcds-button-icon-background-color: transparent;
@@ -156,21 +149,21 @@ a[is="tcds-link-button"] {
       color var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing);
   }
 
-  [data-theme="dark"] > :where(&:not([variant*="ghost"], [variant*="ui"], [variant*="secondary"], :hover)),
-  &[data-theme="dark"]:where(:not([variant*="ghost"], [variant*="ui"], [variant*="secondary"], :hover)) {
+  [data-theme="dark"] > :where(&:not([variant*="secondary"], [variant*="ghost"], :hover)),
+  &[data-theme="dark"]:where(:not([variant*="secondary"], [variant*="ghost"], :hover)) {
     --tcds-button-background-color: #fff;
     --tcds-button-text-color: var(--tcds-color-primary);
     --tcds-button-icon-background-color: #fff;
     --tcds-button-icon-color: var(--tcds-color-primary);
   }
 
-  [data-theme="dark"] > :where(&[variant*="ghost"]),
-  &[data-theme="dark"]:where([variant*="ghost"]) {
+  [data-theme="dark"] > :where(&[variant*="secondary"]),
+  &[data-theme="dark"]:where([variant*="secondary"]) {
     --tcds-button-text-color: #fff;
   }
 
-  [data-theme="dark"] > :where(&[variant*="ui"]),
-  &[data-theme="dark"]:where([variant*="ui"]) {
+  [data-theme="dark"] > :where(&[variant*="ghost"]),
+  &[data-theme="dark"]:where([variant*="ghost"]) {
     --tcds-button-text-color: var(--tcds-color-secondary);
     --tcds-button-background-color: var(--tcds-color-tint-x-strong);
   }

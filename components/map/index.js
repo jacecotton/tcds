@@ -90,7 +90,7 @@ export default class Map extends WebComponent(HTMLElement) {
               ${location.locality}, ${location.administrative_area} ${location.postal_code}
             </p>
             <footer slot="footer">
-              <a is="tcds-link-button" variant="ghost" href="${location.link}">
+              <a is="tcds-link-button" variant="secondary" href="${location.link}">
                 Hours &amp; information
                 <tcds-icon icon="chevron-right"></tcds-icon>
               </a>

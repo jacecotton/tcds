@@ -17,7 +17,7 @@ export default class MegaMenu extends WebComponent(HTMLElement) {
     return /* html */`
       <section>
         <div class="max-width">
-          <button is="tcds-ui-button" part="close" variant="ui" aria-label="Close menu" title="Close menu"><tcds-icon icon="x"></tcds-icon></button>
+          <button is="tcds-ui-button" part="close" variant="ghost" aria-label="Close menu" title="Close menu"><tcds-icon icon="x"></tcds-icon></button>
 
           <slot name="title"></slot>
 

@@ -69,7 +69,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
           <button is="tcds-ui-button"
             part="play-pause"
             size="small"
-            variant="ui"
+            variant="ghost"
             aria-label="${playPauseLabel}"
             title="${playPauseLabel}"
             onclick="this.getRootNode().host.toggle()"
@@ -80,7 +80,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
         <div part="navigation">
           <button is="tcds-ui-button"
             part="previous"
-            variant="ghost"
+            variant="secondary"
             size="large"
             aria-label="Go to previous slide"
             title="Go to previous slide"
@@ -90,7 +90,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
           </button>
           <button is="tcds-ui-button"
             part="next"
-            variant="ghost"
+            variant="secondary"
             size="large"
             aria-label="Go to next slide"
             title="Go to next slide"
