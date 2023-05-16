@@ -31,6 +31,7 @@ menu {
     padding: 0.5rem var(--tcds-space-normal);
     white-space: nowrap;
     height: auto;
+    user-select: none;
 
     &[aria-pressed="true"] {
       background-color: var(--tcds-color-blue-dark);
@@ -43,6 +44,17 @@ menu {
   position: relative;
   overflow: hidden;
   min-height: 589px;
+
+  &::before {
+    content: "";
+    display: block;
+    height: 6rem;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    background: linear-gradient(to top, transparent 0%, var(--tcds-color-shade-x-weak) 100%);
+    z-index: 1;
+  }
 }
 
 [part="map"] {
