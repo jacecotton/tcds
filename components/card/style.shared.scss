@@ -21,11 +21,11 @@ tcds-card {
     }
   }
 
-  > [slot="overline"] {
+  > [slot="pretitle"] {
     font-family: var(--tcds-font-ui);
     font-weight: var(--tcds-font-weight-normal);
-    font-size: var(--tcds-card-overline-font-size, var(--tcds-font-size-small));
-    color: var(--tcds-card-overline-color, var(--tcds-color-gray));
+    font-size: var(--tcds-card-pretitle-font-size, var(--tcds-font-size-small));
+    color: var(--tcds-card-pretitle-color, var(--tcds-color-gray));
     margin-bottom: 0;
     text-transform: uppercase;
   }

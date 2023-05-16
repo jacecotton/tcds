@@ -26,15 +26,10 @@
   --tcds-card-description-font-size: var(--tcds-font-size-medium-plus);
 }
 
-:host([variant*="ui"]) {
-  --tcds-card-title-font: var(--tcds-font-ui);
-  --tcds-card-description-font: var(--tcds-font-ui);
-}
-
 :host([variant*="overlay"]) {
   --tcds-card-text-color: #fff;
   --tcds-card-title-color: #fff;
-  --tcds-card-overline-color: #fff;
+  --tcds-card-pretitle-color: #fff;
   --tcds-card-link-color: #fff;
 }
 

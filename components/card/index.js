@@ -67,7 +67,7 @@ export default class Card extends WebComponent(HTMLElement) {
         ` : ``}
 
         <div part="content">
-          <slot name="overline"></slot>
+          <slot name="pretitle"></slot>
           <slot name="title"></slot>
           <slot name="description"></slot>
           <slot></slot>
