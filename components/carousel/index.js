@@ -68,10 +68,10 @@ export default class Carousel extends WebComponent(HTMLElement) {
         ${this.timing ? /* html */`
           <button is="tcds-ui-button"
             part="play-pause"
+            title="${playPauseLabel}"
+            aria-label="${playPauseLabel}"
             size="small"
             variant="ghost"
-            aria-label="${playPauseLabel}"
-            title="${playPauseLabel}"
             onclick="this.getRootNode().host.toggle()"
           >
             <tcds-icon icon="${this.playing ? "pause" : "play"}"></tcds-icon>
