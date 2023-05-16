@@ -1,3 +1,12 @@
+## [2.0.2](https://github.com/jacecotton/tcds/compare/v2.0.1...v2.0.2) (2023-05-10)
+
+
+### Bug Fixes
+
+* **components:** Accordion expand/collapse all fix ([fa50fb3](https://github.com/jacecotton/tcds/commit/fa50fb3e4ce7043e16eae498278386d923d4df44))
+
+
+
 ## [2.0.1](https://github.com/jacecotton/tcds/compare/v2.0.0...v2.0.1) (2023-05-10)
 
 
@@ -271,15 +280,6 @@ This reverts commit 08db390adfd68707bf2cb7ef8a606e54f7317acf.
 ### Bug Fixes
 
 * **components:** Accordion tweak ([02c824b](https://github.com/jacecotton/tcds/commit/02c824b4c4720ad42a717864e6b0536e2b6aedec))
-
-
-
-## [1.10.7](https://github.com/jacecotton/tcds/compare/v1.10.6...v1.10.7) (2023-04-26)
-
-
-### Bug Fixes
-
-* **components:** Accordion text colors ([2c65415](https://github.com/jacecotton/tcds/commit/2c6541556436c3e3fc2f75b6d6427ce9dee814f1))
 
 
 
