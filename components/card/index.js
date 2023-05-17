@@ -58,9 +58,8 @@ export default class Card extends WebComponent(HTMLElement) {
 
     return /* html */`
       <article part="card">
-        <slot name="tag"></slot>
-
         ${this.#has("image") ? /* html */`
+          <slot name="tag"></slot>
           <figure>
             <slot name="image"></slot>
           </figure>
