@@ -74,7 +74,6 @@ export default class Map extends WebComponent(HTMLElement) {
         ${locations.map((location) => /* html */`
           <tcds-card
             id="location-${location.id}"
-            variant="ui"
             ${location.id !== this.selectedLocation ? "hidden" : ""}
           >
             ${location.image_desktop && location.image_desktop.length > 2 ? /* html */`
