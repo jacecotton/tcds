@@ -1,3 +1,14 @@
+## [2.0.4](https://github.com/jacecotton/tcds/compare/v2.0.3...v2.0.4) (2023-05-17)
+
+
+### Bug Fixes
+
+* **components:** Alert bar close button issue ([f04b660](https://github.com/jacecotton/tcds/commit/f04b660d1d752c75c0ca4dc893224366a97a5c3a))
+* **components:** Only use card tag if image is present ([4a22129](https://github.com/jacecotton/tcds/commit/4a22129b33c8039777e37c1098269a0be1c7fef2))
+* **components:** Remove deprecated "ui" card variant from map component ([ca90b90](https://github.com/jacecotton/tcds/commit/ca90b9078d2678c4b6fb6057d71ccf5453d2cf92))
+
+
+
 ## [2.0.3](https://github.com/jacecotton/tcds/compare/v2.0.2...v2.0.3) (2023-05-16)
 
 
@@ -272,15 +283,6 @@ This reverts commit 08db390adfd68707bf2cb7ef8a606e54f7317acf.
 * update
 
 * update
-
-
-
-## [1.10.9](https://github.com/jacecotton/tcds/compare/v1.10.8...v1.10.9) (2023-05-01)
-
-
-### Bug Fixes
-
-* **components:** responsive section background position ([588d516](https://github.com/jacecotton/tcds/commit/588d5168fd258f81d1b049f6fd958169be08c8b0))
 
 
 
