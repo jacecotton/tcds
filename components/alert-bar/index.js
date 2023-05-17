@@ -9,7 +9,7 @@ export default class AlertBar extends WebComponent(HTMLElement) {
         <div part="alerts">
           <slot name="alert"></slot>
         </div>
-        <button is="tcds-ui-button" part="close" variant="ui" onclick="this.getRootNode().host.close()" aria-label="Dismiss updates" title="Dismiss updates">
+        <button is="tcds-ui-button" part="close" variant="ghost" onclick="this.getRootNode().host.close()" aria-label="Dismiss updates" title="Dismiss updates">
           <tcds-icon icon="x"></tcds-icon>
         </button>
       </section>
