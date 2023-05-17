@@ -76,6 +76,7 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
       if(this.open) {
         panel.style.height = "0px";
         panel.hidden = false;
+        panel.ontransitionend = null;
 
         requestAnimationFrame(() => {
           panel.style.height = `${panel.scrollHeight}px`;
