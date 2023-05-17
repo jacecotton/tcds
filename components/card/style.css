@@ -33,7 +33,7 @@
   --tcds-card-link-color: #fff;
 }
 
-:host([image*="contain"]) {
+:host([image*="contain"]:not([variant*="overlay"], [variant*="featured"])) {
   --tcds-card-image-fit: contain;
 }
 
