@@ -1,3 +1,16 @@
+## [2.0.6](https://github.com/jacecotton/tcds/compare/v2.0.5...v2.0.6) (2023-05-24)
+
+
+### Bug Fixes
+
+* **components:** Allow bottom vertical alignment for section content ([6f647e9](https://github.com/jacecotton/tcds/commit/6f647e9a222bdc6909b148da0696a4514e8dd83b))
+* **components:** Make card footer items wrap ([ddf8362](https://github.com/jacecotton/tcds/commit/ddf8362612cf846943e5999276e691b3659f2b84))
+* **components:** Remove spinner icon ([be9e9f9](https://github.com/jacecotton/tcds/commit/be9e9f9c3d529671aafb39ce0544a179871add7a))
+* **styles:** Un-Sass typography variables ([31d5f89](https://github.com/jacecotton/tcds/commit/31d5f8964023a5cc0781e1daf0ae5f84ba4d50f1))
+* **typography:** Add 115% size adjustment to Calluna font ([2cc802a](https://github.com/jacecotton/tcds/commit/2cc802a3d460c933eb51d4f855594bca1c78ef41))
+
+
+
 ## [2.0.5](https://github.com/jacecotton/tcds/compare/v2.0.4...v2.0.5) (2023-05-17)
 
 
@@ -35,17 +48,6 @@
 ### Bug Fixes
 
 * **components:** Accordion expand/collapse all fix ([fa50fb3](https://github.com/jacecotton/tcds/commit/fa50fb3e4ce7043e16eae498278386d923d4df44))
-
-
-
-## [2.0.1](https://github.com/jacecotton/tcds/compare/v2.0.0...v2.0.1) (2023-05-10)
-
-
-### Bug Fixes
-
-* **components:** Adjust button variants ([ae9367d](https://github.com/jacecotton/tcds/commit/ae9367d5fd19b39324e4711edf9ca19878e22d19))
-* **components:** Icon box-sizing issue ([b3a5a54](https://github.com/jacecotton/tcds/commit/b3a5a543ad62fb0b098b9b54441cd204606e8f24))
-* **typography:** Loosen all line heights ([55cc9ca](https://github.com/jacecotton/tcds/commit/55cc9ca366c660fcb3e5d7c596f7afe7c994462e))
 
 
 
