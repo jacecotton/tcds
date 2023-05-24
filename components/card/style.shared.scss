@@ -43,6 +43,7 @@ tcds-card {
   > [slot="footer"],
   &::part(footer) {
     display: flex;
+    flex-wrap: wrap;
     gap: var(--tcds-space-normal);
     margin-top: auto;
   }
