@@ -59,7 +59,7 @@ section {
     ".         primary   primary   .        "
     "secondary secondary secondary secondary"
     "secondary secondary secondary secondary";
-  align-items: center;
+  align-items: var(--tcds-section-vertical-align, center);
   z-index: 1;
   position: relative;
 
