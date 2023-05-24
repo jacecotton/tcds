@@ -1,4 +1,4 @@
-@use "variables" as *;
+@use "sass:list";
 @use "../layout/variables" as *;
 
 .text-center {
@@ -19,34 +19,34 @@
   }
 }
 
-@each $font, $stack in $font-stacks {
+@each $font in ("sans-serif", "serif", "display", "headings", "copy", "ui") {
   .font-#{$font} {
     font-family: var(--tcds-font-#{$font});
   }
 }
 
-@each $name, $weight in $font-weights {
-  .font-weight-#{$name} {
-    font-weight: var(--tcds-font-weight-#{$name});
+@each $weight in ("normal", "semibold", "bold") {
+  .font-weight-#{$weight} {
+    font-weight: var(--tcds-font-weight-#{$weight});
   }
 }
 
-@each $name, $size in $font-sizes {
-  .font-size-#{$name} {
-    font-size: var(--tcds-font-size-#{$name});
+@each $size in ("x-small", "small", "medium", "medium-plus", "large", "x-large", "xx-large", "xxx-large") {
+  .font-size-#{$size} {
+    font-size: var(--tcds-font-size-#{$size});
 
-    @if index(("xx-large", "x-large", "large"), $name) {
+    @if list.index(("xx-large", "x-large", "large"), $size) {
       line-height: var(--tcds-line-height-tight);
     }
 
-    @if index(("medium-plus", "medium", "small", "x-small"), $name) {
+    @if list.index(("medium-plus", "medium", "small", "x-small"), $size) {
       line-height: var(--tcds-line-height-normal);
     }
   }
 }
 
-@each $name, $height in $line-heights {
-  .line-height-#{$name} {
-    line-height: var(--tcds-line-height-#{$name});
+@each $height in ("x-tight", "tight", "normal", "loose", "x-loose") {
+  .line-height-#{$height} {
+    line-height: var(--tcds-line-height-#{$height});
   }
 }
