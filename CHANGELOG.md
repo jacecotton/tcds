@@ -1,3 +1,12 @@
+## [2.0.10](https://github.com/jacecotton/tcds/compare/v2.0.9...v2.0.10) (2023-05-24)
+
+
+### Bug Fixes
+
+* **styles:** Indent sub lists in mega menus ([86f57c2](https://github.com/jacecotton/tcds/commit/86f57c2bbd183cf0a237065270f648b9828874c0))
+
+
+
 ## [2.0.9](https://github.com/jacecotton/tcds/compare/v2.0.8...v2.0.9) (2023-05-24)
 
 
@@ -35,16 +44,6 @@
 * **components:** Remove spinner icon ([be9e9f9](https://github.com/jacecotton/tcds/commit/be9e9f9c3d529671aafb39ce0544a179871add7a))
 * **styles:** Un-Sass typography variables ([31d5f89](https://github.com/jacecotton/tcds/commit/31d5f8964023a5cc0781e1daf0ae5f84ba4d50f1))
 * **typography:** Add 115% size adjustment to Calluna font ([2cc802a](https://github.com/jacecotton/tcds/commit/2cc802a3d460c933eb51d4f855594bca1c78ef41))
-
-
-
-## [2.0.5](https://github.com/jacecotton/tcds/compare/v2.0.4...v2.0.5) (2023-05-17)
-
-
-### Bug Fixes
-
-* **components:** accordion issue with multiple [open] attributes added in non-multiselect mode ([094b20a](https://github.com/jacecotton/tcds/commit/094b20a4b27ff7144bc1859a7774ccb0241b6d90))
-* **components:** Prevent [image=contain] on overlay and featured card variants ([513250c](https://github.com/jacecotton/tcds/commit/513250cd3c65a4d3a4cdfbddf8c3d119af5794d3))
 
 
 
