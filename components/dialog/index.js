@@ -45,7 +45,7 @@ export default class Dialog extends WebComponent(HTMLElement) {
       <button is="tcds-ui-button"
         part="close"
         onclick="this.getRootNode().host.close()"
-        ${this.getAttributes("position") === "right" || this.#has("header") ? /* html */`
+        ${this.getAttribute("position") === "right" || this.#has("header") ? /* html */`
           variant="ghost"
         ` : /* html */`
           data-theme="dark"
