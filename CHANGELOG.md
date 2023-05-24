@@ -1,3 +1,12 @@
+## [2.0.9](https://github.com/jacecotton/tcds/compare/v2.0.8...v2.0.9) (2023-05-24)
+
+
+### Bug Fixes
+
+* **components:** Typo ([dfa4465](https://github.com/jacecotton/tcds/commit/dfa4465ecbaf14ef55382c063c54e92070c541cc))
+
+
+
 ## [2.0.8](https://github.com/jacecotton/tcds/compare/v2.0.7...v2.0.8) (2023-05-24)
 
 
@@ -36,17 +45,6 @@
 
 * **components:** accordion issue with multiple [open] attributes added in non-multiselect mode ([094b20a](https://github.com/jacecotton/tcds/commit/094b20a4b27ff7144bc1859a7774ccb0241b6d90))
 * **components:** Prevent [image=contain] on overlay and featured card variants ([513250c](https://github.com/jacecotton/tcds/commit/513250cd3c65a4d3a4cdfbddf8c3d119af5794d3))
-
-
-
-## [2.0.4](https://github.com/jacecotton/tcds/compare/v2.0.3...v2.0.4) (2023-05-17)
-
-
-### Bug Fixes
-
-* **components:** Alert bar close button issue ([f04b660](https://github.com/jacecotton/tcds/commit/f04b660d1d752c75c0ca4dc893224366a97a5c3a))
-* **components:** Only use card tag if image is present ([4a22129](https://github.com/jacecotton/tcds/commit/4a22129b33c8039777e37c1098269a0be1c7fef2))
-* **components:** Remove deprecated "ui" card variant from map component ([ca90b90](https://github.com/jacecotton/tcds/commit/ca90b9078d2678c4b6fb6057d71ccf5453d2cf92))
 
 
 
