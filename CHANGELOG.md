@@ -1,3 +1,12 @@
+## [2.0.7](https://github.com/jacecotton/tcds/compare/v2.0.6...v2.0.7) (2023-05-24)
+
+
+### Bug Fixes
+
+* **components:** Section background z-index issue ([3c837f7](https://github.com/jacecotton/tcds/commit/3c837f7b8cbebfcd561386d462724f615d333ef4))
+
+
+
 ## [2.0.6](https://github.com/jacecotton/tcds/compare/v2.0.5...v2.0.6) (2023-05-24)
 
 
@@ -39,15 +48,6 @@
 
 * **components:** Add subtle shadow to map view area of map component ([6d32298](https://github.com/jacecotton/tcds/commit/6d322984c392865899ae8d5e8072441de79ee103))
 * **components:** Rename card overline to pretitle ([87926c9](https://github.com/jacecotton/tcds/commit/87926c97a9ad7be94ab90e0b53c0610280f46975))
-
-
-
-## [2.0.2](https://github.com/jacecotton/tcds/compare/v2.0.1...v2.0.2) (2023-05-10)
-
-
-### Bug Fixes
-
-* **components:** Accordion expand/collapse all fix ([fa50fb3](https://github.com/jacecotton/tcds/commit/fa50fb3e4ce7043e16eae498278386d923d4df44))
 
 
 
