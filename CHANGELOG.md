@@ -1,3 +1,12 @@
+## [2.0.8](https://github.com/jacecotton/tcds/compare/v2.0.7...v2.0.8) (2023-05-24)
+
+
+### Bug Fixes
+
+* **styles:** Main content layout issue ([b263ef1](https://github.com/jacecotton/tcds/commit/b263ef14c520ec92033098887403a92fe521653b))
+
+
+
 ## [2.0.7](https://github.com/jacecotton/tcds/compare/v2.0.6...v2.0.7) (2023-05-24)
 
 
@@ -38,16 +47,6 @@
 * **components:** Alert bar close button issue ([f04b660](https://github.com/jacecotton/tcds/commit/f04b660d1d752c75c0ca4dc893224366a97a5c3a))
 * **components:** Only use card tag if image is present ([4a22129](https://github.com/jacecotton/tcds/commit/4a22129b33c8039777e37c1098269a0be1c7fef2))
 * **components:** Remove deprecated "ui" card variant from map component ([ca90b90](https://github.com/jacecotton/tcds/commit/ca90b9078d2678c4b6fb6057d71ccf5453d2cf92))
-
-
-
-## [2.0.3](https://github.com/jacecotton/tcds/compare/v2.0.2...v2.0.3) (2023-05-16)
-
-
-### Bug Fixes
-
-* **components:** Add subtle shadow to map view area of map component ([6d32298](https://github.com/jacecotton/tcds/commit/6d322984c392865899ae8d5e8072441de79ee103))
-* **components:** Rename card overline to pretitle ([87926c9](https://github.com/jacecotton/tcds/commit/87926c97a9ad7be94ab90e0b53c0610280f46975))
 
 
 
