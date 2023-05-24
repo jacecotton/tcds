@@ -17,6 +17,12 @@ tcds-mega-menu {
   ul {
     list-style: none;
     padding-left: 0;
+
+    @media (min-width: 1200px) {
+      ul {
+        padding-left: 2ch;
+      }
+    }
   }
 
   li {
