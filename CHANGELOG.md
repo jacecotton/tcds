@@ -1,3 +1,13 @@
+## [2.0.11](https://github.com/jacecotton/tcds/compare/v2.0.10...v2.0.11) (2023-06-07)
+
+
+### Bug Fixes
+
+* **components:** Active tab background on hover only, not active ([879c476](https://github.com/jacecotton/tcds/commit/879c47613abdaf47b1953378783e4f335db4cfec))
+* **components:** Dialog ([8940c11](https://github.com/jacecotton/tcds/commit/8940c1121b76a66c0c5b46c59c21ecdcecf80993))
+
+
+
 ## [2.0.10](https://github.com/jacecotton/tcds/compare/v2.0.9...v2.0.10) (2023-05-24)
 
 
@@ -31,19 +41,6 @@
 ### Bug Fixes
 
 * **components:** Section background z-index issue ([3c837f7](https://github.com/jacecotton/tcds/commit/3c837f7b8cbebfcd561386d462724f615d333ef4))
-
-
-
-## [2.0.6](https://github.com/jacecotton/tcds/compare/v2.0.5...v2.0.6) (2023-05-24)
-
-
-### Bug Fixes
-
-* **components:** Allow bottom vertical alignment for section content ([6f647e9](https://github.com/jacecotton/tcds/commit/6f647e9a222bdc6909b148da0696a4514e8dd83b))
-* **components:** Make card footer items wrap ([ddf8362](https://github.com/jacecotton/tcds/commit/ddf8362612cf846943e5999276e691b3659f2b84))
-* **components:** Remove spinner icon ([be9e9f9](https://github.com/jacecotton/tcds/commit/be9e9f9c3d529671aafb39ce0544a179871add7a))
-* **styles:** Un-Sass typography variables ([31d5f89](https://github.com/jacecotton/tcds/commit/31d5f8964023a5cc0781e1daf0ae5f84ba4d50f1))
-* **typography:** Add 115% size adjustment to Calluna font ([2cc802a](https://github.com/jacecotton/tcds/commit/2cc802a3d460c933eb51d4f855594bca1c78ef41))
 
 
 
