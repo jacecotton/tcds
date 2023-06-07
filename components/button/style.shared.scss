@@ -18,7 +18,6 @@ a[is="tcds-link-button"] {
 
     position: relative;
     z-index: 1;
-    margin: 0;
 
     display: inline-flex;
     gap: var(--tcds-space-tight);
@@ -30,6 +29,7 @@ a[is="tcds-link-button"] {
     height: var(--tcds-button-height);
     width: var(--tcds-button-width, auto);
     line-height: 1;
+    margin: 0;
     padding: 0 var(--tcds-button-padding-inline);
 
     border: 0;
