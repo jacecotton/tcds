@@ -41,8 +41,11 @@
 
   &:hover,
   &[aria-selected="true"] {
-    --tcds-tabs-tab-background-color: var(--tcds-tabs-tab-active-background-color, var(--tcds-color-red-x-light));
     --tcds-tabs-tab-text-color: var(--tcds-tabs-tab-active-text-color, var(--tcds-color-primary));
+  }
+
+  &:hover {
+    --tcds-tabs-tab-background-color: var(--tcds-tabs-tab-active-background-color, var(--tcds-color-red-x-light));
   }
 
   &[aria-selected="true"] {
