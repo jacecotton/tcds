@@ -29,7 +29,7 @@ export default class Dialog extends WebComponent(HTMLElement) {
   }
 
   get variant() {
-    return this.getAttribute("variant")?.trim().replace(/\s\s+/g, " ").split(" ");
+    return (this.hasAttribute("variant") && this.getAttribute("variant")?.trim().replace(/\s\s+/g, " ").split(" ")) || [];
   }
 
   set variant(value) {
@@ -65,7 +65,7 @@ export default class Dialog extends WebComponent(HTMLElement) {
 
       ${this.variant?.includes("lightbox") ? closeButton : ``}
 
-      <div part="dialog">
+      <article part="dialog">
         ${!this.variant?.includes("lightbox") ? closeButton : ``}
 
         ${this.#has("header") ? /* html */`
@@ -83,7 +83,7 @@ export default class Dialog extends WebComponent(HTMLElement) {
             <slot name="footer"></slot>
           </footer>
         ` : ``}
-      </div>
+      </article>
 
       <focus-boundary static></focus-boundary>
     `;
@@ -231,10 +231,10 @@ export default class Dialog extends WebComponent(HTMLElement) {
       // Pause internal videos.
       this.querySelectorAll("video")?.forEach(video => video.pause());
 
-      this.querySelectorAll("iframe[src*=youtube]")?.forEach((video) => {
+      this.querySelectorAll("iframe[src*=youtu]")?.forEach((video) => {
         // For YouTube embeds, rather than worry about keeping up with current
         // APIs and ensuring JS APIs are enabled in the embed URL, we can trick
-        // the embed into pausing by "refreshing" the `src` attribute.
+        // the video into stopping by "refreshing" the `src` attribute.
         const src = video.src;
         video.src = src;
       });
