@@ -1,3 +1,17 @@
+# [2.1.0](https://github.com/jacecotton/tcds/compare/v2.0.11...v2.1.0) (2023-06-12)
+
+
+### Bug Fixes
+
+* **components:** Gallery lightbox CDN link change ([08293cb](https://github.com/jacecotton/tcds/commit/08293cbf4002539fede6969d56946393f830e9cd))
+
+
+### Features
+
+* **icons:** Update calendar, add check-encircled, route ([4df9fad](https://github.com/jacecotton/tcds/commit/4df9fad9334b6bf8c62762dfbe13acfcea3fcc68))
+
+
+
 ## [2.0.11](https://github.com/jacecotton/tcds/compare/v2.0.10...v2.0.11) (2023-06-07)
 
 
@@ -32,15 +46,6 @@
 ### Bug Fixes
 
 * **styles:** Main content layout issue ([b263ef1](https://github.com/jacecotton/tcds/commit/b263ef14c520ec92033098887403a92fe521653b))
-
-
-
-## [2.0.7](https://github.com/jacecotton/tcds/compare/v2.0.6...v2.0.7) (2023-05-24)
-
-
-### Bug Fixes
-
-* **components:** Section background z-index issue ([3c837f7](https://github.com/jacecotton/tcds/commit/3c837f7b8cbebfcd561386d462724f615d333ef4))
 
 
 
