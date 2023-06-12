@@ -38,7 +38,6 @@
       border: none;
       font-family: var(--tcds-font-ui);
       font-size: var(--tcds-font-size-medium);
-      font-weight: var(--tcds-font-weight-normal);
       color: inherit;
       cursor: pointer;
       display: flex;
@@ -47,6 +46,13 @@
 
       &:hover {
         text-decoration: underline;
+      }
+    }
+
+    > *:not(tcds-mega-menu) {
+      a,
+      button:not([is]) {
+        font-weight: var(--tcds-font-weight-normal);
       }
     }
   }
