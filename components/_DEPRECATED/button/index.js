@@ -58,10 +58,10 @@ export default class Button extends WebComponent(HTMLElement) {
         part="button"
         ${this.link ? /* html */`
           href="${this.link}"
-          ${this.hasAttribute("new-tab") ? `target="_blank" rel="noopener noreferrer"` : ""}
+          ${this.hasAttribute("new-tab") ? `target="_blank" rel="noopener noreferrer"` : ``}
         ` : /* html */`
-          ${this.type ? `type="${this.type}"` : ""}
-          ${this.expanded ? `aria-expanded="${this.expanded}"` : ""}
+          ${this.type ? `type="${this.type}"` : ``}
+          ${this.expanded ? `aria-expanded="${this.expanded}"` : ``}
         `}
         ${this.icon.length && this.icon.includes("only") ? /* html */`
           aria-label="${this.label}"

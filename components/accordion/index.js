@@ -53,7 +53,7 @@ export default class Accordion extends WebComponent(HTMLElement) {
 
     if(!this.id) {
       const accordions = Array.from(this.getRootNode().querySelectorAll("tcds-accordion"));
-      this.id = `accordion${accordions.length > 1 ? `-${accordions.indexOf(this) + 1}` : ""}`;
+      this.id = `accordion${accordions.length > 1 ? `-${accordions.indexOf(this) + 1}` : ``}`;
     }
   }
 

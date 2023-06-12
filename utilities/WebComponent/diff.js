@@ -163,8 +163,10 @@ export default function diff(template, existing) {
 
     if(!existingNodes[index].childNodes.length && node.childNodes.length) {
       const fragment = document.createDocumentFragment();
+
       diff(node, fragment);
       existingNodes[index].appendChild(fragment);
+
       return;
     }
 

@@ -73,8 +73,8 @@ export default class Card extends WebComponent(HTMLElement) {
 
           <slot name="footer">
             ${this.actionLabel && link ? /* html */`
-              <footer part="footer" ${this.variant && this.variant.includes("overlay") ? `data-theme="dark"` : ""}>
-                <a is="tcds-link-button" href="${link}" variant="secondary" ${this.size !== "large" ? `size="small"` : ""}>
+              <footer part="footer" ${this.variant && this.variant.includes("overlay") ? `data-theme="dark"` : ``}>
+                <a is="tcds-link-button" href="${link}" variant="secondary" ${this.size !== "large" ? `size="small"` : ``}>
                   ${this.actionLabel} <span class="visually-hidden">about ${title}</span>
                   <tcds-icon icon="chevron-right"></tcds-icon>
                 </a>

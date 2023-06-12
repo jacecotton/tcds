@@ -85,7 +85,7 @@ export default class Map extends WebComponent(HTMLElement) {
             <a slot="title" href="${location.link}">${location.title}</a>
             <p slot="description">
               ${location.address_line1}<br>
-              ${location.address_line2 ? `${location.address_line2}<br>` : ""}
+              ${location.address_line2 ? `${location.address_line2}<br>` : ``}
               ${location.locality}, ${location.administrative_area} ${location.postal_code}
             </p>
             <footer slot="footer">
@@ -105,7 +105,7 @@ export default class Map extends WebComponent(HTMLElement) {
                     </li>
                   `).join("")}
                 </ul>
-              ` : ""}
+              ` : ``}
             </footer>
           </tcds-card>
         `).join("")}
