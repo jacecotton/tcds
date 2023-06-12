@@ -21,7 +21,7 @@ export default class Gallery extends HTMLElement {
 
     if(!this.getRootNode().getElementById("glightbox-script")) {
       const script = this.getRootNode().createElement("script");
-      script.src = "https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js";
+      script.src = "https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js";
       script.id = "glightbox-script";
       this.getRootNode().head.appendChild(script);
     }
