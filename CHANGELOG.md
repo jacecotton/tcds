@@ -1,3 +1,13 @@
+## [2.1.4](https://github.com/jacecotton/tcds/compare/v2.1.3...v2.1.4) (2023-06-20)
+
+
+### Bug Fixes
+
+* **components:** Regress ([4d68c30](https://github.com/jacecotton/tcds/commit/4d68c307388d32a0ab0befea768df0971fa139a0))
+* **components:** Section legacy slot naming support ([8ccca3f](https://github.com/jacecotton/tcds/commit/8ccca3fce932667c660eb9ff58ab6cb2b7bad8e8))
+
+
+
 ## [2.1.3](https://github.com/jacecotton/tcds/compare/v2.1.2...v2.1.3) (2023-06-20)
 
 
@@ -37,16 +47,6 @@
 ### Features
 
 * **icons:** Update calendar, add check-encircled, route ([4df9fad](https://github.com/jacecotton/tcds/commit/4df9fad9334b6bf8c62762dfbe13acfcea3fcc68))
-
-
-
-## [2.0.11](https://github.com/jacecotton/tcds/compare/v2.0.10...v2.0.11) (2023-06-07)
-
-
-### Bug Fixes
-
-* **components:** Active tab background on hover only, not active ([879c476](https://github.com/jacecotton/tcds/commit/879c47613abdaf47b1953378783e4f335db4cfec))
-* **components:** Dialog ([8940c11](https://github.com/jacecotton/tcds/commit/8940c1121b76a66c0c5b46c59c21ecdcecf80993))
 
 
 
