@@ -45,10 +45,10 @@
 section {
   display: grid;
   grid-template-columns:
-    max(var(--site-outer-gutter), (50vw - var(--site-container-max-width) / 2 - var(--tcds-section-region-gap)))
+    var(--tcds-section-gutter, max(var(--site-outer-gutter), (50% - var(--site-container-max-width) / 2 - var(--tcds-section-region-gap))))
     4fr
     3fr
-    max(var(--site-outer-gutter), (50vw - var(--site-container-max-width) / 2 - var(--tcds-section-region-gap)));
+    var(--tcds-section-gutter, max(var(--site-outer-gutter), (50% - var(--site-container-max-width) / 2 - var(--tcds-section-region-gap))));
   grid-template-rows:
     minmax(var(--tcds-section-padding-block-start, var(--tcds-section-padding-block)), auto)
     auto

@@ -72,9 +72,12 @@ tcds-section {
 
   > [slot="heading"] {
     line-height: var(--tcds-line-height-x-tight) !important;
-    font-size: calc(4rem * var(--tcds-font-size-scaler));
     color: var(--tcds-section-heading-color, var(--tcds-color-text));
     margin: 0;
+
+    &:not([class*="font-size-"]) {
+      font-size: calc(4rem * var(--tcds-font-size-scaler));
+    }
 
     sup {
       font-size: 16%;
@@ -99,5 +102,12 @@ tcds-section {
     font-family: var(--tcds-font-headings);
     font-size: 1.5rem !important;
     margin: var(--tcds-space-x-loose) 0 0;
+  }
+
+  .main-content & {
+    --tcds-section-gutter: var(--content-inner-gutter);
+
+    margin-left: calc(var(--content-inner-gutter) * -1);
+    margin-right: calc(var(--content-inner-gutter) * -1);
   }
 }
