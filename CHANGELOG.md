@@ -1,3 +1,13 @@
+## [2.1.2](https://github.com/jacecotton/tcds/compare/v2.1.1...v2.1.2) (2023-06-20)
+
+
+### Bug Fixes
+
+* **components:** Dialog bug ([6ef5122](https://github.com/jacecotton/tcds/commit/6ef5122994e207fabe14a22e2df25273730fe20d))
+* **components:** Icon - improved attribute handling ([90d1b62](https://github.com/jacecotton/tcds/commit/90d1b62989d97853b668b4d3c5b57e74e26d1fc9))
+
+
+
 ## [2.1.1](https://github.com/jacecotton/tcds/compare/v2.1.0...v2.1.1) (2023-06-12)
 
 
@@ -37,15 +47,6 @@
 ### Bug Fixes
 
 * **styles:** Indent sub lists in mega menus ([86f57c2](https://github.com/jacecotton/tcds/commit/86f57c2bbd183cf0a237065270f648b9828874c0))
-
-
-
-## [2.0.9](https://github.com/jacecotton/tcds/compare/v2.0.8...v2.0.9) (2023-05-24)
-
-
-### Bug Fixes
-
-* **components:** Typo ([dfa4465](https://github.com/jacecotton/tcds/commit/dfa4465ecbaf14ef55382c063c54e92070c541cc))
 
 
 
