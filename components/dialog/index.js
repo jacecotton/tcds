@@ -116,9 +116,9 @@ export default class Dialog extends WebComponent(HTMLElement) {
     // its first media element (image, video, embed, etc.)
     if(this.variant?.includes("lightbox")) {
       const firstMedia = this.querySelector("img, video, embed, iframe, picture");
-      const isVideo = firstMedia.localName === "video" || firstMedia.localName === "iframe";
 
       if(firstMedia) {
+        const isVideo = firstMedia.localName === "video" || firstMedia.localName === "iframe";
         const width = firstMedia.width > 0 ? firstMedia.width : firstMedia.naturalWidth;
         const height = firstMedia.height > 0 ? firstMedia.height : firstMedia.naturalHeight;
         const gcd = (x, y) => y === 0 ? x : gcd(y, x % y);
