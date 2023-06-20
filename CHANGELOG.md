@@ -1,3 +1,12 @@
+## [2.1.5](https://github.com/jacecotton/tcds/compare/v2.1.4...v2.1.5) (2023-06-20)
+
+
+### Bug Fixes
+
+* **components:** Response hero tertiary image ([67d5a1f](https://github.com/jacecotton/tcds/commit/67d5a1f51032313e9ad4185432028bb2ec2754e4))
+
+
+
 ## [2.1.4](https://github.com/jacecotton/tcds/compare/v2.1.3...v2.1.4) (2023-06-20)
 
 
@@ -33,20 +42,6 @@
 ### Bug Fixes
 
 * **styles:** Header nav link font weight selector specificity fix ([f0a4376](https://github.com/jacecotton/tcds/commit/f0a4376bdf44dfdea072f87bfcb66163872e7253))
-
-
-
-# [2.1.0](https://github.com/jacecotton/tcds/compare/v2.0.11...v2.1.0) (2023-06-12)
-
-
-### Bug Fixes
-
-* **components:** Gallery lightbox CDN link change ([08293cb](https://github.com/jacecotton/tcds/commit/08293cbf4002539fede6969d56946393f830e9cd))
-
-
-### Features
-
-* **icons:** Update calendar, add check-encircled, route ([4df9fad](https://github.com/jacecotton/tcds/commit/4df9fad9334b6bf8c62762dfbe13acfcea3fcc68))
 
 
 
