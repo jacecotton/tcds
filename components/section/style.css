@@ -175,12 +175,13 @@ section {
 [part="image"] {
   grid-area: tertiary;
 
-  @media (min-width: 800px) {
+  @media (min-width: 768px) {
     grid-row: 2 / -2;
     margin-left: var(--tcds-section-region-gap);
+    position: relative;
   }
 
-  @media (max-width: 799px) {
+  @media (max-width: 767px) {
     margin-bottom: var(--tcds-section-region-gap);
   }
 }
