@@ -1,3 +1,12 @@
+## [2.1.3](https://github.com/jacecotton/tcds/compare/v2.1.2...v2.1.3) (2023-06-20)
+
+
+### Bug Fixes
+
+* **components:** Card responsive check ([233a99a](https://github.com/jacecotton/tcds/commit/233a99a9a1815b85f0a1a7e06161a9ded5e638a6))
+
+
+
 ## [2.1.2](https://github.com/jacecotton/tcds/compare/v2.1.1...v2.1.2) (2023-06-20)
 
 
@@ -38,15 +47,6 @@
 
 * **components:** Active tab background on hover only, not active ([879c476](https://github.com/jacecotton/tcds/commit/879c47613abdaf47b1953378783e4f335db4cfec))
 * **components:** Dialog ([8940c11](https://github.com/jacecotton/tcds/commit/8940c1121b76a66c0c5b46c59c21ecdcecf80993))
-
-
-
-## [2.0.10](https://github.com/jacecotton/tcds/compare/v2.0.9...v2.0.10) (2023-05-24)
-
-
-### Bug Fixes
-
-* **styles:** Indent sub lists in mega menus ([86f57c2](https://github.com/jacecotton/tcds/commit/86f57c2bbd183cf0a237065270f648b9828874c0))
 
 
 
