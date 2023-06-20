@@ -1,3 +1,12 @@
+## [2.1.1](https://github.com/jacecotton/tcds/compare/v2.1.0...v2.1.1) (2023-06-12)
+
+
+### Bug Fixes
+
+* **styles:** Header nav link font weight selector specificity fix ([f0a4376](https://github.com/jacecotton/tcds/commit/f0a4376bdf44dfdea072f87bfcb66163872e7253))
+
+
+
 # [2.1.0](https://github.com/jacecotton/tcds/compare/v2.0.11...v2.1.0) (2023-06-12)
 
 
@@ -37,15 +46,6 @@
 ### Bug Fixes
 
 * **components:** Typo ([dfa4465](https://github.com/jacecotton/tcds/commit/dfa4465ecbaf14ef55382c063c54e92070c541cc))
-
-
-
-## [2.0.8](https://github.com/jacecotton/tcds/compare/v2.0.7...v2.0.8) (2023-05-24)
-
-
-### Bug Fixes
-
-* **styles:** Main content layout issue ([b263ef1](https://github.com/jacecotton/tcds/commit/b263ef14c520ec92033098887403a92fe521653b))
 
 
 
