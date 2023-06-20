@@ -1,3 +1,12 @@
+## [2.1.6](https://github.com/jacecotton/tcds/compare/v2.1.5...v2.1.6) (2023-06-20)
+
+
+### Bug Fixes
+
+* **components:** Section styles ([4e39575](https://github.com/jacecotton/tcds/commit/4e39575a7e26ea20d5c0c1b0e65dfff25493ed6a))
+
+
+
 ## [2.1.5](https://github.com/jacecotton/tcds/compare/v2.1.4...v2.1.5) (2023-06-20)
 
 
@@ -33,15 +42,6 @@
 
 * **components:** Dialog bug ([6ef5122](https://github.com/jacecotton/tcds/commit/6ef5122994e207fabe14a22e2df25273730fe20d))
 * **components:** Icon - improved attribute handling ([90d1b62](https://github.com/jacecotton/tcds/commit/90d1b62989d97853b668b4d3c5b57e74e26d1fc9))
-
-
-
-## [2.1.1](https://github.com/jacecotton/tcds/compare/v2.1.0...v2.1.1) (2023-06-12)
-
-
-### Bug Fixes
-
-* **styles:** Header nav link font weight selector specificity fix ([f0a4376](https://github.com/jacecotton/tcds/commit/f0a4376bdf44dfdea072f87bfcb66163872e7253))
 
 
 
