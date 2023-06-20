@@ -46,6 +46,7 @@ export default class Section extends WebComponent(HTMLElement) {
             ` : ``}
 
             <slot name="primary"></slot>
+            <slot></slot>
 
             ${shouldRenderCTA ? /* html */`
               <nav aria-label="Intro links">

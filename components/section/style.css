@@ -171,7 +171,8 @@ section {
   margin-top: var(--tcds-section-region-gap);
 }
 
-[part="tertiary"] {
+[part="tertiary"],
+[part="image"] {
   grid-area: tertiary;
 
   @media (min-width: 800px) {

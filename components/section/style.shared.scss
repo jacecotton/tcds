@@ -19,7 +19,9 @@ tcds-section {
     > img[slot="secondary"],
     > [slot="secondary"] img,
     > img[slot="tertiary"],
-    > [slot="tertiary"] img {
+    > [slot="tertiary"] img,
+    > img[slot="image"],
+    > [slot="image"] img {
       display: none;
     }
   }
@@ -51,7 +53,9 @@ tcds-section {
   > img[slot="secondary"],
   > [slot="secondary"] img,
   > img[slot="tertiary"],
-  > [slot="tertiary"] img {
+  > [slot="tertiary"] img,
+  > img[slot="image"],
+  > [slot="image"] img {
     width: 100%;
   }
 
