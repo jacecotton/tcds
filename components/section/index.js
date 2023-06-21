@@ -13,7 +13,7 @@ export default class Section extends WebComponent(HTMLElement) {
     const shouldRenderHgroup = this.#has("overline", "heading", "subheading");
     const shouldRenderCTA = this.#has("cta");
     const shouldRenderPrimary = shouldRenderHgroup || shouldRenderCTA || this.#has("primary");
-    const shouldRenderSecondary = this.#has("secondary") || (this.#has("image") && !this.#has("tertiary"));
+    const shouldRenderSecondary = this.#has("secondary");
     const shouldRenderTertiary = this.#has("tertiary", "image");
 
     return /* html */`
@@ -59,8 +59,6 @@ export default class Section extends WebComponent(HTMLElement) {
         ${shouldRenderSecondary ? /* html */`
           <div part="secondary">
             <slot name="secondary"></slot>
-            <!-- LEGACY -->
-            <slot name="image"></slot>
           </div>
         ` : ``}
 
