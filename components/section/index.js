@@ -5,7 +5,7 @@ export default class Section extends WebComponent(HTMLElement) {
   static observedAttributes = ["data-theme", "class"];
 
   #has() {
-    return !!this.querySelector([...arguments].map(slot => `[slot=${slot}]`).join(", "));
+    return !!this.querySelector([...arguments].map(slot => `:scope > [slot=${slot}]`).join(", "));
   }
 
   get template() {
