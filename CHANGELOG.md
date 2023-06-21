@@ -1,3 +1,12 @@
+## [2.1.7](https://github.com/jacecotton/tcds/compare/v2.1.6...v2.1.7) (2023-06-21)
+
+
+### Bug Fixes
+
+* **components:** Unify section breakpoint ([b9441c1](https://github.com/jacecotton/tcds/commit/b9441c19d8704c74aa5b76e8debf7e0112456e07))
+
+
+
 ## [2.1.6](https://github.com/jacecotton/tcds/compare/v2.1.5...v2.1.6) (2023-06-20)
 
 
@@ -32,16 +41,6 @@
 ### Bug Fixes
 
 * **components:** Card responsive check ([233a99a](https://github.com/jacecotton/tcds/commit/233a99a9a1815b85f0a1a7e06161a9ded5e638a6))
-
-
-
-## [2.1.2](https://github.com/jacecotton/tcds/compare/v2.1.1...v2.1.2) (2023-06-20)
-
-
-### Bug Fixes
-
-* **components:** Dialog bug ([6ef5122](https://github.com/jacecotton/tcds/commit/6ef5122994e207fabe14a22e2df25273730fe20d))
-* **components:** Icon - improved attribute handling ([90d1b62](https://github.com/jacecotton/tcds/commit/90d1b62989d97853b668b4d3c5b57e74e26d1fc9))
 
 
 
