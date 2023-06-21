@@ -1,3 +1,4 @@
+/* stylelint-disable max-line-length */
 /* stylelint-disable scss/operator-no-unspaced */
 /* stylelint-disable property-no-vendor-prefix */
 
@@ -10,7 +11,7 @@
 
   background: transparent !important;
 
-  @media (min-width: 800px) {
+  @media (min-width: 768px) {
     --tcds-section-region-gap: var(--tcds-space-x-loose);
   }
 }
@@ -63,7 +64,7 @@ section {
   z-index: 1;
   position: relative;
 
-  @media (min-width: 800px) {
+  @media (min-width: 768px) {
     grid-template-rows:
       var(--tcds-section-padding-block-start, var(--tcds-section-padding-block))
       repeat(2, min-content)
@@ -87,7 +88,7 @@ section {
   z-index: -2;
   overflow: hidden;
 
-  @media (min-width: 800px) {
+  @media (min-width: 768px) {
     grid-row: 1 / -2;
   }
 
@@ -190,7 +191,7 @@ hgroup {
   display: flex;
   flex-direction: column;
 
-  @media (max-width: 799px) {
+  @media (max-width: 767px) {
     text-align: center;
   }
 }
@@ -200,7 +201,7 @@ nav {
   gap: var(--tcds-space-x-loose);
   margin-top: var(--tcds-space-x-loose);
 
-  @media (max-width: 799px) {
+  @media (max-width: 767px) {
     justify-content: center;
   }
 }
