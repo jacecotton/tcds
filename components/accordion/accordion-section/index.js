@@ -76,25 +76,18 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
 
   mountedCallback() {
     this.#panel = this.shadowRoot.querySelector("[part~=panel]");
-
-    const style = new CSSStyleSheet();
-    style.replaceSync(`:host {--calculated-height: ${this.#panel.scrollHeight}px}`);
-    this.shadowRoot.adoptedStyleSheets = [...this.shadowRoot.adoptedStyleSheets, ...[style]];
   }
 
   updatedCallback(old) {
     if("open" in old) {
       if(this.open) {
-        this.#panel.hidden = true;
-
         requestAnimationFrame(() => {
-          this.#panel.dataset.animation = "opening";
           this.#panel.hidden = false;
 
-          this.#panel.onanimationend = () => {
-            delete this.#panel.dataset.animation;
-            this.#panel.onanimationend = null;
-          };
+          this.#panel.animate([
+            {height: "0px"},
+            {height: `${this.#panel.scrollHeight}px`},
+          ], 80).onfinish = () => this.#panel.style.height = "auto";
         });
 
         if(!this.accordion.multiple) {
@@ -103,16 +96,13 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
             .forEach(section => section.close());
         }
       } else if(old.open) {
-        this.#panel.dataset.animation = "closing";
-
-        this.#panel.onanimationend = () => {
-          this.#panel.hidden = true;
-          delete this.#panel.dataset.animation;
-          this.#panel.onanimationend = null;
-        };
-      } else {
-        this.#panel.hidden = true;
+        this.#panel.animate([
+          {height: `${this.#panel.scrollHeight}px`},
+          {height: "0px"},
+        ], 80).onfinish = () => this.#panel.hidden = true;
       }
+    } else if(!this.open) {
+      this.#panel.hidden = true;
     }
   }
 

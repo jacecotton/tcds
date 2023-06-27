@@ -16,7 +16,6 @@
   font-weight: var(--tcds-accordion-heading-font-weight, var(--tcds-font-weight-semibold));
   width: 100%;
   color: var(--tcds-color-text);
-  transition: color var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing);
 
   &[aria-expanded="true"] {
     --tcds-accordion-icon-rotate: 180deg;
@@ -31,24 +30,7 @@
 
 [part="panel"] {
   overflow: hidden;
-
-  &[data-animation="opening"] {
-    animation: var(--tcds-animation-productive-duration) linear open;
-  }
-
-  &[data-animation="closing"] {
-    animation: var(--tcds-animation-productive-duration) linear reverse open;
-  }
-}
-
-@keyframes open {
-  from {
-    height: 0;
-  }
-
-  to {
-    height: var(--calculated-height);
-  }
+  height: 0;
 }
 
 [part="content"] {
