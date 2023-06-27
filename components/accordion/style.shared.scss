@@ -6,4 +6,14 @@ tcds-accordion {
       margin: 0 0 var(--tcds-space-normal);
     }
   }
+
+  tcds-accordion-section & {
+    padding-left: var(--tcds-space-loose);
+  }
+
+  tcds-accordion-section &,
+  &[size*="small"] {
+    --tcds-accordion-heading-font-size: var(--tcds-font-size-medium);
+    --tcds-accordion-heading-font-weight: var(--tcds-font-weight-normal);
+  }
 }

@@ -2,7 +2,7 @@ import WebComponent from "../../utilities/WebComponent/WebComponent.js";
 import styles from "./style.css";
 
 export default class Accordion extends WebComponent(HTMLElement) {
-  static observedAttributes = ["multiple", "heading-level"];
+  static observedAttributes = ["multiple", "heading-level", "icon"];
 
   get multiple() {
     return this.hasAttribute("multiple");
@@ -20,8 +20,16 @@ export default class Accordion extends WebComponent(HTMLElement) {
     this.setAttribute("heading-level", value);
   }
 
+  get icon() {
+    return this.getAttribute("icon") || "plus-minus";
+  }
+
+  set icon(value) {
+    this.setAttribute("icon", value);
+  }
+
   get sections() {
-    return Array.from(this.querySelectorAll("tcds-accordion-section"));
+    return Array.from(this.querySelectorAll(":scope > tcds-accordion-section"));
   }
 
   get template() {
@@ -59,6 +67,10 @@ export default class Accordion extends WebComponent(HTMLElement) {
 
   attributeChangedCallback(name, oldValue) {
     this.update({[name]: name === "multiple" ? oldValue !== null : oldValue});
+
+    if(name === "icon") {
+      this.sections.forEach(section => section.update({icon: oldValue}));
+    }
   }
 
   showAll() {

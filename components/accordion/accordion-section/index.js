@@ -39,7 +39,10 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
             onclick="this.getRootNode().host.toggle()"
           >
             ${this.label}
-            <tcds-icon part="icon" icon="chevron-down"></tcds-icon>
+            <tcds-icon part="icon" icon="${this.accordion.icon === "plus-minus"
+              ? (this.open ? "minus" : "plus")
+              : (this.accordion.icon === "chevron" ? "chevron-down" : "")
+            }"></tcds-icon>
           </button>
         </h${this.accordion.headingLevel}>
 
@@ -69,17 +72,29 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
     this.update({[name]: name === "open" ? oldValue !== null : oldValue});
   }
 
-  updatedCallback(old) {
-    const panel = this.shadowRoot.querySelector("[part~=panel]");
+  #panel;
 
+  mountedCallback() {
+    this.#panel = this.shadowRoot.querySelector("[part~=panel]");
+
+    const style = new CSSStyleSheet();
+    style.replaceSync(`:host {--calculated-height: ${this.#panel.scrollHeight}px}`);
+    this.shadowRoot.adoptedStyleSheets = [...this.shadowRoot.adoptedStyleSheets, ...[style]];
+  }
+
+  updatedCallback(old) {
     if("open" in old) {
       if(this.open) {
-        panel.style.height = "0px";
-        panel.hidden = false;
-        panel.ontransitionend = null;
+        this.#panel.hidden = true;
 
         requestAnimationFrame(() => {
-          panel.style.height = `${panel.scrollHeight}px`;
+          this.#panel.dataset.animation = "opening";
+          this.#panel.hidden = false;
+
+          this.#panel.onanimationend = () => {
+            delete this.#panel.dataset.animation;
+            this.#panel.onanimationend = null;
+          };
         });
 
         if(!this.accordion.multiple) {
@@ -88,16 +103,16 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
             .forEach(section => section.close());
         }
       } else if(old.open) {
-        panel.style.height = "0px";
+        this.#panel.dataset.animation = "closing";
 
-        panel.ontransitionend = () => {
-          panel.hidden = true;
-          panel.style.height = null;
-          panel.ontransitionend = null;
+        this.#panel.onanimationend = () => {
+          this.#panel.hidden = true;
+          delete this.#panel.dataset.animation;
+          this.#panel.onanimationend = null;
         };
+      } else {
+        this.#panel.hidden = true;
       }
-    } else if(!this.open) {
-      panel.hidden = true;
     }
   }
 
