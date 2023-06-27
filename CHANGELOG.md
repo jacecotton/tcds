@@ -1,3 +1,12 @@
+## [2.1.10](https://github.com/jacecotton/tcds/compare/v2.1.9...v2.1.10) (2023-06-27)
+
+
+### Bug Fixes
+
+* **components:** Update accordion style ([a43a23d](https://github.com/jacecotton/tcds/commit/a43a23d61d9f7b0b1e6a8bf14867bd32dee261a0))
+
+
+
 ## [2.1.9](https://github.com/jacecotton/tcds/compare/v2.1.8...v2.1.9) (2023-06-21)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Section styles ([4e39575](https://github.com/jacecotton/tcds/commit/4e39575a7e26ea20d5c0c1b0e65dfff25493ed6a))
-
-
-
-## [2.1.5](https://github.com/jacecotton/tcds/compare/v2.1.4...v2.1.5) (2023-06-20)
-
-
-### Bug Fixes
-
-* **components:** Response hero tertiary image ([67d5a1f](https://github.com/jacecotton/tcds/commit/67d5a1f51032313e9ad4185432028bb2ec2754e4))
 
 
 
