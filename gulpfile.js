@@ -6,8 +6,9 @@ import webpack from "webpack-stream";
 import postcss from "gulp-postcss";
 import custommedia from "postcss-custom-media";
 import autoprefixer from "autoprefixer";
-import dartsass from "sass";
+import * as dartsass from "sass";
 import gulpsass from "gulp-sass";
+import jsonsass from "node-sass-json-importer";
 const sass = gulpsass(dartsass);
 
 import imagemin from "gulp-imagemin";
@@ -19,6 +20,7 @@ const tasks = {
     return src("./index.scss")
       .pipe(sass({
         outputStyle: "compressed",
+        importer: jsonsass(),
       }))
       .pipe(postcss([
         autoprefixer(),

@@ -36,9 +36,9 @@
       content: "";
       transform-origin: center;
       transition:
-        background-color animation("productive-duration") animation("expressive-easing"),
-        width animation("productive-duration") animation("expressive-easing"),
-        height animation("productive-duration") animation("expressive-easing");
+        background-color var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing),
+        width var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing),
+        height var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing);
       position: absolute;
     }
 

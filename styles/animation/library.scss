@@ -1,112 +1,16 @@
-/**
- * Keyframe library for animations.
- */
+@use "sass:map";
+@use "../../animation/config.json" as *;
 
-@keyframes slide-in-down {
-  from {
-    transform: translateY(-15%);
-  }
-}
+@each $animation, $keyframeset in $library {
+  $offset: if(map.get($keyframeset, "offset") == 0, "from", "to");
 
-@keyframes slide-out-down {
-  to {
-    transform: translateY(15%);
-  }
-}
-
-@keyframes slide-in-up {
-  from {
-    transform: translateY(15%);
-  }
-}
-
-@keyframes slide-out-up {
-  to {
-    transform: translateY(-15%);
-  }
-}
-
-@keyframes slide-in-left {
-  from {
-    transform: translateX(100%);
-  }
-}
-
-@keyframes slide-out-left {
-  to {
-    transform: translateX(-100%);
-  }
-}
-
-@keyframes slide-in-right {
-  from {
-    transform: translateX(-100%);
-  }
-}
-
-@keyframes slide-out-right {
-  to {
-    transform: translateX(100%);
-  }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-}
-
-@keyframes fade-out {
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes shrink-in {
-  from {
-    transform: scale(1.5);
-  }
-}
-
-@keyframes shrink-out {
-  to {
-    transform: scale(0.5);
-  }
-}
-
-@keyframes grow-in {
-  from {
-    transform: scale(0.5);
-    opacity: 0;
-  }
-}
-
-@keyframes grow-out {
-  to {
-    transform: scale(1.5);
-  }
-}
-
-@keyframes expand-down {
-  from {
-    height: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-
-  to {
-    height: var(--animation-element-calculated-height);
-  }
-}
-
-@keyframes collapse-up {
-  from {
-    height: var(--animation-element-calculated-height);
-  }
-
-  to {
-    height: 0;
-    padding-top: 0;
-    padding-bottom: 0;
+  @keyframes #{$animation} {
+    #{$offset} {
+      @each $property, $value in $keyframeset {
+        @if $property != "offset" {
+          #{$property}: #{$value};
+        }
+      }
+    }
   }
 }

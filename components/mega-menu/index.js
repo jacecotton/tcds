@@ -1,5 +1,5 @@
 import WebComponent from "../../utilities/WebComponent/WebComponent.js";
-import AnimateElement from "../../utilities/AnimateElement/AnimateElement.js";
+import animation from "../../animation/config.json";
 import styles from "./style.css";
 
 export default class MegaMenu extends WebComponent(HTMLElement) {
@@ -88,12 +88,9 @@ export default class MegaMenu extends WebComponent(HTMLElement) {
           .forEach(other => other.close());
         this.hidden = false;
       } else if(old.open) {
-        AnimateElement(this.megaMenu, (window.innerWidth < 1200 ? "slide-out-right" : ["slide-out-up", "fade-out"]), {
-          lazyload: false,
-          timing: window.innerWidth < 1200 ? "productive" : "expressive",
-        }).then(() => {
-          this.hidden = true;
-        });
+        this.megaMenu.animate(animation.library[window.innerWidth < 1200 ? "slide-out-right" : "slide-out-up"],
+          animation.timesets.productive.duration
+        ).onfinish = () => this.hidden = true;
       } else {
         this.hidden = true;
       }

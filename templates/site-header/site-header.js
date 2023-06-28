@@ -1,5 +1,5 @@
 /* eslint-disable no-inner-declarations */
-import AnimateElement from "../../utilities/AnimateElement/AnimateElement.js";
+import animation from "../../animation/config.json";
 
 window.addEventListener("load", function() {
   const header = document.querySelector(".site-header");
@@ -56,17 +56,18 @@ window.addEventListener("load", function() {
         toggler.setAttribute("aria-expanded", "true");
       });
 
-      AnimateElement(navs, "slide-in-left", {lazyload: false});
+      navs.animate(animation.library["slide-in-left"], animation.timesets.productive.duration);
     }
 
     function closeNavs() {
-      AnimateElement(navs, "slide-out-right", {lazyload: false}).then(() => {
-        navs.hidden = true;
+      navs.animate(animation.library["slide-out-right"], animation.timesets.productive.duration)
+        .onfinish = () => {
+          navs.hidden = true;
 
-        togglers.forEach((toggler) => {
-          toggler.setAttribute("aria-expanded", "false");
-        });
-      });
+          togglers.forEach((toggler) => {
+            toggler.setAttribute("aria-expanded", "false");
+          });
+        };
     }
   }
 });

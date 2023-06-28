@@ -1,12 +1,9 @@
-/* stylelint-disable custom-property-empty-line-before */
+@use "sass:map";
+@use "../../animation/config.json" as *;
+
 :root {
-  --tcds-animation-productive-duration: 0.1s;
-  --tcds-animation-productive-easing: ease;
-
-  --tcds-animation-expressive-duration: 0.8s;
-  --tcds-animation-expressive-easing: cubic-bezier(0, 1, 0.4, 1);
-
-  --tcds-animation-duration: var(--animation-expressive-duration);
-  --tcds-animation-easing: var(--animation-expressive-easing);
-  --tcds-animation-fill-mode: forwards;
+  @each $preset, $timing in $timesets {
+    --tcds-animation-#{$preset}-duration: #{map.get($timing, "duration")}ms;
+    --tcds-animation-#{$preset}-easing: #{map.get($timing, "easing")};
+  }
 }
