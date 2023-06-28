@@ -1,5 +1,6 @@
 import WebComponent from "../../../utilities/WebComponent/WebComponent.js";
 import slugify from "../../../utilities/string-utils/slugify.js";
+import animation from "../../animation/config.json";
 import styles from "./style.css";
 
 export default class AccordionSection extends WebComponent(HTMLElement) {
@@ -75,7 +76,7 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
 
   updatedCallback(old) {
     if("open" in old) {
-      const openKeyframes = [
+      const openAnimation = [
         {height: "0px"},
         {height: `${this.panel.scrollHeight}px`},
       ];
@@ -84,7 +85,7 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
         this.panel.hidden = false;
 
         requestAnimationFrame(() => {
-          this.panel.animate(openKeyframes, 80)
+          this.panel.animate(openAnimation, animation.timing.productive.duration)
             .onfinish = () => this.panel.style.height = "auto";
         });
 
@@ -92,7 +93,7 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
           this.accordion.closeAll(section => section !== this);
         }
       } else if(old.open) {
-        this.panel.animate(openKeyframes.reverse(), 80)
+        this.panel.animate(openAnimation.reverse(), animation.timing.productive.duration)
           .onfinish = () => this.panel.hidden = true;
       }
     } else if(!this.open) {

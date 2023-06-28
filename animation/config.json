@@ -1,5 +1,5 @@
 {
-  "timesets": {
+  "timing": {
     "productive": {
       "duration": "100",
       "easing": "ease"

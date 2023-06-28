@@ -56,11 +56,11 @@ window.addEventListener("load", function() {
         toggler.setAttribute("aria-expanded", "true");
       });
 
-      navs.animate(animation.library["slide-in-left"], animation.timesets.productive.duration);
+      navs.animate(animation.library["slide-in-left"], animation.timing.productive.duration);
     }
 
     function closeNavs() {
-      navs.animate(animation.library["slide-out-right"], animation.timesets.productive.duration)
+      navs.animate(animation.library["slide-out-right"], animation.timing.productive.duration)
         .onfinish = () => {
           navs.hidden = true;
 

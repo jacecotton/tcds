@@ -89,7 +89,7 @@ export default class MegaMenu extends WebComponent(HTMLElement) {
         this.hidden = false;
       } else if(old.open) {
         this.megaMenu.animate(animation.library[window.innerWidth < 1200 ? "slide-out-right" : "slide-out-up"],
-          animation.timesets.productive.duration
+          animation.timing.productive.duration
         ).onfinish = () => this.hidden = true;
       } else {
         this.hidden = true;
