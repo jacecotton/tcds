@@ -63,46 +63,40 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
   connectedCallback() {
     this.upgradeProperties("open", "label");
     this.update();
-
-    this.open = this.accordion.multiple ? this.open
-      : this === this.accordion.sections.find(section => section.open);
   }
 
   attributeChangedCallback(name, oldValue) {
     this.update({[name]: name === "open" ? oldValue !== null : oldValue});
   }
 
-  #panel;
-
   mountedCallback() {
-    this.#panel = this.shadowRoot.querySelector("[part~=panel]");
+    this.panel = this.shadowRoot.querySelector("[part~=panel]");
   }
 
   updatedCallback(old) {
     if("open" in old) {
-      if(this.open) {
-        requestAnimationFrame(() => {
-          this.#panel.hidden = false;
+      const openKeyframes = [
+        {height: "0px"},
+        {height: `${this.panel.scrollHeight}px`},
+      ];
 
-          this.#panel.animate([
-            {height: "0px"},
-            {height: `${this.#panel.scrollHeight}px`},
-          ], 80).onfinish = () => this.#panel.style.height = "auto";
+      if(this.open) {
+        this.panel.hidden = false;
+
+        requestAnimationFrame(() => {
+          this.panel.animate(openKeyframes, 80)
+            .onfinish = () => this.panel.style.height = "auto";
         });
 
         if(!this.accordion.multiple) {
-          Array.from(this.accordion.sections)
-            .filter(section => section !== this && section.open)
-            .forEach(section => section.close());
+          this.accordion.closeAll(section => section !== this);
         }
       } else if(old.open) {
-        this.#panel.animate([
-          {height: `${this.#panel.scrollHeight}px`},
-          {height: "0px"},
-        ], 80).onfinish = () => this.#panel.hidden = true;
+        this.panel.animate(openKeyframes.reverse(), 80)
+          .onfinish = () => this.panel.hidden = true;
       }
     } else if(!this.open) {
-      this.#panel.hidden = true;
+      this.panel.hidden = true;
     }
   }
 

@@ -73,12 +73,26 @@ export default class Accordion extends WebComponent(HTMLElement) {
     }
   }
 
-  showAll() {
-    this.sections.forEach(section => section.show());
+  /**
+   * Show all accordion sections.
+   *
+   * @param {function} filter - An optional `Array.filter` callback to run
+   * against the array of accordion sections.
+   */
+  showAll(filter = () => true) {
+    this.sections.filter(section => !section.open)
+      .filter(filter).forEach(section => section.show());
   }
 
-  closeAll() {
-    this.sections.forEach(section => section.close());
+  /**
+   * Close all accordion sections.
+   *
+   * @param {function} filter - An optional `Array.filter` callback to run
+   * against the array of accordion sections.
+   */
+  closeAll(filter = () => true) {
+    this.sections.filter(section => section.open)
+      .filter(filter).forEach(section => section.close());
   }
 }
 
