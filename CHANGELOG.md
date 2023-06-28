@@ -1,3 +1,12 @@
+# [2.2.0](https://github.com/jacecotton/tcds/compare/v2.1.11...v2.2.0) (2023-06-28)
+
+
+### Features
+
+* **animation:** Deprecate AnimateElement in favor of WAAPI ([c355ad6](https://github.com/jacecotton/tcds/commit/c355ad6d2702e7a5b34c4abb87f7abff7c8557df))
+
+
+
 ## [2.1.11](https://github.com/jacecotton/tcds/compare/v2.1.10...v2.1.11) (2023-06-27)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Adjust legacy "image" section slot handling ([d2b6ba7](https://github.com/jacecotton/tcds/commit/d2b6ba736cc9598583e45a90ed5d6312707e20e3))
-
-
-
-## [2.1.7](https://github.com/jacecotton/tcds/compare/v2.1.6...v2.1.7) (2023-06-21)
-
-
-### Bug Fixes
-
-* **components:** Unify section breakpoint ([b9441c1](https://github.com/jacecotton/tcds/commit/b9441c19d8704c74aa5b76e8debf7e0112456e07))
 
 
 
