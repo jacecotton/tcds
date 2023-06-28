@@ -1,3 +1,12 @@
+## [2.1.11](https://github.com/jacecotton/tcds/compare/v2.1.10...v2.1.11) (2023-06-27)
+
+
+### Bug Fixes
+
+* **components:** Accordion ([09618f3](https://github.com/jacecotton/tcds/commit/09618f3b9df3b68638f87f6208270dd33dff6b69))
+
+
+
 ## [2.1.10](https://github.com/jacecotton/tcds/compare/v2.1.9...v2.1.10) (2023-06-27)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Unify section breakpoint ([b9441c1](https://github.com/jacecotton/tcds/commit/b9441c19d8704c74aa5b76e8debf7e0112456e07))
-
-
-
-## [2.1.6](https://github.com/jacecotton/tcds/compare/v2.1.5...v2.1.6) (2023-06-20)
-
-
-### Bug Fixes
-
-* **components:** Section styles ([4e39575](https://github.com/jacecotton/tcds/commit/4e39575a7e26ea20d5c0c1b0e65dfff25493ed6a))
 
 
 
