@@ -1,3 +1,12 @@
+## [2.2.3](https://github.com/jacecotton/tcds/compare/v2.2.2...v2.2.3) (2023-06-29)
+
+
+### Bug Fixes
+
+* **components:** Accordion sticky headers + smart scroll assist on small screens ([13f17d8](https://github.com/jacecotton/tcds/commit/13f17d8d607412cd0132be82ebd766efdb8932ae))
+
+
+
 ## [2.2.2](https://github.com/jacecotton/tcds/compare/v2.2.1...v2.2.2) (2023-06-29)
 
 
@@ -33,15 +42,6 @@
 ### Bug Fixes
 
 * **components:** Accordion ([09618f3](https://github.com/jacecotton/tcds/commit/09618f3b9df3b68638f87f6208270dd33dff6b69))
-
-
-
-## [2.1.10](https://github.com/jacecotton/tcds/compare/v2.1.9...v2.1.10) (2023-06-27)
-
-
-### Bug Fixes
-
-* **components:** Update accordion style ([a43a23d](https://github.com/jacecotton/tcds/commit/a43a23d61d9f7b0b1e6a8bf14867bd32dee261a0))
 
 
 
