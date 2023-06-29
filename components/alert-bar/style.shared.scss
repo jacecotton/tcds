@@ -64,6 +64,10 @@ tcds-alert-bar {
           background-color: #fff;
           border-top: 1px solid var(--tcds-color-gray-light);
           font-size: var(--tcds-font-size-small);
+
+          @media (min-width: 768px) {
+            max-width: calc(100vw - var(--tcds-alert-bar-label-width) - (var(--site-outer-gutter) * 2));
+          }
         }
       }
 

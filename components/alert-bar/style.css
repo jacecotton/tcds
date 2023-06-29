@@ -1,4 +1,6 @@
 :host {
+  --tcds-alert-bar-label-width: 13rem;
+
   display: flex;
 }
 
@@ -19,6 +21,17 @@ section {
   box-shadow: 0 2px 4px var(--tcds-color-shade-x-weak);
   position: relative;
   z-index: var(--tcds-layer-alert-bar);
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 7rem;
+    height: 3rem;
+    background: linear-gradient(to left, white 60%, transparent 100%);
+  }
 
   @media (max-width: 768px) {
     display: grid;
@@ -51,7 +64,7 @@ h2 {
   }
 
   @media (min-width: 768px) {
-    width: 13rem;
+    width: var(--tcds-alert-bar-label-width);
   }
 
   @media (max-width: 768px) {
