@@ -8,7 +8,11 @@ tcds-accordion {
   }
 
   tcds-accordion-section & {
+    --tcds-accordion-section-heading-position: relative;
+
     padding-left: var(--tcds-space-loose);
+    position: relative;
+    z-index: 1;
   }
 
   tcds-accordion-section &,

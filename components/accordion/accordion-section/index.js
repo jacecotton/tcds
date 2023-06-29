@@ -37,7 +37,7 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
             id="${id}-button"
             aria-controls="${id}-panel"
             aria-expanded="${this.open}"
-            onclick="this.getRootNode().host.toggle()"
+            onclick="this.getRootNode().host.clickHandler()"
           >
             ${this.label}
             <tcds-icon part="icon" icon="${this.accordion.icon === "plus-minus"
@@ -99,6 +99,17 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
     } else if(!this.open) {
       this.panel.hidden = true;
     }
+  }
+
+  clickHandler() {
+    this.toggle();
+
+    setTimeout(() => {
+      if(this.open && window.innerWidth < 768
+        && this.accordion.parentElement.localName !== "tcds-accordion-section") {
+        this.scrollIntoView();
+      }
+    }, animation.timing.productive.duration * 2);
   }
 
   show() {

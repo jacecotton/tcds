@@ -1,5 +1,12 @@
 [part="heading"] {
   margin: 0;
+
+  @media (max-width: 768px) {
+    position: var(--tcds-accordion-section-heading-position, sticky);
+    top: 0;
+    background: var(--tcds-color-background, #fff);
+    z-index: 2;
+  }
 }
 
 [part="button"] {
