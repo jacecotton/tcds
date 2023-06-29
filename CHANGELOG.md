@@ -1,3 +1,13 @@
+## [2.2.1](https://github.com/jacecotton/tcds/compare/v2.2.0...v2.2.1) (2023-06-28)
+
+
+### Bug Fixes
+
+* **animation:** timesets -> timing ([ef94e6a](https://github.com/jacecotton/tcds/commit/ef94e6a87809fba3ca206ecdddaaa6a0c2db3e5f))
+* **typography:** Change body font back to serif ([995e373](https://github.com/jacecotton/tcds/commit/995e373f8c182e459b9ccceaa0b103bd023a1787))
+
+
+
 # [2.2.0](https://github.com/jacecotton/tcds/compare/v2.1.11...v2.2.0) (2023-06-28)
 
 
@@ -31,15 +41,6 @@
 ### Bug Fixes
 
 * **components:** Section #has method - only check for direct descendents with [slot] ([1b29c9b](https://github.com/jacecotton/tcds/commit/1b29c9be6f23de76202b89bb39f938e5ccb07cb9))
-
-
-
-## [2.1.8](https://github.com/jacecotton/tcds/compare/v2.1.7...v2.1.8) (2023-06-21)
-
-
-### Bug Fixes
-
-* **components:** Adjust legacy "image" section slot handling ([d2b6ba7](https://github.com/jacecotton/tcds/commit/d2b6ba736cc9598583e45a90ed5d6312707e20e3))
 
 
 
