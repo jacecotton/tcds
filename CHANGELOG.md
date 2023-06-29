@@ -1,3 +1,13 @@
+## [2.2.2](https://github.com/jacecotton/tcds/compare/v2.2.1...v2.2.2) (2023-06-29)
+
+
+### Bug Fixes
+
+* **animation:** Migrate to tcds-prefixed keyframe set names ([3ee495b](https://github.com/jacecotton/tcds/commit/3ee495ba77a8c6ad5e7f5fe10b42ed034fbdd71f))
+* **components:** Alert bar responsive ([0e71b18](https://github.com/jacecotton/tcds/commit/0e71b188b23f1f98f27fd1cf13bbb451a7006673))
+
+
+
 ## [2.2.1](https://github.com/jacecotton/tcds/compare/v2.2.0...v2.2.1) (2023-06-28)
 
 
@@ -32,15 +42,6 @@
 ### Bug Fixes
 
 * **components:** Update accordion style ([a43a23d](https://github.com/jacecotton/tcds/commit/a43a23d61d9f7b0b1e6a8bf14867bd32dee261a0))
-
-
-
-## [2.1.9](https://github.com/jacecotton/tcds/compare/v2.1.8...v2.1.9) (2023-06-21)
-
-
-### Bug Fixes
-
-* **components:** Section #has method - only check for direct descendents with [slot] ([1b29c9b](https://github.com/jacecotton/tcds/commit/1b29c9be6f23de76202b89bb39f938e5ccb07cb9))
 
 
 
