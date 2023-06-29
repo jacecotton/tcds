@@ -1,6 +1,6 @@
 import WebComponent from "../../../utilities/WebComponent/WebComponent.js";
 import slugify from "../../../utilities/string-utils/slugify.js";
-import animation from "../../animation/config.json";
+import animation from "../../../animation/config.json";
 import styles from "./style.css";
 
 export default class AccordionSection extends WebComponent(HTMLElement) {

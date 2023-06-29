@@ -29,15 +29,15 @@
 }
 
 :host([open]:not([position], [variant*="lightbox"])) {
-  --tcds-dialog-animation: slide-in-up;
+  --tcds-dialog-animation: tcds-animation-slide-in-up;
 }
 
 :host([open][position*="right"]) {
-  --tcds-dialog-animation: slide-in-left;
+  --tcds-dialog-animation: tcds-animation-slide-in-left;
 }
 
 :host([open][variant*="lightbox"]) {
-  --tcds-dialog-animation: grow-in;
+  --tcds-dialog-animation: tcds-animation-grow-in;
 }
 
 :host([variant*="lightbox"]) {

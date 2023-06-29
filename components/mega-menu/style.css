@@ -1,3 +1,4 @@
+/* stylelint-disable max-line-length */
 section {
   position: absolute;
   display: flex;
@@ -18,7 +19,7 @@ section {
     overflow-y: auto;
     overscroll-behavior: none;
     z-index: 1;
-    animation: slide-in-left var(--tcds-animation-expressive-duration) var(--tcds-animation-expressive-easing);
+    animation: tcds-animation-slide-in-left var(--tcds-animation-expressive-duration) var(--tcds-animation-expressive-easing);
   }
 
   @media (min-width: 1200px) {
@@ -28,7 +29,7 @@ section {
     position: absolute;
     left: 0;
     right: 0;
-    animation: slide-in-down var(--tcds-animation-expressive-duration) var(--tcds-animation-expressive-easing);
+    animation: tcds-animation-slide-in-down var(--tcds-animation-expressive-duration) var(--tcds-animation-expressive-easing);
     z-index: -1;
   }
 }

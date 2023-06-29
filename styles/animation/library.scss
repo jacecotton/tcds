@@ -4,7 +4,7 @@
 @each $animation, $keyframeset in $library {
   $offset: if(map.get($keyframeset, "offset") == 0, "from", "to");
 
-  @keyframes #{$animation} {
+  @keyframes tcds-animation-#{$animation} {
     #{$offset} {
       @each $property, $value in $keyframeset {
         @if $property != "offset" {
