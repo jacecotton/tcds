@@ -76,25 +76,26 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
 
   updatedCallback(old) {
     if("open" in old) {
-      const openAnimation = [
-        {height: "0px"},
-        {height: `${this.panel.scrollHeight}px`},
-      ];
+      const openAnimation = {height: ["0", `${this.panel.scrollHeight}px`]};
 
       if(this.open) {
+        this.panel.style.height = "0";
         this.panel.hidden = false;
 
         requestAnimationFrame(() => {
-          this.panel.animate(openAnimation, animation.timing.productive.duration)
-            .onfinish = () => this.panel.style.height = "auto";
+          this.panel.animate(openAnimation, {
+            duration: animation.timing.productive.duration,
+          }).onfinish = () => this.panel.style.height = "auto";
         });
 
         if(!this.accordion.multiple) {
           this.accordion.closeAll(section => section !== this);
         }
       } else if(old.open) {
-        this.panel.animate(openAnimation.reverse(), animation.timing.productive.duration)
-          .onfinish = () => this.panel.hidden = true;
+        this.panel.animate(openAnimation, {
+          duration: animation.timing.productive.duration,
+          direction: "reverse",
+        }).onfinish = () => this.panel.hidden = true;
       }
     } else if(!this.open) {
       this.panel.hidden = true;
