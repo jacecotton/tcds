@@ -76,6 +76,7 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
 
   updatedCallback(old) {
     if("open" in old) {
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const openAnimation = {height: ["0", `${this.panel.scrollHeight}px`]};
 
       if(this.open) {
@@ -84,7 +85,7 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
 
         requestAnimationFrame(() => {
           this.panel.animate(openAnimation, {
-            duration: animation.timing.productive.duration,
+            duration: reducedMotion ? 1 : animation.timing.productive.duration,
           }).onfinish = () => this.panel.style.height = "auto";
         });
 
@@ -93,7 +94,7 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
         }
       } else if(old.open) {
         this.panel.animate(openAnimation, {
-          duration: animation.timing.productive.duration,
+          duration: reducedMotion ? 1 : animation.timing.productive.duration,
           direction: "reverse",
         }).onfinish = () => this.panel.hidden = true;
       }
