@@ -1,3 +1,12 @@
+## [2.2.4](https://github.com/jacecotton/tcds/compare/v2.2.3...v2.2.4) (2023-07-03)
+
+
+### Bug Fixes
+
+* **components:** Remove accordion animation for reduced motion preference ([a0fd90b](https://github.com/jacecotton/tcds/commit/a0fd90bf85ea742d680156c165b076cdc0e8709c))
+
+
+
 ## [2.2.3](https://github.com/jacecotton/tcds/compare/v2.2.2...v2.2.3) (2023-06-29)
 
 
@@ -33,15 +42,6 @@
 ### Features
 
 * **animation:** Deprecate AnimateElement in favor of WAAPI ([c355ad6](https://github.com/jacecotton/tcds/commit/c355ad6d2702e7a5b34c4abb87f7abff7c8557df))
-
-
-
-## [2.1.11](https://github.com/jacecotton/tcds/compare/v2.1.10...v2.1.11) (2023-06-27)
-
-
-### Bug Fixes
-
-* **components:** Accordion ([09618f3](https://github.com/jacecotton/tcds/commit/09618f3b9df3b68638f87f6208270dd33dff6b69))
 
 
 
