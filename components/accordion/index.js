@@ -68,8 +68,8 @@ export default class Accordion extends WebComponent(HTMLElement) {
   attributeChangedCallback(name, oldValue) {
     this.update({[name]: name === "multiple" ? oldValue !== null : oldValue});
 
-    if(name === "icon") {
-      this.sections.forEach(section => section.update({icon: oldValue}));
+    if(["icon", "heading-level"].includes(name)) {
+      this.sections.forEach(section => section.update({[name]: oldValue}));
     }
   }
 
