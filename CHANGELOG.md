@@ -1,3 +1,12 @@
+## [2.2.5](https://github.com/jacecotton/tcds/compare/v2.2.4...v2.2.5) (2023-07-05)
+
+
+### Bug Fixes
+
+* **typography:** Tweak Calluna font size-adjust value ([452816a](https://github.com/jacecotton/tcds/commit/452816adcfd118250ee1cd08861aa985e2ac3c2c))
+
+
+
 ## [2.2.4](https://github.com/jacecotton/tcds/compare/v2.2.3...v2.2.4) (2023-07-03)
 
 
@@ -33,15 +42,6 @@
 
 * **animation:** timesets -> timing ([ef94e6a](https://github.com/jacecotton/tcds/commit/ef94e6a87809fba3ca206ecdddaaa6a0c2db3e5f))
 * **typography:** Change body font back to serif ([995e373](https://github.com/jacecotton/tcds/commit/995e373f8c182e459b9ccceaa0b103bd023a1787))
-
-
-
-# [2.2.0](https://github.com/jacecotton/tcds/compare/v2.1.11...v2.2.0) (2023-06-28)
-
-
-### Features
-
-* **animation:** Deprecate AnimateElement in favor of WAAPI ([c355ad6](https://github.com/jacecotton/tcds/commit/c355ad6d2702e7a5b34c4abb87f7abff7c8557df))
 
 
 
