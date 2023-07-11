@@ -1,3 +1,12 @@
+## [2.2.6](https://github.com/jacecotton/tcds/compare/v2.2.5...v2.2.6) (2023-07-06)
+
+
+### Bug Fixes
+
+* **components:** Making accordion heading-level prop reactive down component tree ([4c3be20](https://github.com/jacecotton/tcds/commit/4c3be20b31e46fcda1590880abf033e0a4d33d64))
+
+
+
 ## [2.2.5](https://github.com/jacecotton/tcds/compare/v2.2.4...v2.2.5) (2023-07-05)
 
 
@@ -32,16 +41,6 @@
 
 * **animation:** Migrate to tcds-prefixed keyframe set names ([3ee495b](https://github.com/jacecotton/tcds/commit/3ee495ba77a8c6ad5e7f5fe10b42ed034fbdd71f))
 * **components:** Alert bar responsive ([0e71b18](https://github.com/jacecotton/tcds/commit/0e71b188b23f1f98f27fd1cf13bbb451a7006673))
-
-
-
-## [2.2.1](https://github.com/jacecotton/tcds/compare/v2.2.0...v2.2.1) (2023-06-28)
-
-
-### Bug Fixes
-
-* **animation:** timesets -> timing ([ef94e6a](https://github.com/jacecotton/tcds/commit/ef94e6a87809fba3ca206ecdddaaa6a0c2db3e5f))
-* **typography:** Change body font back to serif ([995e373](https://github.com/jacecotton/tcds/commit/995e373f8c182e459b9ccceaa0b103bd023a1787))
 
 
 
