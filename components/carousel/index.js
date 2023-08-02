@@ -297,14 +297,16 @@ export default class Carousel extends WebComponent(HTMLElement) {
 
   play() {
     this.playing = true;
+    this.#flags.isPaused = null;
   }
 
   stop() {
     this.playing = false;
+    this.#flags.isPaused = false;
   }
 
   toggle() {
-    this.playing = !this.playing;
+    this.playing ? this.stop() : this.play();
   }
 
   pause() {
