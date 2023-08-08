@@ -1,5 +1,6 @@
 import WebComponent from "../../utilities/WebComponent/WebComponent.js";
 import styles from "./style.css";
+import "./section/index.js";
 
 export default class Accordion extends WebComponent(HTMLElement) {
   static observedAttributes = ["multiple", "heading-level", "icon"];

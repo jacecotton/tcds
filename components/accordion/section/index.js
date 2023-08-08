@@ -1,5 +1,4 @@
 import WebComponent from "../../../utilities/WebComponent/WebComponent.js";
-import slugify from "../../../utilities/string-utils/slugify.js";
 import animation from "../../../animation/config.json";
 import styles from "./style.css";
 
@@ -27,15 +26,13 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
   }
 
   get template() {
-    const id = `${this.accordion.id}-${slugify(this.label)}`;
-
     return /* html */`
       <section>
         <h${this.accordion.headingLevel} part="heading">
           <button
             part="button"
-            id="${id}-button"
-            aria-controls="${id}-panel"
+            id="button"
+            aria-controls="panel"
             aria-expanded="${this.open}"
             onclick="this.getRootNode().host.clickHandler()"
           >
@@ -47,7 +44,7 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
           </button>
         </h${this.accordion.headingLevel}>
 
-        <div part="panel" id="${id}-panel" aria-labelledby="${id}-button">
+        <div part="panel" id="panel" aria-labelledby="button">
           <div part="content">
             <slot></slot>
           </div>
