@@ -47,12 +47,6 @@ export default class Tab extends WebComponent(HTMLElement) {
       this.closest("tcds-tabs").update();
     }
   }
-
-  select() {
-    this.closest("tcds-tabs").querySelectorAll("tcds-tab").forEach((tab) => {
-      tab.active = tab === this;
-    });
-  }
 }
 
 customElements.define("tcds-tab", Tab);

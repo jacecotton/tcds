@@ -43,30 +43,6 @@ export default class Slide extends WebComponent(HTMLElement) {
       this.carousel.update();
     }
   }
-
-  /**
-   * Activates the slide.
-   *
-   * @param {object}  param0 Configuration options
-   * @param {boolean} param0.scroll Whether to scroll the viewport when
-   *   selecting the slide.
-   */
-  select({scroll = true} = {}) {
-    this.carousel.slides.forEach((slide) => {
-      slide.active = slide === this;
-
-      if(slide === this && scroll) {
-        requestAnimationFrame(() => {
-          const {offsetLeft: slideLeft, offsetWidth: slideWidth} = this;
-          const {offsetLeft: viewportLeft, offsetWidth: viewportWidth} = this.carousel.viewport;
-
-          this.carousel.viewport.scrollLeft = this.carousel.multiple
-            ? (slideLeft - viewportLeft) - (viewportWidth / 2) + (slideWidth / 2)
-            : (slideLeft - viewportLeft);
-        });
-      }
-    });
-  }
 }
 
 customElements.define("tcds-slide", Slide);

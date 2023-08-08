@@ -46,7 +46,7 @@ export default class Tabs extends WebComponent(HTMLElement) {
     this.update();
 
     if(!this.inactive) {
-      (this.tabs.find(tab => tab.active) || this.tabs[0]).select();
+      this.select(this.tabs.find(tab => tab.active) || this.tabs[0]);
     }
   }
 
@@ -55,19 +55,23 @@ export default class Tabs extends WebComponent(HTMLElement) {
   }
 
   tabClick(event) {
-    this.tabs[this.tabButtons.indexOf(event.currentTarget)].select();
+    this.select(this.tabs[this.tabButtons.indexOf(event.currentTarget)]);
   }
 
   tabKeyDown(event) {
     if(event.key === "ArrowRight") {
       event.preventDefault();
       this.tabButtons[this.nextIndex].focus();
-      this.tabs[this.nextIndex].select();
+      this.select(this.tabs[this.nextIndex]);
     } else if(event.key === "ArrowLeft") {
       event.preventDefault();
       this.tabButtons[this.previousIndex].focus();
-      this.tabs[this.previousIndex].select();
+      this.select(this.tabs[this.previousIndex]);
     }
+  }
+
+  select(tab) {
+    this.tabs.forEach(thisTab => thisTab.active = thisTab === tab);
   }
 }
 

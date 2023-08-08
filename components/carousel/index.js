@@ -171,7 +171,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
     });
 
     requestAnimationFrame(() => {
-      this.#initialActive.select();
+      this.select(this.#initialActive);
     });
   }
 
@@ -180,7 +180,7 @@ export default class Carousel extends WebComponent(HTMLElement) {
       if(this.playing) {
         const advance = () => {
           this.player = setTimeout(() => {
-            this.slides[this.nextIndex].select();
+            this.select(this.slides[this.nextIndex]);
             advance();
           }, this.timing * 1000);
         };
@@ -217,12 +217,12 @@ export default class Carousel extends WebComponent(HTMLElement) {
           });
 
           const closestToCenter = proximitiesToCenter.indexOf(Math.min(...proximitiesToCenter));
-          this.slides[closestToCenter].select({scroll: false});
+          this.select(this.slides[closestToCenter], {scroll: false});
         }, 500);
       } else {
         entries.forEach((entry) => {
           if(entry.isIntersecting) {
-            entry.target.select();
+            this.select(entry.target);
           }
         });
       }
@@ -251,19 +251,19 @@ export default class Carousel extends WebComponent(HTMLElement) {
   /* Event handlers */
 
   nextClick() {
-    this.slides[this.nextIndex].select();
+    this.select(this.slides[this.nextIndex]);
     this.stop();
     this.#flags.observingSwipe = false;
   }
 
   previousClick() {
-    this.slides[this.previousIndex].select();
+    this.select(this.slides[this.previousIndex]);
     this.stop();
     this.#flags.observingSwipe = false;
   }
 
   indicatorClick(event) {
-    this.slides[this.indicators.indexOf(event.target)].select();
+    this.select(this.slides[this.indicators.indexOf(event.target)]);
     this.stop();
     this.#flags.observingSwipe = false;
   }
@@ -272,11 +272,11 @@ export default class Carousel extends WebComponent(HTMLElement) {
     if(event.key === "ArrowRight") {
       event.preventDefault();
       this.indicators[this.nextIndex].focus();
-      this.slides[this.nextIndex].select();
+      this.select(this.slides[this.nextIndex]);
     } else if(event.key === "ArrowLeft") {
       event.preventDefault();
       this.indicators[this.previousIndex].focus();
-      this.slides[this.previousIndex].select();
+      this.select(this.slides[this.previousIndex]);
     }
 
     this.stop();
@@ -326,6 +326,23 @@ export default class Carousel extends WebComponent(HTMLElement) {
         this.#flags.isPaused = null;
       });
     }
+  }
+
+  select(slide, {scroll = true} = {}) {
+    this.slides.forEach((thisSlide) => {
+      thisSlide.active = thisSlide === slide;
+
+      if(thisSlide === slide && scroll) {
+        requestAnimationFrame(() => {
+          const {offsetLeft: slideLeft, offsetWidth: slideWidth} = slide;
+          const {offsetLeft: viewportLeft, offsetWidth: viewportWidth} = this.viewport;
+
+          this.viewport.scrollLeft = this.multiple
+            ? (slideLeft - viewportLeft) - (viewportWidth / 2) + (slideWidth / 2)
+            : (slideLeft - viewportLeft);
+        });
+      }
+    });
   }
 }
 
