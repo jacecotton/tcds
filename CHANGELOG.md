@@ -1,3 +1,13 @@
+## [2.2.8](https://github.com/jacecotton/tcds/compare/v2.2.7...v2.2.8) (2023-08-08)
+
+
+### Bug Fixes
+
+* **components:** Move tab/slide selection logic up to parent components ([5876a91](https://github.com/jacecotton/tcds/commit/5876a91dae30e64edfe3f573510e242abfcb398e))
+* **components:** Unspecify accordion IDREFs since all elements share same shadow root ([fe8f254](https://github.com/jacecotton/tcds/commit/fe8f2543597473340beb3239922c8842986aaf76))
+
+
+
 ## [2.2.7](https://github.com/jacecotton/tcds/compare/v2.2.6...v2.2.7) (2023-08-02)
 
 
@@ -32,15 +42,6 @@
 ### Bug Fixes
 
 * **components:** Remove accordion animation for reduced motion preference ([a0fd90b](https://github.com/jacecotton/tcds/commit/a0fd90bf85ea742d680156c165b076cdc0e8709c))
-
-
-
-## [2.2.3](https://github.com/jacecotton/tcds/compare/v2.2.2...v2.2.3) (2023-06-29)
-
-
-### Bug Fixes
-
-* **components:** Accordion sticky headers + smart scroll assist on small screens ([13f17d8](https://github.com/jacecotton/tcds/commit/13f17d8d607412cd0132be82ebd766efdb8932ae))
 
 
 
