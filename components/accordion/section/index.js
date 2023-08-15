@@ -26,9 +26,11 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
   }
 
   get template() {
+    const heading = "h" + this.accordion.headingLevel;
+
     return /* html */`
       <section>
-        <h${this.accordion.headingLevel} part="heading">
+        <${heading} part="heading">
           <button
             part="button"
             id="button"
@@ -42,7 +44,7 @@ export default class AccordionSection extends WebComponent(HTMLElement) {
               : (this.accordion.icon === "chevron" ? "chevron-down" : "")
             }"></tcds-icon>
           </button>
-        </h${this.accordion.headingLevel}>
+        </${heading}>
 
         <div part="panel" id="panel" aria-labelledby="button">
           <div part="content">
