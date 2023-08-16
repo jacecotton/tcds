@@ -1,3 +1,12 @@
+## [2.2.10](https://github.com/jacecotton/tcds/compare/v2.2.9...v2.2.10) (2023-08-16)
+
+
+### Bug Fixes
+
+* dummy push ([4b64653](https://github.com/jacecotton/tcds/commit/4b646530e08b5d2ecbc55cd1d8a68e7fcb1faee1))
+
+
+
 ## [2.2.9](https://github.com/jacecotton/tcds/compare/v2.2.8...v2.2.9) (2023-08-16)
 
 
@@ -33,15 +42,6 @@
 ### Bug Fixes
 
 * **components:** Making accordion heading-level prop reactive down component tree ([4c3be20](https://github.com/jacecotton/tcds/commit/4c3be20b31e46fcda1590880abf033e0a4d33d64))
-
-
-
-## [2.2.5](https://github.com/jacecotton/tcds/compare/v2.2.4...v2.2.5) (2023-07-05)
-
-
-### Bug Fixes
-
-* **typography:** Tweak Calluna font size-adjust value ([452816a](https://github.com/jacecotton/tcds/commit/452816adcfd118250ee1cd08861aa985e2ac3c2c))
 
 
 
