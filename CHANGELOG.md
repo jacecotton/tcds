@@ -1,3 +1,12 @@
+## [2.2.9](https://github.com/jacecotton/tcds/compare/v2.2.8...v2.2.9) (2023-08-16)
+
+
+### Bug Fixes
+
+* **components:** Dialog video embed pause issue ([210a49e](https://github.com/jacecotton/tcds/commit/210a49eaaea7184c6043a8b16d20aebfad48af22))
+
+
+
 ## [2.2.8](https://github.com/jacecotton/tcds/compare/v2.2.7...v2.2.8) (2023-08-08)
 
 
@@ -33,15 +42,6 @@
 ### Bug Fixes
 
 * **typography:** Tweak Calluna font size-adjust value ([452816a](https://github.com/jacecotton/tcds/commit/452816adcfd118250ee1cd08861aa985e2ac3c2c))
-
-
-
-## [2.2.4](https://github.com/jacecotton/tcds/compare/v2.2.3...v2.2.4) (2023-07-03)
-
-
-### Bug Fixes
-
-* **components:** Remove accordion animation for reduced motion preference ([a0fd90b](https://github.com/jacecotton/tcds/commit/a0fd90bf85ea742d680156c165b076cdc0e8709c))
 
 
 
