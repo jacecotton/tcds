@@ -1,3 +1,12 @@
+## [2.2.11](https://github.com/jacecotton/tcds/compare/v2.2.10...v2.2.11) (2023-08-16)
+
+
+### Bug Fixes
+
+* **components:** Make slides uniform height for carousel[multiple] ([db14d85](https://github.com/jacecotton/tcds/commit/db14d856b122d48acd08b690b87c320872c396f1))
+
+
+
 ## [2.2.10](https://github.com/jacecotton/tcds/compare/v2.2.9...v2.2.10) (2023-08-16)
 
 
@@ -33,15 +42,6 @@
 
 * **components:** Improve Carousel state management ([8bcf621](https://github.com/jacecotton/tcds/commit/8bcf62199bc7941c87fe486d9897db7d4b5acf66))
 * **components:** Spotlight layout fix ([198b828](https://github.com/jacecotton/tcds/commit/198b828b96a84606d6785c17b8e8156ccc92cb30))
-
-
-
-## [2.2.6](https://github.com/jacecotton/tcds/compare/v2.2.5...v2.2.6) (2023-07-06)
-
-
-### Bug Fixes
-
-* **components:** Making accordion heading-level prop reactive down component tree ([4c3be20](https://github.com/jacecotton/tcds/commit/4c3be20b31e46fcda1590880abf033e0a4d33d64))
 
 
 
