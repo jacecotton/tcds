@@ -14,6 +14,8 @@
   --tcds-carousel-slide-size: min(700px, 70vw);
   --tcds-carousel-slide-align: center;
   --tcds-carousel-padding-inline-end: 50%;
+  --tcds-carousel-viewport-align-items: stretch;
+  --tcds-carousel-slide-display: grid;
 }
 
 section {
@@ -54,7 +56,7 @@ section {
   grid-area: slides;
   display: flex;
   gap: var(--tcds-carousel-slide-gap, 0);
-  align-items: center;
+  align-items: var(--tcds-carousel-viewport-align-items, center);
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
@@ -76,6 +78,7 @@ section {
 }
 
 ::slotted(tcds-slide) {
+  display: var(--tcds-carousel-slide-display, block);
   flex: 1 0 var(--tcds-carousel-slide-size, 100%);
   scroll-snap-align: var(--tcds-carousel-slide-align, start);
   scroll-snap-stop: always;
