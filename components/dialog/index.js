@@ -231,12 +231,19 @@ export default class Dialog extends WebComponent(HTMLElement) {
       // Pause internal videos.
       this.querySelectorAll("video")?.forEach(video => video.pause());
 
-      this.querySelectorAll("iframe[src*=youtu]")?.forEach((video) => {
-        // For YouTube embeds, rather than worry about keeping up with current
-        // APIs and ensuring JS APIs are enabled in the embed URL, we can trick
-        // the video into stopping by "refreshing" the `src` attribute.
-        const src = video.src;
-        video.src = src;
+      [
+        ...this.querySelectorAll("iframe[src*=youtu]"),
+        // Sometimes a video may be inserted to a dialog via a slot if the
+        // dialog is part of a shadow tree, so we'll have to select it this way.
+        ...[...this.children].filter(child => child.assignedNodes()).map(child => child.assignedNodes()[0])
+      ]?.forEach((video) => {
+        if(video.src) {
+          // For YouTube embeds, rather than worry about keeping up with current
+          // APIs and ensuring JS APIs are enabled in the embed URL, we can trick
+          // the video into stopping by "refreshing" the `src` attribute.
+          const src = video.src;
+          video.src = src;
+        }
       });
     }
   }
