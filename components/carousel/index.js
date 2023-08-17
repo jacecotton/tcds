@@ -196,9 +196,27 @@ export default class Carousel extends WebComponent(HTMLElement) {
   /* Observers */
 
   #swipeDebounce;
+  #recycleDebounce;
 
   get swipe() {
     return new IntersectionObserver((entries) => {
+      clearTimeout(this.#recycleDebounce);
+
+      this.#recycleDebounce = setTimeout(() => {
+        this.slides.forEach((slide) => {
+          const {left: viewportLeft, right: viewportRight} = this.viewport.getBoundingClientRect();
+          const {left: slideLeft, right: slideRight} = slide.getBoundingClientRect();
+
+          if(slideRight < viewportLeft) {
+            slide.style.order = String(Math.max(this.slides.length + 1, Number(this.slides.at(-1).style.order) + 1));
+          }
+
+          if(slideLeft > viewportRight) {
+            slide.style.order = slide.style.order ? Number(slide.style.order) - 1 : null;
+          }
+        });
+      }, 300);
+
       if(this.#flags.observingSwipe !== true) {
         return;
       }
