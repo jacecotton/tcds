@@ -40,15 +40,17 @@ export default class Carousel extends WebComponent(HTMLElement) {
   }
 
   get nextIndex() {
-    return (this.slides.indexOf(this.querySelector("[active]")) + 1) % this.slides.length;
+    const activeIndex = this.slides.indexOf(this.querySelector("[active]"));
+    return (activeIndex + 1) % this.slides.length;
   }
 
   get previousIndex() {
-    return (this.slides.indexOf(this.querySelector("[active]")) - 1 + this.slides.length) % this.slides.length;
+    const activeIndex = this.slides.indexOf(this.querySelector("[active]"));
+    return (activeIndex - 1 + this.slides.length) % this.slides.length;
   }
 
   /**
-   * Internal flags (non-stateful switches).
+   * Internal flags (non-reactive switches).
    *
    * @property {boolean} observingSwipe - Whether scrolling within the viewport
    *   should be observed. While the carousel is automatically advancing, it
@@ -61,15 +63,15 @@ export default class Carousel extends WebComponent(HTMLElement) {
   #flags = {};
 
   get template() {
-    const playPauseLabel = `${this.playing ? "Stop" : "Start"} automatic slide show`;
+    const playPause = `${this.playing ? "Stop" : "Start"} automatic slide show`;
 
     return /* html */`
       <section aria-roledescription="carousel">
         ${this.timing ? /* html */`
           <button is="tcds-ui-button"
             part="play-pause"
-            title="${playPauseLabel}"
-            aria-label="${playPauseLabel}"
+            title="${playPause}"
+            aria-label="${playPause}"
             size="small"
             variant="ghost"
             onclick="this.getRootNode().host.toggle()"
@@ -217,6 +219,11 @@ export default class Carousel extends WebComponent(HTMLElement) {
           });
 
           const closestToCenter = proximitiesToCenter.indexOf(Math.min(...proximitiesToCenter));
+          // Disabling scroll here because CSS scroll-snapping takes care of
+          // actually placing the slide. We're only doing a `select` call here
+          // to update the internal state (which updates the indicator dots,
+          // etc.) In the future, a proper JS API would be the better approach.
+          // Keep an eye on https://github.com/argyleink/ScrollSnapExplainers
           this.select(this.slides[closestToCenter], {scroll: false});
         }, 500);
       } else {
