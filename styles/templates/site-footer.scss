@@ -67,6 +67,7 @@
       display: flex;
       flex-direction: column;
       gap: var(--tcds-space-x-tight);
+      z-index: 2;
 
       a {
         font-size: var(--tcds-font-size-small);
