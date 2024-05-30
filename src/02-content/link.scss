@@ -1,0 +1,12 @@
+a {
+  :where(&) {
+    color: var(--tcds-color-link);
+    text-decoration: underline;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
+  }
+
+  :where(&:hover) {
+    text-decoration: none;
+  }
+}

@@ -1,0 +1,36 @@
+@use "sass:map";
+@use "sass:string";
+
+@function svg($svg) {
+  $escaped-string: "";
+
+  @for $i from 1 through string.length(string.unquote($svg)) {
+    $character: string.slice(string.unquote($svg), $i, $i);
+    $character-lookup: map.get((
+      " ": "%20",
+      "'": "%22",
+      "\"": "%27",
+      "#": "%23",
+      "/": "%2F",
+      ":": "%3A",
+      "(": "%28",
+      ")": "%29",
+      "%": "%25",
+      "<": "%3C",
+      ">": "%3E",
+      "\\": "%5C",
+      "^": "%5E",
+      "{": "%7B",
+      "|": "%7C",
+      "}": "%7D",
+    ), $character);
+
+    @if $character-lookup {
+      $character: $character-lookup;
+    }
+
+    $escaped-string: $escaped-string + $character;
+  }
+
+  @return url('data:image/svg+xml, #{$escaped-string} ');
+}

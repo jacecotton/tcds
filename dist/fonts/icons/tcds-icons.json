@@ -1,0 +1,169 @@
+{
+  "name": "tcds-icons",
+  "icons": [
+    {
+      "name": "facebook",
+      "code": 59905
+    },
+    {
+      "name": "instagram",
+      "code": 59906
+    },
+    {
+      "name": "mychart",
+      "code": 59907
+    },
+    {
+      "name": "pinterest",
+      "code": 59908
+    },
+    {
+      "name": "texans",
+      "code": 59909
+    },
+    {
+      "name": "texas-childrens",
+      "code": 59910
+    },
+    {
+      "name": "x",
+      "code": 59911
+    },
+    {
+      "name": "youtube",
+      "code": 59912
+    },
+    {
+      "name": "accessibility",
+      "code": 59913
+    },
+    {
+      "name": "alert",
+      "code": 59914
+    },
+    {
+      "name": "amenities",
+      "code": 59915
+    },
+    {
+      "name": "appointment-prep",
+      "code": 59916
+    },
+    {
+      "name": "appointments",
+      "code": 59917
+    },
+    {
+      "name": "call",
+      "code": 59918
+    },
+    {
+      "name": "care",
+      "code": 59919
+    },
+    {
+      "name": "check-encircled",
+      "code": 59920
+    },
+    {
+      "name": "conditions",
+      "code": 59921
+    },
+    {
+      "name": "directions",
+      "code": 59922
+    },
+    {
+      "name": "donate",
+      "code": 59923
+    },
+    {
+      "name": "email",
+      "code": 59924
+    },
+    {
+      "name": "find-location",
+      "code": 59925
+    },
+    {
+      "name": "giving",
+      "code": 59926
+    },
+    {
+      "name": "insurance-billing",
+      "code": 59927
+    },
+    {
+      "name": "location-update",
+      "code": 59928
+    },
+    {
+      "name": "location",
+      "code": 59929
+    },
+    {
+      "name": "patient-story",
+      "code": 59930
+    },
+    {
+      "name": "podcast",
+      "code": 59931
+    },
+    {
+      "name": "press-release",
+      "code": 59932
+    },
+    {
+      "name": "profile",
+      "code": 59933
+    },
+    {
+      "name": "refer-patient",
+      "code": 59934
+    },
+    {
+      "name": "register",
+      "code": 59935
+    },
+    {
+      "name": "research",
+      "code": 59936
+    },
+    {
+      "name": "route",
+      "code": 59937
+    },
+    {
+      "name": "save-my-spot",
+      "code": 59938
+    },
+    {
+      "name": "specialty",
+      "code": 59939
+    },
+    {
+      "name": "testing",
+      "code": 59940
+    },
+    {
+      "name": "updates",
+      "code": 59941
+    },
+    {
+      "name": "vaccines",
+      "code": 59942
+    },
+    {
+      "name": "virtual-care",
+      "code": 59943
+    },
+    {
+      "name": "visitors",
+      "code": 59944
+    },
+    {
+      "name": "wellness",
+      "code": 59945
+    }
+  ]
+}

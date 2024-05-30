@@ -1,0 +1,23 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+[part="controls"] {
+  display: flex;
+  justify-content: end;
+  gap: 1rem;
+  border-bottom: 1px solid var(--tcds-color-gray-2);
+  padding: 0 0 .5rem;
+}
+
+[part="open-all"],
+[part="close-all"] {
+  appearance: none;
+  border: 0;
+  background: none;
+  font-family: var(--tcds-font-ui);
+  font-weight: var(--tcds-font-weight-semibold);
+  display: flex;
+  gap: 1ch;
+}

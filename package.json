@@ -1,7 +1,8 @@
 {
   "name": "@txch/tcds",
-  "version": "2.2.12",
+  "version": "1.0.0",
   "description": "Texas Children's Design System",
+  "main": "index.js",
   "type": "module",
   "scripts": {
     "dev": "gulp",
@@ -11,12 +12,12 @@
     "build:images": "gulp images",
     "build:fonts": "gulp fonts",
     "lint": "npm run lint:styles && npm run lint:javascript",
-    "lint:styles": "stylelint 'styles/**/*.scss' 'components/**/*.css'",
-    "lint:javascript": "eslint 'utilities/**/*.js' 'components/**/*.js'",
+    "lint:styles": "stylelint 'src/styles/**/*.css' 'src/styles/**/*.scss' 'src/components/**/*.css' 'src/components/**/*.scss'",
+    "lint:javascript": "eslint 'src/utilities/**/*.js' 'src/components/**/*.js'",
     "fix": "npm run fix:styles && npm run fix:javascript",
-    "fix:styles": "stylelint 'styles/**/*.scss' 'components/**/*.css' --fix",
-    "fix:javascript": "eslint 'utilities/**/*.js' 'components/**/*.js' --fix",
-    "version": "cat package.json | grep -e '^  \"version\": ' | awk '{print $2}' | sed 's/[\",]//g'"
+    "fix:styles": "stylelint 'src/styles/**/*.css' 'src/styles/**/*.scss' 'src/components/**/*.css' 'src/components/**/*.scss' --fix",
+    "fix:javascript": "eslint 'src/utilities/**/*.js' 'src/components/**/*.js' --fix",
+    "fix:icons": "gulp icon-cleanup"
   },
   "repository": {
     "type": "git",
@@ -35,12 +36,16 @@
     "babel-loader": "^8.2.5",
     "construct-style-sheets-polyfill": "^3.1.0",
     "constructable-style-loader": "^1.0.0-alpha.8",
-    "eslint": "^8.23.1",
+    "del": "^7.1.0",
     "gulp": "^4.0.2",
+    "gulp-iconfont": "^11.0.1",
     "gulp-imagemin": "^8.0.0",
+    "gulp-json-transform": "^0.5.0",
     "gulp-postcss": "^9.0.1",
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^5.1.0",
+    "gulp-zip": "^6.0.0",
+    "map-stream": "^0.0.7",
     "node-sass-json-importer": "^4.3.0",
     "postcss": "^8.4.23",
     "postcss-custom-media": "^8.0.2",
@@ -48,12 +53,6 @@
     "postcss-nesting": "^11.2.2",
     "postcss-preset-env": "^8.3.2",
     "sass": "^1.63.6",
-    "stylelint": "^14.11.0",
-    "stylelint-config-standard-scss": "^5.0.0",
     "webpack-stream": "^7.0.0"
-  },
-  "peerDependencies": {
-    "construct-style-sheets-polyfill": "^3.1.0",
-    "constructable-style-loader": "^1.0.0-alpha.8"
   }
 }

@@ -1,0 +1,57 @@
+{
+  "library": {
+    "red": ["#da2530", "#cc111c", "#b70f19"],
+    "pink": ["#fff7f7", "#f2e6e6"],
+    "navy": ["#122840"],
+    "baby-blue": ["#f5faff", "#dde7ef"],
+    "gray": ["#eaeaea", "#a8a8a8", "#707070", "#555", "#1a1a1a"],
+    "white": ["#fff"]
+  },
+  "aliases": {
+    "primary": "red",
+    "secondary": "navy",
+    "tertiary": "gray"
+  },
+  "themes": {
+    "light": {
+      "primary": {
+        "background": "pink",
+        "text": "navy",
+        "watermark": "pink-2",
+        "link": "red"
+      },
+      "secondary": {
+        "background": "baby-blue",
+        "text": "navy",
+        "watermark": "baby-blue-2",
+        "link": "red"
+      },
+      "tertiary": {
+        "background": "gray",
+        "text": "navy",
+        "watermark": "gray-2",
+        "link": "red"
+      }
+    },
+    "dark": {
+      "primary": {
+        "background": "red",
+        "text": "white",
+        "watermark": "red-2",
+        "link": "white"
+      },
+      "secondary": {
+        "background": "navy",
+        "text": "white",
+        "watermark": "navy",
+        "link": "baby-blue-2"
+      },
+      "tertiary": {
+        "background": "gray-5",
+        "text": "white",
+        "watermark": "gray-5",
+        "link": "white"
+      }
+    }
+  }
+}

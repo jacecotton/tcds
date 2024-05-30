@@ -1,0 +1,19 @@
+@use "sass:list";
+@use "box-shadow.json";
+
+:root {
+  @each $shade, $value in box-shadow.$shades {
+    --tcds-box-shadow-shade-#{$shade}: #{$value};
+  }
+
+  @each $size, $values in box-shadow.$sizes {
+    --tcds-box-shadow-#{$size}-x: #{list.nth($values, 1)};
+    --tcds-box-shadow-#{$size}-y: #{list.nth($values, 2)};
+    --tcds-box-shadow-#{$size}-b: #{list.nth($values, 3)};
+    --tcds-box-shadow-#{$size}:
+      var(--tcds-box-shadow-#{$size}-x)
+      var(--tcds-box-shadow-#{$size}-y)
+      var(--tcds-box-shadow-#{$size}-b)
+      var(--tcds-box-shadow-shade, var(--tcds-box-shadow-shade-medium));
+  }
+}

@@ -1,9 +1,0 @@
-@use "sass:map";
-@use "../../animation/config.json" as *;
-
-:root {
-  @each $preset, $value in $timing {
-    --tcds-animation-#{$preset}-duration: #{map.get($value, "duration")}ms;
-    --tcds-animation-#{$preset}-easing: #{map.get($value, "easing")};
-  }
-}

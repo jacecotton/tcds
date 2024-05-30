@@ -1,0 +1,33 @@
+ul,
+ol {
+  :where(&) {
+    margin: 0 0 0 1em;
+    line-height: var(--tcds-line-height-m);
+  }
+
+  :where(:not(li) > :is(&):not(:last-child)) {
+    margin-bottom: 1rem;
+  }
+}
+
+ol {
+  :where(& &) {
+    list-style: lower-alpha;
+  }
+
+  :where(& & &) {
+    list-style: lower-roman;
+  }
+}
+
+.list {
+  &--comma-separated {
+    display: flex;
+
+    li {
+      &::after {
+        content: ", ";
+      }
+    }
+  }
+}

@@ -1,60 +1,37 @@
-@forward "./styles/base/variables";
+@use "./src/00-branding/typography/fonts/calluna" as *;
+@use "./src/00-branding/typography/fonts/mont" as *;
 
-/** Animation */
-@use "./styles/animation/animation";
-@use "./styles/animation/library";
+@use "./src/00-branding/animation/globals" as *;
+@use "./src/00-branding/animation/library" as *;
+@use "./src/00-branding/animation/props" as *;
 
-/** Base */
-@use "./styles/base/base" as *;
+@use "./src/00-branding/border-radius/props" as *;
 
-/** Colors */
-@use "./styles/color/color";
+@use "./src/00-branding/box-shadow/props" as *;
 
-/** Content */
-@use "./styles/content/blockquote";
-@use "./styles/content/callout";
-@use "./styles/content/details";
-@use "./styles/content/horizontal-rule";
-@use "./styles/content/lists";
-@use "./styles/content/main";
-@use "./styles/content/tables";
-@use "./styles/content/forms";
+@use "./src/00-branding/color/props" as *;
 
-/** Icons */
-@use "./styles/icons/icons";
+@use "./src/00-branding/icons/props" as *;
 
-/** Typography */
-@use "./styles/typography/typography";
-@use "./styles/typography/fonts";
-@use "./styles/typography/globals";
+@use "./src/00-branding/typography/props" as *;
+@use "./src/00-branding/typography/globals" as *;
 
-/** Layout */
-@use "./styles/layout/layout";
+@use "./src/01-layout/props" as *;
+@use "./src/01-layout/globals" as *;
 
-/** Templates */
-@use "./styles/templates/site-header";
-@use "./styles/templates/site-footer";
+@use "./src/02-content/forms" as *;
+@use "./src/02-content/headings" as *;
+@use "./src/02-content/link" as *;
+@use "./src/02-content/lists" as *;
+@use "./src/02-content/media" as *;
+@use "./src/02-content/paragraph" as *;
+@use "./src/02-content/separator" as *;
 
-/** Components */
-@use "./components/accordion/style.shared" as *;
-@use "./components/button/style.shared" as *;
-@use "./components/dialog/style.shared" as *;
-@use "./components/tabs/style.shared" as *;
-@use "./components/carousel/style.shared" as *;
-@use "./components/card/style.shared" as *;
-@use "./components/alert-bar/style.shared" as *;
-@use "./components/mega-menu/style.shared" as *;
-@use "./components/gallery/style.shared" as *;
-@use "./components/section/style.shared" as *;
-@use "./components/spotlight/style.shared" as *;
-@use "./components/focus-boundary/style.shared" as *;
-@use "./styles/components/base" as *;
-@use "./styles/components/action-bar";
-@use "./styles/components/breadcrumb";
-@use "./styles/components/pagination";
+@use "./src/00-branding/color/utilities" as *;
+@use "./src/00-branding/typography/utilities" as *;
+@use "./src/01-layout/utilities" as *;
+@use "./src/02-content/utilities" as *;
 
-/** Utilities */
-@use "./styles/base/utilities" as *;
-@use "./styles/color/utilities" as *;
-@use "./styles/layout/utilities" as *;
-@use "./styles/typography/utilities" as *;
+@use "./src/03-components/accordion/style.shared" as *;
+@use "./src/03-components/button/style.shared" as *;
+@use "./src/03-components/icon/style.shared" as *;

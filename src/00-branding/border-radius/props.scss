@@ -1,0 +1,7 @@
+@use "border-radius.json";
+
+:root {
+  @each $size, $value in border-radius.$sizes {
+    --tcds-border-radius-#{$size}: #{$value};
+  }
+}

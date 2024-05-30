@@ -1,0 +1,54 @@
+@use "sass:list";
+@use "sass:map";
+@use "typography.json";
+@use "../../01-layout/layout.json";
+
+@each $font, $stack in map.merge(typography.$font-stacks, typography.$aliases) {
+  .font-#{$font} {
+    font-family: var(--tcds-font-#{$font}) !important;
+  }
+}
+
+@each $weight, $value in typography.$font-weights {
+  .font-weight-#{$weight} {
+    font-weight: var(--tcds-font-weight-#{$weight}) !important;
+  }
+}
+
+@each $height, $value in typography.$line-heights {
+  .line-height-#{$height} {
+    line-height: var(--tcds-line-height-#{$height}) !important;
+  }
+}
+
+@each $size, $value in typography.$font-sizes {
+  .font-size-#{$size} {
+    font-size: var(--tcds-font-size-#{$size}) !important;
+
+    @if list.index(("4xl", "3xl", "2xl", "xl", "l"), $size) {
+      line-height: var(--tcds-line-height-s) !important;
+    }
+
+    @if list.index(("ml", "m", "s", "xs"), $size) {
+      line-height: var(--tcds-line-height-m) !important;
+    }
+  }
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+@each $breakpoint, $value in layout.$breakpoints {
+  @media (--above-#{$breakpoint}) {
+    .above-#{$breakpoint}\:text-center {
+      text-align: center !important;
+    }
+  }
+
+  @media (--below-#{$breakpoint}) {
+    .below-#{$breakpoint}\:text-center {
+      text-align: center !important;
+    }
+  }
+}

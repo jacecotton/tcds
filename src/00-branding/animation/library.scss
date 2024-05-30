@@ -1,0 +1,16 @@
+@use "sass:map";
+@use "animation.json";
+
+@each $name, $keyframeset in animation.$library {
+  $selector: if(map.get($keyframeset, "offset") == 0, "from", "to");
+
+  @keyframes tcds-animation-#{$name} {
+    #{$selector} {
+      @each $property, $value in $keyframeset {
+        @if $property != "offset" {
+          #{$property}: #{$value};
+        }
+      }
+    }
+  }
+}

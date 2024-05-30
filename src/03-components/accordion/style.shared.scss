@@ -1,0 +1,17 @@
+tcds-accordion {
+  &:not(:last-child) {
+    margin: 1.5rem 0;
+
+    &:first-child {
+      margin: 0 0 1.5rem;
+    }
+  }
+
+  tcds-accordion-section & {
+    --tcds-accordion-section-heading-position: relative;
+
+    padding-left: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+}

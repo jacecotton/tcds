@@ -1,0 +1,42 @@
+@use "sass:list";
+@use "sass:map";
+@use "color.json";
+
+:root {
+  @each $name, $values in color.$library {
+    @each $value in $values {
+      $index: list.index($values, $value);
+      $discriminator: if($index == 1, "", "-#{$index}");
+
+      #{"--tcds-color-#{$name}" + $discriminator}: #{$value};
+    }
+  }
+
+  @each $alias, $color in color.$aliases {
+    $color-map: map.get(color.$library, $color);
+
+    @each $value in $color-map {
+      $index: list.index($color-map, $value);
+      $discriminator: if($index == 1, "", "-#{$index}");
+
+      #{"--tcds-color-#{$alias}" + $discriminator}: var(--tcds-color-#{$color + $discriminator});
+    }
+  }
+}
+
+:root,
+[data-theme="light"] {
+  @each $alias, $scheme in map.get(color.$themes, "light") {
+    @each $element, $color in $scheme {
+      #{"--tcds-color-#{$alias}-#{$element}"}: var(--tcds-color-#{$color});
+    }
+  }
+}
+
+[data-theme="dark"] {
+  @each $alias, $scheme in map.get(color.$themes, "dark") {
+    @each $element, $color in $scheme {
+      #{"--tcds-color-#{$alias}-#{$element}"}: var(--tcds-color-#{$color});
+    }
+  }
+}

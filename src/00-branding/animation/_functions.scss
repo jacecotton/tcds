@@ -1,0 +1,3 @@
+@function animation($preset) {
+  @return var(--tcds-animation-#{$preset}-duration) var(--tcds-animation-#{$preset}-easing);
+}

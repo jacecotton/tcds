@@ -1,0 +1,65 @@
+@use "mixins" as *;
+
+/**
+ * 1. Prevents text size from zooming in on mobile devices when orientation is
+ *    switched from portrait to landscape.
+ */
+html {
+  text-size-adjust: 100%; // 1
+}
+
+/**
+ * 1. Disables oldstyle figures in Calluna. If Calluna is not used (nor any
+ *    other font that uses oldstyle figures), can remove.
+ * 2. Browsers in macOS still use subpixel antialiasing, but almost no other
+ *    modern device does. We're not "fixing" font smoothing here, we're just
+ *    aligning macOS browsers with the norm. We'll still keep it on for users
+ *    with a high contrast preference set.
+ */
+body {
+  font-family: var(--tcds-font-copy);
+  font-size: var(--tcds-font-size-m);
+  font-variant-numeric: lining-nums; // 1
+  overflow-wrap: break-word;
+
+  @media (prefers-contrast: no-preference), (prefers-contrast: less) {
+    -webkit-font-smoothing: antialiased; // 2
+    -moz-osx-font-smoothing: grayscale; // 2
+  }
+}
+
+:where(h1) {
+  @include h1;
+}
+
+:where(h2) {
+  @include h2;
+}
+
+:where(h3) {
+  @include h3;
+}
+
+:where(h4) {
+  @include h4;
+}
+
+:where(h5) {
+  @include h5;
+}
+
+:where(h6) {
+  @include h6;
+}
+
+:where(p) {
+  line-height: var(--tcds-line-height-m);
+}
+
+:where(
+  small,
+  sub,
+  sup
+) {
+  font-size: max(var(--tcds-font-size-xs), 87.5%);
+}
