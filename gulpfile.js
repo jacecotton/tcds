@@ -102,12 +102,6 @@ const tasks = {
       .pipe(dest("./dist/"));
   },
 
-  // images: () => {
-  //   return src("./src/static/images/**/*")
-  //     .pipe(imagemin())
-  //     .pipe(dest("./dist/images/"));
-  // },
-
   icons: () => {
     const fileignore = [".DS_Store"];
 
@@ -184,14 +178,20 @@ const tasks = {
     return src("./src/00-branding/typography/fonts/static/**/*")
       .pipe(dest("./dist/fonts/"));
   },
+
+  logos: () => {
+    return src("./src/00-branding/logos/**/*")
+      .pipe(imagemin())
+      .pipe(dest("./dist/logos/"));
+  },
 };
 
 task("cleanup", tasks.cleanup);
 task("styles", tasks.styles);
 task("javascript", tasks.javascript);
-// task("images", tasks.images);
 task("icons", tasks.icons);
 task("fonts", tasks.fonts);
+task("logos", tasks.logos);
 
 task("icon-cleanup", () => {
   return src("./src/00-branding/icons/static/primary/*.svg")
@@ -233,10 +233,10 @@ task("icon-cleanup", () => {
 task("watch", function watcher() {
   watch("./src/**/*.scss", tasks.styles);
   watch(["./index.js", "./src/03-components/**/*.js"], tasks.javascript);
-  // watch("./src/static/images/", tasks.images);
   watch("./src/00-branding/icons/static/", tasks.icons);
-  watch("./src/static/fonts/", tasks.fonts);
+  watch("./src/00-branding/typography/fonts/static/", tasks.fonts);
+  watch("./src/00-branding/logos/**/*.svg", tasks.logos);
 });
 
-task("build", series(["cleanup", "icons", "styles", "fonts", "javascript"]));
+task("build", series(["cleanup", "icons", "styles", "fonts", "javascript", "logos"]));
 task("default", series(["build", "watch"]));
