@@ -13,9 +13,9 @@ import layout from "../../01-layout/layout.json";
  * - Add a modifier class to the root header element when any `details` children
  *   are opened.
  * - Allow `details` elements to be closed by clicking on the outer body area.
- * - Polyfill `details[name]` for browsers that haven't implemented it yet. This
- *   allows details to be associated with other details and only allow for one
- *   within the group to be open at a time.
+ * - Polyfill `details[name]` for browsers that haven't implemented it yet.
+ * - Add a class to the header when scroll threshold is over height of header
+ *   (CSS will make it sticky and in a "condensed" state).
  */
 
 (function() {
@@ -86,6 +86,10 @@ import layout from "../../01-layout/layout.json";
       header.appendChild(navUtility);
       searchToggleParent.appendChild(searchToggle);
       searchToggleParent.hidden = false;
+
+      if(mobileToggle) {
+        headerOpenToggle(mobileToggle, false);
+      }
     }
   }
 
@@ -139,6 +143,20 @@ import layout from "../../01-layout/layout.json";
     navs.forEach((nav) => {
       nav.addEventListener("click", event => event.stopPropagation());
     });
+  });
+
+  // Toggle class for sticky scroll.
+  const headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--tcds-site-header-height"));
+  const headerStickyClass = "site-header--scrolled";
+
+  window.addEventListener("scroll", () => {
+    const headerIsSticky = header.classList.contains(headerStickyClass);
+
+    if(window.scrollY > headerHeight && !headerIsSticky) {
+      header.classList.add(headerStickyClass);
+    } else if(window.scrollY < headerHeight / 1.5 && headerIsSticky) {
+      header.classList.remove(headerStickyClass);
+    }
   });
 
   // Polyfill `details[name]` for Firefox and Safari.
