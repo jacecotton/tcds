@@ -13,7 +13,6 @@
     --tcds-box-shadow-#{$size}:
       var(--tcds-box-shadow-#{$size}-x)
       var(--tcds-box-shadow-#{$size}-y)
-      var(--tcds-box-shadow-#{$size}-b)
-      var(--tcds-box-shadow-shade, var(--tcds-box-shadow-shade-medium));
+      var(--tcds-box-shadow-#{$size}-b);
   }
 }
