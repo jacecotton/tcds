@@ -52,7 +52,7 @@ const tasks = {
           "accordion-section": {import: "./src/03-components/accordion/section/index.js", dependOn: ["declarative", "importSharedStyles", "refreshProperties"]},
           button: {import: "./src/03-components/button/index.js"},
           card: {import: "./src/03-components/card/index.js", dependOn: ["declarative", "importSharedStyles", "refreshProperties"]},
-          icon: {import: "./src/03-components/icon/index.js", dependOn: ["slugify"]},
+          icon: {import: "./src/03-components/icon/index.js", dependOn: ["declarative", "importSharedStyles", "refreshProperties", "slugify"]},
           "site-header": "./src/03-components/site-header/index.js",
 
           declarative: "./src/03-components/utilities/declarative.js",
