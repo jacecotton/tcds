@@ -12,8 +12,6 @@ class Icon extends declarative(HTMLElement) {
   }
 
   get template() {
-    console.log(this.textContent?.trim().length);
-    
     return importSharedStyles() + `
       <span class="visually-hidden">
         ${this.textContent?.trim().length
