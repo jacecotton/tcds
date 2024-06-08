@@ -115,9 +115,14 @@ import layout from "../../01-layout/layout.json";
     if(toggle.open || add === false) {
       header.classList.remove("site-header--open");
       toggle.open = false;
+      document.body.style.overflow = null;
     } else {
       toggle.open = true;
       header.classList.add("site-header--open");
+
+      if(window.innerWidth < layout.breakpoints.m) {
+        document.body.style.overflow = "hidden";
+      }
     }
   }
 
