@@ -53,7 +53,7 @@ const tasks = {
           button: {import: "./src/03-components/button/index.js"},
           card: {import: "./src/03-components/card/index.js", dependOn: ["declarative", "importSharedStyles", "refreshProperties"]},
           icon: {import: "./src/03-components/icon/index.js", dependOn: ["declarative", "importSharedStyles", "refreshProperties", "slugify"]},
-          "site-header": "./src/03-components/site-header/index.js",
+          "site-header": {import: "./src/03-components/site-header/index.js", dependOn: ["declarative", "importSharedStyles", "refreshProperties"]},
 
           declarative: "./src/03-components/utilities/declarative.js",
           importSharedStyles: "./src/03-components/utilities/importSharedStyles.js",
