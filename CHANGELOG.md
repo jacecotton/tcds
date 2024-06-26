@@ -1,3 +1,12 @@
+## [2.2.13](https://github.com/jacecotton/tcds/compare/v2.2.12...v2.2.13) (2024-06-26)
+
+
+### Bug Fixes
+
+* Misc style tweaks ([af7b606](https://github.com/jacecotton/tcds/commit/af7b606b2eb3e68329ce5fba671163e11947c17b))
+
+
+
 ## [2.2.12](https://github.com/jacecotton/tcds/compare/v2.2.11...v2.2.12) (2023-12-14)
 
 
@@ -31,16 +40,6 @@
 ### Bug Fixes
 
 * **components:** Dialog video embed pause issue ([210a49e](https://github.com/jacecotton/tcds/commit/210a49eaaea7184c6043a8b16d20aebfad48af22))
-
-
-
-## [2.2.8](https://github.com/jacecotton/tcds/compare/v2.2.7...v2.2.8) (2023-08-08)
-
-
-### Bug Fixes
-
-* **components:** Move tab/slide selection logic up to parent components ([5876a91](https://github.com/jacecotton/tcds/commit/5876a91dae30e64edfe3f573510e242abfcb398e))
-* **components:** Unspecify accordion IDREFs since all elements share same shadow root ([fe8f254](https://github.com/jacecotton/tcds/commit/fe8f2543597473340beb3239922c8842986aaf76))
 
 
 
