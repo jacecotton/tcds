@@ -3,106 +3,91 @@
     <img src="tcds/dist/logos/tc-horizontal.svg" alt="Texas Children's" width="386" height="90">
   </a>
 
-  <!-- this gets display: contents on desktop -->
-  <details slot="main-menu" open>
-    <!-- this gets display: none on desktop -->
+  <details slot="menu-toggle" name="menu-toggle" open>
     <summary>
       <span class="visually-hidden">Toggle main menu</span>
-      <!-- icon added via ::after, hamburger/x depending on [open] -->
     </summary>
 
-    <!-- these are assigned to grid areas defined in tcds-global-header -->
-    <nav id="primary-menu">
-      <ul>
-        <li>
-          <details>
-            <summary>Our system</summary>
-            <div>
-              <p>Our system content</p>
-            </div>
-          </details>
-        </li>
+    <div>
+      <nav id="primary-menu">
+        <ul>
+          <li>
+            <details name="primary-menu">
+              <summary>Our system</summary>
+              <div>
+                <p>Our system content</p>
+              </div>
+            </details>
+          </li>
 
-        <li>
-          <details>
-            <summary>Patients &amp; families</summary>
-            <div>
-              <p>Patients &amp; families content</p>
-            </div>
-          </details>
-        </li>
+          <li>
+            <details name="primary-menu">
+              <summary>Patients &amp; families</summary>
+              <div>
+                <p>Patients &amp; families content</p>
+              </div>
+            </details>
+          </li>
 
-        <li>
-          <details>
-            <summary>Health professionals</summary>
-            <div>
-              <p>Health professionals content</p>
-            </div>
-          </details>
-        </li>
+          <li>
+            <details name="primary-menu">
+              <summary>Health professionals</summary>
+              <div>
+                <p>Health professionals content</p>
+              </div>
+            </details>
+          </li>
 
-        <li>
-          <details>
-            <summary>Researchers</summary>
-            <div>
-              <p>Researchers content</p>
-            </div>
-          </details>
-        </li>
+          <li>
+            <details name="primary-menu">
+              <summary>Researchers</summary>
+              <div>
+                <p>Researchers content</p>
+              </div>
+            </details>
+          </li>
+        </ul>
+      </nav>
 
-        <li>
-          <details>
-            <summary>
-              <tcds-icon>Search</tcds-icon>
-            </summary>
-            <div>
-              <p>Search content</p>
-            </div>
-          </details>
-        </li>
-      </ul>
-    </nav>
+      <nav id="utility-menu">
+        <ul>
+          <li>
+            <a href="#">
+              <tcds-icon icon="mychart"></tcds-icon>
+              MyChart
+            </a>
+          </li>
 
-    <nav id="utility-menu">
-      <ul>
-        <li>
-          <a href="#">
-            <tcds-icon icon="mychart"></tcds-icon>
-            MyChart
-          </a>
-        </li>
+          <li>
+            <a href="#">Find a location</a>
+          </li>
 
-        <li>
-          <a href="#">Find a location</a>
-        </li>
+          <li>
+            <a href="#">Refer a patient</a>
+          </li>
 
-        <li>
-          <a href="#">Refer a patient</a>
-        </li>
+          <li>
+            <a href="#">Price transparency</a>
+          </li>
 
-        <li>
-          <a href="#">Price transparency</a>
-        </li>
+          <li>
+            <a href="#">Find a location</a>
+          </li>
 
-        <li>
-          <a href="#">Find a location</a>
-        </li>
-
-        <li>
-          <a href="#" data-highlighted>Donate</a>
-        </li>
-      </ul>
-    </nav>
+          <li>
+            <a href="#" data-highlighted>Donate</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </details>
 
-  <!-- this is assigned to `primary-menu` grid area defined in tcds-global-header, made to look like sibling of #primary-menu ul li's -->
-  <details slot="search-menu">
+  <details slot="search-toggle" name="primary-menu">
     <summary>
       <span class="visually-hidden">Toggle search menu</span>
-      <!-- icon added via ::after, search/x depending on [open] -->
     </summary>
     <div>
-      Search content
+      <p>Search content</p>
     </div>
   </details>
 </tcds-global-header>
