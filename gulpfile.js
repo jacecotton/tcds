@@ -47,18 +47,20 @@ const tasks = {
     return src("./index.js")
       .pipe(webpack({
         entry: {
-          index: "./index.js",
-          accordion: {import: "./src/03-components/accordion/index.js", dependOn: ["declarative", "importSharedStyles", "refreshProperties"]},
-          "accordion-section": {import: "./src/03-components/accordion/section/index.js", dependOn: ["declarative", "importSharedStyles", "refreshProperties"]},
-          button: {import: "./src/03-components/button/index.js"},
-          card: {import: "./src/03-components/card/index.js", dependOn: ["declarative", "importSharedStyles", "refreshProperties"]},
-          icon: {import: "./src/03-components/icon/index.js", dependOn: ["declarative", "importSharedStyles", "refreshProperties", "slugify"]},
-          "site-header": {import: "./src/03-components/site-header/index.js", dependOn: ["declarative", "importSharedStyles", "refreshProperties"]},
+          "index": "./index.js",
+          "accordion": {import: "./src/03-components/accordion/index.js", dependOn: ["utilities"]},
+          "accordion-section": {import: "./src/03-components/accordion/section/index.js", dependOn: ["utilities"]},
+          "button": {import: "./src/03-components/button/index.js"},
+          "card": {import: "./src/03-components/card/index.js", dependOn: ["utilities"]},
+          "icon": {import: "./src/03-components/icon/index.js", dependOn: ["utilities"]},
+          "global-header": {import: "./src/03-components/global-header/index.js", dependOn: ["utilities"]},
 
-          declarative: "./src/03-components/utilities/declarative.js",
-          importSharedStyles: "./src/03-components/utilities/importSharedStyles.js",
-          refreshProperties: "./src/03-components/utilities/refreshProperties.js",
-          slugify: "./src/03-components/utilities/slugify.js",
+          "utilities": [
+            "./src/03-components/utilities/declarative.js",
+            "./src/03-components/utilities/importSharedStyles.js",
+            "./src/03-components/utilities/refreshProperties.js",
+            "./src/03-components/utilities/slugify.js",
+          ],
         },
         module: {
           rules: [

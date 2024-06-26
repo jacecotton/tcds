@@ -2,7 +2,7 @@ import {declarative, importSharedStyles} from "../utilities/index.js";
 import layout from "../../01-layout/layout.json";
 import styles from "./style.css";
 
-class SiteHeader extends declarative(HTMLElement) {
+class GlobalHeader extends declarative(HTMLElement) {
   get template() {
     const menus = `
       <slot name="primary-menu"></slot>
@@ -15,12 +15,21 @@ class SiteHeader extends declarative(HTMLElement) {
       <details part="main-toggle" ${this.mobile ? `` : `hidden`}>
         <summary>
           <span class="visually-hidden">Toggle main menu</span>
-          <tcds-icon icon="hamburger"></tcds-icon>
+          <tcds-icon icon="${this.open ? "x" : "hamburger"}"></tcds-icon>
         </summary>
-        ${this.mobile ? menus : ``}
+        <div>
+          ${this.mobile ? menus : ``}
+        </div>
       </details>
 
-      <slot name="search-menu"></slot>
+      <details part="search-toggle" ${this.mobile ? `` : `hidden`}>
+        <summary>
+          <span class="visually-hidden">Toggle search menu</span>
+          <tcds-icon icon="${this.open ? "x" : "search"}"></tcds-icon>
+        </summary>
+        <slot name="search-content"></slot>
+      </details>
+
       ${this.mobile ? `` : menus}
     `;
   }
@@ -32,7 +41,7 @@ class SiteHeader extends declarative(HTMLElement) {
   set open(value) {
     const old = this.open;
     this.toggleAttribute("open", Boolean(value));
-    this.updatedCallback({open: old});
+    this.requestUpdate({open: old});
   }
 
   #mobileQuery = matchMedia(`(max-width: ${layout.breakpoints.m}px)`);
@@ -48,7 +57,7 @@ class SiteHeader extends declarative(HTMLElement) {
     ];
   }
 
-  searchToggle = {};
+  searchContent = {};
 
   constructor() {
     super();
@@ -57,10 +66,9 @@ class SiteHeader extends declarative(HTMLElement) {
   }
 
   connectedCallback() {
-    this.searchToggle.element = this.querySelector("summary tcds-icon[icon=search]")
+    this.searchContent.parent = this.querySelector("summary tcds-icon[icon=search]")
       .closest("details");
-    this.searchToggle.parent = this.searchToggle.element.parentElement;
-    this.searchToggle.name = this.searchToggle.element.getAttribute("name");
+    this.searchContent.element = this.searchContent.parent.querySelector("div");
 
     this.moveSearchToggle();
 
@@ -74,12 +82,6 @@ class SiteHeader extends declarative(HTMLElement) {
 
   mountedCallback() {
     this.allToggles.forEach((toggle) => {
-      toggle.addEventListener("toggle", () => {
-        toggle.open && this.allToggles
-          .filter(_toggle => _toggle !== toggle)
-          .forEach(_toggle => _toggle.open = false);
-      });
-
       // If we simply listened for a "toggle" event on the `toggle` element,
       // then set `this.open` accordingly, there would be a flicker/flash
       // because the callback happens *after* the toggle has already completed
@@ -88,7 +90,13 @@ class SiteHeader extends declarative(HTMLElement) {
       // update `toggle.open` alongside `this.open`.
       toggle.querySelector("summary").addEventListener("click", (event) => {
         event.preventDefault();
-        this.open = toggle.open = !toggle.open;
+        
+        toggle.open = !toggle.open;
+        toggle.open && this.allToggles
+          .filter(_toggle => _toggle !== toggle && _toggle.getRootNode() === toggle.getRootNode())
+          .forEach(_toggle => _toggle.open = false);
+
+        this.open = this.allToggles.some(_toggle => _toggle.open);
       });
     });
   }
@@ -105,15 +113,15 @@ class SiteHeader extends declarative(HTMLElement) {
 
   moveSearchToggle() {
     if(this.mobile) {
-      this.searchToggle.element.setAttribute("slot", "search-menu");
-      this.searchToggle.element.removeAttribute("name");
-      this.appendChild(this.searchToggle.element);
+      this.searchContent.element.setAttribute("slot", "search-content");
+      this.searchContent.parent.hidden = true;
+      this.appendChild(this.searchContent.element);
     } else {
-      this.searchToggle.element.removeAttribute("slot");
-      this.searchToggle.element.setAttribute("name", this.searchToggle.name);
-      this.searchToggle.parent.appendChild(this.searchToggle.element);
+      this.searchContent.element.removeAttribute("slot");
+      this.searchContent.parent.appendChild(this.searchContent.element);
+      this.searchContent.parent.hidden = false;
     }
   }
 }
 
-customElements.define("tcds-site-header", SiteHeader);
+customElements.define("tcds-global-header", GlobalHeader);

@@ -27,12 +27,12 @@
 @use "./src/02-content/paragraph" as *;
 @use "./src/02-content/separator" as *;
 
+@use "./src/03-components/accordion/style.shared" as *;
+@use "./src/03-components/button/style.shared" as *;
+@use "./src/03-components/icon/style.shared" as *;
+@use "./src/03-components/global-header/style.shared" as *;
+
 @use "./src/00-branding/color/utilities" as *;
 @use "./src/00-branding/typography/utilities" as *;
 @use "./src/01-layout/utilities" as *;
 @use "./src/02-content/utilities" as *;
-
-@use "./src/03-components/accordion/style.shared" as *;
-@use "./src/03-components/button/style.shared" as *;
-@use "./src/03-components/icon/style.shared" as *;
-@use "./src/03-components/site-header/style.shared" as *;

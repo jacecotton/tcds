@@ -6,8 +6,8 @@
  * https://gomakethings.com/dom-diffing-with-vanilla-js/
  */
 
-const formFields = ["input", "option", "textarea"];
-const formAttributes = ["value", "checked", "selected"];
+const formFields = ["input", "option", "textarea", "details"];
+const formAttributes = ["value", "checked", "selected", "open"];
 const formAttributesNoValue = ["checked", "selected"];
 
 function stringToHTML(string) {
@@ -98,9 +98,9 @@ function diffAttributes(template, existing) {
     removeAttribute(existing, name);
   }
 
-  if(Array.from(template.attributes).sort().join() !== Array.from(existing.attributes).sort().join()) {
-    diffAttributes(template, existing);
-  }
+  // if(Array.from(template.attributes).sort().join() !== Array.from(existing.attributes).sort().join()) {
+  //   diffAttributes(template, existing);
+  // }
 }
 
 function getNodeContent(node) {

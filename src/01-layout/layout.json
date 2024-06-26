@@ -38,7 +38,7 @@
   "z-indices": {
     "dialog": 8,
     "mega-menu": 7,
-    "site-header": 6,
+    "global-header": 6,
     "alert-bar": 5,
     "notification": 4,
     "action-bar": 3

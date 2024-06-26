@@ -14,10 +14,11 @@
 [part="open-all"],
 [part="close-all"] {
   appearance: none;
-  border: 0;
   background: none;
+  border: 0;
+  color: inherit;
+  display: flex;
   font-family: var(--tcds-font-ui);
   font-weight: var(--tcds-font-weight-semibold);
-  display: flex;
   gap: 1ch;
 }

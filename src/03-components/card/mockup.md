@@ -4,6 +4,7 @@
   <img slot="image" src="/...">
   <p slot="meta">
     <!-- content may vary! -->
+    <!-- p[slot=meta] > *:not(:last-child)::after { content: " - "; } ? -->
     <time date="">May 15</time>
     <span>Est. 15 min. read</span>
   </p>

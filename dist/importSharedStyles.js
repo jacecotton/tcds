@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_txch_tcds=self.webpackChunk_txch_tcds||[]).push([[150],{883:(t,s)=>{s.Z=()=>`\n  <style>@import url(${Array.from(document.styleSheets).find((t=>"tcds"===t.title))?.href||"https://unpkg.com/@txch/tcds/dist/tcds.css"})</style>\n`}},t=>{t(t.s=883)}]);
