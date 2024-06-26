@@ -36,7 +36,7 @@
 }
 
 :host([overlay*="darken"]) {
-  --tcds-section-overlay-color: var(--tcds-color-shade-strong);
+  --tcds-section-overlay-color: var(--tcds-color-shade-weak);
 }
 
 :host([overlay*="desaturate"]) {
