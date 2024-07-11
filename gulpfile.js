@@ -53,7 +53,7 @@ const tasks = {
           "button": {import: "./src/03-components/button/index.js"},
           "card": {import: "./src/03-components/card/index.js", dependOn: ["utilities"]},
           "icon": {import: "./src/03-components/icon/index.js", dependOn: ["utilities"]},
-          "global-header": {import: "./src/03-components/global-header/index.js", dependOn: ["utilities"]},
+          "site-header": {import: "./src/03-components/site-header/index.js", dependOn: ["utilities"]},
 
           "utilities": [
             "./src/03-components/utilities/declarative.js",
