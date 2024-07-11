@@ -5,7 +5,8 @@
     "navy": ["#122840"],
     "baby-blue": ["#f5faff", "#dde7ef"],
     "gray": ["#eaeaea", "#a8a8a8", "#707070", "#555", "#1a1a1a"],
-    "white": ["#fff"]
+    "white": ["#fff"],
+    "link": ["var(--tcds-color-red)"]
   },
   "aliases": {
     "primary": "red",
