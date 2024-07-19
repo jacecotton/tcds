@@ -263,12 +263,6 @@ class SomeComponent extends HTMLElement {
 ```
 
 ## Why not a framework?
-In short: **You shouldn't need a framework to author basic components, and the web platform is 90% there.**
+Libraries (like [Lit](https://lit.dev/)) provide useful abstractions and nice ergonomics, but also vendor lock-in, syntactic quirks, and maintenance overhead. No further browser developments will align vanilla JavaScript with Lit closer than it is today. This defeats the purpose we've identified for using Web Components in the first place: to leverage the native web platform's future-proofness, low maintenance, and universal applicability.
 
-There are many Web Component API-based frameworks and libraries to improve the ergonomics of custom element authoring. Perhaps the most prominent example is [Lit](https://lit.dev/). (Aside: Lit documentation offers very solid advice for creating custom elements generally—feel free to leverage it!)
-
-The main reason we decided against going with one of these is that the native platform is sufficient for our needs, beyond some *very tiny* abstractions that we can easily maintain and document ourselves.
-
-Libraries like Lit introduce syntactic quirks, overhead, and under-the-hood magic that, for us, defeat the point of sticking closer to the metal by using the Web Components API to begin with. Writing components with Lit no longer feels like writing components with vanilla JavaScript. If we wanted third party lock-in or to go against the grain of the web platform, there's no particular reason not to go with something else entirely, like React.
-
-But the hope is that eventually, no abstractions will be required, and even our `declarative` mixin can go away. In particular, we are keeping an ear out for whispers of browser-native DOM diffing/reconciliation, which is the main power behind the mixin as it stands.
+The `declarative` utility is designed to introduce as few idiosyncracies and opinions as possible, with minimal to no abstractions. We've also designed the utility along the grain of the web, such that if, for example, native runtime DOM reconciliation (aka "DOM diffing") comes to browsers, the utility can be removed, potentially with minimal refactoring.
