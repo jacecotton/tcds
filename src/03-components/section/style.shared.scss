@@ -10,6 +10,8 @@
   padding-bottom: var(--_tcds-section-padding-bottom);
   padding-left: var(--_tcds-section-padding-x);
   padding-right: var(--_tcds-section-padding-x);
+  position: relative;
+  z-index: 1;
 
   &--offset {
     --_tcds-section-padding-top: calc(var(--tcds-section-padding-top) + var(--tcds-site-header-height));
@@ -33,6 +35,27 @@
         font-family: var(--tcds-font-subheadings);
         font-size: var(--tcds-font-size-m);
         font-weight: var(--tcds-font-weight-normal);
+      }
+    }
+  }
+
+  &--masthead,
+  &--logomark {
+    &::before {
+      content: "";
+      background: var(--tcds-color-baby-blue-2);
+      width: max(100%, var(--tcds-macro-xl));
+      height: 100%;
+      position: absolute;
+      top: 0;
+      right: -25%;
+      z-index: -1;
+      mask: var(--tcds-icon-brand-texas-childrens) 50% 37% no-repeat;
+      mask-size: cover;
+      opacity: .2;
+
+      @media (--below-m) {
+        left: 0;
       }
     }
   }
