@@ -33,10 +33,20 @@
   }
 }
 
-[data-theme="dark"] {
+@mixin dark-props {
   @each $alias, $scheme in map.get(color.$themes, "dark") {
     @each $element, $color in $scheme {
       #{"--tcds-color-#{$alias}-#{$element}"}: var(--tcds-color-#{$color});
     }
+  }
+}
+
+[data-theme="dark"] {
+  @include dark-props;
+}
+
+[data-theme="auto"] {
+  @media (prefers-color-scheme: dark) {
+    @include dark-props;
   }
 }
