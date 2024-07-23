@@ -21,3 +21,10 @@
 .text-color-white {
   color: var(--tcds-color-white) !important;
 }
+
+.accent {
+  &--inline-start {
+    border-left: 6px solid var(--tcds-color-primary);
+    padding-left: .5em;
+  }
+}
