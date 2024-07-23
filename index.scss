@@ -1,7 +1,5 @@
 @use "./src/00-branding/typography/fonts/calluna" as *;
-@use "./src/00-branding/typography/fonts/mont" as * with (
-  $static-path: "" !default,
-);
+@use "./src/00-branding/typography/fonts/mont";
 
 @use "./src/00-branding/animation/globals" as *;
 @use "./src/00-branding/animation/library" as *;

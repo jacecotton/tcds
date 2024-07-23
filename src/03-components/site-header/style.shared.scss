@@ -8,6 +8,14 @@
   }
 }
 
+@mixin dark-header {
+  --tcds-site-header-link-color: #fff;
+  --tcds-site-header-link-hover-color: #fff;
+  --tcds-site-header-utility-link-color: #fff;
+
+  background: linear-gradient(0deg, rgb(0 0 0 / 0%) 0%, rgb(0 0 0) 100%);
+}
+
 tcds-site-header {
   display: grid;
   grid-template-columns: var(--tcds-site-header-logo-width) 1fr min-content 2rem;
@@ -49,6 +57,16 @@ tcds-site-header {
         // details[open] { position: fixed } below.
         top: calc(var(--tcds-site-header-height) * -1);
       }
+    }
+  }
+
+  &[data-theme="dark"] {
+    @include dark-header;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    &[data-theme="auto"] {
+      @include dark-header;
     }
   }
 
@@ -187,7 +205,7 @@ details:is(#site-header-nav, #site-header-search) {
           align-items: center;
           gap: .5ch;
           cursor: pointer;
-          color: var(--tcds-color-navy);
+          color: var(--tcds-site-header-link-color, var(--tcds-color-navy));
           font-family: var(--tcds-font-ui);
           font-size: var(--tcds-font-size-m);
           font-weight: var(--tcds-font-weight-semibold);
@@ -199,7 +217,7 @@ details:is(#site-header-nav, #site-header-search) {
         > [open] > summary,
         > details > summary:hover,
         > a:hover {
-          color: var(--tcds-color-red);
+          color: var(--tcds-site-header-link-hover-color, var(--tcds-color-red));
         }
 
         > a > tcds-icon {
@@ -375,7 +393,7 @@ details:is(#site-header-nav, #site-header-search) {
         }
 
         &:not(:hover) {
-          color: var(--tcds-color-gray-4);
+          color: var(--tcds-site-header-utility-link-color, var(--tcds-site-header-link-color, var(--tcds-color-gray-4)));
         }
 
         &[data-highlighted] {
