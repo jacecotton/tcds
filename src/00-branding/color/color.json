@@ -6,6 +6,7 @@
     "baby-blue": ["#f5faff", "#dde7ef"],
     "gray": ["#eaeaea", "#a8a8a8", "#707070", "#555", "#1a1a1a"],
     "white": ["#fff"],
+    "black": ["#000"],
     "link": ["var(--tcds-color-red)"]
   },
   "aliases": {
@@ -44,7 +45,7 @@
       "secondary": {
         "background": "navy",
         "text": "white",
-        "watermark": "navy",
+        "watermark": "black",
         "link": "baby-blue-2"
       },
       "tertiary": {
