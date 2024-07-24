@@ -1,7 +1,7 @@
 ## A primer on Web Components
 Most of our components are [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements), and most of these use the [shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow). The **Web Components API** refers collectively to these and other related APIs.
 
-The shadow DOM allows component authors to create and control the component's internal markup. Usually, simpler contentful markup is expected as an input, provided by downstream component users (e.g. content authors, template authors, etc.)
+The shadow DOM allows developers to write component markup with JavaScript and then isolate it from the outer DOM. Generally, shadow DOM markup contains no content or semantics, rather only markup necessary for functionality, structure, or dynamic UI. Content is received either from an API or from contentful, semantic markup in the "surface DOM" via attributes or slots.
 
 For example, whereas a React component might look something like:
 
@@ -9,23 +9,22 @@ For example, whereas a React component might look something like:
 <SomeComponent title="Some heading" />
 ```
 
-With Web Components, template and content authors might provide this template:
+With Web Components, template and content authors would write:
 
 ```twig
-{# title: Some heading #}
 <some-custom-element>
-  <h2 slot="title">{{ title }}</h2> <!-- semantic, non-functional markup -->
+  <h2 slot="title">Some heading</h2> <!-- contentful, semantic, non-functional markup -->
 </some-custom-element>
 ```
 
-And then in the component source code, component authors can use the "surface DOM" markup as input data for the component's actual internal markup, resulting in something like the following:
+Component authors can then program the shadow DOM to consume this content, while adding additional, isolated markup programmatically:
 
 ```html
 <some-custom-element>
   #shadow-root
   |  <div> <!-- non-semantic structural markup -->
   |    <slot name="title">
-  |      ↳ h2 ("Some heading")
+  |      ↳ h2 ("Some heading") <!-- slotted (variable) content -->
   |    </slot>
   |    <button>...</button> <!-- markup only for dynamic functionality -->
   |  </div>
@@ -34,9 +33,9 @@ And then in the component source code, component authors can use the "surface DO
 </some-custom-element>
 ```
 
-This allows component authors to focus on (and co-locate) internal non-semantic markup and functionality, while allowing component users to focus only on content and semantics, rather than implementation details. It also helps provide *progressive enhancement* instead of total reliance on JavaScript — if the JavaScript fails for whatever reason, the input markup and content will still be readable (and can be styled separately with `:not(:defined)`).
+This allows component authors to focus on (and co-locate) internal non-semantic markup and functionality, while allowing component users to focus only on content and semantics, rather than implementation details. It also helps provide *progressive enhancement* instead of total reliance on JavaScript—if the JavaScript fails for whatever reason, the input markup and content will still be readable (and can be styled separately with `:not(:defined)`).
 
-The shadow DOM has numerous other benefits thanks to its encapsulation and isolation. Shadow DOM can neither pollute nor be polluted by its outer context, providing style scoping and script isolation out of the box. This helps with maintainability and consistency, but also yields performance advantages thanks to some safe assumptions and reuse opportunities browsers can make during rendering.
+The shadow DOM has other benefits thanks to its encapsulation and isolation. Shadow DOM can neither pollute nor be polluted by its outer context, providing style scoping and script isolation out of the box. This helps with maintainability and consistency, but also yields performance advantages thanks to some safe assumptions and reuse opportunities browsers can make during rendering.
 
 * For more information on Web Components generally, see [Web Components - MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/API/Web_components)
 * For best practices for authoring custom elements, see [Custom Element Best Practices - web.dev](https://web.dev/articles/custom-elements-best-practices)
@@ -81,15 +80,13 @@ class ClickCounter extends declarative(HTMLElement) {
   }
 
   connectedCallback() {
-    // Do not call this in the constructor — the constructor runs when the
-    // element is instantiated, not when it's actually added to the DOM.
     this.requestUpdate();
   }
 }
 ```
 
 ### Reactive UI updates
-`requestUpdate` can be called at any time and in any place in the component class (other than in the `constructor`, `mountedCallback`, `updatedCallback`, or any getters). State and other data can be bound to the template, allowing you to dynamically re-render the component in response to state changes.
+`requestUpdate` can be called at any time and in any place in the component class (other than in the `constructor`—it's also probably unwise to use it anywhere that *responds* to `requestUpdate`, like [`mountedCallback` and `updatedCallback`](#component-lifecycle)). State and other data can be bound to the template, allowing you to dynamically re-render the component in response to state changes.
 
 To continue with the `ClickCounter` example, a `count` property can be updated on every `click` event, then a `count` setter can call `requestUpdate`. The `count` property can then be bound to the `template` using template literals:
 
@@ -263,6 +260,6 @@ class SomeComponent extends HTMLElement {
 ```
 
 ## Why not a framework?
-Libraries (like [Lit](https://lit.dev/)) provide useful abstractions and nice ergonomics, but also vendor lock-in, syntactic quirks, and maintenance overhead. No further browser developments will align vanilla JavaScript with Lit closer than it is today. This defeats the purpose we've identified for using Web Components in the first place: to leverage the native web platform's future-proofness, low maintenance, and universal applicability.
+Web Component API-based libraries (like [Lit](https://lit.dev/)) provide useful abstractions and nice ergonomics, but also vendor lock-in, syntactic quirks, and maintenance overhead. No further browser developments will align vanilla JavaScript with Lit closer than it is today. This defeats the purpose we've identified for using Web Components in the first place: to leverage the native web platform's future-proofness, low maintenance, and universal applicability.
 
 The `declarative` utility is designed to introduce as few idiosyncracies and opinions as possible, with minimal to no abstractions. We've also designed the utility along the grain of the web, such that if, for example, native runtime DOM reconciliation (aka "DOM diffing") comes to browsers, the utility can be removed, potentially with minimal refactoring.
