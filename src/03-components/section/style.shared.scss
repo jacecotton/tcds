@@ -43,7 +43,7 @@
   &--logomark {
     &::before {
       content: "";
-      background: var(--tcds-color-baby-blue-2);
+      background: var(--tcds-color-secondary-watermark);
       width: max(100%, var(--tcds-macro-xl));
       height: 100%;
       position: absolute;
