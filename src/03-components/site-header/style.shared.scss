@@ -60,12 +60,12 @@ tcds-site-header {
     }
   }
 
-  &[data-theme="dark"] {
+  &[data-theme="dark"]:not([scrolled]) {
     @include dark-header;
   }
 
   @media (prefers-color-scheme: dark) {
-    &[data-theme="auto"] {
+    &[data-theme="auto"]:not([scrolled]) {
       @include dark-header;
     }
   }
