@@ -1,20 +1,20 @@
-@use "./src/00-branding/typography/fonts/calluna" as *;
-@use "./src/00-branding/typography/fonts/mont";
+@use "./src/00-brand/typography/fonts/calluna" as *;
+@use "./src/00-brand/typography/fonts/mont";
 
-@use "./src/00-branding/animation/globals" as *;
-@use "./src/00-branding/animation/library" as *;
-@use "./src/00-branding/animation/props" as *;
+@use "./src/00-brand/animation/globals" as *;
+@use "./src/00-brand/animation/library" as *;
+@use "./src/00-brand/animation/props" as *;
 
-@use "./src/00-branding/border-radius/props" as *;
+@use "./src/00-brand/border-radius/props" as *;
 
-@use "./src/00-branding/box-shadow/props" as *;
+@use "./src/00-brand/box-shadow/props" as *;
 
-@use "./src/00-branding/color/props" as *;
+@use "./src/00-brand/color/props" as *;
 
-@use "./src/00-branding/icons/props" as *;
+@use "./src/00-brand/icons/props" as *;
 
-@use "./src/00-branding/typography/props" as *;
-@use "./src/00-branding/typography/globals" as *;
+@use "./src/00-brand/typography/props" as *;
+@use "./src/00-brand/typography/globals" as *;
 
 @use "./src/01-layout/props" as *;
 @use "./src/01-layout/globals" as *;
@@ -33,7 +33,7 @@
 @use "./src/03-components/section/style.shared" as *;
 @use "./src/03-components/site-header/style.shared" as *;
 
-@use "./src/00-branding/color/utilities" as *;
-@use "./src/00-branding/typography/utilities" as *;
+@use "./src/00-brand/color/utilities" as *;
+@use "./src/00-brand/typography/utilities" as *;
 @use "./src/01-layout/utilities" as *;
 @use "./src/02-content/utilities" as *;

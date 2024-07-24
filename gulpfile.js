@@ -26,7 +26,7 @@ import {deleteAsync} from "del";
 
 const tasks = {
   // Delete any gulp artifacts before recreating them.
-  cleanup: () => deleteAsync(["./dist", "./src/00-branding/icons/icons.json"]),
+  cleanup: () => deleteAsync(["./dist", "./src/00-brand/icons/icons.json"]),
 
   styles: () => {
     return src("./index.scss")
@@ -109,7 +109,7 @@ const tasks = {
     const fileignore = [".DS_Store"];
 
     // Get parent directory for all icons.
-    const iconCategories = fs.readdirSync("./src/00-branding/icons/static/")
+    const iconCategories = fs.readdirSync("./src/00-brand/icons/static/")
       .filter(name => !fileignore.includes(name));
 
     // Set up a JSON-ready object to store the icon names and corresponding
@@ -120,13 +120,13 @@ const tasks = {
 
     // Populate the object from the filesystem.
     iconCategories.forEach((category) => {
-      const filenames = fs.readdirSync(`./src/00-branding/icons/static/${category}/`)
+      const filenames = fs.readdirSync(`./src/00-brand/icons/static/${category}/`)
         .filter(name => !fileignore.includes(name));
       
       icons.library[category] = {};
 
       filenames.forEach((filename) => {
-        const svg = fs.readFileSync(`./src/00-branding/icons/static/${category}/${filename}`, "utf8")
+        const svg = fs.readFileSync(`./src/00-brand/icons/static/${category}/${filename}`, "utf8")
           .replace(/\n|  /g, "");
 
         icons.library[category][filename.replace(".svg", "")] = `'${svg}'`;
@@ -134,16 +134,16 @@ const tasks = {
     });
 
     // Output the JSON file.
-    fs.writeFileSync("./src/00-branding/icons/icons.json", JSON.stringify(icons, null, 2));
+    fs.writeFileSync("./src/00-brand/icons/icons.json", JSON.stringify(icons, null, 2));
 
     // Generate an icon font. Exclude utility and media icons.
     const fontFormats = ["eot", "svg", "ttf", "woff", "woff2"];
     const iconFontDest = "./dist/fonts/icons";
 
     return src([
-      "./src/00-branding/icons/static/**/*.svg",
-      "!./src/00-branding/icons/static/utility/*.svg",
-      "!./src/00-branding/icons/static/media/*.svg",
+      "./src/00-brand/icons/static/**/*.svg",
+      "!./src/00-brand/icons/static/utility/*.svg",
+      "!./src/00-brand/icons/static/media/*.svg",
     ])
       .pipe(imagemin())
       .pipe(iconfont({
@@ -178,12 +178,12 @@ const tasks = {
   },
 
   fonts: () => {
-    return src("./src/00-branding/typography/fonts/static/**/*")
+    return src("./src/00-brand/typography/fonts/static/**/*")
       .pipe(dest("./dist/fonts/"));
   },
 
   logos: () => {
-    return src("./src/00-branding/logos/**/*")
+    return src("./src/00-brand/logos/**/*")
       .pipe(imagemin())
       .pipe(dest("./dist/logos/"));
   },
@@ -197,7 +197,7 @@ task("fonts", tasks.fonts);
 task("logos", tasks.logos);
 
 task("icon-cleanup", () => {
-  return src("./src/00-branding/icons/static/primary/*.svg")
+  return src("./src/00-brand/icons/static/primary/*.svg")
     .pipe(map((svg, callback) => {
       let contents = svg.contents.toString();
 
@@ -230,15 +230,15 @@ task("icon-cleanup", () => {
 
       callback(null, svg);
     }))
-    .pipe(dest("./src/00-branding/icons/static/primary/"));
+    .pipe(dest("./src/00-brand/icons/static/primary/"));
 });
 
 task("watch", function watcher() {
   watch("./src/**/*.scss", tasks.styles);
   watch(["./index.js", "./src/03-components/**/*.js"], tasks.javascript);
-  watch("./src/00-branding/icons/static/", tasks.icons);
-  watch("./src/00-branding/typography/fonts/static/", tasks.fonts);
-  watch("./src/00-branding/logos/**/*.svg", tasks.logos);
+  watch("./src/00-brand/icons/static/", tasks.icons);
+  watch("./src/00-brand/typography/fonts/static/", tasks.fonts);
+  watch("./src/00-brand/logos/**/*.svg", tasks.logos);
 });
 
 task("build", series(["cleanup", "icons", "styles", "fonts", "javascript", "logos"]));

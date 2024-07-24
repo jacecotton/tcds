@@ -1,5 +1,5 @@
 import {declarative, importSharedStyles, refreshProperties} from "../../utilities/index.js";
-import animation from "../../../00-branding/animation/animation.json";
+import animation from "../../../00-brand/animation/animation.json";
 import layout from "../../../01-layout/layout.json";
 import styles from "./style.css";
 
