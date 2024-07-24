@@ -2,7 +2,6 @@ ul,
 ol {
   :where(&) {
     margin: 0 0 0 1em;
-    line-height: var(--tcds-line-height-m);
   }
 
   :where(:not(li) > :is(&):not(:last-child)) {
