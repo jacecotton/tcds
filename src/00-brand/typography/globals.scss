@@ -52,7 +52,8 @@ body {
   @include h6;
 }
 
-:where(p) {
+:where(p, li) {
+  font-size: var(--tcds-font-size-ml);
   line-height: var(--tcds-line-height-m);
 }
 
@@ -61,5 +62,5 @@ body {
   sub,
   sup
 ) {
-  font-size: max(var(--tcds-font-size-xs), 87.5%);
+  font-size: max(var(--tcds-font-size-xs), 85%);
 }
