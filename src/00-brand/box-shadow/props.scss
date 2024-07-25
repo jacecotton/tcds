@@ -3,7 +3,7 @@
 
 :root {
   @each $shade, $value in box-shadow.$shades {
-    --tcds-box-shadow-shade-#{$shade}: #{$value};
+    --tcds-shade-#{$shade}: #{$value};
   }
 
   @each $size, $values in box-shadow.$sizes {
