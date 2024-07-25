@@ -6,6 +6,7 @@
   --_tcds-section-padding-bottom: var(--tcds-section-padding-bottom);
   --_tcds-section-padding-x: max(var(--tcds-site-outer-gutter), (100vw / 2) - (var(--tcds-site-container-max-width) / 2));
 
+  overflow-x: hidden;
   padding-top: var(--_tcds-section-padding-top);
   padding-bottom: var(--_tcds-section-padding-bottom);
   padding-left: var(--_tcds-section-padding-x);
