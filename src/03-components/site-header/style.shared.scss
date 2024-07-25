@@ -38,7 +38,7 @@ tcds-site-header {
     --tcds-site-header-logo-filter: none;
   
     background-color: var(--tcds-color-white);
-    box-shadow: var(--tcds-box-shadow-m) var(--tcds-box-shadow-shade-weak);
+    box-shadow: var(--tcds-box-shadow-m) var(--tcds-shade-weak);
     position: sticky;
     top: 0;
     animation: tcds-site-header-slide-down 250ms var(--tcds-animation-productive-easing);
@@ -71,9 +71,7 @@ tcds-site-header {
   }
 
   details summary {
-    list-style: none;
-
-    &::-webkit-details-marker {
+    &::before {
       display: none;
     }
   }
