@@ -108,11 +108,14 @@ a[is="tcds-link-button"] {
   }
 
   :where(:is(&):hover) {
-    --tcds-button-box-shadow: 0.125rem 0 0.625rem 0 var(--tcds-shade-weak);
     --tcds-button-primary-background-color: var(--tcds-color-primary-2);
     --tcds-button-secondary-text-color: var(--tcds-color-primary);
     --tcds-button-secondary-icon-background-color: var(--tcds-color-primary);
     --tcds-button-secondary-icon-color: var(--tcds-color-white);
+  }
+
+  :where(:is(&):not([variant*="secondary"]):hover) {
+    --tcds-button-box-shadow: 0.125rem 0 0.625rem 0 var(--tcds-shade-weak);
   }
 
   :where(:is(&):active) {
