@@ -36,11 +36,11 @@ a[is="tcds-link-button"] {
     color: var(--tcds-button-text-color);
     border: 0;
     border-radius: var(--tcds-button-height);
-    box-shadow: none;
+    box-shadow: var(--tcds-button-box-shadow, none);
 
     font-family: var(--tcds-font-ui);
     font-size: var(--tcds-font-size-m);
-    font-weight: var(--tcds-font-weight-bold);
+    font-weight: var(--tcds-button-font-weight, var(--tcds-font-weight-bold));
     text-decoration: none;
     white-space: nowrap;
 
@@ -71,6 +71,7 @@ a[is="tcds-link-button"] {
 
   :where(:is(&)[variant*="secondary"]) {
     --tcds-button-background-color: var(--tcds-button-secondary-background-color);
+    --tcds-button-font-weight: var(--tcds-font-weight-semibold);
     --tcds-button-text-color: var(--tcds-button-secondary-text-color);
     --tcds-button-secondary-icon-background-color: var(--tcds-color-white);
     --tcds-button-secondary-icon-color: var(--tcds-color-primary);
@@ -79,7 +80,6 @@ a[is="tcds-link-button"] {
     --tcds-button-inline-padding: 0;
     --tcds-button-outline-offset: .5em;
 
-    font-weight: var(--tcds-font-weight-normal);
     height: auto;
 
     &::before {
@@ -108,6 +108,7 @@ a[is="tcds-link-button"] {
   }
 
   :where(:is(&):hover) {
+    --tcds-button-box-shadow: 0.125rem 0 0.625rem 0 var(--tcds-shade-weak);
     --tcds-button-primary-background-color: var(--tcds-color-primary-2);
     --tcds-button-secondary-text-color: var(--tcds-color-primary);
     --tcds-button-secondary-icon-background-color: var(--tcds-color-primary);
