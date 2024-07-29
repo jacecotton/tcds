@@ -1,4 +1,6 @@
 .tcds-site-footer {
+  margin-top: auto;
+  
   &__legal {
     display: flex;
     justify-content: space-between;
@@ -25,6 +27,6 @@
 
   &__copyright {
     margin: 0;
-    max-width: 65ch;
+    max-width: 45ch;
   }
 }
