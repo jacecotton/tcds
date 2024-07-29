@@ -19,24 +19,17 @@
 @use "./src/01-layout/props" as *;
 @use "./src/01-layout/globals" as *;
 
-@use "./src/02-content/details" as *;
-@use "./src/02-content/forms" as *;
-@use "./src/02-content/headings" as *;
-@use "./src/02-content/link" as *;
-@use "./src/02-content/lists" as *;
-@use "./src/02-content/media" as *;
-@use "./src/02-content/paragraph" as *;
-@use "./src/02-content/separator" as *;
-
-@use "./src/03-components/accordion/style.shared" as *;
-@use "./src/03-components/button/style.shared" as *;
-@use "./src/03-components/icon/style.shared" as *;
-@use "./src/03-components/section/style.shared" as *;
-@use "./src/03-components/site-footer/style.shared" as *;
-@use "./src/03-components/site-header/style.shared" as *;
-@use "./src/03-components/submenu/style.shared" as *;
+@use "./src/02-components/accordion/style.shared" as *;
+@use "./src/02-components/button/style.shared" as *;
+@use "./src/02-components/details/style.shared" as *;
+@use "./src/02-components/forms/style.shared" as *;
+@use "./src/02-components/icon/style.shared" as *;
+@use "./src/02-components/section/style.shared" as *;
+@use "./src/02-components/separator/style.shared" as *;
+@use "./src/02-components/site-footer/style.shared" as *;
+@use "./src/02-components/site-header/style.shared" as *;
+@use "./src/02-components/submenu/style.shared" as *;
 
 @use "./src/00-brand/color/utilities" as *;
 @use "./src/00-brand/typography/utilities" as *;
 @use "./src/01-layout/utilities" as *;
-@use "./src/02-content/utilities" as *;

@@ -48,18 +48,18 @@ const tasks = {
       .pipe(webpack({
         entry: {
           "index": "./index.js",
-          "accordion": {import: "./src/03-components/accordion/index.js", dependOn: ["utilities"]},
-          "accordion-section": {import: "./src/03-components/accordion/section/index.js", dependOn: ["utilities"]},
-          "button": {import: "./src/03-components/button/index.js"},
-          "card": {import: "./src/03-components/card/index.js", dependOn: ["utilities"]},
-          "icon": {import: "./src/03-components/icon/index.js", dependOn: ["utilities"]},
-          "site-header": {import: "./src/03-components/site-header/index.js", dependOn: ["utilities"]},
+          "accordion": {import: "./src/02-components/accordion/index.js", dependOn: ["utilities"]},
+          "accordion-section": {import: "./src/02-components/accordion/section/index.js", dependOn: ["utilities"]},
+          "button": {import: "./src/02-components/button/index.js"},
+          "card": {import: "./src/02-components/card/index.js", dependOn: ["utilities"]},
+          "icon": {import: "./src/02-components/icon/index.js", dependOn: ["utilities"]},
+          "site-header": {import: "./src/02-components/site-header/index.js", dependOn: ["utilities"]},
 
           "utilities": [
-            "./src/03-components/utilities/declarative.js",
-            "./src/03-components/utilities/importSharedStyles.js",
-            "./src/03-components/utilities/refreshProperties.js",
-            "./src/03-components/utilities/slugify.js",
+            "./src/02-components/utilities/declarative.js",
+            "./src/02-components/utilities/importSharedStyles.js",
+            "./src/02-components/utilities/refreshProperties.js",
+            "./src/02-components/utilities/slugify.js",
           ],
         },
         module: {
@@ -235,7 +235,7 @@ task("icon-cleanup", () => {
 
 task("watch", function watcher() {
   watch("./src/**/*.scss", tasks.styles);
-  watch(["./index.js", "./src/03-components/**/*.js"], tasks.javascript);
+  watch(["./index.js", "./src/02-components/**/*.js"], tasks.javascript);
   watch("./src/00-brand/icons/static/", tasks.icons);
   watch("./src/00-brand/typography/fonts/static/", tasks.fonts);
   watch("./src/00-brand/logos/**/*.svg", tasks.logos);

@@ -12,3 +12,21 @@
 body {
   overflow-x: hidden;
 }
+
+/**
+ * 1. `display: block` invalidates `vertical-align: middle`, but we're still
+ *    setting it in case `display` is overridden elsewhere.
+ */
+:where(audio, canvas, iframe, img, picture, svg, video) {
+  display: block;
+  vertical-align: middle; // 1
+  max-width: 100%;
+
+  :where(&:not([height])) {
+    height: auto;
+  }
+}
+
+[hidden] {
+  display: none !important;
+}

@@ -52,8 +52,20 @@ body {
   @include h6;
 }
 
-:where(p, li) {
-  line-height: var(--tcds-line-height-m);
+:is(h1, h2, h3, h4, h5, h6) {
+  :where(&:first-child:not(:only-child)) {
+    margin: 0 0 1.5rem;
+  }
+
+  :where(&:not(:first-child)) {
+    margin: 1.5rem 0;
+  }
+}
+
+:where(:not(h1, hr) + h2),
+:where(:not(h2, hr) + h3),
+:where(:not(h3, hr) + h4) {
+  margin-top: 3rem;
 }
 
 :where(
@@ -62,4 +74,52 @@ body {
   sup
 ) {
   font-size: max(var(--tcds-font-size-xs), 85%);
+}
+
+a {
+  :where(&) {
+    color: var(--tcds-color-link);
+    text-decoration: underline;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
+  }
+
+  :where(&:hover) {
+    text-decoration: none;
+  }
+}
+
+p {
+  :where(&:not(:first-child)) {
+    margin-top: 1.5em;
+  }
+
+  :where(&:not(:last-child)) {
+    margin-bottom: 1.5em;
+  }
+}
+
+:where(p, li) {
+  line-height: var(--tcds-line-height-m);
+}
+
+ul,
+ol {
+  :where(&) {
+    margin: 0 0 0 1em;
+  }
+
+  :where(:not(li) > :is(&):not(:last-child)) {
+    margin-bottom: 1rem;
+  }
+}
+
+ol {
+  :where(& &) {
+    list-style: lower-alpha;
+  }
+
+  :where(& & &) {
+    list-style: lower-roman;
+  }
 }

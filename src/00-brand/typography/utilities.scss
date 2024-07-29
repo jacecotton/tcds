@@ -52,3 +52,15 @@
     }
   }
 }
+
+.list {
+  &--comma-separated {
+    display: flex;
+
+    li {
+      &::after {
+        content: ", ";
+      }
+    }
+  }
+}
