@@ -1,0 +1,11 @@
+.tcds-side-menu {
+  details[open] {
+    @media (--above-m) {
+      display: contents;
+
+      summary {
+        display: none;
+      }
+    }
+  }
+}
