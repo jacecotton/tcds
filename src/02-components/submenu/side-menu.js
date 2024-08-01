@@ -1,13 +1,11 @@
 import layout from "../../01-layout/layout.json";
 
 class SideMenu {
-  constructor(element) {
-    this.element = element;
-  }
-
   #mobile = matchMedia(`(max-width: ${layout.breakpoints.m}px)`);
 
-  connectedCallback() {
+  constructor(element) {
+    this.element = element;
+
     if(this.element) {
       this.details = this.element.querySelector("details");
 
