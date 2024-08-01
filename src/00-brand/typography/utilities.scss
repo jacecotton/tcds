@@ -26,11 +26,11 @@
     font-size: var(--tcds-font-size-#{$size}) !important;
 
     @if list.index(("4xl", "3xl", "2xl", "xl", "l"), $size) {
-      line-height: var(--tcds-line-height-s) !important;
+      line-height: var(--tcds-line-height-s);
     }
 
     @if list.index(("ml", "m", "s", "xs"), $size) {
-      line-height: var(--tcds-line-height-m) !important;
+      line-height: var(--tcds-line-height-m);
     }
   }
 }
@@ -51,6 +51,30 @@
       text-align: center !important;
     }
   }
+}
+
+.h1 {
+  @include h1;
+}
+
+.h2 {
+  @include h2;
+}
+
+.h3 {
+  @include h3;
+}
+
+.h4 {
+  @include h4;
+}
+
+.h5 {
+  @include h5;
+}
+
+.h6 {
+  @include h6;
 }
 
 .list {

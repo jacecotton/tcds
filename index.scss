@@ -1,6 +1,9 @@
 @use "./src/00-brand/typography/fonts/calluna" as *;
 @use "./src/00-brand/typography/fonts/mont";
 
+@use "./src/01-layout/props" as *;
+@use "./src/01-layout/globals" as *;
+
 @use "./src/00-brand/animation/globals" as *;
 @use "./src/00-brand/animation/library" as *;
 @use "./src/00-brand/animation/props" as *;
@@ -15,9 +18,6 @@
 
 @use "./src/00-brand/typography/props" as *;
 @use "./src/00-brand/typography/globals" as *;
-
-@use "./src/01-layout/props" as *;
-@use "./src/01-layout/globals" as *;
 
 @use "./src/02-components/accordion/style.shared" as *;
 @use "./src/02-components/button/style.shared" as *;
