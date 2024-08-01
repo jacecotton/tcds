@@ -1,7 +1,19 @@
 ## Structure
-The Design System is divided into five distinct "subsystems": Branding, Layout, Content, Components, and Templates (each having the previous as a dependency).
+The Design System is divided into four distinct "subsystems": Brand, Layout, Components, and Templates (each having the previous as a dependency).
 
-Each subsystem may contain their own "modules" (e.g. each component in the Components subsystem, or Branding's Animation, Color, Icons, and Typography modules).
+Each subsystem may contain their own "modules" (e.g. each component in the Components subsystem, or Brand's Color or Typography modules).
+
+### Brand
+The Brand subsystem covers everything having to do with the brand identity and visuals, including logos, color, typography, icons, and animation.
+
+### Layout
+The Layout subsystem covers the grid system, alignment, standardized breakpoints and aspect ratios, and space and size.
+
+### Components
+The Component subsystem contains reusable building blocks for creating rich, interactive, and consistent pages and user interfaces.
+
+### Templates
+The Templates subsystem
 
 ### SCSS structure
 * SCSS files should, to the extent possible, be separated into `props`, `globals`, and `utilities` (imported in that order).
