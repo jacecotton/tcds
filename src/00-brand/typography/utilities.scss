@@ -1,5 +1,6 @@
 @use "sass:list";
 @use "sass:map";
+@use "mixins" as *;
 @use "typography.json";
 @use "../../01-layout/layout.json";
 
