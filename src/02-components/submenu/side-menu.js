@@ -2,7 +2,6 @@ import layout from "../../01-layout/layout.json";
 
 class SideMenu {
   constructor(element) {
-    super();
     this.element = element;
   }
 
