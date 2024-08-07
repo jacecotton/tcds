@@ -6,28 +6,31 @@ details {
   }
 
   > summary {
-    font-family: var(--tcds-font-ui);
-    font-weight: var(--tcds-font-weight-semibold);
-    margin: 1em 0;
-    list-style: none;
-    display: flex;
-    gap: .5em;
-    align-items: center;
-    line-height: 1;
-    cursor: pointer;
-    user-select: none;
+    :where(&) {
+      font-family: var(--tcds-font-ui);
+      font-weight: var(--tcds-font-weight-semibold);
+      padding: 1em 0;
+      list-style: none;
+      display: flex;
+      gap: .5em;
+      align-items: center;
+      line-height: 1;
+      cursor: pointer;
+      user-select: none;
+
+      &::before {
+        content: "";
+        display: block;
+        width: .7em;
+        height: .7em;
+        background: currentcolor;
+        mask: var(--tcds-details-icon) center no-repeat;
+        transform: rotateZ(var(--tcds-details-icon-rotate, 0));
+      }
+    }
 
     &::-webkit-details-marker {
       display: none;
-    }
-
-    &::before {
-      content: "";
-      display: block;
-      width: .7em;
-      height: .7em;
-      background: currentcolor;
-      mask: var(--tcds-details-icon) center no-repeat;
     }
   }
 }

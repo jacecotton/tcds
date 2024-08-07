@@ -50,6 +50,7 @@ const tasks = {
           "index": "./index.js",
           "accordion": {import: "./src/02-components/accordion/index.js", dependOn: ["utilities"]},
           "accordion-section": {import: "./src/02-components/accordion/section/index.js", dependOn: ["utilities"]},
+          "alert-bar": {import: "./src/02-components/alert-bar/index.js", dependOn: ["utilities"]},
           "button": {import: "./src/02-components/button/index.js"},
           "card": {import: "./src/02-components/card/index.js", dependOn: ["utilities"]},
           "icon": {import: "./src/02-components/icon/index.js", dependOn: ["utilities"]},
