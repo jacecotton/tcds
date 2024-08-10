@@ -130,8 +130,10 @@ details:is(#site-header-nav, #site-header-search) {
       content: "";
       background: rgb(0 0 0 / 50%);
       position: fixed;
-      inset: 0;
-      top: var(--tcds-site-header-height);
+      left: 0;
+      right: 0;
+      height: calc(100% - 3rem);
+      margin-top: 3rem;
     }
 
     &:is(#site-header-nav)::before {

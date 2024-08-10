@@ -26,6 +26,7 @@ tcds-alert-bar {
         gap: 1rem;
         color: var(--tcds-alert-bar-tab-text-color, var(--tcds-color-secondary));
         font-size: var(--tcds-font-size-s);
+        white-space: nowrap;
 
         &:hover {
           --tcds-alert-bar-tab-text-color: var(--tcds-color-primary);
