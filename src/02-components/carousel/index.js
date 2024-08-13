@@ -201,25 +201,19 @@ class Carousel extends declarative(HTMLElement) {
         clearTimeout(this.#swipeDebounce);
     
         this.#swipeDebounce = setTimeout(() => {
-          // Find which slide is the closest to the center.
-          const closestSlide = this.slides.reduce((closest, slide) => {
-            // Get the center of the current slide.
+          // Find which slide is the closest to the viewport's center by
+          // comparing the distances between the centerpoints of the viewport
+          // and each slide. This is in the absence of a JavaScript API for CSS
+          // scroll-snapping.
+          const closest = this.slides.reduce((closest, slide) => {
             const {left: slideLeft, right: slideRight} = slide.getBoundingClientRect();
             const slideCenter = Math.floor((slideLeft + slideRight) / 2);
-            // Get the current slide's distance from the viewport's center.
             const distance = Math.abs(slideCenter - viewportCenter);
-    
-            // Return the current slide only if it's its distance is the
-            // smallest so far.
             return distance < closest.distance ? {slide, distance} : closest;
-          }, {slide: null, distance: Infinity}).slide;
-    
-          // Select the closest slide. Disabling scrolling here because CSS
-          // takes care of the scroll-snapping using its own similar algorithm.
-          // If CSS scroll snapping gets a suitable JavaScript API then the
-          // above can be replaced.
-          if(closestSlide) {
-            this.select(closestSlide, {scroll: false});
+          }, {slide: null, distance: Infinity});
+
+          if(closest.slide) {
+            this.select(closest.slide, {scroll: false});
           }
         }, 500);
       } else {
