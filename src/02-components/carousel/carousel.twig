@@ -1,6 +1,6 @@
 <tcds-carousel {{ playing ? "playing timing='#{timing}'"}} {{ multiple ? "multiple"}}>
   {% for slide in slides %}
-    <tcds-slide>
+    <tcds-slide {{ slide.selected ? "selected" }}>
       {{ slide.content ? slide.content }}
 
       {% if block(slide.block) is defined %}

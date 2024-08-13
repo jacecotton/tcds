@@ -45,7 +45,7 @@ section {
 
     grid-template-areas:
       ".          navigation"
-      "sldies     slides"
+      "slides     slides"
       "play-pause .";
     gap: 1rem;
   }

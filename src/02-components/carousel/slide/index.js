@@ -1,14 +1,14 @@
 import {declarative, refreshProperties} from "../../utilities/index.js";
 
 class Slide extends declarative(HTMLElement) {
-  static observedAttributes = ["active"];
+  static observedAttributes = ["selected"];
 
-  get active() {
-    return this.hasAttribute("active");
+  get selected() {
+    return this.hasAttribute("selected");
   }
 
-  set active(value) {
-    this.toggleAttribute("active", Boolean(value));
+  set selected(value) {
+    this.toggleAttribute("selected", Boolean(value));
   }
 
   get carousel() {
@@ -19,7 +19,7 @@ class Slide extends declarative(HTMLElement) {
     return `
       <section
         role="tabpanel"
-        ${this.active ? `` : `
+        ${this.selected ? `` : `
           aria-hidden="true"
           tabindex="-1"
         `}
@@ -35,7 +35,7 @@ class Slide extends declarative(HTMLElement) {
   }
 
   connectedCallback() {
-    refreshProperties.apply(this, ["active"]);
+    refreshProperties.apply(this, ["selected"]);
     this.requestUpdate();
   }
 
@@ -44,7 +44,7 @@ class Slide extends declarative(HTMLElement) {
   }
 
   updatedCallback(old) {
-    if("active" in old) {
+    if("selected" in old) {
       this.carousel.requestUpdate();
     }
   }

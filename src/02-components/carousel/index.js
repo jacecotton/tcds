@@ -47,10 +47,10 @@ class Carousel extends declarative(HTMLElement) {
             ${this.slides.map((slide, index) => `
               <button
                 role="tab"
-                aria-selected="${slide.active}"
+                aria-selected="${slide.selected}"
                 aria-label="Slide ${index + 1} of ${this.slides.length}"
                 title="Slide ${index + 1} of ${this.slides.length}"
-                tabindex="${slide.active ? "0" : "-1"}"
+                tabindex="${slide.selected ? "0" : "-1"}"
                 onclick="this.getRootNode().host.indicatorClick(event)"
                 onkeydown="this.getRootNode().host.indicatorKeydown(event)"
               ></button>
@@ -89,14 +89,9 @@ class Carousel extends declarative(HTMLElement) {
   // #endregion
 
   // #region Lifecycle
-  #initialActive;
-
   connectedCallback() {
     refreshProperties.apply(this, ["playing", "timing", "multiple"]);
     this.requestUpdate();
-
-    // Select either first slide with an [active] attribute, or the first slide.
-    this.#initialActive = this.slides.find(slide => slide.active) || this.slides[0];
   }
 
   attributeChangedCallback(name, oldValue) {
@@ -114,7 +109,7 @@ class Carousel extends declarative(HTMLElement) {
     const noHover = matchMedia("(hover: none)").matches;
     this.playing = this.playing && !prefersReducedMotion && !noHover;
 
-    // Swiping = horizontal scrolling. Need to update active slide state
+    // Swiping = horizontal scrolling. Need to update selected slide state
     // according to scroll progress - set up observer.
     this.slides.forEach(slide => this.swipe.observe(slide));
 
@@ -130,8 +125,10 @@ class Carousel extends declarative(HTMLElement) {
       }
     });
 
-    // Scroll to initial active slide.
-    requestAnimationFrame(() => this.select(this.#initialActive));
+    // Select either first slide with a [selected] attribute, or the first
+    // slide if no default attribute.
+    const initial = this.slides.find(slide => slide.selected) || this.slides[0];
+    requestAnimationFrame(() => this.select(initial));
   }
 
   updatedCallback(old) {
@@ -234,13 +231,13 @@ class Carousel extends declarative(HTMLElement) {
     this.#flags.observingSwipe = false;
   }
 
-  indicatorClick({target} = event) {
+  indicatorClick({target}) {
     this.select(this.slides[this.indicators.indexOf(target)]);
     this.stop();
     this.#flags.observingSwipe = false;
   }
 
-  indicatorKeydown({key} = event) {
+  indicatorKeydown({key}) {
     if(["ArrowRight", "ArrowLeft"].includes(key)) {
       event.preventDefault();
 
@@ -298,13 +295,13 @@ class Carousel extends declarative(HTMLElement) {
   }
 
   get nextIndex() {
-    const activeIndex = this.slides.indexOf(this.querySelector("[active]"));
-    return (activeIndex + 1) % this.slides.length;
+    const selectedIndex = this.slides.indexOf(this.querySelector("[selected]"));
+    return (selectedIndex + 1) % this.slides.length;
   }
 
   get previousIndex() {
-    const activeIndex = this.slides.indexOf(this.querySelector("[active]"));
-    return (activeIndex - 1 + this.slides.length) % this.slides.length;
+    const selectedIndex = this.slides.indexOf(this.querySelector("[selected]"));
+    return (selectedIndex - 1 + this.slides.length) % this.slides.length;
   }
   // #endregion
 
@@ -343,8 +340,8 @@ class Carousel extends declarative(HTMLElement) {
   }
 
   select(slide, {scroll = true} = {}) {
-    // Set [active] on passed slide to true, and false on the others.
-    this.slides.forEach(_slide => _slide.active = _slide === slide);
+    // Set [selected] on passed slide to true, and false on the others.
+    this.slides.forEach(_slide => _slide.selected = _slide === slide);
 
     // Scroll the viewport either to the left boundary of the selected slide,
     // or if [multiple], to the slide's centerpoint.
