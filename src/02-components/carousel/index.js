@@ -269,21 +269,17 @@ class Carousel extends declarative(HTMLElement) {
     this.#flags.observingSwipe = false;
   }
 
-  indicatorClick(event) {
-    this.select(this.slides[this.indicators.indexOf(event.target)]);
+  indicatorClick({target} = e) {
+    this.select(this.slides[this.indicators.indexOf(target)]);
     this.stop();
     this.#flags.observingSwipe = false;
   }
 
-  indicatorKeydown(event) {
-    if(event.key === "ArrowRight") {
-      event.preventDefault();
-      this.indicators[this.nextIndex].focus();
-      this.select(this.slides[this.nextIndex]);
-    } else if(event.key === "ArrowLeft") {
-      event.preventDefault();
-      this.indicators[this.previousIndex].focus();
-      this.select(this.slides[this.previousIndex]);
+  indicatorKeydown({key} = e) {
+    if(["ArrowRight", "ArrowLeft"].includes(key)) {
+      const goto = key === "ArrowRight" ? this.nextIndex : this.previousIndex;
+      this.indicators[goto].focus();
+      this.select(this.slides[goto]);
     }
 
     this.stop();
