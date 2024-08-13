@@ -2,62 +2,14 @@ import {declarative, importSharedStyles, refreshProperties} from "../utilities/i
 import styles from "./style.css";
 
 class Carousel extends declarative(HTMLElement) {
+  // #region Setup
   static observedAttributes = ["playing", "timing", "multiple"];
 
-  get playing() {
-    return this.hasAttribute("playing") && this.hasAttribute("timing");
+  constructor() {
+    super();
+    this.attachShadow({mode: "open"});
+    this.shadowRoot.adoptedStyleSheets = [styles];
   }
-
-  set playing(value) {
-    value = Boolean(value);
-
-    if(this.hasAttribute("timing") || value === false) {
-      this.toggleAttribute("playing", value);
-    }
-  }
-
-  get timing() {
-    return Number(this.getAttribute("timing"));
-  }
-
-  set timing(value) {
-    this.setAttribute("timing", parseInt(value).toString());
-  }
-
-  get multiple() {
-    return this.hasAttribute("multiple");
-  }
-
-  set multiple(value) {
-    this.toggleAttribute("multiple", Boolean(value));
-  }
-
-  get slides() {
-    return Array.from(this.querySelectorAll("tcds-slide"));
-  }
-
-  get nextIndex() {
-    const activeIndex = this.slides.indexOf(this.querySelector("[active]"));
-    return (activeIndex + 1) % this.slides.length;
-  }
-
-  get previousIndex() {
-    const activeIndex = this.slides.indexOf(this.querySelector("[active]"));
-    return (activeIndex - 1 + this.slides.length) % this.slides.length;
-  }
-
-  /**
-   * Internal flags (non-reactive state).
-   * 
-   * @property {boolean} observingSwipe - Whether scrolling within the viewport
-   *   should be observed. While the carousel is automatically advancing, it
-   *   should not be.
-   * @property {boolean} isInView - Whether the carousel is visible in the
-   *   window's scrollport (does not apply to window visibility).
-   * @property {boolean} isPaused - Whether the carousel is specifically
-   *   temporarily stopped (i.e. paused, not just "not playing").
-   */
-  #flags = {};
 
   get template() {
     const playPause = `${this.playing ? "Stop" : "Start"} automatic slide show`;
@@ -122,18 +74,28 @@ class Carousel extends declarative(HTMLElement) {
     `;
   }
 
-  constructor() {
-    super();
-    this.attachShadow({mode: "open"});
-    this.shadowRoot.adoptedStyleSheets = [styles];
-  }
+  /**
+   * Internal flags (non-reactive state).
+   * 
+   * @property {boolean} observingSwipe - Whether scrolling within the viewport
+   *   should be observed. While the carousel is automatically advancing, it
+   *   should not be.
+   * @property {boolean} isInView - Whether the carousel is visible in the
+   *   window's scrollport (does not apply to window visibility).
+   * @property {boolean} isPaused - Whether the carousel is specifically
+   *   temporarily stopped (i.e. paused, not just "not playing").
+   */
+  #flags = {};
+  // #endregion
 
+  // #region Lifecycle
   #initialActive;
 
   connectedCallback() {
     refreshProperties.apply(this, ["playing", "timing", "multiple"]);
     this.requestUpdate();
 
+    // Select either first slide with an [active] attribute, or the first slide.
     this.#initialActive = this.slides.find(slide => slide.active) || this.slides[0];
   }
 
@@ -142,16 +104,24 @@ class Carousel extends declarative(HTMLElement) {
   }
 
   mountedCallback() {
+    // Get elements from newly rendered shadow DOM.
     this.viewport = this.shadowRoot.querySelector("[part=viewport]");
     this.indicators = Array.from(this.shadowRoot.querySelectorAll("[role=tab]"));
 
+    // Autoplay only if [playing] attribute, reduced motion preference is not
+    // set, and device is not a touch screen.
     const prefersReducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const noHover = matchMedia("(hover: none)").matches;
     this.playing = this.playing && !prefersReducedMotion && !noHover;
 
+    // Swiping = horizontal scrolling. Need to update active slide state
+    // according to scroll progress - set up observer.
     this.slides.forEach(slide => this.swipe.observe(slide));
+
+    // Carousel should pause when scrolled out of view - set up observer.
     this.scrollOutOfView.observe(this);
 
+    // Should also pause when window itself is not visible.
     document.addEventListener("visibilitychange", () => {
       if(document.hidden) {
         this.pause();
@@ -160,6 +130,7 @@ class Carousel extends declarative(HTMLElement) {
       }
     });
 
+    // Scroll to initial active slide.
     requestAnimationFrame(() => this.select(this.#initialActive));
   }
 
@@ -180,9 +151,9 @@ class Carousel extends declarative(HTMLElement) {
       }
     }
   }
+  // #endregion
 
-  /* Observers */
-
+  // #region Observers
   #swipeDebounce;
 
   get swipe() {
@@ -221,7 +192,7 @@ class Carousel extends declarative(HTMLElement) {
         // viewport according to the observer's configuration (see below).
         entries.forEach((entry) => {
           if(entry.isIntersecting) {
-            this.select(entry.target);
+            this.select(entry.target, {scroll: false});
           }
         });
       }
@@ -248,9 +219,9 @@ class Carousel extends declarative(HTMLElement) {
       });
     }, {threshold: .9});
   }
+  // #endregion
 
-  /* Event handlers */
-  
+  // #region Event handlers
   nextClick() {
     this.select(this.slides[this.nextIndex]);
     this.stop();
@@ -263,14 +234,16 @@ class Carousel extends declarative(HTMLElement) {
     this.#flags.observingSwipe = false;
   }
 
-  indicatorClick({target} = e) {
+  indicatorClick({target} = event) {
     this.select(this.slides[this.indicators.indexOf(target)]);
     this.stop();
     this.#flags.observingSwipe = false;
   }
 
-  indicatorKeydown({key} = e) {
+  indicatorKeydown({key} = event) {
     if(["ArrowRight", "ArrowLeft"].includes(key)) {
+      event.preventDefault();
+
       const goto = key === "ArrowRight" ? this.nextIndex : this.previousIndex;
       this.indicators[goto].focus();
       this.select(this.slides[goto]);
@@ -289,9 +262,53 @@ class Carousel extends declarative(HTMLElement) {
     this.pause();
     this.#flags.observingSwipe = true;
   }
+  // #endregion
 
-  /* Public API */
+  // #region Props and state
+  get playing() {
+    return this.hasAttribute("playing") && this.hasAttribute("timing");
+  }
 
+  set playing(value) {
+    value = Boolean(value);
+
+    if(this.hasAttribute("timing") || value === false) {
+      this.toggleAttribute("playing", value);
+    }
+  }
+
+  get timing() {
+    return Number(this.getAttribute("timing"));
+  }
+
+  set timing(value) {
+    this.setAttribute("timing", Number(value).toString());
+  }
+
+  get multiple() {
+    return this.hasAttribute("multiple");
+  }
+
+  set multiple(value) {
+    this.toggleAttribute("multiple", Boolean(value));
+  }
+
+  get slides() {
+    return Array.from(this.querySelectorAll("tcds-slide"));
+  }
+
+  get nextIndex() {
+    const activeIndex = this.slides.indexOf(this.querySelector("[active]"));
+    return (activeIndex + 1) % this.slides.length;
+  }
+
+  get previousIndex() {
+    const activeIndex = this.slides.indexOf(this.querySelector("[active]"));
+    return (activeIndex - 1 + this.slides.length) % this.slides.length;
+  }
+  // #endregion
+
+  // #region Public API
   play() {
     this.playing = true;
     this.#flags.isPaused = null;
@@ -345,6 +362,7 @@ class Carousel extends declarative(HTMLElement) {
       });
     }
   }
+  // #endregion
 }
 
 customElements.define("tcds-carousel", Carousel);
