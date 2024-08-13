@@ -9,8 +9,10 @@ class Carousel extends declarative(HTMLElement) {
   }
 
   set playing(value) {
-    if(this.hasAttribute("timing") || Boolean(value) === false) {
-      this.toggleAttribute("playing", Boolean(value));
+    value = Boolean(value);
+
+    if(this.hasAttribute("timing") || value === false) {
+      this.toggleAttribute("playing", value);
     }
   }
 

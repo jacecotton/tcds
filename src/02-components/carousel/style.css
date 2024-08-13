@@ -14,6 +14,7 @@
   --tcds-carousel-padding-inline-end: 50%;
   --tcds-carousel-viewport-align-items: stretch;
   --tcds-carousel-slide-display: grid;
+  --tcds-carousel-spacer: "";
 }
 
 section {
@@ -72,6 +73,11 @@ section {
 
   &::-webkit-scrollbar {
     display: none;
+  }
+
+  &::after {
+    content: var(--tcds-carousel-spacer, none);
+    flex: 1 0 100%;
   }
 }
 
