@@ -28,7 +28,7 @@ section {
   justify-content: center;
   gap: var(--tcds-space-loose) 0;
 
-  @media (min-width: 700px) {
+  @media (min-width: 896px) {
     grid-template-areas:
       "slides     slides"
       "play-pause navigation";
@@ -36,7 +36,7 @@ section {
     justify-content: start;
   }
 
-  @media (hover: none), (max-width: 1024px) {
+  @media (hover: none), (max-width: 896px) {
     --tcds-carousel-play-pause-opacity: 1;
   }
 
@@ -44,10 +44,17 @@ section {
     --tcds-carousel-navigation-justify: end;
 
     grid-template-areas:
-      ".          navigation"
-      "slides     slides"
-      "play-pause .";
+      "navigation"
+      "slides"
+      "play-pause";
     gap: 1rem;
+
+    @media (min-width: 896px) {
+      grid-template-areas:
+        ".          navigation"
+        "slides     slides"
+        "play-pause .";
+    }
   }
 }
 
@@ -128,6 +135,10 @@ section {
   appearance: none;
   background: none;
   border: 0;
+
+  &:not(:hover) {
+    color: #a8a8a8;
+  }
 }
 
 [part="play-pause"] {
@@ -135,13 +146,6 @@ section {
   margin: 0 auto;
   opacity: var(--tcds-carousel-play-pause-opacity, 0);
   transition: opacity var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing);
-}
-
-[part="next"],
-[part="previous"] {
-  &:not(:hover) {
-    color: #a8a8a8;
-  }
 }
 
 [part="next"] {
