@@ -14,7 +14,7 @@
   position: relative;
   z-index: 1;
 
-  &--offset {
+  &--raised {
     --_tcds-section-padding-top: calc(var(--tcds-section-padding-top) + var(--tcds-site-header-height));
 
     margin-top: calc(var(--tcds-site-header-height) * -1);
@@ -35,7 +35,8 @@
         display: block;
         font-family: var(--tcds-font-subheadings);
         font-size: var(--tcds-font-size-xs);
-        font-weight: var(--tcds-font-weight-normal);
+        font-weight: var(--tcds-font-weight-semibold);
+        letter-spacing: .1px;
       }
     }
   }

@@ -55,6 +55,8 @@ const tasks = {
           "card": {import: "./src/02-components/card/index.js", dependOn: ["utilities"]},
           "carousel": {import: "./src/02-components/carousel/index.js", dependOn: ["utilities"]},
           "slide": {import: "./src/02-components/carousel/slide/index.js", dependOn: ["utilities"]},
+          "tabs": {import: "./src/02-components/tabs/index.js", dependOn: ["utilities"]},
+          "tab": {import: "./src/02-components/tabs/tab/index.js", dependOn: ["utilities"]},
           "icon": {import: "./src/02-components/icon/index.js", dependOn: ["utilities"]},
           "site-header": {import: "./src/02-components/site-header/index.js", dependOn: ["utilities"]},
           "side-menu": {import: "./src/02-components/submenu/side-menu.js", dependOn: ["utilities"]},

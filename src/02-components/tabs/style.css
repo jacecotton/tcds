@@ -1,0 +1,102 @@
+:host {
+  --tcds-tabs-tab-indicator-size: 4px;
+  --tcds-tabs-tab-padding-x: 1rem;
+
+  display: block;
+}
+
+:host([size*="full-width"]) {
+  --tcds-tabs-tab-flex-grow: 1;
+}
+
+:host([variant*="centered"]) {
+  --tcds-tabs-tab-justify: center;
+}
+
+[role="tablist"] {
+  display: flex;
+  justify-content: var(--tcds-tabs-tab-justify, start);
+  overflow: auto hidden;
+  overscroll-behavior: none;
+  gap: .75rem;
+  padding-bottom: var(--tcds-tabs-tab-indicator-size);
+}
+
+[role="tab"] {
+  appearance: none;
+  background: none;
+  border: 0;
+  color: var(--tcds-tabs-tab-text-color, var(--tcds-color-text));
+  font-weight: var(--tcds-font-weight-semibold);
+  font-size: var(--tcds-font-size-ml);
+  display: inline-flex;
+  align-items: center;
+  flex: var(--tcds-tabs-tab-flex-grow, 0);
+  white-space: nowrap;
+  position: relative;
+
+  &::after {
+    content: "";
+    display: block;
+    width: calc(100% - var(--tcds-tabs-tab-padding-x) * 2);
+    height: var(--tcds-tabs-tab-indicator-size);
+    background: var(--tcds-tabs-tab-indicator-color);
+    position: absolute;
+    bottom: calc(var(--tcds-tabs-tab-indicator-size) * -1);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  &:hover,
+  &:focus-visible {
+    --tcds-tabs-tab-text-color: var(--tcds-color-red);
+    --tcds-tabs-tab-background: var(--tcds-color-pink);
+  }
+
+  &:active {
+    --tcds-tabs-tab-text-color: var(--tcds-color-red-2);
+    --tcds-tabs-tab-background: var(--tcds-color-pink-2);
+  }
+
+  &[aria-selected="true"] {
+    --tcds-tabs-tab-indicator-color: var(--tcds-color-red);
+  }
+
+  span {
+    background: var(--tcds-tabs-tab-background);
+    border-radius: var(--tcds-border-radius-m);
+    padding: .75rem var(--tcds-tabs-tab-padding-x);
+  }
+}
+
+:host([variant*="raised"]) {
+  margin-top: -66px !important;
+  position: relative;
+  z-index: 2;
+
+  [role="tablist"] {
+    gap: 0;
+    padding-top: 1px;
+  }
+
+  [role="tab"] {
+    border-top-right-radius: var(--tcds-border-radius-m);
+    border-top-left-radius: var(--tcds-border-radius-m);
+    padding: 10px;
+
+    &:not(:first-of-type) {
+      left: -1px;
+    }
+
+    &[aria-selected="true"],
+    &:hover {
+      --tcds-tabs-tab-text-color: var(--tcds-color-red);
+      --tcds-tabs-tab-background: var(--tcds-color-pink);
+
+      background: #fff;
+      box-shadow:
+        1px -1px 2px -1px var(--tcds-shade-weak),
+        -1px 0px 2px -1px var(--tcds-shade-weak);
+    }
+  }
+}

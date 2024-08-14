@@ -49,6 +49,7 @@ class Carousel extends declarative(HTMLElement) {
               <button
                 role="tab"
                 aria-selected="${slide.selected}"
+                aria-disabled="${slide.selected}"
                 aria-label="Slide ${index + 1} of ${this.slides.length}"
                 title="Slide ${index + 1} of ${this.slides.length}"
                 tabindex="${slide.selected ? "0" : "-1"}"
@@ -60,6 +61,7 @@ class Carousel extends declarative(HTMLElement) {
         </div>
         <div
           part="viewport"
+          aria-atomic="false"
           ${this.timing ? `
             aria-live="${playing ? "off" : "polite"}"
             onmouseleave="this.getRootNode().host.resume()"
@@ -241,8 +243,6 @@ class Carousel extends declarative(HTMLElement) {
 
   indicatorKeydown({key}) {
     if(["ArrowRight", "ArrowLeft"].includes(key)) {
-      event.preventDefault();
-
       const goto = key === "ArrowRight" ? this.nextIndex : this.previousIndex;
       this.indicators[goto].focus();
       this.select(this.slides[goto]);
