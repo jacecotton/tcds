@@ -122,6 +122,14 @@ section {
   }
 }
 
+[part="play-pause"],
+[part="next"],
+[part="previous"] {
+  appearance: none;
+  background: none;
+  border: 0;
+}
+
 [part="play-pause"] {
   grid-area: play-pause;
   margin: 0 auto;
