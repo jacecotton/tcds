@@ -12,7 +12,8 @@ class Carousel extends declarative(HTMLElement) {
   }
 
   get template() {
-    const playPause = `${this.playing ? "Stop" : "Start"} automatic slide show`;
+    const playing = this.playing === "playing";
+    const playPause = `${playing ? "Stop" : "Start"} automatic slide show`;
 
     return importSharedStyles() + `
       <section aria-roledescription="carousel">
@@ -23,7 +24,7 @@ class Carousel extends declarative(HTMLElement) {
             aria-label="${playPause}"
             onclick="this.getRootNode().host.toggle()"
           >
-            <tcds-icon icon="${this.playing ? "pause" : "play"}"></tcds-icon>
+            <tcds-icon icon="${playing ? "pause" : "play"}"></tcds-icon>
           </button>
         ` : ``}
         <div part="navigation">
@@ -60,7 +61,7 @@ class Carousel extends declarative(HTMLElement) {
         <div
           part="viewport"
           ${this.timing ? `
-            aria-live="${this.playing ? "off" : "polite"}"
+            aria-live="${playing ? "off" : "polite"}"
             onmouseleave="this.getRootNode().host.resume()"
             onfocus="this.getRootNode().host.pause()"
             onblur="this.getRootNode().host.resume()"  
@@ -75,15 +76,13 @@ class Carousel extends declarative(HTMLElement) {
   }
 
   /**
-   * Internal flags (non-reactive state).
+   * Internal flags.
    * 
    * @property {boolean} observingSwipe - Whether scrolling within the viewport
    *   should be observed. While the carousel is automatically advancing, it
    *   should not be.
    * @property {boolean} isInView - Whether the carousel is visible in the
    *   window's scrollport (does not apply to window visibility).
-   * @property {boolean} isPaused - Whether the carousel is specifically
-   *   temporarily stopped (i.e. paused, not just "not playing").
    */
   #flags = {};
   // #endregion
@@ -107,7 +106,10 @@ class Carousel extends declarative(HTMLElement) {
     // set, and device is not a touch screen.
     const prefersReducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const noHover = matchMedia("(hover: none)").matches;
-    this.playing = this.playing && !prefersReducedMotion && !noHover;
+
+    if(this.playing === "playing" && !prefersReducedMotion && !noHover) {
+      this.play();
+    }
 
     // Swiping = horizontal scrolling. Need to update selected slide state
     // according to scroll progress - set up observer.
@@ -133,7 +135,7 @@ class Carousel extends declarative(HTMLElement) {
 
   updatedCallback(old) {
     if("playing" in old) {
-      if(this.playing) {
+      if(this.playing === "playing") {
         const advance = () => {
           this.player = setTimeout(() => {
             this.select(this.slides[this.nextIndex]);
@@ -262,16 +264,15 @@ class Carousel extends declarative(HTMLElement) {
   // #endregion
 
   // #region Props and state
+  #playing = "stopped";
+
   get playing() {
-    return this.hasAttribute("playing") && this.hasAttribute("timing");
+    return this.hasAttribute("playing") && this.hasAttribute("timing") ? "playing" : this.#playing;
   }
 
   set playing(value) {
-    value = Boolean(value);
-
-    if(this.hasAttribute("timing") || value === false) {
-      this.toggleAttribute("playing", value);
-    }
+    this.#playing = value;
+    this.toggleAttribute("playing", value === "playing");
   }
 
   get timing() {
@@ -307,34 +308,30 @@ class Carousel extends declarative(HTMLElement) {
 
   // #region Public API
   play() {
-    this.playing = true;
-    this.#flags.isPaused = null;
+    this.playing = "playing";
   }
 
   stop() {
-    this.playing = false;
-    this.#flags.isPaused = false;
+    this.playing = "stopped";
   }
 
   toggle() {
-    this.playing ? this.stop() : this.play();
+    this.playing === "playing" ? this.stop() : this.play();
   }
 
   pause() {
-    if(this.playing) {
-      this.stop();
-      this.#flags.isPaused = true;
+    if(this.playing === "playing") {
+      this.playing = "paused";
     }
   }
 
   resume() {
-    if(this.#flags.isPaused) {
+    if(this.playing === "paused") {
       // This `requestAnimationFrame` is to prevent `setTimeout` weirdness after
       // rapid back-and-forth state changes (e.g. by hovering over-and-out too
       // quickly).
       requestAnimationFrame(() => {
         this.play();
-        this.#flags.isPaused = null;
       });
     }
   }
