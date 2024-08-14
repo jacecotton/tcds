@@ -6,6 +6,8 @@
     --tcds-site-header-height: 90px;
     --tcds-site-header-logo-width: 386px;
   }
+
+  scroll-padding-top: calc(var(--tcds-site-header-height) + 1rem);
 }
 
 @mixin dark-header {
