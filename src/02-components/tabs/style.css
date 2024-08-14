@@ -29,6 +29,7 @@
   color: var(--tcds-tabs-tab-text-color, var(--tcds-color-text));
   font-weight: var(--tcds-font-weight-semibold);
   font-size: var(--tcds-font-size-ml);
+  font-family: var(--tcds-font-ui);
   display: inline-flex;
   align-items: center;
   flex: var(--tcds-tabs-tab-flex-grow, 0);
