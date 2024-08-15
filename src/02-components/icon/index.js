@@ -1,4 +1,4 @@
-import {declarative, refreshProperties, importSharedStyles, slugify} from "../utilities/index.js";
+import {declarative, refreshProperties, slugify} from "../utilities/index.js";
 
 class Icon extends declarative(HTMLElement) {
   observedAttributes = ["icon"];
@@ -12,8 +12,17 @@ class Icon extends declarative(HTMLElement) {
   }
 
   get template() {
-    return importSharedStyles() + `
-      <span class="visually-hidden">
+    return `
+      <style>
+        span {
+          clip: rect(0, 0, 0, 0);
+          clip-path: inset(50%);
+          height: 1px;
+          width: 1px;
+          position: absolute;
+        }
+      </style>
+      <span>
         ${this.textContent?.trim().length
           ? this.textContent
           : `${this.icon} icon`

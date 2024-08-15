@@ -1,0 +1,19 @@
+tcds-accordion,
+tcds-accordion-section,
+tcds-alert-bar,
+tcds-carousel,
+tcds-icon,
+tcds-tabs,
+tcds-tab {
+  &:not(:defined) {
+    opacity: 0;
+    animation: tcds-custom-element-show 1ms;
+    animation-delay: 1s;
+
+    @keyframes tcds-custom-element-show {
+      to {
+        opacity: 1;
+      }
+    }
+  }
+}

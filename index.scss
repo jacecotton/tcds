@@ -19,6 +19,7 @@
 @use "./src/00-brand/typography/props" as *;
 @use "./src/00-brand/typography/globals" as *;
 
+@use "./src/02-components/undefined" as *;
 @use "./src/02-components/accordion/style.shared" as *;
 @use "./src/02-components/alert-bar/style.shared" as *;
 @use "./src/02-components/button/style.shared" as *;
