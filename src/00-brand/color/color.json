@@ -1,9 +1,9 @@
 {
   "library": {
     "red": ["#da2530", "#cc111c", "#b70f19"],
-    "pink": ["#fff7f7", "#f2e6e6"],
+    "pink": ["#f8f3f3", "#f2e6e6"],
     "navy": ["#122840"],
-    "baby-blue": ["#f5faff", "#dde7ef"],
+    "baby-blue": ["#f0f6fb", "#dde7ef"],
     "gray": ["#eaeaea", "#a8a8a8", "#707070", "#555", "#1a1a1a"],
     "white": ["#fff"],
     "black": ["#000"],
@@ -19,40 +19,52 @@
       "primary": {
         "background": "pink",
         "text": "navy",
+        "text-secondary": "gray-4",
         "watermark": "pink-2",
-        "link": "red"
+        "link": "red",
+        "accent": "red"
       },
       "secondary": {
         "background": "baby-blue",
         "text": "navy",
+        "text-secondary": "gray-4",
         "watermark": "baby-blue-2",
-        "link": "red"
+        "link": "red",
+        "accent": "red"
       },
       "tertiary": {
         "background": "gray",
         "text": "navy",
+        "text-secondary": "gray-4",
         "watermark": "gray-2",
-        "link": "red"
+        "link": "red",
+        "accent": "red"
       }
     },
     "dark": {
       "primary": {
         "background": "red",
         "text": "white",
+        "text-secondary": "gray",
         "watermark": "red-2",
-        "link": "white"
+        "link": "white",
+        "accent": "pink"
       },
       "secondary": {
         "background": "navy",
         "text": "white",
+        "text-secondary": "gray",
         "watermark": "black",
-        "link": "baby-blue-2"
+        "link": "baby-blue-2",
+        "accent": "red"
       },
       "tertiary": {
         "background": "gray-5",
         "text": "white",
+        "text-secondary": "gray",
         "watermark": "gray-5",
-        "link": "white"
+        "link": "white",
+        "accent": "red"
       }
     }
   }

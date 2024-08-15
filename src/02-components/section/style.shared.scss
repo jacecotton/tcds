@@ -62,7 +62,7 @@
     }
   }
 
-  p, li {
+  :where(p, li) {
     font-size: var(--tcds-font-size-ml);
     line-height: var(--tcds-line-height-m);
   }
