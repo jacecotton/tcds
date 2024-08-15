@@ -27,6 +27,13 @@
 :root,
 [data-theme="light"] {
   @each $alias, $scheme in map.get(color.$themes, "light") {
+    // Make default out of light secondary.
+    @if $alias == "secondary" {
+      @each $element, $color in $scheme {
+        #{"--tcds-color-#{$element}"}: var(--tcds-color-#{$color});
+      }
+    }
+
     @each $element, $color in $scheme {
       #{"--tcds-color-#{$alias}-#{$element}"}: var(--tcds-color-#{$color});
     }
