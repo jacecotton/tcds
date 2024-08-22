@@ -22,6 +22,7 @@ class SiteHeader extends HTMLElement {
     this.#upgrade();
     this.#handleResponsive();
     this.#handleScroll();
+    this.#handleMegaMenuOpen();
     this.#handleClickToClose();
   }
 
@@ -41,6 +42,16 @@ class SiteHeader extends HTMLElement {
       } else if(window.scrollY < this.offsetHeight / 1.5 && this.scrolled) {
         this.scrolled = false;
       }
+    });
+  }
+
+  #handleMegaMenuOpen() {
+    const relevantDetails = Array.from(this.querySelectorAll("details[name=primary-menu]"));
+
+    relevantDetails.forEach((details) => {
+      details.addEventListener("toggle", () => {
+        this.toggleAttribute("open", Boolean(relevantDetails.find(details => details.open)));
+      });
     });
   }
 
