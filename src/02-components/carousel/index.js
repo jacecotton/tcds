@@ -79,10 +79,15 @@ class Carousel extends declarative(HTMLElement) {
 
   /**
    * Internal flags.
-   * 
+   *
    * @property {boolean} observingSwipe - Whether scrolling within the viewport
    *   should be observed. While the carousel is automatically advancing, it
-   *   should not be.
+   *   should not be, because the scrollport observer detects the slide closest
+   *   to the center and selects it. This creates issues if many slides are
+   *   being skipped at once (as when selecting a slide from an indicator dot or
+   *   by recycling the carousel); the scroll to the desired slide can be
+   *   interrupted by the observer, unless the observer is temporarily disabled
+   *   by this flag.
    * @property {boolean} isInView - Whether the carousel is visible in the
    *   window's scrollport (does not apply to window visibility).
    */
@@ -175,7 +180,7 @@ class Carousel extends declarative(HTMLElement) {
         this.#swipeDebounce = setTimeout(() => {
           // Find which slide is the closest to the viewport's center by
           // comparing the distances between the centerpoints of the viewport
-          // and each slide. This is in lieu of a JS API for CSS scroll-snap.
+          // and each slide. This is for lack of a JS API for CSS `scroll-snap`.
           // See @argyleink/ScrollSnapExplainers/tree/main/js-snapChanged
           const closest = this.slides.reduce((closest, slide) => {
             const {left: slideLeft, right: slideRight} = slide.getBoundingClientRect();
@@ -267,7 +272,8 @@ class Carousel extends declarative(HTMLElement) {
   #playing = "stopped";
 
   get playing() {
-    return this.hasAttribute("playing") && this.hasAttribute("timing") ? "playing" : this.#playing;
+    return this.hasAttribute("playing") && this.hasAttribute("timing")
+      ? "playing" : this.#playing;
   }
 
   set playing(value) {
@@ -330,9 +336,7 @@ class Carousel extends declarative(HTMLElement) {
       // This `requestAnimationFrame` is to prevent `setTimeout` weirdness after
       // rapid back-and-forth state changes (e.g. by hovering over-and-out too
       // quickly).
-      requestAnimationFrame(() => {
-        this.play();
-      });
+      requestAnimationFrame(this.play.bind(this));
     }
   }
 

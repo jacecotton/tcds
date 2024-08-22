@@ -19,10 +19,7 @@ class Slide extends declarative(HTMLElement) {
     return `
       <section
         role="tabpanel"
-        ${this.selected ? `` : `
-          aria-hidden="true"
-          tabindex="-1"
-        `}
+        ${this.selected ? `` : `aria-hidden="true" tabindex="-1"`}
       >
         <slot></slot>
       </section>
