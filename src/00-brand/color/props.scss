@@ -42,6 +42,13 @@
 
 @mixin dark-props {
   @each $alias, $scheme in map.get(color.$themes, "dark") {
+    // Make default out of dark secondary.
+    @if $alias == "secondary" {
+      @each $element, $color in $scheme {
+        #{"--tcds-color-#{$element}"}: var(--tcds-color-#{$color});
+      }
+    }
+
     @each $element, $color in $scheme {
       #{"--tcds-color-#{$alias}-#{$element}"}: var(--tcds-color-#{$color});
     }
