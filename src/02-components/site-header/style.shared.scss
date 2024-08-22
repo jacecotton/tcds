@@ -237,7 +237,7 @@ details:is(#site-header-nav, #site-header-search) {
           color: var(--tcds-site-header-link-color);
           font-family: var(--tcds-font-ui);
           font-size: var(--tcds-font-size-m);
-          font-weight: var(--tcds-font-weight-semibold);
+          font-weight: var(--tcds-font-weight-bold);
           line-height: 1;
           text-decoration: none;
           user-select: none;
@@ -271,9 +271,7 @@ details:is(#site-header-nav, #site-header-search) {
   }
 }
 
-#primary-menu {
-  grid-area: primary;
-
+nav:not(#utility-menu) {
   @media (--below-m) {
     padding: 4rem 0;
   }
@@ -293,8 +291,6 @@ details:is(#site-header-nav, #site-header-search) {
 
       > details > summary,
       > a {
-        font-weight: var(--tcds-font-weight-bold);
-
         @media (--above-m) {
           padding: .5rem 0;
         }
@@ -335,32 +331,34 @@ details:is(#site-header-nav, #site-header-search) {
           }
         }
 
-        > summary,
-        > div {
-          @media (--below-m) {
-            width: min(100vw - 2rem, var(--tcds-breakpoint-xs));
-            margin: 0 auto;
-          }
-        }
-
-        > summary {
-          @media (--below-m) {
-            padding: 1rem 0;
-
-            &::after {
-              content: "";
-              background-color: var(--tcds-color-primary);
-              mask: var(--tcds-site-header-details-icon, var(--tcds-icon-utility-plus)) no-repeat center;
-              width: 1em;
-              height: 1em;
-              margin-left: auto;
-            }
-          }
-        }
-
         > div {
           @media (--below-m) {
             padding: 2rem 0;
+          }
+        }
+      }
+
+      > details > summary,
+      > details > div,
+      > a {
+        @media (--below-m) {
+          width: min(100vw - 2rem, var(--tcds-breakpoint-xs));
+          margin: 0 auto;
+        }
+      }
+
+      > details > summary,
+      > a {
+        @media (--below-m) {
+          padding: 1rem 0;
+
+          &::after {
+            content: "";
+            background-color: var(--tcds-color-primary);
+            mask: var(--tcds-site-header-details-icon, var(--tcds-icon-utility-plus)) no-repeat center;
+            width: 1em;
+            height: 1em;
+            margin-left: auto;
           }
         }
       }
@@ -373,6 +371,10 @@ details:is(#site-header-nav, #site-header-search) {
       }
     }
   }
+}
+
+#primary-menu {
+  grid-area: primary;
 }
 
 #utility-menu {
