@@ -1,13 +1,12 @@
 {
   "library": {
     "red": ["#da2530", "#cc111c", "#b70f19"],
-    "pink": ["#f8f3f3", "#f2e6e6"],
+    "pink": ["#fff7f7", "#f2e6e6"],
     "navy": ["#122840"],
-    "baby-blue": ["#f0f6fb", "#dde7ef"],
+    "baby-blue": ["#f5faff", "#dde7ef"],
     "gray": ["#eaeaea", "#a8a8a8", "#707070", "#555", "#1a1a1a"],
     "white": ["#fff"],
-    "black": ["#000"],
-    "link": ["var(--tcds-color-red)"]
+    "black": ["#000"]
   },
   "aliases": {
     "primary": "red",

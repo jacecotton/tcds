@@ -33,6 +33,7 @@
 @use "./src/02-components/site-header/style.shared" as *;
 @use "./src/02-components/submenu/submenu" as *;
 @use "./src/02-components/submenu/side-menu" as *;
+@use "./src/02-components/tabs/style.shared" as *;
 
 @use "./src/00-brand/color/utilities" as *;
 @use "./src/00-brand/typography/utilities" as *;

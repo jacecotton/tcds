@@ -1,6 +1,6 @@
 :host {
   --tcds-tabs-tab-indicator-size: 4px;
-  --tcds-tabs-tab-padding-x: 1rem;
+  --tcds-tabs-tab-padding-inline: 1rem;
 
   display: block;
 }
@@ -39,7 +39,7 @@
   &::after {
     content: "";
     display: block;
-    width: calc(100% - var(--tcds-tabs-tab-padding-x) * 2);
+    width: calc(100% - var(--tcds-tabs-tab-padding-inline) * 2);
     height: var(--tcds-tabs-tab-indicator-size);
     background: var(--tcds-tabs-tab-indicator-color);
     position: absolute;
@@ -66,7 +66,7 @@
   span {
     background: var(--tcds-tabs-tab-background);
     border-radius: var(--tcds-border-radius-m);
-    padding: .75rem var(--tcds-tabs-tab-padding-x);
+    padding: .75rem var(--tcds-tabs-tab-padding-inline);
   }
 }
 

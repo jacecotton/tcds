@@ -1,0 +1,17 @@
+@mixin dark-tabs {
+  --tcds-tabs-tab-text-color: #fff;
+}
+
+[data-theme="dark"] tcds-tabs,
+tcds-tabs[data-theme="dark"],
+[data-theme="dark"] + tcds-tabs[variant*="raised"] {
+  @include dark-tabs;
+}
+
+[data-theme="auto"] tcds-tabs,
+tcds-tabs[data-theme="auto"],
+[data-theme="auto"] + tcds-tabs[variant*="raised"] {
+  @media (--prefers-color-scheme: dark) {
+    @include dark-tabs;
+  }
+}
