@@ -4,7 +4,7 @@
     "pink": ["#fff7f7", "#f2e6e6"],
     "navy": ["#122840"],
     "baby-blue": ["#f5faff", "#dde7ef"],
-    "gray": ["#eaeaea", "#a8a8a8", "#707070", "#555", "#1a1a1a"],
+    "gray": ["#eaeaea", "#a8a8a8", "#555", "#1a1a1a"],
     "white": ["#fff"],
     "black": ["#000"]
   },
@@ -58,10 +58,10 @@
         "accent": "red"
       },
       "tertiary": {
-        "background": "gray-5",
+        "background": "gray-4",
         "text": "white",
         "text-secondary": "gray",
-        "watermark": "gray-5",
+        "watermark": "gray-4",
         "link": "white",
         "accent": "red"
       }
