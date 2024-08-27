@@ -189,7 +189,7 @@ const tasks = {
   },
 
   logos: () => {
-    return src("./src/00-brand/logos/**/*")
+    return src("./src/00-brand/logos/**/*.svg")
       .pipe(imagemin())
       .pipe(dest("./dist/logos/"));
   },

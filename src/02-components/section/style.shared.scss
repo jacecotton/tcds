@@ -41,27 +41,6 @@
     }
   }
 
-  &--masthead,
-  &--logomark {
-    &::before {
-      content: "";
-      background: var(--tcds-color-watermark);
-      width: max(100%, var(--tcds-macro-xl));
-      height: 100%;
-      position: absolute;
-      top: 0;
-      right: -25%;
-      z-index: -1;
-      mask: var(--tcds-icon-brand-texas-childrens) 50% 37% no-repeat;
-      mask-size: cover;
-      opacity: .2;
-
-      @media (--below-m) {
-        left: 0;
-      }
-    }
-  }
-
   :where(p, li) {
     font-size: var(--tcds-font-size-ml);
     line-height: var(--tcds-line-height-m);
