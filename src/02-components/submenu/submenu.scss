@@ -9,7 +9,8 @@
       padding: .5rem 0;
       border-bottom: 1px solid var(--tcds-color-gray);
 
-      a {
+      > a,
+      > span {
         display: flex;
         border-radius: var(--tcds-border-radius-s);
         font-family: var(--tcds-font-ui);

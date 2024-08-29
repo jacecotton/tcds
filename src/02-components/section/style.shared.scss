@@ -8,7 +8,6 @@
   --_tcds-section-padding-bottom: var(--tcds-section-padding-bottom);
   --_tcds-section-padding-inline: var(--tcds-section-padding-inline);
 
-  overflow-x: hidden;
   padding-block-start: var(--_tcds-section-padding-top);
   padding-block-end: var(--_tcds-section-padding-bottom);
   padding-inline-start: var(--_tcds-section-padding-inline);
@@ -38,7 +37,7 @@
 
   &--block-end-gradient {
     --tcds-section-padding-inline: 0;
-    
+
     &::after {
       content: "";
       display: block;

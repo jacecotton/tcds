@@ -17,6 +17,7 @@ html {
  *    with a high contrast preference set.
  */
 body {
+  color: var(--tcds-color-text);
   font-family: var(--tcds-font-copy);
   font-size: var(--tcds-font-size-m);
   font-variant-numeric: lining-nums; // 1
@@ -106,7 +107,7 @@ p {
 ul,
 ol {
   :where(&) {
-    margin: 0 0 0 1em;
+    margin: 0 0 0 calc(1em + 3px);
   }
 
   :where(:not(li) > :is(&):not(:last-child)) {

@@ -11,7 +11,7 @@ tcds-tabs[data-theme="dark"],
 [data-theme="auto"] tcds-tabs,
 tcds-tabs[data-theme="auto"],
 [data-theme="auto"] + tcds-tabs[variant*="raised"] {
-  @media (--prefers-color-scheme: dark) {
+  @media (prefers-color-scheme: dark) {
     @include dark-tabs;
   }
 }
