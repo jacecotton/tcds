@@ -1,9 +1,24 @@
 .tcds-blockquote {
+  --tcds-blockquote-quote-font-size: var(--tcds-font-size-l);
+  --tcds-blockquote-quote-font-weight: var(--tcds-font-weight-bold);
+  --tcds-blockquote-quote-size: 2rem;
+  --tcds-blockquote-title-font-size: var(--tcds-font-size-ml);
+  --tcds-blockquote-subtitle-font-size: var(--tcds-font-size-m);
+
   width: min(100%, 80ch);
-  margin: 1rem auto;
+  margin: calc(var(--tcds-blockquote-quote-size) + 1rem) auto 1rem;
 
   @media (--above-s) {
-    padding-inline-start: 3rem;
+    padding-inline-start: calc(var(--tcds-blockquote-quote-size) + 1rem);
+    margin: 1rem auto;
+  }
+
+  &--small {
+    --tcds-blockquote-quote-font-size: var(--tcds-font-size-ml);
+    --tcds-blockquote-quote-font-weight: var(--tcds-font-weight-semibold);
+    --tcds-blockquote-quote-size: 1.5rem;
+    --tcds-blockquote-title-font-size: var(--tcds-font-size-s);
+    --tcds-blockquote-subtitle-font-size: var(--tcds-font-size-s);
   }
 
   &__quote {
@@ -11,24 +26,24 @@
 
     &::before {
       content: "";
-      width: 2rem;
-      height: 2rem;
+      width: var(--tcds-blockquote-quote-size);
+      height: var(--tcds-blockquote-quote-size);
       position: absolute;
-      top: -2.5rem;
+      top: calc(var(--tcds-blockquote-quote-size) * -1);
       left: 0;
       background: var(--tcds-color-accent);
       mask: var(--tcds-icon-utility-quotation) center no-repeat;
 
       @media (--above-s) {
         top: 0;
-        left: -3rem;
+        left: calc((var(--tcds-blockquote-quote-size) + 1rem) * -1);
       }
     }
 
     p {
       color: var(--tcds-color-text);
-      font-weight: var(--tcds-font-weight-bold);
-      font-size: var(--tcds-font-size-l);
+      font-size: var(--tcds-blockquote-quote-font-size);
+      font-weight: var(--tcds-blockquote-quote-font-weight);
       line-height: var(--tcds-line-height-m);
     }
   }
@@ -55,13 +70,13 @@
   &__title {
     font-family: var(--tcds-font-ui);
     font-weight: var(--tcds-font-weight-bold);
-    font-size: var(--tcds-font-size-ml);
+    font-size: var(--tcds-blockquote-title-font-size);
     color: var(--tcds-color-text);
   }
 
   &__subtitle {
     font-weight: var(--tcds-font-weight-semibold);
-    font-size: var(--tcds-font-size-m);
+    font-size: var(--tcds-blockquote-subtitle-font-size);
     color: var(--tcds-color-text-secondary);
   }
 }
