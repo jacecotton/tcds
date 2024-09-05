@@ -18,7 +18,8 @@
 
 @each $height, $value in typography.$line-heights {
   .line-height-#{$height} {
-    line-height: var(--tcds-line-height-#{$height}) !important;
+    --tcds-line-height: var(--tcds-line-height-#{$height});
+    line-height: var(--tcds-line-height) !important;
   }
 }
 

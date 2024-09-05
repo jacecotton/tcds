@@ -101,7 +101,7 @@ p {
 }
 
 :where(p, li) {
-  line-height: var(--tcds-line-height-m);
+  line-height: var(--tcds-line-height, var(--tcds-line-height-m));
 }
 
 ul,
