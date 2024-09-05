@@ -35,23 +35,23 @@
 
 @each $breakpoint, $value in layout.$breakpoints {
   @media (--above-#{$breakpoint}) {
-    .above-#{$breakpoint}\:flex--row {
+    .flex--row\@above\:#{$breakpoint} {
       flex-direction: row !important;
     }
 
-    .above-#{$breakpoint}\:flex--column {
+    .flex--column\@above\:#{$breakpoint} {
       flex-direction: column !important;
     }
 
-    .above-#{$breakpoint}\:flex-1 {
+    .flex-1\@above\:#{$breakpoint} {
       flex: 1 !important;
     }
 
-    .above-#{$breakpoint}\:flex-1-0 {
+    .flex-1-0\@above\:#{$breakpoint} {
       flex: 1 0 !important;
     }
 
-    .above-#{$breakpoint}\:flex-0-1 {
+    .flex-0-1\@above\:#{$breakpoint} {
       flex: 0 1 !important;
     }
   }
@@ -66,20 +66,21 @@
 
   @each $breakpoint, $value in layout.$breakpoints {
     $index: list.index(layout.$breakpoints, ($breakpoint $value));
+    
     $previous-breakpoint: if($index - 1 > 0,
       list.nth(list.nth(layout.$breakpoints, $index - 1), 1),
       null
     );
 
     @media (--above-#{$breakpoint}) {
-      --above-#{$breakpoint}-grid-columns: #{
+      --grid-columns-above-#{$breakpoint}: #{
         if($previous-breakpoint == null,
           var(--grid-columns),
-          var(--above-#{$previous-breakpoint}-grid-columns)
+          var(--grid-columns-above-#{$previous-breakpoint})
         )
       };
 
-      --grid-column-repeat: var(--above-#{$breakpoint}-grid-columns);
+      --grid-column-repeat: var(--grid-columns-above-#{$breakpoint});
     }
   }
 }
@@ -96,12 +97,12 @@
 
 @each $breakpoint, $value in layout.$breakpoints {
   @media (--above-#{$breakpoint}) {
-    .above-#{$breakpoint}\:column-full {
+    .column-full\@above\:#{$breakpoint} {
       grid-column: 1 / -1 !important; 
     }
 
     @for $column from 1 through 12 {
-      .above-#{$breakpoint}\:column-#{$column} {
+      .column-#{$column}\@above\:#{$breakpoint} {
         grid-column: span $column !important;
       }
     }
@@ -128,13 +129,13 @@
 
 @each $breakpoint, $value in layout.$breakpoints {
   @media (--below-#{$breakpoint}) {
-    .below-#{$breakpoint}\:hide {
+    .hide\@below\:#{$breakpoint} {
       display: none !important;
     }
   }
 
   @media (--above-#{$breakpoint}) {
-    .above-#{$breakpoint}\:hide {
+    .hide\@above\:#{$breakpoint} {
       display: none !important;
     }
   }

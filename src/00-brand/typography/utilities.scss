@@ -42,13 +42,13 @@
 
 @each $breakpoint, $value in layout.$breakpoints {
   @media (--above-#{$breakpoint}) {
-    .above-#{$breakpoint}\:text-center {
+    .text-center\@above\:#{$breakpoint} {
       text-align: center !important;
     }
   }
 
   @media (--below-#{$breakpoint}) {
-    .below-#{$breakpoint}\:text-center {
+    .text-center\@below\:#{$breakpoint} {
       text-align: center !important;
     }
   }
