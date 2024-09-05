@@ -136,6 +136,7 @@ section {
   appearance: none;
   background: none;
   border: 0;
+  display: flex;
 
   &:not(:hover) {
     color: #a8a8a8;
