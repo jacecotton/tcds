@@ -12,7 +12,7 @@
   --tcds-carousel-slide-gap: 4vw;
   --tcds-carousel-slide-size: min(700px, 70vw);
   --tcds-carousel-slide-align: center;
-  --tcds-carousel-padding-inline-end: 50%;
+  --tcds-carousel-padding-inline: 50%;
   --tcds-carousel-viewport-align-items: stretch;
   --tcds-carousel-slide-display: grid;
   --tcds-carousel-spacer: "";
@@ -70,6 +70,7 @@ section {
   scrollbar-width: none;
   overscroll-behavior-x: none;
   position: relative;
+  padding-inline: var(--tcds-carousel-padding-inline, 0);
 
   @media (prefers-reduced-motion: no-preference) {
     scroll-behavior: smooth;
