@@ -9,8 +9,8 @@
 }
 
 :host([multiple]) {
-  --tcds-carousel-slide-gap: 4vw;
-  --tcds-carousel-slide-size: min(700px, 70vw);
+  --tcds-carousel-slide-gap: 1.5rem;
+  --tcds-carousel-slide-size: min(300px, 70vw);
   --tcds-carousel-slide-align: center;
   --tcds-carousel-padding-inline: 50%;
   --tcds-carousel-viewport-align-items: stretch;
@@ -27,7 +27,7 @@ section {
   grid-template-columns: 100%;
   align-items: center;
   justify-content: center;
-  gap: var(--tcds-space-loose) 0;
+  gap: 1rem 0;
 
   @media (min-width: 896px) {
     grid-template-areas:
@@ -43,13 +43,11 @@ section {
 
   :host([navigation*="top"][navigation*="right"]) & {
     --tcds-carousel-navigation-justify: end;
-    --tcds-carousel-navigation-margin: 0;
 
     grid-template-areas:
       "navigation"
       "slides"
       "play-pause";
-    gap: 1rem;
 
     @media (min-width: 896px) {
       grid-template-areas:
@@ -99,7 +97,6 @@ section {
   align-items: center;
   justify-content: var(--tcds-carousel-navigation-justify, center);
   gap: 1.5rem;
-  margin: var(--tcds-carousel-navigation-margin, 1.5rem 0 0);
 }
 
 [role="tablist"] {
