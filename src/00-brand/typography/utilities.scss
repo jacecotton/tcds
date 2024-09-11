@@ -55,6 +55,10 @@
   }
 }
 
+.font-variant-tabular-nums {
+  font-variant: tabular-nums !important;
+}
+
 .h1 {
   @include h1;
 }

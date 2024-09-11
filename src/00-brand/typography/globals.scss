@@ -88,6 +88,23 @@ a {
   :where(&:hover) {
     text-decoration: none;
   }
+
+  &[href]:not(:where(
+    [is],
+    [href^="#"],
+    [href^="javascript:" i],
+    [href^="/"]:not([href^="//"])
+  ))::after {
+    content: "";
+    display: inline-block;
+    background-color: var(--tcds-color-text);
+    mask: var(--tcds-icon-utility-external) center no-repeat;
+    width: .66em;
+    height: .66em;
+    position: relative;
+    inset: .025em 0 0 .33em;
+    opacity: .4;
+  }
 }
 
 p {

@@ -43,6 +43,7 @@ section {
 
   :host([navigation*="top"][navigation*="right"]) & {
     --tcds-carousel-navigation-justify: end;
+    --tcds-carousel-navigation-margin: 0 0 1.5rem;
 
     grid-template-areas:
       "navigation"
@@ -69,11 +70,6 @@ section {
   scrollbar-width: none;
   overscroll-behavior-x: none;
   position: relative;
-  padding:
-    var(--tcds-carousel-padding-block, 1.5rem)
-    var(--tcds-carousel-padding-inline-start, 0)
-    var(--tcds-carousel-padding-block, 1.5rem)
-    var(--tcds-carousel-padding-inline-end, 0);
 
   @media (prefers-reduced-motion: no-preference) {
     scroll-behavior: smooth;
@@ -102,6 +98,7 @@ section {
   align-items: center;
   justify-content: var(--tcds-carousel-navigation-justify, center);
   gap: 1.5rem;
+  margin: var(--tcds-carousel-navigation-margin, 1.5rem 0 0);
 }
 
 [role="tablist"] {
