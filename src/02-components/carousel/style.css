@@ -43,7 +43,7 @@ section {
 
   :host([navigation*="top"][navigation*="right"]) & {
     --tcds-carousel-navigation-justify: end;
-    --tcds-carousel-navigation-margin: 0 0 1.5rem;
+    --tcds-carousel-navigation-margin: 0;
 
     grid-template-areas:
       "navigation"

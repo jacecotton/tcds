@@ -94,16 +94,18 @@ a {
     [href^="#"],
     [href^="javascript:" i],
     [href^="/"]:not([href^="//"])
-  ))::after {
-    content: "";
-    display: inline-block;
-    background-color: var(--tcds-color-text);
-    mask: var(--tcds-icon-utility-external) center no-repeat;
-    width: .66em;
-    height: .66em;
-    position: relative;
-    inset: .025em 0 0 .33em;
-    opacity: .4;
+  )) {
+    &::after {
+      content: "";
+      display: inline-block;
+      background-color: var(--tcds-color-text);
+      mask: var(--tcds-icon-utility-external) center no-repeat;
+      opacity: .4;
+      width: .66em;
+      height: .66em;
+      padding-left: 1em;
+      vertical-align: middle;
+    }
   }
 }
 
@@ -134,10 +136,14 @@ ol {
 
 ol {
   :where(& &) {
-    list-style: lower-alpha;
+    list-style: upper-alpha;
   }
 
   :where(& & &) {
-    list-style: lower-roman;
+    list-style: upper-roman;
   }
+}
+
+::marker {
+  font-variant: lining-nums;
 }
