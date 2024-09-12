@@ -271,7 +271,7 @@ details:is(#site-header-nav, #site-header-search) {
   }
 }
 
-nav:not(#utility-menu) {
+tcds-site-header nav:not(#utility-menu) {
   @media (--below-m) {
     padding: 4rem 0;
   }
