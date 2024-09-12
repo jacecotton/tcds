@@ -47,20 +47,20 @@ tcds-site-header {
   &[open] {
     background: #fff;
   }
-  
+
   &[scrolled] {
     --tcds-site-header-logo-background: none;
     --tcds-site-header-logo-filter: none;
-  
+
     background-color: var(--tcds-color-white);
     box-shadow: var(--tcds-box-shadow-m) var(--tcds-shade-weak);
     position: sticky;
     top: 0;
     animation: tcds-site-header-slide-down 250ms var(--tcds-animation-productive-easing);
-  
+
     @media (--above-m) {
       grid-template-rows: 0fr 1fr;
-  
+
       #utility-menu {
         display: none;
       }
@@ -134,11 +134,11 @@ details:is(#site-header-nav, #site-header-search) {
 
       > summary {
         position: absolute;
-        top: 1.75rem;
+        top: 1rem;
         right: 2rem;
         z-index: 1;
       }
-  
+
       > div {
         position: absolute;
         top: 0;
@@ -154,7 +154,7 @@ details:is(#site-header-nav, #site-header-search) {
     @media (--below-m) {
       --tcds-site-header-menu-toggle-icon: var(--tcds-icon-utility-x);
     }
-  
+
     &::before {
       content: "";
       background: rgb(0 0 0 / 50%);
@@ -170,7 +170,7 @@ details:is(#site-header-nav, #site-header-search) {
         display: none;
       }
     }
-  
+
     [open]::before {
       @media (--below-m) {
         display: none;
@@ -222,7 +222,7 @@ details:is(#site-header-nav, #site-header-search) {
     > ul {
       display: flex;
       list-style: none;
-  
+
       @media (--above-m) {
         gap: var(--tcds-site-header-menu-gap);
       }
@@ -342,7 +342,7 @@ nav:not(#utility-menu) {
       > details > div,
       > a {
         @media (--below-m) {
-          width: min(100vw - 2rem, var(--tcds-breakpoint-xs));
+          width: min(100vw - 4rem, var(--tcds-breakpoint-xs));
           margin: 0 auto;
         }
       }
@@ -361,6 +361,10 @@ nav:not(#utility-menu) {
             margin-left: auto;
           }
         }
+      }
+
+      > a {
+        --tcds-site-header-details-icon: var(--tcds-icon-utility-caret-right);
       }
     }
 
@@ -432,7 +436,7 @@ nav:not(#utility-menu) {
           color: var(--tcds-color-white);
           padding: .5rem 1rem;
           border-radius: 1rem;
-      
+
           &:hover {
             background-color: var(--tcds-color-primary);
           }
