@@ -1,7 +1,18 @@
 table {
-  font-family: var(--tcds-font-ui);
-
   &:not(.table--semantic) {
-    
+    font-family: var(--tcds-font-ui);
+  }
+}
+
+tcds-table {
+  display: block;
+  overflow-x: scroll;
+
+  &[sticky-header*="column"] {
+
+  }
+
+  &[sticky-header*="row"] {
+
   }
 }
