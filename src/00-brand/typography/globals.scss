@@ -123,6 +123,13 @@ p {
   line-height: var(--tcds-line-height, var(--tcds-line-height-m));
 }
 
+/**
+ * 1. Safari removes role semantics from lists with `list-style: none`, but they
+ *    can be readded with `[role=list]`. Therefore, as a general rule, never add
+ *    `list-style: none` to list elements elsewhere in the codebase (components,
+ *    etc.) Instead, add `role="list"` to any list from which you want `list-
+ *    style` removed.
+ */
 ul,
 ol {
   :where(&) {
@@ -131,6 +138,10 @@ ol {
 
   :where(:not(li) > :is(&):not(:last-child)) {
     margin-bottom: 1rem;
+  }
+
+  &:where([role="list"]) {
+    list-style: none; // 1
   }
 }
 
@@ -144,6 +155,10 @@ ol {
   }
 }
 
+/**
+ * 1. List markers do not inherit `font-variant-numeric`, which is already
+ *    declared in the `body` above.
+ */
 ::marker {
-  font-variant: lining-nums;
+  font-variant-numeric: lining-nums; // 1
 }

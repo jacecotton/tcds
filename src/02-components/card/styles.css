@@ -1,3 +1,27 @@
+:host {
+  display: block;
+  container-type: inline-size;
+}
+
 article {
-  
+  display: grid;
+  grid-template-columns: 1fr;
+
+  @container (min-inline-size: 640px) {
+    :host(:not([orientation="vertical"])) & {
+      grid-template-columns: minmax(220px, 1fr) 3fr;
+    }
+  }
+
+  :host([orientation="horizontal"]) & {
+    grid-template-columns: minmax(220px, 1fr) 3fr;
+  }
+}
+
+[part="content"] {
+  padding: 1rem;
+}
+
+::slotted(img) {
+  width: 100%;
 }

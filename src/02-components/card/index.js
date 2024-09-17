@@ -1,5 +1,5 @@
 import {declarative, importSharedStyles, refreshProperties} from "../utilities/index.js";
-// import styles from "./styles.css";
+import style from "./styles.css";
 
 class Card extends declarative(HTMLElement) {
   get template() {
@@ -7,7 +7,7 @@ class Card extends declarative(HTMLElement) {
     const title = this.querySelector("[slot=title]")?.textContent;
 
     return importSharedStyles() + /* html */`
-      <article>
+      <article data-theme="light">
         <figure>
           <slot name="image"></slot>
         </figure>
@@ -74,9 +74,9 @@ class Card extends declarative(HTMLElement) {
   constructor() {
     super();
     this.attachShadow({mode: "open"});
-    // this.shadowRoot.adoptedStylesheets = [styles];
+    this.shadowRoot.adoptedStyleSheets = [style];
   }
-  
+
   connectedCallback() {
     refreshProperties.apply(this, ["orientation", "actionLabel", "size", "variant"]);
     this.requestUpdate();

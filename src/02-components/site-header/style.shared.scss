@@ -221,7 +221,6 @@ details:is(#site-header-nav, #site-header-search) {
 
     > ul {
       display: flex;
-      list-style: none;
 
       @media (--above-m) {
         gap: var(--tcds-site-header-menu-gap);
