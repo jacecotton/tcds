@@ -1,4 +1,4 @@
-import {declarative, importSharedStyles, refreshProperties} from "../utilities/index.js";
+import {declarative, html, importSharedStyles, refreshProperties} from "../utilities/index.js";
 import styles from "./style.css";
 
 class Carousel extends declarative(HTMLElement) {
@@ -15,9 +15,9 @@ class Carousel extends declarative(HTMLElement) {
     const playing = this.playing === "playing";
     const playPause = `${playing ? "Stop" : "Start"} automatic slide show`;
 
-    return importSharedStyles() + `
+    return importSharedStyles() + html`
       <section aria-roledescription="carousel">
-        ${this.timing ? `
+        ${this.timing ? html`
           <button
             part="play-pause"
             title="${playPause}"
@@ -45,7 +45,7 @@ class Carousel extends declarative(HTMLElement) {
             <tcds-icon icon="caret-right"></tcds-icon>
           </button>
           <div role="tablist" aria-label="Pick slide">
-            ${this.slides.map((slide, index) => `
+            ${this.slides.map((slide, index) => html`
               <button
                 role="tab"
                 aria-selected="${slide.selected}"
@@ -56,17 +56,17 @@ class Carousel extends declarative(HTMLElement) {
                 onclick="this.getRootNode().host.indicatorClick(event)"
                 onkeydown="this.getRootNode().host.indicatorKeydown(event)"
               ></button>
-            `).join("")}
+            `)}
           </div>
         </div>
         <div
           part="viewport"
           aria-atomic="false"
+          aria-live="${playing ? "off" : "polite"}"
           ${this.timing ? `
-            aria-live="${playing ? "off" : "polite"}"
             onmouseleave="this.getRootNode().host.resume()"
             onfocus="this.getRootNode().host.pause()"
-            onblur="this.getRootNode().host.resume()"  
+            onblur="this.getRootNode().host.resume()"
           ` : ``}
           onmouseover="this.getRootNode().host.viewportHover()"
           ontouchstart="this.getRootNode().host.viewportSwipe()"
@@ -173,10 +173,10 @@ class Carousel extends declarative(HTMLElement) {
         // to the viewport's center.
         const {left: viewportLeft, right: viewportRight} = this.viewport.getBoundingClientRect();
         const viewportCenter = Math.floor((viewportLeft + viewportRight) / 2);
-    
+
         // Debounce the check for which slide is closest to the center by 500ms.
         clearTimeout(this.#swipeDebounce);
-    
+
         this.#swipeDebounce = setTimeout(() => {
           // Find which slide is the closest to the viewport's center by
           // comparing the distances between the centerpoints of the viewport

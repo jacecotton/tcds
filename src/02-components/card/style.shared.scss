@@ -1,2 +1,27 @@
 tcds-card {
+  position: relative;
+
+  > [slot="title"] {
+    font-family: var(--tcds-font-headings);
+    font-size: var(--tcds-font-size-l);
+    font-weight: var(--tcds-font-weight-semibold);
+    color: var(--tcds-color-text);
+    text-decoration: none;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+    }
+  }
+
+  > [slot="description"] {
+    margin: 0;
+    font-size: var(--tcds-font-size-m);
+  }
+
+  a:not([slot="title"]) {
+    z-index: 1;
+    position: relative;
+  }
 }

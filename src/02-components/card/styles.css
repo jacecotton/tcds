@@ -6,6 +6,9 @@
 article {
   display: grid;
   grid-template-columns: 1fr;
+  box-shadow: var(--tcds-box-shadow-m) var(--tcds-shade-weak);
+  border-radius: var(--tcds-border-radius-m);
+  overflow: hidden;
 
   @container (min-inline-size: 640px) {
     :host(:not([orientation="vertical"])) & {
@@ -19,7 +22,11 @@ article {
 }
 
 [part="content"] {
-  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  padding: 2rem;
+  color: var(--tcds-color-gray-3);
 }
 
 ::slotted(img) {
