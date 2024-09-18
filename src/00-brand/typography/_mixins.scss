@@ -1,9 +1,11 @@
 @mixin headings {
   font-family: var(--tcds-font-headings);
+  line-height: var(--tcds-line-height-s);
 }
 
 @mixin subheadings {
   font-family: var(--tcds-font-subheadings);
+  line-height: var(--tcds-line-height-s);
 }
 
 @mixin h1 {
@@ -11,7 +13,6 @@
 
   font-size: var(--tcds-font-size-2xl);
   font-weight: var(--tcds-font-weight-semibold);
-  line-height: var(--tcds-line-height-s);
   letter-spacing: -0.05rem;
 }
 
@@ -20,7 +21,6 @@
 
   font-size: var(--tcds-font-size-xl);
   font-weight: var(--tcds-font-weight-semibold);
-  line-height: var(--tcds-line-height-s);
   letter-spacing: -0.0125rem;
 }
 
@@ -29,23 +29,25 @@
 
   font-size: var(--tcds-font-size-l);
   font-weight: var(--tcds-font-weight-semibold);
-  line-height: var(--tcds-line-height-s);
 }
 
 @mixin h4 {
   @include subheadings;
 
   font-size: var(--tcds-font-size-ml);
+  font-weight: var(--tcds-font-weight-bold);
 }
 
 @mixin h5 {
   @include subheadings;
 
   font-size: var(--tcds-font-size-m);
+  font-weight: var(--tcds-font-weight-bold);
 }
 
 @mixin h6 {
   @include subheadings;
 
   font-size: var(--tcds-font-size-s);
+  font-weight: var(--tcds-font-weight-bold);
 }

@@ -141,9 +141,13 @@ class Carousel extends declarative(HTMLElement) {
   }
 
   updatedCallback(old) {
-    if("playing" in old) {
+    if("playing" in old || "timing" in old) {
       if(this.playing === "playing") {
         const advance = () => {
+          if(!this.timing) {
+            return;
+          }
+
           this.player = setTimeout(() => {
             this.select(this.slides[this.nextIndex]);
             advance();
@@ -272,7 +276,7 @@ class Carousel extends declarative(HTMLElement) {
   #playing = "stopped";
 
   get playing() {
-    return this.hasAttribute("playing") && this.hasAttribute("timing")
+    return this.hasAttribute("playing") && this.timing
       ? "playing" : this.#playing;
   }
 
@@ -314,7 +318,11 @@ class Carousel extends declarative(HTMLElement) {
 
   // #region Public API
   play() {
-    this.playing = "playing";
+    if(this.timing) {
+      this.playing = "playing";
+    } else {
+      console.error("TCDS-CAROUSEL cannot play without a timing property.", this);
+    }
   }
 
   stop() {
