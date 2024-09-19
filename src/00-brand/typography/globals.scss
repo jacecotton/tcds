@@ -21,6 +21,7 @@ body {
   font-family: var(--tcds-font-copy);
   font-size: var(--tcds-font-size-m);
   font-variant-numeric: lining-nums; // 1
+  font-variant-ligatures: none;
   overflow-wrap: break-word;
 
   @media (prefers-contrast: no-preference), (prefers-contrast: less) {

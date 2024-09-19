@@ -1,6 +1,7 @@
 table {
   &:not(.table--semantic) {
     font-family: var(--tcds-font-ui);
+    font-variant-numeric: tabular-nums lining-nums;
   }
 }
 
