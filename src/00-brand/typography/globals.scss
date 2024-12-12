@@ -110,8 +110,15 @@ a {
   }
 }
 
+/**
+ * 1. We want to apply some default vertical margin to paragraph elements,
+ *    unless the paragraph is either the first or last child in a container (as
+ *    we still want them vertically flush). So we exclude those, but we also
+ *    want to exclude any that are directly adjacent to [slot]ted elements,
+ *    because those are never actually rendered.
+ */
 p {
-  :where(&:not(:first-child)) {
+  :where(&:not(:first-child, [slot] + *)) { // 1
     margin-top: 1.5em;
   }
 
@@ -135,6 +142,7 @@ ul,
 ol {
   :where(&) {
     margin: 0 0 0 calc(1em + 3px);
+    padding: 0;
   }
 
   :where(:not(li) > :is(&):not(:last-child)) {
