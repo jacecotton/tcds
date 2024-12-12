@@ -60,7 +60,10 @@ function removeAttribute(element, attribute) {
 function skipAttribute(name, value) {
   const normalizedValue = value.replace(/\s+/g, "").toLowerCase();
 
-  if(["src", "href", "xlink:href"].includes(name) && normalizedValue.includes("javascript:") || normalizedValue.includes("data:text/html")) {
+  if(
+    ["src", "href", "xlink:href"].includes(name)
+    && (normalizedValue.includes("javascript:") || normalizedValue.includes("data:text/html"))
+  ) {
     return true;
   }
 }
@@ -98,9 +101,12 @@ function diffAttributes(template, existing) {
     removeAttribute(existing, name);
   }
 
-  // if(Array.from(template.attributes).sort().join() !== Array.from(existing.attributes).sort().join()) {
-  //   diffAttributes(template, existing);
-  // }
+  if(
+    Array.from(templateAttributes).filter(attribute => !skipAttribute(attribute.name, attribute.value)).sort().join()
+    !== Array.from(existingAttributes).filter(attribute => !skipAttribute(attribute.name, attribute.value)).sort().join()
+  ) {
+    diffAttributes(template, existing);
+  }
 }
 
 function getNodeContent(node) {
