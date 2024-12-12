@@ -4,37 +4,21 @@ import layout from "../../../01-layout/layout.json";
 import styles from "./style.css";
 
 class AccordionSection extends declarative(HTMLElement) {
-  static observedAttributes = ["open", "label"];
+  // #region Setup
+  static observedAttributes = ["open"];
 
-  get open() {
-    return this.hasAttribute("open");
-  }
-
-  set open(value) {
-    this.toggleAttribute("open", Boolean(value));
-  }
-
-  get label() {
-    return this.getAttribute("label");
-  }
-
-  set label(value) {
-    this.setAttribute("label", value);
-  }
-
-  get accordion() {
-    // If this section is constructed, its containing accordion is going to be
-    // the root host. Otherwise it's going to be the immediate `tcds-accordion`
-    // parent.
-    return this.closest("tcds-accordion") || this.getRootNode().host;
+  constructor() {
+    super();
+    this.attachShadow({mode: "open"});
+    this.shadowRoot.adoptedStyleSheets = [styles];
   }
 
   get template() {
-    const heading = `h${this.getAttribute("heading-level") || this.accordion.headingLevel}`;
+    const {title, headingLevel} = this;
 
     return importSharedStyles() + /* html */`
       <section>
-        <${heading} part="heading">
+        <${headingLevel} part="heading">
           <button
             part="button"
             id="button"
@@ -42,10 +26,10 @@ class AccordionSection extends declarative(HTMLElement) {
             aria-expanded="${this.open}"
             onclick="this.getRootNode().host.clickHandler()"
           >
-            ${this.label}
+            ${title}
             <tcds-icon part="icon" icon="${this.open ? "minus" : "plus"}"></tcds-icon>
           </button>
-        </${heading}>
+        </${headingLevel}>
 
         <div part="panel" id="panel" aria-labelledby="button">
           <div part="content">
@@ -55,13 +39,9 @@ class AccordionSection extends declarative(HTMLElement) {
       </section>
     `;
   }
+  // #endregion
 
-  constructor() {
-    super();
-    this.attachShadow({mode: "open"});
-    this.shadowRoot.adoptedStyleSheets = [styles];
-  }
-
+  // #region Lifecycle
   connectedCallback() {
     refreshProperties.apply(this, ["open", "label"]);
     this.requestUpdate();
@@ -74,12 +54,14 @@ class AccordionSection extends declarative(HTMLElement) {
   }
 
   mountedCallback() {
+    this.heading = this.shadowRoot.querySelector("[part~=heading]");
     this.panel = this.shadowRoot.querySelector("[part~=panel]");
   }
 
   updatedCallback(old) {
     if("open" in old) {
       const openAnimation = {height: ["0", `${this.panel.scrollHeight}px`]};
+      const openAnimationDuration = animation.timing.productive.duration;
       // Don't animate open/close if reduced motion preference is set.
       const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -96,7 +78,7 @@ class AccordionSection extends declarative(HTMLElement) {
           // change (like if the window is shrunk), so after the animation,
           // we need to set the height to `auto`.
           this.panel.animate(openAnimation, {
-            duration: reducedMotion ? 1 : animation.timing.productive.duration,
+            duration: reducedMotion ? 1 : openAnimationDuration,
           }).onfinish = () => this.panel.style.height = "auto";
         });
 
@@ -104,13 +86,29 @@ class AccordionSection extends declarative(HTMLElement) {
         // [multiple] is enabled).
         if(!this.accordion.multiple) {
           this.accordion.closeAll(section => section !== this);
+
+          // For non-[multiple] accordions, opening a section can sometimes
+          // cause a previously open longer section to collapse, which will then
+          // shift all of the content up and potentially cause the top of the
+          // section just opened to fly past the top of the screen, leaving the
+          // user near the bottom of the newly opened section. In these cases,
+          // we want the browser to scroll back up to the top of the section.
+          setTimeout(() => {
+            const headingTop = this.heading.getBoundingClientRect().top;
+            // We need to account for a sticky header, plus an arbitrary 25px
+            // buffer.
+            const viewportTop = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--tcds-site-header-height")) + 25;
+            const needed = headingTop < viewportTop;
+
+            if(needed) this.scrollIntoView(true);
+          }, openAnimationDuration * 2);
         }
       } else if(old.open) {
         // Closing from open state. Hide panel after reversed animation to 0
         // height.
-        this.panel.animate(openAnimation, { 
+        this.panel.animate(openAnimation, {
           direction: "reverse",
-          duration: reducedMotion ? 1 : animation.timing.productive.duration,
+          duration: reducedMotion ? 1 : openAnimationDuration,
         }).onfinish = () => this.panel.hidden = true;
       }
     } else if(!this.open) {
@@ -119,19 +117,42 @@ class AccordionSection extends declarative(HTMLElement) {
       this.panel.hidden = true;
     }
   }
+  // #endregion
 
+  // #region Event listeners
   clickHandler() {
     this.toggle();
+  }
+  // #endregion
 
-    // On smaller viewports, scroll to the accordion section heading when opened
-    // (unless it's a nested accordion).
-    if(this.open && window.innerWidth < layout.breakpoints.s
-      && this.accordion.parentElement.localName !== "tcds-accordion-section") {
-      // Allow ample time for animations to finish before scrolling.
-      setTimeout(this.scrollIntoView, animation.timing.productive.duration * 2);
-    }
+  // #region Props and state
+  get open() {
+    return this.hasAttribute("open");
   }
 
+  set open(value) {
+    this.toggleAttribute("open", Boolean(value));
+  }
+
+  get title() {
+    return this.querySelector(":scope > [slot=title]")?.innerHTML
+      || console.error("No heading element with [slot=title] provided in accordion section.", this);
+  }
+
+  get headingLevel() {
+    return this.querySelector(":scope > [slot=title]")?.localName
+      || console.error("No heading element with [slot=title] provided in accordion section.", this);
+  }
+
+  get accordion() {
+    // If this section is constructed, its containing accordion is going to be
+    // the root host. Otherwise it's going to be the immediate `tcds-accordion`
+    // parent.
+    return this.closest("tcds-accordion") || this.getRootNode().host;
+  }
+  // #endregion
+
+  // #region Public API
   show() {
     this.open = true;
   }
@@ -143,6 +164,7 @@ class AccordionSection extends declarative(HTMLElement) {
   toggle() {
     this.open = !this.open;
   }
+  // #endregion
 }
 
 customElements.define("tcds-accordion-section", AccordionSection);
