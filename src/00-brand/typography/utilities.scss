@@ -86,10 +86,12 @@
 .list {
   &--comma-separated {
     display: flex;
+    flex-wrap: wrap;
+    margin: 0;
 
     li {
-      &::after {
-        content: ", ";
+      &:not(:last-child)::after {
+        content: ",\00a0";
       }
     }
   }
