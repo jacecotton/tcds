@@ -142,22 +142,20 @@ class Carousel extends declarative(HTMLElement) {
 
   updatedCallback(old) {
     if("playing" in old || "timing" in old) {
+      clearTimeout(this.player);
+
       if(this.playing === "playing") {
-        const advance = () => {
-          if(!this.timing) {
-            return;
-          }
+        const play = () => {
+          if(!this.timing) return;
 
           this.player = setTimeout(() => {
             this.select(this.slides[this.nextIndex]);
-            advance();
+            play();
           }, this.timing * 1000);
         };
 
-        advance();
+        play();
         this.#flags.observingSwipe = false;
-      } else {
-        clearTimeout(this.player);
       }
     }
   }
@@ -209,9 +207,9 @@ class Carousel extends declarative(HTMLElement) {
     }, {
       // Observer configuration...
       root: this.viewport,
-      threshold: this.multiple
+      threshold: !this.multiple ? 1
         // If [multiple], observe intersection from 0 to 1 in increments of 0.1.
-        ? Array.from({length: 11}, (_, i) => i / 10) : 1,
+        : Array.from({length: 11}, (_, i) => i / 10),
       rootMargin: "1px",
     });
   }
@@ -344,7 +342,7 @@ class Carousel extends declarative(HTMLElement) {
       // This `requestAnimationFrame` is to prevent `setTimeout` weirdness after
       // rapid back-and-forth state changes (e.g. by hovering over-and-out too
       // quickly).
-      requestAnimationFrame(this.play.bind(this));
+      requestAnimationFrame(() => this.play());
     }
   }
 
@@ -352,21 +350,21 @@ class Carousel extends declarative(HTMLElement) {
     // Set [selected] on passed slide to true, and false on the others.
     this.slides.forEach(_slide => _slide.selected = _slide === slide);
 
+    if(!scroll) return;
+
     // Scroll the viewport either to the left boundary of the selected slide,
     // or if [multiple], to the slide's centerpoint.
-    if(scroll) {
-      requestAnimationFrame(() => {
-        const {offsetLeft: slideLeft, offsetWidth: slideWidth} = slide;
-        const {offsetLeft: viewportLeft, offsetWidth: viewportWidth} = this.viewport;
+    requestAnimationFrame(() => {
+      const {offsetLeft: slideLeft, offsetWidth: slideWidth} = slide;
+      const {offsetLeft: viewportLeft, offsetWidth: viewportWidth} = this.viewport;
 
-        const slideCenter = slideLeft + slideWidth / 2;
-        const viewportCenter = viewportLeft + viewportWidth / 2;
+      const slideCenter = slideLeft + slideWidth / 2;
+      const viewportCenter = viewportLeft + viewportWidth / 2;
 
-        this.viewport.scrollLeft = this.multiple
-          ? slideCenter - viewportCenter
-          : slideLeft - viewportLeft;
-      });
-    }
+      this.viewport.scrollLeft = this.multiple
+        ? slideCenter - viewportCenter
+        : slideLeft - viewportLeft;
+    });
   }
   // #endregion
 }

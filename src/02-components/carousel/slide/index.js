@@ -3,16 +3,9 @@ import {declarative, refreshProperties} from "../../utilities/index.js";
 class Slide extends declarative(HTMLElement) {
   static observedAttributes = ["selected"];
 
-  get selected() {
-    return this.hasAttribute("selected");
-  }
-
-  set selected(value) {
-    this.toggleAttribute("selected", Boolean(value));
-  }
-
-  get carousel() {
-    return this.closest("tcds-carousel");
+  constructor() {
+    super();
+    this.attachShadow({mode: "open"});
   }
 
   get template() {
@@ -26,11 +19,6 @@ class Slide extends declarative(HTMLElement) {
     `;
   }
 
-  constructor() {
-    super();
-    this.attachShadow({mode: "open"});
-  }
-
   connectedCallback() {
     refreshProperties.apply(this, ["selected"]);
     this.requestUpdate();
@@ -41,9 +29,23 @@ class Slide extends declarative(HTMLElement) {
   }
 
   updatedCallback(old) {
+    // Also trigger the parent carousel's update process if a slide's selected
+    // state changes (in order to update the indicator dots, etc.)
     if("selected" in old) {
       this.carousel.requestUpdate();
     }
+  }
+
+  get carousel() {
+    return this.closest("tcds-carousel");
+  }
+
+  get selected() {
+    return this.hasAttribute("selected");
+  }
+
+  set selected(value) {
+    this.toggleAttribute("selected", Boolean(value));
   }
 }
 

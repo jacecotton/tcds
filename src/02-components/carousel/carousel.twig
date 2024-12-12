@@ -1,7 +1,7 @@
-<tcds-carousel {{ playing ? "playing timing='#{timing}'"}} {{ multiple ? "multiple"}}>
+<tcds-carousel {{ timing ? "timing=#{timing} #{playing ? 'playing'}" }} {{ multiple ? "multiple" }}>
   {% for slide in slides %}
     <tcds-slide {{ slide.selected ? "selected" }}>
-      {{ slide.content ? slide.content }}
+      {{ slide.content ?: null }}
 
       {% if block(slide.block) is defined %}
         {{ block(slide.block) }}
