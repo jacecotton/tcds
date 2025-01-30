@@ -55,6 +55,8 @@ const tasks = {
           "card": {import: "./src/02-components/card/index.js", dependOn: ["utilities"]},
           "carousel": {import: "./src/02-components/carousel/index.js", dependOn: ["utilities"]},
           "slide": {import: "./src/02-components/carousel/slide/index.js", dependOn: ["utilities"]},
+          "fn-ref": {import: "./src/02-components/footnote/fn-ref/index.js", dependOn: ["utilities"]},
+          "fn-list": {import: "./src/02-components/footnote/fn-list/index.js", dependOn: ["utilities"]},
           "tabs": {import: "./src/02-components/tabs/index.js", dependOn: ["utilities"]},
           "tab": {import: "./src/02-components/tabs/tab/index.js", dependOn: ["utilities"]},
           "icon": {import: "./src/02-components/icon/index.js", dependOn: ["utilities"]},
@@ -128,7 +130,7 @@ const tasks = {
     iconCategories.forEach((category) => {
       const filenames = fs.readdirSync(`./src/00-brand/icons/static/${category}/`)
         .filter(name => !fileignore.includes(name));
-      
+
       icons.library[category] = {};
 
       filenames.forEach((filename) => {
@@ -172,7 +174,7 @@ const tasks = {
         // Site Studio needs the above-created JSON config file plus a zip file
         // of all the icon fonts.
         const fonts = fontFormats.map(format => `./dist/fonts/icons/*.${format}`);
-  
+
         return src(fonts)
           .pipe(zip("tcds-icons.zip"))
           // Place zip file in same directory as JSON config.
