@@ -9,6 +9,10 @@ tcds-fn-ref {
     box-shadow: inset 0 -3px 0 var(--tcds-color-baby-blue-2);
   }
 
+  &::part(super) {
+    white-space: nowrap;
+  }
+
   &::part(anchor) {
     display: inline-block;
     padding: 1em 1em 1em 1.25em;

@@ -11,7 +11,7 @@ class FnList extends declarative(HTMLElement) {
     // `tcds-fn-list`).
     this.querySelectorAll("li").forEach((footnote) => {
       // Find the first associated reference in the document.
-      const ref = document.querySelector(`[aria-describedby=${footnote.id}`);
+      const ref = document.querySelector(`[aria-details=${footnote.id}`);
 
       // Remove the footnote if a corresponding reference doesn't exist.
       if(!ref) {

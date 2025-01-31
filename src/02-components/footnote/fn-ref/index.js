@@ -8,7 +8,7 @@ class FnRef extends declarative(HTMLElement) {
 
   connectedCallback() {
     // A tcds-fn-ref's corresponding "footnote" is an `li` element with an `id`
-    // matching the tcds-fn-ref's `aria-describedby` attribute.
+    // matching the tcds-fn-ref's `aria-details` attribute.
     if(!this.footnote) {
       return;
     }
@@ -28,16 +28,16 @@ class FnRef extends declarative(HTMLElement) {
   get template() {
     // https://www.w3.org/TR/dpub-aria-1.1/#doc-noteref
     return importSharedStyles() + html`
-      <slot></slot><sup><a part="anchor" href="#${this.footnote.id}" role="doc-noteref"><span class="visually-hidden">footnote </span>${this.refnum}</a></sup>
+      <slot></slot><sup part="super">&NoBreak;<a part="anchor" href="#${this.footnote.id}" role="doc-noteref"><span class="visually-hidden">footnote </span>${this.refnum}</a></sup>
     `;
   }
 
   get footnote() {
-    return this.hasAttribute("aria-describedby")
+    return this.hasAttribute("aria-details")
       // Get the element in the document with a unique ID matching this
-      // element's `aria-describedby`.
-      ? document.getElementById(this.getAttribute("aria-describedby"))
-      : new Error(`${this.tagName} is missing required "aria-describedby" attribute pointing to valid unique ID on a list element as a descendant of TCDS-FN-LIST element.`);
+      // element's `aria-details`.
+      ? document.getElementById(this.getAttribute("aria-details"))
+      : new Error(`${this.tagName} is missing required "aria-details" attribute pointing to valid unique ID on a list element as a descendant of TCDS-FN-LIST element.`);
   }
 
   get refnum() {
