@@ -1,5 +1,7 @@
 [role="tabpanel"] {
   padding: var(--tcds-tabpanel-padding, var(--tcds-tabpanel-padding-block-start, var(--tcds-space-normal)) 0 0);
-  border-bottom-left-radius: var(--tcds-tab-border-radius);
-  border-bottom-right-radius: var(--tcds-tab-border-radius);
+  border-bottom-left-radius: var(--tcds-tabpanel-border-bottom-left-radius, var(--tcds-tab-border-radius));
+  border-bottom-right-radius: var(--tcds-tabpanel-border-bottom-right-radius, var(--tcds-tab-border-radius));
+  border-top-right-radius: var(--tcds-tab-border-radius);
+  background-color: var(--tcds-tabpanel-background, transparent);
 }

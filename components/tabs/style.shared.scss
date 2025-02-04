@@ -24,3 +24,7 @@ tcds-tabs {
     --tcds-tabs-tab-active-background-color: var(--tcds-color-shade-xx-weak);
   }
 }
+
+tcds-tab {
+  grid-area: tabpanels;
+}
