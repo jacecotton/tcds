@@ -7,8 +7,7 @@ import reconcile from "./reconcile.js";
  * the subclass's `template` property (a string of declaratively-written HTML)
  * be re-evaluated and then used to update the custom element's shadow DOM (with
  * DOM diffing, see `reconcile`). This provides reactivity to components, as
- * `requestUpdate` can be called from anywhere (prop setters, event listeners,
- * hooks, etc.)
+ * `requestUpdate` can be called from anywhere (setters, proxies, etc.)
  *
  * This class mixin provides two callback methods for hooking into the update
  * process: `mountedCallback` and `updatedCallback`. The former runs after the

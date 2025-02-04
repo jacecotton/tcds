@@ -93,6 +93,7 @@ section {
 
 [part="navigation"] {
   grid-area: navigation;
+  grid-column: 1 / -1;
   display: flex;
   align-items: center;
   justify-content: var(--tcds-carousel-navigation-justify, center);

@@ -61,9 +61,9 @@ class AccordionSection extends declarative(HTMLElement) {
   updatedCallback(old) {
     if("open" in old) {
       const openAnimation = {height: ["0", `${this.panel.scrollHeight}px`]};
-      const openAnimationDuration = animation.timing.productive.duration;
       // Don't animate open/close if reduced motion preference is set.
       const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const openAnimationDuration = reducedMotion ? 1 : animation.timing.productive.duration;
 
       if(this.open) {
         // Opening from a closed state, so we need to set a starting height of 0
@@ -75,11 +75,11 @@ class AccordionSection extends declarative(HTMLElement) {
         // closing animation of sibling panels (if applicable).
         requestAnimationFrame(() => {
           // The animation opens to computed height, but the content could
-          // change (like if the window is shrunk), so after the animation,
-          // we need to set the height to `auto`.
-          this.panel.animate(openAnimation, {
-            duration: reducedMotion ? 1 : openAnimationDuration,
-          }).onfinish = () => this.panel.style.height = "auto";
+          // change (like if the window is shrunk or if a nested accordion
+          // section is toggled), so after the animation, we need to set the
+          // height to `auto`.
+          this.panel.animate(openAnimation, {duration: openAnimationDuration})
+            .onfinish = () => this.panel.style.height = "auto";
         });
 
         // Close all sibling sections when this panel is opened (unless
@@ -97,19 +97,21 @@ class AccordionSection extends declarative(HTMLElement) {
             const headingTop = this.heading.getBoundingClientRect().top;
             // We need to account for a sticky header, plus an arbitrary 25px
             // buffer.
-            const viewportTop = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--tcds-site-header-height")) + 25;
-            const needed = headingTop < viewportTop;
+            const viewportTop = parseInt(
+              getComputedStyle(document.documentElement)
+                .getPropertyValue("--tcds-site-header-height")
+            ) + 25;
 
-            if(needed) this.scrollIntoView(true);
+            if(headingTop < viewportTop) {
+              this.scrollIntoView(true);
+            }
           }, openAnimationDuration * 2);
         }
       } else if(old.open) {
         // Closing from open state. Hide panel after reversed animation to 0
         // height.
-        this.panel.animate(openAnimation, {
-          direction: "reverse",
-          duration: reducedMotion ? 1 : openAnimationDuration,
-        }).onfinish = () => this.panel.hidden = true;
+        this.panel.animate(openAnimation, {direction: "reverse", duration: openAnimationDuration})
+          .onfinish = () => this.panel.hidden = true;
       }
     } else if(!this.open) {
       // Closing from non-determinate state (probably first render, so just

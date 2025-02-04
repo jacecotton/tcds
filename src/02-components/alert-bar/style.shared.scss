@@ -9,7 +9,9 @@ tcds-alert-bar {
     > details {
       --tcds-details-icon-rotate: 90deg;
 
-      display: contents;
+      &, &::details-content {
+        display: contents;
+      }
 
       &[open] {
         --tcds-details-icon-rotate: 180deg;

@@ -1,7 +1,9 @@
 .tcds-side-menu {
   details[open] {
     @media (--above-m) {
-      display: contents;
+      &, &::details-content {
+        display: contents;
+      }
 
       summary {
         display: none;

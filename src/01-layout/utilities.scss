@@ -66,7 +66,7 @@
 
   @each $breakpoint, $value in layout.$breakpoints {
     $index: list.index(layout.$breakpoints, ($breakpoint $value));
-    
+
     $previous-breakpoint: if($index - 1 > 0,
       list.nth(list.nth(layout.$breakpoints, $index - 1), 1),
       null
@@ -98,7 +98,7 @@
 @each $breakpoint, $value in layout.$breakpoints {
   @media (--above-#{$breakpoint}) {
     .column-full\@above\:#{$breakpoint} {
-      grid-column: 1 / -1 !important; 
+      grid-column: 1 / -1 !important;
     }
 
     @for $column from 1 through 12 {

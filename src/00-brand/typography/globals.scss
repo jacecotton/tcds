@@ -78,6 +78,12 @@ body {
   font-size: max(var(--tcds-font-size-xs), 85%);
 }
 
+:where(sup) {
+  vertical-align: baseline;
+  position: relative;
+  top: -.333lh;
+}
+
 a {
   :where(&) {
     color: var(--tcds-color-link);
