@@ -1,3 +1,12 @@
+# [2.3.0](https://github.com/jacecotton/tcds/compare/v2.2.13...v2.3.0) (2025-02-04)
+
+
+### Features
+
+* **components:** Add stepper variant to tabs component ([80c7e4c](https://github.com/jacecotton/tcds/commit/80c7e4c57244add1ebe74ffd020ea9e028d1a937))
+
+
+
 ## [2.2.13](https://github.com/jacecotton/tcds/compare/v2.2.12...v2.2.13) (2024-06-26)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * dummy push ([4b64653](https://github.com/jacecotton/tcds/commit/4b646530e08b5d2ecbc55cd1d8a68e7fcb1faee1))
-
-
-
-## [2.2.9](https://github.com/jacecotton/tcds/compare/v2.2.8...v2.2.9) (2023-08-16)
-
-
-### Bug Fixes
-
-* **components:** Dialog video embed pause issue ([210a49e](https://github.com/jacecotton/tcds/commit/210a49eaaea7184c6043a8b16d20aebfad48af22))
 
 
 
