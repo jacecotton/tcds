@@ -1,3 +1,12 @@
+## [2.3.2](https://github.com/jacecotton/tcds/compare/v2.3.1...v2.3.2) (2025-02-05)
+
+
+### Bug Fixes
+
+* **components:** Issues with stepper tab variant ([697bc71](https://github.com/jacecotton/tcds/commit/697bc719973c018d8e31c0c8bbe3c57f7a3d45ec))
+
+
+
 ## [2.3.1](https://github.com/jacecotton/tcds/compare/v2.3.0...v2.3.1) (2025-02-04)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **templates:** Site footer link clickability issue ([c7882e2](https://github.com/jacecotton/tcds/commit/c7882e26d0a17ee65d218044f2362937a289905e))
-
-
-
-## [2.2.11](https://github.com/jacecotton/tcds/compare/v2.2.10...v2.2.11) (2023-08-16)
-
-
-### Bug Fixes
-
-* **components:** Make slides uniform height for carousel[multiple] ([db14d85](https://github.com/jacecotton/tcds/commit/db14d856b122d48acd08b690b87c320872c396f1))
 
 
 
