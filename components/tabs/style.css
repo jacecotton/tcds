@@ -29,6 +29,7 @@
   --tcds-tabs-tab-active-background: var(--tcds-color-blue-x-light);
   --tcds-tabs-tab-hover-background: var(--tcds-color-blue-light);
   --tcds-tabs-tab-active-text-color: var(--tcds-color-blue-dark);
+  --tcds-tabs-tab-hover-text-color: var(--tcds-color-blue-dark);
   --tcds-tabs-tab-indicator: none;
   --tcds-tabs-tab-background-floater: none;
   --tcds-tabs-tab-padding-inline: 2rem;
@@ -38,10 +39,9 @@
     --tcds-tabs-tab-padding-block: 1rem;
     --tcds-tab-border-bottom-left-radius: 1rem;
     --tcds-tab-border-top-right-radius: 0;
-    --tcds-tabpanel-border-bottom-left-radius: 0;
 
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 100px 1fr;
     grid-template-areas: "tablist" "tabpanels";
 
     [role="tablist"] {
@@ -76,6 +76,7 @@
 
   &:hover {
     --tcds-tabs-tab-background: var(--tcds-tabs-tab-hover-background, var(--tcds-tabs-tab-active-background, transparent));
+    --tcds-tabs-tab-text-color: var(--tcds-tabs-tab-hover-text-color, var(--tcds-tabs-tab-active-text-color, var(--tcds-color-primary)));
   }
 
   &[aria-selected="true"] {

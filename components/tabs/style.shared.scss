@@ -27,4 +27,6 @@ tcds-tabs {
 
 tcds-tab {
   grid-area: tabpanels;
+  grid-column: 2 / -1;
+  grid-row: 1 / -1;
 }
