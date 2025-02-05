@@ -1,3 +1,12 @@
+## [2.3.1](https://github.com/jacecotton/tcds/compare/v2.3.0...v2.3.1) (2025-02-04)
+
+
+### Bug Fixes
+
+* **components:** Stepper tab variant design tweak ([cb2c007](https://github.com/jacecotton/tcds/commit/cb2c007d3958ab6d006be344b1712a97dee6f2c8))
+
+
+
 # [2.3.0](https://github.com/jacecotton/tcds/compare/v2.2.13...v2.3.0) (2025-02-04)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Make slides uniform height for carousel[multiple] ([db14d85](https://github.com/jacecotton/tcds/commit/db14d856b122d48acd08b690b87c320872c396f1))
-
-
-
-## [2.2.10](https://github.com/jacecotton/tcds/compare/v2.2.9...v2.2.10) (2023-08-16)
-
-
-### Bug Fixes
-
-* dummy push ([4b64653](https://github.com/jacecotton/tcds/commit/4b646530e08b5d2ecbc55cd1d8a68e7fcb1faee1))
 
 
 
