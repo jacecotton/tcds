@@ -19,7 +19,7 @@
   justify-content: space-between;
   padding: var(--tcds-micro-s) 0;
   text-align: left;
-  font-size: var(--tcds-accordion-heading-font-size, var(--tcds-font-size-ml));
+  font-size: var(--tcds-accordion-heading-font-size, 1rem);
   font-family: var(--tcds-font-ui);
   font-weight: var(--tcds-accordion-heading-font-weight, var(--tcds-font-weight-semibold));
   width: 100%;

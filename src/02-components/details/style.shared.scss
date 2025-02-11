@@ -9,6 +9,7 @@ details {
     :where(&) {
       font-family: var(--tcds-font-ui);
       font-weight: var(--tcds-font-weight-semibold);
+      font-size: var(--tcds-font-size-rem);
       padding: 1em 0;
       list-style: none;
       display: flex;

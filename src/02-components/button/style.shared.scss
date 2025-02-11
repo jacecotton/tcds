@@ -39,7 +39,7 @@ a[is="tcds-link-button"] {
     box-shadow: var(--tcds-button-box-shadow, none);
 
     font-family: var(--tcds-font-ui);
-    font-size: var(--tcds-font-size-m);
+    font-size: var(--tcds-font-size-rem);
     font-weight: var(--tcds-button-font-weight, var(--tcds-font-weight-bold));
     text-decoration: none;
     white-space: nowrap;
@@ -54,7 +54,7 @@ a[is="tcds-link-button"] {
     --tcds-button-height: var(--tcds-micro-l);
     --tcds-button-inline-padding: var(--tcds-micro-m);
 
-    font-size: var(--tcds-font-size-ml);
+    font-size: var(--tcds-font-size-m);
   }
 
   :where(:is(&)[size*="small"]) {
@@ -130,7 +130,7 @@ a[is="tcds-link-button"] {
     outline: var(--tcds-button-outline, 2px solid var(--tcds-color-baby-blue));
     outline-offset: var(--tcds-button-outline-offset, -1px);
   }
-  
+
   [data-theme="dark"] :is(&):not(
     [data-theme="light"],
     [data-theme="light"] *

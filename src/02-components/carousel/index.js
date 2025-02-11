@@ -5,6 +5,22 @@ class Carousel extends declarative(HTMLElement) {
   // #region Setup
   static observedAttributes = ["playing", "timing", "multiple"];
 
+  /**
+   * Enum for playing state values. `PLAYING` means the carousel is
+   * auto-forwarding. `PAUSED` means the carousel is only temporarily stopped
+   * and will resume given the inverse of the pause conditions (hover out, etc.)
+   * `STOPPED` means the carousel is stopped until the user clicks the play
+   * button.
+   *
+   * @readonly
+   * @enum {string}
+   */
+  static PLAYING_STATE = Object.freeze({
+    PLAYING: "playing",
+    PAUSED: "paused",
+    STOPPED: "stopped",
+  });
+
   constructor() {
     super();
     this.attachShadow({mode: "open"});
@@ -12,7 +28,7 @@ class Carousel extends declarative(HTMLElement) {
   }
 
   get template() {
-    const playing = this.playing === "playing";
+    const playing = this.playing === Carousel.PLAYING_STATE.PLAYING;
     const playPause = `${playing ? "Stop" : "Start"} automatic slide show`;
 
     return importSharedStyles() + html`
@@ -114,7 +130,7 @@ class Carousel extends declarative(HTMLElement) {
     const prefersReducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const noHover = matchMedia("(hover: none)").matches;
 
-    if(this.playing === "playing" && !prefersReducedMotion && !noHover) {
+    if(this.playing === Carousel.PLAYING_STATE.PLAYING && !prefersReducedMotion && !noHover) {
       this.play();
     }
 
@@ -144,7 +160,7 @@ class Carousel extends declarative(HTMLElement) {
     if("playing" in old || "timing" in old) {
       clearTimeout(this.player);
 
-      if(this.playing === "playing") {
+      if(this.playing === Carousel.PLAYING_STATE.PLAYING) {
         const play = () => {
           if(!this.timing) return;
 
@@ -271,16 +287,16 @@ class Carousel extends declarative(HTMLElement) {
   // #endregion
 
   // #region Props and state
-  #playing = "stopped";
+  #playing = Carousel.PLAYING_STATE.PLAYING;
 
   get playing() {
     return this.hasAttribute("playing") && this.timing
-      ? "playing" : this.#playing;
+      ? Carousel.PLAYING_STATE.PLAYING : this.#playing;
   }
 
   set playing(value) {
     this.#playing = value;
-    this.toggleAttribute("playing", value === "playing");
+    this.toggleAttribute("playing", value === Carousel.PLAYING_STATE.PLAYING);
   }
 
   get timing() {
@@ -317,28 +333,28 @@ class Carousel extends declarative(HTMLElement) {
   // #region Public API
   play() {
     if(this.timing) {
-      this.playing = "playing";
+      this.playing = Carousel.PLAYING_STATE.PLAYING;
     } else {
       console.error("TCDS-CAROUSEL cannot play without a timing property.", this);
     }
   }
 
   stop() {
-    this.playing = "stopped";
+    this.playing = Carousel.PLAYING_STATE.STOPPED;
   }
 
   toggle() {
-    this.playing === "playing" ? this.stop() : this.play();
+    this.playing === Carousel.PLAYING_STATE.PLAYING ? this.stop() : this.play();
   }
 
   pause() {
-    if(this.playing === "playing") {
-      this.playing = "paused";
+    if(this.playing === Carousel.PLAYING_STATE.PLAYING) {
+      this.playing = Carousel.PLAYING_STATE.PAUSED;
     }
   }
 
   resume() {
-    if(this.playing === "paused") {
+    if(this.playing === Carousel.PLAYING_STATE.PAUSED) {
       // This `requestAnimationFrame` is to prevent `setTimeout` weirdness after
       // rapid back-and-forth state changes (e.g. by hovering over-and-out too
       // quickly).

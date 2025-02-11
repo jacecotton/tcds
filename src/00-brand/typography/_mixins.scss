@@ -48,6 +48,6 @@
 @mixin h6 {
   @include subheadings;
 
-  font-size: var(--tcds-font-size-s);
+  font-size: var(--tcds-font-size-rem);
   font-weight: var(--tcds-font-weight-bold);
 }

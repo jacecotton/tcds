@@ -98,6 +98,7 @@ a {
 
   &[href]:not(:where(
     [is],
+    [slot],
     [href^="#"],
     [href^="javascript:" i],
     [href^="/"]:not([href^="//"])
@@ -120,11 +121,11 @@ a {
  * 1. We want to apply some default vertical margin to paragraph elements,
  *    unless the paragraph is either the first or last child in a container (as
  *    we still want them vertically flush). So we exclude those, but we also
- *    want to exclude any that are directly adjacent to [slot]ted elements,
- *    because those are never actually rendered.
+ *    want to exclude any that are directly adjacent to headings or slotted
+ *    elements, because those are never actually rendered.
  */
 p {
-  :where(&:not(:first-child, [slot] + *)) { // 1
+  :where(&:not(:first-child, :is(h1, h2, h3, h4, h5, h6) + *, [slot] + *:not([slot]))) { // 1
     margin-top: 1.5em;
   }
 
@@ -142,12 +143,12 @@ p {
  *    can be readded with `[role=list]`. Therefore, as a general rule, never add
  *    `list-style: none` to list elements elsewhere in the codebase (components,
  *    etc.) Instead, add `role="list"` to any list from which you want `list-
- *    style` removed.
+ *    style` removed. This will also remove other default styling.
  */
 ul,
 ol {
   :where(&) {
-    margin: 0 0 0 calc(1em + 3px);
+    margin: 0 0 0 4ch;
     padding: 0;
   }
 
@@ -157,6 +158,7 @@ ol {
 
   &:where([role="list"]) {
     list-style: none; // 1
+    margin: 0;
   }
 }
 

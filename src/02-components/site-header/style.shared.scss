@@ -119,7 +119,6 @@ tcds-site-header {
   img {
     height: auto;
     padding: 0 4rem 0 1rem;
-    filter: var(--tcds-site-header-logo-filter, saturate(0) contrast(0) brightness(0) invert(1));
 
     @media (--above-s) {
       padding: 0 6.25rem 0 1rem;
@@ -129,9 +128,15 @@ tcds-site-header {
   span {
     text-align: right;
     padding-right: 26.75%;
-    color: var(--tcds-color-gray);
+    color: var(--tcds-color-secondary);
     font-family: var(--tcds-font-sans-serif);
     font-weight: var(--tcds-font-weight-semibold);
+    font-size: var(--tcds-font-size-rem);
+  }
+
+  img,
+  span {
+    filter: var(--tcds-site-header-logo-filter, saturate(0) contrast(0) brightness(0) invert(1));
   }
 }
 
@@ -249,7 +254,7 @@ details:is(#site-header-nav, #site-header-search) {
           cursor: pointer;
           color: var(--tcds-site-header-link-color);
           font-family: var(--tcds-font-ui);
-          font-size: var(--tcds-font-size-m);
+          font-size: var(--tcds-font-size-rem);
           font-weight: var(--tcds-font-weight-bold);
           line-height: 1;
           text-decoration: none;
@@ -309,7 +314,7 @@ tcds-site-header nav:not(#utility-menu) {
         }
 
         @media (--below-m) {
-          font-size: var(--tcds-font-size-ml);
+          font-size: var(--tcds-font-size-rem);
         }
       }
 
@@ -437,7 +442,7 @@ tcds-site-header nav:not(#utility-menu) {
         font-size: var(--tcds-font-size-xs);
 
         @media (--below-m) {
-          font-size: var(--tcds-font-size-m);
+          font-size: var(--tcds-font-size-rem);
         }
 
         &:not(:hover) {

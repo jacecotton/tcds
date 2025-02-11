@@ -5,19 +5,41 @@
 
 article {
   display: grid;
-  grid-template-columns: 1fr;
-  box-shadow: var(--tcds-box-shadow-m) var(--tcds-shade-weak);
-  border-radius: var(--tcds-border-radius-m);
   overflow: hidden;
 
-  @container (min-inline-size: 640px) {
-    :host(:not([orientation="vertical"])) & {
-      grid-template-columns: minmax(220px, 1fr) 3fr;
+  :host([orientation*="horizontal"]) & {
+    grid-template-columns: min(33.33%, 220px) 1fr;
+  }
+
+  :host(:not([orientation*="horizontal"])) & {
+    grid-template-columns: 1fr;
+  }
+
+  @container (min-width: 375px) {
+    :host(:not([orientation*="horizontal"], [variant="lite"])) & {
+      --tcds-card-padding: 2rem;
     }
   }
 
-  :host([orientation="horizontal"]) & {
-    grid-template-columns: minmax(220px, 1fr) 3fr;
+  &:hover {
+    --tcds-card-image-scale: 1.025;
+    --tcds-card-cta-icon-background: var(--tcds-color-primary);
+    --tcds-card-cta-icon-color: #fff;
+  }
+}
+
+[part="image"] {
+  border-radius: var(--tcds-card-image-border-radius, 0);
+  position: relative;
+  overflow: hidden;
+
+  ::slotted(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    scale: var(--tcds-card-image-scale, 1);
+    transition: scale var(--tcds-animation-expressive-duration) var(--tcds-animation-expressive-easing);
   }
 }
 
@@ -25,10 +47,35 @@ article {
   display: flex;
   flex-direction: column;
   gap: .5rem;
-  padding: 2rem;
-  color: var(--tcds-color-gray-3);
+  padding: var(--tcds-card-padding, 1rem);
 }
 
-::slotted(img) {
-  width: 100%;
+[part="footer"] {
+  display: flex;
+  justify-content: var(--tcds-card-justify-content, start);
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+[part="cta"] {
+  display: flex;
+  align-items: center;
+  gap: .6em;
+  font-family: var(--tcds-font-ui);
+  font-size: var(--tcds-font-size-rem);
+  font-weight: var(--tcds-font-weight-semibold);
+  color: var(--tcds-color-text);
+
+  tcds-icon {
+    width: 1.2em;
+    height: 1.2em;
+    border-radius: 1.2em;
+    padding: .3em;
+    background-color: var(--tcds-card-cta-icon-background, transparent);
+    color: var(--tcds-card-cta-icon-color, var(--tcds-color-primary));
+    transition:
+      background-color var(--tcds-animation-productive-duration) var(--tcds-animation-productive-duration),
+      color var(--tcds-animation-productive-duration) var(--tcds-animation-productive-duration);
+  }
 }

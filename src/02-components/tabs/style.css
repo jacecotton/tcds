@@ -28,7 +28,7 @@
   border: 0;
   color: var(--tcds-tabs-tab-text-color, var(--tcds-color-text));
   font-weight: var(--tcds-font-weight-semibold);
-  font-size: var(--tcds-font-size-ml);
+  font-size: var(--tcds-font-size-m);
   font-family: var(--tcds-font-ui);
   display: inline-flex;
   align-items: center;
@@ -47,7 +47,7 @@
     left: 50%;
     transform: translateX(-50%);
   }
-  
+
   &:hover,
   &:focus-visible {
     --tcds-tabs-tab-text-color: var(--tcds-color-red);

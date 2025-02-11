@@ -1,30 +1,80 @@
-import {declarative, importSharedStyles, refreshProperties} from "../utilities/index.js";
+import {declarative, html, importSharedStyles, refreshProperties} from "../utilities/index.js";
 import style from "./styles.css";
 
 class Card extends declarative(HTMLElement) {
-  get template() {
-    const link = this.querySelector("a[slot=title][href]")?.href;
-    const title = this.querySelector("[slot=title]")?.textContent;
+  // #region Setup
+  static observedAttributes = ["variant", "cta"];
 
-    return importSharedStyles() + /* html */`
-      <article data-theme="light">
-        <figure>
+  constructor() {
+    super();
+    this.attachShadow({mode: "open"});
+    this.shadowRoot.adoptedStyleSheets = [style];
+  }
+
+  get template() {
+    return importSharedStyles() + html`
+      <article ${this.variant.includes("lite") ? "" : `data-theme="light"`}>
+        <figure part="image">
           <slot name="image"></slot>
         </figure>
 
         <div part="content">
           <slot name="title"></slot>
-          <slot name="description"></slot>
-          <slot></slot>
-
-          <slot name="footer">
-
+          <div part="description">
+            <slot name="description"></slot>
+            <slot></slot>
+          </div>
+          ${this.#has("footer") || this.cta ? html`
+            <footer part="footer">
+              <slot name="footer">
+                ${this.cta ? html`
+                  <span part="cta" aria-hidden="true">
+                    ${this.cta}
+                    <tcds-icon icon="caret-right"></tcds-icon>
+                  </span>
+                ` : ``}
+              </slot>
+            </footer>
+          ` : ``}
           </slot>
         </div>
       </article>
     `;
   }
+  // #endregion
 
+  // #region Lifecycle
+  connectedCallback() {
+    refreshProperties.apply(this, ["orientation", "variant"]);
+    this.requestUpdate();
+
+    // If an orientation is not user-specified, orient it according to
+    // responsive criteria.
+    if(!this.orientation) {
+      this.orient();
+      new ResizeObserver(this.orient.bind(this)).observe(this.getRootNode().body);
+    }
+  }
+
+  attributeChangedCallback(name, oldValue) {
+    this.requestUpdate({[name]: oldValue});
+  }
+  // #endregion
+
+  // #region Observers
+  orient() {
+    // By default, we want the cards vertical (image above text). However, if
+    // the device is smaller (than 640px), we want them horizontal (image left
+    // of text) by default. Think what cards (should) do in the map picker
+    // component, when they shift beneath the map. However, cards never work
+    // horizontal if the card is too small, so we'll use 300px as a sanity
+    // check (below which it goes back to vertical).
+    this.orientation = (this.getBoundingClientRect?.().width < 300 || window.innerWidth > 640)
+      ? "vertical" : "horizontal";
+  }
+  // #endregion
+
+  // #region Props and state
   get orientation() {
     return this.getAttribute("orientation")?.trim();
   }
@@ -33,12 +83,12 @@ class Card extends declarative(HTMLElement) {
     this.setAttribute("orientation", value.trim());
   }
 
-  get actionLabel() {
-    let value = this.hasAttribute("action-label") && this.getAttribute("action-label").trim();
+  get cta() {
+    let value = this.hasAttribute("cta") && this.getAttribute("cta").trim();
 
-    // Provide a default label if the [action-label] attribute is absent.
+    // Provide a default label if the [cta] attribute is absent.
     if(value === false) {
-      value = "Read more";
+      value = "Learn more";
     } else if(value === "") {
       // Do not use an action label if attribute is set specifically to empty.
       value = false;
@@ -47,20 +97,12 @@ class Card extends declarative(HTMLElement) {
     return value;
   }
 
-  set actionLabel(value) {
-    this.setAttribute("action-label", value.trim());
-  }
-
-  get size() {
-    return this.getAttribute("size")?.trim();
-  }
-
-  set size(value) {
-    this.setAttribute("size", value.trim());
+  set cta(value) {
+    this.setAttribute("cta", value.trim());
   }
 
   get variant() {
-    return this.getAttribute("variant")?.trim().replace(/\s\s+/g, " ").split(" ");
+    return (this.getAttribute("variant") || "").trim().replace(/\s\s+/g, " ").split(" ");
   }
 
   set variant(value) {
@@ -70,17 +112,13 @@ class Card extends declarative(HTMLElement) {
 
     this.setAttribute("variant", value);
   }
+  // #endregion
 
-  constructor() {
-    super();
-    this.attachShadow({mode: "open"});
-    this.shadowRoot.adoptedStyleSheets = [style];
+  // #region Utilities
+  #has() {
+    return !!this.querySelector([...arguments].map(slot => `[slot=${slot}]`).join(", "));
   }
-
-  connectedCallback() {
-    refreshProperties.apply(this, ["orientation", "actionLabel", "size", "variant"]);
-    this.requestUpdate();
-  }
+  // #endregion
 }
 
 customElements.define("tcds-card", Card);

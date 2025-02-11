@@ -1,6 +1,6 @@
 :host {
   --tcds-alert-bar-label-width: 13rem;
-  
+
   display: flex;
 }
 
@@ -50,7 +50,7 @@ section {
 h2 {
   display: flex;
   flex-shrink: 0;
-  font-size: var(--tcds-font-size-m);
+  font-size: var(--tcds-font-size-rem);
   font-family: var(--tcds-font-headings);
   font-weight: var(--tcds-font-weight-semibold);
   margin: 0 !important;
@@ -99,5 +99,5 @@ h2 {
   border: 0;
   appearance: none;
   padding: 1rem;
-  font-size: 1rem;
+  font-size: var(--tcds-font-size-rem);
 }

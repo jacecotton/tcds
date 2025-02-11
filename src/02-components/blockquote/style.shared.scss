@@ -1,8 +1,8 @@
 .tcds-blockquote {
-  --tcds-blockquote-quote-font-size: var(--tcds-font-size-l);
+  --tcds-blockquote-quote-font-size: var(--tcds-font-size-ml);
   --tcds-blockquote-quote-font-weight: var(--tcds-font-weight-bold);
   --tcds-blockquote-quote-size: 2rem;
-  --tcds-blockquote-title-font-size: var(--tcds-font-size-ml);
+  --tcds-blockquote-title-font-size: var(--tcds-font-size-m);
   --tcds-blockquote-subtitle-font-size: var(--tcds-font-size-m);
 
   width: min(100%, 80ch);
@@ -14,10 +14,10 @@
   }
 
   &--small {
-    --tcds-blockquote-quote-font-size: var(--tcds-font-size-ml);
+    --tcds-blockquote-quote-font-size: var(--tcds-font-size-m);
     --tcds-blockquote-quote-font-weight: var(--tcds-font-weight-semibold);
     --tcds-blockquote-quote-size: 1.5rem;
-    --tcds-blockquote-title-font-size: var(--tcds-font-size-s);
+    --tcds-blockquote-title-font-size: 1rem;
     --tcds-blockquote-subtitle-font-size: var(--tcds-font-size-s);
   }
 
@@ -53,7 +53,7 @@
     align-items: center;
     gap: 1rem;
     padding: 1rem 0;
-    
+
     img {
       width: 3rem;
       height: 3rem;
