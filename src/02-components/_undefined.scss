@@ -8,7 +8,7 @@ tcds-tabs,
 tcds-tab {
   &:not(:defined) {
     opacity: 0;
-    animation: tcds-custom-element-show 1ms;
+    animation: tcds-custom-element-show 1ms forwards;
     animation-delay: 1s;
 
     @keyframes tcds-custom-element-show {

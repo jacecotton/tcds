@@ -170,6 +170,12 @@ ol {
   :where(& & &) {
     list-style: upper-roman;
   }
+
+  ::marker {
+    font-family: var(--tcds-font-ui);
+    font-weight: var(--tcds-font-weight-semibold);
+    color: rgb(0 0 0 / 50%);
+  }
 }
 
 /**
