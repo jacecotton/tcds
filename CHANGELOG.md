@@ -1,3 +1,12 @@
+## [2.3.3](https://github.com/jacecotton/tcds/compare/v2.3.2...v2.3.3) (2025-02-12)
+
+
+### Bug Fixes
+
+* **components:** Bump up line height on hero headings ([7218972](https://github.com/jacecotton/tcds/commit/7218972787d0be550baa4eeb53b79823bfa0e3a1))
+
+
+
 ## [2.3.2](https://github.com/jacecotton/tcds/compare/v2.3.1...v2.3.2) (2025-02-05)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * Misc style tweaks ([af7b606](https://github.com/jacecotton/tcds/commit/af7b606b2eb3e68329ce5fba671163e11947c17b))
-
-
-
-## [2.2.12](https://github.com/jacecotton/tcds/compare/v2.2.11...v2.2.12) (2023-12-14)
-
-
-### Bug Fixes
-
-* **templates:** Site footer link clickability issue ([c7882e2](https://github.com/jacecotton/tcds/commit/c7882e26d0a17ee65d218044f2362937a289905e))
 
 
 
