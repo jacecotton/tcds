@@ -71,7 +71,7 @@ tcds-section {
   }
 
   > [slot="heading"] {
-    line-height: var(--tcds-line-height-x-tight) !important;
+    line-height: var(--tcds-line-height-tight) !important;
     color: var(--tcds-section-heading-color, var(--tcds-color-text));
     margin: 0;
 
