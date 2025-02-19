@@ -1,9 +1,9 @@
-import {declarative, importSharedStyles} from "../utilities/index.js";
-import styles from "./style.css";
+import {declarative, baseStyles} from "../utilities/index.js";
+import localStyles from "./style.css";
 
 class AlertBar extends declarative(HTMLElement) {
   get template() {
-    return importSharedStyles() + `
+    return `
       <section>
         <h2><tcds-icon icon="updates"></tcds-icon> Updates</h2>
         <div part="alerts">
@@ -19,7 +19,7 @@ class AlertBar extends declarative(HTMLElement) {
   constructor() {
     super();
     this.attachShadow({mode: "open"});
-    this.shadowRoot.adoptedStyleSheets = [styles];
+    this.shadowRoot.adoptedStyleSheets = [baseStyles, localStyles];
   }
 
   connectedCallback() {

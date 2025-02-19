@@ -1,9 +1,10 @@
-import {declarative, html, importSharedStyles} from "../../utilities/index.js";
+import {declarative, html, baseStyles} from "../../utilities/index.js";
 
 class FnRef extends declarative(HTMLElement) {
   constructor() {
     super();
     this.attachShadow({mode: "open"});
+    this.shadowRoot.adoptedStyleSheets = [baseStyles, localStyles];
   }
 
   connectedCallback() {
@@ -27,7 +28,7 @@ class FnRef extends declarative(HTMLElement) {
 
   get template() {
     // https://www.w3.org/TR/dpub-aria-1.1/#doc-noteref
-    return importSharedStyles() + html`
+    return html`
       <slot></slot><sup part="super">&NoBreak;<a part="anchor" href="#${this.footnote.id}" role="doc-noteref"><span class="visually-hidden">footnote </span>${this.refnum}</a></sup>
     `;
   }

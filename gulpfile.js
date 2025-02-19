@@ -60,12 +60,13 @@ const tasks = {
           "tabs": {import: "./src/02-components/tabs/index.js", dependOn: ["utilities"]},
           "tab": {import: "./src/02-components/tabs/tab/index.js", dependOn: ["utilities"]},
           "icon": {import: "./src/02-components/icon/index.js", dependOn: ["utilities"]},
+          "section": {import: "./src/02-components/section/index.js", dependOn: ["utilities"]},
           "site-header": {import: "./src/02-components/site-header/index.js", dependOn: ["utilities"]},
           "side-menu": {import: "./src/02-components/submenu/side-menu.js", dependOn: ["utilities"]},
 
           "utilities": [
             "./src/02-components/utilities/declarative.js",
-            "./src/02-components/utilities/importSharedStyles.js",
+            "./src/02-components/utilities/baseStyles.js",
             "./src/02-components/utilities/refreshProperties.js",
             "./src/02-components/utilities/slugify.js",
           ],

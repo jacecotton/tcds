@@ -1,5 +1,5 @@
-import {declarative, html, importSharedStyles, refreshProperties} from "../utilities/index.js";
-import style from "./styles.css";
+import {declarative, html, baseStyles, refreshProperties} from "../utilities/index.js";
+import localStyles from "./styles.css";
 
 class Card extends declarative(HTMLElement) {
   // #region Setup
@@ -8,11 +8,11 @@ class Card extends declarative(HTMLElement) {
   constructor() {
     super();
     this.attachShadow({mode: "open"});
-    this.shadowRoot.adoptedStyleSheets = [style];
+    this.shadowRoot.adoptedStyleSheets = [baseStyles, localStyles];
   }
 
   get template() {
-    return importSharedStyles() + html`
+    return html`
       <article ${this.variant.includes("lite") ? "" : `data-theme="light"`}>
         <figure part="image">
           <slot name="image"></slot>

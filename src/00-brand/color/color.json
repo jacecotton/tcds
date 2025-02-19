@@ -47,7 +47,7 @@
         "text-secondary": "gray",
         "watermark": "red-2",
         "link": "white",
-        "accent": "pink"
+        "accent": "white"
       },
       "secondary": {
         "background": "navy",
@@ -55,7 +55,7 @@
         "text-secondary": "gray",
         "watermark": "black",
         "link": "baby-blue-2",
-        "accent": "red"
+        "accent": "white"
       },
       "tertiary": {
         "background": "gray-4",

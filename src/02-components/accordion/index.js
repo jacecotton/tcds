@@ -1,5 +1,5 @@
-import {declarative, importSharedStyles, refreshProperties, html} from "../utilities/index.js";
-import styles from "./style.css";
+import {declarative, baseStyles, refreshProperties, html} from "../utilities/index.js";
+import localStyles from "./style.css";
 
 class Accordion extends declarative(HTMLElement) {
   // #region Setup
@@ -8,11 +8,11 @@ class Accordion extends declarative(HTMLElement) {
   constructor() {
     super();
     this.attachShadow({mode: "open"});
-    this.shadowRoot.adoptedStyleSheets = [styles];
+    this.shadowRoot.adoptedStyleSheets = [baseStyles, localStyles];
   }
 
   get template() {
-    return importSharedStyles() + html`
+    return html`
       ${this.multiple ? html`
         <div part="controls">
           <button part="open-all" onclick="this.getRootNode().host.showAll()">

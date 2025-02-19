@@ -1,5 +1,5 @@
-import {declarative, importSharedStyles, refreshProperties} from "../utilities/index.js";
-import styles from "./style.css";
+import {declarative, baseStyles, refreshProperties} from "../utilities/index.js";
+import localStyles from "./style.css";
 
 class Tabs extends declarative(HTMLElement) {
   // #region Setup
@@ -8,11 +8,11 @@ class Tabs extends declarative(HTMLElement) {
   constructor() {
     super();
     this.attachShadow({mode: "open"});
-    this.shadowRoot.adoptedStyleSheets = [styles];
+    this.shadowRoot.adoptedStyleSheets = [baseStyles, localStyles];
   }
 
   get template() {
-    return importSharedStyles() + `
+    return `
       <div role="tablist">
         ${this.tabs.map(tab => `
           <button

@@ -1,9 +1,10 @@
-import {declarative, html, importSharedStyles} from "../../utilities/index.js";
+import {declarative, html, baseStyles} from "../../utilities/index.js";
 
 class FnList extends declarative(HTMLElement) {
   constructor() {
     super();
     this.attachShadow({mode: "open"});
+    this.shadowRoot.adoptedStyleSheets = [baseStyles, localStyles];
   }
 
   connectedCallback() {
@@ -39,7 +40,7 @@ class FnList extends declarative(HTMLElement) {
 
   get template() {
     // https://www.w3.org/TR/dpub-aria-1.1/#doc-endnotes
-    return importSharedStyles() + html`
+    return html`
       <aside role="doc-endnotes" aria-labelledby="footnotes-${this.fnListIndex}">
         <${this.headingLevel} class="visually-hidden" id="footnotes-${this.fnListIndex}">Footnotes</${this.headingLevel}>
         <slot></slot>

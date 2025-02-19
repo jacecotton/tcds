@@ -1,0 +1,24 @@
+section {
+  display: grid;
+  grid-template-columns: 1fr fit-content(600px);
+  grid-template-areas: "primary secondary";
+  align-items: center;
+  gap: 2rem;
+}
+
+[part="primary"] {
+  grid-area: primary;
+  padding-block-start: var(--_tcds-section-padding-block-start);
+  padding-block-end: var(--_tcds-section-padding-block-end);
+}
+
+[part="secondary"] {
+  grid-area: secondary;
+  padding-block-start: var(--_tcds-section-padding-block-start);
+  padding-block-end: var(--_tcds-section-padding-block-end);
+}
+
+[part="cta"] {
+  display: flex;
+  gap: 2rem;
+}

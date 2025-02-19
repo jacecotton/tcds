@@ -1,37 +1,21 @@
-import {declarative, html, importSharedStyles, refreshProperties} from "../utilities/index.js";
-import styles from "./style.css";
+import {declarative, html, baseStyles, refreshProperties} from "../utilities/index.js";
+import localStyles from "./style.css";
 
 class Carousel extends declarative(HTMLElement) {
   // #region Setup
   static observedAttributes = ["playing", "timing", "multiple"];
 
-  /**
-   * Enum for playing state values. `PLAYING` means the carousel is
-   * auto-forwarding. `PAUSED` means the carousel is only temporarily stopped
-   * and will resume given the inverse of the pause conditions (hover out, etc.)
-   * `STOPPED` means the carousel is stopped until the user clicks the play
-   * button.
-   *
-   * @readonly
-   * @enum {string}
-   */
-  static PLAYING_STATE = Object.freeze({
-    PLAYING: "playing",
-    PAUSED: "paused",
-    STOPPED: "stopped",
-  });
-
   constructor() {
     super();
     this.attachShadow({mode: "open"});
-    this.shadowRoot.adoptedStyleSheets = [styles];
+    this.shadowRoot.adoptedStyleSheets = [baseStyles, localStyles];
   }
 
   get template() {
-    const playing = this.playing === Carousel.PLAYING_STATE.PLAYING;
+    const playing = this.playing === "playing";
     const playPause = `${playing ? "Stop" : "Start"} automatic slide show`;
 
-    return importSharedStyles() + html`
+    return html`
       <section aria-roledescription="carousel">
         ${this.timing ? html`
           <button
@@ -130,7 +114,7 @@ class Carousel extends declarative(HTMLElement) {
     const prefersReducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const noHover = matchMedia("(hover: none)").matches;
 
-    if(this.playing === Carousel.PLAYING_STATE.PLAYING && !prefersReducedMotion && !noHover) {
+    if(this.playing === "playing" && !prefersReducedMotion && !noHover) {
       this.play();
     }
 
@@ -160,7 +144,7 @@ class Carousel extends declarative(HTMLElement) {
     if("playing" in old || "timing" in old) {
       clearTimeout(this.player);
 
-      if(this.playing === Carousel.PLAYING_STATE.PLAYING) {
+      if(this.playing === "playing") {
         const play = () => {
           if(!this.timing) return;
 
@@ -287,16 +271,16 @@ class Carousel extends declarative(HTMLElement) {
   // #endregion
 
   // #region Props and state
-  #playing = Carousel.PLAYING_STATE.PLAYING;
+  #playing = "playing";
 
   get playing() {
     return this.hasAttribute("playing") && this.timing
-      ? Carousel.PLAYING_STATE.PLAYING : this.#playing;
+      ? "playing" : this.#playing;
   }
 
   set playing(value) {
     this.#playing = value;
-    this.toggleAttribute("playing", value === Carousel.PLAYING_STATE.PLAYING);
+    this.toggleAttribute("playing", value === "playing");
   }
 
   get timing() {
@@ -333,28 +317,28 @@ class Carousel extends declarative(HTMLElement) {
   // #region Public API
   play() {
     if(this.timing) {
-      this.playing = Carousel.PLAYING_STATE.PLAYING;
+      this.playing = "playing";
     } else {
       console.error("TCDS-CAROUSEL cannot play without a timing property.", this);
     }
   }
 
   stop() {
-    this.playing = Carousel.PLAYING_STATE.STOPPED;
+    this.playing = "stopped";
   }
 
   toggle() {
-    this.playing === Carousel.PLAYING_STATE.PLAYING ? this.stop() : this.play();
+    this.playing === "playing" ? this.stop() : this.play();
   }
 
   pause() {
-    if(this.playing === Carousel.PLAYING_STATE.PLAYING) {
-      this.playing = Carousel.PLAYING_STATE.PAUSED;
+    if(this.playing === "playing") {
+      this.playing = "paused";
     }
   }
 
   resume() {
-    if(this.playing === Carousel.PLAYING_STATE.PAUSED) {
+    if(this.playing === "paused") {
       // This `requestAnimationFrame` is to prevent `setTimeout` weirdness after
       // rapid back-and-forth state changes (e.g. by hovering over-and-out too
       // quickly).
@@ -366,6 +350,10 @@ class Carousel extends declarative(HTMLElement) {
     // Set [selected] on passed slide to true, and false on the others.
     this.slides.forEach(_slide => _slide.selected = _slide === slide);
 
+    // @todo Consider using the `observingSwipe` flag instead of passing a
+    // `scroll` option. The only time `scroll` would be false is when just
+    // updating internal state, which only happens inside the swipe observer,
+    // during which and only during which the `observingSwipe` flag is false.
     if(!scroll) return;
 
     // Scroll the viewport either to the left boundary of the selected slide,

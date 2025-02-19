@@ -1,7 +1,7 @@
-import {declarative, importSharedStyles, refreshProperties} from "../../utilities/index.js";
+import {declarative, baseStyles, refreshProperties} from "../../utilities/index.js";
 import animation from "../../../00-brand/animation/animation.json";
 import layout from "../../../01-layout/layout.json";
-import styles from "./style.css";
+import localStyles from "./style.css";
 
 class AccordionSection extends declarative(HTMLElement) {
   // #region Setup
@@ -10,13 +10,13 @@ class AccordionSection extends declarative(HTMLElement) {
   constructor() {
     super();
     this.attachShadow({mode: "open"});
-    this.shadowRoot.adoptedStyleSheets = [styles];
+    this.shadowRoot.adoptedStyleSheets = [baseStyles, localStyles];
   }
 
   get template() {
     const {title, headingLevel} = this;
 
-    return importSharedStyles() + /* html */`
+    return /* html */`
       <section>
         <${headingLevel} part="heading">
           <button

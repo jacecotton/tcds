@@ -1,5 +1,5 @@
-import {declarative, importSharedStyles, refreshProperties} from "../../utilities/index.js";
-import styles from "./style.css";
+import {declarative, baseStyles, refreshProperties} from "../../utilities/index.js";
+import localStyles from "./style.css";
 
 class Tab extends declarative(HTMLElement) {
   // #region Setup
@@ -8,11 +8,11 @@ class Tab extends declarative(HTMLElement) {
   constructor() {
     super();
     this.attachShadow({mode: "open"});
-    this.shadowRoot.adoptedStyleSheets = [styles];
+    this.shadowRoot.adoptedStyleSheets = [baseStyles, localStyles];
   }
 
   get template() {
-    return importSharedStyles() + `
+    return `
       <section role="tabpanel" ${this.selected ? "" : "hidden"}>
         <slot></slot>
       </section>
