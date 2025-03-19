@@ -3,6 +3,7 @@ import declarative from "./declarative.js";
 import html from "./html.js";
 import baseStyles from "./baseStyles.js";
 import refreshProperties from "./refreshProperties.js";
+import registerParts from "./registerParts.js";
 
 export {
   slugify,
@@ -10,4 +11,5 @@ export {
   html,
   baseStyles,
   refreshProperties,
+  registerParts,
 };

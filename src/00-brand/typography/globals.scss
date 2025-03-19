@@ -185,3 +185,20 @@ ol {
 ::marker {
   font-variant-numeric: lining-nums tabular-nums; // 1
 }
+
+kbd {
+  background: #fafafa;
+  border: 1px solid rgb(0 0 0 / 10%);
+  border-radius: 4px;
+  box-shadow: 0 2px 1px rgb(0 0 0 / 10%);
+  color: var(--tcds-color-gray-4);
+  font-family: var(--tcds-font-ui);
+  font-size: var(--tcds-font-size-xs);
+  font-weight: var(--tcds-font-weight-semibold);
+  font-variant-numeric: lining-nums tabular-nums;
+  margin: 0 .2em;
+  padding: .4em;
+  position: relative;
+  top: -.25em;
+  text-transform: uppercase;
+}

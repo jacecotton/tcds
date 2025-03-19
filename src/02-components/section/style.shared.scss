@@ -30,7 +30,7 @@ tcds-section {
     --tcds-section-heading-eyebrow-font-size: var(--tcds-font-size-s);
     --tcds-section-heading-gap: .25rem;
 
-    h1 {
+    :is(h1, h2) {
       line-height: 1;
       border-left: 6px solid var(--tcds-color-primary);
       padding-left: 1.5rem;
@@ -61,7 +61,7 @@ tcds-section {
     small {
       display: block;
       font-family: var(--tcds-font-subheadings);
-      font-size: var(--tcds-section-heading-eyebrow-font-size);
+      font-size: var(--tcds-section-heading-eyebrow-font-size, var(--tcds-font-size-l));
       font-weight: var(--tcds-font-weight-semibold);
       color: var(--tcds-color-text);
       letter-spacing: .1px;
@@ -75,6 +75,10 @@ tcds-section {
   p {
     font-size: var(--tcds-font-size-ml);
   }
+
+  [slot="secondary"] img {
+    width: 100%;
+  }
 }
 
 .business-entity-badge {
@@ -86,24 +90,4 @@ tcds-section {
   font-weight: var(--tcds-font-weight-bold);
   font-size: var(--tcds-font-size-ml);
   line-height: 2;
-}
-
-.tcds-section {
-
-  &--bottom-gradient {
-    --tcds-section-padding-inline: 0;
-
-    &::after {
-      content: "";
-      display: block;
-      position: absolute;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      width: 10vw;
-      background-image: linear-gradient(90deg, rgb(0 0 0 / 0%), var(--tcds-color-background, rgb(0 0 0 / 0%)));
-    }
-  }
-
-
 }

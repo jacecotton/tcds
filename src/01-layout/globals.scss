@@ -27,6 +27,11 @@ body {
   }
 }
 
-[hidden] {
+/**
+ * User agent-applied `display: none` on `[hidden]` elements can be easily and
+ * unintentionally overriden if the element has any `display` property in an
+ * author stylesheet, which isn't desired, so we'll set it explicitly here.
+ */
+ [hidden=""] {
   display: none !important;
 }

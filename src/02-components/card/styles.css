@@ -23,8 +23,12 @@ article {
 
   &:hover {
     --tcds-card-image-scale: 1.025;
-    --tcds-card-cta-icon-background: var(--tcds-color-primary);
-    --tcds-card-cta-icon-color: #fff;
+
+    [part="cta"] {
+      --tcds-button-secondary-text-color: var(--tcds-color-primary);
+      --tcds-button-secondary-icon-background-color: var(--tcds-color-primary);
+      --tcds-button-secondary-icon-color: var(--tcds-color-white);
+    }
   }
 }
 
@@ -52,30 +56,8 @@ article {
 
 [part="footer"] {
   display: flex;
-  justify-content: var(--tcds-card-justify-content, start);
+  justify-content: var(--tcds-card-footer-justify-content, var(--tcds-card-justify-content, start));
   gap: 1rem;
   margin-top: auto;
   padding-top: 1rem;
-}
-
-[part="cta"] {
-  display: flex;
-  align-items: center;
-  gap: .6em;
-  font-family: var(--tcds-font-ui);
-  font-size: var(--tcds-font-size-rem);
-  font-weight: var(--tcds-font-weight-semibold);
-  color: var(--tcds-color-text);
-
-  tcds-icon {
-    width: 1.2em;
-    height: 1.2em;
-    border-radius: 1.2em;
-    padding: .3em;
-    background-color: var(--tcds-card-cta-icon-background, transparent);
-    color: var(--tcds-card-cta-icon-color, var(--tcds-color-primary));
-    transition:
-      background-color var(--tcds-animation-productive-duration) var(--tcds-animation-productive-duration),
-      color var(--tcds-animation-productive-duration) var(--tcds-animation-productive-duration);
-  }
 }

@@ -209,11 +209,21 @@ details:is(#site-header-nav, #site-header-search) {
   }
 }
 
+/**
+ * This is necessary for Chrome, which has a `[pseudo=details-content]` element
+ * in `details` shadow DOM. For whatever reason, combining this selector in a
+ * selector list with `&` above breaks Firefox and Safari, even if the "invalid"
+ * selector is inside an `:is()` selector function. 🤷‍♂️
+ */
 [id=site-header-nav] {
   --tcds-site-header-menu-toggle-icon: var(--tcds-icon-utility-hamburger);
 
   @media (--above-m) {
-    &, &::details-content {
+    & {
+      display: contents;
+    }
+
+    &::details-content { // 1
       display: contents;
     }
 

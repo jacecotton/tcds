@@ -28,10 +28,9 @@ class Card extends declarative(HTMLElement) {
             <footer part="footer">
               <slot name="footer">
                 ${this.cta ? html`
-                  <span part="cta" aria-hidden="true">
+                  <button is="tcds-ui-button" part="cta" variant="secondary" aria-hidden="true">
                     ${this.cta}
-                    <tcds-icon icon="caret-right"></tcds-icon>
-                  </span>
+                  </button>
                 ` : ``}
               </slot>
             </footer>

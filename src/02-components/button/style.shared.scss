@@ -23,6 +23,7 @@ a[is="tcds-link-button"] {
     gap: 1ch;
     align-items: center;
     justify-content: center;
+    justify-self: start;
     text-align: center;
     vertical-align: middle;
 
@@ -42,7 +43,6 @@ a[is="tcds-link-button"] {
     font-size: var(--tcds-font-size-rem);
     font-weight: var(--tcds-button-font-weight, var(--tcds-font-weight-bold));
     text-decoration: none;
-    white-space: nowrap;
 
     transition:
       background-color animation("productive"),
@@ -73,7 +73,7 @@ a[is="tcds-link-button"] {
     --tcds-button-background-color: var(--tcds-button-secondary-background-color);
     --tcds-button-font-weight: var(--tcds-font-weight-semibold);
     --tcds-button-text-color: var(--tcds-button-secondary-text-color);
-    --tcds-button-secondary-icon-background-color: var(--tcds-color-background);
+    --tcds-button-secondary-icon-background-color: transparent;
     --tcds-button-secondary-icon-color: var(--tcds-color-primary);
     --tcds-button-secondary-icon-size: .6em;
     --tcds-button-secondary-icon-space: 1.2em;

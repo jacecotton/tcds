@@ -1,4 +1,4 @@
-import {declarative, refreshProperties, slugify} from "../utilities/index.js";
+import {declarative, refreshProperties, slugify, baseStyles} from "../utilities/index.js";
 
 class Icon extends declarative(HTMLElement) {
   observedAttributes = ["icon"];
@@ -13,16 +13,7 @@ class Icon extends declarative(HTMLElement) {
 
   get template() {
     return `
-      <style>
-        span {
-          clip: rect(0, 0, 0, 0);
-          clip-path: inset(50%);
-          height: 1px;
-          width: 1px;
-          position: absolute;
-        }
-      </style>
-      <span>
+      <span class="visually-hidden">
         ${this.textContent?.trim().length
           ? this.textContent
           : `${this.icon} icon`
@@ -34,6 +25,7 @@ class Icon extends declarative(HTMLElement) {
   constructor() {
     super();
     this.attachShadow({mode: "open"});
+    this.shadowRoot.adoptedStyleSheets = [baseStyles];
   }
 
   connectedCallback() {

@@ -1,6 +1,5 @@
-import {declarative, baseStyles, refreshProperties} from "../../utilities/index.js";
+import {declarative, html, baseStyles, refreshProperties, registerParts, slugify} from "../../utilities/index.js";
 import animation from "../../../00-brand/animation/animation.json";
-import layout from "../../../01-layout/layout.json";
 import localStyles from "./style.css";
 
 class AccordionSection extends declarative(HTMLElement) {
@@ -16,7 +15,7 @@ class AccordionSection extends declarative(HTMLElement) {
   get template() {
     const {title, headingLevel} = this;
 
-    return /* html */`
+    return html`
       <section>
         <${headingLevel} part="heading">
           <button
@@ -43,8 +42,12 @@ class AccordionSection extends declarative(HTMLElement) {
 
   // #region Lifecycle
   connectedCallback() {
-    refreshProperties.apply(this, ["open", "label"]);
+    refreshProperties.apply(this, ["open"]);
     this.requestUpdate();
+  }
+
+  disconnectedCallback() {
+    window.removeEventListener("hashchange", this.deepLinkHandler);
   }
 
   attributeChangedCallback(name, old) {
@@ -54,13 +57,19 @@ class AccordionSection extends declarative(HTMLElement) {
   }
 
   mountedCallback() {
-    this.heading = this.shadowRoot.querySelector("[part~=heading]");
-    this.panel = this.shadowRoot.querySelector("[part~=panel]");
+    registerParts.apply(this, ["heading", "panel"]);
+
+    // Accordion sections should open if there is a URL hash that matches the
+    // section's ID, generated automatically from its title (if not otherwise
+    // specified).
+    this.deepLinkHandler();
+    window.addEventListener("hashchange", this.deepLinkHandler.bind(this));
   }
 
   updatedCallback(old) {
     if("open" in old) {
-      const openAnimation = {height: ["0", `${this.panel.scrollHeight}px`]};
+      // Animate from 0px height to its calculated height (`scrollHeight`).
+      const openAnimation = {height: ["0", `${this.parts.panel.scrollHeight}px`]};
       // Don't animate open/close if reduced motion preference is set.
       const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
       const openAnimationDuration = reducedMotion ? 1 : animation.timing.productive.duration;
@@ -68,8 +77,8 @@ class AccordionSection extends declarative(HTMLElement) {
       if(this.open) {
         // Opening from a closed state, so we need to set a starting height of 0
         // before unhiding the panel.
-        this.panel.style.height = "0";
-        this.panel.hidden = false;
+        this.parts.panel.style.height = "0";
+        this.parts.panel.hidden = false;
 
         // Wait to open until next available animation frame to ensure sync with
         // closing animation of sibling panels (if applicable).
@@ -78,8 +87,8 @@ class AccordionSection extends declarative(HTMLElement) {
           // change (like if the window is shrunk or if a nested accordion
           // section is toggled), so after the animation, we need to set the
           // height to `auto`.
-          this.panel.animate(openAnimation, {duration: openAnimationDuration})
-            .onfinish = () => this.panel.style.height = "auto";
+          this.parts.panel.animate(openAnimation, {duration: openAnimationDuration})
+            .onfinish = () => this.parts.panel.style.height = "auto";
         });
 
         // Close all sibling sections when this panel is opened (unless
@@ -94,7 +103,7 @@ class AccordionSection extends declarative(HTMLElement) {
           // user near the bottom of the newly opened section. In these cases,
           // we want the browser to scroll back up to the top of the section.
           setTimeout(() => {
-            const headingTop = this.heading.getBoundingClientRect().top;
+            const headingTop = this.parts.heading.getBoundingClientRect().top;
             // We need to account for a sticky header, plus an arbitrary 25px
             // buffer.
             const viewportTop = parseInt(
@@ -110,13 +119,15 @@ class AccordionSection extends declarative(HTMLElement) {
       } else if(old.open) {
         // Closing from open state. Hide panel after reversed animation to 0
         // height.
-        this.panel.animate(openAnimation, {direction: "reverse", duration: openAnimationDuration})
-          .onfinish = () => this.panel.hidden = true;
+        this.parts.panel.animate(openAnimation, {
+          direction: "reverse",
+          duration: openAnimationDuration,
+        }).onfinish = () => this.parts.panel.hidden = "until-found";
       }
     } else if(!this.open) {
       // Closing from non-determinate state (probably first render, so just
       // hide the panel without animation).
-      this.panel.hidden = true;
+      this.parts.panel.hidden = "until-found";
     }
   }
   // #endregion
@@ -124,6 +135,21 @@ class AccordionSection extends declarative(HTMLElement) {
   // #region Event listeners
   clickHandler() {
     this.toggle();
+  }
+
+  deepLinkHandler() {
+    // Get hash from URL for deep linking.
+    const hash = window.location.hash.substring(1);
+
+    // Derive an ID from section title if not already provided.
+    if(!this.id) {
+      this.id = slugify(this.title);
+    }
+
+    // Open section if hash matches ID.
+    if(hash === this.id) {
+      this.show();
+    }
   }
   // #endregion
 
@@ -147,14 +173,14 @@ class AccordionSection extends declarative(HTMLElement) {
   }
 
   get accordion() {
-    // If this section is constructed, its containing accordion is going to be
-    // the root host. Otherwise it's going to be the immediate `tcds-accordion`
-    // parent.
-    return this.closest("tcds-accordion") || this.getRootNode().host;
+    return this.closest("tcds-accordion");
   }
   // #endregion
 
   // #region Public API
+  // We have to name this method `show` because `open` is already taken by the
+  // `open` property above. This matches the convention used by the `dialog`
+  // built-in element.
   show() {
     this.open = true;
   }
@@ -163,8 +189,12 @@ class AccordionSection extends declarative(HTMLElement) {
     this.open = false;
   }
 
-  toggle() {
-    this.open = !this.open;
+  toggle(test) {
+    if(test === undefined) {
+      test = !this.open;
+    }
+
+    this.open = test;
   }
   // #endregion
 }

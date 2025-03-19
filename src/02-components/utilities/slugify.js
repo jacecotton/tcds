@@ -18,8 +18,8 @@ export default (string, separator = "-") => {
     .replace(/[^\w\s]/gi, " ")
     // Replace multiple spaces with single space (avoids double separators).
     .replace(/\s\s+/g, " ")
-    // Trim leading and trailing white space.
+    // Remove leading and trailing spaces.
     .trim()
-    // Replace white space with separator.
+    // Replace spaces with separator.
     .replace(/\s+/g, separator);
 };

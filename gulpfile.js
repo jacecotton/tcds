@@ -68,6 +68,7 @@ const tasks = {
             "./src/02-components/utilities/declarative.js",
             "./src/02-components/utilities/baseStyles.js",
             "./src/02-components/utilities/refreshProperties.js",
+            "./src/02-components/utilities/registerParts.js",
             "./src/02-components/utilities/slugify.js",
           ],
         },

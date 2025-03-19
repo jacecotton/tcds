@@ -4,7 +4,7 @@ class FnRef extends declarative(HTMLElement) {
   constructor() {
     super();
     this.attachShadow({mode: "open"});
-    this.shadowRoot.adoptedStyleSheets = [baseStyles, localStyles];
+    this.shadowRoot.adoptedStyleSheets = [baseStyles];
   }
 
   connectedCallback() {

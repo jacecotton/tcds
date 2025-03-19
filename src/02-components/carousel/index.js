@@ -271,7 +271,7 @@ class Carousel extends declarative(HTMLElement) {
   // #endregion
 
   // #region Props and state
-  #playing = "playing";
+  #playing = null;
 
   get playing() {
     return this.hasAttribute("playing") && this.timing
