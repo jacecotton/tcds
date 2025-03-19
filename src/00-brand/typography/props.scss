@@ -25,6 +25,8 @@
   }
 
   @each $size, $value in typography.$font-sizes {
-    --tcds-font-size-#{$size}: calc(var(--tcds-font-scaler) * #{$value}rem);
+    & {
+      --tcds-font-size-#{$size}: calc(var(--tcds-font-scaler) * #{$value}rem);
+    }
   }
 }

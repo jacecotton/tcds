@@ -37,6 +37,7 @@ const tasks = {
           importer: jsonsass(),
         }),
       )
+      .on("error", sass.logError)
       // Transpile custom media queries due to lack of browser support.
       .pipe(postcss([autoprefixer(), custommedia()]))
       .pipe(rename("tcds.css"))
@@ -115,78 +116,6 @@ const tasks = {
       .pipe(dest("./dist/"));
   },
 
-  icons: () => {
-    const fileignore = [".DS_Store"];
-
-    // Get parent directory for all icons.
-    const iconCategories = fs.readdirSync("./src/00-brand/icons/static/")
-      .filter(name => !fileignore.includes(name));
-
-    // Set up a JSON-ready object to store the icon names and corresponding
-    // inlined SVG code.
-    let icons = {
-      library: {},
-    };
-
-    // Populate the object from the filesystem.
-    iconCategories.forEach((category) => {
-      const filenames = fs.readdirSync(`./src/00-brand/icons/static/${category}/`)
-        .filter(name => !fileignore.includes(name));
-
-      icons.library[category] = {};
-
-      filenames.forEach((filename) => {
-        const svg = fs.readFileSync(`./src/00-brand/icons/static/${category}/${filename}`, "utf8")
-          .replace(/\n|  /g, "");
-
-        icons.library[category][filename.replace(".svg", "")] = `'${svg}'`;
-      });
-    });
-
-    // Output the JSON file.
-    fs.writeFileSync("./src/00-brand/icons/icons.json", JSON.stringify(icons, null, 2));
-
-    // Generate an icon font. Exclude utility and media icons.
-    const fontFormats = ["eot", "svg", "ttf", "woff", "woff2"];
-    const iconFontDest = "./dist/fonts/icons";
-
-    return src([
-      "./src/00-brand/icons/static/**/*.svg",
-      "!./src/00-brand/icons/static/utility/*.svg",
-      "!./src/00-brand/icons/static/media/*.svg",
-    ])
-      .pipe(imagemin())
-      .pipe(iconfont({
-        prependUnicode: false,
-        fontName: "tcds-icons",
-        formats: fontFormats,
-        normalize: true,
-        fontHeight: 1024,
-      })).on("glyphs", (glyphs) => {
-        // Create a Site Studio-compatible JSON config file so the icon font can
-        // be used in the icon picker UI.
-        fs.writeFileSync(`${iconFontDest}/tcds-icons.json`, JSON.stringify({
-          name: "tcds-icons",
-          icons: glyphs.map((glyph) => ({
-            name: glyph.name,
-            code: glyph.unicode[0].charCodeAt(0),
-          })),
-        }, null, 2));
-      }).pipe(dest("./dist/fonts/icons/")).on("finish", () => {
-        // Site Studio needs the above-created JSON config file plus a zip file
-        // of all the icon fonts.
-        const fonts = fontFormats.map(format => `./dist/fonts/icons/*.${format}`);
-
-        return src(fonts)
-          .pipe(zip("tcds-icons.zip"))
-          // Place zip file in same directory as JSON config.
-          .pipe(dest(iconFontDest))
-          // We don't want the icon font being used for any other purpose than
-          // the Site Studio icon picker UI, so we'll delete the font files.
-          .on("finish", () => deleteAsync(fonts));
-      });
-  },
-
   fonts: () => {
     return src("./src/00-brand/typography/fonts/static/**/*")
       .pipe(dest("./dist/fonts/"));
@@ -243,13 +172,13 @@ task("icon-cleanup", () => {
     .pipe(dest("./src/00-brand/icons/static/primary/"));
 });
 
-task("watch", function watcher() {
+task("watch", function watcher(done) {
   watch("./src/**/*.scss", tasks.styles);
   watch(["./index.js", "./src/02-components/**/*.js"], tasks.javascript);
-  watch("./src/00-brand/icons/static/", tasks.icons);
   watch("./src/00-brand/typography/fonts/static/", tasks.fonts);
   watch("./src/00-brand/logos/**/*.svg", tasks.logos);
+  done();
 });
 
-task("build", series(["cleanup", "icons", "styles", "fonts", "javascript", "logos"]));
+task("build", series(["styles", "fonts", "javascript", "logos"]));
 task("default", series(["build", "watch"]));

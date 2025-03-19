@@ -2,16 +2,18 @@
   --tcds-site-header-height: 65px;
   --tcds-site-header-logo-width: 276px;
 
+  scroll-padding-top: calc(var(--tcds-site-header-height) + 1rem);
+
   @media (--above-s) {
     --tcds-site-header-height: 90px;
     --tcds-site-header-logo-width: 386px;
   }
-
-  scroll-padding-top: calc(var(--tcds-site-header-height) + 1rem);
 }
 
 @mixin dark-header {
   --tcds-site-header-toggle-color: #fff;
+
+  background: linear-gradient(0deg, rgb(0 0 0 / 0%) 0%, rgb(0 0 0) 100%);
 
   @media (min-width: 1280px) {
     --tcds-site-header-link-color: #fff;
@@ -19,8 +21,6 @@
     --tcds-site-header-utility-link-color: #fff;
     --tcds-site-header-highlight-background: var(--tcds-color-primary);
   }
-
-  background: linear-gradient(0deg, rgb(0 0 0 / 0%) 0%, rgb(0 0 0) 100%);
 }
 
 tcds-site-header {
