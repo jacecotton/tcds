@@ -1,6 +1,6 @@
 "use strict";(self.webpackChunk_txch_tcds=self.webpackChunk_txch_tcds||[]).push([[537],{380:(t,e,n)=>{var i=n(679);const o={p:50},s=new CSSStyleSheet;s.replaceSync('[part="heading"] {\n  margin: 0;\n\n  /**\n   * On smaller screens, the main heading of each open, non-nested accordion\n   * section is sticky, so we need to make them opaque and bump the z-index.\n   */\n}\n\n@media (max-width: 768px) {\n\n[part="heading"] {\n    background: var(--tcds-color-background, var(--tcds-color-white));\n    position: sticky;\n    position: var(--tcds-accordion-section-heading-position, sticky);\n    top: 0;\n    z-index: 2;\n}\n  }\n\n[part="button"] {\n  background: none;\n  border: none;\n  border-bottom: 1px solid var(--tcds-color-gray-2);\n  cursor: pointer;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: var(--tcds-micro-s) 0;\n  text-align: left;\n  font-size: var(--tcds-accordion-heading-font-size, var(--tcds-font-size-m));\n  font-family: var(--tcds-font-ui);\n  font-weight: var(--tcds-accordion-heading-font-weight, var(--tcds-font-weight-semibold));\n  width: 100%;\n  color: var(--tcds-color-text);\n}\n\n[part="icon"] {\n  flex-shrink: 0;\n  pointer-events: none;\n}\n\n[part="panel"] {\n  overflow: hidden;\n}\n\n[part="content"] {\n  padding: 1rem 0;\n}\n');const a=s;class r extends((0,i.Rv)(HTMLElement)){static observedAttributes=["open"];constructor(){super(),this.attachShadow({mode:"open"}),this.shadowRoot.adoptedStyleSheets=[i.ir,a]}get template(){const{title:t,headingLevel:e}=this;return i.qy`
-      <section>
-        <${e} part="heading">
+      <section aria-labelledby="heading">
+        <${e} part="heading" id="heading">
           <button
             part="button"
             id="button"
@@ -13,7 +13,7 @@
           </button>
         </${e}>
 
-        <div part="panel" id="panel" aria-labelledby="button">
+        <div part="panel" id="panel">
           <div part="content">
             <slot></slot>
           </div>

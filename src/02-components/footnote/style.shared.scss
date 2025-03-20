@@ -37,7 +37,7 @@ tcds-fn-list {
     background: var(--tcds-color-baby-blue);
   }
 
-  [role="doc-backlink"] {
+  [aria-roledescription="backlink"] {
     text-decoration-style: dotted;
     font-weight: var(--tcds-font-weight-semibold);
   }

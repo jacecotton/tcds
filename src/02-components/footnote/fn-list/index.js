@@ -29,9 +29,9 @@ class FnList extends declarative(HTMLElement) {
 
       // Otherwise, augment the footnote based on ref data.
       // https://www.w3.org/TR/dpub-aria-1.1/#doc-footnote
-      footnote.role = "doc-footnote";
+      footnote.setAttribute("aria-roledescription", "footnote");
       // https://www.w3.org/TR/dpub-aria-1.1/#doc-backlink
-      footnote.innerHTML += html`&nbsp;<small><a href="#${footnote.id}-ref" role="doc-backlink" aria-label="Return to associated passage">↵</a></small>`;
+      footnote.innerHTML += html`&nbsp;<small><a href="#${footnote.id}-ref" aria-roledescription="backlink" aria-label="Return to associated passage">↵</a></small>`;
     });
 
     // Make first shadow DOM render.
@@ -41,7 +41,7 @@ class FnList extends declarative(HTMLElement) {
   get template() {
     // https://www.w3.org/TR/dpub-aria-1.1/#doc-endnotes
     return html`
-      <aside role="doc-endnotes" aria-labelledby="footnotes-${this.fnListIndex}">
+      <aside aria-roledescription="endnotes" aria-labelledby="footnotes-${this.fnListIndex}">
         <${this.headingLevel} class="visually-hidden" id="footnotes-${this.fnListIndex}">Footnotes</${this.headingLevel}>
         <slot></slot>
       </aside>

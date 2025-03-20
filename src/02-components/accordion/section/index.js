@@ -16,8 +16,8 @@ class AccordionSection extends declarative(HTMLElement) {
     const {title, headingLevel} = this;
 
     return html`
-      <section>
-        <${headingLevel} part="heading">
+      <section aria-labelledby="heading">
+        <${headingLevel} part="heading" id="heading">
           <button
             part="button"
             id="button"
@@ -30,7 +30,7 @@ class AccordionSection extends declarative(HTMLElement) {
           </button>
         </${headingLevel}>
 
-        <div part="panel" id="panel" aria-labelledby="button">
+        <div part="panel" id="panel">
           <div part="content">
             <slot></slot>
           </div>

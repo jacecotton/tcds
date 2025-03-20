@@ -14,7 +14,8 @@ class FnRef extends declarative(HTMLElement) {
       return;
     }
 
-    // Generate an id for this tcds-fn based on the footnote's.
+    // Generate an id for this tcds-fn-ref based on the corresponding
+    // footnote's.
     const id = `${this.footnote.id}-ref`;
 
     // Only add it if there isn't another ref with the same id (which can happen
@@ -29,7 +30,7 @@ class FnRef extends declarative(HTMLElement) {
   get template() {
     // https://www.w3.org/TR/dpub-aria-1.1/#doc-noteref
     return html`
-      <slot></slot><sup part="super">&NoBreak;<a part="anchor" href="#${this.footnote.id}" role="doc-noteref"><span class="visually-hidden">footnote </span>${this.refnum}</a></sup>
+      <slot></slot><sup part="super">&NoBreak;<a part="anchor" href="#${this.footnote.id}" aria-roledescription="noteref"><span class="visually-hidden">footnote </span>${this.refnum}</a></sup>
     `;
   }
 
