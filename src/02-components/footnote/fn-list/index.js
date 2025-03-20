@@ -31,7 +31,7 @@ class FnList extends declarative(HTMLElement) {
       // https://www.w3.org/TR/dpub-aria-1.1/#doc-footnote
       footnote.setAttribute("aria-roledescription", "footnote");
       // https://www.w3.org/TR/dpub-aria-1.1/#doc-backlink
-      footnote.innerHTML += html`&nbsp;<small><a href="#${footnote.id}-ref" aria-roledescription="backlink" aria-label="Return to associated passage">↵</a></small>`;
+      footnote.innerHTML += html`&nbsp;<small><a href="#${footnote.id}-ref" class="tcds-fn-backlink" aria-label="Return to associated passage">↵</a></small>`;
     });
 
     // Make first shadow DOM render.

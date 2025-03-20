@@ -30,7 +30,7 @@ class FnRef extends declarative(HTMLElement) {
   get template() {
     // https://www.w3.org/TR/dpub-aria-1.1/#doc-noteref
     return html`
-      <slot></slot><sup part="super">&NoBreak;<a part="anchor" href="#${this.footnote.id}" aria-roledescription="noteref"><span class="visually-hidden">footnote </span>${this.refnum}</a></sup>
+      <slot></slot><sup part="super">&NoBreak;<a part="anchor" href="#${this.footnote.id}"><span class="visually-hidden">footnote </span>${this.refnum}</a></sup>
     `;
   }
 

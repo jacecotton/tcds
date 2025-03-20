@@ -36,9 +36,9 @@ tcds-fn-list {
   :target {
     background: var(--tcds-color-baby-blue);
   }
+}
 
-  [aria-roledescription="backlink"] {
-    text-decoration-style: dotted;
-    font-weight: var(--tcds-font-weight-semibold);
-  }
+.tcds-fn-backlink {
+  text-decoration-style: dotted;
+  font-weight: var(--tcds-font-weight-semibold);
 }
