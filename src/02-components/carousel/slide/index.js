@@ -33,6 +33,10 @@ class Slide extends declarative(HTMLElement) {
     // state changes (in order to update the indicator dots, etc.)
     if("selected" in old) {
       this.carousel.requestUpdate();
+
+      if(this.selected) {
+        this.carousel.select(this);
+      }
     }
   }
 

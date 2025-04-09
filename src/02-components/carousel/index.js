@@ -1,5 +1,5 @@
 import {declarative, html, baseStyles, refreshProperties} from "../utilities/index.js";
-import localStyles from "./style.css";
+import localStyles from "./styles.shadow.css";
 
 class Carousel extends declarative(HTMLElement) {
   // #region Setup
@@ -194,7 +194,7 @@ class Carousel extends declarative(HTMLElement) {
           if(closest.slide) {
             this.select(closest.slide, {scroll: false});
           }
-        }, 500);
+        }, 1);
       } else {
         // If not [multiple], just select the slide if it's intersecting the
         // viewport according to the observer's configuration (see below).
