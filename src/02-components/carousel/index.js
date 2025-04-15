@@ -1,7 +1,7 @@
 import {declarative, html, baseStyles, refreshProperties} from "../utilities/index.js";
 import localStyles from "./styles.shadow.css";
 
-class Carousel extends declarative(HTMLElement) {
+class TCDSCarouselElement extends declarative(HTMLElement) {
   // #region Setup
   static observedAttributes = ["playing", "timing", "multiple"];
 
@@ -80,28 +80,39 @@ class Carousel extends declarative(HTMLElement) {
   /**
    * Internal flags.
    *
-   * @property {boolean} observingSwipe - Whether scrolling within the viewport
-   *   should be observed. While the carousel is automatically advancing, it
-   *   should not be, because the scrollport observer detects the slide closest
-   *   to the center and selects it. This creates issues if many slides are
-   *   being skipped at once (as when selecting a slide from an indicator dot or
-   *   by recycling the carousel); the scroll to the desired slide can be
-   *   interrupted by the observer, unless the observer is temporarily disabled
-   *   by this flag.
+   * @property {boolean} isObservingSwipe - Whether scrolling within the
+   *   viewport should be observed. While the carousel is automatically
+   *   advancing, it should not be, because the scrollport observer detects the
+   *   slide closest to the center and selects it. This creates issues if many
+   *   slides are being skipped at once (as when selecting a slide from an
+   *   indicator dot or by recycling the carousel); the scroll to the desired
+   *   slide can be interrupted by the observer, unless the observer is
+   *   temporarily disabled by this flag.
    * @property {boolean} isInView - Whether the carousel is visible in the
    *   window's scrollport (does not apply to window visibility).
    */
   #flags = {};
+
+  /**
+   * An array of `tcds-slide` elements that are scheduled to be scrolled to
+   * when the carousel is in view.
+   */
+  #scrollQueue = [];
   // #endregion
 
   // #region Lifecycle
-  connectedCallback() {
+  async connectedCallback() {
     refreshProperties.apply(this, ["playing", "timing", "multiple"]);
-    this.requestUpdate();
+
+    await customElements.whenDefined("tcds-slide").then(() => {
+      this.requestUpdate();
+    });
   }
 
-  attributeChangedCallback(name, oldValue) {
-    this.requestUpdate({[name]: oldValue});
+  async attributeChangedCallback(name, oldValue) {
+    await customElements.whenDefined("tcds-slide").then(() => {
+      this.requestUpdate({[name]: oldValue});
+    });
   }
 
   mountedCallback() {
@@ -155,7 +166,7 @@ class Carousel extends declarative(HTMLElement) {
         };
 
         play();
-        this.#flags.observingSwipe = false;
+        this.#flags.isObservingSwipe = false;
       }
     }
   }
@@ -164,9 +175,12 @@ class Carousel extends declarative(HTMLElement) {
   // #region Observers
   #swipeDebounce;
 
+  /**
+   * @todo Explore using `scrollend` event instead?
+   */
   get swipe() {
     return new IntersectionObserver((entries) => {
-      if(this.#flags.observingSwipe !== true) {
+      if(this.#flags.isObservingSwipe !== true) {
         return;
       }
 
@@ -176,7 +190,7 @@ class Carousel extends declarative(HTMLElement) {
         const {left: viewportLeft, right: viewportRight} = this.viewport.getBoundingClientRect();
         const viewportCenter = Math.floor((viewportLeft + viewportRight) / 2);
 
-        // Debounce the check for which slide is closest to the center by 500ms.
+        // Debounce the check for which slide is closest to the center by 25ms.
         clearTimeout(this.#swipeDebounce);
 
         this.#swipeDebounce = setTimeout(() => {
@@ -192,15 +206,15 @@ class Carousel extends declarative(HTMLElement) {
           }, {slide: null, distance: Infinity});
 
           if(closest.slide) {
-            this.select(closest.slide, {scroll: false});
+            this.select(closest.slide);
           }
-        }, 1);
+        }, 25);
       } else {
         // If not [multiple], just select the slide if it's intersecting the
         // viewport according to the observer's configuration (see below).
         entries.forEach((entry) => {
           if(entry.isIntersecting) {
-            this.select(entry.target, {scroll: false});
+            this.select(entry.target);
           }
         });
       }
@@ -223,6 +237,7 @@ class Carousel extends declarative(HTMLElement) {
         } else {
           this.resume();
           this.#flags.isInView = true;
+          this.#scrollQueue.forEach(slide => this.#scrollTo(slide));
         }
       });
     }, {threshold: .9});
@@ -233,19 +248,19 @@ class Carousel extends declarative(HTMLElement) {
   nextClick() {
     this.select(this.slides[this.nextIndex]);
     this.stop();
-    this.#flags.observingSwipe = false;
+    this.#flags.isObservingSwipe = false;
   }
 
   previousClick() {
     this.select(this.slides[this.previousIndex]);
     this.stop();
-    this.#flags.observingSwipe = false;
+    this.#flags.isObservingSwipe = false;
   }
 
   indicatorClick({target}) {
     this.select(this.slides[this.indicators.indexOf(target)]);
     this.stop();
-    this.#flags.observingSwipe = false;
+    this.#flags.isObservingSwipe = false;
   }
 
   indicatorKeydown({key}) {
@@ -256,17 +271,17 @@ class Carousel extends declarative(HTMLElement) {
     }
 
     this.stop();
-    this.#flags.observingSwipe = false;
+    this.#flags.isObservingSwipe = false;
   }
 
   viewportSwipe() {
     this.stop();
-    this.#flags.observingSwipe = true;
+    this.#flags.isObservingSwipe = true;
   }
 
   viewportHover() {
     this.pause();
-    this.#flags.observingSwipe = true;
+    this.#flags.isObservingSwipe = true;
   }
   // #endregion
 
@@ -301,6 +316,10 @@ class Carousel extends declarative(HTMLElement) {
 
   get slides() {
     return Array.from(this.querySelectorAll("tcds-slide"));
+  }
+
+  get selected() {
+    return this.slides.find(slide => slide.selected);
   }
 
   get nextIndex() {
@@ -346,31 +365,45 @@ class Carousel extends declarative(HTMLElement) {
     }
   }
 
-  select(slide, {scroll = true} = {}) {
+  select(slide) {
     // Set [selected] on passed slide to true, and false on the others.
     this.slides.forEach(_slide => _slide.selected = _slide === slide);
 
-    // @todo Consider using the `observingSwipe` flag instead of passing a
-    // `scroll` option. The only time `scroll` would be false is when just
-    // updating internal state, which only happens inside the swipe observer,
-    // during which and only during which the `observingSwipe` flag is false.
-    if(!scroll) return;
+    if(this.#flags.isObservingSwipe) {
+      // Don't need to scroll the viewport, because it's already being handled
+      // by swiping/scroll-snapping.
+      return;
+    }
 
-    // Scroll the viewport either to the left boundary of the selected slide,
-    // or if [multiple], to the slide's centerpoint.
+    // If not `isObservingSwipe`, we need to handle scrolling to the selected
+    // slide programmatically. So, scroll the viewport either to the left
+    // boundary of the selected slide, or if [multiple], to the slide's
+    // centerpoint.
     requestAnimationFrame(() => {
-      const {offsetLeft: slideLeft, offsetWidth: slideWidth} = slide;
-      const {offsetLeft: viewportLeft, offsetWidth: viewportWidth} = this.viewport;
-
-      const slideCenter = slideLeft + slideWidth / 2;
-      const viewportCenter = viewportLeft + viewportWidth / 2;
-
-      this.viewport.scrollLeft = this.multiple
-        ? slideCenter - viewportCenter
-        : slideLeft - viewportLeft;
+      if(this.#flags.isInView) {
+        this.#scrollTo(slide);
+      } else {
+        this.#scrollQueue.push(slide);
+      }
     });
+  }
+  // #endregion
+
+  // #region Utilities
+  #scrollTo(slide) {
+    const {offsetLeft: slideLeft, offsetWidth: slideWidth} = slide;
+    const {offsetLeft: viewportLeft, offsetWidth: viewportWidth} = this.viewport;
+
+    const slideCenter = slideLeft + slideWidth / 2;
+    const viewportCenter = viewportLeft + viewportWidth / 2;
+
+    this.viewport.scrollLeft = this.multiple
+      ? slideCenter - viewportCenter
+      : slideLeft - viewportLeft;
+
+    this.#scrollQueue = this.#scrollQueue.filter(_slide => _slide !== slide);
   }
   // #endregion
 }
 
-customElements.define("tcds-carousel", Carousel);
+customElements.define("tcds-carousel", TCDSCarouselElement);

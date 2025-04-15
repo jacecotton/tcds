@@ -39,13 +39,17 @@ export default (ElementInterface = HTMLElement) => class extends ElementInterfac
       this.#batch = {...this.#batch, ...record};
     }
 
-    // Cancel any updates scheduled before the next animation frame.
-    if(this.#debounce !== null) {
-      cancelAnimationFrame(this.#debounce);
-    }
+    if(this.#passes === 0) {
+      this.#update(this.template);
+    } else {
+      // Cancel any updates scheduled before the next animation frame.
+      if(this.#debounce !== null) {
+        cancelAnimationFrame(this.#debounce);
+      }
 
-    // Wait until the next animation frame to finally make an update.
-    this.#debounce = requestAnimationFrame(this.#update.bind(this, this.template));
+      // Wait until the next animation frame to finally make an update.
+      this.#debounce = requestAnimationFrame(this.#update.bind(this, this.template));
+    }
   }
 
   #update(template) {
@@ -57,17 +61,17 @@ export default (ElementInterface = HTMLElement) => class extends ElementInterfac
     this.#debounce = null;
 
     if(this.shadowRoot && template) {
-      // Reconcile template DOM against existing shadow tree.
-      reconcile(template, this.shadowRoot);
-
-      this.#passes++;
-
-      if(this.#passes === 1) {
-        // First render, is mounted.
+      if(this.#passes === 0) {
+        this.shadowRoot.innerHTML = this.template;
         this.mountedCallback?.();
+        this.updatedCallback?.(old);
+      } else {
+        // Reconcile template DOM against existing shadow tree.
+        reconcile(template, this.shadowRoot);
+        this.updatedCallback?.(old);
       }
 
-      this.updatedCallback?.(old);
+      this.#passes++;
     }
   }
 };

@@ -1,8 +1,8 @@
 import {declarative, html, baseStyles, refreshProperties, registerParts, slugify} from "../../utilities/index.js";
 import animation from "../../../00-brand/animation/animation.json";
-import localStyles from "./style.css";
+import localStyles from "./styles.shadow.css";
 
-class AccordionSection extends declarative(HTMLElement) {
+class TCDSAccordionSectionElement extends declarative(HTMLElement) {
   // #region Setup
   static observedAttributes = ["open"];
 
@@ -41,19 +41,20 @@ class AccordionSection extends declarative(HTMLElement) {
   // #endregion
 
   // #region Lifecycle
-  connectedCallback() {
+  async connectedCallback() {
     refreshProperties.apply(this, ["open"]);
-    this.requestUpdate();
+
+    await customElements.whenDefined("tcds-accordion").then(() => {
+      this.requestUpdate();
+    });
   }
 
-  disconnectedCallback() {
-    window.removeEventListener("hashchange", this.deepLinkHandler);
-  }
-
-  attributeChangedCallback(name, old) {
-    // Because [open] is a boolean attribute, null = absent = false. Only other
-    // potential value is "", which = present = true.
-    this.requestUpdate({[name]: name === "open" ? old !== null : old});
+  async attributeChangedCallback(name, old) {
+    await customElements.whenDefined("tcds-accordion").then(() => {
+      // Because [open] is a boolean attribute, null = absent = false. Only other
+      // potential value is "", which = present = true.
+      this.requestUpdate({[name]: name === "open" ? old !== null : old});
+    });
   }
 
   mountedCallback() {
@@ -118,7 +119,8 @@ class AccordionSection extends declarative(HTMLElement) {
         }
       } else if(old.open) {
         // Closing from open state. Hide panel after reversed animation to 0
-        // height.
+        // height. `[hidden=until-found]` keeps content findable via browser
+        // controls in Chromium browsers.
         this.parts.panel.animate(openAnimation, {
           direction: "reverse",
           duration: openAnimationDuration,
@@ -130,6 +132,10 @@ class AccordionSection extends declarative(HTMLElement) {
       this.parts.panel.hidden = "until-found";
     }
   }
+
+  disconnectedCallback() {
+    window.removeEventListener("hashchange", this.deepLinkHandler);
+  }
   // #endregion
 
   // #region Event listeners
@@ -137,18 +143,30 @@ class AccordionSection extends declarative(HTMLElement) {
     this.toggle();
   }
 
+  /**
+   * If the URL hash matches the ID of this section, or the ID of an element
+   * within this section, open it. If an ID does not exist for this section,
+   * generate one from the title.
+   */
   deepLinkHandler() {
-    // Get hash from URL for deep linking.
+    // Get hash from URL. Exit early if no hash.
     const hash = window.location.hash.substring(1);
+    if(!hash) return;
 
     // Derive an ID from section title if not already provided.
-    if(!this.id) {
+    if(!this.id && !document.getElementById(slugify(this.title))) {
       this.id = slugify(this.title);
     }
 
-    // Open section if hash matches ID.
-    if(hash === this.id) {
+    if(hash === this.id || this.querySelector(`[id=${hash}], [name=${hash}]`)) {
+      // Open section if hash matches ID.
       this.show();
+
+      requestAnimationFrame(() => {
+        // Scroll to whichever element whose ID matches the hash. It may not be
+        // a section, but an element contained by one.
+        document.getElementById(hash).scrollIntoView(true);
+      });
     }
   }
   // #endregion
@@ -190,13 +208,13 @@ class AccordionSection extends declarative(HTMLElement) {
   }
 
   toggle(test) {
-    if(test === undefined) {
-      test = !this.open;
+    if(typeof test === "function") {
+      test = test();
     }
 
-    this.open = test;
+    this.open = typeof test === "boolean" ? test : !this.open;
   }
   // #endregion
 }
 
-customElements.define("tcds-accordion-section", AccordionSection);
+customElements.define("tcds-accordion-section", TCDSAccordionSectionElement);

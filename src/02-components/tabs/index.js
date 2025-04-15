@@ -1,10 +1,8 @@
-import {declarative, baseStyles, refreshProperties} from "../utilities/index.js";
-import localStyles from "./style.css";
+import {declarative, html, baseStyles, registerParts} from "../utilities/index.js";
+import localStyles from "./styles.shadow.css";
 
-class Tabs extends declarative(HTMLElement) {
+class TCDSTabsElement extends declarative(HTMLElement) {
   // #region Setup
-  static observedAttributes = ["collapsed"];
-
   constructor() {
     super();
     this.attachShadow({mode: "open"});
@@ -12,17 +10,18 @@ class Tabs extends declarative(HTMLElement) {
   }
 
   get template() {
-    return `
+    return html`
       <div role="tablist">
-        ${this.tabs.map(tab => `
+        ${this.tabs.map(tab => html`
           <button
             role="tab"
+            part="button"
             aria-selected="${tab.selected}"
             aria-disabled="${tab.selected}"
             tabindex="${tab.selected ? "0" : "-1"}"
             onclick="this.getRootNode().host.tabClick(event)"
             onkeydown="this.getRootNode().host.tabKeydown(event)"
-          ><span>${tab.label}</span></button>
+          ><span>${tab.title}</span></button>
         `).join("")}
       </div>
       <slot></slot>
@@ -31,45 +30,72 @@ class Tabs extends declarative(HTMLElement) {
   // #endregion
 
   // #region Lifecycle
-  connectedCallback() {
-    refreshProperties.apply(this, ["collapsed"]);
-    this.requestUpdate();
+  async connectedCallback() {
+    await customElements.whenDefined("tcds-tab").then(() => {
+      this.requestUpdate();
+    });
   }
 
   mountedCallback() {
-    this.tabButtons = Array.from(this.shadowRoot.querySelectorAll("[role=tab]"));
+    registerParts.apply(this, ["button"]);
 
-    if(!this.collapsed) {
-      this.select(this.tabs.find(tab => tab.selected) || this.tabs[0]);
-    }
+    this.deepLinkHandler();
+    window.addEventListener("hashchange", this.deepLinkHandler.bind(this));
+  }
+
+  disconnectedCallback() {
+    window.removeEventListener("hashchange", this.deepLinkHandler);
   }
   // #endregion
 
   // #region Event listeners
   tabClick({currentTarget}) {
-    this.select(this.tabs[this.tabButtons.indexOf(currentTarget)]);
+    this.select(this.tabs[this.parts["button"].indexOf(currentTarget)]);
   }
 
   tabKeydown({key}) {
     if(["ArrowRight", "ArrowLeft"].includes(key)) {
       const goto = key === "ArrowRight" ? this.nextIndex : this.previousIndex;
-      this.tabButtons[goto].focus();
+      this.parts["button"][goto].focus();
       this.select(this.tabs[goto]);
+    }
+  }
+
+  /**
+   * If the URL hash matches the ID of this tab, or the ID of an element within
+   * this tab, select it.
+   */
+  deepLinkHandler() {
+    // Get hash from URL.
+    const hash = window.location.hash.slice(1);
+
+    // The target tab is one with an ID that matches the hash, or that contains
+    // an element with an ID or name that matches the hash.
+    const target = hash && this.tabs.find((tab) => {
+      return tab.id === hash
+        || tab.querySelector(`[id="${hash}"], [name="${hash}"]`);
+    });
+
+    if(target) {
+      // Select the tab.
+      this.select(target);
+
+      requestAnimationFrame(() => {
+        // Scroll to whichever element whose ID matches the hash. It may not be
+        // a tab, but an element contained by one.
+        document.getElementById(hash).scrollIntoView(true);
+      });
+    } else {
+      // Just select the first tab or the first tab marked selected if no hash.
+      this.select(this.tabs.find(tab => tab.selected) || this.tabs[0]);
+      return;
     }
   }
   // #endregion
 
   // #region Props and state
-  get collapsed() {
-    return this.hasAttribute("collapsed");
-  }
-
-  set collapsed(value) {
-    this.toggleAttribute("collapsed", Boolean(value));
-  }
-
   get tabs() {
-    return Array.from(this.querySelectorAll("tcds-tab"));
+    return Array.from(this.querySelectorAll(":scope > tcds-tab"));
   }
 
   get nextIndex() {
@@ -90,4 +116,4 @@ class Tabs extends declarative(HTMLElement) {
   // #endregion
 }
 
-customElements.define("tcds-tabs", Tabs);
+customElements.define("tcds-tabs", TCDSTabsElement);
