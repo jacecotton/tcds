@@ -8,6 +8,12 @@ export default function() {
   this.parts = {};
 
   [...arguments].forEach((part) => {
-    this.parts[part] = this.shadowRoot.querySelector(`[part~=${part}]`);
+    const query = this.shadowRoot.querySelectorAll(`[part~=${part}]`);
+
+    if(query.length === 1) {
+      this.parts[part] = query[0];
+    } else {
+      this.parts[part] = [...query];
+    }
   });
 }
