@@ -9,6 +9,7 @@ $-size-adjust: 112%;
   src: url("https://use.typekit.net/af/32f92a/000000000000000000014869/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff2");
   font-style: normal;
   font-weight: 400;
+  font-display: swap;
   size-adjust: $-size-adjust;
 }
 
@@ -17,6 +18,7 @@ $-size-adjust: 112%;
   src: url("https://use.typekit.net/af/fb816c/00000000000000000001486a/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3") format("woff2");
   font-style: italic;
   font-weight: 400;
+  font-display: swap;
   size-adjust: $-size-adjust;
 }
 
@@ -25,6 +27,7 @@ $-size-adjust: 112%;
   src: url("https://use.typekit.net/af/370322/00000000000000000001486b/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3") format("woff2");
   font-style: normal;
   font-weight: 600;
+  font-display: swap;
   size-adjust: $-size-adjust;
 }
 
@@ -33,6 +36,7 @@ $-size-adjust: 112%;
   src: url("https://use.typekit.net/af/0d4c7b/00000000000000000001486c/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i6&v=3") format("woff2");
   font-style: italic;
   font-weight: 600;
+  font-display: swap;
   size-adjust: $-size-adjust;
 }
 
@@ -41,6 +45,7 @@ $-size-adjust: 112%;
   src: url("https://use.typekit.net/af/9e56a2/00000000000000000001486d/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff2");
   font-style: normal;
   font-weight: 700;
+  font-display: swap;
   size-adjust: $-size-adjust;
 }
 
@@ -49,5 +54,6 @@ $-size-adjust: 112%;
   src: url("https://use.typekit.net/af/c0faa1/00000000000000000001486e/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3") format("woff2");
   font-style: italic;
   font-weight: 700;
+  font-display: swap;
   size-adjust: $-size-adjust;
 }
