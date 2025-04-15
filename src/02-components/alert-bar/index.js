@@ -1,44 +1,46 @@
-import {declarative, baseStyles} from "../utilities/index.js";
-import localStyles from "./style.css";
+import {declarative, html, baseStyles} from "../utilities/index.js";
+import localStyles from "./styles.shadow.css";
 
-class AlertBar extends declarative(HTMLElement) {
-  get template() {
-    return `
-      <section>
-        <h2><tcds-icon icon="updates"></tcds-icon> Updates</h2>
-        <div part="alerts">
-          <slot name="alert"></slot>
-        </div>
-        <button part="close" onclick="this.getRootNode().host.close()" aria-label="Dismiss updates" title="Dismiss updates">
-          <tcds-icon icon="x"></tcds-icon>
-        </button>
-      </section>
-    `;
-  }
-
+class TCDSAlertBarElement extends declarative(HTMLElement) {
+  // #region Setup
   constructor() {
     super();
     this.attachShadow({mode: "open"});
     this.shadowRoot.adoptedStyleSheets = [baseStyles, localStyles];
   }
 
+  get template() {
+    return html`
+      <section>
+        <slot name="heading">
+          <tcds-icon icon="updates"></tcds-icon>
+          <h2>Updates</h2>
+        </slot>
+
+        <div part="alerts">
+          <slot name="alert"></slot>
+        </div>
+
+        <button part="close" onclick="this.getRootNode().host.close()" title="Dismiss updates">
+          <span class="visually-hidden">Dismiss updates</span>
+          <tcds-icon icon="x"></tcds-icon>
+        </button>
+      </section>
+    `;
+  }
+  // #endregion
+
+  // #region Lifecycle
   connectedCallback() {
     this.requestUpdate();
   }
+  // #endregion
 
-  mountedCallback() {
-    const alerts = Array.from(this.querySelectorAll("[slot~=alert]"));
-
-    alerts.forEach((alert) => {
-      alert.addEventListener("click", () => {
-        alerts.filter(other => alert !== other).forEach(other => other.open = false);
-      });
-    });
-  }
-
+  // #region Public API
   close() {
     this.hidden = true;
   }
+  // #endregion
 }
 
-customElements.define("tcds-alert-bar", AlertBar);
+customElements.define("tcds-alert-bar", TCDSAlertBarElement);
