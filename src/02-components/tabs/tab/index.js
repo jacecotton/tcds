@@ -1,9 +1,9 @@
-import {declarative, baseStyles, refreshProperties} from "../../utilities/index.js";
-import localStyles from "./style.css";
+import {declarative, html, baseStyles, refreshProperties, slugify} from "../../utilities/index.js";
+import localStyles from "./styles.shadow.css";
 
-class Tab extends declarative(HTMLElement) {
+class TCDSTabElement extends declarative(HTMLElement) {
   // #region Setup
-  static observedAttributes = ["selected", "label"];
+  static observedAttributes = ["selected"];
 
   constructor() {
     super();
@@ -12,7 +12,7 @@ class Tab extends declarative(HTMLElement) {
   }
 
   get template() {
-    return `
+    return html`
       <section role="tabpanel" ${this.selected ? "" : "hidden"}>
         <slot></slot>
       </section>
@@ -22,8 +22,12 @@ class Tab extends declarative(HTMLElement) {
 
   // #region Lifecycle
   connectedCallback() {
-    refreshProperties.apply(this, ["selected", "label"]);
+    refreshProperties.apply(this, ["selected"]);
     this.requestUpdate();
+
+    if(!this.id && this.title && !document.getElementById(slugify(this.title))) {
+      this.id = slugify(this.title);
+    }
   }
 
   attributeChangedCallback(name, oldValue) {
@@ -46,12 +50,9 @@ class Tab extends declarative(HTMLElement) {
     this.toggleAttribute("selected", Boolean(value));
   }
 
-  get label() {
-    return this.getAttribute("label");
-  }
-
-  set label(value) {
-    this.setAttribute("label", value);
+  get title() {
+    return this.querySelector(":scope > [slot=title]")?.innerHTML
+      || console.error("No heading element with [slot=title] provided in tab.", this);
   }
 
   get tabs() {
@@ -60,4 +61,4 @@ class Tab extends declarative(HTMLElement) {
   // #endregion
 }
 
-customElements.define("tcds-tab", Tab);
+customElements.define("tcds-tab", TCDSTabElement);

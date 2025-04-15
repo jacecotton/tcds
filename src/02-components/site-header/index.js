@@ -1,6 +1,6 @@
 import layout from "../../01-layout/layout.json";
 
-class SiteHeader extends HTMLElement {
+class TCDSSiteHeaderElement extends HTMLElement {
   constructor() {
     super();
   }
@@ -84,4 +84,4 @@ class SiteHeader extends HTMLElement {
   }
 }
 
-customElements.define("tcds-site-header", SiteHeader);
+customElements.define("tcds-site-header", TCDSSiteHeaderElement);

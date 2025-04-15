@@ -1,7 +1,7 @@
 import {declarative, html, baseStyles} from "../utilities/index.js";
-import localStyles from "./style.css";
+import localStyles from "./styles.shadow.css";
 
-class Section extends declarative(HTMLElement) {
+class TCDSSectionElement extends declarative(HTMLElement) {
   constructor() {
     super();
     this.attachShadow({mode: "open"});
@@ -40,4 +40,4 @@ class Section extends declarative(HTMLElement) {
   // #endregion
 }
 
-customElements.define("tcds-section", Section);
+customElements.define("tcds-section", TCDSSectionElement);

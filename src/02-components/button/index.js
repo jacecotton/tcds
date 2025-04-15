@@ -6,13 +6,13 @@ const Button = BaseElement => class extends BaseElement {
   // Features common across button types.
 };
 
-class UIButton extends Button(HTMLButtonElement) {
+class TCDSUIButtonElement extends Button(HTMLButtonElement) {
   // Features unique to true buttons.
 }
 
-class LinkButton extends Button(HTMLAnchorElement) {
+class TCDSLinkButtonElement extends Button(HTMLAnchorElement) {
   // Features unique to link buttons.
 }
 
-customElements.define("tcds-ui-button", UIButton, {extends: "button"});
-customElements.define("tcds-link-button", LinkButton, {extends: "a"});
+customElements.define("tcds-ui-button", TCDSUIButtonElement, {extends: "button"});
+customElements.define("tcds-link-button", TCDSLinkButtonElement, {extends: "a"});

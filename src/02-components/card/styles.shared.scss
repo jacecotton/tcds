@@ -25,6 +25,10 @@ tcds-card {
     }
   }
 
+  &[variant*="ui"] {
+    --tcds-card-title-font: var(--tcds-font-ui);
+  }
+
   &[variant*="centered"]:not([orientation*="horizontal"]) {
     --tcds-card-justify-content: center;
 
@@ -33,6 +37,7 @@ tcds-card {
 
   &:not([orientation*="horizontal"]) {
     max-width: 640px;
+    height: 100%;
   }
 
   > [slot="title"] {

@@ -1,6 +1,6 @@
 import {declarative, html, baseStyles} from "../../utilities/index.js";
 
-class FnList extends declarative(HTMLElement) {
+class TCDSFnListElement extends declarative(HTMLElement) {
   constructor() {
     super();
     this.attachShadow({mode: "open"});
@@ -83,4 +83,4 @@ class FnList extends declarative(HTMLElement) {
   }
 }
 
-customElements.define("tcds-fn-list", FnList);
+customElements.define("tcds-fn-list", TCDSFnListElement);

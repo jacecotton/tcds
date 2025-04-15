@@ -16,7 +16,7 @@
 [part="button"] {
   background: none;
   border: none;
-  border-bottom: 1px solid var(--tcds-color-gray-2);
+  border-bottom: 1px solid var(--tcds-accordion-border-color);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -40,5 +40,6 @@
 }
 
 [part="content"] {
-  padding: 1rem 0;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--tcds-accordion-border-color);
 }

@@ -1,6 +1,8 @@
 :host {
   --tcds-tabs-tab-indicator-size: 4px;
   --tcds-tabs-tab-padding-inline: 1rem;
+  --tcds-tabs-tab-justify: start;
+  --tcds-tabs-tab-flex-grow: 0;
 
   display: block;
 }
@@ -15,7 +17,7 @@
 
 [role="tablist"] {
   display: flex;
-  justify-content: var(--tcds-tabs-tab-justify, start);
+  justify-content: var(--tcds-tabs-tab-justify);
   overflow: auto hidden;
   overscroll-behavior: none;
   gap: .75rem;
@@ -32,7 +34,7 @@
   font-family: var(--tcds-font-ui);
   display: inline-flex;
   align-items: center;
-  flex: var(--tcds-tabs-tab-flex-grow, 0);
+  flex: var(--tcds-tabs-tab-flex-grow);
   white-space: nowrap;
   position: relative;
 

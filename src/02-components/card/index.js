@@ -1,7 +1,7 @@
 import {declarative, html, baseStyles, refreshProperties} from "../utilities/index.js";
-import localStyles from "./styles.css";
+import localStyles from "./styles.shadow.css";
 
-class Card extends declarative(HTMLElement) {
+class TCDSCardElement extends declarative(HTMLElement) {
   // #region Setup
   static observedAttributes = ["variant", "cta"];
 
@@ -120,4 +120,4 @@ class Card extends declarative(HTMLElement) {
   // #endregion
 }
 
-customElements.define("tcds-card", Card);
+customElements.define("tcds-card", TCDSCardElement);

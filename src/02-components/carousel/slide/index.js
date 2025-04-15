@@ -1,6 +1,6 @@
 import {declarative, refreshProperties} from "../../utilities/index.js";
 
-class Slide extends declarative(HTMLElement) {
+class TCDSSlideElement extends declarative(HTMLElement) {
   static observedAttributes = ["selected"];
 
   constructor() {
@@ -53,4 +53,4 @@ class Slide extends declarative(HTMLElement) {
   }
 }
 
-customElements.define("tcds-slide", Slide);
+customElements.define("tcds-slide", TCDSSlideElement);

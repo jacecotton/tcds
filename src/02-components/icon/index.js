@@ -1,6 +1,6 @@
 import {declarative, refreshProperties, slugify, baseStyles} from "../utilities/index.js";
 
-class Icon extends declarative(HTMLElement) {
+class TCDSIconElement extends declarative(HTMLElement) {
   observedAttributes = ["icon"];
 
   get icon() {
@@ -44,4 +44,4 @@ class Icon extends declarative(HTMLElement) {
   }
 }
 
-customElements.define("tcds-icon", Icon);
+customElements.define("tcds-icon", TCDSIconElement);

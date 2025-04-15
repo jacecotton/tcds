@@ -1,6 +1,6 @@
 import {declarative, html, baseStyles} from "../../utilities/index.js";
 
-class FnRef extends declarative(HTMLElement) {
+class TCDSFnRefElement extends declarative(HTMLElement) {
   constructor() {
     super();
     this.attachShadow({mode: "open"});
@@ -54,4 +54,4 @@ class FnRef extends declarative(HTMLElement) {
   }
 }
 
-customElements.define("tcds-fn-ref", FnRef);
+customElements.define("tcds-fn-ref", TCDSFnRefElement);

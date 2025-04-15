@@ -1,7 +1,7 @@
 import {declarative, baseStyles, refreshProperties, html} from "../utilities/index.js";
-import localStyles from "./style.css";
+import localStyles from "./styles.shadow.css";
 
-class Accordion extends declarative(HTMLElement) {
+class TCDSAccordionElement extends declarative(HTMLElement) {
   // #region Setup
   static observedAttributes = ["multiple"];
 
@@ -79,4 +79,4 @@ class Accordion extends declarative(HTMLElement) {
   }
 }
 
-customElements.define("tcds-accordion", Accordion);
+customElements.define("tcds-accordion", TCDSAccordionElement);

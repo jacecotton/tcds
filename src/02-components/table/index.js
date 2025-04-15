@@ -1,6 +1,6 @@
 // Good resource: https://piccalil.li/blog/styling-tables-the-modern-css-way/
 
-class Table extends HTMLElement {
+class TCDSTableElement extends HTMLElement {
   constructor() {
     super();
   }
@@ -17,4 +17,4 @@ class Table extends HTMLElement {
   }
 }
 
-customElements.define("tcds-table", Table);
+customElements.define("tcds-table", TCDSTableElement);
