@@ -56,6 +56,7 @@ const tasks = {
           "card": {import: "./src/02-components/card/index.js", dependOn: ["utilities"]},
           "carousel": {import: "./src/02-components/carousel/index.js", dependOn: ["utilities"]},
           "slide": {import: "./src/02-components/carousel/slide/index.js", dependOn: ["utilities"]},
+          "dialog": {import: "./src/02-components/dialog/index.js", dependOn: ["utilities"]},
           "fn-ref": {import: "./src/02-components/footnote/fn-ref/index.js", dependOn: ["utilities"]},
           "fn-list": {import: "./src/02-components/footnote/fn-list/index.js", dependOn: ["utilities"]},
           "tabs": {import: "./src/02-components/tabs/index.js", dependOn: ["utilities"]},
@@ -117,7 +118,7 @@ const tasks = {
   },
 
   fonts: () => {
-    return src("./src/00-brand/typography/fonts/static/**/*")
+    return src("./src/00-brand/typography/fonts/static/**/*", {encoding: false})
       .pipe(dest("./dist/fonts/"));
   },
 
@@ -131,7 +132,7 @@ const tasks = {
 task("cleanup", tasks.cleanup);
 task("styles", tasks.styles);
 task("javascript", tasks.javascript);
-task("icons", tasks.icons);
+// task("icons", tasks.icons);
 task("fonts", tasks.fonts);
 task("logos", tasks.logos);
 
