@@ -1,0 +1,3 @@
+html:has(tcds-dialog[open]) {
+  overflow: hidden;
+}

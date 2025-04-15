@@ -7,38 +7,43 @@ class TCDSDialogElement extends declarative(HTMLElement) {
 
   constructor() {
     super();
-    this.attachShadow({mode: "open"});
+    this.attachShadow({mode: "open", delegatesFocus: true});
     this.shadowRoot.adoptedStyleSheets = [baseStyles, localStyles];
   }
 
   get template() {
-    const closeButton = () => html`
-      <button part="close" onclick="this.getRootNode().host.close()">
+    const closeButton = ({title = "Dismiss dialog"} = {}) => html`
+      <button is="tcds-ui-button" part="close" value="close">
+        <span class="visually-hidden">${title}</span>
         <tcds-icon icon="x"></tcds-icon>
       </button>
     `;
 
     return html`
       <dialog part="dialog" ${this.open ? "open" : ""}>
-        ${this.#has("header") ? html`
-          <header part="header">
-            <slot name="header"></slot>
-            ${closeButton()}
-          </header>
-        ` : `
-          ${closeButton()}
-        `}
+        <slot name="form">
+          <form method="dialog">
+            ${this.#has("header") ? html`
+              <header part="header">
+                <slot name="header"></slot>
+                ${closeButton()}
+              </header>
+            ` : `
+              ${closeButton()}
+            `}
 
-        <div part="content">
-          <slot></slot>
-        </div>
+            <article part="content">
+              <slot></slot>
+            </article>
 
-        ${this.#has("footer") ? html`
-          <footer part="footer">
-            <slot name="footer"></slot>
-          </footer>
-        ` : ``}
-        </dialog>
+            ${this.#has("footer") ? html`
+              <footer part="footer">
+                <slot name="footer"></slot>
+              </footer>
+            ` : ``}
+          </form>
+        </slot>
+      </dialog>
     `;
   }
   // #endregion
@@ -51,10 +56,17 @@ class TCDSDialogElement extends declarative(HTMLElement) {
 
   mountedCallback() {
     registerParts.apply(this, ["dialog", "header", "close", "content", "footer"]);
-  }
+    this.#relayEvents();
 
-  attributeChangedCallback(attribute, value) {
-    this.requestUpdate({[attribute]: value});
+    this.parts["dialog"].addEventListener("beforetoggle", (event) => {
+      this.open = event.newState === "open";
+    });
+
+    this.parts["dialog"].addEventListener("mousedown", ({target: dialog}) => {
+      if(dialog.nodeName === "DIALOG") {
+        this.close(-1);
+      }
+    });
   }
   // #endregion
 
@@ -85,12 +97,30 @@ class TCDSDialogElement extends declarative(HTMLElement) {
     this.parts["dialog"].showModal();
   }
 
+  show() {
+    this.parts["dialog"].show();
+  }
+
   close(returnValue = "") {
     this.parts["dialog"].close(returnValue);
   }
 
   requestClose(returnValue = "") {
     this.parts["dialog"].requestClose(returnValue);
+  }
+
+  #relayEvents() {
+    ["toggle", "beforetoggle"].forEach((eventname) => {
+      this.parts["dialog"].addEventListener(eventname, (event) => {
+        this.dispatchEvent(new ToggleEvent(eventname, event));
+      });
+    });
+
+    ["cancel", "close"].forEach((eventname) => {
+      this.parts["dialog"].addEventListener(eventname, (event) => {
+        this.dispatchEvent(new Event(eventname, event));
+      });
+    });
   }
   // #endregion
 
