@@ -4,7 +4,7 @@
 @each $alias, $color in color.$aliases {
   .bg-#{$alias} {
     $scheme: map.get(color.$themes, "light");
-    
+
     @each $element, $color in map.get($scheme, $alias) {
       #{"--tcds-color-#{$element}"}: var(--tcds-color-#{$alias}-#{$element});
     }
