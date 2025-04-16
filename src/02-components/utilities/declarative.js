@@ -32,6 +32,10 @@ export default (ElementInterface = HTMLElement) => class extends ElementInterfac
   // Keep internal track of how many render passes have happened.
   #passes = 0;
 
+  // "Mounted" is a lifecycle state corresponding to the component's first
+  // render pass.
+  isMounted = false;
+
   // Merges `record` into ongoing `#batch`, then determines whether to be
   // debounced. If not, calls `#update` to execute the actual update process.
   requestUpdate(record) {
@@ -60,18 +64,43 @@ export default (ElementInterface = HTMLElement) => class extends ElementInterfac
     this.#batch = {};
     this.#debounce = null;
 
-    if(this.shadowRoot && template) {
-      if(this.#passes === 0) {
-        this.shadowRoot.innerHTML = this.template;
-        this.mountedCallback?.();
-        this.updatedCallback?.(old);
-      } else {
-        // Reconcile template DOM against existing shadow tree.
-        reconcile(template, this.shadowRoot);
-        this.updatedCallback?.(old);
-      }
-
-      this.#passes++;
+    if(!this.shadowRoot || !template) {
+      return;
     }
+
+    if(this.#passes === 0) {
+      this.shadowRoot.innerHTML = this.template;
+
+      // Invoke subclass-defined hook.
+      this.mountedCallback?.();
+
+      // Signal mounted via a boolean property and a promise resolution.
+      this.isMounted = true;
+      this.#resolveMounted();
+      // @todo dispatch `mount` event?
+
+      this.updatedCallback?.(old);
+
+      // @todo dispatch `update` event with `old` in `details`.
+    } else {
+      // Reconcile template DOM against existing shadow tree.
+      reconcile(template, this.shadowRoot);
+      this.updatedCallback?.(old);
+    }
+
+    this.#passes++;
+  }
+
+  // `whenMounted` returns a promise, which resolves when `#resolveMounted` is
+  // called. Per the above, `#resolveMounted` is called after the element's
+  // first render pass, corresponding with `mountedCallback`.
+  #resolveMounted;
+
+  #mountedPromise = new Promise((resolve) => {
+    this.#resolveMounted = resolve;
+  });
+
+  whenMounted() {
+    return this.#mountedPromise;
   }
 };

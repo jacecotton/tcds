@@ -10,6 +10,12 @@ const formFields = ["input", "option", "textarea", "details"];
 const formAttributes = ["value", "checked", "selected", "open"];
 const formAttributesNoValue = ["checked", "selected"];
 
+/**
+ * Converts a string to an HTML fragment via DOMParser. Moves any head content
+ * to the body to ensure we're working with a single root. This is important
+ * because the string may contain elements that the browser automatically
+ * separates into a head, like with stylesheets.
+ */
 function stringToHTML(string) {
   const parsedHTML = new DOMParser().parseFromString(string, "text/html");
   const {head, body} = parsedHTML;
