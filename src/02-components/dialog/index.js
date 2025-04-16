@@ -64,7 +64,7 @@ class TCDSDialogElement extends declarative(HTMLElement) {
 
     this.parts["dialog"].addEventListener("mousedown", ({target: dialog}) => {
       if(dialog.nodeName === "DIALOG") {
-        this.close(-1);
+        this.close("dismissed");
       }
     });
   }

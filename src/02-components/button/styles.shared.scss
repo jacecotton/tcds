@@ -107,6 +107,20 @@ a[is="tcds-link-button"] {
     }
   }
 
+  /**
+   * We're using `[aria-label]` and `.visually-hidden` here as heuristics for
+   * whether a button only contains an icon (if no visible text, an accessible
+   * label should be provided — if visible text, no additional accessibility
+   * labels should be needed). If it does contain just an icon, we want it to
+   * be perfectly square proportioned, so set the width to its height and remove
+   * the padding.
+   */
+  :where(:is(&)[aria-label], :is(&):has(.visually-hidden)) {
+    --tcds-button-width: var(--tcds-button-height);
+
+    padding: 0;
+  }
+
   :where(:is(&):hover) {
     --tcds-button-primary-background-color: var(--tcds-color-primary-2);
     --tcds-button-secondary-text-color: var(--tcds-color-primary);
@@ -161,5 +175,9 @@ a[is="tcds-link-button"] {
       --tcds-button-secondary-icon-color: var(--tcds-color-white);
       --tcds-button-secondary-icon-outline-color: var(--tcds-color-white);
     }
+  }
+
+  tcds-icon {
+    flex-shrink: 0;
   }
 }

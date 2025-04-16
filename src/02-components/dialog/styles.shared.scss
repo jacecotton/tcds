@@ -1,3 +1,3 @@
-html:has(tcds-dialog[open]) {
+body:has(tcds-dialog[open]) {
   overflow: hidden;
 }

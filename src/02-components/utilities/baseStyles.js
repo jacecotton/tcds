@@ -27,7 +27,8 @@
  * document — uses local storage for caching, but really only for memory
  * efficiency's sake. There's no FOUC even without it because we're not making
  * additional network requests either way, and `replaceSync` is insanely
- * optimized.
+ * optimized. This results in a significant advantage over our previous approach
+ * anyway.
  *
  * @todo Make versioning/invalidation more efficient. Right now we'll just be
  *   tweaking the number manually. Maybe base it on a cache token, if provided,
