@@ -1,29 +1,31 @@
-"use strict";(self.webpackChunk_txch_tcds=self.webpackChunk_txch_tcds||[]).push([[288],{42:(t,e,s)=>{var o=s(679);const a=new CSSStyleSheet;a.replaceSync("dialog {\n  align-self: center;\n  justify-self: center;\n  place-self: center;\n}\n");const n=a;class r extends((0,o.Rv)(HTMLElement)){static observedAttributes=["open","position"];constructor(){super(),this.attachShadow({mode:"open",delegatesFocus:!0}),this.shadowRoot.adoptedStyleSheets=[o.ir,n]}get template(){const t=function(){let{title:t="Dismiss dialog"}=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};return o.qy`
-      <button is="tcds-ui-button" part="close" value="close">
+"use strict";(self.webpackChunk_txch_tcds=self.webpackChunk_txch_tcds||[]).push([[288],{42:(t,e,n)=>{var o=n(679);const a=new CSSStyleSheet;a.replaceSync(':host {\n  --tcds-dialog-border-radius: 0;\n}\n\n:host(:not([position*="right"])) {\n  --tcds-dialog-max-height: 75vh;\n  --tcds-dialog-border-radius: var(--tcds-border-radius-m);\n}\n\n:host(:not([variant*="lightbox"])) {\n  --tcds-dialog-padding: var(--tcds-micro-s);\n}\n\n:host([variant*="lightbox"]) {\n  --tcds-dialog-min-width: min(90vw, fit-content);\n}\n\n:host([open]) {\n  --tcds-dialog-backdrop-opacity: 1;\n\n  display: block;\n}\n\n:host([open]:not([variant*="lightbox"]):not([position*="right"])) {\n  --tcds-dialog-animation: tcds-animation-slide-in-up;\n}\n\n:host([open][variant*="lightbox"]) {\n  --tcds-dialog-animation: tcds-animation-grow-in;\n}\n\n:host([open][position*="right"]) {\n  --tcds-dialog-animation: tcds-animation-slide-in-left;\n}\n\ndialog {\n  background-color: #fff;\n  border: 0;\n  border-radius: var(--tcds-dialog-border-radius);\n  box-shadow: var(--tcds-box-shadow-s) var(--tcds-shade-medium);\n  font-family: var(--tcds-font-ui);\n  max-height: 100vh;\n  max-height: var(--tcds-dialog-max-height, 100vh);\n  width: calc(100vw - var(--tcds-site-outer-gutter) * 2);\n  overflow: visible;\n  word-wrap: break-word;\n  align-self: center;\n  justify-self: center;\n  place-self: center;\n  animation:\n    var(--tcds-dialog-animation)\n    var(--tcds-animation-expressive-duration)\n    var(--tcds-animation-expressive-easing)\n    forwards;\n}\n\n@media (min-width: 896px) {\n\ndialog {\n    min-width: 600px;\n    min-width: var(--tcds-dialog-min-width, 600px);\n    width: -moz-fit-content;\n    width: fit-content;\n    width: var(--tcds-dialog-base-width, -moz-fit-content);\n    width: var(--tcds-dialog-base-width, fit-content);\n    max-width: var(--tcds-dialog-max-width, calc(896px - var(--tcds-site-outer-gutter)));\n}\n  }\n\ndialog::backdrop {\n    background-color: var(--tcds-shade-medium);\n    opacity: 0;\n    opacity: var(--tcds-dialog-backdrop-opacity, 0);\n    transition: opacity .3s ease;\n\n    @starting-style {\n      opacity: 0;\n    }\n  }\n\n[part="header"] {\n  padding: calc(var(--tcds-dialog-padding) / 2) var(--tcds-dialog-padding);\n  border-bottom: 1px solid var(--tcds-color-gray);\n}\n\n[part="header"] ::slotted(h1) {\n    margin: 0 !important;\n    font-size: var(--tcds-font-size-l) !important;\n  }\n\n[part="header"] ::slotted(h2) {\n    margin: 0 !important;\n    font-size: var(--tcds-font-size-l) !important;\n  }\n\n[part="header"] ::slotted(h3) {\n    margin: 0 !important;\n    font-size: var(--tcds-font-size-l) !important;\n  }\n\n[part="header"] ::slotted(h4) {\n    margin: 0 !important;\n    font-size: var(--tcds-font-size-l) !important;\n  }\n\n[part="header"] ::slotted(h5) {\n    margin: 0 !important;\n    font-size: var(--tcds-font-size-l) !important;\n  }\n\n[part="header"] ::slotted(h6) {\n    margin: 0 !important;\n    font-size: var(--tcds-font-size-l) !important;\n  }\n\n[part="content"] {\n  overflow-y: auto;\n  padding: var(--tcds-dialog-padding);\n}\n\n[part="close"] {\n  position: absolute;\n  top: 0;\n  right: 0;\n  translate: 50% -50%;\n}\n');const i=a;class s extends((0,o.Rv)(HTMLElement)){static observedAttributes=["open","position"];static submitHandlerAttached=!1;constructor(){super(),this.attachShadow({mode:"open",delegatesFocus:!0}),this.shadowRoot.adoptedStyleSheets=[o.ir,i],s.submitHandlerAttached||(this.#t(),s.submitHandlerAttached=!0)}get template(){const t=this.#e("form")?this.querySelector("form[slot=form][id]")?.id:this.id,e=function(){let{title:t="Dismiss dialog",idstem:e}=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};return o.qy`
+      <button class="tcds-button" part="close"
+        ${e?`\n          form="${e}-form"\n          value="close"\n        `:"\n          onclick=\"this.getRootNode().host.close('close')\"\n        "}
+      >
         <span class="visually-hidden">${t}</span>
         <tcds-icon icon="x"></tcds-icon>
       </button>
     `};return o.qy`
-      <dialog part="dialog" ${this.open?"open":""}>
-        <slot name="form">
-          <form method="dialog">
-            ${this.#t("header")?o.qy`
-              <header part="header">
-                <slot name="header"></slot>
-                ${t()}
-              </header>
-            `:`\n              ${t()}\n            `}
+      <dialog part="dialog" aria-labelledby="${this.labelledby}" data-theme="light" ${this.open?"open":""}>
+        ${this.#e("header")?o.qy`
+          <header part="header">
+            <slot name="header"></slot>
+            ${e({idstem:t})}
+          </header>
+        `:`\n          ${e({idstem:t})}\n        `}
 
-            <article part="content">
+        <article part="content">
+          <slot name="form">
+            <form method="dialog" id="${t}-form">
               <slot></slot>
-            </article>
+            </form>
+          </slot>
+        </article>
 
-            ${this.#t("footer")?o.qy`
-              <footer part="footer">
-                <slot name="footer"></slot>
-              </footer>
-            `:""}
-          </form>
-        </slot>
+        ${this.#e("footer")?o.qy`
+          <footer part="footer">
+            <slot name="footer"></slot>
+          </footer>
+        `:""}
       </dialog>
-    `}connectedCallback(){o.N2.apply(this,["open","position"]),this.requestUpdate()}mountedCallback(){o.IM.apply(this,["dialog","header","close","content","footer"]),this.#e(),this.parts.dialog.addEventListener("beforetoggle",(t=>{this.open="open"===t.newState})),this.parts.dialog.addEventListener("mousedown",(t=>{let{target:e}=t;"DIALOG"===e.nodeName&&this.close("dismissed")}))}get open(){return this.hasAttribute("open")}set open(t){this.toggleAttribute("open",t)}get returnValue(){return this.parts.dialog.returnValue}set returnValue(t){this.parts.dialog.returnValue=t}showModal(){this.parts.dialog.showModal()}show(){this.parts.dialog.show()}close(){let t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"";this.parts.dialog.close(t)}requestClose(){let t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"";this.parts.dialog.requestClose(t)}#e(){["toggle","beforetoggle"].forEach((t=>{this.parts.dialog.addEventListener(t,(e=>{this.dispatchEvent(new ToggleEvent(t,e))}))})),["cancel","close"].forEach((t=>{this.parts.dialog.addEventListener(t,(e=>{this.dispatchEvent(new Event(t,e))}))}))}#t(){return!!this.querySelector([...arguments].map((t=>`[slot=${t}]`)).join(", "))}}customElements.define("tcds-dialog",r)},679:(t,e,s)=>{s.d(e,{ir:()=>r.A,Rv:()=>a.A,qy:()=>n,N2:()=>i.A,IM:()=>l.A,Yv:()=>o.A});var o=s(557),a=s(86);const n=function(t){const e=[t[0]];for(var s=arguments.length,o=new Array(s>1?s-1:0),a=1;a<s;a++)o[a-1]=arguments[a];return o.forEach(((s,o)=>{Array.isArray(s)?s.forEach((t=>{e.push(String(t))})):e.push(String(s)),e.push(t[o+1])})),e.join("")};var r=s(355),i=s(124),l=s(295)}},t=>{t.O(0,[501],(()=>t(t.s=42))),t.O()}]);
+    `}connectedCallback(){o.N2.apply(this,["open","position"]),this.#n(),this.requestUpdate(),this.#o()}mountedCallback(){o.IM.apply(this,["dialog","header","close","content","footer"]),this.#a(),this.parts.dialog.addEventListener("beforetoggle",(t=>{this.open="open"===t.newState})),this.parts.dialog.addEventListener("mousedown",(t=>{let{target:e}=t;"DIALOG"===e.nodeName&&this.close("dismissed")}))}get open(){return this.hasAttribute("open")}set open(t){this.toggleAttribute("open",t)}get returnValue(){return this.parts.dialog.returnValue}set returnValue(t){this.parts.dialog.returnValue=t}get labelledby(){const t="h1, h2, h3, h4, h5, h6",e=this.querySelector(`:is(${t})[slot=header]`),n=this.querySelector(t);return this.getAttribute("labelledby")||(e||n)?.id}showModal(){this.parts.dialog.showModal()}show(){this.parts.dialog.show()}close(){let t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"";this.parts.dialog.close(t)}requestClose(){let t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"";this.parts.dialog.requestClose(t)}#a(){["toggle","beforetoggle"].forEach((t=>{this.parts.dialog.addEventListener(t,(e=>{this.dispatchEvent(new ToggleEvent(t,e))}))})),["cancel","close"].forEach((t=>{this.parts.dialog.addEventListener(t,(e=>{this.dispatchEvent(new Event(t,e))}))}))}#n(){if(this.getAttribute("labelledby"))return;const t=this.querySelector("h1, h2, h3, h4, h5, h6");if(!t.id){const e=this.id||(0,o.Yv)(t.textContent);t.id=`${e}-title`}}#t(){this.getRootNode().addEventListener("submit",(t=>{t.target.matches("form[method=dialog]")||(this.getRootNode().querySelectorAll("tcds-dialog[open]").forEach((t=>t.close("done"))),t.target.querySelector("button:not([type]), [type=submit]")?.focus())}))}#o(){this.id&&(this.triggers=this.getRootNode().querySelectorAll(`:is(button, input)[aria-haspopup][aria-expanded][aria-controls=${this.id}]`),this.triggers.forEach((t=>{t.addEventListener("click",(()=>{this.showModal()}))})),this.addEventListener("toggle",(()=>{this.triggers.forEach((t=>t.setAttribute("aria-expanded",this.open)))})))}#e(){return!!this.querySelector([...arguments].map((t=>`[slot=${t}]`)).join(", "))}}customElements.define("tcds-dialog",s)},679:(t,e,n)=>{n.d(e,{ir:()=>s.A,Rv:()=>a.A,qy:()=>i,N2:()=>r.A,IM:()=>d.A,Yv:()=>o.A});var o=n(557),a=n(86);const i=function(t){const e=[t[0]];for(var n=arguments.length,o=new Array(n>1?n-1:0),a=1;a<n;a++)o[a-1]=arguments[a];return o.forEach(((n,o)=>{Array.isArray(n)?n.forEach((t=>{e.push(String(t))})):e.push(String(n)),e.push(t[o+1])})),e.join("")};var s=n(355),r=n(124),d=n(295)}},t=>{t.O(0,[501],(()=>t(t.s=42))),t.O()}]);

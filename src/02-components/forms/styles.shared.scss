@@ -3,6 +3,7 @@ input,
 select,
 summary,
 textarea {
+  max-width: 100%;
   touch-action: manipulation;
   -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
 }

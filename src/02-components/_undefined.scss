@@ -1,17 +1,24 @@
+/**
+ * To minimize FOUC, we're forcing all undefined custom elements to wait 250ms
+ * before appearing to give the script a chance to load. In most cases, the
+ * script will already be loaded and working, so custom elements will usually
+ * show immediately. This is just a safeguard.
+ */
 tcds-accordion,
 tcds-accordion-section,
 tcds-alert-bar,
 tcds-carousel,
 tcds-card,
 tcds-icon,
+tcds-slide,
 tcds-tabs,
 tcds-tab {
-  &:not(:defined) {
+  :is(&):not(:defined) {
     opacity: 0;
-    animation: tcds-custom-element-show 1ms forwards;
-    animation-delay: 1s;
+    animation: tcds-element-yield 1ms forwards;
+    animation-delay: 250ms;
 
-    @keyframes tcds-custom-element-show {
+    @keyframes tcds-element-yield {
       to {
         opacity: 1;
       }

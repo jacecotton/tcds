@@ -135,6 +135,7 @@ section {
   background: none;
   border: 0;
   display: flex;
+  box-sizing: content-box; /* 1 */
   padding: 1rem; /* 1 */
   margin: -1rem; /* 1 */
   color: var(--tcds-color-gray-2);

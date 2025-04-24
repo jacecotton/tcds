@@ -1,7 +1,6 @@
 @use "../../00-brand/animation/functions" as *;
 
-button[is="tcds-ui-button"],
-a[is="tcds-link-button"] {
+.tcds-button {
   :where(&) {
     --tcds-button-height: var(--tcds-micro-m);
     --tcds-button-inline-padding: var(--tcds-micro-s);

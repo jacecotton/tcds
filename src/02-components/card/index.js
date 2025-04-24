@@ -28,7 +28,7 @@ class TCDSCardElement extends declarative(HTMLElement) {
             <footer part="footer">
               <slot name="footer">
                 ${this.cta ? html`
-                  <button is="tcds-ui-button" part="cta" variant="secondary" aria-hidden="true">
+                  <button class="tcds-button" part="cta" variant="secondary" aria-hidden="true">
                     ${this.cta}
                   </button>
                 ` : ``}
@@ -51,7 +51,14 @@ class TCDSCardElement extends declarative(HTMLElement) {
     // responsive criteria.
     if(!this.orientation) {
       this.orient();
+
       new ResizeObserver(this.orient.bind(this)).observe(this.getRootNode().body);
+
+      const dialog = this.closest("tcds-dialog");
+
+      if(dialog) {
+        dialog.addEventListener("toggle", () => this.orient.bind(this));
+      }
     }
   }
 
