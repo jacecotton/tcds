@@ -54,11 +54,7 @@ class TCDSCardElement extends declarative(HTMLElement) {
 
       new ResizeObserver(this.orient.bind(this)).observe(this.getRootNode().body);
 
-      const dialog = this.closest("tcds-dialog");
-
-      if(dialog) {
-        dialog.addEventListener("toggle", () => this.orient.bind(this));
-      }
+      this.closest("tcds-dialog")?.addEventListener("toggle", () => this.orient.bind(this));
     }
   }
 
