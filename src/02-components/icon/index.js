@@ -1,7 +1,7 @@
-import {declarative, refreshProperties, slugify, baseStyles} from "../utilities/index.js";
+import {declarative, refreshProperties, slugify, baseStyles, html} from "../utilities/index.js";
 
 class TCDSIconElement extends declarative(HTMLElement) {
-  observedAttributes = ["icon"];
+  static observedAttributes = ["icon"];
 
   get icon() {
     return this.getAttribute("icon") || slugify(this.textContent);
@@ -12,7 +12,7 @@ class TCDSIconElement extends declarative(HTMLElement) {
   }
 
   get template() {
-    return `
+    return html`
       <span class="visually-hidden">
         ${this.textContent?.trim().length
           ? this.textContent

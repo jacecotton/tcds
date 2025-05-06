@@ -53,7 +53,7 @@ dialog {
   @media (min-width: 896px) {
     min-width: var(--tcds-dialog-min-width, 600px);
     width: var(--tcds-dialog-base-width, fit-content);
-    max-width: var(--tcds-dialog-max-width, calc(896px - var(--tcds-site-outer-gutter)));
+    max-width: var(--tcds-dialog-max-width, calc(var(--tcds-breakpoint-s) - var(--tcds-site-outer-gutter)));
   }
 
   &::backdrop {

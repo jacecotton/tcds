@@ -1,6 +1,6 @@
 "use strict";(self.webpackChunk_txch_tcds=self.webpackChunk_txch_tcds||[]).push([[537],{679:(e,t,n)=>{n.d(t,{ir:()=>a.A,Rv:()=>o.A,qy:()=>s,N2:()=>r.A,IM:()=>d.A,Yv:()=>i.A});var i=n(557),o=n(86);const s=function(e){const t=[e[0]];for(var n=arguments.length,i=new Array(n>1?n-1:0),o=1;o<n;o++)i[o-1]=arguments[o];return i.forEach(((n,i)=>{Array.isArray(n)?n.forEach((e=>{t.push(String(e))})):t.push(String(n)),t.push(e[i+1])})),t.join("")};var a=n(355),r=n(124),d=n(295)},996:(e,t,n)=>{var i=n(679);const o={p:50},s=new CSSStyleSheet;s.replaceSync('[part="heading"] {\n  margin: 0;\n\n  /**\n   * On smaller screens, the main heading of each open, non-nested accordion\n   * section is sticky, so we need to make them opaque and bump the z-index.\n   */\n}\n\n@media (max-width: 768px) {\n\n[part="heading"] {\n    background: var(--tcds-color-background, var(--tcds-color-white));\n    position: sticky;\n    position: var(--tcds-accordion-section-heading-position, sticky);\n    top: 0;\n    z-index: 2;\n}\n  }\n\n[part="button"] {\n  background: none;\n  border: none;\n  border-bottom: 1px solid var(--tcds-accordion-border-color);\n  cursor: pointer;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: var(--tcds-micro-s) 0;\n  text-align: left;\n  font-size: var(--tcds-accordion-heading-font-size, var(--tcds-font-size-m));\n  font-family: var(--tcds-font-ui);\n  font-weight: var(--tcds-accordion-heading-font-weight, var(--tcds-font-weight-semibold));\n  width: 100%;\n  color: var(--tcds-color-text);\n}\n\n[part="icon"] {\n  flex-shrink: 0;\n  pointer-events: none;\n}\n\n[part="panel"] {\n  overflow: hidden;\n}\n\n[part="content"] {\n  padding: 1.5rem 0;\n  border-bottom: 1px solid var(--tcds-accordion-border-color);\n}\n');const a=s;class r extends((0,i.Rv)(HTMLElement)){static observedAttributes=["open"];constructor(){super(),this.attachShadow({mode:"open"}),this.shadowRoot.adoptedStyleSheets=[i.ir,a]}get template(){const{title:e,headingLevel:t}=this;return i.qy`
       <section aria-labelledby="heading">
-        <${t} part="heading" id="heading">
+        <h2 ${t} part="heading" id="heading">
           <button
             part="button"
             id="button"
@@ -11,7 +11,7 @@
             ${e}
             <tcds-icon part="icon" icon="${this.open?"minus":"plus"}"></tcds-icon>
           </button>
-        </${t}>
+        </h2>
 
         <div part="panel" id="panel">
           <div part="content">

@@ -192,15 +192,15 @@ class TCDSDialogElement extends declarative(HTMLElement) {
   }
 
   #relayEvents() {
-    ["toggle", "beforetoggle"].forEach((eventname) => {
-      this.parts["dialog"].addEventListener(eventname, (event) => {
-        this.dispatchEvent(new ToggleEvent(eventname, event));
+    ["toggle", "beforetoggle"].forEach((eventName) => {
+      this.parts["dialog"].addEventListener(eventName, (event) => {
+        this.dispatchEvent(new ToggleEvent(eventName, event));
       });
     });
 
-    ["cancel", "close"].forEach((eventname) => {
-      this.parts["dialog"].addEventListener(eventname, (event) => {
-        this.dispatchEvent(new Event(eventname, event));
+    ["cancel", "close"].forEach((eventName) => {
+      this.parts["dialog"].addEventListener(eventName, (event) => {
+        this.dispatchEvent(new Event(eventName, event));
       });
     });
   }

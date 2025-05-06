@@ -97,7 +97,6 @@ a {
   }
 
   &[href]:not(:where(
-    [is],
     [slot],
     [href^="#"],
     [href^="javascript:" i],
