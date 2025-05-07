@@ -1,55 +1,27 @@
-import {declarative, baseStyles, refreshProperties, html} from "../utilities/index.js";
-import localStyles from "./styles.shadow.css";
+import {LitElement, html} from "lit";
 
-class TCDSAccordionElement extends declarative(HTMLElement) {
-  // #region Setup
-  static observedAttributes = ["multiple"];
+export class TCDSAccordionElement extends LitElement {
+  static properties = {
+    multiple: {type: Boolean},
+  };
 
   constructor() {
     super();
-    this.attachShadow({mode: "open"});
-    this.shadowRoot.adoptedStyleSheets = [baseStyles, localStyles];
+    this.multiple = false;
+
   }
 
-  get template() {
+  render() {
     return html`
-      ${this.multiple ? html`
-        <div part="controls">
-          <button part="open-all" onclick="this.getRootNode().host.showAll()">
-            <tcds-icon icon="plus"></tcds-icon>
-            <span class="visually-hidden">open</span> all
-          </button>
-          <button part="close-all" onclick="this.getRootNode().host.closeAll()">
-            <tcds-icon icon="minus"></tcds-icon>
-            <span class="visually-hidden">close</span> all
-          </button>
-        </div>
-      ` : ``}
       <slot></slot>
     `;
   }
   // #endregion
 
   // #region Lifecycle
-  connectedCallback() {
-    refreshProperties.apply(this, ["multiple"]);
-    this.requestUpdate();
-  }
-
-  attributeChangedCallback(name, old) {
-    this.requestUpdate({[name]: old});
-  }
   // #endregion
 
   // #region Props and state
-  get multiple() {
-    return this.hasAttribute("multiple");
-  }
-
-  set multiple(value) {
-    this.toggleAttribute("multiple", Boolean(value));
-  }
-
   get sections() {
     return Array.from(this.querySelectorAll(":scope > tcds-accordion-section"));
   }

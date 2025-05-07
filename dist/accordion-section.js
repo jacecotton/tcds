@@ -1,16 +1,55 @@
-"use strict";(self.webpackChunk_txch_tcds=self.webpackChunk_txch_tcds||[]).push([[537],{679:(e,t,n)=>{n.d(t,{ir:()=>a.A,Rv:()=>o.A,qy:()=>s,N2:()=>r.A,IM:()=>d.A,Yv:()=>i.A});var i=n(557),o=n(86);const s=function(e){const t=[e[0]];for(var n=arguments.length,i=new Array(n>1?n-1:0),o=1;o<n;o++)i[o-1]=arguments[o];return i.forEach(((n,i)=>{Array.isArray(n)?n.forEach((e=>{t.push(String(e))})):t.push(String(n)),t.push(e[i+1])})),t.join("")};var a=n(355),r=n(124),d=n(295)},996:(e,t,n)=>{var i=n(679);const o={p:50},s=new CSSStyleSheet;s.replaceSync('[part="heading"] {\n  margin: 0;\n\n  /**\n   * On smaller screens, the main heading of each open, non-nested accordion\n   * section is sticky, so we need to make them opaque and bump the z-index.\n   */\n}\n\n@media (max-width: 768px) {\n\n[part="heading"] {\n    background: var(--tcds-color-background, var(--tcds-color-white));\n    position: sticky;\n    position: var(--tcds-accordion-section-heading-position, sticky);\n    top: 0;\n    z-index: 2;\n}\n  }\n\n[part="button"] {\n  background: none;\n  border: none;\n  border-bottom: 1px solid var(--tcds-accordion-border-color);\n  cursor: pointer;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: var(--tcds-micro-s) 0;\n  text-align: left;\n  font-size: var(--tcds-accordion-heading-font-size, var(--tcds-font-size-m));\n  font-family: var(--tcds-font-ui);\n  font-weight: var(--tcds-accordion-heading-font-weight, var(--tcds-font-weight-semibold));\n  width: 100%;\n  color: var(--tcds-color-text);\n}\n\n[part="icon"] {\n  flex-shrink: 0;\n  pointer-events: none;\n}\n\n[part="panel"] {\n  overflow: hidden;\n}\n\n[part="content"] {\n  padding: 1.5rem 0;\n  border-bottom: 1px solid var(--tcds-accordion-border-color);\n}\n');const a=s;class r extends((0,i.Rv)(HTMLElement)){static observedAttributes=["open"];constructor(){super(),this.attachShadow({mode:"open"}),this.shadowRoot.adoptedStyleSheets=[i.ir,a]}get template(){const{title:e,headingLevel:t}=this;return i.qy`
+"use strict";(self.webpackChunk_txch_tcds=self.webpackChunk_txch_tcds||[]).push([[537],{391:(t,e,o)=>{var n=o(957);const i={p:50};class s extends n.WF{static properties={open:{type:Boolean},title:{type:String}};static styles=n.AH`
+    [part="heading"] {
+      margin: 0;
+
+      @media (max-width: 768px) {
+        background: var(--tcds-color-background, var(--tcds-color-white));
+        position: var(--tcds-accordion-section-heading-position, sticky);
+        top: 0;
+        z-index: 2;
+      }
+    }
+
+    [part="button"] {
+      background: none;
+      border: none;
+      border-bottom: 1px solid var(--tcds-accordion-border-color);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--tcds-micro-s) 0;
+      text-align: left;
+      font-size: var(--tcds-accordion-heading-font-size, var(--tcds-font-size-m));
+      font-family: var(--tcds-font-ui);
+      font-weight: var(--tcds-accordion-heading-font-weight, var(--tcds-font-weight-semibold));
+      width: 100%;
+      color: var(--tcds-color-text);
+    }
+
+    [part="icon"] {
+      flex-shrink: 0;
+      pointer-events: none;
+    }
+
+    [part="panel"] {
+      overflow: hidden;
+    }
+
+    [part="content"] {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--tcds-accordion-border-color);
+    }
+  `;constructor(){super(),this.open=!1,this.title=this.querySelector(":scope > [slot=title]")?.innerHTML}connectedCallback(){super.connectedCallback(),this.requestUpdate()}render(){return n.qy`
       <section aria-labelledby="heading">
-        <h2 ${t} part="heading" id="heading">
+        <h2 part="heading" id="heading">
           <button
             part="button"
             id="button"
             aria-controls="panel"
             aria-expanded="${this.open}"
-            onclick="this.getRootNode().host.clickHandler()"
-          >
-            ${e}
-            <tcds-icon part="icon" icon="${this.open?"minus":"plus"}"></tcds-icon>
-          </button>
+            @click="${this.clickHandler}"
+          >${this.title}</button>
         </h2>
 
         <div part="panel" id="panel">
@@ -19,4 +58,4 @@
           </div>
         </div>
       </section>
-    `}async connectedCallback(){i.N2.apply(this,["open"]),await customElements.whenDefined("tcds-accordion").then((()=>{this.requestUpdate()}))}async attributeChangedCallback(e,t){await customElements.whenDefined("tcds-accordion").then((()=>{this.requestUpdate({[e]:"open"===e?null!==t:t})}))}mountedCallback(){i.IM.apply(this,["heading","panel"]),this.deepLinkHandler(),window.addEventListener("hashchange",this.deepLinkHandler.bind(this))}updatedCallback(e){if("open"in e){const t={height:["0",`${this.parts.panel.scrollHeight}px`]},n=matchMedia("(prefers-reduced-motion: reduce)").matches?1:o.p;this.open?(this.parts.panel.style.height="0",this.parts.panel.hidden=!1,requestAnimationFrame((()=>{this.parts.panel.animate(t,{duration:n}).onfinish=()=>this.parts.panel.style.height="auto"})),this.accordion.multiple||(this.accordion.closeAll((e=>e!==this)),setTimeout((()=>{this.parts.heading.getBoundingClientRect().top<parseInt(getComputedStyle(document.documentElement).getPropertyValue("--tcds-site-header-height"))+25&&this.scrollIntoView(!0)}),2*n))):e.open&&(this.parts.panel.animate(t,{direction:"reverse",duration:n}).onfinish=()=>this.parts.panel.hidden="until-found")}else this.open||(this.parts.panel.hidden="until-found")}disconnectedCallback(){window.removeEventListener("hashchange",this.deepLinkHandler)}clickHandler(){this.toggle()}deepLinkHandler(){const e=window.location.hash.substring(1);e&&(this.id||document.getElementById((0,i.Yv)(this.title))||(this.id=(0,i.Yv)(this.title)),(e===this.id||this.querySelector(`[id=${e}], [name=${e}]`))&&(this.show(),requestAnimationFrame((()=>{document.getElementById(e).scrollIntoView(!0)}))))}get open(){return this.hasAttribute("open")}set open(e){this.toggleAttribute("open",Boolean(e))}get title(){return this.querySelector(":scope > [slot=title]")?.innerHTML||console.error("No heading element with [slot=title] provided in accordion section.",this)}get headingLevel(){return this.querySelector(":scope > [slot=title]")?.localName||console.error("No heading element with [slot=title] provided in accordion section.",this)}get accordion(){return this.closest("tcds-accordion")}show(){this.open=!0}close(){this.open=!1}toggle(e){"function"==typeof e&&(e=e()),this.open="boolean"==typeof e?e:!this.open}}customElements.define("tcds-accordion-section",r)}},e=>{e.O(0,[501],(()=>e(e.s=996))),e.O()}]);
+    `}clickHandler(){this.time=performance.now(),this.toggle()}show(){this.open=!0}close(){this.open=!1}toggle(t){"function"==typeof t&&(t=t()),this.open="boolean"==typeof t?t:!this.open}firstUpdated(){this.parts={heading:this.renderRoot.querySelector("[part=heading]"),panel:this.renderRoot.querySelector("[part=panel]")}}updated(t){if(t.has("open")&&void 0!==t.get("open")){const e=this.time;this.time=0,e>0&&console.log(`Update process took ${performance.now()-e}ms`);const o={height:["0",`${this.parts.panel.scrollHeight}px`]},n=i.p;this.open?(this.parts.panel.style.height="0",this.parts.panel.hidden=!1,requestAnimationFrame((()=>{this.parts.panel.animate(o,{duration:n}).onfinish=()=>this.parts.panel.style.height="auto"})),this.accordion.closeAll((t=>t!==this))):!0===t.get("open")&&(this.parts.panel.animate(o,{direction:"reverse",duration:n}).onfinish=()=>{this.parts.panel.hidden="until-found"})}else this.open||(this.parts.panel.hidden="until-found")}get accordion(){return this.closest("tcds-accordion")}}customElements.define("tcds-accordion-section",s)}},t=>{t.O(0,[501,866],(()=>t(t.s=391))),t.O()}]);

@@ -49,21 +49,21 @@ const tasks = {
       .pipe(webpack({
         entry: {
           "index": "./index.js",
-          "accordion": {import: "./src/02-components/accordion/index.js", dependOn: ["utilities"]},
-          "accordion-section": {import: "./src/02-components/accordion/section/index.js", dependOn: ["utilities"]},
-          "alert-bar": {import: "./src/02-components/alert-bar/index.js", dependOn: ["utilities"]},
-          "card": {import: "./src/02-components/card/index.js", dependOn: ["utilities"]},
-          "carousel": {import: "./src/02-components/carousel/index.js", dependOn: ["utilities"]},
-          "slide": {import: "./src/02-components/carousel/slide/index.js", dependOn: ["utilities"]},
-          "dialog": {import: "./src/02-components/dialog/index.js", dependOn: ["utilities"]},
-          "fn-ref": {import: "./src/02-components/footnote/fn-ref/index.js", dependOn: ["utilities"]},
-          "fn-list": {import: "./src/02-components/footnote/fn-list/index.js", dependOn: ["utilities"]},
-          "tabs": {import: "./src/02-components/tabs/index.js", dependOn: ["utilities"]},
-          "tab": {import: "./src/02-components/tabs/tab/index.js", dependOn: ["utilities"]},
-          "icon": {import: "./src/02-components/icon/index.js", dependOn: ["utilities"]},
-          "section": {import: "./src/02-components/section/index.js", dependOn: ["utilities"]},
-          "site-header": {import: "./src/02-components/site-header/index.js", dependOn: ["utilities"]},
-          "side-menu": {import: "./src/02-components/submenu/side-menu.js", dependOn: ["utilities"]},
+          "accordion": {import: "./src/02-components/accordion/index.js", dependOn: ["utilities", "lit"]},
+          "accordion-section": {import: "./src/02-components/accordion/section/index.js", dependOn: ["utilities", "lit"]},
+          "alert-bar": {import: "./src/02-components/alert-bar/index.js", dependOn: ["utilities", "lit"]},
+          "card": {import: "./src/02-components/card/index.js", dependOn: ["utilities", "lit"]},
+          "carousel": {import: "./src/02-components/carousel/index.js", dependOn: ["utilities", "lit"]},
+          "slide": {import: "./src/02-components/carousel/slide/index.js", dependOn: ["utilities", "lit"]},
+          "dialog": {import: "./src/02-components/dialog/index.js", dependOn: ["utilities", "lit"]},
+          "fn-ref": {import: "./src/02-components/footnote/fn-ref/index.js", dependOn: ["utilities", "lit"]},
+          "fn-list": {import: "./src/02-components/footnote/fn-list/index.js", dependOn: ["utilities", "lit"]},
+          "tabs": {import: "./src/02-components/tabs/index.js", dependOn: ["utilities", "lit"]},
+          "tab": {import: "./src/02-components/tabs/tab/index.js", dependOn: ["utilities", "lit"]},
+          "icon": {import: "./src/02-components/icon/index.js", dependOn: ["utilities", "lit"]},
+          "section": {import: "./src/02-components/section/index.js", dependOn: ["utilities", "lit"]},
+          "site-header": {import: "./src/02-components/site-header/index.js", dependOn: ["utilities", "lit"]},
+          "side-menu": {import: "./src/02-components/submenu/side-menu.js", dependOn: ["utilities", "lit"]},
 
           "utilities": [
             "./src/02-components/utilities/declarative.js",
@@ -72,6 +72,8 @@ const tasks = {
             "./src/02-components/utilities/registerParts.js",
             "./src/02-components/utilities/slugify.js",
           ],
+
+          "lit": "./node_modules/lit",
         },
         module: {
           rules: [
