@@ -17,7 +17,7 @@ class TCDSAccordionSectionElement extends declarative(HTMLElement) {
 
     return html`
       <section aria-labelledby="heading">
-        <h2 ${headingLevel} part="heading" id="heading">
+        <${headingLevel} part="heading" id="heading">
           <button
             part="button"
             id="button"
@@ -28,7 +28,7 @@ class TCDSAccordionSectionElement extends declarative(HTMLElement) {
             ${title}
             <tcds-icon part="icon" icon="${this.open ? "minus" : "plus"}"></tcds-icon>
           </button>
-        </h2>
+        </${headingLevel}>
 
         <div part="panel" id="panel">
           <div part="content">
