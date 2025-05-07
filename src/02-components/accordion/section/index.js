@@ -69,6 +69,13 @@ class TCDSAccordionSectionElement extends declarative(HTMLElement) {
 
   updatedCallback(old) {
     if("open" in old) {
+      const then = this.time;
+      this.time = 0;
+
+      if(then > 0) {
+        console.log(`Update process took ${performance.now() - then}ms`);
+      }
+
       // Animate from 0px height to its calculated height (`scrollHeight`).
       const openAnimation = {height: ["0", `${this.parts.panel.scrollHeight}px`]};
       // Don't animate open/close if reduced motion preference is set.
@@ -140,6 +147,7 @@ class TCDSAccordionSectionElement extends declarative(HTMLElement) {
 
   // #region Event listeners
   clickHandler() {
+    this.time = performance.now();
     this.toggle();
   }
 
