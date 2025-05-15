@@ -15,4 +15,4 @@
           </div>
         `:""}
       </section>
-    `}connectedCallback(){this.requestUpdate()}#t(){return!!this.querySelector([...arguments].map((t=>`[slot=${t}]`)).join(", "))}}customElements.define("tcds-section",i)}},t=>{t.O(0,[501,866],(()=>t(t.s=959))),t.O()}]);
+    `}connectedCallback(){this.requestUpdate()}#t(){return!!this.querySelector([...arguments].map((t=>`[slot=${t}]`)).join(", "))}}customElements.define("tcds-section",i)}},t=>{t.O(0,[501],(()=>t(t.s=959))),t.O()}]);

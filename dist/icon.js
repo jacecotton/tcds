@@ -2,4 +2,4 @@
       <span class="visually-hidden">
         ${this.textContent?.trim().length?this.textContent:`${this.icon} icon`}
       </span>
-    `}constructor(){super(),this.attachShadow({mode:"open"}),this.shadowRoot.adoptedStyleSheets=[i.ir]}connectedCallback(){i.N2.apply(this,["icon"]),this.requestUpdate(),!this.getAttribute("icon")&&this.icon&&(this.icon=this.icon)}attributeChangedCallback(t,e){"icon"===t&&this.requestUpdate()}}customElements.define("tcds-icon",n)}},t=>{t.O(0,[501,866],(()=>t(t.s=735))),t.O()}]);
+    `}constructor(){super(),this.attachShadow({mode:"open"}),this.shadowRoot.adoptedStyleSheets=[i.ir]}connectedCallback(){i.N2.apply(this,["icon"]),this.requestUpdate(),!this.getAttribute("icon")&&this.icon&&(this.icon=this.icon)}attributeChangedCallback(t,e){"icon"===t&&this.requestUpdate()}}customElements.define("tcds-icon",n)}},t=>{t.O(0,[501],(()=>t(t.s=735))),t.O()}]);

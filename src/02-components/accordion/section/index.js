@@ -123,7 +123,6 @@ export class TCDSAccordionSectionElement extends LitElement {
         console.log(`Update process took ${performance.now() - then}ms`);
       }
 
-      const openAnimation = {height: ["0", `${this.parts.panel.scrollHeight}px`]};
       const openAnimationDuration = animation.timing.productive.duration;
 
       if(this.open) {
@@ -131,13 +130,15 @@ export class TCDSAccordionSectionElement extends LitElement {
         this.parts.panel.hidden = false;
 
         requestAnimationFrame(() => {
+          const openAnimation = {height: ["0", `${this.parts.panel.scrollHeight}px`]};
+
           this.parts.panel.animate(openAnimation, {duration: openAnimationDuration})
             .onfinish = () => this.parts.panel.style.height = "auto";
-        });
 
-        this.accordion.closeAll(section => section !== this);
+          this.accordion.closeAll(section => section !== this);
+        });
       } else if(changedProperties.get("open") === true) {
-        this.parts.panel.animate(openAnimation, {
+        this.parts.panel.animate({height: ["0", `${this.parts.panel.scrollHeight}px`]}, {
           direction: "reverse",
           duration: openAnimationDuration,
         }).onfinish = () => {

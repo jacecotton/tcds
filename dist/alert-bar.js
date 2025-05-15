@@ -14,4 +14,4 @@
           <tcds-icon icon="x"></tcds-icon>
         </button>
       </section>
-    `}connectedCallback(){this.requestUpdate()}close(){this.hidden=!0}}customElements.define("tcds-alert-bar",a)}},n=>{n.O(0,[501,866],(()=>n(n.s=748))),n.O()}]);
+    `}connectedCallback(){this.requestUpdate()}close(){this.hidden=!0}}customElements.define("tcds-alert-bar",a)}},n=>{n.O(0,[501],(()=>n(n.s=748))),n.O()}]);
