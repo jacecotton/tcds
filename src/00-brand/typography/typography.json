@@ -1,7 +1,7 @@
 {
   "font-stacks": {
     "sans-serif": "'mont, helvetica neue, helvetica, system-ui, sans-serif'",
-    "serif": "'calluna, serif'"
+    "serif": "'calluna, big caslon, palatino, serif'"
   },
   "aliases": {
     "display": "serif",
