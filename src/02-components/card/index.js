@@ -13,7 +13,7 @@ class TCDSCardElement extends declarative(HTMLElement) {
 
   get template() {
     return html`
-      <article ${this.variant.includes("lite") ? "" : `data-theme="light"`}>
+      <article ${this.variant.includes("lite") ? "" : `data-theme="light"`} data-hover-proxy="tcds-button">
         <figure part="image">
           <slot name="image"></slot>
         </figure>

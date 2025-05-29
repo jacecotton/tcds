@@ -1,6 +1,5 @@
 :host {
   display: block;
-  container-type: inline-size;
 }
 
 article {
@@ -16,37 +15,12 @@ article {
     grid-template-columns: 1fr;
     grid-template-rows: min-content 1fr;
   }
-
-  @container (min-width: 375px) {
-    :host(:not([orientation*="horizontal"], [variant*="lite"])) & {
-      --tcds-card-padding: 2rem;
-    }
-  }
-
-  &:hover {
-    --tcds-card-image-scale: 1.025;
-
-    [part="cta"] {
-      --tcds-button-secondary-text-color: var(--tcds-color-primary);
-      --tcds-button-secondary-icon-background-color: var(--tcds-color-primary);
-      --tcds-button-secondary-icon-color: var(--tcds-color-white);
-    }
-  }
 }
 
 [part="image"] {
   border-radius: var(--tcds-card-image-border-radius, 0);
   position: relative;
   overflow: hidden;
-
-  ::slotted(img) {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: center !important;
-    scale: var(--tcds-card-image-scale, 1) !important;
-    transition: scale var(--tcds-animation-expressive-duration) var(--tcds-animation-expressive-easing) !important;
-  }
 }
 
 [part="content"] {

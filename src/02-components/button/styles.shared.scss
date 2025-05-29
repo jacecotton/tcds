@@ -120,7 +120,10 @@
     padding: 0;
   }
 
-  :where(:is(&):hover) {
+  :where(
+    &:hover,
+    [data-hover-proxy="tcds-button"]:hover &
+  ) {
     --tcds-button-primary-background-color: var(--tcds-color-primary-2);
     --tcds-button-secondary-text-color: var(--tcds-color-primary);
     --tcds-button-secondary-icon-background-color: var(--tcds-color-primary);
