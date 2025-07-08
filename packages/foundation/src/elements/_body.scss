@@ -1,0 +1,21 @@
+/**
+ * 1. Disables oldstyle figures in Calluna.
+ * 2. Browsers in macOS still use subpixel antialiasing, but almost no other
+ *    modern device does. We're not "fixing" font smoothing here, we're just
+ *    aligning macOS browsers with the norm. We'll still keep it on for users
+ *    with a high contrast preference set.
+ */
+body {
+  color: var(--tcds-color-text);
+  font-family: var(--tcds-font-copy);
+  font-size: var(--tcds-font-size-m);
+  font-variant-numeric: lining-nums; // 1
+  font-variant-ligatures: none;
+  overflow-wrap: break-word;
+  overflow-x: hidden;
+
+  @media (prefers-contrast: no-preference), (prefers-contrast: less) {
+    -webkit-font-smoothing: antialiased; // 2
+    -moz-osx-font-smoothing: grayscale; // 2
+  }
+}

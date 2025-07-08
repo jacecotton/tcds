@@ -1,23 +1,19 @@
 {
   "name": "@txch/tcds",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "Texas Children's Design System",
   "main": "index.js",
   "type": "module",
+  "workspaces": [
+    "packages/tokens",
+    "packages/foundation"
+  ],
   "scripts": {
-    "dev": "gulp",
-    "build": "gulp build",
-    "build:javascript": "gulp javascript",
-    "build:styles": "gulp styles",
-    "build:images": "gulp images",
-    "build:fonts": "gulp fonts",
-    "lint": "npm run lint:styles && npm run lint:javascript",
-    "lint:styles": "stylelint 'src/styles/**/*.css' 'src/styles/**/*.scss' 'src/components/**/*.css' 'src/components/**/*.scss'",
-    "lint:javascript": "eslint 'src/utilities/**/*.js' 'src/components/**/*.js'",
-    "fix": "npm run fix:styles && npm run fix:javascript",
-    "fix:styles": "stylelint 'src/styles/**/*.css' 'src/styles/**/*.scss' 'src/components/**/*.css' 'src/components/**/*.scss' --fix",
-    "fix:javascript": "eslint 'src/utilities/**/*.js' 'src/components/**/*.js' --fix",
-    "fix:icons": "gulp icon-cleanup"
+    "build:tokens": "npm run build --workspace=packages/tokens",
+    "build:foundation": "npm run build --workspace=packages/foundation",
+    "build": "npm run build:tokens && npm run build:foundation",
+    "postinstall": "node scripts/cleanup-assets.js && node scripts/copy-assets.js && node packages/foundation/scripts/asset-config.js && npm run build",
+    "preuninstall": "node scripts/cleanup-assets.js"
   },
   "repository": {
     "type": "git",
@@ -29,29 +25,8 @@
     "url": "https://github.com/jacecotton/tcds/issues"
   },
   "homepage": "https://github.com/jacecotton/tcds#readme",
-  "devDependencies": {
-    "@babel/core": "^7.19.1",
-    "@babel/preset-env": "^7.19.1",
-    "autoprefixer": "^10.4.11",
-    "babel-loader": "^8.2.5",
-    "constructable-style-loader": "^1.0.0-alpha.8",
-    "del": "^7.1.0",
-    "gulp": "^5.0.0",
-    "gulp-iconfont": "^12.0.0",
-    "gulp-imagemin": "^9.1.0",
-    "gulp-json-transform": "^0.5.0",
-    "gulp-postcss": "^9.0.1",
-    "gulp-rename": "^2.0.0",
-    "gulp-sass": "^5.1.0",
-    "gulp-zip": "^6.0.0",
-    "map-stream": "^0.0.7",
-    "node-sass-json-importer": "^4.3.0",
-    "postcss": "^8.4.23",
-    "postcss-custom-media": "^8.0.2",
-    "postcss-loader": "^7.2.4",
-    "postcss-nesting": "^11.2.2",
-    "postcss-preset-env": "^8.3.2",
-    "sass": "^1.63.6",
-    "webpack-stream": "^7.0.0"
+  "dependencies": {
+    "@txch/foundation": "^3.0.0",
+    "@txch/tokens": "^3.0.0"
   }
 }

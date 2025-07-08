@@ -1,3 +1,9 @@
+# npm dependencies
 node_modules
+
+# System files
 .DS_Store
-*.map
+
+# Transient build artifacts
+packages/tokens/dist
+packages/foundation/_config.scss

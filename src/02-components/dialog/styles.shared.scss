@@ -1,7 +1,0 @@
-body:has(tcds-dialog[open]) {
-  overflow: hidden;
-}
-
-tcds-dialog:not(:defined, [open]) {
-  display: none;
-}
