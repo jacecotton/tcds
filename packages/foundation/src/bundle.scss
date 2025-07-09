@@ -1,3 +1,6 @@
-@use "props" as *;
-@use "elements" as *;
-@use "utilities" as *;
+/**
+ * This is a stub file to generate an "everything" bundle from `src/_index.css`
+ * to `dist/bundle.css`.
+ */
+
+@use "." as *;

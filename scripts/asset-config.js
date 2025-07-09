@@ -60,7 +60,7 @@ async function main() {
   const SCSS = `// AUTO-GENERATED - DO NOT EDIT\n`
     + `$public-path: "${publicPath}" !default;\n`;
 
-  const outFile = path.join(DIRNAME, "../packages/foundation/_config.scss");
+  const outFile = path.join(DIRNAME, "../packages/foundation/config/index.scss");
   fs.writeFileSync(outFile, SCSS, "utf8");
 
   console.log(`@txch/tcds ✅ Wrote ${outFile} with $public-path as "${publicPath}"`);

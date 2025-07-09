@@ -6,12 +6,14 @@
   "type": "module",
   "workspaces": [
     "packages/tokens",
+    "packages/media",
     "packages/foundation"
   ],
   "scripts": {
     "build:tokens": "npm run build --workspace=packages/tokens",
+    "build:media": "npm run build --workspace=packages/media",
     "build:foundation": "npm run build --workspace=packages/foundation",
-    "build": "npm run build:tokens && npm run build:foundation",
+    "build": "npm run build:tokens && npm run build:media && npm run build:foundation",
     "postinstall": "node scripts/cleanup-assets.js && node scripts/copy-assets.js && node packages/foundation/scripts/asset-config.js && npm run build",
     "preuninstall": "node scripts/cleanup-assets.js"
   },
@@ -27,6 +29,7 @@
   "homepage": "https://github.com/jacecotton/tcds#readme",
   "dependencies": {
     "@txch/foundation": "^3.0.0",
+    "@txch/media": "^3.0.0",
     "@txch/tokens": "^3.0.0"
   }
 }

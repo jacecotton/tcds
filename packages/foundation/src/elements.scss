@@ -1,7 +1,7 @@
-@use "elements/body" as *;
-@use "elements/button" as *;
-@use "elements/copy" as *;
-@use "elements/headings" as *;
-@use "elements/hr" as *;
-@use "elements/html" as *;
-@use "elements/media" as *;
+/**
+ * This is a stub file to generate an "elements" bundle from
+ * `src/elements/_index.scss` to `dist/elements.css`. It also includes all
+ * props, as element styles are dependent on them.
+ */
+
+@use "elements/" as *;

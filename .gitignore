@@ -6,4 +6,4 @@ node_modules
 
 # Transient build artifacts
 packages/tokens/dist
-packages/foundation/_config.scss
+packages/foundation/config/index.scss

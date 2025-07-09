@@ -3,9 +3,10 @@
   "version": "3.0.0",
   "type": "module",
   "scripts": {
+    "clean": "rimraf dist",
     "build:js": "node scripts/build-to-js.js",
     "build:scss": "node scripts/build-to-scss.js",
-    "build": "npm run build:js && npm run build:scss",
+    "build": "npm run clean && npm run build:js && npm run build:scss",
     "prepare": "npm run build"
   },
   "files": [
@@ -13,6 +14,7 @@
     "dist/js/*.js"
   ],
   "devDependencies": {
-    "js-yaml": "^4.1.0"
+    "js-yaml": "^4.1.0",
+    "rimraf": "^6.0.1"
   }
 }

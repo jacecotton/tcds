@@ -1,1 +1,13 @@
+/**
+ * This compiles only utility classes ("utilities") so that they can be imported
+ * in bulk separately (namely by `_index.scss`) when the main bundle is
+ * generated.
+ *
+ * This also generates a `dist/utilities.css` bundle.
+ */
+
+@use "color/utilities" as *;
+@use "layout/utilities" as *;
 @use "motion/utilities" as *;
+@use "surface/utilities" as *;
+@use "typography/utilities" as *;
