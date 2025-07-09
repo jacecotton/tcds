@@ -1,0 +1,12 @@
+@use "sass:list";
+@use "sass:map";
+@use "../../scripts/output/config" as config;
+@use "../../scripts/output/icons" as icons;
+
+:root {
+  @each $category, $icons in icons.$library {
+    @each $icon in $icons {
+      #{"--tcds-icon-#{$category}-#{$icon}"}: url("#{config.$public-path}/icons/#{$category}/#{$icon}.svg");
+    }
+  }
+}

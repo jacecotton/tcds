@@ -2,12 +2,12 @@
 /**
  * This script generates an SCSS file on the fly for defining the path to static
  * assets, based either on install flags or heuristics. This is both an optional
- * postinstall script for the @txch/tcds package, as well as a required build
- * script utilized by the @txch/foundations package.
+ * postinstall script for the root @txch/tcds package, as well as a required
+ * build script utilized by this package, @txch/foundations.
  *
- * As a build script, this is invoked by packages/foundation. It's a necessary
- * step to compile SCSS, which needs to know what paths to use for references to
- * static assets such as fonts and SVGs from within SCSS.
+ * As a build script, this is invoked by this package as a necessary step to
+ * compile SCSS, which needs to know what paths to use for references to static
+ * assets such as fonts and SVGs from within SCSS.
  *
  * On install, users can set a --public-path flag, which will be passed to this
  * config script. Users can also set --copy-assets-into, which will trigger the
@@ -15,7 +15,7 @@
  * and the flag value will be treated as the public path if --public-path is not
  * set.
  *
- * Finally, this script generates the file, _config.scss, which defines a
+ * Finally, this script generates the file, output/_config.scss, which defines a
  * `$public-path` variable. This path prefix will either be the value of
  * --public-path, --copy-assets-into, or a CDN-friendly (unpkg) default.
  *
@@ -60,7 +60,7 @@ async function main() {
   const SCSS = `// AUTO-GENERATED - DO NOT EDIT\n`
     + `$public-path: "${publicPath}" !default;\n`;
 
-  const outFile = path.join(DIRNAME, "../packages/foundation/config/index.scss");
+  const outFile = path.join(DIRNAME, "output/config.scss");
   fs.writeFileSync(outFile, SCSS, "utf8");
 
   console.log(`@txch/tcds ✅ Wrote ${outFile} with $public-path as "${publicPath}"`);

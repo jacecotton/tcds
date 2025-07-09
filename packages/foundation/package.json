@@ -4,9 +4,11 @@
   "type": "module",
   "scripts": {
     "clean": "rimraf dist",
-    "build:config": "node ../../scripts/asset-config.js",
-    "build:scss": "npm run build:config && sass --load-path=../../node_modules --style=compressed --source-map src:dist",
-    "build": "npm run clean && npm run build:scss"
+    "generate:config": "node scripts/config.js",
+    "generate:icons": "node scripts/icons.js",
+    "build:scss": "sass --load-path=../../node_modules --style=compressed --source-map src:dist",
+    "prebuild": "npm run clean && npm run generate:config && npm run generate:icons",
+    "build": "npm run prebuild && npm run build:scss"
   },
   "devDependencies": {
     "@txch/tokens": "^3.0.0",
