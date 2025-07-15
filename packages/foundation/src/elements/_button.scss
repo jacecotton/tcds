@@ -1,3 +1,5 @@
+@use "../motion" as *;
+
 .tcds-button {
   :where(&) {
     --tcds-button-height: var(--tcds-micro-m);

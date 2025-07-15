@@ -6,4 +6,5 @@ node_modules
 
 # Transient build artifacts
 packages/tokens/dist
-scripts/output
+**/build/output/**.scss
+**/build/output/**.js

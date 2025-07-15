@@ -4,8 +4,8 @@
   "type": "module",
   "scripts": {
     "clean": "rimraf dist",
-    "build:js": "node scripts/build-to-js.js",
-    "build:scss": "node scripts/build-to-scss.js",
+    "build:js": "node build/to-js.js",
+    "build:scss": "node build/to-scss.js",
     "build": "npm run clean && npm run build:js && npm run build:scss",
     "prepare": "npm run build"
   },

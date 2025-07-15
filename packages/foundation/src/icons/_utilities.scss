@@ -1,6 +1,6 @@
 @use "sass:list";
 @use "sass:map";
-@use "../../scripts/output/icons.scss" as icons;
+@use "../../build/output/icons.scss" as icons;
 
 .tcds-icon {
   @each $category, $icons in icons.$library {
@@ -14,7 +14,7 @@
 
   &::after {
     content: "";
-    display: block;
+    display: inline-block;
     height: 1em;
     width: 1em;
     background: currentcolor;
