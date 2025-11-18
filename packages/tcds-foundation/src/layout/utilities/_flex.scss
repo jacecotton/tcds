@@ -1,0 +1,30 @@
+@use "../../abstracts/mixins" as *;
+
+/**
+ * Flex box utilities.
+ *
+ * `.flex` creates a flex container. Wrapping is enabled by default but can be
+ * disabled with `.flex--no-wrap`.
+ *
+ * `.flex--column` enables column flow. This is likely going to be most useful
+ * for mobile layouts, so row flow can be re-enabled at specific breakpoints
+ * (xs, sm, md, lg, xl) with prefixed utility classes (e.g. `.md:flex--row`).
+ */
+
+.flex {
+  display: flex !important;
+}
+
+.flex:not(.flex--no-wrap) {
+  flex-wrap: wrap !important;
+}
+
+.flex--column {
+  flex-direction: column !important;
+}
+
+@include responsive-utils($responsive-only: true) using ($breakpoint) {
+  .#{$breakpoint}flex--row {
+    flex-direction: row !important;
+  }
+}

@@ -1,0 +1,46 @@
+@use "sass:list";
+@use "../../abstracts/functions" as *;
+
+/**
+ * `.container-` utilities.
+ *
+ * Defines a container of a max-width corresponding to a layout size token, e.g.
+ * size.layout.sm (`.container-sm`), size.layout.md (`.container-md`), etc.
+ *
+ * Minimum/default width is 100% of the parent container, less a standard gutter
+ * (`--tcds-container-gutter`). So if the screen is less than the defined size,
+ * the container becomes flexible. Thus, no breakpoint-based prefixes are
+ * available.
+ *
+ * The container is centered within the parent container using an `auto` inline
+ * margin.
+ */
+
+$container-selectors: ();
+
+@each $name, $value in tokens("size", "layout") {
+  $container-selectors: list.append($container-selectors, ".container-#{$name}", comma);
+
+  .container-#{$name} {
+    --tcds-size-container: var(--tcds-size-layout-#{$name});
+  }
+}
+
+#{$container-selectors} {
+  --tcds-container-gutter: var(--tcds-site-inner-gutter);
+
+  // width: calc(100% - var(--tcds-container-gutter) * 2) !important;
+  // max-width: var(--tcds-size-container) !important;
+  // margin-inline: auto !important;
+
+  // Let's try this out for a while.
+  display: grid;
+  grid-template-columns: minmax(1rem, 1fr)
+    minmax(auto, calc(var(--tcds-size-container) / 2))
+    minmax(auto, calc(var(--tcds-size-container) / 2))
+    minmax(1rem, 1fr);
+
+  > * {
+    grid-column: 2 / span 2;
+  }
+}

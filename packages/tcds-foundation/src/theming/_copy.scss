@@ -1,0 +1,144 @@
+/**
+ * This file contains styles for elements used to mark up regular body copy
+ * (paragraphs, lists, links, small text, etc.)
+ */
+
+/**
+ * Formatting elements.
+ */
+
+:where(small, sub, sup) {
+  font-size: max(var(--tcds-font-size-xs), 85%);
+}
+
+:where(sup) {
+  vertical-align: baseline;
+  position: relative;
+  top: -.333lh;
+}
+
+/**
+ * Links.
+ */
+
+a {
+  :where(&) {
+    color: var(--tcds-theme-link);
+    text-decoration: underline;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
+  }
+
+  :where(&:hover) {
+    text-decoration: none;
+  }
+
+  /**
+   * External link styling for `a` elements with `[href]` attribute. Determined
+   * external by "not internal" heuristic:
+   * 1. Slotted links (meaning they're explicitly parts of a component UI as
+   *    opposed to copy) probably don't need external indication.
+   * 2. Links to in-page anchors are internal.
+   * 3. Links that activate JavaScript are probably internal.
+   * 4. Links that contain a slash are internal if they do not also contain a
+   *    double-slash (used in protocols like "https://").
+   *
+   * Also providing an `.a--no-icon` opt-out class.
+   */
+  &[href]:not(.a--no-icon, :where(
+    [slot],
+    [href^="#"],
+    [href^="javascript:" i],
+    [href^="/"]:not([href^="//"])
+  )) {
+    &::after {
+      content: "";
+      display: inline-block;
+      background-color: var(--tcds-theme-foreground);
+      mask: var(--tcds-icon-utility-external) center no-repeat;
+      opacity: .4;
+      width: .66em;
+      height: .66em;
+      margin-left: .25em;
+      vertical-align: middle;
+    }
+  }
+}
+
+/**
+ * Paragraphs and lists.
+ *
+ * 1. Add vertical spacing to paragraphs, but keep flush if the paragraph is the
+ *    first or last child. Also don't add `margin-top` if the paragraph follows
+ *    a heading or a slotted element (unless the paragraph is also slotted).
+ */
+
+p {
+  :where(&:not(
+    :first-child,
+    :is(h1, h2, h3, h4, h5, h6) + *,
+    [slot] + *:not([slot])
+  )) {
+    margin-top: 1.5em;
+  }
+
+  :where(&:not(:last-child)) {
+    margin-bottom: 1.5em;
+  }
+}
+
+/**
+ * 1. Add bottom margin to lists unless the list is nested in a list item, or
+ *    the list is the last child.
+ * 2. Safari removes role semantics from lists with `list-style: none`, but they
+ *    can be readded with `[role=list]`. Therefore, as a general rule, never add
+ *    `list-style: none` to list elements elsewhere in the codebase (components,
+ *    etc.) Instead, add `role="list"` to any list from which you want `list-
+ *    style` removed. This will also remove other default styling.
+ */
+
+ul,
+ol {
+  :where(&) {
+    margin: 0 0 0 4ch;
+    padding: 0;
+  }
+
+  :where(:not(li) > :is(&):not(:last-child)) {
+    margin-bottom: 1rem; // 1
+  }
+
+  &:where([role="list"]) {
+    list-style: none; // 2
+    margin: 0;
+  }
+}
+
+ol {
+  :where(& &) {
+    list-style: upper-alpha;
+  }
+
+  :where(& & &) {
+    list-style: upper-roman;
+  }
+
+  ::marker {
+    font-family: var(--tcds-font-family-ui);
+    font-weight: var(--tcds-font-weight-semibold);
+    color: rgb(0 0 0 / 50%);
+  }
+}
+
+/**
+ * 1. List markers do not inherit `font-variant-numeric`, which is already
+ *    declared in the `body`.
+ */
+
+::marker {
+  font-variant-numeric: lining-nums tabular-nums; // 1
+}
+
+:where(p, li) {
+  line-height: var(--tcds-line-height-md);
+}

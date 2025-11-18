@@ -1,0 +1,12 @@
+{
+  "motion": {
+    "productive": {
+      "duration": { "$type": "duration", "$value": "50ms" },
+      "easing": { "$type": "cubicBezier", "$value": [0, 0, 0.58, 1] }
+    },
+    "expressive": {
+      "duration": { "$type": "duration", "$value": "800ms" },
+      "easing": { "$type": "cubicBezier", "$value": [0.39, 0.24, 0.3, 1] }
+    }
+  }
+}

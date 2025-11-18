@@ -13,10 +13,10 @@ For the quickest, simplest setup that "just works", you can simply link to Desig
 
 Compiled code that lives in the CDN already references the CDN for things like fonts and icons, so no configuration is necessary.
 
-**⚠️ WARNING:** This is only recommended for quick prototyping and development. *For security and performance reasons, we urge you to install the Design System [via NPM](#via-npm) or [download a release archive](#via-archive-release) for production environments.*
+**⚠️ WARNING:** This is only recommended for quick prototyping and development. *For security and performance reasons, we urge you to install the Design System [via a package manager](#via-package-manager) or [download a release archive](#via-archive-release) for production environments.*
 
 
-### Via NPM
+### Via package manager
 Default install:
 
 ```bash
@@ -53,4 +53,4 @@ You can download an archive of the TDCS package straight from the [Releases](#re
 
 Because of the way asset path resolution will have to work (unless you manually rewrite all references), we recommend simply placing the unzipped `@txch/tcds` package wherever your publicly accessible document root is (`/docroot` if Drupal, or `/var/www/html`, `~/public_html` etc. depending on your server).
 
-Then, all Design System files—stylesheets, scripts, fonts, icons, etc.—are accessible under `www.example.com/@txch/tcds/`. If this is not desirable, consider [installing via NPM](#via-npm) with configuration options.
+Then, all Design System files—stylesheets, scripts, fonts, icons, etc.—are accessible under `www.example.com/@txch/tcds/`. If this is not desirable, consider [installing via a package manager](#via-package-manager) with configuration options.

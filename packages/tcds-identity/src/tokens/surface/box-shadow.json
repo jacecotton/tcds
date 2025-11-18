@@ -1,0 +1,29 @@
+{
+  "box-shadow": {
+    "$type": "shadow",
+    "sm": {
+      "$value": {
+        "offsetX": "0px",
+        "offsetY": "3px",
+        "blur": "10px",
+        "color": "rgb(0 0 0 / 10%)"
+      }
+    },
+    "md": {
+      "$value": {
+        "offsetX": "0px",
+        "offsetY": "7px",
+        "blur": "15px",
+        "color": "rgb(0 0 0 / 10%)"
+      }
+    },
+    "lg": {
+      "$value": {
+        "offsetX": "0px",
+        "offsetY": "16px",
+        "blur": "25px",
+        "color": "rgb(0 0 0 / 10%)"
+      }
+    }
+  }
+}

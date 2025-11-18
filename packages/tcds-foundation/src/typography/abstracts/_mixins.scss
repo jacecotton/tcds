@@ -1,0 +1,53 @@
+@mixin headings($flag: "") {
+  font-family: var(--tcds-font-family-headings) #{$flag};
+  line-height: var(--tcds-line-height-sm) #{$flag};
+}
+
+@mixin subheadings($flag: "") {
+  font-family: var(--tcds-font-family-subheadings) #{$flag};
+  line-height: var(--tcds-line-height-sm) #{$flag};
+}
+
+@mixin h1($flag: "") {
+  @include headings($flag);
+
+  font-size: var(--tcds-font-size-2xl) #{$flag};
+  font-weight: var(--tcds-font-weight-semibold) #{$flag};
+  letter-spacing: -0.05rem #{$flag};
+}
+
+@mixin h2($flag: "") {
+  @include headings($flag);
+
+  font-size: var(--tcds-font-size-xl) #{$flag};
+  font-weight: var(--tcds-font-weight-semibold) #{$flag};
+  letter-spacing: -0.0125rem #{$flag};
+}
+
+@mixin h3($flag: "") {
+  @include subheadings($flag);
+
+  font-size: var(--tcds-font-size-lg) #{$flag};
+  font-weight: var(--tcds-font-weight-semibold) #{$flag};
+}
+
+@mixin h4($flag: "") {
+  @include subheadings($flag);
+
+  font-size: var(--tcds-font-size-ml) #{$flag};
+  font-weight: var(--tcds-font-weight-bold) #{$flag};
+}
+
+@mixin h5($flag: "") {
+  @include subheadings($flag);
+
+  font-size: var(--tcds-font-size-md) #{$flag};
+  font-weight: var(--tcds-font-weight-bold) #{$flag};
+}
+
+@mixin h6($flag: "") {
+  @include subheadings($flag);
+
+  font-size: var(--tcds-font-size-sm) #{$flag};
+  font-weight: var(--tcds-font-weight-bold) #{$flag};
+}

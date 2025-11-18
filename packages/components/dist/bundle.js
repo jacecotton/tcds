@@ -1,1 +1,0 @@
-export{default as TCDSIconElement}from"./icon.js";export{default as TCDSAccordionElement}from"./accordion.js";export{default as TCDSAccordionSectionElement}from"./accordion-section.js";export{b as baseStyles,d as declarative,h as html,r as reconcile,a as refreshProperties,c as registerParts,s as slugify}from"./shared.js";

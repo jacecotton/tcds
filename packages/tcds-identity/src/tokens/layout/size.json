@@ -1,0 +1,27 @@
+{
+  "size": {
+    "$type": "dimension",
+    "$description": "Raw sizing values, graded in multiples of 160px.",
+    "2": { "$value": "320px" },
+    "4": { "$value": "640px" },
+    "5": { "$value": "800px" },
+    "8": { "$value": "1280px" },
+    "12": { "$value": "1920px" },
+    "layout": {
+      "$description": "Semantic sizing values for layouts.",
+      "xs": { "$value": "{size.2}" },
+      "sm": { "$value": "{size.4}" },
+      "md": { "$value": "{size.5}" },
+      "lg": { "$value": "{size.8}" },
+      "xl": { "$value": "{size.12}" }
+    },
+    "breakpoint": {
+      "$description": "Semantic sizing values for breakpoints.",
+      "xs": { "$value": "{size.2}" },
+      "sm": { "$value": "{size.4}" },
+      "md": { "$value": "{size.5}" },
+      "lg": { "$value": "{size.8}" },
+      "xl": { "$value": "{size.12}" }
+    }
+  }
+}

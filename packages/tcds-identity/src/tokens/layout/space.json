@@ -1,0 +1,26 @@
+{
+  "space": {
+    "$type": "dimension",
+    "$description": "Raw spacing values, graded in multiples of 4px.",
+    "1": { "$value": "4px" },
+    "2": { "$value": "8px" },
+    "4": { "$value": "16px" },
+    "8": { "$value": "32px" },
+    "10": { "$value": "40px" },
+    "20": { "$value": "80px" },
+    "component": {
+      "$description": "Semantic spacing values for component scales.",
+      "xs": { "$value": "{space.1}" },
+      "sm": { "$value": "{space.2}" },
+      "md": { "$value": "{space.4}" },
+      "lg": { "$value": "{space.8}" }
+    },
+    "layout": {
+      "$description": "Semantic spacing values for layout scales.",
+      "xs": { "$value": "{space.4}" },
+      "sm": { "$value": "{space.8}" },
+      "md": { "$value": "{space.10}" },
+      "lg": { "$value": "{space.20}" }
+    }
+  }
+}

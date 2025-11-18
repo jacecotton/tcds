@@ -1,0 +1,32 @@
+{
+  "font": {
+    "family": {
+      "$type": "fontFamily",
+      "sans-serif": { "$value": ["Mont", "system-ui", "sans-serif"] },
+      "serif": { "$value": ["Calluna", "Big Caslon", "Palatino", "serif"] },
+      "display": { "$value": "{font.family.serif}" },
+      "headings": { "$value": "{font.family.serif}" },
+      "subheadings": { "$value": "{font.family.sans-serif}" },
+      "copy": { "$value": "{font.family.serif}" },
+      "ui": { "$value": "{font.family.sans-serif}" }
+    },
+    "weight": {
+      "$type": "fontWeight",
+      "normal": { "$value": 400 },
+      "semibold": { "$value": 600 },
+      "bold": { "$value": 700 }
+    },
+    "size": {
+      "$type": "dimension",
+      "xs": { "$value": "0.8125rem" },
+      "sm": { "$value": "0.875rem" },
+      "md": { "$value": "1rem" },
+      "ml": { "$value": "1.25rem" },
+      "lg": { "$value": "1.75rem" },
+      "xl": { "$value": "2.125rem" },
+      "2xl": { "$value": "3rem" },
+      "3xl": { "$value": "4rem" },
+      "4xl": { "$value": "6rem" }
+    }
+  }
+}

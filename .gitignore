@@ -5,6 +5,7 @@ node_modules
 .DS_Store
 
 # Transient build artifacts
-packages/tokens/dist
-**/build/output/**.scss
-**/build/output/**.js
+./dist/
+./packages/tcds-identity/dist
+./packages/tcds-foundation/dist
+./packages/tcds-components/dist

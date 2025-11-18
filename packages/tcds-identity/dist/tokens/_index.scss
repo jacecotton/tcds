@@ -1,0 +1,330 @@
+
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+$color-red-50: #fff7f7 !default;
+$color-red-100: #f2e6e6 !default;
+$color-red-700: #da2530 !default;
+$color-red-800: #cc111c !default;
+$color-red-900: #b70f19 !default;
+$color-blue-50: #f5faff !default;
+$color-blue-100: #dde7ef !default;
+$color-blue-900: #122840 !default;
+$color-gray-200: #eaeaea !default;
+$color-gray-400: #a8a8a8 !default;
+$color-gray-700: #555555 !default;
+$color-gray-900: #1a1a1a !default;
+$color-white: #ffffff !default;
+$color-black: #000000 !default;
+$theme-cool-background-light: #f5faff !default;
+$theme-cool-background-dark: #122840 !default;
+$theme-cool-foreground-light: #1a1a1a !default;
+$theme-cool-foreground-dark: #ffffff !default;
+$theme-cool-foreground-muted-light: #555555 !default;
+$theme-cool-foreground-muted-dark: #eaeaea !default;
+$theme-cool-foreground-highlight-light: #da2530 !default;
+$theme-cool-foreground-highlight-dark: #dde7ef !default;
+$theme-cool-link-light: #da2530 !default;
+$theme-cool-link-dark: #dde7ef !default;
+$theme-cool-watermark-light: #dde7ef !default;
+$theme-cool-watermark-dark: #000000 !default;
+$theme-warm-background-light: #fff7f7 !default;
+$theme-warm-background-dark: #da2530 !default;
+$theme-warm-foreground-light: #1a1a1a !default;
+$theme-warm-foreground-dark: #ffffff !default;
+$theme-warm-foreground-muted-light: #555555 !default;
+$theme-warm-foreground-muted-dark: #eaeaea !default;
+$theme-warm-foreground-highlight-light: #da2530 !default;
+$theme-warm-foreground-highlight-dark: #f2e6e6 !default;
+$theme-warm-link-light: #da2530 !default;
+$theme-warm-link-dark: #f2e6e6 !default;
+$theme-warm-watermark-light: #f2e6e6 !default;
+$theme-warm-watermark-dark: #b70f19 !default;
+$theme-neutral-background-light: #ffffff !default;
+$theme-neutral-background-dark: #1a1a1a !default;
+$theme-neutral-foreground-light: #1a1a1a !default;
+$theme-neutral-foreground-dark: #ffffff !default;
+$theme-neutral-foreground-muted-light: #555555 !default;
+$theme-neutral-foreground-muted-dark: #eaeaea !default;
+$theme-neutral-foreground-highlight-light: #da2530 !default;
+$theme-neutral-foreground-highlight-dark: #f2e6e6 !default;
+$theme-neutral-link-light: #da2530 !default;
+$theme-neutral-link-dark: #f2e6e6 !default;
+$theme-neutral-watermark-light: #dde7ef !default;
+$theme-neutral-watermark-dark: #000000 !default;
+$aspect-ratio-square: '1 / 1' !default;
+$aspect-ratio-landscape: '4 / 3' !default;
+$aspect-ratio-portrait: '3 / 4' !default;
+$aspect-ratio-widescreen: '16 / 9' !default;
+$aspect-ratio-ultrawide: '21 / 9' !default;
+$size-2: 320px !default;
+$size-4: 640px !default;
+$size-5: 800px !default;
+$size-8: 1280px !default;
+$size-12: 1920px !default;
+$size-layout-xs: 320px !default;
+$size-layout-sm: 640px !default;
+$size-layout-md: 800px !default;
+$size-layout-lg: 1280px !default;
+$size-layout-xl: 1920px !default;
+$size-breakpoint-xs: 320px !default;
+$size-breakpoint-sm: 640px !default;
+$size-breakpoint-md: 800px !default;
+$size-breakpoint-lg: 1280px !default;
+$size-breakpoint-xl: 1920px !default;
+$space-1: 4px !default;
+$space-2: 8px !default;
+$space-4: 16px !default;
+$space-8: 32px !default;
+$space-10: 40px !default;
+$space-20: 80px !default;
+$space-component-xs: 4px !default;
+$space-component-sm: 8px !default;
+$space-component-md: 16px !default;
+$space-component-lg: 32px !default;
+$space-layout-xs: 16px !default;
+$space-layout-sm: 32px !default;
+$space-layout-md: 40px !default;
+$space-layout-lg: 80px !default;
+$motion-productive-duration: 50ms !default;
+$motion-productive-easing: cubic-bezier(0, 0, 0.58, 1) !default;
+$motion-expressive-duration: 800ms !default;
+$motion-expressive-easing: cubic-bezier(0.39, 0.24, 0.3, 1) !default;
+$border-radius-sm: 6px !default;
+$border-radius-md: 10px !default;
+$border-radius-lg: 20px !default;
+$box-shadow-sm: 0px 3px 10px rgb(0 0 0 / 10%) !default;
+$box-shadow-md: 0px 7px 15px rgb(0 0 0 / 10%) !default;
+$box-shadow-lg: 0px 16px 25px rgb(0 0 0 / 10%) !default;
+$font-family-sans-serif: Mont, system-ui, sans-serif !default;
+$font-family-serif: Calluna, 'Big Caslon', Palatino, serif !default;
+$font-family-display: Calluna, 'Big Caslon', Palatino, serif !default;
+$font-family-headings: Calluna, 'Big Caslon', Palatino, serif !default;
+$font-family-subheadings: Mont, system-ui, sans-serif !default;
+$font-family-copy: Calluna, 'Big Caslon', Palatino, serif !default;
+$font-family-ui: Mont, system-ui, sans-serif !default;
+$font-weight-normal: 400 !default;
+$font-weight-semibold: 600 !default;
+$font-weight-bold: 700 !default;
+$font-size-xs: 0.8125rem !default;
+$font-size-sm: 0.875rem !default;
+$font-size-md: 1rem !default;
+$font-size-ml: 1.25rem !default;
+$font-size-lg: 1.75rem !default;
+$font-size-xl: 2.125rem !default;
+$font-size-2xl: 3rem !default;
+$font-size-3xl: 4rem !default;
+$font-size-4xl: 6rem !default;
+$line-height-xs: 1 !default;
+$line-height-sm: 1.2 !default;
+$line-height-md: 1.75 !default;
+$line-height-lg: 2 !default;
+$line-height-xl: 2.5 !default;
+
+$tokens: (
+  'color': (
+    'red': (
+      '50': $color-red-50,
+      '100': $color-red-100,
+      '700': $color-red-700,
+      '800': $color-red-800,
+      '900': $color-red-900
+    ),
+    'blue': (
+      '50': $color-blue-50,
+      '100': $color-blue-100,
+      '900': $color-blue-900
+    ),
+    'gray': (
+      '200': $color-gray-200,
+      '400': $color-gray-400,
+      '700': $color-gray-700,
+      '900': $color-gray-900
+    ),
+    'white': $color-white,
+    'black': $color-black
+  ),
+  'theme': (
+    'cool': (
+      'background': (
+        'light': $theme-cool-background-light,
+        'dark': $theme-cool-background-dark
+      ),
+      'foreground': (
+        'light': $theme-cool-foreground-light,
+        'dark': $theme-cool-foreground-dark
+      ),
+      'foreground-muted': (
+        'light': $theme-cool-foreground-muted-light,
+        'dark': $theme-cool-foreground-muted-dark
+      ),
+      'foreground-highlight': (
+        'light': $theme-cool-foreground-highlight-light,
+        'dark': $theme-cool-foreground-highlight-dark
+      ),
+      'link': (
+        'light': $theme-cool-link-light,
+        'dark': $theme-cool-link-dark
+      ),
+      'watermark': (
+        'light': $theme-cool-watermark-light,
+        'dark': $theme-cool-watermark-dark
+      )
+    ),
+    'warm': (
+      'background': (
+        'light': $theme-warm-background-light,
+        'dark': $theme-warm-background-dark
+      ),
+      'foreground': (
+        'light': $theme-warm-foreground-light,
+        'dark': $theme-warm-foreground-dark
+      ),
+      'foreground-muted': (
+        'light': $theme-warm-foreground-muted-light,
+        'dark': $theme-warm-foreground-muted-dark
+      ),
+      'foreground-highlight': (
+        'light': $theme-warm-foreground-highlight-light,
+        'dark': $theme-warm-foreground-highlight-dark
+      ),
+      'link': (
+        'light': $theme-warm-link-light,
+        'dark': $theme-warm-link-dark
+      ),
+      'watermark': (
+        'light': $theme-warm-watermark-light,
+        'dark': $theme-warm-watermark-dark
+      )
+    ),
+    'neutral': (
+      'background': (
+        'light': $theme-neutral-background-light,
+        'dark': $theme-neutral-background-dark
+      ),
+      'foreground': (
+        'light': $theme-neutral-foreground-light,
+        'dark': $theme-neutral-foreground-dark
+      ),
+      'foreground-muted': (
+        'light': $theme-neutral-foreground-muted-light,
+        'dark': $theme-neutral-foreground-muted-dark
+      ),
+      'foreground-highlight': (
+        'light': $theme-neutral-foreground-highlight-light,
+        'dark': $theme-neutral-foreground-highlight-dark
+      ),
+      'link': (
+        'light': $theme-neutral-link-light,
+        'dark': $theme-neutral-link-dark
+      ),
+      'watermark': (
+        'light': $theme-neutral-watermark-light,
+        'dark': $theme-neutral-watermark-dark
+      )
+    )
+  ),
+  'aspect-ratio': (
+    'square': $aspect-ratio-square,
+    'landscape': $aspect-ratio-landscape,
+    'portrait': $aspect-ratio-portrait,
+    'widescreen': $aspect-ratio-widescreen,
+    'ultrawide': $aspect-ratio-ultrawide
+  ),
+  'size': (
+    '2': $size-2,
+    '4': $size-4,
+    '5': $size-5,
+    '8': $size-8,
+    '12': $size-12,
+    'layout': (
+      'xs': $size-layout-xs,
+      'sm': $size-layout-sm,
+      'md': $size-layout-md,
+      'lg': $size-layout-lg,
+      'xl': $size-layout-xl
+    ),
+    'breakpoint': (
+      'xs': $size-breakpoint-xs,
+      'sm': $size-breakpoint-sm,
+      'md': $size-breakpoint-md,
+      'lg': $size-breakpoint-lg,
+      'xl': $size-breakpoint-xl
+    )
+  ),
+  'space': (
+    '1': $space-1,
+    '2': $space-2,
+    '4': $space-4,
+    '8': $space-8,
+    '10': $space-10,
+    '20': $space-20,
+    'component': (
+      'xs': $space-component-xs,
+      'sm': $space-component-sm,
+      'md': $space-component-md,
+      'lg': $space-component-lg
+    ),
+    'layout': (
+      'xs': $space-layout-xs,
+      'sm': $space-layout-sm,
+      'md': $space-layout-md,
+      'lg': $space-layout-lg
+    )
+  ),
+  'motion': (
+    'productive': (
+      'duration': $motion-productive-duration,
+      'easing': $motion-productive-easing
+    ),
+    'expressive': (
+      'duration': $motion-expressive-duration,
+      'easing': $motion-expressive-easing
+    )
+  ),
+  'border-radius': (
+    'sm': $border-radius-sm,
+    'md': $border-radius-md,
+    'lg': $border-radius-lg
+  ),
+  'box-shadow': (
+    'sm': $box-shadow-sm,
+    'md': $box-shadow-md,
+    'lg': $box-shadow-lg
+  ),
+  'font': (
+    'family': (
+      'sans-serif': $font-family-sans-serif,
+      'serif': $font-family-serif,
+      'display': $font-family-display,
+      'headings': $font-family-headings,
+      'subheadings': $font-family-subheadings,
+      'copy': $font-family-copy,
+      'ui': $font-family-ui
+    ),
+    'weight': (
+      'normal': $font-weight-normal,
+      'semibold': $font-weight-semibold,
+      'bold': $font-weight-bold
+    ),
+    'size': (
+      'xs': $font-size-xs,
+      'sm': $font-size-sm,
+      'md': $font-size-md,
+      'ml': $font-size-ml,
+      'lg': $font-size-lg,
+      'xl': $font-size-xl,
+      '2xl': $font-size-2xl,
+      '3xl': $font-size-3xl,
+      '4xl': $font-size-4xl
+    )
+  ),
+  'line-height': (
+    'xs': $line-height-xs,
+    'sm': $line-height-sm,
+    'md': $line-height-md,
+    'lg': $line-height-lg,
+    'xl': $line-height-xl
+  )
+);

@@ -1,0 +1,15 @@
+/**
+ * Pulls in everything in the desired order (first @font-face declarations, then
+ * CSS custom properties, then themed HTML elements, then helper classes).
+ */
+
+// Forward abstracts in case this is used by other Sass modules.
+@forward "abstracts/";
+
+// Build
+// :root-scoped custom properties.
+@forward "props";
+// Themed HTML elements.
+@forward "theming";
+// Utilities must be imported after elements so that they take precedence.
+@forward "utilities";

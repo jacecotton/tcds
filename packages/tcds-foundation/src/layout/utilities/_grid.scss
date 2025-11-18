@@ -1,0 +1,58 @@
+@use "../../abstracts/mixins" as *;
+
+/**
+ * CSS grid utilities.
+ *
+ * `.grid` defines a 12-column grid.
+ *
+ * `.grid-item` can be used for items spanning one cell (1/12th), with
+ * fractional modifiers (e.g. `.grid-item--1/2`) to change column spans:
+ * - 1/4 = 3 column span
+ * - 1/3 = 4 column span
+ * - 1/2 = 6 column span
+ * - 3/4 = 9 column span
+ * - 2/3 = 8 column span
+ * - 1/1 = 12 column span
+ *
+ * Breakpoint-based prefixes can be applied to the classes (xs, sm, md, lg, xl),
+ * e.g. `.xs:grid-item--1/2`
+ *
+ * Column spans can be dynamically set with the `--grid-item-column-span`
+ * custom property.
+ */
+
+.grid {
+  display: grid !important;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+[class*="grid-item--"] {
+  --grid-item-column-span: 1;
+  grid-column: span var(--grid-item-column-span);
+}
+
+@include responsive-utils() using ($breakpoint) {
+  .#{$breakpoint}grid-item--1\/1 {
+    --grid-item-column-span: 12;
+  }
+
+  .#{$breakpoint}grid-item--1\/2 {
+    --grid-item-column-span: 6;
+  }
+
+  .#{$breakpoint}grid-item--1\/3 {
+    --grid-item-column-span: 4;
+  }
+
+  .#{$breakpoint}grid-item--2\/3 {
+    --grid-item-column-span: 8;
+  }
+
+  .#{$breakpoint}grid-item--1\/4 {
+    --grid-item-column-span: 3;
+  }
+
+  .#{$breakpoint}grid-item--3\/4 {
+    --grid-item-column-span: 9;
+  }
+}

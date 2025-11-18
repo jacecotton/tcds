@@ -1,0 +1,46 @@
+@use "functions" as *;
+
+/**
+ * A mixin for creating responsive layout helper classes (prefixed with a
+ * size.breakpoint token (e.g. `sm:`, `md:`, etc.))
+ *
+ * First it simply returns the @content, setting the variable (`$prefix`) to an
+ * empty string (default/non-responsive classes).
+ *
+ * Then it loops through size.breakpoint tokens, creates min-width media
+ * queries, and defines `$prefix` as the breakpoint token.
+ *
+ * Example:
+ * @include responsive-utils() using ($prefix) {
+ *   .$prefix\:test {
+ *     color: red;
+ *   }
+ * }
+ *
+ * Result:
+ * .test {
+ *   color: red;
+ * }
+ *
+ * @media (min-width: 320px) {
+ *   .xs\:test {
+ *     color: red;
+ *   }
+ * }
+ * etc...
+ *
+ * Can set `$responsive-only: true` to exclude rulesets for non-prefixed
+ * selectors.
+ */
+
+@mixin responsive-utils($responsive-only: false) {
+  @if $responsive-only == false {
+    @content("");
+  }
+
+  @each $breakpoint, $value in tokens("size", "breakpoint") {
+    @media (min-width: #{$value}) {
+      @content("#{$breakpoint}\\:");
+    }
+  }
+}

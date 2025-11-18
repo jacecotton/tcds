@@ -1,0 +1,39 @@
+@use "../../abstracts/mixins" as *;
+
+/**
+ * Positioning utilities (alignment and justification).
+ *
+ * Utilities correspond to `justify-content`, `align-items`, `justify-self`, and
+ * `align-self` properties, suffixed with a subset of each of their valid values
+ * (e.g. `.justify-self-center`). This subset includes:
+ * - justify: start, end, center, or space-between
+ * - align: start, end, center, or stretch
+ *
+ * Breakpoint-based prefixes (xs, sm, md, lg, xl) can be applied to the classes
+ * (e.g. `.lg:align-items-stretch`).
+ */
+
+$justify-values: ("start", "end", "center", "space-between");
+$align-values: ("start", "end", "center", "stretch");
+
+@include responsive-utils() using ($breakpoint) {
+  @each $value in $justify-values {
+    .#{$breakpoint}justify-content-#{$value} {
+      justify-content: #{$value} !important;
+    }
+
+    .#{$breakpoint}justify-self-#{$value} {
+      justify-self: #{$value} !important;
+    }
+  }
+
+  @each $value in $align-values {
+    .#{$breakpoint}align-items-#{$value} {
+      align-items: #{$value} !important;
+    }
+
+    .#{$breakpoint}align-self-#{$value} {
+      align-self: #{$value} !important;
+    }
+  }
+}

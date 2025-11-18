@@ -1,0 +1,8 @@
+{
+  "border-radius": {
+    "$type": "dimension",
+    "sm": { "$value": "6px" },
+    "md": { "$value": "10px" },
+    "lg": { "$value": "20px" }
+  }
+}

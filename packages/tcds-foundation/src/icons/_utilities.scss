@@ -1,0 +1,23 @@
+@use "sass:list";
+@use "sass:map";
+@use "@txch/tcds-identity/dist/icons" as identity;
+
+.tcds-icon {
+  @each $category, $icons in identity.$icons {
+    @each $icon in $icons {
+      &--#{$icon},
+      &--#{$icon}#{&}--#{$category} {
+        --tcds-icon: var(--tcds-icon-#{$category}-#{$icon});
+      }
+    }
+  }
+
+  &::after {
+    content: "";
+    display: inline-block;
+    height: 1em;
+    width: 1em;
+    background: currentcolor;
+    mask: var(--tcds-icon) no-repeat center;
+  }
+}

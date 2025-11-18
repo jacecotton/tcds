@@ -71,7 +71,7 @@ async function main() {
 
       if(extname === ".twig") {
         destDir = path.join(COPY_ASSETS_INTO, "templates", "components");
-      } else if(ext === ".map") {
+      } else if(extname === ".map") {
         const inner = path.extname(basename.slice(0, -4)).toLowerCase();
         const folder = inner ? inner.slice(1) : "map";
         destDir = path.join(COPY_ASSETS_INTO, folder);

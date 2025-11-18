@@ -1,0 +1,98 @@
+@use "../../abstracts/functions" as *;
+@use "../../abstracts/mixins" as *;
+
+/**
+ * Spacing utilities (gap, margin, padding).
+ */
+
+/**
+ * Gap utilities for flex box and grid.
+ *
+ * Based on space.component tokens (xs, sm, md, lg, xl, e.g. `.gap-xl`).
+ *
+ * Breakpoint-based prefixes (xs, sm, md, lg, xl) can be applied to the classes
+ * (e.g. `.md:gap-xl`).
+ */
+
+@include responsive-utils() using ($breakpoint) {
+  @each $name, $value in tokens("space", "component") {
+    .#{$breakpoint}gap-#{$name} {
+      gap: var(--tcds-space-component-#{$name}) !important;
+    }
+
+    .#{$breakpoint}row-gap-#{$name} {
+      row-gap: var(--tcds-space-component-#{$name}) !important;
+    }
+
+    .#{$breakpoint}column-gap-#{$name} {
+      column-gap: var(--tcds-space-component-#{$name}) !important;
+    }
+  }
+}
+
+/**
+ * Vertical rhythm utilities (margin and padding).
+ *
+ * Vertical (margin/padding-y), top (margin/padding-top), and bottom
+ * (margin/padding-bottom) utilities are available, based on layout sizing
+ * tokens (xs, sm, md, lg, xl). Example: `.padding-block-sm` or
+ * `.margin-top-xl`.
+ *
+ * Breakpoint-based prefixes can be applied to the classes (xs, sm, md, lg, xl),
+ * e.g. `.xs:padding-block-xs`
+ */
+
+@include responsive-utils() using ($breakpoint) {
+  @each $name, $value in tokens("space", "layout") {
+    .#{$breakpoint}padding-block-#{$name} {
+      padding-top: var(--tcds-space-layout-#{$name}) !important;
+      padding-bottom: var(--tcds-space-layout-#{$name}) !important;
+    }
+
+    .#{$breakpoint}padding-top-#{$name} {
+      padding-top: var(--tcds-space-layout-#{$name}) !important;
+    }
+
+    .#{$breakpoint}padding-bottom-#{$name} {
+      padding-bottom: var(--tcds-space-layout-#{$name}) !important;
+    }
+
+    .#{$breakpoint}margin-block-#{$name} {
+      margin-top: var(--tcds-space-layout-#{$name}) !important;
+      margin-bottom: var(--tcds-space-layout-#{$name}) !important;
+    }
+
+    .#{$breakpoint}margin-top-#{$name} {
+      margin-top: var(--tcds-space-layout-#{$name}) !important;
+    }
+
+    .#{$breakpoint}margin-bottom-#{$name} {
+      margin-bottom: var(--tcds-space-layout-#{$name}) !important;
+    }
+  }
+}
+
+/**
+ * Horizontal auto-spacing utilities.
+ *
+ * `.margin-inline-auto` centers the element by applying auto-margin to both
+ * left and right.
+ *
+ * `.margin-left-auto` pushes the element all the way to the right if inside a
+ * flex container, and vice versa, `.margin-right-auto` pushes the element all
+ * the way to the left.
+ */
+
+@include responsive-utils() using ($breakpoint) {
+  .#{$breakpoint}margin-inline-auto {
+    margin-inline: auto !important;
+  }
+
+  .#{$breakpoint}margin-left-auto {
+    margin-left: auto !important;
+  }
+
+  .#{$breakpoint}margin-right-auto {
+    margin-right: auto !important;
+  }
+}

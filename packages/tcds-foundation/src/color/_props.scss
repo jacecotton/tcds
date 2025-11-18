@@ -1,0 +1,79 @@
+@use "sass:list";
+@use "sass:map";
+@use "sass:meta";
+@use "../abstracts/functions" as *;
+
+@mixin theme-props-by-mode($mode) {
+  // Loop through themes (cool/warm/neutral):
+  @each $theme, $elements in tokens("theme") {
+    // Loop through elements (background/foreground/etc.), not modes:
+    @each $element, $modes in $elements {
+      // For example, if $theme == warm, $mode == dark:
+      // --tcds-theme-warm-background: var(--tcds-theme-warm-background-dark)
+      --tcds-theme-#{$theme}-#{$element}: var(--tcds-theme-#{$theme}-#{$element}-#{$mode});
+    }
+  }
+}
+
+@mixin element-props-by-theme($theme) {
+  // Loop through elements in a given theme, for example if $theme == "cool",
+  // then themes.cool.background, themes.cool.foreground, etc.
+  @each $element, $modes in tokens("theme", $theme) {
+    // For example, if $element == foreground, $theme == neutral:
+    // --tcds-theme-foreground: var(--tcds-theme-neutral-foreground)
+    --tcds-theme-#{$element}: var(--tcds-theme-#{$theme}-#{$element});
+  }
+}
+
+/**
+ * Define themed properties (--tcds-theme-[cool|warm|neutral]-[element]) as
+ * their corresponding light or dark mode values
+ * (--tcds-theme-[theme]-[element]-[light|dark]), based on `[data-mode]`
+ * attribute.
+ */
+
+:root,
+[data-mode="light"] {
+  // For example:
+  // --tcds-theme-cool-background: var(--tcds-theme-cool-background-light)
+  // etc...
+  @include theme-props-by-mode("light");
+}
+
+[data-mode="dark"] {
+  // For example:
+  // --tcds-theme-cool-foreground: var(--tcds-theme-cool-foreground-dark)
+  // etc...
+  @include theme-props-by-mode("dark");
+}
+
+[data-mode="auto"] {
+  @media (prefers-color-scheme: dark) {
+    @include theme-props-by-mode("dark");
+  }
+}
+
+/**
+ * Define unthemed element properties (--tcds-theme-[background|foreground|...])
+ * as their corresponding theme values (--tcds-theme-[theme]-[element]), based
+ * on `[data-theme]`.
+ */
+
+@each $theme, $elements in tokens("theme") {
+  $selector-list: ("[data-theme=#{$theme}]");
+
+  // Treat neutral as default.
+  @if $theme == "neutral" {
+    $selector-list: list.append($selector-list, ":root", comma);
+  }
+
+  #{$selector-list} {
+    // For example:
+    // [data-theme="cool"] {
+    //   --tcds-theme-background: var(--tcds-theme-cool-background);
+    //   etc...
+    // }
+    // etc...
+    @include element-props-by-theme($theme);
+  }
+}

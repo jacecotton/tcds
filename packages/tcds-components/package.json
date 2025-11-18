@@ -1,0 +1,30 @@
+{
+  "name": "@txch/tcds-components",
+  "version": "3.0.0",
+  "type": "module",
+  "scripts": {
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean",
+    "build": "npm run prebuild && rollup -c rollup.config.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.3",
+    "@babel/plugin-proposal-decorators": "^7.28.0",
+    "@babel/plugin-transform-class-properties": "^7.27.1",
+    "@babel/plugin-transform-class-static-block": "^7.28.3",
+    "@babel/plugin-transform-private-methods": "^7.27.1",
+    "@babel/plugin-transform-private-property-in-object": "^7.27.1",
+    "@babel/preset-env": "^7.28.3",
+    "@rollup/plugin-alias": "^5.1.1",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@txch/tcds-foundation": "^3.0.0",
+    "@txch/tcds-identity": "^3.0.0",
+    "lit": "^3.3.1",
+    "rimraf": "^6.0.1",
+    "rollup": "^4.44.2",
+    "terser": "^5.43.1"
+  }
+}

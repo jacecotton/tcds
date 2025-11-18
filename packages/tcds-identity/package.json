@@ -1,0 +1,19 @@
+{
+  "name": "@txch/tcds-identity",
+  "version": "3.0.0",
+  "type": "module",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build:fonts": "cpx 'src/fonts/**/*' dist/fonts",
+    "build:icons": "cpx 'src/icons/**/*' dist/icons && node scripts/create-icon-manifest.js",
+    "build:logos": "cpx 'src/logos/**/*' dist/logos",
+    "build:tokens": "style-dictionary build --config sd.config.js",
+    "build": "npm run clean && npm run build:fonts && npm run build:icons && npm run build:logos && npm run build:tokens",
+    "prepare": "npm run build"
+  },
+  "devDependencies": {
+    "cpx": "^1.5.0",
+    "rimraf": "^6.0.1",
+    "style-dictionary": "^5.1.0"
+  }
+}
