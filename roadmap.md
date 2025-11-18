@@ -1,5 +1,6 @@
 ## Typing
-Look into adopting TypeScript for JS files (components, process scripts, etc.)
+- Phase 1: use TypeScript compiler with JSDoc type defs & annotations
+- Phase 2: possibly migrate to TypeScript
 
 ## Testing
 ### Browser testing
