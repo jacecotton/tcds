@@ -1,5 +1,6 @@
 @use "sass:list";
 @use "../../abstracts/functions" as *;
+@use "../abstracts/mixins" as *;
 
 /**
  * `.container-` utilities.
@@ -27,20 +28,5 @@ $container-selectors: ();
 }
 
 #{$container-selectors} {
-  --tcds-container-gutter: var(--tcds-site-inner-gutter);
-
-  // width: calc(100% - var(--tcds-container-gutter) * 2) !important;
-  // max-width: var(--tcds-size-container) !important;
-  // margin-inline: auto !important;
-
-  // Let's try this out for a while.
-  display: grid;
-  grid-template-columns: minmax(1rem, 1fr)
-    minmax(auto, calc(var(--tcds-size-container) / 2))
-    minmax(auto, calc(var(--tcds-size-container) / 2))
-    minmax(1rem, 1fr);
-
-  > * {
-    grid-column: 2 / span 2;
-  }
+  @include container("!important");
 }

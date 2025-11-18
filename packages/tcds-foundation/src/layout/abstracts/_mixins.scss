@@ -1,0 +1,28 @@
+@mixin container-props() {
+  --_tcds-container-gutter: var(--tcds-container-gutter, var(--tcds-site-inner-gutter));
+  --_tcds-size-container: var(--tcds-size-container, var(--tcds-size-container-lg));
+}
+
+@mixin container($flag: "") {
+  @include container-props;
+
+  width: calc(100% - var(--_tcds-container-gutter) * 2) #{$flag};
+  max-width: var(--_tcds-size-container) #{$flag};
+  margin-inline: auto #{$flag};
+}
+
+// Experimental!
+@mixin container-grid($flag: "") {
+  @include container-props;
+
+  display: grid #{$flag};
+  grid-template-columns:
+    minmax(var(--_tcds-container-gutter), 1fr)
+    minmax(auto, calc(var(--_tcds-size-container) / 2))
+    minmax(auto, calc(var(--_tcds-size-container) / 2))
+    minmax(var(--_tcds-container-gutter), 1fr) #{$flag};
+
+  > * {
+    grid-column: 2 / span 2;
+  }
+}
