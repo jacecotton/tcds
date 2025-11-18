@@ -16,7 +16,6 @@ Keeping an eye on:
 
 * [Declarative Custom Elements](https://github.com/WICG/webcomponents/blob/gh-pages/proposals/Declarative-Custom-Elements-Strawman.md), [DOM Parts Declarative Template API](https://github.com/WICG/webcomponents/blob/gh-pages/proposals/DOM-Parts-Declarative-Template.md), and [Signals](https://github.com/tc39/proposal-signals) to potentially revolutionize how we define custom elements, handle DOM updates, state, etc.
 * [Reference Target for Cross-Root ARIA (Proposal)](https://github.com/WICG/webcomponents/blob/gh-pages/proposals/reference-target-explainer.md) to solve long-standing accessibility wrinkles with the Shadow DOM.
-* [Design Tokens Community Group](https://www.w3.org/community/design-tokens/) — possibly follow this to normalize our own design tokens (would involve converting back to JSON).
 * [HTML `focusgroup` (Explainer)](https://open-ui.org/components/focusgroup.explainer/) for better keyboard navigation and potentially native focus trapping?
 * [`import` attributes `with` CSS types](https://chromestatus.com/feature/5205869105250304) to import shadow DOM stylesheets (TCDS currently supports the syntax but transforms module imports to inlined CSS via a custom Rollup plugin).
 * [`import` attributes `with` HTML types](https://github.com/WICG/webcomponents/blob/gh-pages/proposals/html-modules-explainer.md) to potentially store custom element templates in separate files as well (possibly related to or mooted by the DCE, DOM Parts, and Signals ideas).
