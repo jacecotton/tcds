@@ -20,7 +20,7 @@ const SRC_DIR = path.resolve(DIRNAME, "src");
  */
 const componentEntries = fs
   .readdirSync(SRC_DIR, {withFileTypes: true})
-  .filter((dirent) => {
+  .filter(dirent => {
     // Exclude src/@shared/*
     if (!dirent.isDirectory() || dirent.name === "@shared") return false;
     const filePath = path.join(SRC_DIR, dirent.name, `${dirent.name}.js`);
@@ -38,9 +38,7 @@ export default {
     bundle: path.join(SRC_DIR, "index.js"),
   },
 
-  external: [
-    "lit",
-  ],
+  external: ["lit"],
 
   output: {
     dir: "dist",
@@ -51,11 +49,10 @@ export default {
     manualChunks(id) {
       const normalized = id.split(path.sep).join("/");
 
-      return normalized.includes("/src/@shared/")
-        || normalized.includes("node_modules/")
-        || id.includes("\0")
-          ? "shared" : undefined;
-}
+      return normalized.includes("/src/@shared/") || normalized.includes("node_modules/") || id.includes("\0")
+        ? "shared"
+        : undefined;
+    },
   },
 
   plugins: [
@@ -72,11 +69,24 @@ export default {
       babelHelpers: "bundled",
       extensions: [".js", ".mjs"],
       exclude: /node_modules/,
+      sourceMaps: true,
       presets: [
-        ["@babel/preset-env", {targets: {esmodules: true}}],
+        [
+          "@babel/preset-env",
+          {
+            targets: {esmodules: true},
+            bugfixes: true,
+          },
+        ],
       ],
       plugins: [
-        ["@babel/plugin-proposal-decorators", {version: "2023-11"}],
+        [
+          "@babel/plugin-proposal-decorators",
+          {
+            version: "2023-11",
+            decoratorsBeforeExport: false,
+          },
+        ],
         ["@babel/plugin-transform-class-properties", {loose: false}],
         ["@babel/plugin-transform-private-methods", {loose: false}],
         ["@babel/plugin-transform-private-property-in-object", {loose: false}],

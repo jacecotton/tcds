@@ -5,7 +5,6 @@
 .tcds-icon {
   @each $category, $icons in identity.$icons {
     @each $icon in $icons {
-
       &--#{$icon},
       &--#{$icon}#{&}--#{$category} {
         --tcds-icon: var(--tcds-icon-#{$category}-#{$icon});

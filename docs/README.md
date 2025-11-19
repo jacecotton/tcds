@@ -1,8 +1,10 @@
 ## Stack
-* Document with markdown pages, with embedded Twig code
-* Use Eleventy to SSG the site, Nunjucks for templating (near-complete Twig x-compatibility).
+
+- Document with markdown pages, with embedded Twig code
+- Use Eleventy to SSG the site, Nunjucks for templating (near-complete Twig x-compatibility).
 
 ## Information architecture
+
 ```
 Introduction
   Installation                -- NPM, Drupal module, CDN, archive download.

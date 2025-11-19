@@ -35,12 +35,12 @@
 
 @mixin responsive-utils($responsive-only: false) {
   @if $responsive-only == false {
-    @content("");
+    @content ("");
   }
 
   @each $breakpoint, $value in tokens("size", "breakpoint") {
     @media (min-width: #{$value}) {
-      @content("#{$breakpoint}\\:");
+      @content ("#{$breakpoint}\\:");
     }
   }
 }
