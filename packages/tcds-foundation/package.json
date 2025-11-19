@@ -3,10 +3,35 @@
   "version": "3.0.0",
   "type": "module",
   "scripts": {
-    "clean": "rimraf dist",
-    "build:scss": "sass --load-path=../../node_modules --style=compressed --source-map src:dist",
-    "build": "npm run clean && npm run build:scss",
+    "clean": "wireit",
+    "build": "wireit",
+    "build:scss": "wireit",
     "check-build-gzip": "gzip -c dist/foundation.css | wc -c"
+  },
+  "wireit": {
+    "clean": {
+      "command": "rimraf dist"
+    },
+    "build": {
+      "dependencies": [
+        "build:scss"
+      ]
+    },
+    "build:scss": {
+      "command": "sass --load-path=../../node_modules --style=compressed --source-map src:dist",
+      "dependencies": [
+        "clean",
+        "../tcds-identity:build:icons"
+      ],
+      "files": [
+        "src/**/*.scss"
+      ],
+      "output": [
+        "dist/**/*.css",
+        "dist/**/*.css.map"
+      ],
+      "clean": "if-file-deleted"
+    }
   },
   "devDependencies": {
     "@txch/tcds-identity": "^3.0.0",

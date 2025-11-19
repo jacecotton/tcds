@@ -10,12 +10,81 @@
     "packages/tcds-components"
   ],
   "scripts": {
-    "build:identity": "npm run build --workspace=packages/tcds-identity",
-    "build:foundation": "npm run build --workspace=packages/tcds-foundation",
-    "build:components": "npm run build --workspace=packages/tcds-components",
-    "build": "npm run build:identity && npm run build:foundation && npm run build:components",
-    "postinstall": "node scripts/cleanup-assets.js && node scripts/copy-assets.js && node packages/foundation/build/config.js && npm run build",
-    "preuninstall": "node scripts/cleanup-assets.js"
+    "build": "wireit",
+    "build:identity": "wireit",
+    "build:foundation": "wireit",
+    "build:components": "wireit",
+    "build:tcds": "wireit",
+    "clean": "wireit"
+  },
+  "wireit": {
+    "build": {
+      "dependencies": [
+        "build:identity",
+        "build:foundation",
+        "build:components",
+        "build:tcds"
+      ]
+    },
+    "build:identity": {
+      "command": "npm run build --workspace=packages/tcds-identity",
+      "files": [
+        "packages/tcds-identity/src/**",
+        "packages/tcds-identity/scripts/**",
+        "packages/tcds-identity/package.json"
+      ],
+      "output": [
+        "packages/tcds-identity/dist/**"
+      ]
+    },
+    "build:foundation": {
+      "command": "npm run build --workspace=packages/tcds-foundation",
+      "dependencies": [
+        "build:identity"
+      ],
+      "files": [
+        "packages/tcds-foundation/src/**",
+        "packages/tcds-foundation/package.json"
+      ],
+      "output": [
+        "packages/tcds-foundation/dist/**"
+      ]
+    },
+    "build:components": {
+      "command": "npm run build --workspace=packages/tcds-components",
+      "dependencies": [
+        "build:foundation"
+      ],
+      "files": [
+        "packages/tcds-components/src/**",
+        "packages/tcds-components/rollup.config.js",
+        "packages/tcds-components/package.json"
+      ],
+      "output": [
+        "packages/tcds-components/dist/**"
+      ]
+    },
+    "build:tcds": {
+      "command": "node scripts/aggregate-dist.js",
+      "dependencies": [
+        "build:identity",
+        "build:foundation",
+        "build:components"
+      ],
+      "files": [
+        "packages/tcds-identity/dist/**",
+        "packages/tcds-foundation/dist/**",
+        "packages/tcds-components/dist/**",
+        "scripts/aggregate-dist.js"
+      ],
+      "output": [
+        "dist/**"
+      ],
+      "clean": "if-file-deleted"
+    },
+    "clean": {
+      "command": "rimraf dist packages/*/dist .wireit"
+    }
   },
   "repository": {
     "type": "git",
@@ -31,5 +100,8 @@
     "@txch/tcds-components": "^3.0.0",
     "@txch/tcds-foundation": "^3.0.0",
     "@txch/tcds-identity": "^3.0.0"
+  },
+  "devDependencies": {
+    "wireit": "^0.14.12"
   }
 }

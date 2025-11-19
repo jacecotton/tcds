@@ -7,14 +7,14 @@
 
 import fs from "fs";
 import path from "path";
-import {fileURLToPath} from "url";
+import { fileURLToPath } from "url";
 
 async function main() {
   const DIRNAME = path.dirname(fileURLToPath(import.meta.url));
-  const OUTPUT_DIR = "../dist/icons";
+  const OUTPUT_DIR = "../dist/images/icons";
   const ICONS_DIR = path.resolve(DIRNAME, OUTPUT_DIR);
 
-  if(!fs.existsSync(ICONS_DIR)) {
+  if (!fs.existsSync(ICONS_DIR)) {
     console.error(`@txch/tcds ❌ ERROR: Icons directory not found at ${ICONS_DIR}`);
     process.exit(1);
   }

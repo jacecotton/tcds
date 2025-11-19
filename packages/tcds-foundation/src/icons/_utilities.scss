@@ -1,10 +1,11 @@
 @use "sass:list";
 @use "sass:map";
-@use "@txch/tcds-identity/dist/icons" as identity;
+@use "@txch/tcds-identity/dist/images/icons" as identity;
 
 .tcds-icon {
   @each $category, $icons in identity.$icons {
     @each $icon in $icons {
+
       &--#{$icon},
       &--#{$icon}#{&}--#{$category} {
         --tcds-icon: var(--tcds-icon-#{$category}-#{$icon});

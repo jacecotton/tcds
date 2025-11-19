@@ -3,9 +3,28 @@
   "version": "3.0.0",
   "type": "module",
   "scripts": {
-    "clean": "rimraf dist",
-    "prebuild": "npm run clean",
-    "build": "npm run prebuild && rollup -c rollup.config.js"
+    "clean": "wireit",
+    "build": "wireit"
+  },
+  "wireit": {
+    "clean": {
+      "command": "rimraf dist"
+    },
+    "build": {
+      "command": "rollup -c rollup.config.js",
+      "dependencies": [
+        "clean",
+        "../tcds-foundation:build"
+      ],
+      "files": [
+        "src/**",
+        "rollup.config.js"
+      ],
+      "output": [
+        "dist/**"
+      ],
+      "clean": "if-file-deleted"
+    }
   },
   "devDependencies": {
     "@babel/core": "^7.28.3",

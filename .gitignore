@@ -6,6 +6,7 @@ node_modules
 
 # Transient build artifacts
 ./dist/
+.wireit/
 ./packages/tcds-identity/dist
 ./packages/tcds-foundation/dist
 ./packages/tcds-components/dist
