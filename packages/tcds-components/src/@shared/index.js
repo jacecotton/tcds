@@ -17,3 +17,5 @@ export {
 } from "lit/decorators.js";
 
 export {updated, willUpdate} from "./lit-element/decorators.js";
+
+export * as sharedCSS from "../../../tcds-foundation/dist/shared.css";

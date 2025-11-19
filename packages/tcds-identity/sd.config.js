@@ -10,6 +10,7 @@ export default {
         {
           destination: "_index.scss",
           format: "scss/map-deep",
+          filter: "excludeKeyframes",
         },
       ],
     },
@@ -24,9 +25,15 @@ export default {
         {
           destination: "index.css",
           format: "css/variables",
+          filter: "excludeKeyframes",
           options: {
             outputReferences: true,
           },
+        },
+        {
+          destination: "animations.css",
+          format: "css/keyframes/complex",
+          filter: "includeKeyframes",
         },
       ],
     },

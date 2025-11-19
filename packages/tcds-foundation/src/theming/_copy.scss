@@ -23,7 +23,7 @@
 
 a {
   :where(&) {
-    color: var(--tcds-theme-link);
+    color: var(--tcds-color-theme-link);
     text-decoration: underline;
     touch-action: manipulation;
     -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
@@ -54,7 +54,7 @@ a {
     &::after {
       content: "";
       display: inline-block;
-      background-color: var(--tcds-theme-foreground);
+      background-color: var(--tcds-color-theme-foreground);
       mask: var(--tcds-icon-utility-external) center no-repeat;
       opacity: .4;
       width: .66em;

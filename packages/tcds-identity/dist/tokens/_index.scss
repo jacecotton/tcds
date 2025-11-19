@@ -3,56 +3,56 @@
  * Do not edit directly, this file was auto-generated.
  */
 
-$color-red-50: #fff7f7 !default;
-$color-red-100: #f2e6e6 !default;
-$color-red-700: #da2530 !default;
-$color-red-800: #cc111c !default;
-$color-red-900: #b70f19 !default;
-$color-blue-50: #f5faff !default;
-$color-blue-100: #dde7ef !default;
-$color-blue-900: #122840 !default;
-$color-gray-200: #eaeaea !default;
-$color-gray-400: #a8a8a8 !default;
-$color-gray-700: #555555 !default;
-$color-gray-900: #1a1a1a !default;
-$color-white: #ffffff !default;
-$color-black: #000000 !default;
-$theme-cool-background-light: #f5faff !default;
-$theme-cool-background-dark: #122840 !default;
-$theme-cool-foreground-light: #1a1a1a !default;
-$theme-cool-foreground-dark: #ffffff !default;
-$theme-cool-foreground-muted-light: #555555 !default;
-$theme-cool-foreground-muted-dark: #eaeaea !default;
-$theme-cool-foreground-highlight-light: #da2530 !default;
-$theme-cool-foreground-highlight-dark: #dde7ef !default;
-$theme-cool-link-light: #da2530 !default;
-$theme-cool-link-dark: #dde7ef !default;
-$theme-cool-watermark-light: #dde7ef !default;
-$theme-cool-watermark-dark: #000000 !default;
-$theme-warm-background-light: #fff7f7 !default;
-$theme-warm-background-dark: #da2530 !default;
-$theme-warm-foreground-light: #1a1a1a !default;
-$theme-warm-foreground-dark: #ffffff !default;
-$theme-warm-foreground-muted-light: #555555 !default;
-$theme-warm-foreground-muted-dark: #eaeaea !default;
-$theme-warm-foreground-highlight-light: #da2530 !default;
-$theme-warm-foreground-highlight-dark: #f2e6e6 !default;
-$theme-warm-link-light: #da2530 !default;
-$theme-warm-link-dark: #f2e6e6 !default;
-$theme-warm-watermark-light: #f2e6e6 !default;
-$theme-warm-watermark-dark: #b70f19 !default;
-$theme-neutral-background-light: #ffffff !default;
-$theme-neutral-background-dark: #1a1a1a !default;
-$theme-neutral-foreground-light: #1a1a1a !default;
-$theme-neutral-foreground-dark: #ffffff !default;
-$theme-neutral-foreground-muted-light: #555555 !default;
-$theme-neutral-foreground-muted-dark: #eaeaea !default;
-$theme-neutral-foreground-highlight-light: #da2530 !default;
-$theme-neutral-foreground-highlight-dark: #f2e6e6 !default;
-$theme-neutral-link-light: #da2530 !default;
-$theme-neutral-link-dark: #f2e6e6 !default;
-$theme-neutral-watermark-light: #dde7ef !default;
-$theme-neutral-watermark-dark: #000000 !default;
+$color-palette-red-50: #fff7f7 !default;
+$color-palette-red-100: #f2e6e6 !default;
+$color-palette-red-700: #da2530 !default;
+$color-palette-red-800: #cc111c !default;
+$color-palette-red-900: #b70f19 !default;
+$color-palette-blue-50: #f5faff !default;
+$color-palette-blue-100: #dde7ef !default;
+$color-palette-blue-900: #122840 !default;
+$color-palette-gray-200: #eaeaea !default;
+$color-palette-gray-400: #a8a8a8 !default;
+$color-palette-gray-700: #555555 !default;
+$color-palette-gray-900: #1a1a1a !default;
+$color-palette-white: #ffffff !default;
+$color-palette-black: #000000 !default;
+$color-theme-cool-background-light: #f5faff !default;
+$color-theme-cool-background-dark: #122840 !default;
+$color-theme-cool-foreground-light: #1a1a1a !default;
+$color-theme-cool-foreground-dark: #ffffff !default;
+$color-theme-cool-foreground-muted-light: #555555 !default;
+$color-theme-cool-foreground-muted-dark: #eaeaea !default;
+$color-theme-cool-foreground-highlight-light: #da2530 !default;
+$color-theme-cool-foreground-highlight-dark: #dde7ef !default;
+$color-theme-cool-link-light: #da2530 !default;
+$color-theme-cool-link-dark: #dde7ef !default;
+$color-theme-cool-watermark-light: #dde7ef !default;
+$color-theme-cool-watermark-dark: #000000 !default;
+$color-theme-warm-background-light: #fff7f7 !default;
+$color-theme-warm-background-dark: #da2530 !default;
+$color-theme-warm-foreground-light: #1a1a1a !default;
+$color-theme-warm-foreground-dark: #ffffff !default;
+$color-theme-warm-foreground-muted-light: #555555 !default;
+$color-theme-warm-foreground-muted-dark: #eaeaea !default;
+$color-theme-warm-foreground-highlight-light: #da2530 !default;
+$color-theme-warm-foreground-highlight-dark: #f2e6e6 !default;
+$color-theme-warm-link-light: #da2530 !default;
+$color-theme-warm-link-dark: #f2e6e6 !default;
+$color-theme-warm-watermark-light: #f2e6e6 !default;
+$color-theme-warm-watermark-dark: #b70f19 !default;
+$color-theme-neutral-background-light: #ffffff !default;
+$color-theme-neutral-background-dark: #1a1a1a !default;
+$color-theme-neutral-foreground-light: #1a1a1a !default;
+$color-theme-neutral-foreground-dark: #ffffff !default;
+$color-theme-neutral-foreground-muted-light: #555555 !default;
+$color-theme-neutral-foreground-muted-dark: #eaeaea !default;
+$color-theme-neutral-foreground-highlight-light: #da2530 !default;
+$color-theme-neutral-foreground-highlight-dark: #f2e6e6 !default;
+$color-theme-neutral-link-light: #da2530 !default;
+$color-theme-neutral-link-dark: #f2e6e6 !default;
+$color-theme-neutral-watermark-light: #dde7ef !default;
+$color-theme-neutral-watermark-dark: #000000 !default;
 $aspect-ratio-square: '1 / 1' !default;
 $aspect-ratio-landscape: '4 / 3' !default;
 $aspect-ratio-portrait: '3 / 4' !default;
@@ -124,104 +124,106 @@ $line-height-xl: 2.5 !default;
 
 $tokens: (
   'color': (
-    'red': (
-      '50': $color-red-50,
-      '100': $color-red-100,
-      '700': $color-red-700,
-      '800': $color-red-800,
-      '900': $color-red-900
+    'palette': (
+      'red': (
+        '50': $color-palette-red-50,
+        '100': $color-palette-red-100,
+        '700': $color-palette-red-700,
+        '800': $color-palette-red-800,
+        '900': $color-palette-red-900
+      ),
+      'blue': (
+        '50': $color-palette-blue-50,
+        '100': $color-palette-blue-100,
+        '900': $color-palette-blue-900
+      ),
+      'gray': (
+        '200': $color-palette-gray-200,
+        '400': $color-palette-gray-400,
+        '700': $color-palette-gray-700,
+        '900': $color-palette-gray-900
+      ),
+      'white': $color-palette-white,
+      'black': $color-palette-black
     ),
-    'blue': (
-      '50': $color-blue-50,
-      '100': $color-blue-100,
-      '900': $color-blue-900
-    ),
-    'gray': (
-      '200': $color-gray-200,
-      '400': $color-gray-400,
-      '700': $color-gray-700,
-      '900': $color-gray-900
-    ),
-    'white': $color-white,
-    'black': $color-black
-  ),
-  'theme': (
-    'cool': (
-      'background': (
-        'light': $theme-cool-background-light,
-        'dark': $theme-cool-background-dark
+    'theme': (
+      'cool': (
+        'background': (
+          'light': $color-theme-cool-background-light,
+          'dark': $color-theme-cool-background-dark
+        ),
+        'foreground': (
+          'light': $color-theme-cool-foreground-light,
+          'dark': $color-theme-cool-foreground-dark
+        ),
+        'foreground-muted': (
+          'light': $color-theme-cool-foreground-muted-light,
+          'dark': $color-theme-cool-foreground-muted-dark
+        ),
+        'foreground-highlight': (
+          'light': $color-theme-cool-foreground-highlight-light,
+          'dark': $color-theme-cool-foreground-highlight-dark
+        ),
+        'link': (
+          'light': $color-theme-cool-link-light,
+          'dark': $color-theme-cool-link-dark
+        ),
+        'watermark': (
+          'light': $color-theme-cool-watermark-light,
+          'dark': $color-theme-cool-watermark-dark
+        )
       ),
-      'foreground': (
-        'light': $theme-cool-foreground-light,
-        'dark': $theme-cool-foreground-dark
+      'warm': (
+        'background': (
+          'light': $color-theme-warm-background-light,
+          'dark': $color-theme-warm-background-dark
+        ),
+        'foreground': (
+          'light': $color-theme-warm-foreground-light,
+          'dark': $color-theme-warm-foreground-dark
+        ),
+        'foreground-muted': (
+          'light': $color-theme-warm-foreground-muted-light,
+          'dark': $color-theme-warm-foreground-muted-dark
+        ),
+        'foreground-highlight': (
+          'light': $color-theme-warm-foreground-highlight-light,
+          'dark': $color-theme-warm-foreground-highlight-dark
+        ),
+        'link': (
+          'light': $color-theme-warm-link-light,
+          'dark': $color-theme-warm-link-dark
+        ),
+        'watermark': (
+          'light': $color-theme-warm-watermark-light,
+          'dark': $color-theme-warm-watermark-dark
+        )
       ),
-      'foreground-muted': (
-        'light': $theme-cool-foreground-muted-light,
-        'dark': $theme-cool-foreground-muted-dark
-      ),
-      'foreground-highlight': (
-        'light': $theme-cool-foreground-highlight-light,
-        'dark': $theme-cool-foreground-highlight-dark
-      ),
-      'link': (
-        'light': $theme-cool-link-light,
-        'dark': $theme-cool-link-dark
-      ),
-      'watermark': (
-        'light': $theme-cool-watermark-light,
-        'dark': $theme-cool-watermark-dark
-      )
-    ),
-    'warm': (
-      'background': (
-        'light': $theme-warm-background-light,
-        'dark': $theme-warm-background-dark
-      ),
-      'foreground': (
-        'light': $theme-warm-foreground-light,
-        'dark': $theme-warm-foreground-dark
-      ),
-      'foreground-muted': (
-        'light': $theme-warm-foreground-muted-light,
-        'dark': $theme-warm-foreground-muted-dark
-      ),
-      'foreground-highlight': (
-        'light': $theme-warm-foreground-highlight-light,
-        'dark': $theme-warm-foreground-highlight-dark
-      ),
-      'link': (
-        'light': $theme-warm-link-light,
-        'dark': $theme-warm-link-dark
-      ),
-      'watermark': (
-        'light': $theme-warm-watermark-light,
-        'dark': $theme-warm-watermark-dark
-      )
-    ),
-    'neutral': (
-      'background': (
-        'light': $theme-neutral-background-light,
-        'dark': $theme-neutral-background-dark
-      ),
-      'foreground': (
-        'light': $theme-neutral-foreground-light,
-        'dark': $theme-neutral-foreground-dark
-      ),
-      'foreground-muted': (
-        'light': $theme-neutral-foreground-muted-light,
-        'dark': $theme-neutral-foreground-muted-dark
-      ),
-      'foreground-highlight': (
-        'light': $theme-neutral-foreground-highlight-light,
-        'dark': $theme-neutral-foreground-highlight-dark
-      ),
-      'link': (
-        'light': $theme-neutral-link-light,
-        'dark': $theme-neutral-link-dark
-      ),
-      'watermark': (
-        'light': $theme-neutral-watermark-light,
-        'dark': $theme-neutral-watermark-dark
+      'neutral': (
+        'background': (
+          'light': $color-theme-neutral-background-light,
+          'dark': $color-theme-neutral-background-dark
+        ),
+        'foreground': (
+          'light': $color-theme-neutral-foreground-light,
+          'dark': $color-theme-neutral-foreground-dark
+        ),
+        'foreground-muted': (
+          'light': $color-theme-neutral-foreground-muted-light,
+          'dark': $color-theme-neutral-foreground-muted-dark
+        ),
+        'foreground-highlight': (
+          'light': $color-theme-neutral-foreground-highlight-light,
+          'dark': $color-theme-neutral-foreground-highlight-dark
+        ),
+        'link': (
+          'light': $color-theme-neutral-link-light,
+          'dark': $color-theme-neutral-link-dark
+        ),
+        'watermark': (
+          'light': $color-theme-neutral-watermark-light,
+          'dark': $color-theme-neutral-watermark-dark
+        )
       )
     )
   ),

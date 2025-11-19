@@ -7,7 +7,7 @@
     "build:fonts": "cpx 'src/fonts/**/*' dist/fonts",
     "build:icons": "cpx 'src/icons/**/*' dist/icons && node scripts/create-icon-manifest.js",
     "build:logos": "cpx 'src/logos/**/*' dist/logos",
-    "build:tokens": "style-dictionary build --config sd.config.js",
+    "build:tokens": "node scripts/build-tokens.js",
     "build": "npm run clean && npm run build:fonts && npm run build:icons && npm run build:logos && npm run build:tokens",
     "prepare": "npm run build"
   },

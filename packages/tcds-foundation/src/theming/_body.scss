@@ -5,8 +5,8 @@
  *    users with a high contrast preference set).
  */
 body {
-  background-color: var(--tcds-theme-background);
-  color: var(--tcds-theme-foreground);
+  background-color: var(--tcds-color-theme-background);
+  color: var(--tcds-color-theme-foreground);
   font-family: var(--tcds-font-family-copy);
   font-size: var(--tcds-font-size-md);
   font-variant-numeric: lining-nums; // 1

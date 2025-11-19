@@ -1,25 +1,107 @@
 {
   "color": {
     "$type": "color",
-    "red": {
-      "50": { "$value": "#fff7f7" },
-      "100": { "$value": "#f2e6e6" },
-      "700": { "$value": "#da2530" },
-      "800": { "$value": "#cc111c" },
-      "900": { "$value": "#b70f19" }
+    "palette": {
+      "red": {
+        "50": { "$value": "#fff7f7" },
+        "100": { "$value": "#f2e6e6" },
+        "700": { "$value": "#da2530" },
+        "800": { "$value": "#cc111c" },
+        "900": { "$value": "#b70f19" }
+      },
+      "blue": {
+        "50": { "$value": "#f5faff" },
+        "100": { "$value": "#dde7ef" },
+        "900": { "$value": "#122840" }
+      },
+      "gray": {
+        "200": { "$value": "#eaeaea" },
+        "400": { "$value": "#a8a8a8" },
+        "700": { "$value": "#555555" },
+        "900": { "$value": "#1a1a1a" }
+      },
+      "white": { "$value": "#ffffff" },
+      "black": { "$value": "#000000" }
     },
-    "blue": {
-      "50": { "$value": "#f5faff" },
-      "100": { "$value": "#dde7ef" },
-      "900": { "$value": "#122840" }
-    },
-    "gray": {
-      "200": { "$value": "#eaeaea" },
-      "400": { "$value": "#a8a8a8" },
-      "700": { "$value": "#555555" },
-      "900": { "$value": "#1a1a1a" }
-    },
-    "white": { "$value": "#ffffff" },
-    "black": { "$value": "#000000" }
+    "theme": {
+      "cool": {
+        "background": {
+          "light": { "$value": "{color.palette.blue.50}" },
+          "dark": { "$value": "{color.palette.blue.900}" }
+        },
+        "foreground": {
+          "light": { "$value": "{color.palette.gray.900}" },
+          "dark": { "$value": "{color.palette.white}" }
+        },
+        "foreground-muted": {
+          "light": { "$value": "{color.palette.gray.700}" },
+          "dark": { "$value": "{color.palette.gray.200}" }
+        },
+        "foreground-highlight": {
+          "light": { "$value": "{color.palette.red.700}" },
+          "dark": { "$value": "{color.palette.blue.100}" }
+        },
+        "link": {
+          "light": { "$value": "{color.palette.red.700}" },
+          "dark": { "$value": "{color.palette.blue.100}" }
+        },
+        "watermark": {
+          "light": { "$value": "{color.palette.blue.100}" },
+          "dark": { "$value": "{color.palette.black}" }
+        }
+      },
+      "warm": {
+        "background": {
+          "light": { "$value": "{color.palette.red.50}" },
+          "dark": { "$value": "{color.palette.red.700}" }
+        },
+        "foreground": {
+          "light": { "$value": "{color.palette.gray.900}" },
+          "dark": { "$value": "{color.palette.white}" }
+        },
+        "foreground-muted": {
+          "light": { "$value": "{color.palette.gray.700}" },
+          "dark": { "$value": "{color.palette.gray.200}" }
+        },
+        "foreground-highlight": {
+          "light": { "$value": "{color.palette.red.700}" },
+          "dark": { "$value": "{color.palette.red.100}" }
+        },
+        "link": {
+          "light": { "$value": "{color.palette.red.700}" },
+          "dark": { "$value": "{color.palette.red.100}" }
+        },
+        "watermark": {
+          "light": { "$value": "{color.palette.red.100}" },
+          "dark": { "$value": "{color.palette.red.900}" }
+        }
+      },
+      "neutral": {
+        "background": {
+          "light": { "$value": "{color.palette.white}" },
+          "dark": { "$value": "{color.palette.gray.900}" }
+        },
+        "foreground": {
+          "light": { "$value": "{color.palette.gray.900}" },
+          "dark": { "$value": "{color.palette.white}" }
+        },
+        "foreground-muted": {
+          "light": { "$value": "{color.palette.gray.700}" },
+          "dark": { "$value": "{color.palette.gray.200}" }
+        },
+        "foreground-highlight": {
+          "light": { "$value": "{color.palette.red.700}" },
+          "dark": { "$value": "{color.palette.red.100}" }
+        },
+        "link": {
+          "light": { "$value": "{color.palette.red.700}" },
+          "dark": { "$value": "{color.palette.red.100}" }
+        },
+        "watermark": {
+          "light": { "$value": "{color.palette.blue.100}" },
+          "dark": { "$value": "{color.palette.black}" }
+        }
+      }
+    }
   }
 }
