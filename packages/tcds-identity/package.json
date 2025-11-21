@@ -3,63 +3,16 @@
   "version": "3.0.0",
   "type": "module",
   "scripts": {
-    "clean": "wireit",
-    "build": "wireit",
-    "build:fonts": "wireit",
-    "build:icons": "wireit",
-    "build:logos": "wireit",
-    "build:tokens": "wireit"
-  },
-  "wireit": {
-    "clean": {
-      "command": "rimraf dist"
-    },
-    "build": {
-      "dependencies": [
-        "build:fonts",
-        "build:icons",
-        "build:logos",
-        "build:tokens"
-      ]
-    },
-    "build:fonts": {
-      "command": "cpx 'src/fonts/**/*' dist/fonts",
-      "files": [
-        "src/fonts/**/*"
-      ],
-      "output": [
-        "dist/fonts/**"
-      ]
-    },
-    "build:icons": {
-      "command": "cpx 'src/icons/**/*' dist/images/icons && node scripts/create-icon-manifest.js",
-      "files": [
-        "src/icons/**/*",
-        "scripts/create-icon-manifest.js"
-      ],
-      "output": [
-        "dist/images/icons/**"
-      ]
-    },
-    "build:logos": {
-      "command": "cpx 'src/logos/**/*' dist/images/logos",
-      "files": [
-        "src/logos/**/*"
-      ],
-      "output": [
-        "dist/images/logos/**"
-      ]
-    },
-    "build:tokens": {
-      "command": "node scripts/build-tokens.js",
-      "files": [
-        "src/tokens/**",
-        "scripts/build-tokens.js"
-      ],
-      "output": [
-        "dist/tokens/**"
-      ]
-    }
+    "clean": "rimraf dist",
+    "build": "npm run build:fonts && npm run build:icons && npm run build:logos && npm run build:tokens",
+    "build:fonts": "cpx 'src/fonts/**/*' dist/fonts",
+    "build:icons": "cpx 'src/icons/**/*' dist/images/icons && node scripts/create-icon-manifest.js",
+    "build:logos": "cpx 'src/logos/**/*' dist/images/logos",
+    "build:tokens": "node scripts/build-tokens.js",
+    "dev": "npm-run-all --parallel dev:*",
+    "dev:fonts": "cpx 'src/fonts/**/*' dist/fonts --watch",
+    "dev:icons": "cpx 'src/icons/**/*' dist/images/icons --watch",
+    "dev:logos": "cpx 'src/logos/**/*' dist/images/logos --watch"
   },
   "devDependencies": {
     "cpx": "^1.5.0",

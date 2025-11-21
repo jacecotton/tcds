@@ -1,26 +1,30 @@
-export default function (eleventyConfig) {
-  // Copy dist assets from parent directory to make them accessible
-  eleventyConfig.addPassthroughCopy({"../dist": "dist"});
+import path from "path";
+import fs from "fs";
+import {fileURLToPath} from "url";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+export default function (eleventyConfig) {
+  // Copy public assets (like aggregated dist)
+  eleventyConfig.addPassthroughCopy({"src/public": "."});
+
+  // Explicitly watch source directory
+  eleventyConfig.addWatchTarget(path.resolve(__dirname, "src"));
   // Watch dist folder for changes during development
-  eleventyConfig.addWatchTarget("../dist");
+  eleventyConfig.addWatchTarget(path.resolve(__dirname, "../dist"));
+  // Watch package.json to trigger rebuilds from aggregation script
+  eleventyConfig.addWatchTarget("./package.json");
 
   return {
-    // Use current directory as input
     dir: {
-      input: ".",
+      input: "src",
       output: "_site",
       includes: "_includes",
       data: "_data",
     },
-
-    // Enable Markdown and HTML (Nunjucks available for future use)
-    templateFormats: ["md", "html"],
-
-    // Use Markdown for markdown files
-    markdownTemplateEngine: false,
-
-    // Use HTML for HTML files
-    htmlTemplateEngine: false,
+    templateFormats: ["md", "html", "njk"],
+    markdownTemplateEngine: "njk",
+    htmlTemplateEngine: "njk",
   };
 }

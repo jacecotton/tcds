@@ -3,28 +3,9 @@
   "version": "3.0.0",
   "type": "module",
   "scripts": {
-    "clean": "wireit",
-    "build": "wireit"
-  },
-  "wireit": {
-    "clean": {
-      "command": "rimraf dist"
-    },
-    "build": {
-      "command": "rollup -c rollup.config.js",
-      "dependencies": [
-        "clean",
-        "../tcds-foundation:build"
-      ],
-      "files": [
-        "src/**",
-        "rollup.config.js"
-      ],
-      "output": [
-        "dist/**"
-      ],
-      "clean": "if-file-deleted"
-    }
+    "clean": "rimraf dist",
+    "build": "rollup -c rollup.config.js",
+    "dev": "rollup -c rollup.config.js --watch"
   },
   "devDependencies": {
     "@babel/core": "^7.28.3",
@@ -37,6 +18,7 @@
     "@rollup/plugin-alias": "^5.1.1",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-terser": "^0.4.4",
     "@txch/tcds-foundation": "^3.0.0",
     "@txch/tcds-identity": "^3.0.0",

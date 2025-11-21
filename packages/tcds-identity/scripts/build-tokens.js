@@ -1,6 +1,11 @@
 import StyleDictionary from "style-dictionary";
 import config from "../sd.config.js";
 
+/**
+ * Animation tokens need to be handled differently. Rather than using the
+ * default CSS format, we'll use a custom format that outputs keyframes.
+ */
+
 StyleDictionary.registerFilter({
   name: "excludeKeyframes",
   filter: token => token.$type !== "keyframes",

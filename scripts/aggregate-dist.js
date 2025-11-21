@@ -7,7 +7,30 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 
 /**
- * Recursively copy files matching a filter
+ * Copy file only if changed (content check)
+ */
+function copyIfChanged(src, dest) {
+  if (!fs.existsSync(src)) return;
+
+  if (fs.existsSync(dest)) {
+    const srcStat = fs.statSync(src);
+    const destStat = fs.statSync(dest);
+
+    // Simple size/mtime check first
+    if (srcStat.size === destStat.size && srcStat.mtimeMs <= destStat.mtimeMs) {
+      return false;
+    }
+
+    // Could add content hash check here for absolute certainty,
+    // but mtime/size is usually enough for build scripts
+  }
+
+  fs.copyFileSync(src, dest);
+  return true;
+}
+
+/**
+ * Recursively copy files matching a filter, only if changed
  */
 function copyFiltered(src, dest, filter) {
   if (!fs.existsSync(src)) return;
@@ -23,13 +46,13 @@ function copyFiltered(src, dest, filter) {
     if (entry.isDirectory()) {
       copyFiltered(srcPath, destPath, filter);
     } else if (!filter || filter(entry.name)) {
-      fs.copyFileSync(srcPath, destPath);
+      copyIfChanged(srcPath, destPath);
     }
   }
 }
 
 /**
- * Copy entire directory
+ * Copy entire directory (incremental)
  */
 function copyDir(src, dest) {
   copyFiltered(src, dest, null);
@@ -38,11 +61,11 @@ function copyDir(src, dest) {
 async function main() {
   console.log("📦 Aggregating dist assets...");
 
-  // Clean dist
+  // Clean dist - DISABLED to prevent breaking watchers
   const distDir = path.join(ROOT, "dist");
-  if (fs.existsSync(distDir)) {
-    fs.rmSync(distDir, {recursive: true});
-  }
+  // if (fs.existsSync(distDir)) {
+  //   fs.rmSync(distDir, {recursive: true});
+  // }
 
   // Create structure
   fs.mkdirSync(path.join(distDir, "css"), {recursive: true});
@@ -55,7 +78,7 @@ async function main() {
   const foundationDist = path.join(ROOT, "packages/tcds-foundation/dist");
   for (const file of fs.readdirSync(foundationDist)) {
     if (file.endsWith(".css")) {
-      fs.copyFileSync(path.join(foundationDist, file), path.join(distDir, "css", file));
+      copyIfChanged(path.join(foundationDist, file), path.join(distDir, "css", file));
     }
   }
 
@@ -74,11 +97,29 @@ async function main() {
   const componentsDist = path.join(ROOT, "packages/tcds-components/dist");
   for (const file of fs.readdirSync(componentsDist)) {
     if (file.endsWith(".js")) {
-      fs.copyFileSync(path.join(componentsDist, file), path.join(distDir, "js", file));
+      copyIfChanged(path.join(componentsDist, file), path.join(distDir, "js", file));
     }
   }
 
   console.log("✅ Dist aggregation complete!");
+
+  // Copy aggregated dist to docs/src/public
+  const docsPublicDir = path.resolve(__dirname, "../docs/src/public");
+  if (!fs.existsSync(docsPublicDir)) {
+    fs.mkdirSync(docsPublicDir, {recursive: true});
+  }
+
+  // Copy contents of dist to docs/src/public incrementally
+  // We want docs/src/public/css, docs/src/public/js, etc.
+  copyDir(distDir, docsPublicDir);
+  console.log(`  ✓ Copied dist to docs/src/public`);
+
+  // Touch docs/package.json to trigger Eleventy rebuild (just in case)
+  const docsPackageJson = path.resolve(__dirname, "../docs/package.json");
+  if (fs.existsSync(docsPackageJson)) {
+    const now = new Date();
+    fs.utimesSync(docsPackageJson, now, now);
+  }
 }
 
 main().catch(error => {

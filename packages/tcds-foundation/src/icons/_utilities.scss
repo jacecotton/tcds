@@ -3,6 +3,9 @@
 @use "@txch/tcds-identity/dist/images/icons" as identity;
 
 .tcds-icon {
+  display: inline-flex;
+  vertical-align: middle;
+
   @each $category, $icons in identity.$icons {
     @each $icon in $icons {
       &--#{$icon},
@@ -15,8 +18,8 @@
   &::after {
     content: "";
     display: inline-block;
-    height: 1em;
-    width: 1em;
+    height: 0.75em;
+    width: 0.75em;
     background: currentcolor;
     mask: var(--tcds-icon) no-repeat center;
   }

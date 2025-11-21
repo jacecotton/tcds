@@ -1,6 +1,6 @@
 ## @txch/tcds-identity
 
-The **Identity** package of Texas Children's Design System contains all the raw design assets and configuration data related to implementing the Texas Children's digital brand, including:
+The `tcds-identity` package of Texas Children's Design System contains all the raw design assets and configuration data related to implementing the Texas Children's digital brand, including:
 
 - Self-hosted font files (including Mont but excluding remotely hosted Calluna)
 - Icon files (source SVGs)

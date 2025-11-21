@@ -1,12 +1,13 @@
-import {LitElement, html, css, sharedCSS} from "@shared/index.js";
+import {LitElement, html, css, sharedCSS, updated} from "@shared/index.js";
+import {customElement, property} from "lit/decorators.js";
 
 @customElement("my-component")
 export class MyComponent extends LitElement {
   static styles = [
     sharedCSS,
     css`
-      * {
-        color: red;
+      :host {
+        color: yellow;
       }
     `,
   ];
@@ -22,7 +23,7 @@ export class MyComponent extends LitElement {
     this.test = "world";
   }
 
-  @updated("test") updatedtest() {
+  @updated(["test"]) updatedtest() {
     console.log("updated", this.test);
   }
 }

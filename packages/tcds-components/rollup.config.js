@@ -1,8 +1,10 @@
 import fs from "fs";
 import path from "path";
 import {fileURLToPath} from "url";
+import {execSync} from "child_process";
 
 import commonjs from "@rollup/plugin-commonjs";
+import {nodeResolve} from "@rollup/plugin-node-resolve";
 import alias from "@rollup/plugin-alias";
 import terser from "@rollup/plugin-terser";
 import babel from "@rollup/plugin-babel";
@@ -38,8 +40,6 @@ export default {
     bundle: path.join(SRC_DIR, "index.js"),
   },
 
-  external: ["lit"],
-
   output: {
     dir: "dist",
     format: "esm",
@@ -56,6 +56,9 @@ export default {
   },
 
   plugins: [
+    nodeResolve({
+      browser: true,
+    }),
     alias({
       entries: [
         {
@@ -83,8 +86,7 @@ export default {
         [
           "@babel/plugin-proposal-decorators",
           {
-            version: "2023-11",
-            decoratorsBeforeExport: false,
+            legacy: true,
           },
         ],
         ["@babel/plugin-transform-class-properties", {loose: false}],
@@ -93,7 +95,12 @@ export default {
         ["@babel/plugin-transform-class-static-block"],
       ],
     }),
-    commonjs(),
+    commonjs({
+      include: /node_modules/,
+    }),
     terser(),
   ],
+  watch: {
+    clearScreen: false,
+  },
 };

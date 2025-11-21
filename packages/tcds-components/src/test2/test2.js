@@ -4,13 +4,15 @@ export class MyComponen2t extends LitElement {
   static styles = [
     sharedCSS,
     css`
-      * {
-        color: red;
+      :host {
+        color: purple !important;
       }
     `,
   ];
   render() {
-    return html`test`;
+    return html`
+      test24545
+    `;
   }
 }
 

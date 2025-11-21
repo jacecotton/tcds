@@ -14,7 +14,7 @@
 :root {
   @each $category, $icons in identity.$icons {
     @each $icon in $icons {
-      --tcds-icon-#{$category}-#{$icon}: url("../icons/#{$category}/#{$icon}.svg");
+      --tcds-icon-#{$category}-#{$icon}: url("../images/icons/#{$category}/#{$icon}.svg");
     }
   }
 }

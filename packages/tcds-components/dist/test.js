@@ -1,5 +1,5 @@
-import{L as t,_ as e,b as s,c as o,s as r}from"./shared.js";import{html as c,css as d}from"lit";import"lit/decorators.js";let a,l,n,p,i,u,m,h,y,b,x=t=>t;new(l=class extends t{constructor(...t){super(...t),e(this,"test",(i(this),m(this,"hello"))),h(this)}render(){return c(n||(n=x`test`))}connectedCallback(){super.connectedCallback(),this.test="world"}updatedtest(){console.log("updated",this.test)}},({e:[m,h,i],c:[b,u]}=s(l,[customElement("my-component")],[[property(),0,"test"],[updated("test"),2,"updatedtest"]],0,void 0,t)),y=l,a=class extends o{constructor(){super(b),e(this,"styles",[r,d(p||(p=x`
-      * {
-        color: red;
+import{L as t,x as e,_ as s,s as o,i as r,h as a,j as l,t as p,u as n,n as c}from"./shared.js";let d,i,u,h,y,b,m,w,f,g=t=>t,j=(d=p("my-component"),i=c(),u=n(["test"]),d((m=class extends t{constructor(...t){super(...t),l(this,"test",b,this)}render(){return e(w||(w=g`test`))}connectedCallback(){super.connectedCallback(),this.test="world"}updatedtest(){console.log("updated",this.test)}},s(m,"styles",[o,r(f||(f=g`
+      :host {
+        color: yellow;
       }
-    `))]),u()}},e(a,y,void 0),a);export{b as MyComponent};
+    `))]),y=m,b=a(y.prototype,"test",[i],{configurable:!0,enumerable:!0,writable:!0,initializer:function(){return"hello"}}),a(y.prototype,"updatedtest",[u],Object.getOwnPropertyDescriptor(y.prototype,"updatedtest"),y.prototype),h=y))||h);export{j as MyComponent};

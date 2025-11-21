@@ -157,6 +157,20 @@ const x = 5;
 
 **Note:** Enforced by Prettier's `trailingComma: "all"` and `semi: true`, and ESLint's `semi: ["error", "always"]` and `comma-dangle: ["error", "always-multiline"]`.
 
+## Nunjucks/Twig
+
+- **Filter Pipes:** Do not add spaces around filter pipes.
+
+```twig
+{# ✅ Correct #}
+{{ value|filter }}
+{{ value|filter1|filter2 }}
+
+{# ❌ Incorrect #}
+{{ value | filter }}
+{{ value | filter1 | filter2 }}
+```
+
 ---
 
 ## Quick Reference
