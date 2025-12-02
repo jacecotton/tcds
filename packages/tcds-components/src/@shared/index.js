@@ -4,7 +4,7 @@ export {LitElement} from "./lit-element/lit-element.js";
 
 export {html, css, svg, nothing, noChange} from "lit";
 
-export {
+import {
   customElement,
   property,
   state,
@@ -16,6 +16,16 @@ export {
   eventOptions,
 } from "lit/decorators.js";
 
-export {updated, willUpdate} from "./lit-element/decorators.js";
+export {
+  customElement,
+  property,
+  state,
+  query,
+  queryAll,
+  queryAsync,
+  queryAssignedElements,
+  queryAssignedNodes,
+  eventOptions,
+};
 
-export * as sharedCSS from "../../../tcds-foundation/dist/shared.css";
+export {updated, willUpdate} from "./lit-element/decorators.js";

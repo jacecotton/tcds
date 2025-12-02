@@ -1,8 +1,32 @@
-import {LitElement, html, css, sharedCSS} from "@shared/index.js";
+import {LitElement, html, css, updated} from "@shared/index.js";
+import {sharedCSS} from "@shared/utilities/sharedCSS.js";
+import {customElement, property} from "lit/decorators.js";
 
+@customElement("my-component")
 export class MyComponent extends LitElement {
-  static styles = [sharedCSS, css`*{color: red}`];
-  render() { return html`test`; }
-}
+  static styles = [
+    sharedCSS,
+    css`
+      :host {
+        color: yellow;
+      }
+    `,
+  ];
 
-customElements.define("my-component", MyComponent);
+  render() {
+    return html`
+      test
+    `;
+  }
+
+  @property() test = "hello";
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.test = "world";
+  }
+
+  @updated(["test"]) updatedtest() {
+    console.log("updated", this.test);
+  }
+}

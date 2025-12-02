@@ -11,25 +11,26 @@ import {fileURLToPath} from "url";
 
 async function main() {
   const DIRNAME = path.dirname(fileURLToPath(import.meta.url));
-  const OUTPUT_DIR = "../dist/icons";
+  const OUTPUT_DIR = "../dist/images/icons";
   const ICONS_DIR = path.resolve(DIRNAME, OUTPUT_DIR);
 
-  if(!fs.existsSync(ICONS_DIR)) {
+  if (!fs.existsSync(ICONS_DIR)) {
     console.error(`@txch/tcds ❌ ERROR: Icons directory not found at ${ICONS_DIR}`);
     process.exit(1);
   }
 
-  let SCSS = `\n/**
+  let SCSS =
+    `\n/**
  * Do not edit directly, this file was auto-generated.
  */\n
-`
-    + `$icons: (\n`;
+` + `$icons: (\n`;
 
   fs.readdirSync(ICONS_DIR)
     .filter(name => fs.statSync(path.join(ICONS_DIR, name)).isDirectory())
-    .forEach((category) => {
+    .forEach(category => {
       const folder = path.join(ICONS_DIR, category);
-      const icons = fs.readdirSync(folder)
+      const icons = fs
+        .readdirSync(folder)
         .filter(filename => filename.toLowerCase().endsWith(".svg"))
         .map(filename => `"${path.basename(filename, ".svg")}"`);
 
@@ -42,7 +43,7 @@ async function main() {
   fs.writeFileSync(outFile, SCSS, "utf8");
 }
 
-main().catch((error) => {
+main().catch(error => {
   console.log(error);
   process.exit(1);
 });

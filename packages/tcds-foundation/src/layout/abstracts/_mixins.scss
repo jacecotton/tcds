@@ -1,6 +1,6 @@
 @mixin container-props() {
   --_tcds-container-gutter: var(--tcds-container-gutter, var(--tcds-site-inner-gutter));
-  --_tcds-size-container: var(--tcds-size-container, var(--tcds-size-container-lg));
+  --_tcds-size-container: var(--tcds-size-container, var(--tcds-size-layout-lg));
 }
 
 @mixin container($flag: "") {
@@ -21,8 +21,25 @@
     minmax(auto, calc(var(--_tcds-size-container) / 2))
     minmax(auto, calc(var(--_tcds-size-container) / 2))
     minmax(var(--_tcds-container-gutter), 1fr) #{$flag};
+  grid-auto-rows: minmax(0, auto) #{$flag};
 
   > * {
     grid-column: 2 / span 2;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    grid-column: 1 / -1;
+  }
+
+  &::before {
+    order: -1;
+    height: var(--tcds-section-padding-block-start, var(--tcds-section-padding-block, 3rem));
+  }
+
+  &::after {
+    order: 1;
+    height: var(--tcds-section-padding-block-end, var(--tcds-section-padding-block, 3rem));
   }
 }

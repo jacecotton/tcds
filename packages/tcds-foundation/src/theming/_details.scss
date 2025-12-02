@@ -13,7 +13,7 @@ details {
       padding: 1em 0;
       list-style: none;
       display: flex;
-      gap: .5em;
+      gap: 0.5em;
       align-items: center;
       line-height: 1;
       cursor: pointer;
@@ -22,8 +22,8 @@ details {
       &::before {
         content: "";
         display: block;
-        width: .7em;
-        height: .7em;
+        width: 0.7em;
+        height: 0.7em;
         background: currentcolor;
         mask: var(--tcds-details-icon) center no-repeat;
         transform: rotateZ(var(--tcds-details-icon-rotate, 0));

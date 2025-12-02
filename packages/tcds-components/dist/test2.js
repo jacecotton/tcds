@@ -1,1 +1,0 @@
-import{_ as s,s as e,a as r,L as t}from"./shared.js";import{css as o,html as a}from"lit";import"lit/decorators.js";var m,n;class d extends t{render(){return a(m||(m=r(["test"])))}}s(d,"styles",[e,o(n||(n=r(["*{color: red}"])))]),customElements.define("my-component2",d);export{d as MyComponen2t};

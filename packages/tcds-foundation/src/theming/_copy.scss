@@ -14,7 +14,7 @@
 :where(sup) {
   vertical-align: baseline;
   position: relative;
-  top: -.333lh;
+  top: -0.333lh;
 }
 
 /**
@@ -56,10 +56,10 @@ a {
       display: inline-block;
       background-color: var(--tcds-color-theme-foreground);
       mask: var(--tcds-icon-utility-external) center no-repeat;
-      opacity: .4;
-      width: .66em;
-      height: .66em;
-      margin-left: .25em;
+      opacity: 0.4;
+      width: 0.66em;
+      height: 0.66em;
+      margin-left: 0.25em;
       vertical-align: middle;
     }
   }
@@ -74,11 +74,7 @@ a {
  */
 
 p {
-  :where(&:not(
-    :first-child,
-    :is(h1, h2, h3, h4, h5, h6) + *,
-    [slot] + *:not([slot])
-  )) {
+  :where(&:not(:first-child, :is(h1, h2, h3, h4, h5, h6) + *, [slot] + *:not([slot]))) {
     margin-top: 1.5em;
   }
 

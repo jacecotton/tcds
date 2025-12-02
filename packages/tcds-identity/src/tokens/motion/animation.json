@@ -3,100 +3,72 @@
     "slide-in-down": {
       "$type": "keyframes",
       "$description": "Slides element in from -15% Y axis",
-      "$value": [
-        { "offset": 0, "transform": "translateY(-15%)" }
-      ]
+      "$value": [{"offset": 0, "transform": "translateY(-15%)"}]
     },
     "slide-out-down": {
       "$type": "keyframes",
       "$description": "Slides element out to 15% Y axis",
-      "$value": [
-        { "offset": 1, "transform": "translateY(15%)" }
-      ]
+      "$value": [{"offset": 1, "transform": "translateY(15%)"}]
     },
     "slide-in-up": {
       "$type": "keyframes",
       "$description": "Slides element in from 15% Y axis",
-      "$value": [
-        { "offset": 0, "transform": "translateY(15%)" }
-      ]
+      "$value": [{"offset": 0, "transform": "translateY(15%)"}]
     },
     "slide-out-up": {
       "$type": "keyframes",
       "$description": "Slides element out to -15% Y axis",
-      "$value": [
-        { "offset": 1, "transform": "translateY(-15%)" }
-      ]
+      "$value": [{"offset": 1, "transform": "translateY(-15%)"}]
     },
     "slide-in-left": {
       "$type": "keyframes",
       "$description": "Slides element in from right (100% X)",
-      "$value": [
-        { "offset": 0, "transform": "translateX(100%)" }
-      ]
+      "$value": [{"offset": 0, "transform": "translateX(100%)"}]
     },
     "slide-out-left": {
       "$type": "keyframes",
       "$description": "Slides element out to left (-100% X)",
-      "$value": [
-        { "offset": 1, "transform": "translateX(-100%)" }
-      ]
+      "$value": [{"offset": 1, "transform": "translateX(-100%)"}]
     },
     "slide-in-right": {
       "$type": "keyframes",
       "$description": "Slides element in from left (-100% X)",
-      "$value": [
-        { "offset": 0, "transform": "translateX(-100%)" }
-      ]
+      "$value": [{"offset": 0, "transform": "translateX(-100%)"}]
     },
     "slide-out-right": {
       "$type": "keyframes",
       "$description": "Slides element out to right (100% X)",
-      "$value": [
-        { "offset": 1, "transform": "translateX(100%)" }
-      ]
+      "$value": [{"offset": 1, "transform": "translateX(100%)"}]
     },
     "fade-in": {
       "$type": "keyframes",
       "$description": "Opacity transition from 0",
-      "$value": [
-        { "offset": 0, "opacity": "0" }
-      ]
+      "$value": [{"offset": 0, "opacity": "0"}]
     },
     "fade-out": {
       "$type": "keyframes",
       "$description": "Opacity transition to 0",
-      "$value": [
-        { "offset": 1, "opacity": "0" }
-      ]
+      "$value": [{"offset": 1, "opacity": "0"}]
     },
     "shrink-in": {
       "$type": "keyframes",
       "$description": "Scale down from 1.5",
-      "$value": [
-        { "offset": 0, "transform": "scale(1.5)" }
-      ]
+      "$value": [{"offset": 0, "transform": "scale(1.5)"}]
     },
     "shrink-out": {
       "$type": "keyframes",
       "$description": "Scale down to 0.5",
-      "$value": [
-        { "offset": 1, "transform": "scale(0.5)" }
-      ]
+      "$value": [{"offset": 1, "transform": "scale(0.5)"}]
     },
     "grow-in": {
       "$type": "keyframes",
       "$description": "Scale up from 0.5",
-      "$value": [
-        { "offset": 0, "transform": "scale(0.5)" }
-      ]
+      "$value": [{"offset": 0, "transform": "scale(0.5)"}]
     },
     "grow-out": {
       "$type": "keyframes",
       "$description": "Scale up to 1.5",
-      "$value": [
-        { "offset": 1, "transform": "scale(1.5)" }
-      ]
+      "$value": [{"offset": 1, "transform": "scale(1.5)"}]
     }
   }
 }

@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "htmlhint.vscode-htmlhint",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "syler.sass-indented",
+    "styled-components.vscode-styled-components"
+  ]
+}

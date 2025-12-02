@@ -1,0 +1,5 @@
+section:
+  css:
+    - components/section/section.css
+  js:
+    - components/section/section.js

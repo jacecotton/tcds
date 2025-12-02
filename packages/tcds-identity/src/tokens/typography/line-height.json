@@ -1,10 +1,10 @@
 {
   "line-height": {
     "$type": "number",
-    "xs": { "$value": 1 },
-    "sm": { "$value": 1.2 },
-    "md": { "$value": 1.75 },
-    "lg": { "$value": 2 },
-    "xl": { "$value": 2.5 }
+    "xs": {"$value": 1},
+    "sm": {"$value": 1.2},
+    "md": {"$value": 1.75},
+    "lg": {"$value": 2},
+    "xl": {"$value": 2.5}
   }
 }

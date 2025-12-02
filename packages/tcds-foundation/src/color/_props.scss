@@ -3,6 +3,13 @@
 @use "sass:meta";
 @use "../abstracts/functions" as *;
 
+/**
+ * Define themed properties (--tcds-color-theme-[cool|warm|neutral]-[element]) as
+ * their corresponding light or dark mode values
+ * (--tcds-color-theme-[theme]-[element]-[light|dark]), based on `[data-mode]`
+ * attribute.
+ */
+
 @mixin theme-props-by-mode($mode) {
   // Loop through themes (cool/warm/neutral):
   @each $theme, $elements in tokens("color", "theme") {
@@ -25,19 +32,14 @@
   }
 }
 
-/**
- * Define themed properties (--tcds-color-theme-[cool|warm|neutral]-[element]) as
- * their corresponding light or dark mode values
- * (--tcds-color-theme-[theme]-[element]-[light|dark]), based on `[data-mode]`
- * attribute.
- */
-
 :root,
 [data-mode="light"] {
   // For example:
   // --tcds-color-theme-cool-background: var(--tcds-color-theme-cool-background-light)
   // etc...
   @include theme-props-by-mode("light");
+
+  --test: "var";
 }
 
 [data-mode="dark"] {

@@ -7,15 +7,26 @@
   "workspaces": [
     "packages/tcds-identity",
     "packages/tcds-foundation",
-    "packages/tcds-components"
+    "packages/tcds-components",
+    "docs"
   ],
   "scripts": {
+    "clean": "rimraf dist",
+    "build": "npm run clean && npm run build:identity && npm run build:foundation && npm run build:components && node scripts/aggregate-dist.js",
     "build:identity": "npm run build --workspace=packages/tcds-identity",
     "build:foundation": "npm run build --workspace=packages/tcds-foundation",
     "build:components": "npm run build --workspace=packages/tcds-components",
-    "build": "npm run build:identity && npm run build:foundation && npm run build:components",
-    "postinstall": "node scripts/cleanup-assets.js && node scripts/copy-assets.js && node packages/foundation/build/config.js && npm run build",
-    "preuninstall": "node scripts/cleanup-assets.js"
+    "dev": "npm-run-all --parallel dev:*",
+    "dev:identity": "npm run dev --workspace=packages/tcds-identity",
+    "dev:foundation": "npm run dev --workspace=packages/tcds-foundation",
+    "dev:components": "npm run dev --workspace=packages/tcds-components",
+    "dev:docs": "npm run dev --workspace=docs",
+    "dev:watch": "node scripts/watch.js",
+    "format": "prettier --write \"**/*.{js,json,scss,css,md}\"",
+    "format:check": "prettier --check \"**/*.{js,json,scss,css,md}\"",
+    "lint": "eslint \"**/*.js\"",
+    "lint:fix": "eslint --fix \"**/*.js\"",
+    "lint:html": "htmlhint \"**/*.html\" \"**/*.twig\""
   },
   "repository": {
     "type": "git",
@@ -31,5 +42,13 @@
     "@txch/tcds-components": "^3.0.0",
     "@txch/tcds-foundation": "^3.0.0",
     "@txch/tcds-identity": "^3.0.0"
+  },
+  "devDependencies": {
+    "chokidar": "^4.0.3",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "htmlhint": "^1.7.1",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.6.2"
   }
 }

@@ -3,6 +3,7 @@ import path from "path";
 import {fileURLToPath} from "url";
 
 import commonjs from "@rollup/plugin-commonjs";
+import {nodeResolve} from "@rollup/plugin-node-resolve";
 import alias from "@rollup/plugin-alias";
 import terser from "@rollup/plugin-terser";
 import babel from "@rollup/plugin-babel";
@@ -20,7 +21,7 @@ const SRC_DIR = path.resolve(DIRNAME, "src");
  */
 const componentEntries = fs
   .readdirSync(SRC_DIR, {withFileTypes: true})
-  .filter((dirent) => {
+  .filter(dirent => {
     // Exclude src/@shared/*
     if (!dirent.isDirectory() || dirent.name === "@shared") return false;
     const filePath = path.join(SRC_DIR, dirent.name, `${dirent.name}.js`);
@@ -35,30 +36,31 @@ const componentEntries = fs
 export default {
   input: {
     ...componentEntries,
-    bundle: path.join(SRC_DIR, "index.js"),
   },
-
-  external: [
-    "lit",
-  ],
 
   output: {
     dir: "dist",
-    format: "esm",
-    entryFileNames: "[name].js",
-    chunkFileNames: "[name].js",
+    format: "es",
+    entryFileNames: "[name]/[name].js",
+    chunkFileNames: "shared/[name].js",
 
     manualChunks(id) {
       const normalized = id.split(path.sep).join("/");
 
-      return normalized.includes("/src/@shared/")
-        || normalized.includes("node_modules/")
-        || id.includes("\0")
-          ? "shared" : undefined;
-}
+      if (normalized.includes("/src/@shared/utilities/")) {
+        return "utilities";
+      }
+
+      if (normalized.includes("/src/@shared/") || normalized.includes("node_modules/") || id.includes("\0")) {
+        return "vendor";
+      }
+    },
   },
 
   plugins: [
+    nodeResolve({
+      browser: true,
+    }),
     alias({
       entries: [
         {
@@ -72,18 +74,35 @@ export default {
       babelHelpers: "bundled",
       extensions: [".js", ".mjs"],
       exclude: /node_modules/,
+      sourceMaps: true,
       presets: [
-        ["@babel/preset-env", {targets: {esmodules: true}}],
+        [
+          "@babel/preset-env",
+          {
+            targets: {esmodules: true},
+            bugfixes: true,
+          },
+        ],
       ],
       plugins: [
-        ["@babel/plugin-proposal-decorators", {version: "2023-11"}],
+        [
+          "@babel/plugin-proposal-decorators",
+          {
+            legacy: true,
+          },
+        ],
         ["@babel/plugin-transform-class-properties", {loose: false}],
         ["@babel/plugin-transform-private-methods", {loose: false}],
         ["@babel/plugin-transform-private-property-in-object", {loose: false}],
         ["@babel/plugin-transform-class-static-block"],
       ],
     }),
-    commonjs(),
+    commonjs({
+      include: /node_modules/,
+    }),
     terser(),
   ],
+  watch: {
+    clearScreen: false,
+  },
 };

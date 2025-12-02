@@ -1,6 +1,11 @@
 import StyleDictionary from "style-dictionary";
 import config from "../sd.config.js";
 
+/**
+ * Animation tokens need to be handled differently. Rather than using the
+ * default CSS format, we'll use a custom format that outputs keyframes.
+ */
+
 StyleDictionary.registerFilter({
   name: "excludeKeyframes",
   filter: token => token.$type !== "keyframes",
@@ -13,32 +18,37 @@ StyleDictionary.registerFilter({
 
 StyleDictionary.registerFormat({
   name: "css/keyframes/complex",
-  format: ({dictionary}) => dictionary.allTokens.map((token) => {
-    if (token.$type !== "keyframes") return "";
+  format: ({dictionary}) =>
+    dictionary.allTokens
+      .map(token => {
+        if (token.$type !== "keyframes") return "";
 
-    const frames = token.$value.map((frame) => {
-      const percent = `${(frame.offset * 100)}%`;
+        const frames = token.$value
+          .map(frame => {
+            const percent = `${frame.offset * 100}%`;
 
-      const styles = Object.entries(frame)
-        .filter(([key]) => key !== "offset")
-        .map(([prop, value]) => {
-            // WAAPI uses "easing", CSS uses "animation-timing-function"
-            if (prop === "easing") {
-              return `    animation-timing-function: ${value};`;
-            }
+            const styles = Object.entries(frame)
+              .filter(([key]) => key !== "offset")
+              .map(([prop, value]) => {
+                // WAAPI uses "easing", CSS uses "animation-timing-function"
+                if (prop === "easing") {
+                  return `    animation-timing-function: ${value};`;
+                }
 
-            return `    ${prop}: ${value};`;
-        })
-        .join("\n");
+                return `    ${prop}: ${value};`;
+              })
+              .join("\n");
 
-      return `  ${percent} {\n${styles}\n  }`;
-    }).join("\n");
+            return `  ${percent} {\n${styles}\n  }`;
+          })
+          .join("\n");
 
-    return `@keyframes ${token.name} {\n${frames}\n}`;
-  }).join("\n\n"),
+        return `@keyframes ${token.name} {\n${frames}\n}`;
+      })
+      .join("\n\n"),
 });
 
 const sd = new StyleDictionary(config);
 await sd.buildAllPlatforms();
 
-console.log("✔︎ [Style Dictionary] Tokens built for all platforms.")
+console.log("✔︎ [Style Dictionary] Tokens built for all platforms.");
