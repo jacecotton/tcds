@@ -12,6 +12,8 @@
     "concurrently": "^9.2.1"
   },
   "dependencies": {
-    "lit": "^3.3.1"
+    "js-yaml": "^4.1.1",
+    "lit": "^3.3.1",
+    "twing": "^7.2.2"
   }
 }

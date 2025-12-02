@@ -4,8 +4,15 @@
   "type": "module",
   "scripts": {
     "clean": "rimraf dist",
-    "build": "rollup -c rollup.config.js",
-    "dev": "rollup -c rollup.config.js --watch"
+    "build": "npm run clean && npm run build:all",
+    "build:all": "npm run build:js & npm run build:scss & npm run build:assets & wait",
+    "build:js": "rollup -c rollup.config.js",
+    "build:scss": "node scripts/build-scss.js",
+    "build:assets": "node scripts/copy-assets.js",
+    "dev": "npm run dev:js & npm run dev:scss & npm run dev:assets",
+    "dev:js": "rollup -c rollup.config.js --watch",
+    "dev:scss": "node scripts/build-scss.js --watch",
+    "dev:assets": "node scripts/copy-assets.js --watch"
   },
   "devDependencies": {
     "@babel/core": "^7.28.3",
@@ -22,10 +29,12 @@
     "@rollup/plugin-terser": "^0.4.4",
     "@txch/tcds-foundation": "^3.0.0",
     "@txch/tcds-identity": "^3.0.0",
+    "chokidar": "^4.0.3",
     "lit": "^3.3.1",
     "rimraf": "^6.0.1",
     "rollup": "^4.44.2",
     "rollup-plugin-lit-css": "^6.0.0",
+    "sass": "^1.94.2",
     "terser": "^5.43.1"
   },
   "peerDependencies": {

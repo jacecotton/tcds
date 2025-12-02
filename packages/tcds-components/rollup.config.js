@@ -1,7 +1,6 @@
 import fs from "fs";
 import path from "path";
 import {fileURLToPath} from "url";
-import {execSync} from "child_process";
 
 import commonjs from "@rollup/plugin-commonjs";
 import {nodeResolve} from "@rollup/plugin-node-resolve";
@@ -37,21 +36,24 @@ const componentEntries = fs
 export default {
   input: {
     ...componentEntries,
-    bundle: path.join(SRC_DIR, "index.js"),
   },
 
   output: {
     dir: "dist",
-    format: "esm",
-    entryFileNames: "[name].js",
-    chunkFileNames: "[name].js",
+    format: "es",
+    entryFileNames: "[name]/[name].js",
+    chunkFileNames: "shared/[name].js",
 
     manualChunks(id) {
       const normalized = id.split(path.sep).join("/");
 
-      return normalized.includes("/src/@shared/") || normalized.includes("node_modules/") || id.includes("\0")
-        ? "shared"
-        : undefined;
+      if (normalized.includes("/src/@shared/utilities/")) {
+        return "utilities";
+      }
+
+      if (normalized.includes("/src/@shared/") || normalized.includes("node_modules/") || id.includes("\0")) {
+        return "vendor";
+      }
     },
   },
 

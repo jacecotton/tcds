@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "clean": "rimraf dist",
-    "build": "sass --load-path=../../node_modules --style=compressed --source-map src:dist",
+    "build": "npm run clean && sass --load-path=../../node_modules --style=compressed --source-map src:dist",
     "dev": "sass --load-path=../../node_modules --style=compressed --source-map --watch src:dist",
     "check-build-gzip": "gzip -c dist/foundation.css | wc -c"
   },

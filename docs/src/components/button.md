@@ -1,14 +1,16 @@
 ---
-layout: layout.njk
+layout: layout.twig
 title: Button Component
 ---
 
-{% from "example.njk" import render as example %}
-
-{% call example() %}
+{% embed "example.twig" %}
+{% block content %}
 <button class="tcds-button">Click es</button>
-{% endcall %}
+{% endblock %}
+{% endembed %}
 
-{% call example() %}
+{% embed "example.twig" %}
+{% block content %}
 <button class="tcds-button tcds-button--secondary">Another Button</button>
-{% endcall %}
+{% endblock %}
+{% endembed %}

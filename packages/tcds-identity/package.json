@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "clean": "rimraf dist",
-    "build": "npm run build:fonts && npm run build:icons && npm run build:logos && npm run build:tokens",
+    "build": "npm run clean && npm run build:fonts && npm run build:icons && npm run build:logos && npm run build:tokens",
     "build:fonts": "cpx 'src/fonts/**/*' dist/fonts",
     "build:icons": "cpx 'src/icons/**/*' dist/images/icons && node scripts/create-icon-manifest.js",
     "build:logos": "cpx 'src/logos/**/*' dist/images/logos",
@@ -15,7 +15,7 @@
     "dev:logos": "cpx 'src/logos/**/*' dist/images/logos --watch"
   },
   "devDependencies": {
-    "cpx": "^1.5.0",
+    "cpx": "^1.2.1",
     "rimraf": "^6.0.1",
     "style-dictionary": "^5.1.0"
   }

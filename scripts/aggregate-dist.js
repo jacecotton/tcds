@@ -68,53 +68,69 @@ async function main() {
   // }
 
   // Create structure
-  fs.mkdirSync(path.join(distDir, "css"), {recursive: true});
-  fs.mkdirSync(path.join(distDir, "fonts"), {recursive: true});
-  fs.mkdirSync(path.join(distDir, "js"), {recursive: true});
-  fs.mkdirSync(path.join(distDir, "images"), {recursive: true});
+  fs.mkdirSync(path.join(distDir, "assets/css"), {recursive: true});
+  fs.mkdirSync(path.join(distDir, "assets/fonts"), {recursive: true});
+  fs.mkdirSync(path.join(distDir, "assets/images"), {recursive: true});
+  fs.mkdirSync(path.join(distDir, "components"), {recursive: true});
 
   // Copy CSS from foundation
   console.log("  ✓ Copying CSS from tcds-foundation");
   const foundationDist = path.join(ROOT, "packages/tcds-foundation/dist");
-  for (const file of fs.readdirSync(foundationDist)) {
-    if (file.endsWith(".css")) {
-      copyIfChanged(path.join(foundationDist, file), path.join(distDir, "css", file));
+  if (fs.existsSync(foundationDist)) {
+    for (const file of fs.readdirSync(foundationDist)) {
+      if (file.endsWith(".css")) {
+        copyIfChanged(path.join(foundationDist, file), path.join(distDir, "assets/css", file));
+      }
     }
   }
 
   // Copy fonts from identity
   console.log("  ✓ Copying fonts from tcds-identity");
   const identityFonts = path.join(ROOT, "packages/tcds-identity/dist/fonts");
-  copyDir(identityFonts, path.join(distDir, "fonts"));
+  if (fs.existsSync(identityFonts)) {
+    copyDir(identityFonts, path.join(distDir, "assets/fonts"));
+  }
 
   // Copy SVGs from identity images
   console.log("  ✓ Copying SVG images from tcds-identity");
   const identityImages = path.join(ROOT, "packages/tcds-identity/dist/images");
-  copyFiltered(identityImages, path.join(distDir, "images"), name => name.endsWith(".svg"));
-
-  // Copy JS from components
-  console.log("  ✓ Copying JS from tcds-components");
-  const componentsDist = path.join(ROOT, "packages/tcds-components/dist");
-  for (const file of fs.readdirSync(componentsDist)) {
-    if (file.endsWith(".js")) {
-      copyIfChanged(path.join(componentsDist, file), path.join(distDir, "js", file));
-    }
+  if (fs.existsSync(identityImages)) {
+    copyFiltered(identityImages, path.join(distDir, "assets/images"), name => name.endsWith(".svg"));
   }
 
-  console.log("✅ Dist aggregation complete!");
+  // Copy components from tcds-components
+  console.log("  ✓ Copying components from tcds-components");
+  const componentsDist = path.join(ROOT, "packages/tcds-components/dist");
+
+  if (fs.existsSync(componentsDist)) {
+    copyDir(componentsDist, path.join(distDir, "components"));
+  }
+
+  // Templates are referenced directly via @tcds namespace pointing to dist/components
+  // No need to copy them to docs/_includes
 
   // Copy aggregated dist to docs/src/public
   const docsPublicDir = path.resolve(__dirname, "../docs/src/public");
+
   if (!fs.existsSync(docsPublicDir)) {
     fs.mkdirSync(docsPublicDir, {recursive: true});
   }
 
-  // Copy contents of dist to docs/src/public incrementally
-  // We want docs/src/public/css, docs/src/public/js, etc.
-  copyDir(distDir, docsPublicDir);
+  // Copy assets
+  if (fs.existsSync(path.join(distDir, "assets"))) {
+    copyDir(path.join(distDir, "assets"), path.join(docsPublicDir, "assets"));
+  }
+
+  // Copy components (excluding templates if we want, but copying everything is easier for now)
+  // Actually, we might want to exclude .twig files from public?
+  // But for now, let's just copy everything to keep it simple and ensure JS/CSS are available.
+  if (fs.existsSync(path.join(distDir, "components"))) {
+    copyDir(path.join(distDir, "components"), path.join(docsPublicDir, "components"));
+  }
+
   console.log(`  ✓ Copied dist to docs/src/public`);
 
-  // Touch docs/package.json to trigger Eleventy rebuild (just in case)
+  // Touch docs/package.json to trigger Eleventy rebuild
   const docsPackageJson = path.resolve(__dirname, "../docs/package.json");
   if (fs.existsSync(docsPackageJson)) {
     const now = new Date();

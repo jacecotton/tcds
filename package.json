@@ -11,7 +11,8 @@
     "docs"
   ],
   "scripts": {
-    "build": "npm run build:identity && npm run build:foundation && npm run build:components && node scripts/aggregate-dist.js",
+    "clean": "rimraf dist",
+    "build": "npm run clean && npm run build:identity && npm run build:foundation && npm run build:components && node scripts/aggregate-dist.js",
     "build:identity": "npm run build --workspace=packages/tcds-identity",
     "build:foundation": "npm run build --workspace=packages/tcds-foundation",
     "build:components": "npm run build --workspace=packages/tcds-components",
@@ -21,12 +22,11 @@
     "dev:components": "npm run dev --workspace=packages/tcds-components",
     "dev:docs": "npm run dev --workspace=docs",
     "dev:watch": "node scripts/watch.js",
-    "clean": "rimraf dist packages/*/dist .wireit",
     "format": "prettier --write \"**/*.{js,json,scss,css,md}\"",
     "format:check": "prettier --check \"**/*.{js,json,scss,css,md}\"",
     "lint": "eslint \"**/*.js\"",
     "lint:fix": "eslint --fix \"**/*.js\"",
-    "lint:html": "htmlhint \"**/*.html\" \"**/*.njk\""
+    "lint:html": "htmlhint \"**/*.html\" \"**/*.twig\""
   },
   "repository": {
     "type": "git",

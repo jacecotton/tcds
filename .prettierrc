@@ -28,7 +28,7 @@
       }
     },
     {
-      "files": ["*.html", "*.njk"],
+      "files": ["*.html", "*.twig"],
       "options": {
         "htmlWhitespaceSensitivity": "ignore",
         "vueIndentScriptAndStyle": false,

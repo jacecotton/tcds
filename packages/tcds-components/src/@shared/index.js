@@ -29,6 +29,3 @@ export {
 };
 
 export {updated, willUpdate} from "./lit-element/decorators.js";
-
-import sharedStyles from "../../../tcds-foundation/dist/shared.css";
-export const sharedCSS = sharedStyles;

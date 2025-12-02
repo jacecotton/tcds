@@ -1,4 +1,5 @@
-import {LitElement, html, css, sharedCSS, updated} from "@shared/index.js";
+import {LitElement, html, css, updated} from "@shared/index.js";
+import {sharedCSS} from "@shared/utilities/sharedCSS.js";
 import {customElement, property} from "lit/decorators.js";
 
 @customElement("my-component")
@@ -13,7 +14,9 @@ export class MyComponent extends LitElement {
   ];
 
   render() {
-    return html`test`;
+    return html`
+      test
+    `;
   }
 
   @property() test = "hello";
