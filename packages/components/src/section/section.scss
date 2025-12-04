@@ -1,0 +1,8 @@
+@use "@txch/foundation/src/layout/abstracts/mixins" as *;
+
+.tcds-section {
+  @include container-grid();
+
+  background-color: var(--tcds-color-theme-background);
+  color: var(--tcds-color-theme-foreground);
+}

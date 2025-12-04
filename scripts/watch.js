@@ -29,9 +29,9 @@ const runAggregation = debounce(() => {
 
 // Watch package roots instead of dist directly (since dist might not exist yet)
 const watchPatterns = [
-  path.join(ROOT, "packages/tcds-components"),
-  path.join(ROOT, "packages/tcds-foundation"),
-  path.join(ROOT, "packages/tcds-identity"),
+  path.join(ROOT, "packages/components"),
+  path.join(ROOT, "packages/foundation"),
+  path.join(ROOT, "packages/identity"),
 ];
 
 console.log(`🔭 Starting watcher on package roots:`);

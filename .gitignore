@@ -6,3 +6,4 @@ node_modules
 
 # Transient build artifacts
 dist
+packages/identity/src/tokens/icons.json

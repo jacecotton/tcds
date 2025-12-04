@@ -23,7 +23,6 @@ export default function (eleventyConfig) {
       fsLoader.addPath(path.resolve(__dirname, "src/_includes"));
       // Add @tcds namespace pointing to dist/components
       const tcdsTemplatesPath = path.resolve(__dirname, "../dist/components");
-      console.log("Adding Twing path:", tcdsTemplatesPath);
       fsLoader.addPath(tcdsTemplatesPath, "@tcds");
       // Add directory of current file for relative includes
       fsLoader.addPath(path.dirname(inputPath));
@@ -63,17 +62,15 @@ export default function (eleventyConfig) {
   });
 
   // Copy public assets (like aggregated dist)
-  eleventyConfig.addPassthroughCopy({"src/public": "."});
+  eleventyConfig.addPassthroughCopy({"../dist/css": "assets/css"});
+  eleventyConfig.addPassthroughCopy({"../dist/fonts": "assets/fonts"});
+  eleventyConfig.addPassthroughCopy({"../dist/images": "assets/images"});
+  eleventyConfig.addPassthroughCopy({"../dist/components": "assets/components"});
 
   // Explicitly watch source directory
   eleventyConfig.addWatchTarget(path.resolve(__dirname, "src"));
   // Watch dist folder for changes during development
   eleventyConfig.addWatchTarget(path.resolve(__dirname, "../dist"));
-  // Watch package.json to trigger rebuilds from aggregation script
-  eleventyConfig.addWatchTarget("./package.json");
-
-  // Watch dist/components for changes to trigger rebuilds
-  eleventyConfig.addWatchTarget(path.resolve(__dirname, "../dist/components"));
 
   return {
     dir: {

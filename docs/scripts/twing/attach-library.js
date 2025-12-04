@@ -73,10 +73,10 @@ export function createAttachLibrary(eleventyConfig) {
 
       if (assets) {
         if (library.css) {
-          library.css.forEach(css => assets.css.add(css));
+          library.css.forEach(css => assets.css.add(`assets/${css}`));
         }
         if (library.js) {
-          library.js.forEach(js => assets.js.add(js));
+          library.js.forEach(js => assets.js.add(`assets/${js}`));
         }
       }
 

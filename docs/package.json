@@ -4,12 +4,11 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "eleventy --serve",
+    "dev": "eleventy --serve --port=8080",
     "build": "eleventy"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^3.0.0",
-    "concurrently": "^9.2.1"
+    "@11ty/eleventy": "^3.0.0"
   },
   "dependencies": {
     "js-yaml": "^4.1.1",

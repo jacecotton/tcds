@@ -5,21 +5,21 @@
   "main": "index.js",
   "type": "module",
   "workspaces": [
-    "packages/tcds-identity",
-    "packages/tcds-foundation",
-    "packages/tcds-components",
+    "packages/identity",
+    "packages/foundation",
+    "packages/components",
     "docs"
   ],
   "scripts": {
-    "clean": "rimraf dist",
+    "clean": "rm -rf dist",
     "build": "npm run clean && npm run build:identity && npm run build:foundation && npm run build:components && node scripts/aggregate-dist.js",
-    "build:identity": "npm run build --workspace=packages/tcds-identity",
-    "build:foundation": "npm run build --workspace=packages/tcds-foundation",
-    "build:components": "npm run build --workspace=packages/tcds-components",
-    "dev": "npm-run-all --parallel dev:*",
-    "dev:identity": "npm run dev --workspace=packages/tcds-identity",
-    "dev:foundation": "npm run dev --workspace=packages/tcds-foundation",
-    "dev:components": "npm run dev --workspace=packages/tcds-components",
+    "build:identity": "npm run build --workspace=packages/identity",
+    "build:foundation": "npm run build --workspace=packages/foundation",
+    "build:components": "npm run build --workspace=packages/components",
+    "dev": "concurrently --kill-others --names \"IDENTITY,FOUNDATION,COMPONENTS,DOCS,WATCH\" \"npm run dev:identity\" \"npm run dev:foundation\" \"npm run dev:components\" \"npm run dev:docs\" \"npm run dev:watch\"",
+    "dev:identity": "npm run dev --workspace=packages/identity",
+    "dev:foundation": "npm run dev --workspace=packages/foundation",
+    "dev:components": "npm run dev --workspace=packages/components",
     "dev:docs": "npm run dev --workspace=docs",
     "dev:watch": "node scripts/watch.js",
     "format": "prettier --write \"**/*.{js,json,scss,css,md}\"",
@@ -39,16 +39,16 @@
   },
   "homepage": "https://github.com/jacecotton/tcds#readme",
   "dependencies": {
-    "@txch/tcds-components": "^3.0.0",
-    "@txch/tcds-foundation": "^3.0.0",
-    "@txch/tcds-identity": "^3.0.0"
+    "@txch/components": "^3.0.0",
+    "@txch/foundation": "^3.0.0",
+    "@txch/identity": "^3.0.0"
   },
   "devDependencies": {
     "chokidar": "^4.0.3",
+    "concurrently": "^9.2.1",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
     "htmlhint": "^1.7.1",
-    "npm-run-all": "^4.1.5",
     "prettier": "^3.6.2"
   }
 }

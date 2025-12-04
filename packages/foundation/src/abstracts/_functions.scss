@@ -1,0 +1,16 @@
+@use "sass:map";
+@use "../../../identity/dist/scss/tokens" as identity;
+
+/**
+ * Wrapper function for getting from token map in identity package.
+ */
+
+@function tokens($keys...) {
+  $value: map.get(identity.$tokens, $keys...);
+
+  @if $value == null {
+    @error "[tokens]: No value found in identity.$tokens for keys: #{$keys}";
+  }
+
+  @return $value;
+}
