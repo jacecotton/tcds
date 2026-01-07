@@ -1,0 +1,12 @@
+// @font-face definitions
+@forward "typography/fonts";
+
+// :root-scoped custom properties
+@forward "props";
+// Default styles for native HTML elements
+@forward "theming";
+// Opt-in !important-flagged utility classes
+@forward "utilities";
+
+// @keyframe definitions
+@forward "_gen/animations.css";

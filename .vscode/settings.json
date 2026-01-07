@@ -1,27 +1,18 @@
 {
-  // Use VS Code's built-in HTML formatter instead of Prettier for HTML/Nunjucks
-  "[html]": {
-    "editor.defaultFormatter": "vscode.html-language-features",
-    "editor.formatOnSave": true
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
   },
-  "[njk]": {
-    "editor.defaultFormatter": "vscode.html-language-features",
-    "editor.formatOnSave": true
-  },
-
-  // HTML formatting preferences
-  "html.format.enable": true,
+  "html.autoClosingTags": false,
   "html.format.wrapAttributes": "auto",
   "html.format.wrapLineLength": 120,
   "html.format.indentHandlebars": false,
-  "html.format.indentInnerHtml": false, // <-- No indent for <head>/<body>
+  "html.format.indentInnerHtml": false,
   "html.format.maxPreserveNewLines": 2,
   "html.format.preserveNewLines": true,
-  "html.format.endWithNewline": true,
   "html.format.extraLiners": "",
   "html.format.templating": true,
-
-  // HTMLHint integration
   "htmlhint.enable": true,
   "htmlhint.options": {
     "extends": ".htmlhintrc"

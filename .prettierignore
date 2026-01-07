@@ -1,6 +1,6 @@
 node_modules
 dist
-.wireit
+src/**/_gen
 *.min.js
 *.min.css
 package-lock.json

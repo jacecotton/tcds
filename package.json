@@ -1,54 +1,42 @@
 {
   "name": "@txch/tcds",
   "version": "3.0.0",
-  "description": "Texas Children's Design System",
-  "main": "index.js",
+  "description": "",
+  "license": "ISC",
+  "author": "",
   "type": "module",
   "workspaces": [
-    "packages/identity",
-    "packages/foundation",
-    "packages/components",
     "docs"
   ],
   "scripts": {
-    "clean": "rm -rf dist",
-    "build": "npm run clean && npm run build:identity && npm run build:foundation && npm run build:components && node scripts/aggregate-dist.js",
-    "build:identity": "npm run build --workspace=packages/identity",
-    "build:foundation": "npm run build --workspace=packages/foundation",
-    "build:components": "npm run build --workspace=packages/components",
-    "dev": "concurrently --kill-others --names \"IDENTITY,FOUNDATION,COMPONENTS,DOCS,WATCH\" \"npm run dev:identity\" \"npm run dev:foundation\" \"npm run dev:components\" \"npm run dev:docs\" \"npm run dev:watch\"",
-    "dev:identity": "npm run dev --workspace=packages/identity",
-    "dev:foundation": "npm run dev --workspace=packages/foundation",
-    "dev:components": "npm run dev --workspace=packages/components",
-    "dev:docs": "npm run dev --workspace=docs",
-    "dev:watch": "node scripts/watch.js",
-    "format": "prettier --write \"**/*.{js,json,scss,css,md}\"",
-    "format:check": "prettier --check \"**/*.{js,json,scss,css,md}\"",
-    "lint": "eslint \"**/*.js\"",
-    "lint:fix": "eslint --fix \"**/*.js\"",
-    "lint:html": "htmlhint \"**/*.html\" \"**/*.twig\""
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jacecotton/tcds.git"
-  },
-  "author": "",
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/jacecotton/tcds/issues"
-  },
-  "homepage": "https://github.com/jacecotton/tcds#readme",
-  "dependencies": {
-    "@txch/components": "^3.0.0",
-    "@txch/foundation": "^3.0.0",
-    "@txch/identity": "^3.0.0"
+    "clean": "rimraf dist components src/**/_gen",
+    "build:icons": "cpx \"src/images/icons/**/*.svg\" dist/images/icons && node scripts/generate-icon-tokens.js",
+    "build:tokens": "node scripts/build-tokens.js",
+    "build:fonts": "cpx \"src/fonts/**/*.woff2\" dist/fonts",
+    "build:css": "sass --load-path=node_modules --source-map src/scss:dist/css",
+    "build:js": "rollup -c rollup.config.js",
+    "build:components:assets": "cpx \"src/components/**/*.{twig,component.yml}\" components",
+    "build:components:css": "sass --load-path=node_modules --style=compressed --source-map src/components:components",
+    "build": "npm run build:icons && npm run build:tokens && npm run build:fonts && npm run build:css && npm run build:js && npm run build:components:assets && npm run build:components:css",
+    "watch": "chokidar \"src/**/*.{js,css,scss,svg,woff2,twig,component.yml}\" -i \"src/**/_gen/**\" -c \"npm run build\"",
+    "start:docs": "npm run start -w tcds-docs",
+    "dev": "npm run clean && npm run build && run-p start:docs watch"
   },
   "devDependencies": {
-    "chokidar": "^4.0.3",
-    "concurrently": "^9.2.1",
-    "eslint": "^9.39.1",
-    "eslint-config-prettier": "^10.1.8",
-    "htmlhint": "^1.7.1",
-    "prettier": "^3.6.2"
+    "@babel/core": "^7.28.5",
+    "@babel/plugin-proposal-decorators": "^7.28.0",
+    "@babel/preset-env": "^7.28.5",
+    "@rollup/plugin-alias": "^6.0.0",
+    "@rollup/plugin-babel": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "chokidar-cli": "^3.0.0",
+    "cpx2": "^8.0.0",
+    "lit": "^3.3.1",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^6.1.2",
+    "rollup": "^4.53.3",
+    "rollup-plugin-lit-css": "^6.0.0",
+    "sass": "^1.95.0",
+    "style-dictionary": "^5.1.1"
   }
 }

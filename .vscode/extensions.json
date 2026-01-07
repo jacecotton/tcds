@@ -4,6 +4,7 @@
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
     "syler.sass-indented",
-    "styled-components.vscode-styled-components"
+    "styled-components.vscode-styled-components",
+    "mblode.twig-language-2"
   ]
 }

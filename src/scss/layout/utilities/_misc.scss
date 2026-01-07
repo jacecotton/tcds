@@ -1,0 +1,35 @@
+@use "../../abstracts/mixins" as *;
+
+/**
+ * Reinforcing `[hidden]` attribute here, as the default user agent style can be
+ * unintentionally overridden by setting `display` to anything on an element in
+ * an author stylesheet.
+ */
+
+[hidden=""] {
+  display: none !important;
+}
+
+@include responsive-utils() using ($breakpoint) {
+  .#{$breakpoint}hidden {
+    display: none !important;
+  }
+}
+
+.visually-hidden {
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  position: absolute;
+}
+
+@include responsive-utils() using ($breakpoint) {
+  .#{$breakpoint}visually-hidden {
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    height: 1px;
+    width: 1px;
+    position: absolute;
+  }
+}

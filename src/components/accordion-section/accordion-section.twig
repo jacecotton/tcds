@@ -1,0 +1,12 @@
+{% apply spaceless %}
+  <tcds-accordion-section {{ open ? "open" }}>
+    <{{ heading_level ?: "h3" }} slot="title">{{ title }}</{{ heading_level ?: "h3" }}>
+    {% if content is defined %}
+      {% if block(content) is defined %}
+        {{ block(content) }}
+      {% else %}
+        {{ content }}
+      {% endif %}
+    {% endif %}
+  </tcds-accordion-section>
+{% endapply %}

@@ -16,5 +16,6 @@
   "inline-script-disabled": false,
   "space-tab-mixed-disabled": "space",
   "id-class-ad-disabled": true,
-  "attr-unsafe-chars": true
+  "attr-unsafe-chars": true,
+  "empty-tag-not-self-closed": true
 }

@@ -1,9 +1,0 @@
-.github/         export-ignore
-.gitignore       export-ignore
-.gitattributes   export-ignore
-.npmignore       export-ignore
-.browserslistrc  export-ignore
-.editorconfig    export-ignore
-.stylelintrc     export-ignore
-.eslintrc        export-ignore
-gulpfile.js      export-ignore

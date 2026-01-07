@@ -1,0 +1,22 @@
+{% if sections is defined and sections|length %}
+  <tcds-accordion {{ multiple ? "multiple" }}>
+    {% for section in sections %}
+      {% apply spaceless %}
+        {% if section.content is defined %}
+          {% if block(section.content) is defined %}
+            {% set content = block(section.content) %}
+          {% else %}
+            {% set content = section.content %}
+          {% endif %}
+        {% endif %}
+
+        {{ include("tcds:accordion-section", {
+          title: section.title,
+          content: content,
+          open: section.open ?: false,
+          heading_level: heading_level ?: null,
+        }) }}
+      {% endapply %}
+    {% endfor %}
+  </tcds-accordion>
+{% endif %}

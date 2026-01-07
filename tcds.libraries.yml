@@ -1,0 +1,7 @@
+global:
+  css:
+    theme:
+      dist/css/tcds.css: {}
+  js:
+    dist/js/shared.js: {}
+    dist/js/vendor.js: {}

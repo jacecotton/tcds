@@ -1,0 +1,15 @@
+{
+  "motion": {
+    "easing": {
+      "$type": "cubicBezier",
+      "translate": {"$description": "ease-in-out", "$value": [0.42, 0, 0.58, 1]},
+      "enter": {"$description": "ease-out", "$value": [0, 0, 0.2, 1]},
+      "exit": {"$description": "ease-in", "$value": [0.4, 0, 1, 1]}
+    },
+    "duration": {
+      "$type": "duration",
+      "productive": {"$value": "100ms"},
+      "expressive": {"$value": "800ms"}
+    }
+  }
+}

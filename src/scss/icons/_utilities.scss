@@ -1,0 +1,37 @@
+@use "sass:list";
+@use "sass:map";
+@use "../abstracts/functions" as *;
+
+.tcds-icon,
+tcds-icon {
+  display: inline-flex;
+  vertical-align: middle;
+  align-items: center;
+
+  &::after {
+    content: "";
+    display: inline-block;
+    height: 0.75em;
+    width: 0.75em;
+    background: currentcolor;
+    mask: var(--tcds-icon) no-repeat center;
+  }
+}
+
+@each $category, $category-icons in tokens("icon") {
+  @each $icon, $value in $category-icons {
+    /**
+      * Icons across different categories may be identically named (e.g.
+      * `giving` in both `media` and `primary`). Since `primary` icons will be
+      * generated after `media`, `primary` is default, but `media` can be
+      * specified with an additional modifier (so, `class="tcds-icon--giving
+      * tcds-icon--media"`).
+      */
+    .tcds-icon--#{$icon},
+    .tcds-icon--#{$icon}#{&}--#{$category},
+    tcds-icon[icon=#{$icon}],
+    tcds-icon[icon=#{$icon}][category=#{$category}] {
+      --tcds-icon: var(--tcds-icon-#{$category}-#{$icon});
+    }
+  }
+}

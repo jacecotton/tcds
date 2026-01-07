@@ -1,0 +1,32 @@
+@use "sass:list";
+@use "../../abstracts/functions" as root;
+@use "../abstracts/mixins" as layout;
+
+/**
+ * `.container-` utilities.
+ *
+ * Defines a container of a max-width corresponding to a layout size token, e.g.
+ * size.layout.sm (`.container-sm`), size.layout.md (`.container-md`), etc.
+ *
+ * Minimum/default width is 100% of the parent container, less a standard gutter
+ * (`--tcds-container-gutter`). So if the screen is less than the defined size,
+ * the container becomes flexible. Thus, no breakpoint-based prefixes are
+ * available.
+ *
+ * The container is centered within the parent container using an `auto` inline
+ * margin.
+ */
+
+$container-selectors: ();
+
+@each $name, $value in root.tokens("size", "layout") {
+  $container-selectors: list.append($container-selectors, ".container-#{$name}", comma);
+
+  .container-#{$name} {
+    --tcds-size-container: var(--tcds-size-layout-#{$name});
+  }
+}
+
+#{$container-selectors} {
+  @include layout.container("!important");
+}

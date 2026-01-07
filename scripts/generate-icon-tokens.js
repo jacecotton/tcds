@@ -1,0 +1,83 @@
+#!/usr/bin/env node
+/**
+ * This script generates a token file for icons (at src/tokens/_gen/icon.json)
+ * by iterating through the src/images/icons directory, mapping file names to
+ * icon names and subfolder names to second-level token path names. The value
+ * for each token is a lightly minified of the SVG code in each icon file.
+ *
+ * This way, src/images/icons is the authoritative source-of-truth for our icon
+ * library, even though they're ultimately consumed as encoded data-URLs in CSS.
+ */
+
+import fs from "fs";
+import path from "path";
+import {fileURLToPath} from "url";
+
+async function main() {
+  const DIRNAME = path.dirname(fileURLToPath(import.meta.url));
+  // Get category, icon names, and values from images directory.
+  const SRC_DIR = path.resolve(DIRNAME, "../src/images/icons");
+  // Generate JSON file in tokens directory.
+  const OUTPUT_DIR = path.resolve(DIRNAME, "../src/tokens/_gen");
+
+  if (!fs.existsSync(SRC_DIR)) {
+    console.error(`@txch/tcds ❌ ERROR: Icons source directory not found at ${SRC_DIR}`);
+    process.exit(1);
+  }
+
+  if (!fs.existsSync(OUTPUT_DIR)) {
+    fs.mkdirSync(OUTPUT_DIR, {recursive: true});
+  }
+
+  // Create initial JSON object. Follows DTCG schema. `$type` here is inherited
+  // by each icon (custom type).
+  const tokens = {
+    icon: {$type: "icon"},
+  };
+
+  // The category is the second token path segment, named for the subfolder
+  // containing the icon, e.g. icons/utility/check.svg → `icon.utility.check`.
+  const categories = fs.readdirSync(SRC_DIR).filter(name => fs.statSync(path.join(SRC_DIR, name)).isDirectory());
+
+  // For each category create an object containing each icon, where the
+  // key-value pairs are the icon name and a base64-encoded data-URL from the
+  // icon file's SVG contents.
+  categories.forEach((category) => {
+    const categoryDir = path.join(SRC_DIR, category);
+    // Get array of SVG file names in the category directory.
+    const icons = fs.readdirSync(categoryDir).filter(name => name.toLowerCase().endsWith(".svg"));
+
+    if (icons.length > 0) {
+      // Initialize category object.
+      tokens.icon[category] = {};
+
+      icons.forEach((iconFile) => {
+        const iconName = path.basename(iconFile, ".svg");
+
+        // Get the SVG file contents.
+        const svgContent = fs.readFileSync(path.join(categoryDir, iconFile), "utf8")
+          // Basic minification: collapse excess spaces and remove new lines.
+          .replace(/\s+/g, " ").replace(/> </g, "><").replace(/\s+\/>/g, "/>").trim()
+          // Basic encoding: don't need `encodeURIComponent` here since CSS URLs
+          // inside double-quotes are forgiving of most special characters. Only
+          // need to manually encode % and #.
+          .replace(/%/g, "%25").replace(/#/g, "%23")
+          // Also encoding ' characters (which should be very rare), then
+          // replacing existing " characters (much more common) with ' so that
+          // we don't need to encode them as %22.
+          .replace(/'/g, "%27").replace(/"/g, "'");
+
+        // Populate the property.
+        tokens.icon[category][iconName] = {$value: svgContent};
+      });
+    }
+  });
+
+  fs.writeFileSync(path.join(OUTPUT_DIR, "icons.json"), JSON.stringify(tokens, null, 2), "utf8");
+  console.log(`@txch/tcds ✅ Generated icon tokens in ${OUTPUT_DIR}/icon.json`);
+}
+
+main().catch(error => {
+  console.error(error);
+  process.exit(1);
+});

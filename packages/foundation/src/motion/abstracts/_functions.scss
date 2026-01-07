@@ -1,4 +1,0 @@
-// @todo We can add validation here by checking $preset against tokens("motion")
-@function motion($preset) {
-  @return var(--tcds-motion-#{$preset}-duration) var(--tcds-motion-#{$preset}-easing);
-}

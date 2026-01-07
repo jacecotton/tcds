@@ -1,0 +1,481 @@
+@use "../../scss/abstracts/mixins" as *;
+
+:root {
+  --tcds-site-header-height: 65px;
+  --tcds-site-header-logo-width: 276px;
+
+  scroll-padding-top: calc(var(--tcds-site-header-height) + 1rem);
+
+  @include breakpoint("sm") {
+    --tcds-site-header-height: 90px;
+    --tcds-site-header-logo-width: 386px;
+  }
+}
+
+@mixin dark-header {
+  --tcds-site-header-toggle-color: var(--tcds-color-palette-white);
+
+  background: linear-gradient(0deg, rgb(0 0 0 / 0%) 0%, rgb(0 0 0) 100%);
+
+  @include breakpoint("lg") {
+    --tcds-site-header-link-color: #fff;
+    --tcds-site-header-link-hover-color: #fff;
+    --tcds-site-header-utility-link-color: #fff;
+    --tcds-site-header-highlight-background: var(--tcds-color-primary);
+  }
+}
+
+tcds-site-header {
+  --tcds-site-header-toggle-color: var(--tcds-color-secondary);
+  --tcds-site-header-link-color: var(--tcds-color-secondary);
+  --tcds-site-header-link-hover-color: var(--tcds-color-primary);
+
+  display: grid;
+  grid-template-columns: var(--tcds-site-header-logo-width) 1fr min-content 2rem;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-areas:
+    "logo utility utility ."
+    "logo primary search .";
+  align-items: center;
+  background-color: transparent;
+  height: var(--tcds-site-header-height);
+  position: relative;
+  z-index: var(--tcds-z-index-site-header);
+
+  @include breakpoint("md") {
+    --tcds-site-header-menu-gap: 2rem;
+  }
+
+  &[open] {
+    background: #fff;
+  }
+
+  &[scrolled] {
+    --tcds-site-header-logo-background: none;
+    --tcds-site-header-logo-filter: none;
+
+    background-color: var(--tcds-color-white);
+    box-shadow: var(--tcds-box-shadow-m) var(--tcds-shade-weak);
+    position: sticky;
+    top: 0;
+    animation: tcds-site-header-slide-down 250ms var(--tcds-animation-productive-easing);
+
+    @include breakpoint("md") {
+      grid-template-rows: 0fr 1fr;
+
+      #utility-menu {
+        display: none;
+      }
+    }
+
+    @keyframes tcds-site-header-slide-down {
+      from {
+        // Have to use top instead of translate here because it messes with
+        // details[open] { position: fixed } below.
+        top: calc(var(--tcds-site-header-height) * -1);
+      }
+    }
+  }
+
+  &[data-theme="dark"]:not([scrolled], [open]) {
+    @include dark-header;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    &[data-theme="auto"]:not([scrolled], [open]) {
+      @include dark-header;
+    }
+  }
+
+  @include breakpoint("", "md") {
+    > details:not([open]) > summary {
+      color: var(--tcds-site-header-toggle-color);
+    }
+  }
+
+  @include breakpoint("md") {
+    > details > summary {
+      color: var(--tcds-site-header-toggle-color);
+    }
+  }
+
+  details {
+    summary {
+      &::before {
+        display: none;
+      }
+    }
+  }
+}
+
+[id=site-header-logo] {
+  grid-area: logo;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+  padding-right: 25%;
+  height: 100%;
+  background-image: var(--tcds-site-header-logo-background, url("data:image/svg+xml, %3Csvg%20xmlns=%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox=%270%200%20386%2090%27%3E%3Cpath%20style=%27fill%3A%20%23da2530%27%20d=%27M261,90c-1.2,0-2.4,0-3.7,0H0V0h386l-67.9,67.2c-6.9,6.9-15.1,12.4-24.1,16.2-8.8,3.8-18.3,6-27.9,6.5h-.2c-1.2,0-3.8,0-5,0Z%27%2F%3E%3C%2Fsvg%3E "));
+  background-repeat: no-repeat;
+  text-decoration: none;
+
+  span {
+    text-align: right;
+    color: var(--tcds-color-secondary);
+    font-family: var(--tcds-font-sans-serif);
+    font-weight: var(--tcds-font-weight-semibold);
+    font-size: var(--tcds-font-size-rem);
+  }
+
+  img,
+  span {
+    filter: var(--tcds-site-header-logo-filter, saturate(0) contrast(0) brightness(0) invert(1));
+  }
+}
+
+details:is(#site-header-nav, #site-header-search) {
+  @include breakpoint("", "md") {
+    grid-row: 1 / -1;
+
+    &[open] {
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+
+      > summary {
+        position: absolute;
+        top: 1rem;
+        right: 2rem;
+        z-index: 1;
+      }
+
+      > div {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        background-color: var(--tcds-color-white);
+      }
+    }
+  }
+
+  &[open],
+  [open] {
+    @include breakpoint("", "md") {
+      --tcds-site-header-menu-toggle-icon: var(--tcds-icon-utility-x);
+    }
+
+    &::before {
+      content: "";
+      background: rgb(0 0 0 / 50%);
+      position: fixed;
+      left: 0;
+      right: 0;
+      height: calc(100% - 3rem);
+      margin-top: 3rem;
+    }
+
+    &:is(#site-header-nav)::before {
+      @include breakpoint("md") {
+        display: none;
+      }
+    }
+
+    [open]::before {
+      @include breakpoint("", "md") {
+        display: none;
+      }
+    }
+  }
+
+  > summary {
+    width: 2rem;
+    height: 2rem;
+    background-color: currentcolor;
+    mask: var(--tcds-site-header-menu-toggle-icon) no-repeat center;
+    cursor: pointer;
+
+    @include breakpoint("md") {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+}
+
+/**
+ * This is necessary for Chrome, which has a `[pseudo=details-content]` element
+ * in `details` shadow DOM. For whatever reason, combining this selector in a
+ * selector list with `&` above breaks Firefox and Safari, even if the "invalid"
+ * selector is inside an `:is()` selector function. 🤷‍♂️
+ */
+[id=site-header-nav] {
+  --tcds-site-header-menu-toggle-icon: var(--tcds-icon-utility-hamburger);
+
+  @include breakpoint("md") {
+    & {
+      display: contents;
+    }
+
+    &::details-content { // 1
+      display: contents;
+    }
+
+    > summary {
+      display: none;
+    }
+
+    > div {
+      display: contents;
+    }
+  }
+
+  @include breakpoint("", "md") {
+    grid-column: 3 / 4;
+
+    &:not([open]) {
+      margin-left: 1rem;
+    }
+  }
+
+  > div > nav {
+    grid-row: 1 / -1;
+    margin-left: auto;
+
+    > ul {
+      display: flex;
+
+      @include breakpoint("md") {
+        gap: var(--tcds-site-header-menu-gap);
+      }
+
+      > li {
+        > details > summary,
+        > a {
+          display: flex;
+          align-items: center;
+          gap: .5ch;
+          cursor: pointer;
+          color: var(--tcds-site-header-link-color);
+          font-family: var(--tcds-font-ui);
+          font-size: var(--tcds-font-size-rem);
+          font-weight: var(--tcds-font-weight-bold);
+          line-height: 1;
+          text-decoration: none;
+          user-select: none;
+        }
+
+        > [open] > summary,
+        > details > summary:hover,
+        > a:hover {
+          color: var(--tcds-site-header-link-hover-color);
+        }
+
+        > a > tcds-icon {
+          --tcds-icon-size: 1.5em;
+
+          transform: translateY(-9%);
+        }
+      }
+    }
+  }
+}
+
+[id=site-header-search] {
+  --tcds-site-header-menu-toggle-icon: var(--tcds-icon-utility-search);
+
+  grid-area: search;
+  margin-left: var(--tcds-site-header-menu-gap);
+
+  @include breakpoint("", "md") {
+    grid-column: 2 / 3;
+    margin-left: auto;
+  }
+}
+
+tcds-site-header nav:not(#utility-menu) {
+  @include breakpoint("", "md") {
+    padding: 4rem 0;
+  }
+
+  > ul {
+    @include breakpoint("", "md") {
+      flex-direction: column;
+      align-items: start;
+      justify-content: center;
+      margin: 0;
+    }
+
+    > li {
+      @include breakpoint("", "md") {
+        width: 100%;
+      }
+
+      > details > summary,
+      > a {
+        @include breakpoint("md") {
+          padding: .5rem 0;
+        }
+
+        @include breakpoint("", "md") {
+          font-size: var(--tcds-font-size-rem);
+        }
+      }
+
+      > [open] > summary,
+      > details > summary:hover,
+      > a:hover {
+        @include breakpoint("md") {
+          box-shadow: 0 4px 0 var(--tcds-color-red);
+        }
+      }
+
+      > details {
+        @include breakpoint("", "md") {
+          position: relative;
+          z-index: 1;
+        }
+
+        &[open] {
+          --tcds-site-header-details-icon: var(--tcds-icon-utility-minus);
+
+          &::after {
+            @include breakpoint("", "md") {
+              content: "";
+              position: absolute;
+              left: 0;
+              right: 0;
+              top: 3rem;
+              height: 2.5rem;
+              background-image: linear-gradient(0deg, var(--tcds-color-white) 0%, rgb(246, 246, 246) 100%);
+              z-index: -1;
+            }
+          }
+        }
+
+        > div {
+          @include breakpoint("", "md") {
+            padding: 2rem 0;
+          }
+        }
+      }
+
+      > details > summary,
+      > details > div,
+      > a {
+        @include breakpoint("", "md") {
+          width: min(100vw - 4rem, var(--tcds-breakpoint-xs));
+          margin: 0 auto;
+        }
+      }
+
+      > details > summary,
+      > a {
+        @include breakpoint("", "md") {
+          padding: 1rem 0;
+
+          &::after {
+            content: "";
+            background-color: var(--tcds-color-primary);
+            mask: var(--tcds-site-header-details-icon, var(--tcds-icon-utility-plus)) no-repeat center;
+            width: 1em;
+            height: 1em;
+            margin-left: auto;
+          }
+        }
+      }
+
+      > a {
+        --tcds-site-header-details-icon: var(--tcds-icon-utility-caret-right);
+      }
+    }
+
+    li:not(:last-of-type) *:not([open]) > summary,
+    li:not(:last-of-type) a {
+      @include breakpoint("", "md") {
+        border-bottom: 1px solid var(--tcds-color-gray);
+      }
+    }
+  }
+}
+
+#primary-menu {
+  grid-area: primary;
+}
+
+#utility-menu {
+  grid-area: utility;
+  align-self: end;
+
+  @include breakpoint("", "md") {
+    padding: 3rem 0;
+    background: var(--tcds-color-baby-blue);
+  }
+
+  > ul {
+    @include breakpoint("", "md") {
+      gap: 1rem 0;
+      flex-wrap: wrap;
+      width: min(100vw - 2rem, var(--tcds-breakpoint-xs));
+      margin: 0 auto;
+    }
+
+    > li {
+      display: flex;
+
+      @include breakpoint("", "md") {
+        flex: 1 0 33%;
+
+        &:nth-child(3n+1) {
+          text-align: left;
+          justify-content: start;
+        }
+
+        &:nth-child(3n+2) {
+          text-align: center;
+          justify-content: center;
+        }
+
+        &:nth-child(3n+3) {
+          text-align: right;
+          justify-content: end;
+        }
+      }
+
+      > a {
+        font-size: var(--tcds-font-size-xs);
+
+        @include breakpoint("", "md") {
+          font-size: var(--tcds-font-size-rem);
+        }
+
+        &:not(:hover) {
+          color: var(--tcds-site-header-utility-link-color, var(--tcds-site-header-link-color, var(--tcds-color-gray-4)));
+        }
+
+        &[data-highlighted] {
+          background-color: var(--tcds-site-header-highlight-background, var(--tcds-color-secondary));
+          color: var(--tcds-color-white);
+          padding: .5rem 1rem;
+          border-radius: 1rem;
+
+          &:hover {
+            background-color: var(--tcds-color-primary);
+          }
+        }
+      }
+    }
+  }
+}
+
+[id="site-header-search"] > div,
+[id="primary-menu"] details > div {
+  @include breakpoint("md") {
+    position: absolute;
+    top: var(--tcds-site-header-height);
+    left: 0;
+    width: 100%;
+    padding: 2rem;
+    background: #fff;
+  }
+}

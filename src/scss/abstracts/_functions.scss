@@ -1,0 +1,21 @@
+@use "sass:map";
+@use "../_gen/tokens" as *;
+
+/**
+ * Wrapper function for getting from token map.
+ */
+
+@function tokens($keys...) {
+  $value: map.get($tokens, $keys...);
+
+  @if $value == null {
+    @error "[tokens]: No value found in $tokens for keys: #{$keys}";
+  }
+
+  @return $value;
+}
+
+// tokens alias
+@function token($keys...) {
+  @return tokens($keys...);
+}

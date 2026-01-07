@@ -28,11 +28,17 @@
       }
     },
     {
-      "files": ["*.html", "*.twig"],
+      "files": ["*.html"],
       "options": {
         "htmlWhitespaceSensitivity": "ignore",
         "vueIndentScriptAndStyle": false,
         "singleAttributePerLine": false
+      }
+    },
+    {
+      "files": "*.twig",
+      "options": {
+        "parser": "liquid-html"
       }
     }
   ]

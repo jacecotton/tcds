@@ -1,9 +1,11 @@
-# npm dependencies
+# NPM modules
 node_modules
 
 # System files
 .DS_Store
 
-# Transient build artifacts
+# Build artifacts
 dist
-packages/identity/src/tokens/icons.json
+src/**/_gen
+/components
+/docs/_site

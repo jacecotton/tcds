@@ -1,0 +1,107 @@
+@use "sass:map";
+@use "sass:meta";
+@use "functions" as *;
+
+/**
+ * Generates a media query based on tokenized breakpoints.
+ *
+ * @param {String | Null} $min [null] - The start token (e.g. `md`). Pass
+ * null or an empty string for max-width queries.
+ * @param {String | Null} $max [null] - The end token (e.g. `xl`). Leave
+ * empty for min-width queries.
+ * @param {String} $dim ["width"] - The dimension to query. Can be changed to
+ * `inline-size` for logical property support.
+ */
+@mixin breakpoint($min: null, $max: null, $dim: "width") {
+  $min-val: null;
+  $max-val: null;
+
+  @if $min and $min != "" {
+    $min-val: tokens("size", "breakpoint", $min);
+
+    @if not $min-val {
+      @error "Min breakpoint `#{$min}` not found in tokens.";
+    }
+  }
+
+  @if $max and $max != "" {
+    $max-val: tokens("size", "breakpoint", $max);
+
+    @if not $max-val {
+      @error "Max breakpoint `#{$max}` not found in tokens.";
+    }
+  }
+
+  // Case: range (between) => breakpoint("md", "xl")
+  @if $min-val and $max-val {
+    // Check that min is strictly smaller than max.
+    @if $min-val >= $max-val {
+      @error "Invalid range: `#{$min}` (#{$min-val}) must be smaller than `#{$max}` (#{$max-val}).";
+    }
+
+    @media (#{$min-val} <= #{$dim} < #{$max-val}) {
+      @content;
+    }
+
+  // Case: min-width (up) -> breakpoint("md")
+  } @else if $min-val {
+    @media (#{$dim} >= #{$min-val}) {
+      @content;
+    }
+
+  // Case: max-width (down) -> breakpoint(null, "xl")
+  } @else if $max-val {
+    @media (#{$dim} < #{$max-val}) {
+      @content;
+    }
+
+  // Case: no arguments provided
+  } @else {
+    @error "Mixin `breakpoint` requires at least one start or end token.";
+  }
+}
+
+/**
+ * A mixin for creating responsive layout helper classes (prefixed with a
+ * size.breakpoint token (e.g. `sm:`, `md:`, etc.))
+ *
+ * First it simply returns the @content, setting the variable (`$prefix`) to an
+ * empty string (default/non-responsive classes).
+ *
+ * Then it loops through size.breakpoint tokens, creates min-width media
+ * queries, and defines `$prefix` as the breakpoint token.
+ *
+ * Example:
+ * @include responsive-utils() using ($prefix) {
+ *   .$prefix\:test {
+ *     color: red;
+ *   }
+ * }
+ *
+ * Result:
+ * .test {
+ *   color: red;
+ * }
+ *
+ * @media (min-width: 320px) {
+ *   .xs\:test {
+ *     color: red;
+ *   }
+ * }
+ * etc...
+ *
+ * Can set `$responsive-only: true` to exclude rulesets for non-prefixed
+ * selectors.
+ */
+
+@mixin responsive-utils($responsive-only: false) {
+  @if $responsive-only == false {
+    @content ("");
+  }
+
+  @each $breakpoint, $value in tokens("size", "breakpoint") {
+    @media (min-width: #{$value}) {
+      @content ("#{$breakpoint}\\:");
+    }
+  }
+}

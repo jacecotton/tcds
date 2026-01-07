@@ -1,0 +1,8 @@
+name: Texas Children's Design System
+type: theme
+description:
+base theme:
+core: 10.x
+core_version_requirement: ^10
+libraries:
+  - tcds/global

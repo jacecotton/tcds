@@ -1,9 +1,0 @@
-/**
- * Reinforcing `[hidden]` attribute here, as the default user agent style can be
- * unintentionally overridden by setting `display` to anything on an element in
- * an author stylesheet.
- */
-
-[hidden=""] {
-  display: none !important;
-}

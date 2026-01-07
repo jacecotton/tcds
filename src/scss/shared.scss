@@ -1,0 +1,10 @@
+/**
+ * This bundle is specifically for sharing styles with shadow DOMs. It only
+ * includes raw element styles and utility classes, excluding custom properties
+ * and @font-face declarations (since those pass through automatically), as well
+ * as @keyframes declarations since those can already be accessed directly in
+ * JavaScript.
+ */
+
+@use "theming" as *;
+@use "utilities" as *;
