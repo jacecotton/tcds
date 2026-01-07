@@ -1,5 +1,3 @@
-export {LitElement} from "./lit-element.js";
-
 export {css, nothing, noChange} from "lit";
 export {html, svg, unsafeStatic} from "lit/static-html.js";
 
@@ -15,4 +13,4 @@ export {
   eventOptions,
 } from "lit/decorators.js";
 
-export {updated, willUpdate} from "./decorators.js";
+export {LitElement} from "./lit-element.js";

@@ -1,4 +1,4 @@
-import {css} from "@/js/lit-element/index.js";
+import {css} from "@/js/lit";
 
 export default css`
   :host {

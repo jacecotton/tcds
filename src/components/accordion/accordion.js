@@ -1,4 +1,4 @@
-import {LitElement, html, customElement, property, queryAssignedElements} from "@/js/lit-element";
+import {LitElement, html, customElement, property, queryAssignedElements} from "@/js/lit";
 import sharedStyles from "@/js/utilities/shared.styles.js";
 import accordionStyles from "./accordion.styles.js";
 
@@ -6,7 +6,7 @@ import accordionStyles from "./accordion.styles.js";
 export class Accordion extends LitElement {
   static styles = [sharedStyles, accordionStyles];
 
-  // #region Properties and state
+  // #region Properties
   @property({type: Boolean, reflect: true})
   multiple = false;
 
@@ -14,7 +14,12 @@ export class Accordion extends LitElement {
   sections;
   // #endregion
 
-  // #region Template
+  // #region Lifecycle
+  connectedCallback() {
+    super.connectedCallback();
+    this.addEventListener("tcds-accordion-section:toggle", this.#handleChildToggle);
+  }
+
   render() {
     return html`
       ${this.multiple
@@ -65,13 +70,6 @@ export class Accordion extends LitElement {
       .map(section => section.close());
 
     return Promise.all(closeToggles);
-  }
-  // #endregion
-
-  // #region Lifecycle
-  connectedCallback() {
-    super.connectedCallback();
-    this.addEventListener("tcds-accordion-section:toggle", this.#handleChildToggle);
   }
   // #endregion
 
