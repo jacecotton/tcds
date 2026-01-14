@@ -31,7 +31,22 @@ Best practices:
 
 Icon SVGs are copied to the `/dist/images/icons` directory as-is via the `build:icons` script.
 
-Icon tokens at `/src/tokens/_gen/icons.json` are derived from the `/src/images/icons` directory (also via `build:icons`). Subfolder and file names are used as category and icon names for the token path, e.g. `/icons/utility/check.svg` → `icon.utility.check`. The values of each token are the SVG contents of the corresponding file.
+Icon tokens at `/src/tokens/_gen/icons.json` are derived from the `/src/images/icons` directory (also via `build:icons`). Subfolder and file names are used as category and icon names for the token path, e.g. `/icons/utility/check.svg` → `icon.utility.check`. The values of each token are the SVG contents of the corresponding file. Example:
+
+```
+{
+  "icon": {
+    "$type": "icon",
+    "brand": {
+      "facebook": {
+        "$value": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024' fill='currentcolor'><path d='m750.3 575.9 28.4-185.2H601V270.6c0-50.7 24.8-100.1 104.4-100.1h80.8v-158S712.9 0 642.6 0C496.3 0 400.5 88.7 400.5 249.4v141.3H237.8v185.2h162.7V1024h200.2V575.9h149.5Z'/></svg>"
+      },
+      ...
+    },
+    ...
+  }
+}
+```
 
 The `build:tokens` script runs Style Dictionary to push these tokens to different formats: [Sass maps](#sass-maps) (at `/src/scss/_gen/_tokens.scss`), [CSS custom properties](#css-custom-properties) (at `/src/scss/_gen/icons.css`), and [JavaScript exports](#javascript-exports) (at `/src/js/_gen/tokens.js`).
 
@@ -58,10 +73,10 @@ You can use these custom properties anywhere you can use an image `url()`, such 
 Classes are generated for each icon in the form of `.tcds-icon--[icon]`, with optional `.tcds-icon--[category]` overrides. The default category in case of collisions is reverse alphabetical (e.g. `utility` prevails over `primary`). Example:
 
 ```html
-<span class="tcds-icon--conditions"></span>
 <!-- icon.primary.conditions -->
-<span class="tcds-icon--conditions tcds-icon--media"></span>
+<span class="tcds-icon--conditions"></span>
 <!-- icon.media.conditions -->
+<span class="tcds-icon--conditions tcds-icon--media"></span>
 ```
 
 These classes create a `1x1em`, `currentcolor`-filled square, with the corresponding icon used as the `mask-image`. The icon itself is a pseudo-element (by default `::after`).
@@ -86,7 +101,7 @@ You can import raw SVG code from `/src/js/_gen/tokens.js` in the form of `Icon[C
 
 ```js
 /* src/js/some-script.js */
-import {IconBrandMychart} from "_gen/tokens";
+import {IconBrandMychart} from "@/js/_gen/tokens.js";
 
 console.log(IconBrandMychart); // => <svg ...>
 ```

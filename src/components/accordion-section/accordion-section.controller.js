@@ -58,22 +58,23 @@ export class AccordionAnimationController {
     if (isOpen) {
       panel.hidden = false;
 
-      requestAnimationFrame(() => {
-        panel.animate(
-          {height: ["0", getScrollHeight()]},
-          {duration, easing: MotionEasingTranslate},
-        ).onfinish = () => panel.style.height = "auto";
+      panel.animate(
+        {height: ["0", getScrollHeight()]},
+        {duration, easing: MotionEasingTranslate},
+      ).onfinish = () => panel.style.height = "auto";
 
-        content.animate(
-          {opacity: [0, 1], translate: ["0 -15%", "0 0"]},
-          {duration, easing: MotionEasingEnter},
-        );
-      });
+      content.animate(
+        {opacity: [0, 1], translate: ["0 -15%", "0 0"]},
+        {duration, easing: MotionEasingEnter},
+      );
     } else {
       panel.animate(
         {height: [getScrollHeight(), "0"]},
         {duration, easing: MotionEasingTranslate},
-      ).onfinish = () => panel.hidden = "until-found";
+      ).onfinish = () => {
+        panel.hidden = "until-found";
+        panel.style.height = null;
+      };
 
       content.animate(
         {opacity: [1, 0], translate: ["0 0", "0 -15%"]},

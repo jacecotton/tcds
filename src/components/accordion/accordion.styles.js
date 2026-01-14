@@ -8,8 +8,8 @@ export default css`
 
   [part="controls"] {
     display: flex;
-    justify-content: end;
     gap: 1rem;
+    justify-content: end;
     border-bottom: 1px solid var(--tcds-accordion-border-color);
     padding: 0 0 .5rem;
   }
@@ -20,9 +20,9 @@ export default css`
     background: none;
     border: 0;
     color: inherit;
-    display: flex;
     font-family: var(--tcds-font-family-ui);
     font-weight: var(--tcds-font-weight-semibold);
+    display: flex;
     gap: 1ch;
   }
 `;

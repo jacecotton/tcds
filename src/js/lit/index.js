@@ -1,4 +1,4 @@
-export {css, nothing, noChange} from "lit";
+export {css, unsafeCSS, nothing, noChange} from "lit";
 export {html, svg, unsafeStatic} from "lit/static-html.js";
 
 export {

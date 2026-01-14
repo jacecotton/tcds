@@ -1,4 +1,5 @@
-import {css} from "@/js/lit";
+import {css, unsafeCSS} from "@/js/lit";
+import {SizeBreakpointMd} from "@/js/_gen/tokens.js";
 
 export default css`
   [part="heading"] {
@@ -8,7 +9,7 @@ export default css`
      * On smaller screens, the main heading of each open, non-nested accordion
      * section is sticky, so we need to make them opaque and bump the z-index.
      */
-    @media (max-width: 768px) {
+    @media (max-width: ${unsafeCSS(SizeBreakpointMd)}) {
       background: var(--tcds-color-theme-background, var(--tcds-color-palette-white));
       position: var(--tcds-accordion-section-heading-position, sticky);
       top: 0;

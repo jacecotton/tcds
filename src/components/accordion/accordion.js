@@ -37,7 +37,8 @@ export class Accordion extends LitElement {
               </button>
             </div>
           `
-        : ``}
+        : ``
+      }
       <slot></slot>
     `;
   }
