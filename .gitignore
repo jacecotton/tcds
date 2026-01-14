@@ -9,3 +9,6 @@ dist
 src/**/_gen
 /components
 /docs/_site
+
+# Proprietary files
+src/fonts/mont
