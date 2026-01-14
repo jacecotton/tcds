@@ -2,3 +2,4 @@ node_modules
 .DS_Store
 *.map
 dist/tcds.js.LICENSE.txt
+dist/fonts/mont
