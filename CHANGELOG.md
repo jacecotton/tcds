@@ -1,3 +1,12 @@
+# [2.4.0](https://github.com/jacecotton/tcds/compare/v2.3.3...v2.4.0) (2026-01-14)
+
+
+### Features
+
+* **cleanup:** cleanup gitignore ([1940bd9](https://github.com/jacecotton/tcds/commit/1940bd9ceac8cbecaea964327c816afbcbb63a52))
+
+
+
 ## [2.3.3](https://github.com/jacecotton/tcds/compare/v2.3.2...v2.3.3) (2025-02-12)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * **components:** Add stepper variant to tabs component ([80c7e4c](https://github.com/jacecotton/tcds/commit/80c7e4c57244add1ebe74ffd020ea9e028d1a937))
-
-
-
-## [2.2.13](https://github.com/jacecotton/tcds/compare/v2.2.12...v2.2.13) (2024-06-26)
-
-
-### Bug Fixes
-
-* Misc style tweaks ([af7b606](https://github.com/jacecotton/tcds/commit/af7b606b2eb3e68329ce5fba671163e11947c17b))
 
 
 
