@@ -1,0 +1,19 @@
+.playground {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+}
+
+.playground__stage {
+  padding: 2rem;
+  background: var(--tcds-color-theme-background);
+  border-right: 1px solid #ccc;
+  overflow-x: auto;
+}
+
+.playground__controls {
+  padding: var(--tcds-space-component-md);
+}

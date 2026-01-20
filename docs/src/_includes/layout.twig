@@ -7,6 +7,7 @@
 
   <link rel="stylesheet" href="/tcds/dist/css/icons.css">
   <link rel="stylesheet" href="/tcds/dist/css/tcds.css">
+  <link rel="stylesheet" href="/dist/css/playground.css">
 
   {% for asset in get_assets() %}
     {% if asset ends with ".css" %}
@@ -21,6 +22,7 @@
 
   <script type="module" src="/tcds/dist/js/shared.js"></script>
   <script type="module" src="/tcds/dist/js/vendor.js"></script>
+  <script type="module" src="/dist/js/playground.js"></script>
 
   {% for asset in get_assets() %}
     {% if asset ends with '.js' %}

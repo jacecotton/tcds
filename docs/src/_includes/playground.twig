@@ -1,0 +1,65 @@
+{# playground.twig #}
+{% apply spaceless %}
+{% set id = id|default('playground-' ~ random()) %}
+{# MACRO: Reusable Input Renderer #}
+{% macro render_field(id, prop, config, section_slug='1') %}
+  {% set field_id = "#{id}-#{prop}-#{section_slug}" %}
+
+  <label for="{{ field_id }}">
+    {{ config.label|default(prop) }}
+    {% set isTextEdit = config.selector is defined and config.attribute is defined and config.attribute is same as(false) %}
+    {% set selectorAttr = config.selector ? 'data-selector="' ~ config.selector|escape('html_attr') ~ '"' : '' %}
+    {% set targetAttr = (not isTextEdit) ? (config.attribute is defined ? config.attribute : prop) : '' %}
+    {% set attrName = targetAttr ? 'data-attribute="' ~ targetAttr ~ '"' : '' %}
+    {% set modeAttr = isTextEdit ? 'data-value-mode="text"' : '' %}
+    {% if config.type == 'textarea' %}
+      <textarea name="{{ prop }}" id="{{ field_id }}" {{ ' ' }} {{ selectorAttr|raw }} {{ ' ' }} {{ modeAttr|raw }}>{{ config.default }}</textarea>
+    {% elseif config.type == 'select' %}
+      <select name="{{ prop }}" id="{{ field_id }}" {{ ' ' }} {{ selectorAttr|raw }} {{ ' ' }} {{ attrName|raw }} {{ ' ' }} {{ modeAttr|raw }}>
+        {% for option in config.options %}
+          <option value="{{ option }}" {{ config.default == option ? 'selected' : '' }}>{{ option|title }}</option>
+        {% endfor %}
+      </select>
+    {% elseif config.type == 'boolean' %}
+      <input type="checkbox" role="switch" name="{{ prop }}" id="{{ field_id }}" {{ config.default ? 'checked' : '' }} {{ ' ' }} {{ selectorAttr|raw }} {{ ' ' }} {{ attrName|raw }}>
+    {% else %}
+      <input type="{{ config.type|default('text') }}" name="{{ prop }}" id="{{ field_id }}" value="{{ config.default }}" {{ ' ' }} {{ selectorAttr|raw }} {{ ' ' }} {{ attrName|raw }} {{ ' ' }} {{ modeAttr|raw }}>
+    {% endif %}
+  </label>
+{% endmacro %}
+
+{# IMPORT MACRO #}
+{% import _self as forms %}
+<div class="playground" id="{{ id }}" data-target="{{ selector }}">
+  <div class="playground__stage">
+    {% apply spaceless %}
+      {% block content %}{% endblock %}
+    {% endapply %}
+  </div>
+  {# CONTROLS #}
+  <form class="playground__controls">
+    {% apply spaceless %}
+      {# LOOP 1: Root / Ungrouped Properties #}
+      {%- for prop, config in form -%}
+        {% if prop != 'sections' %}
+          {{ forms.render_field(id, prop, config) }}
+        {% endif %}
+      {% endfor %}
+
+      {# LOOP 2: Grouped Sections #}
+      {% if form.sections is defined %}
+        {% for section in form.sections %}
+          <fieldset class="playground__fieldset">
+            {% if section.label %}
+              <legend>{{ section.label }}</legend>
+            {% endif %}
+            {%- for field_prop, field_config in section.fields -%}
+              {{ forms.render_field(id, field_prop, field_config, section.label|lower|replace({" ": "-"})) }}
+            {% endfor %}
+          </fieldset>
+        {% endfor %}
+      {% endif %}
+    {% endapply %}
+  </form>
+</div>
+{% endapply %}

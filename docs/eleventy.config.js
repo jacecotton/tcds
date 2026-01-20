@@ -17,6 +17,7 @@ export default function (eleventyConfig) {
   // Maps root/components to _site/components
   eleventyConfig.addPassthroughCopy({"../components": "tcds/components"});
   eleventyConfig.addPassthroughCopy({"../dist": "tcds/dist"});
+  eleventyConfig.addPassthroughCopy({"./src/assets": "dist"});
 
   // Twing Setup
   const fsLoader = createFilesystemLoader(fs);
