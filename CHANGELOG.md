@@ -1,3 +1,12 @@
+## [2.4.3](https://github.com/jacecotton/tcds/compare/v2.4.2...v2.4.3) (2026-01-20)
+
+
+### Bug Fixes
+
+* **components:** Change shadow DOM style import strategy for Firefox ([6e78d9c](https://github.com/jacecotton/tcds/commit/6e78d9c7f11a464d22276fe079d093cc8d82fc31))
+
+
+
 ## [2.4.2](https://github.com/jacecotton/tcds/compare/v2.4.1...v2.4.2) (2026-01-20)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Bump up line height on hero headings ([7218972](https://github.com/jacecotton/tcds/commit/7218972787d0be550baa4eeb53b79823bfa0e3a1))
-
-
-
-## [2.3.2](https://github.com/jacecotton/tcds/compare/v2.3.1...v2.3.2) (2025-02-05)
-
-
-### Bug Fixes
-
-* **components:** Issues with stepper tab variant ([697bc71](https://github.com/jacecotton/tcds/commit/697bc719973c018d8e31c0c8bbe3c57f7a3d45ec))
 
 
 
