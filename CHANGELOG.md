@@ -1,4 +1,14 @@
+## [2.4.2](https://github.com/jacecotton/tcds/compare/v2.4.1...v2.4.2) (2026-01-20)
+
+
+### Bug Fixes
+
+* verify npm publishing workflow ([8ab8095](https://github.com/jacecotton/tcds/commit/8ab80953a2016b0bec2b535fb3b9ab7175c92e88))
+
+
+
 ## [2.4.1](https://github.com/jacecotton/tcds/compare/v2.4.0...v2.4.1) (2026-01-20)
+
 
 ### Bug Fixes
 
@@ -30,15 +40,6 @@
 ### Bug Fixes
 
 * **components:** Issues with stepper tab variant ([697bc71](https://github.com/jacecotton/tcds/commit/697bc719973c018d8e31c0c8bbe3c57f7a3d45ec))
-
-
-
-## [2.3.1](https://github.com/jacecotton/tcds/compare/v2.3.0...v2.3.1) (2025-02-04)
-
-
-### Bug Fixes
-
-* **components:** Stepper tab variant design tweak ([cb2c007](https://github.com/jacecotton/tcds/commit/cb2c007d3958ab6d006be344b1712a97dee6f2c8))
 
 
 
