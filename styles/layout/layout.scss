@@ -1,5 +1,5 @@
 @use "sass:map";
-@use "_variables" as *;
+@use "variables" as *;
 
 @each $breakpoint, $width in $breakpoints {
   /* stylelint-disable-next-line custom-media-pattern */

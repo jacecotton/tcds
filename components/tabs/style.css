@@ -20,7 +20,7 @@
 }
 
 :host([variant*="stepper"]) {
-  --tcds-tablist-gap: .5rem;
+  --tcds-tablist-gap: 0.5rem;
   --tcds-tabpanel-padding: 2rem;
   --tcds-tabpanel-background: var(--tcds-color-blue-x-light);
   --tcds-tab-border-radius: 1rem;
@@ -60,36 +60,56 @@
 
 [role="tab"] {
   background: var(--tcds-tabs-tab-background, transparent);
-  border-top-right-radius: var(--tcds-tab-border-top-right-radius, var(--tcds-tab-border-radius));
-  border-top-left-radius: var(--tcds-tab-border-top-left-radius, var(--tcds-tab-border-radius));
+  border-top-right-radius: var(
+    --tcds-tab-border-top-right-radius,
+    var(--tcds-tab-border-radius)
+  );
+  border-top-left-radius: var(
+    --tcds-tab-border-top-left-radius,
+    var(--tcds-tab-border-radius)
+  );
   border-bottom-left-radius: var(--tcds-tab-border-bottom-left-radius, 0);
   color: var(--tcds-tabs-tab-text-color, var(--tcds-color-secondary));
   font-weight: var(--tcds-font-weight-semibold);
   font-size: var(--tcds-tabs-tab-font-size);
-  padding: var(--tcds-tabs-tab-padding-block, 0) var(--tcds-tabs-tab-padding-inline, var(--tcds-space-tight));
+  padding: var(--tcds-tabs-tab-padding-block, 0)
+    var(--tcds-tabs-tab-padding-inline, var(--tcds-space-tight));
   height: calc(var(--tcds-tabs-tab-height) + 6px);
   flex: var(--tcds-tabs-tab-flex-grow, 0) 0;
   white-space: nowrap;
   position: relative;
   z-index: 1;
-  transition: color var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing);
+  transition: color var(--tcds-animation-productive-duration)
+    var(--tcds-animation-productive-easing);
 
   &:hover {
-    --tcds-tabs-tab-background: var(--tcds-tabs-tab-hover-background, var(--tcds-tabs-tab-active-background, transparent));
-    --tcds-tabs-tab-text-color: var(--tcds-tabs-tab-hover-text-color, var(--tcds-tabs-tab-active-text-color, var(--tcds-color-primary)));
+    --tcds-tabs-tab-background: var(
+      --tcds-tabs-tab-hover-background,
+      var(--tcds-tabs-tab-active-background, transparent)
+    );
+    --tcds-tabs-tab-text-color: var(
+      --tcds-tabs-tab-hover-text-color,
+      var(--tcds-tabs-tab-active-text-color, var(--tcds-color-primary))
+    );
+    --tcds-tabs-tab-background-color: var(
+      --tcds-tabs-tab-active-background-color,
+      var(--tcds-color-red-x-light)
+    );
   }
 
   &[aria-selected="true"] {
-    --tcds-tabs-tab-text-color: var(--tcds-tabs-tab-active-text-color, var(--tcds-color-primary));
-    --tcds-tabs-tab-background: var(--tcds-tabs-tab-active-background, transparent);
-  }
-
-  &:hover {
-    --tcds-tabs-tab-background-color: var(--tcds-tabs-tab-active-background-color, var(--tcds-color-red-x-light));
-  }
-
-  &[aria-selected="true"] {
-    --tcds-tabs-tab-indicator-color: var(--tcds-tabs-tab-active-indicator-color, var(--tcds-color-primary));
+    --tcds-tabs-tab-text-color: var(
+      --tcds-tabs-tab-active-text-color,
+      var(--tcds-color-primary)
+    );
+    --tcds-tabs-tab-background: var(
+      --tcds-tabs-tab-active-background,
+      transparent
+    );
+    --tcds-tabs-tab-indicator-color: var(
+      --tcds-tabs-tab-active-indicator-color,
+      var(--tcds-color-primary)
+    );
   }
 
   > span {
@@ -99,21 +119,23 @@
     justify-content: center;
     text-align: center;
     height: 100%;
-    border-bottom: var(--tcds-tabs-tab-indicator, 4px solid var(--tcds-tabs-tab-indicator-color, transparent));
-    transition: border-bottom var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing);
+    border-bottom: var(
+      --tcds-tabs-tab-indicator,
+      4px solid var(--tcds-tabs-tab-indicator-color, transparent)
+    );
+    transition: border-bottom var(--tcds-animation-productive-duration)
+      var(--tcds-animation-productive-easing);
 
     &::after {
       content: "";
       display: var(--tcds-tabs-tab-background-floater, block);
       position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 6px;
-      left: 0;
+      inset: 0 0 6px;
       background: var(--tcds-tabs-tab-background-color, transparent);
       border-radius: 10px;
       z-index: -1;
-      transition: background var(--tcds-animation-productive-duration) var(--tcds-animation-productive-easing);
+      transition: background var(--tcds-animation-productive-duration)
+        var(--tcds-animation-productive-easing);
     }
   }
 }

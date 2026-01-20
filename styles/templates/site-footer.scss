@@ -130,8 +130,7 @@
     margin-bottom: var(--tcds-space-normal);
 
     ul {
-      column-gap: var(--tcds-space-x-loose);
-      row-gap: var(--tcds-space-normal);
+      gap: var(--tcds-space-normal) var(--tcds-space-x-loose);
     }
 
     li {

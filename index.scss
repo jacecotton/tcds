@@ -1,5 +1,8 @@
 @forward "./styles/base/variables";
 
+/** Layout */
+@use "./styles/layout/layout";
+
 /** Animation */
 @use "./styles/animation/animation";
 @use "./styles/animation/library";
@@ -27,9 +30,6 @@
 @use "./styles/typography/typography";
 @use "./styles/typography/fonts";
 @use "./styles/typography/globals";
-
-/** Layout */
-@use "./styles/layout/layout";
 
 /** Templates */
 @use "./styles/templates/site-header";

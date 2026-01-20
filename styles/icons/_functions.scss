@@ -1,6 +1,6 @@
 @use "sass:string";
 @use "sass:map";
-@use "_variables" as *;
+@use "variables" as *;
 
 @function icon($icon) {
   @if not map.has-key($icons, $icon) {
@@ -20,7 +20,7 @@
   $escape-characters: (
     " ": "%20",
     "'": "%22",
-    "\"": "%27",
+    '"': "%27",
     "#": "%23",
     "/": "%2F",
     ":": "%3A",
@@ -29,7 +29,7 @@
     "%": "%25",
     "<": "%3C",
     ">": "%3E",
-    "\\": "%5C",
+    "\\":"%5C",
     "^": "%5E",
     "{": "%7B",
     "|": "%7C",
@@ -48,5 +48,5 @@
   }
 
   /* stylelint-disable-next-line string-quotes */
-  @return url('data:image/svg+xml, #{$escaped-string} ');
+  @return url("data:image/svg+xml, #{$escaped-string} ");
 }

@@ -1,5 +1,5 @@
-@use "_variables" as *;
-@use "_functions" as *;
+@use "variables" as *;
+@use "functions" as *;
 
 :root {
   @each $icon, $value in $icons {

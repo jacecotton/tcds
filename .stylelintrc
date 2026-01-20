@@ -10,7 +10,7 @@
     }],
     "scss/operator-no-newline-before": null,
     "scss/dollar-variable-empty-line-before": null,
-    "declaration-colon-newline-after": null,
+    "media-feature-range-notation": null,
     "declaration-block-no-redundant-longhand-properties": [true, {
       "ignoreShorthands": ["grid-template"]
     }],
