@@ -23,9 +23,6 @@ export class AccordionAnimationController {
     host.addController(this);
   }
 
-  /**
-   * Runs after the host's update() cycle.
-   */
   hostUpdated() {
     const isOpen = this.config.isOpen();
     const panel = this.config.getPanel();
@@ -33,43 +30,47 @@ export class AccordionAnimationController {
 
     if (!panel || !content) return;
 
-    // Initial render. No animation, just set state.
+    // Initial render - no animation, just set state.
     if (this.#previousOpen === undefined) {
+      // `[hidden=until-found]` keeps the content discoverable by browser text
+      // search (cmd/ctrl+F).
       if (!isOpen) panel.hidden = "until-found";
       this.#previousOpen = isOpen;
       return;
     }
 
-    // No state change, do nothing.
     if (isOpen === this.#previousOpen) return;
 
-    // State changed, run animation.
     this.#animate(isOpen, panel, content);
 
-    // Update state tracker.
     this.#previousOpen = isOpen;
   }
 
   #animate(isOpen, panel, content) {
+    // If user has reduced-motion preference, disable animations by setting
+    // duration to 1ms.
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const duration = reducedMotion ? 1 : MotionDurationProductive;
-    const getScrollHeight = () => `${panel.scrollHeight}px`;
 
     if (isOpen) {
       panel.hidden = false;
 
+      // After animation, we set panel height to auto so it can respond to new
+      // elements that add/grow after opening (like nested accordions).
       panel.animate(
-        {height: ["0", getScrollHeight()]},
+        {height: ["0", `${panel.scrollHeight}px`]},
         {duration, easing: MotionEasingTranslate},
       ).onfinish = () => panel.style.height = "auto";
 
+      // Small tertiary animation for the content to add smoothness.
       content.animate(
         {opacity: [0, 1], translate: ["0 -15%", "0 0"]},
         {duration, easing: MotionEasingEnter},
       );
     } else {
+      // Reverse animation, reset DOM.
       panel.animate(
-        {height: [getScrollHeight(), "0"]},
+        {height: [`${panel.scrollHeight}px`, "0"]},
         {duration, easing: MotionEasingTranslate},
       ).onfinish = () => {
         panel.hidden = "until-found";
