@@ -20,44 +20,57 @@ export class AccordionSection extends LitElement {
   @property({type: Boolean, reflect: true})
   open = false;
 
-  @property({type: String})
-  get title() {
-    return this.querySelector(":scope > [slot=title]")?.innerHTML || "";
-  }
-
-  get headingLevel() {
-    return this.querySelector(":scope > [slot=title]")?.localName || "h3";
-  }
-
   get accordion() {
     return this.closest("tcds-accordion");
   }
 
+  @state() _headingLevel = "h3";
+  @state() _title = "";
+
   // Internal reference to shadow DOM parts.
   @state() _parts = {};
+
+  #observer = null;
   // #endregion
 
   // #region Lifecycle
   connectedCallback() {
     super.connectedCallback();
+
+    this.#syncHeader();
+
+    this.#observer = new MutationObserver(() => {
+      this.#syncHeader();
+    });
+
+    this.#observer.observe(this, {
+      childList: true,
+      subtree: true,
+      characterData: true,
+      attributes: true,
+    });
+
     window.addEventListener("hashchange", this.#deepLinkHandler.bind(this));
   }
 
   render() {
+    const hx = unsafeStatic(this._headingLevel);
+
     return html`
       <section aria-labelledby="heading">
-        <${unsafeStatic(this.headingLevel)} part="heading" id="heading">
+        <${hx} part="heading" id="heading">
           <button
             part="button"
             id="button"
+            type="button"
             aria-controls="panel"
             aria-expanded="${this.open}"
             @click="${() => this.toggle()}"
           >
-            ${this.title}
+            ${this._title}
             <tcds-icon part="icon" icon="${this.open ? "minus" : "plus"}"></tcds-icon>
           </button>
-        </${unsafeStatic(this.headingLevel)}>
+        </${hx}>
 
         <div part="panel" id="panel">
           <div part="content">
@@ -94,6 +107,8 @@ export class AccordionSection extends LitElement {
   }
 
   disconnectedCallback() {
+    super.disconnectedCallback();
+    this._observer?.disconnect();
     window.removeEventListener("hashchange", this.#deepLinkHandler);
   }
   // #endregion
@@ -163,6 +178,18 @@ export class AccordionSection extends LitElement {
       // Scroll to whichever element whose ID matches the hash. It may not be
       // a section, but an element contained by one.
       document.getElementById(hash).scrollIntoView(true);
+    }
+  }
+
+  #syncHeader() {
+    const slottedTitle = this.querySelector(":scope > [slot=title]");
+
+    if (slottedTitle) {
+      this._headingLevel = slottedTitle.tagName.toLowerCase();
+      this._title = slottedTitle.innerHTML;
+    } else {
+      this._headingLevel = "h3";
+      this._title = "";
     }
   }
   // #endregion
