@@ -69,6 +69,11 @@
       "$type": "keyframes",
       "$description": "Scale up to 1.5",
       "$value": [{"offset": 1, "transform": "scale(1.5)"}]
+    },
+    "spin": {
+      "$type": "keyframes",
+      "$description": "Spin 360 degrees",
+      "$value": [{"offset": 1, "rotate": "0 0 360deg"}]
     }
   }
 }

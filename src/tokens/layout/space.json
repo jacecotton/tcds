@@ -4,6 +4,7 @@
     "$description": "Raw spacing values, graded in multiples of 4px.",
     "1": {"$value": "4px"},
     "2": {"$value": "8px"},
+    "3": {"$value": "12px"},
     "4": {"$value": "16px"},
     "8": {"$value": "32px"},
     "10": {"$value": "40px"},
@@ -11,7 +12,7 @@
     "component": {
       "$description": "Semantic spacing values for component scales.",
       "xs": {"$value": "{space.1}"},
-      "sm": {"$value": "{space.2}"},
+      "sm": {"$value": "{space.3}"},
       "md": {"$value": "{space.4}"},
       "lg": {"$value": "{space.8}"}
     },

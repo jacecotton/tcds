@@ -1,6 +1,7 @@
 {
   "border-radius": {
     "$type": "dimension",
+    "xs": {"$value": "4px"},
     "sm": {"$value": "6px"},
     "md": {"$value": "10px"},
     "lg": {"$value": "20px"}
