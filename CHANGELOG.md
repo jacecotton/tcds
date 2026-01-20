@@ -1,6 +1,5 @@
 ## [2.4.1](https://github.com/jacecotton/tcds/compare/v2.4.0...v2.4.1) (2026-01-20)
 
-
 ### Bug Fixes
 
 * **build:** Dependency updates and run linters ([f6139e0](https://github.com/jacecotton/tcds/commit/f6139e0e83f19a50e24901685420240fc30ecdae))
