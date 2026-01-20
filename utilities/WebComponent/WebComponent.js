@@ -33,8 +33,13 @@ const WebComponent = (ElementInterface = HTMLElement) => class extends ElementIn
     this.#batch = {};
     this.#debounce = null;
 
+    const isFirefox = navigator.userAgent.toLowerCase().includes("firefox");
+    const styleImport = isFirefox
+      ? `<link rel="stylesheet" id="tcds" href="${this.#baseStyles}">`
+      : `<style id="tcds">@import url(${this.#baseStyles})</style>`;
+
     diff(`
-      ${this.#baseStyles ? `<style id="tcds">@import url(${this.#baseStyles})</style>` : ""}
+      ${this.#baseStyles ? styleImport : ""}
       ${this.template || ""}
     `, this.shadowRoot);
 
