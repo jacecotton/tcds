@@ -1,0 +1,35 @@
+button:not([type=button]),
+input[type=button],
+input[type=submit],
+input[type=reset],
+.tcds-ui-button {
+  --tcds-button-background: transparent;
+  --tcds-button-foreground: var(--tcds-color-palette-gray-700);
+
+  -webkit-appearance: none;
+  appearance: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--tcds-space-component-sm);
+  background: var(--tcds-button-background);
+  color: var(--tcds-button-foreground);
+  border: 0;
+  border-radius: var(--tcds-border-radius-sm);
+  padding: var(--tcds-space-component-sm);
+  font-family: var(--tcds-font-family-ui);
+  font-size: var(--tcds-font-size-sm);
+  font-weight: var(--tcds-font-weight-semibold);
+  transition:
+    background var(--tcds-motion-duration-productive) var(--tcds-motion-easing-translate),
+    color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-translate);
+
+  &:hover {
+    --tcds-button-background: var(--tcds-color-palette-red-50);
+    --tcds-button-foreground: var(--tcds-color-palette-red-700);
+  }
+
+  &:active {
+    --tcds-button-background: var(--tcds-color-palette-red-100);
+  }
+}
