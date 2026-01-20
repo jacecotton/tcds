@@ -1,0 +1,12 @@
+select {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  padding: var(--tcds-field-padding-inline) var(--tcds-field-padding-block);
+  border: var(--tcds-field-border);
+  box-shadow: var(--tcds-field-box-shadow);
+  background-image: var(--tcds-icon-utility-caret-down);
+  background-repeat: no-repeat;
+  background-size: .75em;
+  background-position: calc(100% - var(--tcds-field-padding-inline)) center;
+}

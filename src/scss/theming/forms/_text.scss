@@ -1,0 +1,39 @@
+$text-input-selectors: (
+  "[type=text]",
+  "[type=password]",
+  "[type=email]",
+  "[type=url]",
+  "[type=search]",
+  "[type=tel]",
+  "[type=number]",
+  "[type=date]",
+  "[type=time]",
+);
+
+input:is(#{$text-input-selectors}),
+textarea {
+  background: var(--tcds-field-background);
+  border: var(--tcds-field-border);
+  border-radius: var(--tcds-field-border-radius);
+  box-shadow: inset var(--tcds-field-box-shadow-inset);
+
+  font-size: var(--tcds-font-size-sm);
+
+  padding: var(--tcds-field-padding-block) var(--tcds-field-padding-inline);
+  width: 100%;
+
+  &:focus {
+    border-color: var(--tcds-field-focus-border-color);
+    outline: none;
+
+    // iOS Safari hack to make sure the page doesn't zoom in when an input
+    // receives focus.
+    @supports (-webkit-touch-callout: none) {
+      font-size: var(--tcds-font-size-md);
+    }
+  }
+}
+
+textarea {
+  line-height: 1.5;
+}

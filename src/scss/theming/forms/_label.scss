@@ -1,0 +1,40 @@
+@use "text" as text;
+
+label {
+  font-family: var(--tcds-font-family-ui);
+  font-size: var(--tcds-font-size-xs);
+  font-weight: var(--tcds-font-weight-normal);
+  cursor: pointer;
+}
+
+// Checkbox and radio labels should always be placed on the same line and to the
+// right of the fields.
+*:has(> label + input:is([type=checkbox], [type=radio])),
+*:has(> input:is([type=checkbox], [type=radio]) + label),
+label:has(> input:is([type=checkbox], [type=radio])) {
+  display: flex;
+  flex-direction: row;
+  gap: var(--tcds-space-component-sm);
+  align-items: center;
+  justify-content: start;
+
+  input {
+    order: -1;
+  }
+}
+
+// Text input labels should always be placed on its own line and on top of the
+// fields.
+*:has(> label + :is(textarea, select, input:is(#{text.$text-input-selectors}))),
+*:has(> :is(textarea, select, input:is(#{text.$text-input-selectors})) + label),
+label:has(> :is(textarea, select, input:is(#{text.$text-input-selectors}))) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tcds-space-component-xs);
+  align-items: start;
+  justify-content: start;
+
+  :is(textarea, select, input) {
+    order: 1;
+  }
+}
