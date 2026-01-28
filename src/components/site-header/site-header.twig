@@ -1,0 +1,65 @@
+<tcds-site-header {{ "dark" in variant ? "data-mode='dark'" }}>
+  <a href="/" rel="home" title="Go home" slot="logo">
+    <img src="{{ logo.url }}" alt="{{ logo.alt ?: "Texas Children's logo" }}" width="{{ logo.width ?: "250" }}" height="{{ logo.height ?: "33.16" }}">
+    {% if logo.entity %}
+      <span>{{ logo.entity }}</span>
+    {% endif %}
+  </a>
+
+  <details slot="menus">
+    <summary>
+      <span class="visually-hidden">Toggle main navigation</span>
+    </summary>
+    <div>
+      {% if primary_menu is defined %}
+        <nav data-part="primary-menu">
+          <ul role="list">
+            {% for item in primary_menu %}
+              <li>
+                {% if item.url is defined %}
+                  <a href="{{ item.url }}">{{ item.title }}</a>
+                {% elseif item.content is defined %}
+                  <details name="primary-menu">
+                    <summary>{{ item.title }}</summary>
+                    <div>
+                      {% if block(item.content) is defined %}
+                        {{ block(item.content) }}
+                      {% else %}
+                        {{ item.content }}
+                      {% endif %}
+                    </div>
+                  </details>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        </nav>
+      {% endif %}
+
+      {% if utility_menu is defined %}
+        <nav data-part="utility-menu">
+          <ul role="list">
+            {% for item in utility_menu %}
+              <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </nav>
+      {% endif %}
+    </div>
+  </details>
+
+  {% if search_menu is defined %}
+    <details slot="search" name="primary-menu">
+      <summary>
+        <span class="visually-hidden">Toggle main search</span>
+      </summary>
+      <div>
+        {% if block(search_menu) is defined %}
+          {{ block(search_menu) }}
+        {% else %}
+          {{ search_menu }}
+        {% endif %}
+      </div>
+    </details>
+  {% endif %}
+</tcds-site-header>

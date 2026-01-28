@@ -1,0 +1,5 @@
+<ul role="list" class="tcds-submenu">
+  {% for item in items %}
+    <li><a href="{{ item.url }}" {{ item.current ? "aria-current='page'" }}>{{ item.title }}</a></li>
+  {% endfor %}
+</ul>

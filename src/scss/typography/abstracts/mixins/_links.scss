@@ -1,0 +1,39 @@
+@mixin link($flag: "") {
+  :where(&) {
+    color: var(--tcds-color-theme-link) #{$flag};
+    text-decoration: underline #{$flag};
+    touch-action: manipulation #{$flag};
+    -webkit-tap-highlight-color: rgb(0 0 0 / 0%) #{$flag};
+  }
+
+  :where(&:hover) {
+    text-decoration: none #{$flag};
+  }
+}
+
+@mixin link-external() {
+  &::after {
+    content: "";
+    display: inline-block;
+    background-color: var(--tcds-color-theme-foreground);
+    mask: var(--tcds-icon-utility-external) center no-repeat;
+    opacity: 0.4;
+    width: 0.66em;
+    height: 0.66em;
+    margin-left: 0.25em;
+    vertical-align: middle;
+  }
+}
+
+@mixin link-ui($flag: "") {
+  font-family: var(--tcds-font-family-ui) #{$flag};
+  font-weight: var(--tcds-font-weight-semibold) #{$flag};
+  color: var(--tcds-color-theme-foreground) #{$flag};
+  text-decoration: underline #{$flag};
+  text-decoration-color: var(--tcds-color-theme-border) #{$flag};
+
+  &:hover {
+    color: var(--tcds-color-theme-link) #{$flag};
+    text-decoration-color: currentcolor #{$flag};
+  }
+}

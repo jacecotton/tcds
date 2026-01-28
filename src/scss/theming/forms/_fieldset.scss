@@ -1,14 +1,19 @@
 fieldset {
+  --tcds-fieldset-row-gap: var(--tcds-form-row-gap);
+  --tcds-fieldset-padding: var(--tcds-fieldset-row-gap);
+  --tcds-fieldset-border: var(--tcds-field-border);
+  --tcds-fieldset-border-radius: var(--tcds-field-border-radius);
+
   display: flex;
   flex-direction: column;
-  gap: var(--tcds-space-component-sm);
-  padding: var(--tcds-space-component-sm);
-  border: var(--tcds-field-border);
-  border-radius: var(--tcds-field-border-radius);
+  gap: var(--tcds-fieldset-row-gap);
+  padding: var(--tcds-fieldset-padding);
+  border: var(--tcds-fieldset-border);
+  border-radius: var(--tcds-fieldset-border-radius);
 }
 
 legend {
-  padding: 0 var(--tcds-space-component-sm);
+  padding: 0 var(--tcds-fieldset-padding);
   font-size: var(--tcds-font-size-xs);
   font-weight: var(--tcds-font-weight-normal);
 }

@@ -1,6 +1,7 @@
 @use "sass:list";
 @use "sass:map";
 @use "../abstracts/functions" as *;
+@use "../abstracts/mixins" as *;
 
 .tcds-icon,
 tcds-icon {
@@ -18,6 +19,29 @@ tcds-icon {
   }
 }
 
+.bg-icon {
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--tcds-color-theme-watermark);
+    mask-image: var(--tcds-icon);
+    mask-position: -15% center;
+    mask-repeat: no-repeat;
+    mask-size: 200%;
+    z-index: -1;
+
+    @include breakpoint("lg") {
+      mask-position: 200% center;
+      mask-size: 85%;
+    }
+  }
+}
+
 @each $category, $category-icons in tokens("icon") {
   @each $icon, $value in $category-icons {
     /**
@@ -29,6 +53,8 @@ tcds-icon {
       */
     .tcds-icon--#{$icon},
     .tcds-icon--#{$icon}#{&}--#{$category},
+    .bg-icon--#{$icon},
+    .bg-icon--#{$icon}#{&}--#{$category},
     tcds-icon[icon=#{$icon}],
     tcds-icon[icon=#{$icon}][category=#{$category}] {
       --tcds-icon: var(--tcds-icon-#{$category}-#{$icon});

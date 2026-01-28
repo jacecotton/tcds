@@ -1,0 +1,22 @@
+{% set base_class = "tcds-section" %}
+{% set classes = [base_class] %}
+
+{% for modifier in modifiers %}
+  {% set classes = classes|merge(["#{base_class}--#{modifier}"]) %}
+{% endfor %}
+
+{% for class in custom_classes %}
+  {% set classes = classes|merge([class]) %}
+{% endfor %}
+
+<section
+  class="{{ classes|join(" ") }}"
+  {{ theme ? "data-theme='#{theme}'" }}
+  {{ mode ? "data-mode='#{mode}'" }}
+>
+  <div class="container-lg">
+    {% block content %}
+      {{ content }}
+    {% endblock %}
+  </div>
+</section>

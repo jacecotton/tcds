@@ -1,20 +1,23 @@
+// $-host: "https://www.texaschildrens.org/sites/default/files/fonts/mont" !default;
+$-host: "../fonts/mont";
+
 @font-face {
-  font-family: mont;
-  src: url("../fonts/mont/mont-400.woff2") format("woff2");
-  font-weight: 400;
+  font-family: "Mont";
+  src: url("#{$-host}/Mont-Bold.woff2") format("woff2");
+  font-weight: bold;
   font-display: swap;
 }
 
 @font-face {
-  font-family: mont;
-  src: url("../fonts/mont/mont-600.woff2") format("woff2");
+  font-family: "Mont";
+  src: url("#{$-host}/Mont-SemiBold.woff2") format("woff2");
   font-weight: 600;
   font-display: swap;
 }
 
 @font-face {
-  font-family: mont;
-  src: url("../fonts/mont/mont-700.woff2") format("woff2");
-  font-weight: 700;
+  font-family: "Mont";
+  src: url("#{$-host}/Mont-Regular.woff2") format("woff2");
+  font-weight: normal;
   font-display: swap;
 }

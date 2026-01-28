@@ -1,5 +1,6 @@
 /** Component-level tokens */
 :root {
+  --tcds-form-row-gap: var(--tcds-space-component-md);
   // Default
   --tcds-field-background: var(--tcds-color-palette-white);
   --tcds-field-border: 1px solid var(--tcds-field-border-color);
@@ -44,9 +45,14 @@ button,
 form {
   display: flex;
   flex-direction: column;
-  gap: var(--tcds-space-component-sm);
+  gap: var(--tcds-form-row-gap);
+  font-family: var(--tcds-font-family-ui);
 
-  &, & * {
-    font-family: var(--tcds-font-family-ui);
+  &[data-variant="compact"] {
+    --tcds-form-row-gap: var(--tcds-space-component-sm);
+  }
+
+  * {
+    font-family: inherit;
   }
 }

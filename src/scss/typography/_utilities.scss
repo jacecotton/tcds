@@ -22,7 +22,7 @@
 
 @include rootMix.responsive-utils() using ($breakpoint) {
   @each $size, $value in rootFunc.tokens("font", "size") {
-    .#{$breakpoint}font-size-#{$size} {
+    .#{$breakpoint}text-#{$size} {
       font-size: var(--tcds-font-size-#{$size}) !important;
 
       // These shouldn't get `!important` because they're implicit and only
@@ -92,4 +92,12 @@
 
 .h6 {
   @include typography.h6("!important");
+}
+
+/**
+ * Link utilities.
+ */
+
+.link--ui {
+  @include typography.link-ui("!important");
 }

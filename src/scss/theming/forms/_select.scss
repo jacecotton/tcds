@@ -4,6 +4,7 @@ select {
   width: 100%;
   padding: var(--tcds-field-padding-inline) var(--tcds-field-padding-block);
   border: var(--tcds-field-border);
+  border-radius: var(--tcds-field-border-radius);
   box-shadow: var(--tcds-field-box-shadow);
   background-image: var(--tcds-icon-utility-caret-down);
   background-repeat: no-repeat;

@@ -1,0 +1,28 @@
+@use "../../../scss/abstracts/mixins" as *;
+
+@mixin dark-header {
+  --tcds-site-header-toggle-color: var(--tcds-color-palette-white);
+
+  // Replaced with &::before-based box-shadow below.
+  // background: linear-gradient(0deg, rgb(0 0 0 / 0%) 0%, rgb(0 0 0) 100%);
+
+  @include breakpoint("lg") {
+    --tcds-site-header-link-color: var(--tcds-color-palette-white);
+    --tcds-site-header-link-color-hover: var(--tcds-color-palette-white);
+    --tcds-site-header-utility-link-color: var(--tcds-color-palette-white);
+    --tcds-site-header-highlight-background: var(--tcds-color-brand-primary);
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -5px;
+    right: 0;
+    left: 0;
+    height: 15%;
+    box-shadow: 0 0px calc(var(--tcds-site-header-height) - .75rem) calc(var(--tcds-site-header-height) - 2.75rem) rgb(0 0 0 / 100%);
+    background-color: rgb(0 0 0);
+    z-index: -1;
+  }
+}

@@ -1,3 +1,5 @@
+@use "../typography/abstracts/mixins" as *;
+
 /**
  * This file contains styles for elements used to mark up regular body copy
  * (paragraphs, lists, links, small text, etc.)
@@ -22,16 +24,7 @@
  */
 
 a {
-  :where(&) {
-    color: var(--tcds-color-theme-link);
-    text-decoration: underline;
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
-  }
-
-  :where(&:hover) {
-    text-decoration: none;
-  }
+  @include link();
 
   /**
    * External link styling for `a` elements with `[href]` attribute. Determined
@@ -45,23 +38,13 @@ a {
    *
    * Also providing an `.a--no-icon` opt-out class.
    */
-  &[href]:not(.a--no-icon, :where(
+  &[href]:not(.link--no-icon, :where(
     [slot],
     [href^="#"],
     [href^="javascript:" i],
     [href^="/"]:not([href^="//"])
   )) {
-    &::after {
-      content: "";
-      display: inline-block;
-      background-color: var(--tcds-color-theme-foreground);
-      mask: var(--tcds-icon-utility-external) center no-repeat;
-      opacity: 0.4;
-      width: 0.66em;
-      height: 0.66em;
-      margin-left: 0.25em;
-      vertical-align: middle;
-    }
+    @include link-external();
   }
 }
 
@@ -137,4 +120,5 @@ ol {
 
 :where(p, li) {
   line-height: var(--tcds-line-height-md);
+  color: var(--tcds-color-theme-foreground);
 }

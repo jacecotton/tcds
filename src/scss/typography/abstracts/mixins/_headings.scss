@@ -1,9 +1,11 @@
 @mixin headings($flag: "") {
+  color: var(--tcds-color-theme-foreground);
   font-family: var(--tcds-font-family-headings) #{$flag};
   line-height: var(--tcds-line-height-sm) #{$flag};
 }
 
 @mixin subheadings($flag: "") {
+  color: var(--tcds-color-theme-foreground);
   font-family: var(--tcds-font-family-subheadings) #{$flag};
   line-height: var(--tcds-line-height-sm) #{$flag};
 }
