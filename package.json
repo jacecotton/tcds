@@ -10,15 +10,15 @@
   ],
   "scripts": {
     "clean": "rimraf dist components src/**/_gen",
-    "build:icons": "cpx \"src/images/icons/**/*.svg\" dist/images/icons && node scripts/generate-icon-tokens.js",
+    "build:images": "cpx \"src/images/**/*.{svg,jpg,png}\" dist/images && node scripts/generate-icon-tokens.js",
     "build:tokens": "node scripts/build-tokens.js",
     "build:fonts": "cpx \"src/fonts/**/*.woff2\" dist/fonts",
     "build:css": "sass --load-path=node_modules --source-map src/scss:dist/css",
     "build:js": "rollup -c rollup.config.js",
     "build:components:assets": "cpx \"src/components/**/*.{twig,component.yml}\" components",
     "build:components:css": "sass --load-path=node_modules --style=compressed --source-map src/components:components",
-    "build": "npm run build:icons && npm run build:tokens && npm run build:fonts && npm run build:css && npm run build:js && npm run build:components:assets && npm run build:components:css",
-    "watch": "chokidar \"src/**/*.{js,css,scss,svg,woff2,twig,component.yml}\" -i \"src/**/_gen/**\" -c \"npm run build\"",
+    "build": "npm run build:images && npm run build:tokens && npm run build:fonts && npm run build:css && npm run build:js && npm run build:components:assets && npm run build:components:css",
+    "watch": "chokidar \"src/**/*.{js,css,scss,json,svg,woff2,twig,component.yml}\" -i \"src/**/_gen/**\" -c \"npm run build\"",
     "start:docs": "npm run start -w tcds-docs",
     "dev": "npm run clean && npm run build && run-p start:docs watch"
   },

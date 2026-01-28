@@ -8,6 +8,8 @@ import StyleDictionary from "style-dictionary";
 import config from "../sd.config.js";
 
 /**
+ * Animation tokens.
+ * 
  * Animation tokens need to be handled differently. Rather than using the
  * default CSS format, we'll use a custom format that outputs keyframes for the
  * animations themselves. For timing, we'll create custom formats for cubic
@@ -30,13 +32,13 @@ StyleDictionary.registerFormat({
   name: "css/keyframes/complex",
   format: ({dictionary}) => {
     return dictionary.allTokens
-      .map(token => {
+      .map((token) => {
         if (token.$type !== "keyframes") return "";
 
         // A frame is an object representing a ruleset within a keyframe set
         // (e.g. `0% {}`, `100% {}`, etc.)
         const frames = token.$value
-          .map(frame => {
+          .map((frame) => {
             // WAAPI offsets use decimals, CSS uses percentages.
             const percent = `${frame.offset * 100}%`;
 
@@ -69,10 +71,10 @@ StyleDictionary.registerTransform({
   type: "value",
   name: "value/cubic-bezier",
   filter: token => token.$type === "cubicBezier",
-  transform: token => {
+  transform: (token) => {
     if (!Array.isArray(token.$value)) return token.$value;
-    const [a, b, c, d] = token.$value;
-    return `cubic-bezier(${a}, ${b}, ${c}, ${d})`;
+    const [x1, y1, x2, y2] = token.$value;
+    return `cubic-bezier(${x1}, ${y1}, ${x2}, ${y2})`;
   },
 });
 
@@ -88,6 +90,8 @@ StyleDictionary.registerTransform({
 });
 
 /**
+ * SVG tokens.
+ * 
  * Custom transform for turning SVG icons into embedded CSS URLs, for use as
  * custom property values.
  */
@@ -102,4 +106,4 @@ StyleDictionary.registerTransform({
 const sd = new StyleDictionary(config);
 await sd.buildAllPlatforms();
 
-console.log("✔︎ [Style Dictionary] Tokens built for all platforms.");
+console.log("[Style Dictionary] Tokens built for all platforms.");
