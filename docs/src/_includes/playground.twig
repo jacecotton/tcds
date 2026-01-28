@@ -1,5 +1,5 @@
-{# playground.twig #}
-{% apply spaceless %}
+{% extends "./html.twig" %}
+{% block body %}
 {% set id = id|default('playground-' ~ random()) %}
 {# MACRO: Reusable Input Renderer #}
 {% macro render_field(id, prop, config, section_slug='1') %}
@@ -30,10 +30,13 @@
 
 {# IMPORT MACRO #}
 {% import _self as forms %}
+
+<a href="../" onclick="window.close()">Back to documentation</a>
+
 <div class="playground" id="{{ id }}" data-target="{{ selector }}">
   <div class="playground__stage">
     {% apply spaceless %}
-      {% block content %}{% endblock %}
+      {% block content %}{{ content|raw }}{% endblock %}
     {% endapply %}
   </div>
   {# CONTROLS #}
@@ -62,4 +65,4 @@
     {% endapply %}
   </form>
 </div>
-{% endapply %}
+{% endblock %}

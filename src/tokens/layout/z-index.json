@@ -1,0 +1,11 @@
+{
+  "z-index": {
+    "$type": "string",
+    "$description": "Z-index tokens for managing layers.",
+    "dialog": {"$value": "600"},
+    "site-header": {"$value": "500"},
+    "alert-bar": {"$value": "400"},
+    "notification": {"$value": "300"},
+    "action-bar": {"$value": "200"}
+  }
+}

@@ -1,0 +1,22 @@
+.example {
+  border: 1px solid var(--tcds-color-theme-border);
+  border-radius: var(--tcds-border-radius-sm);
+}
+
+.example__result {
+  padding: var(--tcds-space-component-md);
+  border-bottom: 1px solid var(--tcds-color-theme-border)
+}
+
+.example__howto {
+  padding: var(--tcds-space-component-md);
+}
+
+.example__code {
+  background: var(--tcds-color-palette-gray-50);
+  font-size: var(--tcds-font-size-sm);
+  line-height: var(--tcds-line-height-md);
+  padding: var(--tcds-space-component-md);
+  border: 1px solid rgb(0 0 0 / 5%);
+  border-radius: var(--tcds-border-radius-md);
+}

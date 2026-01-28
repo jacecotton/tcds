@@ -1,0 +1,23 @@
+{% apply spaceless %}
+  <section class="example">
+    <div class="example__result" {{ full_screen ? 'style="overflow: auto hidden"' }}>
+      {% if full_screen %} <div style="width: 100vw; max-width: 1200px"> {% endif %}
+        {% block result %}
+          {% block content %}{% endblock %}
+        {% endblock %}
+      {% if full_screen %} </div> {% endif %}
+    </div>
+    <div class="example__howto">
+      {%- if code or block("code") is defined -%}
+        <details {{ open ? "open" }}>
+          <summary>View code</summary>
+          <div>
+            <pre class="example__code" {{ line_highlight ? "data-line=#{line_highlight}" }}><code>{{ block("code") is defined ? block("code")|trim|highlight : block("content") is defined ? block("content")|trim|highlight }}</code></pre>
+          </div>
+        </details>
+      {%- elseif playground -%}
+        <a href="playground" target="_blank" class="link--ui">Open playground</a>
+      {%- endif -%}
+    </div>
+  </section>
+{% endapply %}
