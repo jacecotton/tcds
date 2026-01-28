@@ -24,7 +24,7 @@ export default css`
   [part="button"] {
     background: none;
     border: none;
-    border-bottom: 1px solid var(--tcds-accordion-border-color);
+    border-bottom: 1px solid var(--tcds-color-theme-border);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -50,6 +50,6 @@ export default css`
 
   [part="content"] {
     padding: 1.5rem 0;
-    border-bottom: 1px solid var(--tcds-accordion-border-color);
+    border-bottom: 1px solid var(--tcds-color-theme-border);
   }
 `;

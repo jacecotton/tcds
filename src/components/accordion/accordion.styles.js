@@ -9,7 +9,7 @@ export default css`
   [part="controls"] {
     display: flex;
     justify-content: end;
-    border-bottom: 1px solid var(--tcds-accordion-border-color);
+    border-bottom: 1px solid var(--tcds-color-theme-border);
     padding: 0 0 .5rem;
   }
 `;

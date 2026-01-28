@@ -1,6 +1,4 @@
 tcds-accordion {
-  --tcds-accordion-border-color: var(--tcds-color-palette-gray-400);
-
   &:not(:first-child) {
     margin-top: 1.5rem;
   }

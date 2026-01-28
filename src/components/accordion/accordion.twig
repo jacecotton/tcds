@@ -1,5 +1,5 @@
-{% if sections is defined and sections|length %}
-  <tcds-accordion {{ multiple ? "multiple" }}>
+<tcds-accordion {{ multiple ? "multiple" }}>
+  {% if sections is defined and sections|length %}
     {% for section in sections %}
       {% apply spaceless %}
         {% if section.content is defined %}
@@ -18,5 +18,7 @@
         }) }}
       {% endapply %}
     {% endfor %}
-  </tcds-accordion>
-{% endif %}
+  {% else %}
+    {% block sections %}{% endblock %}
+  {% endif %}
+</tcds-accordion>
