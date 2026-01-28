@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>{{
+    [title|default, eleventyNavigation.parent|default]
+      |filter(v => v is not empty and v != site.name)
+      |merge([site.name])
+      |join(" - ")
+  }}</title>
+
+  <meta name="description" content="{{ description ?: site.description }}">
+
+  <link rel="stylesheet" href="/tcds/dist/css/icons.css">
+  <link rel="stylesheet" href="/tcds/dist/css/tcds.css">
+  <link rel="stylesheet" href="/dist/css/playground.css">
+  <link rel="stylesheet" href="/dist/css/example.css">
+  <link rel="stylesheet" href="/dist/css/sugar-high.css">
+
+  {% for asset in get_assets() %}
+    {% if asset ends with ".css" %}
+      <link rel="stylesheet" href="{{ asset }}">
+    {% endif %}
+  {% endfor %}
+</head>
+<body>
+  {% block body %}
+    {{ include("tcds:site-header", {
+      logo: {
+        url: "/tcds/dist/images/logos/TC_Horz_CMYK_2K22.svg",
+        width: "250",
+        height: "33.16",
+        alt: "Texas Children's logo",
+        entity: "Design System",
+      },
+      primary_menu: collections.all|eleventyNavigation,
+    }) }}
+
+    {% embed "tcds:section" with {
+      theme: "cool",
+      mode: "auto",
+      modifiers: ["raised"],
+      custom_classes: ["bg-icon", "bg-icon--texas-childrens"],
+    } %}
+      {% block content %}
+        <h1>{{ title }}</h1>
+        <p>{{ description }}</p>
+      {% endblock %}
+    {% endembed %}
+
+    <div class="container-lg flex flex--no-wrap gap-lg padding-top-sm lg:padding-top-md">
+      {% set submenu_key = eleventyNavigation.parent|default(eleventyNavigation.key) %}
+
+      {% if submenu_key %}
+        {% set submenu = collections.all|eleventyNavigation(submenu_key) %}
+        {% set submenu = submenu|map(item => item|merge({current: item.url == page.url})) %}
+
+        {% if submenu %}
+          <aside style="min-width: 300px">
+            {{ include("tcds:submenu", { items: submenu }) }}
+          </aside>
+        {% endif %}
+      {% endif %}
+      <main>
+        {{ content|raw }}
+      </main>
+    </div>
+  {% endblock %}
+
+  <script type="module" src="/tcds/dist/js/shared.js"></script>
+  <script type="module" src="/tcds/dist/js/vendor.js"></script>
+  <script type="module" src="/dist/js/playground.js"></script>
+
+  {% for asset in get_assets() %}
+    {% if asset ends with '.js' %}
+      <script type="module" src="{{ asset }}"></script>
+    {% endif %}
+  {% endfor %}
+</body>
+</html>
