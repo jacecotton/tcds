@@ -1,0 +1,21 @@
+table {
+  --tcds-table-cell-padding-block: var(--tcds-space-component-xs);
+  --tcds-table-cell-padding-inline: 0 var(--tcds-space-component-lg);
+
+  font-family: var(--tcds-font-family-ui);
+  font-size: var(--tcds-font-size-sm);
+  border-collapse: collapse;
+  text-align: left;
+}
+
+td, th {
+  vertical-align: top;
+  padding-block: var(--tcds-table-cell-padding-block);
+  padding-inline: var(--tcds-table-cell-padding-inline);
+  line-height: var(--tcds-line-height-md);
+  color: var(--tcds-color-theme-foreground);
+}
+
+:is(thead tr, tr:not(:last-child)) > :is(th, td) {
+  border-bottom: 1px solid var(--tcds-color-theme-edge);
+}

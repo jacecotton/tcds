@@ -15,6 +15,7 @@
 
 $justify-values: ("start", "end", "center", "space-between");
 $align-values: ("start", "end", "center", "stretch");
+$float-values: ("inline-start", "inline-end");
 
 @include responsive-utils() using ($breakpoint) {
   @each $value in $justify-values {
@@ -34,6 +35,20 @@ $align-values: ("start", "end", "center", "stretch");
 
     .#{$breakpoint}align-self-#{$value} {
       align-self: #{$value} !important;
+    }
+  }
+
+  @each $value in $float-values {
+    .#{$breakpoint}float-#{$value} {
+      float: #{$value} !important;
+
+      @if $value == "inline-end" {
+        margin: 0 0 var(--tcds-space-component-md) var(--tcds-space-component-md);
+      }
+
+      @if $value == "inline-start" {
+        margin: 0 var(--tcds-space-component-md) var(--tcds-space-component-md) 0;
+      }
     }
   }
 }

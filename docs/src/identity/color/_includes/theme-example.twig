@@ -1,0 +1,42 @@
+<div data-theme="{{ theme }}" class="bg-icon bg-icon--texas-childrens" style="background-color: var(--tcds-color-theme-background); color: var(--tcds-color-theme-foreground); padding: var(--tcds-space-layout-sm); margin: 1.5em 0; border-radius: var(--tcds-border-radius-lg)">
+<p class="h4" style="color: var(--tcds-color-theme-muted)">This is <i>muted</i> text</p>
+<p class="h2">This is <span style="color: var(--tcds-color-theme-accent)"><i>accent</i> text</span></p>
+<p>This is <i>foreground</i> text on a <i>background</i> fill.</p>
+<hr>
+<p><small style="color: var(--tcds-color-theme-muted)">The logomark background is <i>faded</i> and the divider above uses the <i>edge</i> color.</small></p>
+</div>
+<div class="text-sm font-family-ui">
+  <code>color.theme.{{ theme }}</code>
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr)" class="gap-sm">
+    {% for alias, token in tokens.color.theme[theme] %}
+      {# @todo probably a better approach here is for the source tokens to have
+        each component as a separate property and then use a custom formatter in
+        style dictionary to piece them into the `color-mix(...` string for CSS-
+        specific formats, and then just concatenate them here. Would probably
+        optimize compatibility with other platforms as well, but compound color
+        tokens should probably be revisited more generally. #}
+      {% set color_mix_indicator = "color-mix(in srgb, " %}
+      {% set resolved_value = token["$value"] starts with "{" and token["$value"] ends with "}"
+        ? token["$value"]|slice(1, token["$value"]|length - 2)
+        : token["$value"]|slice(color_mix_indicator|length, (token["$value"]|length) - (color_mix_indicator|length + 1))|replace({"{": "", "}": ""}) %}
+      {% set resolved_is_dark = false %}
+      {% if resolved_value starts with "color." and resolved_value ends with "0" %}
+        {% set resolved_grade = resolved_value|split(".")|last|number_format %}
+        {% set resolved_is_dark = resolved_grade >= 500 %}
+      {% elseif resolved_value ends with "%" %}
+        {% set resolved_grade = resolved_value|split(" ")|last|replace({"%": ""})|number_format %}
+        {% if theme != "dark" %}
+          {% set resolved_is_dark = resolved_grade <= 50 %}
+        {% else %}
+          {% set resolved_is_dark = resolved_grade >= 50 %}
+        {% endif %}
+      {% endif %}
+      <div class="flex flex--column gap-sm" style="min-width: 0; position: relative" data-theme="{{ theme }}">
+        <div style="background: var(--tcds-color-theme-{{ alias }}); width: 100%; height: 75px; border-radius: var(--tcds-border-radius-sm); display: flex; justify-content: center; align-items: center; color: {{ resolved_is_dark ? "var(--tcds-color-theme-dark-foreground)" : "var(--tcds-color-theme-neutral-foreground)" }}">
+          <code>{{ alias }}</code>
+        </div>
+        <code style="color: var(--tcds-color-theme-neutral-muted)">{{ resolved_value }}</code>
+      </div>
+    {% endfor %}
+  </div>
+</div>

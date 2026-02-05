@@ -15,6 +15,10 @@
   display: flex !important;
 }
 
+.inline-flex {
+  display: inline-flex !important;
+}
+
 .flex:not(.flex--no-wrap) {
   flex-wrap: wrap !important;
 }
@@ -23,8 +27,20 @@
   flex-direction: column !important;
 }
 
+.flex-1-0 {
+  flex: 1 0;
+}
+
+.flex--row-reverse {
+  flex-direction: row-reverse !important;
+}
+
 @include responsive-utils($responsive-only: true) using ($breakpoint) {
   .#{$breakpoint}flex--row {
     flex-direction: row !important;
+  }
+
+  #{$breakpoint}flex--row-reverse {
+    flex-direction: row-reverse !important;
   }
 }

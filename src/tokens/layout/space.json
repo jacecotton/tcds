@@ -12,7 +12,7 @@
     "40": {"$value": "160px"},
     "component": {
       "$description": "Semantic spacing values for component scales.",
-      "xs": {"$value": "{space.1}"},
+      "xs": {"$value": "{space.2}"},
       "sm": {"$value": "{space.3}"},
       "md": {"$value": "{space.4}"},
       "lg": {"$value": "{space.8}"}

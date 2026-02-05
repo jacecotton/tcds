@@ -342,7 +342,7 @@ export default function configureTwing(eleventyConfig, projectRoot) {
         // We read from disk to ensure we have the fresh content (bypassing Eleventy's potential caching of the input string).
         const diskContent = fs.readFileSync(inputPath, "utf-8");
         // Strip front matter strings (Eleventy handles front matter separately, Twing just wants logic)
-        const contentWithoutFrontMatter = diskContent.replace(/^---\n[\s\S]*?\n---\n/, "");
+        const contentWithoutFrontMatter = diskContent.replace(/^---(?:[a-z]+)?\n[\s\S]*?\n---\n/, "");
         arrayLoader.setTemplate(inputPath, contentWithoutFrontMatter);
 
         // 2. Clear previous assets for this page to prevent stale entries on re-renders.

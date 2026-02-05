@@ -30,6 +30,6 @@ input[type=reset],
   }
 
   &:active {
-    --tcds-button-background: var(--tcds-color-palette-red-100);
+    --tcds-button-background: color-mix(in srgb, var(--tcds-color-palette-red-50), black 20%);
   }
 }

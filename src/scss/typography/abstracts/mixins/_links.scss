@@ -1,6 +1,6 @@
 @mixin link($flag: "") {
   :where(&) {
-    color: var(--tcds-color-theme-link) #{$flag};
+    color: var(--tcds-color-theme-accent) #{$flag};
     text-decoration: underline #{$flag};
     touch-action: manipulation #{$flag};
     -webkit-tap-highlight-color: rgb(0 0 0 / 0%) #{$flag};
@@ -30,10 +30,10 @@
   font-weight: var(--tcds-font-weight-semibold) #{$flag};
   color: var(--tcds-color-theme-foreground) #{$flag};
   text-decoration: underline #{$flag};
-  text-decoration-color: var(--tcds-color-theme-border) #{$flag};
+  text-decoration-color: var(--tcds-color-theme-edge) #{$flag};
 
   &:hover {
-    color: var(--tcds-color-theme-link) #{$flag};
+    color: var(--tcds-color-theme-accent) #{$flag};
     text-decoration-color: currentcolor #{$flag};
   }
 }

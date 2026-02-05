@@ -1,11 +1,11 @@
 .example {
-  border: 1px solid var(--tcds-color-theme-border);
+  border: 1px solid var(--tcds-color-theme-edge);
   border-radius: var(--tcds-border-radius-sm);
 }
 
 .example__result {
   padding: var(--tcds-space-component-md);
-  border-bottom: 1px solid var(--tcds-color-theme-border)
+  border-bottom: 1px solid var(--tcds-color-theme-edge)
 }
 
 .example__howto {

@@ -20,6 +20,10 @@ tcds-icon {
 }
 
 .bg-icon {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+
   &::before {
     content: "";
     display: block;
@@ -28,7 +32,7 @@ tcds-icon {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--tcds-color-theme-watermark);
+    background-color: var(--tcds-color-theme-faded);
     mask-image: var(--tcds-icon);
     mask-position: -15% center;
     mask-repeat: no-repeat;
@@ -55,8 +59,8 @@ tcds-icon {
     .tcds-icon--#{$icon}#{&}--#{$category},
     .bg-icon--#{$icon},
     .bg-icon--#{$icon}#{&}--#{$category},
-    tcds-icon[icon=#{$icon}],
-    tcds-icon[icon=#{$icon}][category=#{$category}] {
+    tcds-icon[icon~=#{$icon}],
+    tcds-icon[icon~=#{$icon}][category~=#{$category}] {
       --tcds-icon: var(--tcds-icon-#{$category}-#{$icon});
     }
   }

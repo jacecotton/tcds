@@ -13,7 +13,7 @@
         {{ include("tcds:accordion-section", {
           title: section.title,
           content: content,
-          open: section.open ?: false,
+          open: section.open == true,
           heading_level: heading_level ?: null,
         }) }}
       {% endapply %}

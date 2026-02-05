@@ -1,3 +1,5 @@
+{% set submenu_key = eleventyNavigation.parent|default(eleventyNavigation.key) %}
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -45,14 +47,19 @@
       custom_classes: ["bg-icon", "bg-icon--texas-childrens"],
     } %}
       {% block content %}
+        {% if submenu_key %}
+          <nav class="tcds-breadcrumb">
+            <ul role="list">
+              <li><a href="">{{ submenu_key }}</a></li>
+            </ul>
+          </nav>
+        {% endif %}
         <h1>{{ title }}</h1>
         <p>{{ description }}</p>
       {% endblock %}
     {% endembed %}
 
-    <div class="container-lg flex flex--no-wrap gap-lg padding-top-sm lg:padding-top-md">
-      {% set submenu_key = eleventyNavigation.parent|default(eleventyNavigation.key) %}
-
+    <div class="container-lg flex flex--no-wrap gap-lg padding-block-sm lg:padding-block-md">
       {% if submenu_key %}
         {% set submenu = collections.all|eleventyNavigation(submenu_key) %}
         {% set submenu = submenu|map(item => item|merge({current: item.url == page.url})) %}

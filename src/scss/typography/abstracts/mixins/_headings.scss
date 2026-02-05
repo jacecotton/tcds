@@ -30,7 +30,7 @@
   @include subheadings($flag);
 
   font-size: var(--tcds-font-size-lg) #{$flag};
-  font-weight: var(--tcds-font-weight-semibold) #{$flag};
+  font-weight: var(--tcds-font-weight-bold) #{$flag};
 }
 
 @mixin h4($flag: "") {

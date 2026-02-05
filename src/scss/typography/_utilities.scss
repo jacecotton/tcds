@@ -49,8 +49,8 @@
 
   // For center on mobile → back to default (left) on desktop scenarios.
   .#{$breakpoint}text-left,
-  .#{$breakpoint}text-start {
-    text-align: start !important;
+  .#{$breakpoint}text-inline-start {
+    text-align: inline-start !important;
   }
 }
 
@@ -72,26 +72,32 @@
 
 .h1 {
   @include typography.h1("!important");
+  margin: 0;
 }
 
 .h2 {
   @include typography.h2("!important");
+  margin: 0;
 }
 
 .h3 {
   @include typography.h3("!important");
+  margin: 0;
 }
 
 .h4 {
   @include typography.h4("!important");
+  margin: 0;
 }
 
 .h5 {
   @include typography.h5("!important");
+  margin: 0;
 }
 
 .h6 {
   @include typography.h6("!important");
+  margin: 0;
 }
 
 /**
