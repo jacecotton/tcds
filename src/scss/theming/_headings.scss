@@ -28,7 +28,15 @@
   :where(&:first-child:not(:only-child)) {
     margin: 0 0 1.5rem;
   }
+}
 
+h1 {
+  :where(&:not(:last-child)) {
+    margin-bottom: 1.5rem;
+  }
+}
+
+:is(h2, h3, h4, h5, h6) {
   :where(&:not(:first-child)) {
     margin: 1.5rem 0;
   }

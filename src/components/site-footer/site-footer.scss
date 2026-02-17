@@ -1,0 +1,64 @@
+@use "../../scss/abstracts/mixins" as *;
+
+.tcds-site-footer {
+  margin-top: auto;
+  border-top: 1px solid var(--tcds-color-theme-edge);
+  background-color: var(--tcds-color-theme-background);
+  border-bottom: 6px solid var(--tcds-color-theme-accent);
+  padding: var(--tcds-space-layout-sm) 0;
+
+  > *:only-child {
+    display: grid;
+    gap: var(--tcds-space-component-md);
+
+    @include breakpoint("lg", "") {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-areas:
+        "branding  transparency legal"
+        "copyright .            .";
+    }
+
+    @include breakpoint("md", "lg") {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-areas:
+        "branding transparency"
+        "legal    copyright";
+    }
+
+    @include breakpoint("", "md") {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "branding"
+        "transparency"
+        "legal"
+        "copyright";
+    }
+  }
+
+  p {
+    margin: 0;
+    font-family: var(--tcds-font-family-ui);
+    line-height: var(--tcds-line-height-sm);
+    color: var(--tcds-color-theme-muted);
+
+    small {
+      font-size: 70%;
+    }
+  }
+
+  &__branding {
+    grid-area: branding;
+  }
+
+  &__transparency-menu {
+    grid-area: transparency;
+  }
+
+  &__legal {
+    grid-area: legal;
+  }
+
+  &__copyright {
+    grid-area: copyright;
+  }
+}

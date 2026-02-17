@@ -32,7 +32,7 @@ Blue is the secondary color. Blue 50 is used as the [cool background](#cool), an
 
 **Use as a secondary accent.** Blue 900 effectively signals secondary precedence while still drawing attention through stark contrast.
 
-**Try as a first choice when you need a little extra color.** Blue is calmer than red, yet more welcoming than white and more lively than [gray](#gray).
+**Try first when you need a little extra color.** Blue is calmer than red, yet more welcoming than white and more lively than [gray](#gray).
 
 {% endblock %}
 {% endembed %}

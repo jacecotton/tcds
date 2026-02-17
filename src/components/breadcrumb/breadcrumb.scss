@@ -1,0 +1,13 @@
+tcds-breadcrumb {
+  font-family: var(--tcds-font-family-ui);
+  font-size: var(--tcds-font-size-xs);
+
+  a {
+    color: var(--tcds-color-theme-foreground);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--tcds-color-theme-accent);
+    }
+  }
+}

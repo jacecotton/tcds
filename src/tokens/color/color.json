@@ -29,7 +29,7 @@
         "background": {"$value": "{color.palette.white}"},
         "foreground": {"$value": "{color.palette.blue.900}"},
         "accent": {"$value": "{color.palette.red.700}"},
-        "faded": {"$value": "color-mix(in srgb, {color.theme.neutral.foreground}, {color.theme.neutral.background} 97%)"},
+        "faded": {"$value": "color-mix(in srgb, {color.theme.neutral.foreground}, {color.theme.neutral.background} 98%)"},
         "edge": {"$value": "color-mix(in srgb, {color.theme.neutral.foreground}, {color.theme.neutral.background} 85%)"},
         "muted": {"$value": "color-mix(in srgb, {color.theme.neutral.foreground}, {color.theme.neutral.background} 40%)"}
       },
@@ -37,7 +37,7 @@
         "background": {"$value": "{color.palette.blue.50}"},
         "foreground": {"$value": "{color.palette.blue.900}"},
         "accent": {"$value": "{color.palette.red.700}"},
-        "faded": {"$value": "color-mix(in srgb, {color.theme.cool.foreground}, {color.theme.cool.background} 97%)"},
+        "faded": {"$value": "color-mix(in srgb, {color.theme.cool.foreground}, {color.theme.cool.background} 98%)"},
         "edge": {"$value": "color-mix(in srgb, {color.theme.cool.foreground}, {color.theme.cool.background} 85%)"},
         "muted": {"$value": "color-mix(in srgb, {color.theme.cool.foreground}, {color.theme.cool.background} 40%)"}
       },
@@ -45,7 +45,7 @@
         "background": {"$value": "{color.palette.red.50}"},
         "foreground": {"$value": "{color.palette.gray.900}"},
         "accent": {"$value": "{color.palette.red.700}"},
-        "faded": {"$value": "color-mix(in srgb, {color.theme.warm.accent}, {color.theme.warm.background} 97%)"},
+        "faded": {"$value": "color-mix(in srgb, {color.theme.warm.accent}, {color.theme.warm.background} 98%)"},
         "edge": {"$value": "color-mix(in srgb, {color.theme.warm.foreground}, {color.theme.warm.background} 85%)"},
         "muted": {"$value": "color-mix(in srgb, {color.theme.warm.foreground}, {color.theme.warm.background} 40%)"}
       },
@@ -53,7 +53,7 @@
         "background": {"$value": "{color.palette.blue.900}"},
         "foreground": {"$value": "{color.palette.white}"},
         "accent": {"$value": "{color.palette.red.700}"},
-        "faded": {"$value": "color-mix(in srgb, {color.theme.dark.foreground}, {color.theme.dark.background} 97%)"},
+        "faded": {"$value": "color-mix(in srgb, {color.theme.dark.foreground}, {color.theme.dark.background} 98%)"},
         "edge": {"$value": "color-mix(in srgb, {color.theme.dark.foreground}, {color.theme.dark.background} 85%)"},
         "muted": {"$value": "color-mix(in srgb, {color.theme.dark.foreground}, {color.theme.dark.background} 40%)"}
       }

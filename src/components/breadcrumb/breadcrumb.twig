@@ -1,0 +1,33 @@
+{% set items = items|default([]) %}
+{% set omit_last = omit_last|default(false) %}
+{% set backlink_only = backlink_only|default(false) %}
+
+{% if items|length %}
+  {% if omit_last %}
+    {% set display_items = items|slice(0, items|length - 1) %}
+  {% elseif backlink_only %}
+    {% set display_items = [items[items|length - 1]] %}
+  {% else %}
+    {% set display_items = items %}
+  {% endif %}
+
+  {% set label_id = "tcds-breadcrumb-label-" ~ random() %}
+
+  <tcds-breadcrumb>
+    <nav aria-labelledby="{{ label_id }}">
+      <h2 id="{{ label_id }}" class="visually-hidden">Navigation trail</h2>
+      <ol role="list">
+        {% for item in display_items %}
+          {% set is_last = loop.last and not omit_last and not backlink_only %}
+          <li>
+            {% if item.url and not is_last %}
+              <a href="{{ item.url }}">{{ item.title }}</a>
+            {% else %}
+              <span aria-current="page">{{ item.title }}</span>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ol>
+    </nav>
+  </tcds-breadcrumb>
+{% endif %}

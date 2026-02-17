@@ -1,0 +1,31 @@
+<style>
+.typeface-callout {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: var(--tcds-space-component-md);
+  align-items: center;
+}
+</style>
+{% embed "tcds:callout" with {
+  custom_classes: ["typeface-callout"],
+  theme: "neutral",
+} %}
+{% block content %}
+<div class="font-family-{{ class }} flex flex--column">
+<span class="text-4xl" contenteditable spellcheck="false">{{ typeface }}</span>
+<div class="flex gap-sm">
+{% for weight, font in weights %}
+<span class="text-md" style="font-weight: var(--tcds-font-weight-{{ weight }})" contenteditable spellcheck="false">{{ font }}</span>
+{% endfor %}
+</div>
+</div>
+<ul class="font-family-ui text-sm flex flex--column gap-sm" style="border-left: 1px solid var(--tcds-color-theme-edge); padding-left: var(--tcds-space-component-lg)" role="list">
+{% for token, data in tokens.font.family|filter(token => token["$value"] == "{font.stack.#{class}}") %}
+<li>
+<code class="text-xs">font.family.{{ token }}</code><br>
+<span>{{ data["$description"] }}</span>
+</li>
+{% endfor %}
+</ul>
+{% endblock %}
+{% endembed %}

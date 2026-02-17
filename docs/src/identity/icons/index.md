@@ -1,8 +1,8 @@
 ---
-title: Iconography
+title: Icons
 description: Icons are illustrative aids for enhancing understanding, supplementing meaning, and reinforcing brand style and tone.
 eleventyNavigation:
-  key: Iconography
+  key: Icons
   parent: Identity
 ---
 

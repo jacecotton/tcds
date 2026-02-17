@@ -1,15 +1,21 @@
 @use "sass:list";
-@use "../abstracts/functions" as rootFunc;
-@use "../abstracts/mixins" as rootMix;
-@use "abstracts/mixins" as typography;
+@use "../abstracts/functions" as *;
+@use "../abstracts/mixins" as *;
+@use "abstracts/mixins" as *;
 
-@each $family, $value in rootFunc.tokens("font", "family") {
+@each $stack, $value in tokens("font", "stack") {
+  .font-family-#{$stack} {
+    font-family: var(--tcds-font-stack-#{$stack}) !important;
+  }
+}
+
+@each $family, $value in tokens("font", "family") {
   .font-family-#{$family} {
     font-family: var(--tcds-font-family-#{$family}) !important;
   }
 }
 
-@each $weight, $value in rootFunc.tokens("font", "weight") {_
+@each $weight, $value in tokens("font", "weight") {
   .font-weight-#{$weight} {
     font-weight: var(--tcds-font-weight-#{$weight}) !important;
   }
@@ -20,8 +26,8 @@
  * responsively, so we'll enable breakpoint prefixes for each utility here.
  */
 
-@include rootMix.responsive-utils() using ($breakpoint) {
-  @each $size, $value in rootFunc.tokens("font", "size") {
+@include responsive-utils() using ($breakpoint) {
+  @each $size, $value in tokens("font", "size") {
     .#{$breakpoint}text-#{$size} {
       font-size: var(--tcds-font-size-#{$size}) !important;
 
@@ -37,7 +43,7 @@
     }
   }
 
-  @each $line-height, $value in rootFunc.tokens("line-height") {
+  @each $line-height, $value in tokens("line-height") {
     .#{$breakpoint}line-height-#{$line-height} {
       line-height: var(--tcds-line-height-#{$line-height}) !important;
     }
@@ -71,32 +77,32 @@
  */
 
 .h1 {
-  @include typography.h1("!important");
+  @include h1("!important");
   margin: 0;
 }
 
 .h2 {
-  @include typography.h2("!important");
+  @include h2("!important");
   margin: 0;
 }
 
 .h3 {
-  @include typography.h3("!important");
+  @include h3("!important");
   margin: 0;
 }
 
 .h4 {
-  @include typography.h4("!important");
+  @include h4("!important");
   margin: 0;
 }
 
 .h5 {
-  @include typography.h5("!important");
+  @include h5("!important");
   margin: 0;
 }
 
 .h6 {
-  @include typography.h6("!important");
+  @include h6("!important");
   margin: 0;
 }
 
@@ -105,5 +111,5 @@
  */
 
 .link--ui {
-  @include typography.link-ui("!important");
+  @include link-ui("!important");
 }

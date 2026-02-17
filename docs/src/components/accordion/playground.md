@@ -43,6 +43,8 @@ form:
             pariatur.
           selector: "tcds-accordion-section:nth-of-type(1) > p"
           attribute: false
+    - label: Section 2
+    - label: Section 3
 ---
 
 {{ attach_library("tcds:accordion") }}

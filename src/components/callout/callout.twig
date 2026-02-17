@@ -1,6 +1,6 @@
 {% set theme = theme|default("cool") %}
 
-{% set base_class = "tcds-section" %}
+{% set base_class = "tcds-callout" %}
 {% set classes = [base_class] %}
 
 {% for modifier in modifiers %}
@@ -11,10 +11,8 @@
   {% set classes = classes|merge([class]) %}
 {% endfor %}
 
-<section class="{{ classes|join(" ") }}" data-theme="{{ theme }}">
-  <div class="container-lg">
-    {% block content %}
-      {{ content }}
-    {% endblock %}
-  </div>
-</section>
+<div class="{{ classes|join(" ") }}" data-theme="{{ theme }}">
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+</div>

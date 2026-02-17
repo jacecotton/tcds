@@ -1,14 +1,42 @@
 {
   "font": {
+    "stack": {
+      "$type": "fontFamily",
+      "sans-serif": {
+        "$description": "Our secondary font stack.",
+        "$value": ["Mont", "system-ui", "sans-serif"]
+      },
+      "serif": {
+        "$description": "Our primary font stack.",
+        "$value": ["Calluna", "Palatino", "serif"]
+      }
+    },
     "family": {
       "$type": "fontFamily",
-      "sans-serif": {"$value": ["Mont", "system-ui", "sans-serif"]},
-      "serif": {"$value": ["Calluna", "Big Caslon", "Palatino", "serif"]},
-      "display": {"$value": "{font.family.serif}"},
-      "headings": {"$value": "{font.family.serif}"},
-      "subheadings": {"$value": "{font.family.sans-serif}"},
-      "copy": {"$value": "{font.family.serif}"},
-      "ui": {"$value": "{font.family.sans-serif}"}
+      "primary": {
+        "$description": "Display text (headlines, taglines)",
+        "$value": "{font.stack.serif}"
+      },
+      "headings": {
+        "$description": "Heading elements (H1 and H2)",
+        "$value": "{font.stack.serif}"
+      },
+      "copy": {
+        "$description": "Body copy (paragraphs, lists)",
+        "$value": "{font.stack.serif}"
+      },
+      "secondary": {
+        "$description": "Secondary text (headline lockups)",
+        "$value": "{font.stack.sans-serif}"
+      },
+      "subheadings": {
+        "$description": "Subheading elements (H3 through H6)",
+        "$value": "{font.stack.sans-serif}"
+      },
+      "ui": {
+        "$description": "Interface elements (buttons, labels)",
+        "$value": "{font.stack.sans-serif}"
+      }
     },
     "weight": {
       "$type": "fontWeight",
@@ -21,12 +49,13 @@
       "xs": {"$value": "0.8125rem"},
       "sm": {"$value": "0.875rem"},
       "md": {"$value": "1rem"},
-      "ml": {"$value": "1.25rem"},
-      "lg": {"$value": "1.5rem"},
-      "xl": {"$value": "2rem"},
-      "2xl": {"$value": "3rem"},
-      "3xl": {"$value": "4rem"},
-      "4xl": {"$value": "6rem"}
+      "ml": {"$value": "1.125rem"},
+      "lg": {"$value": "1.3rem"},
+      "xl": {"$value": "1.875rem"},
+      "2xl": {"$value": "2.375rem"},
+      "3xl": {"$value": "3rem"},
+      "4xl": {"$value": "4rem"},
+      "5xl": {"$value": "6rem"}
     }
   }
 }

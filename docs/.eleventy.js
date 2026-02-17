@@ -3,7 +3,7 @@ import {fileURLToPath} from "url";
 import eleventyNavigationPlugin from "@11ty/eleventy-navigation";
 
 import configureTwing from "./scripts/twing-config.js";
-import {navigationFilter} from "./scripts/navigation.js";
+import {navigationFilter, breadcrumbFilter} from "./scripts/navigation.js";
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -23,6 +23,7 @@ export default function (eleventyConfig) {
   // Twing Configuration
   const twing = configureTwing(eleventyConfig, __filename);
   twing.addFilter(navigationFilter);
+  twing.addFilter(breadcrumbFilter);
 
   eleventyConfig.addWatchTarget("./src/**/*.md");
   // Watch custom scripts

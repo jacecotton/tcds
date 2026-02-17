@@ -31,10 +31,9 @@
 {# IMPORT MACRO #}
 {% import _self as forms %}
 
-<a href="../" onclick="window.close()">Back to documentation</a>
-
 <div class="playground" id="{{ id }}" data-target="{{ selector }}">
   <div class="playground__stage">
+    <a href="../" onclick="window.close()">Back to documentation</a>
     {% apply spaceless %}
       {% block content %}{{ content|raw }}{% endblock %}
     {% endapply %}
@@ -56,9 +55,13 @@
             {% if section.label %}
               <legend>{{ section.label }}</legend>
             {% endif %}
-            {%- for field_prop, field_config in section.fields -%}
-              {{ forms.render_field(id, field_prop, field_config, section.label|lower|replace({" ": "-"})) }}
-            {% endfor %}
+            {% if section.fields %}
+              {%- for field_prop, field_config in section.fields -%}
+                {{ forms.render_field(id, field_prop, field_config, section.label|lower|replace({" ": "-"})) }}
+              {% endfor %}
+            {% else %}
+              <div>. . .</div>
+            {% endif %}
           </fieldset>
         {% endfor %}
       {% endif %}
