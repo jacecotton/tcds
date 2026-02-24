@@ -1,5 +1,7 @@
-import {LitElement, html, customElement, property, queryAssignedElements} from "@/js/lit";
-import sharedStyles from "@/js/utilities/shared.styles.js";
+import {LitElement} from "lit";
+import {html} from "lit/static-html.js";
+import {customElement, property, queryAssignedElements} from "lit/decorators.js";
+import sharedStyles from "@/components/_shared/styles";
 import accordionStyles from "./accordion.styles.js";
 
 @customElement("tcds-accordion")
@@ -8,10 +10,10 @@ export class Accordion extends LitElement {
 
   // #region Properties
   @property({type: Boolean, reflect: true})
-  multiple = false;
+  accessor multiple = false;
 
   @queryAssignedElements({selector: "tcds-accordion-section"})
-  sections;
+  accessor sections;
   // #endregion
 
   // #region Lifecycle

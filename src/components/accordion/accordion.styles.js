@@ -1,4 +1,4 @@
-import {css} from "@/js/lit";
+import {css} from "lit";
 
 export default css`
   :host {
@@ -10,6 +10,6 @@ export default css`
     display: flex;
     justify-content: end;
     border-bottom: 1px solid var(--tcds-color-theme-edge);
-    padding: 0 0 .5rem;
+    padding: 0 0 var(--tcds-space-component-sm);
   }
 `;

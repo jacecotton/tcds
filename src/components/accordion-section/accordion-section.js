@@ -1,6 +1,8 @@
-import {LitElement, html, customElement, property, state, unsafeStatic} from "@/js/lit";
+import {LitElement} from "lit";
+import {html, unsafeStatic} from "lit/static-html.js";
+import {customElement, property, state} from "lit/decorators.js";
 import slugify from "@/js/utilities/slugify.js";
-import sharedStyles from "@/js/utilities/shared.styles.js";
+import sharedStyles from "@/components/_shared/styles";
 import {AccordionAnimationController} from "./accordion-section.controller.js";
 import accordionSectionStyles from "./accordion-section.styles.js";
 
@@ -18,17 +20,17 @@ export class AccordionSection extends LitElement {
 
   // #region Properties
   @property({type: Boolean, reflect: true})
-  open = false;
+  accessor open = false;
 
   get accordion() {
     return this.closest("tcds-accordion");
   }
 
-  @state() _headingLevel = "h3";
-  @state() _title = "";
+  @state() accessor _headingLevel = "h3";
+  @state() accessor _title = "";
 
   // Internal reference to shadow DOM parts.
-  @state() _parts = {};
+  @state() accessor _parts = {};
 
   #observer = null;
   // #endregion

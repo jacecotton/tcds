@@ -1,4 +1,4 @@
-import {css, unsafeCSS} from "@/js/lit";
+import {css, unsafeCSS} from "lit";
 import {SizeBreakpointMd} from "@/js/_gen/tokens.js";
 
 export default css`

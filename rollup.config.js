@@ -19,8 +19,8 @@ const SRC_DIR = path.resolve(DIRNAME, "src");
  */
 const componentEntries = fs
   .readdirSync(path.join(SRC_DIR, "components"), {withFileTypes: true})
-  .filter(dirent => {
-    if (!dirent.isDirectory()) return false;
+  .filter((dirent) => {
+    if (!dirent.isDirectory() || dirent.name === "_shared") return false;
     const filePath = path.join(SRC_DIR, "components", dirent.name, `${dirent.name}.js`);
     return fs.existsSync(filePath);
   })
@@ -43,7 +43,8 @@ export default {
       if (id.includes("node_modules")) {
         return "dist/js/vendor";
       }
-      if (id.includes("src/js/")) {
+
+      if (id.includes("src/js/") || id.includes("src/components/_shared/")) {
         return "dist/js/shared";
       }
     },
@@ -56,17 +57,11 @@ export default {
       include: ["**/*.css"],
     }),
     babel({
-      babelHelpers: "bundled",
+      babelHelpers: "inline",
       exclude: "node_modules/**",
       presets: ["@babel/preset-env"],
-      assumptions: {
-        setPublicClassFields: true,
-      },
       plugins: [
-        ["@babel/plugin-proposal-decorators", {legacy: true}],
-        "@babel/plugin-transform-class-properties",
-        "@babel/plugin-transform-private-property-in-object",
-        "@babel/plugin-transform-private-methods",
+        ["@babel/plugin-proposal-decorators", {version: "2023-11"}],
       ],
     }),
     alias({
