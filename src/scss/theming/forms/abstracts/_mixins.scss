@@ -1,0 +1,29 @@
+@mixin tcds-button() {
+  -webkit-appearance: none;
+  appearance: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--tcds-space-component-sm);
+  background: var(--tcds-button-background);
+  color: var(--tcds-button-foreground);
+  border: 0;
+  border-radius: var(--tcds-border-radius-sm);
+  padding: var(--tcds-space-component-sm);
+  font-family: var(--tcds-font-family-ui);
+  font-size: var(--tcds-font-size-sm);
+  font-weight: var(--tcds-font-weight-semibold);
+  text-decoration: none;
+  transition:
+    background var(--tcds-motion-duration-productive) var(--tcds-motion-easing-enter),
+    color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-enter);
+
+  &:hover {
+    background: var(--tcds-button-background-hover);
+    color: var(--tcds-button-foreground-hover);
+  }
+
+  &:active {
+    background: var(--tcds-button-background-active);
+  }
+}

@@ -4,9 +4,10 @@ description: Typography helps improve readability, establish relationships, and 
 eleventyNavigation:
   key: Typography
   parent: Identity
+  order: 8
 ---
 
-This page covers our typography principles. See the [Theming](/theming) section for [heading](/theming/headings) and [copy](/theming/copy) styles.
+*This page covers our typography principles. See the [Theming](/theming) section for [heading](/theming/headings) and [copy](/theming/copy) styles.*
 
 ## Typeface
 Texas Children's Design System's primary typeface is the serif Calluna, and the secondary typeface is the sans-serif Mont.
@@ -42,21 +43,17 @@ Texas Children's Design System's primary typeface is the serif Calluna, and the 
 
 *Technical note:* Calluna is a naturally small font, so the Design System's stylesheet scales it up to 112% to better match Mont.
 
+## Font variants
+**Use lining numerals in most cases (0, 1, 2, 3, 4, ...)** Calluna uses oldstyle numerals by default (<span style="font-variant-numeric: oldstyle-nums">0, 1, 2, 3, 4</span>, ...), which are disabled by the Design System's stylesheet.
+
+**Use tabular numbers for presenting data (<span style="font-variant-numeric: tabular-nums; font-family: var(--tcds-font-stack-sans-serif);">0, 1, 2, 3, 4</span>, ...)** Tabular numbers have identical horizontal widths (monospacing), which works best when numbers may horizontally align with or substitute each other, like with list markers, table cells, or counters (number fields, countdown timers, etc.)
+
+**Do not use ligatures.** Ligatures are disabled by the Design System's stylesheet.
+
 ## Type color
 **Be conservative with type color.** [Color themes](/identity/color#themes) and components handle most color for you. Don't use color for simple decoration or generic emphasis.
 
-## Numerals
-**Do not use oldstyle numerals (<span style="font-variant-numeric: oldstyle-nums">0, 1, 2, 3, 4</span>, ...)** Calluna uses oldstyle numerals by default, but the Design System's stylesheet enforces lining numerals (0, 1, 2, 3, 4, ...)
-
-**Use tabular numbers for presenting data (<span style="font-variant-numeric: tabular-nums; font-family: var(--tcds-font-stack-sans-serif);">0, 1, 2, 3, 4</span>, ...)** Tabular numbers have identical horizontal widths (monospacing), which is especially useful where numbers may horizontally align with or substitute each other, like with list markers, table cells, or counters (number fields, countdown timers, etc.)
-
-## Leading trim
-**Ensure optical alignment when using Mont.** This font has quirky vertical metrics that cause misalignment when centering text with adjacent elements, like icons, or inside containers. Trim the built-in leading above the cap-height and below the baseline. Apply this only to single-line text (most use cases for Mont).
-
-## Ligatures
-**Do not use ligatures.** All ligatures are disabled by the Design System's codebase.
-
 ## Text justification
-**Avoid right-justifying text in left-to-right languages.** Exceptions may include data inside of tables.
+**Avoid right-justifying text in left-to-right languages.** Exceptions may include data inside tables.
 
 **Avoid center-justifying lengthy paragraphs and multiple lines of large text.** Centered paragraphs may be used but should be minimized. Multiple lines of large text should be generally avoided regardless of alignment.

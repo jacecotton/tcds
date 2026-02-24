@@ -4,13 +4,13 @@ description: Color helps establish brand identity and create effective, appealin
 eleventyNavigation:
   key: Color
   parent: Identity
+  order: 2
 ---
 
-## Palette
+## Color palette
 Texas Children's Design System provides a limited raw color palette.
 
 ### Red
-
 {% embed "./_includes/swatch.twig" with {palette: "red", tokens: tokens} %}
 {% block content %}
 
@@ -51,9 +51,9 @@ Gray is a utility color, used mainly in interface elements (borders, states) and
 {% endblock %}
 {% endembed %}
 
-<h2>Themes</h2>
+<h2>Color themes</h2>
 
-Themes define semantic aliases for the raw palette colors above, based on property or role: *background*, *foreground*, *accent*, *muted*, *faded*, and *edge*.
+Themes determine the color values of elements according to the following properties or roles: *background*, *foreground*, *accent*, *muted*, *faded*, and *edge*.
 
 | Theme alias  | Purpose |
 | ------------ | ------- |

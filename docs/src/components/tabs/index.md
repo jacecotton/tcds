@@ -1,8 +1,8 @@
 ---
-title: Motion
+title: Tabs
 description:
 eleventyNavigation:
-  key: Motion
-  parent: Identity
+  key: Tabs
+  parent: Components
   order: 5
 ---

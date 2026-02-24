@@ -196,7 +196,7 @@ tcds-site-header {
    *    even if the "invalid" selector is inside an `:is()` selector function.
    */
   [slot=menus] {
-    --tcds-site-header-menu-toggle-icon: var(--tcds-icon-utility-hamburger);
+    --tcds-site-header-menu-toggle-icon: var(--tcds-icon-utility-menu);
 
     @include breakpoint("lg") {
       & {

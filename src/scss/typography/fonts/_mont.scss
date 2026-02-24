@@ -1,23 +1,28 @@
 // $-host: "https://www.texaschildrens.org/sites/default/files/fonts/mont" !default;
 $-host: "../fonts/mont";
+$-ascent-override: 100%;
+$-descent-override: 20%;
 
 @font-face {
   font-family: "Mont";
   src: url("#{$-host}/Mont-Bold.woff2") format("woff2");
   font-weight: bold;
-  font-display: swap;
+  ascent-override: $-ascent-override;
+  descent-override: $-descent-override;
 }
 
 @font-face {
   font-family: "Mont";
   src: url("#{$-host}/Mont-SemiBold.woff2") format("woff2");
   font-weight: 600;
-  font-display: swap;
+  ascent-override: $-ascent-override;
+  descent-override: $-descent-override;
 }
 
 @font-face {
   font-family: "Mont";
   src: url("#{$-host}/Mont-Regular.woff2") format("woff2");
   font-weight: normal;
-  font-display: swap;
+  ascent-override: $-ascent-override;
+  descent-override: $-descent-override;
 }

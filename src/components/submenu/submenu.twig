@@ -1,5 +1,17 @@
-<ul role="list" class="tcds-submenu">
-  {% for item in items %}
-    <li><a href="{{ item.url }}" {{ item.current ? "aria-current='page'" }}>{{ item.title }}</a></li>
-  {% endfor %}
-</ul>
+{% set items = items|default([]) %}
+
+{% macro menu_level(items, current) %}
+  <ul role="list" class="tcds-submenu">
+    {% for item in items %}
+      {% set is_current = item.url == current %}
+      <li><a href="{{ item.url }}" {{ is_current ? "aria-current='page'" }}>{{ item.title }}</a></li>
+      {% if item.children|length %}
+        {{ _self.menu_level(item.children, current) }}
+      {% endif %}
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+{% if items|length %}
+  {{ _self.menu_level(items, current) }}
+{% endif %}
