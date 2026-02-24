@@ -58,16 +58,14 @@
     {% endembed %}
 
     <div class="container-lg flex flex--no-wrap gap-lg padding-block-sm lg:padding-block-md">
-      {% set submenu_key = eleventyNavigation.parent|default(eleventyNavigation.key) %}
-      {% if submenu_key %}
-        {% set submenu = collections.all|eleventyNavigation(submenu_key) %}
-        {% set submenu = submenu|map(item => item|merge({current: item.url == page.url})) %}
+      {% set parent_key = eleventyNavigation.parent|default(eleventyNavigation.key) %}
+      {% set nav_tree = collections.all|eleventyNavigation|filter(item => item.key == parent_key)|first %}
+      {% set submenu = nav_tree is not empty ? [nav_tree] %}
 
-        {% if submenu %}
-          <aside style="min-width: 300px">
-            {{ include("tcds:submenu", { items: submenu }) }}
-          </aside>
-        {% endif %}
+      {% if submenu %}
+        <aside style="min-width: 300px">
+          {{ include("tcds:submenu", {items: submenu, current: page.url}) }}
+        </aside>
       {% endif %}
       <main>
         {{ content|raw }}
