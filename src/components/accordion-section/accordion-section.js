@@ -3,7 +3,7 @@ import {html, unsafeStatic} from "lit/static-html.js";
 import {customElement, property, state} from "lit/decorators.js";
 import slugify from "@/js/utilities/slugify.js";
 import sharedStyles from "@/components/_shared/styles";
-import {AccordionAnimationController} from "./accordion-section.controller.js";
+import {AccordionAnimationController} from "../_shared/controllers/AccordionAnimationController";
 import accordionSectionStyles from "./accordion-section.styles.js";
 
 @customElement("tcds-accordion-section")
@@ -111,7 +111,7 @@ export class AccordionSection extends LitElement {
   disconnectedCallback() {
     super.disconnectedCallback();
     this._observer?.disconnect();
-    window.removeEventListener("hashchange", this.#deepLinkHandler);
+    window.removeEventListener("hashchange", this.#deepLinkHandler.bind(this));
   }
   // #endregion
 

@@ -6,8 +6,7 @@ import {
 } from "@/js/_gen/tokens.js";
 
 export class AccordionAnimationController {
-  host;
-
+  #config;
   #previousOpen = undefined;
 
   /**
@@ -18,15 +17,14 @@ export class AccordionAnimationController {
    * @param {() => HTMLElement} config.getContent - Getter for content element.
    */
   constructor(host, config) {
-    this.host = host;
-    this.config = config;
+    this.#config = config;
     host.addController(this);
   }
 
   hostUpdated() {
-    const isOpen = this.config.isOpen();
-    const panel = this.config.getPanel();
-    const content = this.config.getContent();
+    const isOpen = this.#config.isOpen();
+    const panel = this.#config.getPanel();
+    const content = this.#config.getContent();
 
     if (!panel || !content) return;
 
