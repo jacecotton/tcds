@@ -11,7 +11,7 @@
     justify-content: space-between;
     align-items: end;
     border-bottom: 1px dashed var(--tcds-color-theme-edge);
-    padding: var(--tcds-space-component-sm) 0 4px;
+    padding: var(--tcds-space-component-sm) 0 0;
 
     span {
       display: inline-block;
@@ -26,7 +26,7 @@
         content: "";
         position: absolute;
         top: 0;
-        bottom: -4px;
+        bottom: 0;
         right: 0;
         width: 10%;
         background: linear-gradient(to right, transparent 0%, var(--tcds-color-theme-background) 90%);
@@ -37,6 +37,7 @@
       display: inline-block;
       white-space: nowrap;
       text-box: trim-both cap alphabetic;
+      padding-bottom: 4px;
     }
   }
 }
