@@ -3,7 +3,8 @@
  * This script generates a token file for icons (at src/tokens/_gen/icon.json)
  * by iterating through the src/images/icons directory, mapping file names to
  * icon names and subfolder names to second-level token path names. The value
- * for each token is a lightly minified of the SVG code in each icon file.
+ * for each token is a lightly minified version of the SVG code in each icon
+ * file.
  *
  * This way, src/images/icons is the authoritative source-of-truth for our icon
  * library, even though they're ultimately consumed as encoded data-URLs in CSS.

@@ -28,7 +28,7 @@ Red 700 is the primary brand color, used in the Design System as an accent color
 {% embed "./_includes/swatch.twig" with {palette: "blue", tokens: tokens} %}
 {% block content %}
 
-Blue is the secondary color. Blue 50 is used as the [cool background](#cool), and Blue 900 the [dark background](#dark) and most default text color.
+Blue is the secondary color. Blue 50 is used as the [cool background](#cool), and Blue 900 the [dark background](#dark).
 
 **Use as a secondary accent.** Blue 900 effectively signals secondary precedence while still drawing attention through stark contrast.
 

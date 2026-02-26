@@ -20,12 +20,13 @@ const SRC_DIR = path.resolve(DIRNAME, "src");
 const componentEntries = fs
   .readdirSync(path.join(SRC_DIR, "components"), {withFileTypes: true})
   .filter((dirent) => {
-    if (!dirent.isDirectory() || dirent.name === "_shared") return false;
-    const filePath = path.join(SRC_DIR, "components", dirent.name, `${dirent.name}.js`);
+    const {name} = dirent;
+    if (!dirent.isDirectory() || name === "_shared") return false;
+    const filePath = path.join(SRC_DIR, "components", name, `${name}.js`);
     return fs.existsSync(filePath);
   })
   .reduce((entries, dirent) => {
-    const name = dirent.name;
+    const {name} = dirent;
     entries[`components/${name}/${name}`] = path.join(SRC_DIR, "components", name, `${name}.js`);
     return entries;
   }, {});

@@ -27,7 +27,7 @@
     "theme": {
       "neutral": {
         "background": {"$value": "{color.palette.white}"},
-        "foreground": {"$value": "{color.palette.blue.900}"},
+        "foreground": {"$value": "{color.palette.black}"},
         "accent": {"$value": "{color.palette.red.700}"},
         "faded": {"$value": "color-mix(in srgb, {color.theme.neutral.foreground}, {color.theme.neutral.background} 98%)"},
         "edge": {"$value": "color-mix(in srgb, {color.theme.neutral.foreground}, {color.theme.neutral.background} 85%)"},

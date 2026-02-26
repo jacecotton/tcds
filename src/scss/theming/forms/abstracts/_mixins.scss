@@ -4,21 +4,22 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  gap: var(--tcds-space-component-sm);
+  gap: var(--tcds-button-gap);
   background: var(--tcds-button-background);
   color: var(--tcds-button-foreground);
   border: 0;
-  border-radius: var(--tcds-border-radius-sm);
-  padding: var(--tcds-space-component-sm);
+  border-radius: var(--tcds-button-border-radius);
+  padding: var(--tcds-button-padding);
   font-family: var(--tcds-font-family-ui);
-  font-size: var(--tcds-font-size-sm);
+  font-size: var(--tcds-button-font-size);
   font-weight: var(--tcds-font-weight-semibold);
   text-decoration: none;
   transition:
     background var(--tcds-motion-duration-productive) var(--tcds-motion-easing-enter),
     color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-enter);
 
-  &:hover {
+  &:hover,
+  &:focus {
     background: var(--tcds-button-background-hover);
     color: var(--tcds-button-foreground-hover);
   }
