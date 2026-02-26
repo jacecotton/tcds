@@ -1,0 +1,24 @@
+<tcds-tabs>
+  {% if tabs is defined and tabs|length %}
+    {% for tab in tabs %}
+      {% apply spaceless %}
+        {% if tab.content is defined %}
+          {% if block(tab.content) is defined %}
+            {% set content = block(tab.content) %}
+          {% else %}
+            {% set content = tab.content %}
+          {% endif %}
+        {% endif %}
+
+        {{ include("tcds:tab", {
+          title: tab.title,
+          content: content,
+          selected: tab.selected == true,
+          heading_level: heading_level ?: null,
+        }) }}
+      {% endapply %}
+    {% endfor %}
+  {% else %}
+    {% block tabs %}{% endblock %}
+  {% endif %}
+</tcds-tabs>

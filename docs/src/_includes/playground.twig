@@ -17,6 +17,7 @@
     {% elseif config.type == 'select' %}
       <select name="{{ prop }}" id="{{ field_id }}" {{ ' ' }} {{ selectorAttr|raw }} {{ ' ' }} {{ attrName|raw }} {{ ' ' }} {{ modeAttr|raw }}>
         {% for option in config.options %}
+          {% set option = option ?: " " %}
           <option value="{{ option }}" {{ config.default == option ? 'selected' : '' }}>{{ option|title }}</option>
         {% endfor %}
       </select>
