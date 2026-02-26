@@ -1,3 +1,12 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Submenu
 description: Submenu
+props:
+  type: object
+  properties:
+    items:
+      type: array
+      title: Items
+    current:
+      type: string
+      title: Current URL

@@ -1,3 +1,25 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Site Header
 description: Site Header
+props:
+  type: object
+  properties:
+    variant:
+      type:
+        - string
+        - array
+      title: Variant
+    logo:
+      type: object
+      title: Logo
+    primary_menu:
+      type: array
+      title: Primary Menu
+    utility_menu:
+      type: array
+      title: Utility Menu
+    search_menu:
+      type:
+        - string
+        - object
+      title: Search Menu

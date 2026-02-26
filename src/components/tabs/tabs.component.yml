@@ -1,3 +1,15 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Tabs
 description: Tabs
+props:
+  type: object
+  properties:
+    tabs:
+      type: array
+      title: Tabs
+    heading_level:
+      type: string
+      title: Heading Level
+slots:
+  tabs:
+    title: Tabs

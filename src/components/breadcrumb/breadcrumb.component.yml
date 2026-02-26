@@ -1,3 +1,15 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Breadcrumb
 description: Breadcrumb
+props:
+  type: object
+  properties:
+    items:
+      type: array
+      title: Items
+    omit_last:
+      type: boolean
+      title: Omit Last
+    backlink_only:
+      type: boolean
+      title: Backlink Only
