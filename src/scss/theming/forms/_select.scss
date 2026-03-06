@@ -10,4 +10,12 @@ select {
   background-repeat: no-repeat;
   background-size: .75em;
   background-position: calc(100% - var(--tcds-field-padding-inline)) center;
+  font-family: var(--tcds-font-family-ui);
+  font-size: var(--tcds-font-size-sm);
+
+  &:focus {
+    @supports (-webkit-touch-callout: none) {
+      font-size: var(--tcds-font-size-md);
+    }
+  }
 }

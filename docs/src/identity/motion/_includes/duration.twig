@@ -1,0 +1,63 @@
+<style>
+.duration-demo {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--tcds-space-component-lg);
+  text-align: center;
+}
+
+.duration-demo figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--tcds-space-component-sm);
+}
+
+.duration-demo .track {
+  width: 100%;
+  height: 6px;
+  background: var(--tcds-color-theme-faded);
+  border-radius: 3px;
+  position: relative;
+  cursor: pointer;
+}
+
+.duration-demo .dot {
+  width: 18px;
+  height: 18px;
+  background: var(--tcds-color-theme-accent);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.duration-demo figure:hover .dot {
+  left: calc(100% - 18px);
+}
+</style>
+
+{% embed "tcds:callout" with {theme: "neutral"} %}
+{% block content %}
+<p>
+<code class="text-sm">motion.duration</code>
+</p>
+<div class="duration-demo">
+  {% for name, value in tokens.motion.duration %}
+    {% if name != "$type" %}
+      <figure>
+        <div class="track">
+          <div class="dot" style="transition: left var(--tcds-motion-duration-{{ name }}) var(--tcds-motion-easing-translate)"></div>
+        </div>
+        <figcaption>
+          <code class="text-sm">{{ name }}</code><br>
+          <code class="text-sm" style="color: var(--tcds-color-theme-muted)">{{ value["$value"] }}</code>
+        </figcaption>
+      </figure>
+    {% endif %}
+  {% endfor %}
+</div>
+<p class="text-sm font-family-ui" style="color: var(--tcds-color-theme-muted); text-align: center; margin: var(--tcds-space-component-md) 0 0">Hover to compare speeds.</p>
+{% endblock %}
+{% endembed %}

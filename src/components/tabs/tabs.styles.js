@@ -51,6 +51,8 @@ export default css`
 
     &:active,
     &[aria-selected=true] {
+      --tcds-button-foreground: var(--tcds-color-theme-accent);
+
       font-weight: var(--tcds-font-weight-bold);
     }
 

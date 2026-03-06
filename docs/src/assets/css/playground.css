@@ -4,9 +4,10 @@
   overflow: hidden;
   margin-bottom: 2rem;
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 3fr 1fr;
   resize: vertical;
   width: 100%;
+  height: 100dvh;
 }
 
 .playground__stage {

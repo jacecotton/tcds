@@ -1,0 +1,45 @@
+<style>
+.drop-shadow-demo {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--tcds-space-component-lg);
+  text-align: center;
+}
+
+.drop-shadow-demo figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--tcds-space-component-sm);
+}
+
+.drop-shadow-demo .swatch {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  background: var(--tcds-color-theme-background);
+  border-radius: var(--tcds-border-radius-md);
+}
+
+.drop-shadow-demo figcaption {
+  font-family: var(--tcds-font-family-ui);
+  font-size: var(--tcds-font-size-sm);
+}
+</style>
+
+{% embed "tcds:callout" with {theme: "neutral"} %}
+{% block content %}
+<div class="drop-shadow-demo">
+  {% for size, value in tokens["box-shadow"] %}
+    {% if size != "$type" %}
+      <figure>
+        <div class="swatch" style="box-shadow: var(--tcds-box-shadow-{{ size }})"></div>
+        <figcaption>
+          <code>box-shadow.{{ size }}</code><br>
+          <span style="color: var(--tcds-color-theme-muted)">{{ value["$value"].offsetX }} {{ value["$value"].offsetY }} {{ value["$value"].blur }}<br>{{ value["$value"].color }}</span>
+        </figcaption>
+      </figure>
+    {% endif %}
+  {% endfor %}
+</div>
+{% endblock %}
+{% endembed %}

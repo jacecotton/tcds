@@ -1,0 +1,92 @@
+<style>
+.animation-demo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--tcds-space-component-lg);
+  text-align: center;
+  margin-top: var(--tcds-space-component-sm);
+}
+
+.animation-demo figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--tcds-space-component-sm);
+
+  &:hover {
+    --stage-guideline-color: var(--tcds-color-theme-edge);
+  }
+}
+
+.animation-demo .stage {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  background: var(--tcds-color-theme-faded);
+  border-radius: var(--tcds-border-radius-md);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    transition: border-color var(--tcds-motion-easing-enter) 300ms 300ms;
+  }
+
+  &::before {
+    top: 0;
+    bottom: 0;
+    left: calc(50% - 1px);
+    border-left: 1px dashed var(--stage-guideline-color, transparent);
+  }
+
+  &::after {
+    top: calc(50% - 1px);
+    left: 0;
+    right: 0;
+    border-top: 1px dashed var(--stage-guideline-color, transparent);
+  }
+}
+
+.animation-demo tcds-icon {
+  font-size: 3.5rem;
+  color: var(--tcds-color-theme-accent);
+  position: relative;
+  z-index: 1;
+}
+
+.animation-demo tcds-icon.animate-in {
+  animation: var(--animation) var(--tcds-motion-duration-expressive) var(--tcds-motion-easing-translate) forwards;
+}
+
+.animation-demo tcds-icon.animate-out {
+  animation: var(--animation) var(--tcds-motion-duration-expressive) var(--tcds-motion-easing-translate) both reverse;
+}
+
+.animation-demo figcaption {
+  font-family: var(--tcds-font-family-ui);
+  font-size: var(--tcds-font-size-sm);
+}
+</style>
+<code class="text-sm">animation</code>
+<div class="animation-demo">
+  {% for name, value in tokens.animation %}
+    {% if name != "$type" %}
+      <figure>
+        <div class="stage">
+          <tcds-icon icon="plus" style="--animation: tcds-animation-{{ name }}; {{ name == "spin" ? "animation-timing-function: linear" }}"></tcds-icon>
+        </div>
+        <figcaption>
+          <code>{{ name }}</code><br>
+          <span style="color: var(--tcds-color-theme-muted)">{{ value["$description"] }}</span>
+        </figcaption>
+      </figure>
+    {% endif %}
+  {% endfor %}
+</div>
+<p class="text-sm font-family-ui" style="color: var(--tcds-color-theme-muted); text-align: center; margin-top: var(--tcds-space-component-md)">Hover to preview.</p>
+<script async src="/dist/js/animation-demo.js"></script>

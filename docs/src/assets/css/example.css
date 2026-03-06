@@ -19,4 +19,5 @@
   padding: var(--tcds-space-component-md);
   border: 1px solid rgb(0 0 0 / 5%);
   border-radius: var(--tcds-border-radius-md);
+  overflow-x: auto;
 }

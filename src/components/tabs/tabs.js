@@ -1,5 +1,6 @@
 import {LitElement} from "lit";
 import {html} from "lit/static-html.js";
+import {unsafeHTML} from "lit/directives/unsafe-html.js";
 import {customElement, property, queryAssignedElements, queryAll} from "lit/decorators.js";
 import {SelectionController} from "../_shared/controllers/SelectionController";
 import sharedStyles from "@/components/_shared/styles";
@@ -24,6 +25,7 @@ export class Tabs extends LitElement {
     super.connectedCallback();
     window.addEventListener("hashchange", this.#deepLinkHandler.bind(this));
     this.addEventListener("tcds-tab:updated", this.#handleTabUpdate.bind(this));
+    this.addEventListener("tcds-tab:select", this.#handleTabSelect.bind(this));
   }
 
   render() {
@@ -46,9 +48,8 @@ export class Tabs extends LitElement {
               tabindex=${tab.selected ? "0" : "-1"}
               @click=${() => this.select(tab)}
               @keydown=${this.#handleKeydown}
-              class="tcds-button"
-            >
-              <span>${tab.title}</span>
+              class="tcds-button">
+              ${unsafeHTML(tab.title)}
             </button>
           `;
         })}
@@ -65,6 +66,7 @@ export class Tabs extends LitElement {
     super.disconnectedCallback();
     window.removeEventListener("hashchange", this.#deepLinkHandler.bind(this));
     this.removeEventListener("tcds-tab:updated", this.#handleTabUpdate.bind(this));
+    this.removeEventListener("tcds-tab:select", this.#handleTabSelect.bind(this));
   }
   // #endregion
 
@@ -72,10 +74,12 @@ export class Tabs extends LitElement {
   async select(tab) {
     this._selectionController.select(tab);
 
-    this.dispatchEvent(new CustomEvent("tcds-tabs:select", {
-      bubbles: true,
-      detail: {tab},
-    }));
+    this.dispatchEvent(
+      new CustomEvent("tcds-tabs:select", {
+        bubbles: true,
+        detail: {tab},
+      }),
+    );
   }
   // #endregion
 
@@ -89,12 +93,20 @@ export class Tabs extends LitElement {
     this.requestUpdate();
   }
 
+  #handleTabSelect(event) {
+    const tab = event.target.closest("tcds-tab");
+
+    if (tab) {
+      this._selectionController.select(tab);
+    }
+  }
+
   #handleKeydown(event) {
     const handler = {
-      "ArrowRight": () => this._selectionController.selectNext(),
-      "ArrowLeft": () => this._selectionController.selectPrevious(),
-      "Home": () => this._selectionController.selectFirst(),
-      "End": () => this._selectionController.selectLast(),
+      ArrowRight: () => this._selectionController.selectNext(),
+      ArrowLeft: () => this._selectionController.selectPrevious(),
+      Home: () => this._selectionController.selectFirst(),
+      End: () => this._selectionController.selectLast(),
     }[event.key];
 
     if (!handler) return;

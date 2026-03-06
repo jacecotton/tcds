@@ -42,7 +42,8 @@ a {
     [slot],
     [href^="#"],
     [href^="javascript:" i],
-    [href^="/"]:not([href^="//"])
+    [href^="/"]:not([href^="//"]),
+    [href^="../"]
   )) {
     @include link-external();
   }
@@ -119,6 +120,11 @@ ol {
 }
 
 :where(p, li) {
-  line-height: var(--tcds-line-height-md);
+  line-height: var(--tcds-line-height-comfortable);
   color: var(--tcds-color-theme-foreground);
+}
+
+[title],
+abbr {
+  text-decoration: underline dashed var(--tcds-color-theme-muted);
 }

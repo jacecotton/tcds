@@ -1,3 +1,4 @@
+{% apply spaceless %}
 <style>
 .dont-do {
   display: grid;
@@ -5,11 +6,9 @@
   gap: var(--tcds-space-component-lg);
   margin-bottom: var(--tcds-space-component-lg);
 }
-
 .dont-do article {
   display: inline-block;
 }
-
 .dont-do figure {
   width: 100%;
   aspect-ratio: 2 / 1;
@@ -21,21 +20,19 @@
   border-top-right-radius: var(--tcds-border-radius-lg);
   border-top-left-radius: var(--tcds-border-radius-lg);
   overflow: hidden;
+  padding: var(--tcds-space-component-md);
 }
-
 .dont-do footer {
   padding: var(--tcds-space-component-sm) 0 0 0;
   font-family: var(--tcds-font-family-ui);
   font-size: var(--tcds-font-size-sm);
 }
-
 .dont-do footer span {
   display: block;
   border-bottom: 1px solid var(--tcds-color-theme-edge);
   margin-bottom: .5em;
   font-size: var(--tcds-font-size-md);
 }
-
 .dont-do footer tcds-icon {
   margin-right: .25rem;
 }
@@ -68,3 +65,4 @@
 </article>
 {% endif %}
 </div>
+{% endapply %}

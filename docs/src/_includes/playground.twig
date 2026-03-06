@@ -29,27 +29,26 @@
   </label>
 {% endmacro %}
 
-{# IMPORT MACRO #}
 {% import _self as forms %}
 
 <div class="playground" id="{{ id }}" data-target="{{ selector }}">
   <div class="playground__stage">
-    <a href="../" onclick="window.close()">Back to documentation</a>
+    <a href="../" onclick="window.close()" class="tcds-button">
+      <tcds-icon icon="caret-left"></tcds-icon>
+      Back to documentation
+    </a>
     {% apply spaceless %}
       {% block content %}{{ content|raw }}{% endblock %}
     {% endapply %}
   </div>
-  {# CONTROLS #}
   <form class="playground__controls">
     {% apply spaceless %}
-      {# LOOP 1: Root / Ungrouped Properties #}
       {%- for prop, config in form -%}
         {% if prop != 'sections' %}
           {{ forms.render_field(id, prop, config) }}
         {% endif %}
       {% endfor %}
 
-      {# LOOP 2: Grouped Sections #}
       {% if form.sections is defined %}
         {% for section in form.sections %}
           <fieldset class="playground__fieldset">

@@ -1,0 +1,63 @@
+<style>
+.easing-demo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--tcds-space-component-lg);
+  text-align: center;
+}
+
+.easing-demo figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--tcds-space-component-sm);
+}
+
+.easing-demo .track {
+  width: 100%;
+  height: 6px;
+  background: var(--tcds-color-theme-faded);
+  border-radius: 3px;
+  position: relative;
+  cursor: pointer;
+}
+
+.easing-demo .dot {
+  width: 18px;
+  height: 18px;
+  background: var(--tcds-color-theme-accent);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.easing-demo figure:hover .dot {
+  left: calc(100% - 18px);
+}
+</style>
+
+{% embed "tcds:callout" with {theme: "neutral"} %}
+{% block content %}
+<p>
+<code class="text-sm">motion.easing</code>
+</p>
+<div class="easing-demo">
+  {% for curve, value in tokens.motion.easing %}
+    {% if curve != "$type" %}
+      <figure>
+        <div class="track">
+          <div class="dot" style="transition: left var(--tcds-motion-duration-expressive) var(--tcds-motion-easing-{{ curve }})"></div>
+        </div>
+        <figcaption>
+          <code class="text-sm">{{ curve }}</code><br>
+          <code class="text-sm" style="color: var(--tcds-color-theme-muted)">{{ value["$description"] }}</code>
+        </figcaption>
+      </figure>
+    {% endif %}
+  {% endfor %}
+</div>
+<p class="text-sm font-family-ui" style="color: var(--tcds-color-theme-muted); text-align: center; margin: var(--tcds-space-component-md) 0 0">Hover to compare curves.</p>
+{% endblock %}
+{% endembed %}

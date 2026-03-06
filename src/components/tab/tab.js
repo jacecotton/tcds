@@ -36,6 +36,7 @@ export class Tab extends LitElement {
       subtree: true,
       characterData: true,
       attributes: true,
+      attributeFilter: ["slot"],
     });
   }
 
@@ -45,6 +46,17 @@ export class Tab extends LitElement {
         <slot></slot>
       </div>
     `;
+  }
+
+  willUpdate(changedProperties) {
+    if (changedProperties.has("selected") && this.selected) {
+      this.dispatchEvent(
+        new CustomEvent("tcds-tab:select", {
+          bubbles: true,
+          composed: true,
+        }),
+      );
+    }
   }
 
   updated() {
@@ -58,10 +70,12 @@ export class Tab extends LitElement {
     if (this.title !== newTitle) {
       this.title = newTitle;
 
-      this.dispatchEvent(new CustomEvent("tcds-tab:updated", {
-        bubbles: true,
-        composed: true,
-      }));
+      this.dispatchEvent(
+        new CustomEvent("tcds-tab:updated", {
+          bubbles: true,
+          composed: true,
+        }),
+      );
     }
   }
 }

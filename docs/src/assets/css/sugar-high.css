@@ -1,4 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap");
+
 :root {
+  --tcds-font-family-mono: "Roboto Mono", monospace;
+
   --sh-class: #2d5e9d;
   --sh-identifier: #354150;
   --sh-sign: #8996a3;
@@ -10,9 +14,14 @@
   --sh-comment: #a19595;
 }
 
+pre,
+code {
+  font-family: var(--tcds-font-family-mono);
+}
+
 .sh__line {
-  display: inline-block;
-  min-height: 1.5em; /* Prevent empty lines from collapsing completely */
+  display: inline-flex;
+  min-height: 1.5em;
 }
 
 pre {

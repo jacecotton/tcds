@@ -16,9 +16,13 @@ export class SelectionController {
 
     if (this.items.length === 0) return;
 
-    if (!this.selected) {
-      const selected = this.items.find(item => item.hasAttribute("selected"));
-      this.select(selected ?? this.items[0]);
+    const selectedItems = this.items.filter(item => item.selected);
+
+    if (selectedItems.length === 0) {
+      const fromAttr = this.items.find(item => item.hasAttribute("selected"));
+      this.select(fromAttr ?? this.items[0]);
+    } else if (selectedItems.length > 1) {
+      this.select(selectedItems[selectedItems.length - 1]);
     }
   }
 

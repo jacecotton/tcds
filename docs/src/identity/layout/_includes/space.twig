@@ -1,0 +1,72 @@
+<style>
+.space-demo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tcds-space-component-md);
+}
+
+.space-demo .row {
+  display: flex;
+  align-items: center;
+  gap: var(--tcds-space-component-md);
+}
+
+.space-demo .bar {
+  height: 20px;
+  background: var(--tcds-color-palette-blue-50);
+  border: 1px solid var(--tcds-color-palette-blue-200);
+  border-radius: var(--tcds-border-radius-xs);
+  flex-shrink: 0;
+}
+
+.space-demo .label {
+  font-family: var(--tcds-font-family-ui);
+  font-size: var(--tcds-font-size-sm);
+  white-space: nowrap;
+  min-width: 180px;
+}
+
+.space-demo .value {
+  color: var(--tcds-color-theme-muted);
+  font-size: var(--tcds-font-size-xs);
+}
+</style>
+
+{% embed "tcds:callout" with {theme: "neutral"} %}
+{% block content %}
+{% if category == "raw" %}
+<div class="space-demo">
+  {% for grade, value in tokens.space %}
+    {% if grade != "$type" and grade != "$description" and grade != "component" and grade != "layout" %}
+      <div class="row">
+        <span class="label"><code>space.{{ grade }}</code> <span class="value">{{ value["$value"] }}</span></span>
+        <div class="bar" style="width: var(--tcds-space-{{ grade }})"></div>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+{% elseif category == "component" %}
+<div class="space-demo">
+  {% for size, value in tokens.space.component %}
+    {% if size != "$description" %}
+      <div class="row">
+        <span class="label"><code>space.component.{{ size }}</code> <span class="value">{{ value["$value"] }}</span></span>
+        <div class="bar" style="width: var(--tcds-space-component-{{ size }})"></div>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+{% elseif category == "layout" %}
+<div class="space-demo">
+  {% for size, value in tokens.space.layout %}
+    {% if size != "$description" %}
+      <div class="row">
+        <span class="label"><code>space.layout.{{ size }}</code> <span class="value">{{ value["$value"] }}</span></span>
+        <div class="bar" style="width: var(--tcds-space-layout-{{ size }})"></div>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+{% endif %}
+{% endblock %}
+{% endembed %}

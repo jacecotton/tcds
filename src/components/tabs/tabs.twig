@@ -1,22 +1,20 @@
-<tcds-tabs>
+<tcds-tabs {{ variant ? "variant='#{variant}'" }}>
   {% if tabs is defined and tabs|length %}
     {% for tab in tabs %}
-      {% apply spaceless %}
-        {% if tab.content is defined %}
-          {% if block(tab.content) is defined %}
-            {% set content = block(tab.content) %}
-          {% else %}
-            {% set content = tab.content %}
-          {% endif %}
+      {% if tab.content is defined %}
+        {% if block(tab.content) is defined %}
+          {% set content = block(tab.content) %}
+        {% else %}
+          {% set content = tab.content %}
         {% endif %}
+      {% endif %}
 
-        {{ include("tcds:tab", {
-          title: tab.title,
-          content: content,
-          selected: tab.selected == true,
-          heading_level: heading_level ?: null,
-        }) }}
-      {% endapply %}
+      {{ include("tcds:tab", {
+        title: tab.title|raw,
+        content: content,
+        selected: tab.selected == true,
+        heading_level: heading_level ?: null,
+      }) }}
     {% endfor %}
   {% else %}
     {% block tabs %}{% endblock %}

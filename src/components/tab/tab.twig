@@ -1,12 +1,10 @@
-{% apply spaceless %}
-  <tcds-tab {{ selected ? "selected" }}>
-    <{{ heading_level ?: "h3" }} slot="title">{{ title }}</{{ heading_level ?: "h3" }}>
-    {% if content is defined %}
-      {% if block(content) is defined %}
-        {{ block(content) }}
-      {% else %}
-        {{ content }}
-      {% endif %}
+<tcds-tab {{ selected ? "selected" }}>
+  <{{ heading_level ?: "h3" }} slot="title">{{ title|raw }}</{{ heading_level ?: "h3" }}>
+  {% if content is defined %}
+    {% if block(content) is defined %}
+      {{ block(content) }}
+    {% else %}
+      {{ content }}
     {% endif %}
-  </tcds-tab>
-{% endapply %}
+  {% endif %}
+</tcds-tab>

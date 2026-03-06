@@ -52,7 +52,8 @@ Consider carefully whether you need an icon. Icons are decorative and should be 
 {% endblock %}
 {% endembed %}
 
-## Library
+<h2>Library</h2>
+
 ### Primary icons
 Use primary icons for decoration and navigation assistance, such as in the [Quick Links](/components/quick-links) component.
 

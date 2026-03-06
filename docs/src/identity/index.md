@@ -15,9 +15,9 @@ Design tokens are named variables that represent our design values, like specifi
 A token is a text string with segments ordered from general to specific, such as `color.palette.red.50`. In this example, `50` represents a specific shade, `red` contains all available shades of red, `palette` holds all raw colors, and `color` encompasses both our [color palette](/identity/color#palette) and [theme aliases](/identity/color#theming).
 
 ### In this documentation
-Throughout this site, documentation pages indicate which tokens are available for different design values. Many values have multiple aliases for different applications. For example, `color.palette.blue.900` and `color.theme.cool.foreground` share the same hex code.
+Throughout this site, documentation pages indicate which tokens are available for different design values. Many values have multiple aliases for different applications. For example, the "cool background" token (`color.theme.cool.background`) points to the "blue 50" token (`color.palette.blue.50`), which in turn points to the hex code.
 
-Typically, you'll find a "raw" token representing the literal value, plus "semantic" aliases based on function or role—like `font.family.headings` (semantic), which references `font.stack.serif` (raw). Developers are encouraged to use semantic tokens where available and applicable.
+Typically, you'll find a "literal" token representing the dictionary value, and "semantic" aliases based on function or role—like the "heading font" token (`font.family.headings`), which is a semantic alias for the raw "serif font" token (`font.stack.serif`). Developers are encouraged to use semantic tokens where available and applicable.
 
 ### Technical information
 Our design tokens are defined in JSON files at [`/src/tokens`](https://github.com/jacecotton/tcds/tree/jace-dev/src/tokens) in the codebase, providing a single source of truth. When we update the Design System, these JSON files are automatically transformed into platform-specific formats for Figma, CSS, and JavaScript. The documentation on this site also directly pulls from the source JSON when displaying values.

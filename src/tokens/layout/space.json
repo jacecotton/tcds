@@ -15,7 +15,8 @@
       "xs": {"$value": "{space.2}"},
       "sm": {"$value": "{space.3}"},
       "md": {"$value": "{space.4}"},
-      "lg": {"$value": "{space.8}"}
+      "lg": {"$value": "{space.8}"},
+      "xl": {"$value": "{space.14}"}
     },
     "layout": {
       "$description": "Semantic spacing values for layout scales.",
