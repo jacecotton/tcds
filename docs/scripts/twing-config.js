@@ -10,6 +10,8 @@ import {
   createSource,
 } from "twing";
 import {highlight} from "sugar-high";
+import { DrupalAttribute as Attribute } from "drupal-attribute";
+import cleanClass from "twig-drupal-filters/filters/clean_class.js";
 
 /**
  * Configure Twing for Eleventy with custom asset loading and component resolution.
@@ -292,28 +294,39 @@ export default function configureTwing(eleventyConfig, projectRoot) {
 
   /**
    * Filter to clean a string for use as a class name.
-   * "Mimics" Drupal's clean_class:
-   * - Lowercase
-   * - Replace non-alphanumeric characters with hyphens
-   * - Remove multiple hyphens (handled by the regex + replace)
-   * - Trim leading/trailing hyphens
+   * Uses twig-drupal-filters implementation.
    */
   const cleanClassFilter = createFilter(
     "clean_class",
-    (context, input) => {
+    (input) => {
       if (!input) return Promise.resolve("");
-      const cleaned = input
-        .toString()
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/^-+|-+$/g, "");
-      return Promise.resolve(cleaned);
+      return Promise.resolve(cleanClass(input));
     },
-    [],
-    {needs_context: true},
+    []
   );
 
   twing.addFilter(cleanClassFilter);
+
+  /**
+   * Function to create a new Drupal Attribute instance.
+   */
+  const createAttributeFunc = createFunction(
+    "create_attribute",
+    (_, attributes) => {
+      let initData = attributes;
+
+      if (initData && typeof initData === "object" && typeof initData[Symbol.iterator] !== "function") {
+        initData = Object.entries(initData);
+      }
+
+      return Promise.resolve(new Attribute(initData));
+    },
+    [
+      { name: "attributes", defaultValue: new Map() }
+    ]
+  );
+
+  twing.addFunction(createAttributeFunc);
 
   /**
    * Filter to highlight code using Sugar High.

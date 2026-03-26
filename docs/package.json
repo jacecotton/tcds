@@ -4,17 +4,21 @@
   "description": "Documentation for TCDS",
   "type": "module",
   "scripts": {
-    "start": "eleventy --serve",
-    "build": "eleventy"
+    "build:css": "sass src/assets/scss:_site/dist/css",
+    "start": "npm run build:css && eleventy --serve",
+    "build": "npm run build:css && eleventy"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "@11ty/eleventy": "^3.1.2",
     "@11ty/eleventy-navigation": "^1.0.5",
+    "drupal-attribute": "^1.2.1",
     "markdown-it": "^14.1.0",
+    "sass": "^1.98.0",
     "sugar-high": "^0.9.5",
+    "twig-drupal-filters": "^3.2.0",
     "twing": "^7.2.2"
   }
 }
