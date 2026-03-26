@@ -1,8 +1,5 @@
 .playground {
-  border: 1px solid #ccc;
-  border-radius: 8px;
   overflow: hidden;
-  margin-bottom: 2rem;
   display: grid;
   grid-template-columns: 3fr 1fr;
   resize: vertical;
@@ -11,9 +8,9 @@
 }
 
 .playground__stage {
-  padding: 2rem;
+  padding: var(--tcds-space-component-lg);
   background: var(--tcds-color-theme-background);
-  border-right: 1px solid #ccc;
+  border-right: 1px solid var(--tcds-color-theme-edge);
   overflow-x: auto;
 }
 

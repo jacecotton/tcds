@@ -19,9 +19,16 @@ code {
   font-family: var(--tcds-font-family-mono);
 }
 
+pre > code {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  gap: .5em;
+}
+
 .sh__line {
-  display: inline-flex;
-  min-height: 1.5em;
+  display: flex;
+  width: 100%;
 }
 
 pre {
@@ -32,7 +39,7 @@ pre {
   counter-increment: line;
   content: counter(line);
   display: inline-block;
-  width: 2em;
+  min-width: 2em;
   margin-right: 1em;
   text-align: right;
   color: var(--sh-comment);

@@ -1,7 +1,12 @@
-<div data-theme="{{ theme }}" class="bg-icon bg-icon--texas-childrens" style="background-color: var(--tcds-color-theme-background); color: var(--tcds-color-theme-foreground); border: 5px solid var(--tcds-color-theme-faded); padding: var(--tcds-space-layout-sm); margin: 1.5em 0; border-radius: var(--tcds-border-radius-lg)">
+{% embed "tcds:callout" with {
+  theme: theme,
+  custom_classes: ["bg-icon", "bg-icon--texas-childrens"],
+} %}
+{% block content %}
 <p class="h4" style="color: var(--tcds-color-theme-muted)">This is <i>muted</i> text</p>
 <p class="h2">This is <span style="color: var(--tcds-color-theme-accent)"><i>accent</i> text</span></p>
 <p>This is <i>foreground</i> text on a <i>background</i> fill.</p>
 <hr>
 <p><small style="color: var(--tcds-color-theme-muted)">The logomark background is <i>faded</i> and the divider above uses the <i>edge</i> color.</small></p>
-</div>
+{% endblock %}
+{% endembed %}

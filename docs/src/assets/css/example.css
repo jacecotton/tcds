@@ -1,6 +1,7 @@
 .example {
   border: 1px solid var(--tcds-color-theme-edge);
   border-radius: var(--tcds-border-radius-sm);
+  margin: 0 0 1.5em 0;
 }
 
 .example__result {
@@ -9,11 +10,16 @@
 }
 
 .example__howto {
-  padding: var(--tcds-space-component-md);
+  padding: 0 var(--tcds-space-component-md);
+
+  a {
+    display: block;
+    padding-block: var(--tcds-space-component-md);
+  }
 }
 
 .example__code {
-  background: var(--tcds-color-palette-gray-50);
+  background: rgb(50 100 255 / 1%);
   font-size: var(--tcds-font-size-sm);
   line-height: var(--tcds-line-height-md);
   padding: var(--tcds-space-component-md);
