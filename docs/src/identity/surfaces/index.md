@@ -1,6 +1,6 @@
 ---
 title: Surfaces
-description: Surfaces use generous corner radii to invoke the rounded shape of our logomark, as well as drop shadows to impart depth and dimensionality.
+description: Surfaces use white backgrounds, generous corner radii to invoke the rounded shape of our logomark, and drop shadows to impart depth and dimensionality.
 eleventyNavigation:
   key: Surfaces
   parent: Identity
@@ -27,81 +27,38 @@ eleventyNavigation:
 {% block designers %}
 
 ### Corner radius
+Corder radius is implemented on the web as *border radius*.
 
 {{ include("./_includes/corner-radius.twig", {tokens: tokens}) }}
 
-**Scale radius with element size.** Use smaller radii (XS, SM) for compact interface elements like input fields or badges. Use larger radii (MD, LG) for prominent clickable surfaces like cards and quick links.
+**Scale radius with element size.** Use smaller radii (XS, SM) for compact interface elements like input fields or badges. Use larger radii (MD, LG) for prominent surfaces like cards and quick links.
 
 **Avoid rounding large containers.** Sections, page regions, and other layout-level containers should have sharp corners. Avoid the "bento box" aesthetic.
 
-**Use fully rounded shapes sparingly.** Circular and pill shapes (where `border-radius` equals half the element's height) ...
+**Use fully rounded shapes sparingly.** Circular and pill shapes (where the radius equals half the element's height) should generally be reserved for special cases, like [Call to Action](/components/call-to-action) links, or elements for which the shape is strictly logical, like [radio inputs](/theming/forms).
 
 #### Inner corner radius
 
 When a rounded element has padding and contains another rounded element, the inner element's corner radius should equal the outer element's radius minus the padding between them.
 
-<div style="display: inline-flex; padding: var(--tcds-space-component-md); border-radius: var(--tcds-border-radius-lg); background: var(--tcds-color-theme-faded); margin: 1em 0">
-<div style="padding: var(--tcds-space-component-lg) var(--tcds-space-layout-sm); border-radius: calc(var(--tcds-border-radius-lg) - var(--tcds-space-component-md)); background: var(--tcds-color-theme-background);">
+<div style="display: flex; justify-content: center; margin: 3em 0">
+<div style="display: inline-flex; padding: var(--tcds-space-component-sm); border-radius: var(--tcds-border-radius-lg); background: var(--tcds-color-theme-neutral-background); box-shadow: var(--tcds-box-shadow-md)">
+<div style="padding: var(--tcds-space-component-lg); border-radius: calc(var(--tcds-border-radius-lg) - var(--tcds-space-component-sm)); background: var(--tcds-color-theme-warm-background); border: 1px dashed var(--tcds-color-theme-warm-edge)">
 <code class="text-sm">inner radius = outer radius &minus; padding</code>
 </div>
 </div>
+</div>
 
-This prevents the inner element's corners from appearing visually misaligned with the outer element's curvature. Without this adjustment, the inner corners look too sharp relative to the outer shape.
+This prevents the inner element's corners from appearing visually misaligned with the outer element's curvature.
 
 ### Drop shadow
+Drop shadows impart depth and dimensionality. They signal that an element floats above the page surface—use them to reinforce visual hierarchy, not for decoration.
 
 {{ include("./_includes/drop-shadow.twig", {tokens: tokens}) }}
 
-Drop shadows impart depth and dimensionality. They signal that an element floats above the page surface—use them to reinforce visual hierarchy, not for decoration.
-
-**Apply shadows to elements that straddle or float.** Sticky headers, mega menus, floating action buttons, and search overlays are natural candidates. Cards and quick links may benefit from a subtle shadow (SM) to lift them off the page.
-
 **Match shadow intensity to elevation.** Elements that float above many layers of content (sticky navigation, modal overlays) warrant a heavier shadow (MD, LG). Elements that sit just above their immediate context (cards, form dropdowns) should use lighter shadows (XS, SM).
 
-**Do not overuse shadows.** Shadows lose their meaning if every surface has one. When most elements are flat, the ones with shadows draw appropriate attention. Overuse flattens the visual hierarchy.
-
-{% embed "_includes/dont-do.twig" with {
-  dont: "apply shadows to every surface.",
-  do_this: "use shadows selectively to convey meaningful depth.",
-} %}
-{% block dont %}
-
-<div style="display: flex; gap: var(--tcds-space-component-md); padding: var(--tcds-space-component-sm)">
-<div style="flex: 1; padding: var(--tcds-space-component-md); background: var(--tcds-color-theme-background); border-radius: var(--tcds-border-radius-md); box-shadow: var(--tcds-box-shadow-md)">Card</div>
-<div style="flex: 1; padding: var(--tcds-space-component-md); background: var(--tcds-color-theme-background); border-radius: var(--tcds-border-radius-md); box-shadow: var(--tcds-box-shadow-md)">Card</div>
-<div style="flex: 1; padding: var(--tcds-space-component-md); background: var(--tcds-color-theme-background); border-radius: var(--tcds-border-radius-md); box-shadow: var(--tcds-box-shadow-md)">Card</div>
-</div>
-{% endblock %}
-{% block do_this %}
-<div style="display: flex; gap: var(--tcds-space-component-md); padding: var(--tcds-space-component-sm)">
-<div style="flex: 1; padding: var(--tcds-space-component-md); background: var(--tcds-color-theme-background); border-radius: var(--tcds-border-radius-md); border: 1px solid var(--tcds-color-theme-edge)">Card</div>
-<div style="flex: 1; padding: var(--tcds-space-component-md); background: var(--tcds-color-theme-background); border-radius: var(--tcds-border-radius-md); border: 1px solid var(--tcds-color-theme-edge)">Card</div>
-<div style="flex: 1; padding: var(--tcds-space-component-md); background: var(--tcds-color-theme-background); border-radius: var(--tcds-border-radius-md); box-shadow: var(--tcds-box-shadow-sm)">Featured</div>
-</div>
-{% endblock %}
-{% endembed %}
-
-{% embed "_includes/dont-do.twig" with {
-  dont: "round large structural containers.",
-  do_this: "round interactive and discrete surfaces.",
-} %}
-{% block dont %}
-
-<div style="width: 100%; padding: var(--tcds-space-component-lg); background: var(--tcds-color-theme-cool-background); border-radius: var(--tcds-border-radius-lg)">
-<p class="text-sm" style="margin: 0; color: var(--tcds-color-theme-cool-foreground)">A large page section with rounded corners</p>
-</div>
-{% endblock %}
-{% block do_this %}
-<div style="display: flex; gap: var(--tcds-space-component-md)">
-<div style="flex: 1; padding: var(--tcds-space-component-md); background: var(--tcds-color-theme-background); border-radius: var(--tcds-border-radius-md); border: 1px solid var(--tcds-color-theme-edge)">
-<p class="text-sm" style="margin: 0">A card</p>
-</div>
-<div style="flex: 1; padding: var(--tcds-space-component-md); background: var(--tcds-color-theme-background); border-radius: var(--tcds-border-radius-md); border: 1px solid var(--tcds-color-theme-edge)">
-<p class="text-sm" style="margin: 0">A card</p>
-</div>
-</div>
-{% endblock %}
-{% endembed %}
+**Do not overuse shadows.** Shadows lose their meaning if every surface has one. When most elements are flat, the ones with shadows draw appropriate attention. Overuse flattens and distorts the visual hierarchy.
 
 {% endblock %}
 {% block editors %}
