@@ -27,11 +27,9 @@ eleventyNavigation:
 {% block designers %}
 
 ### Best practices
-**Use as an enhancement, not requirement.** Before using animation, ensure the design is effective and the content is perceivable without it. Then, use it as a [progressive enhancement](https://www.smashingmagazine.com/2009/04/progressive-enhancement-what-it-is-and-how-to-use-it/ "Progressive Enhancement: What It Is, And How To Use It? — Smashing Magazine").
+**Use as an enhancement, not requirement.** Before using animations, ensure the design is effective and the content is perceivable without it. Then, use it as a [progressive enhancement](https://www.smashingmagazine.com/2009/04/progressive-enhancement-what-it-is-and-how-to-use-it/ "Progressive Enhancement: What It Is, And How To Use It? — Smashing Magazine").
 
-**Be consistent.** Animation can provide a sense of depth and tangibility unless used inconsistently, in which case it can have the opposite effect.
-
-**Aim for meaningfulness and credibility.** Avoid unnecessary, complex, or lengthy animations.
+**Strive for meaningfulness and credibility.** Avoid unnecessary, complex, or lengthy animations. When designing with motion, ensure consistency with comparable experiences to ensure credibility.
 
 #### When to use
 **Draw attention and direct focus.** Motion attracts the eye and can help overcome [change blindness](https://www.nngroup.com/articles/change-blindness-definition/ "Change Blindness in UX — Nielsen Norman Group") and [tunnel vision](https://www.nngroup.com/articles/tunnel-vision-and-selective-attention/) in users.
