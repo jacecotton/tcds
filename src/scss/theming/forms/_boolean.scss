@@ -7,12 +7,12 @@ input[type=radio] {
 }
 
 input[type=checkbox][role=switch] {
-  --tcds-switch-track-background: var(--tcds-color-palette-gray-50);
+  --tcds-switch-track-background: var(--tcds-color-theme-neutral-faded);
   --tcds-switch-track-height: var(--tcds-boolean-field-height);
   --tcds-switch-track-width: 2.5rem;
 
-  --tcds-switch-thumb-background: var(--tcds-color-palette-white);
-  --tcds-switch-thumb-border: 1px solid var(--tcds-switch-thumb-border-color, var(--tcds-color-palette-gray-300));
+  --tcds-switch-thumb-background: var(--tcds-color-theme-neutral-background);
+  --tcds-switch-thumb-border: 1px solid var(--tcds-switch-thumb-border-color, var(--tcds-color-palette-gray-500));
 
   --tcds-switch-transition-easing: var(--tcds-motion-easing-enter);
 
@@ -40,7 +40,7 @@ input[type=checkbox][role=switch] {
 
   &:focus {
     --tcds-switch-track-border-color: var(--tcds-field-focus-border-color);
-    --tcds-switch-thumb-border-color: var(--tcds-color-palette-red-700);
+    --tcds-switch-thumb-border-color: var(--tcds-color-theme-accent);
 
     outline: none;
   }
@@ -54,7 +54,7 @@ input[type=checkbox][role=switch] {
   }
 
   &[disabled] {
-    --tcds-switch-track-background: var(--tcds-color-palette-gray-200);
+    --tcds-switch-track-background: var(--tcds-color-theme-faded);
     --tcds-switch-track-border: 0;
     --tcds-switch-track-box-shadow: none;
     --tcds-switch-thumb-border: 0;

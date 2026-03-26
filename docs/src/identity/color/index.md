@@ -33,11 +33,11 @@ Texas Children's Design System provides a limited raw color palette.
 {% embed "./_includes/swatch.twig" with {palette: "red", tokens: tokens} %}
 {% block content %}
 
-Red 700 is the primary brand color, used in the Design System as an accent color (links, buttons, dividers, promotional headlines). Red 50 is used for [warm backgrounds](#warm).
+Red 500 is the primary brand color, used in the Design System as an accent color (links, buttons, dividers, promotional headlines). Red 50 is used for [warm backgrounds](#warm).
 
 **Use sparingly.** Reserve this color to leverage our brand identity, and never use it for generic emphasis. Its intensity can risk inadvertently diverting attention from the primary user flow.
 
-**Avoid Red 700 for large fills.** This color is too intense for entire sections of content. Consider Red 50 instead, or if you need a dark tone, use the [dark theme](#dark).
+**Avoid Red 500 for large fills.** This color is too intense for entire sections of content. Consider Red 50 instead, or if you need a dark tone, use the [dark theme](#dark).
 
 {% endblock %}
 {% endembed %}
@@ -47,9 +47,9 @@ Red 700 is the primary brand color, used in the Design System as an accent color
 {% embed "./_includes/swatch.twig" with {palette: "blue", tokens: tokens} %}
 {% block content %}
 
-Blue is the secondary color. Blue 50 is used as the [cool background](#cool), and Blue 900 the [dark background](#dark).
+Blue is the secondary color. Blue 50 is used as the [cool background](#cool), and Blue 800 the [dark background](#dark).
 
-**Use as a secondary accent.** Blue 900 effectively signals secondary precedence while still drawing attention through stark contrast.
+**Use as a secondary accent.** Blue 800 effectively signals secondary precedence while still drawing attention through stark contrast.
 
 **Try first when you need a little extra color.** Blue is calmer than red, yet more welcoming than white and more lively than [gray](#gray).
 
@@ -110,6 +110,9 @@ This theme is particularly useful for anchoring content in a long-scrolling page
 ### Color palette
 Prefer using semantic theme tokens (see below) to raw palette tokens, where applicable.
 
+{% embed "tcds:table" %}
+{% block content %}
+
 |   | Token | CSS custom property | JavaScript constant | Value |
 | - | ----- | ------------------- | ------------------- | ----- |
 {% for color, data in tokens.color.palette %}
@@ -121,6 +124,9 @@ Prefer using semantic theme tokens (see below) to raw palette tokens, where appl
 {% endif %}
 {% endfor %}
 {% endfor %}
+
+{% endblock %}
+{% endembed %}
 
 ### Color themes
 Themes determine the color values of elements according to the following properties or roles:
@@ -152,6 +158,13 @@ To set a color theme on a component or other themeable element, use the `data-th
 | --------- | ---- | ------ |
 | `data-theme` | enum | `neutral \| cool \| warm \| dark` |
 
+Usage:
+
+{% set theme_html_example %}{% verbatim %}<div data-theme="{{ theme }}">...</div>{% endverbatim %}{% endset %}
+<pre class="example__code">
+<code>
+{{ theme_html_example|highlight }}</code></pre>
+
 #### CSS
 When designing themeable components, use the following non-theme-specific custom properties. They will resolve to theme-specific custom properties depending on the `data-theme` attribute.
 
@@ -180,6 +193,30 @@ When designing themeable components, use the following non-theme-specific custom
 {% endfor %}
 </table>
 {% endfor %}
+
+#### Sass
+You can iterate over color tokens with the `tokens` function from the root `abstracts/_functions.scss` file:
+
+{% set tokens_sass_example %}
+@use "./abstracts/functions" as *;
+
+@each $theme, $tokens in tokens("color", "theme") {
+  @each $token, $value in $tokens {
+    @debug $token; // => background, foreground, accent, ...
+    @debug $value; // => #ffffff, #000000, #da2530, ...
+  }
+}{% endset %}
+<pre class="example__code"><code>{{ tokens_sass_example|highlight }}</code></pre>
+
+You can access token values directly with the `token` function:
+
+{% set token_sass_example %}
+@use "./abstracts/functions" as *;
+
+@debug token("color", "theme", "neutral", "background"); // => #ffffff{% endset %}
+<pre class="example__code"><code>{{ token_sass_example|highlight }}</code></pre>
+
+**Note:** You should generally *avoid* accessing raw token values. Instead, use the CSS custom property, using Sass utilities only to iterate over keys (e.g. `var(--tcds-color-theme-#{$theme}-#{$token})`).
 
 #### JavaScript
 TBD (`ThemeProvider`).

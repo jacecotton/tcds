@@ -3,59 +3,58 @@
     "$type": "color",
     "palette": {
       "red": {
-        "50": {"$value": "#fff7f7"},
-        "700": {"$value": "#da2530"}
+        "50": {"$value": "oklch(98.23% 0.0086 17.3)"},
+        "500": {"$value": "oklch(57.39% 0.213 24.85)"}
       },
       "blue": {
-        "50": {"$value": "#f5faff"},
-        "900": {"$value": "#122840"}
+        "50": {"$value": "oklch(97.01% 0.0093 242.84)"},
+        "800": {"$value": "oklch(27.2% 0.053 252.15)"}
       },
       "gray": {
-        "50": {"$value": "#fafafa"},
-        "100": {"$value": "#f4f4f5"},
-        "300": {"$value": "#d4d4d8"},
-        "500": {"$value": "#71717a"},
-        "700": {"$value": "#3f3f46"},
-        "900": {"$value": "#18181b"}
+        "50": {"$value": "oklch(97.74% 0.0042 236.5)"},
+        "100": {"$value": "oklch(90% 0.011 234.82)"},
+        "300": {"$value": "oklch(70% 0.0219 236.85)"},
+        "500": {"$value": "oklch(57.39% 0.03 237.96)"},
+        "800": {"$value": "oklch(27.2% 0.0244 239.26)"}
       },
-      "white": {"$value": "#ffffff"},
-      "black": {"$value": "#000000"}
+      "white": {"$value": "oklch(1 0 0)"},
+      "black": {"$value": "oklch(0 0 0)"}
     },
     "brand": {
-      "primary": {"$value": "{color.palette.red.700}"}
+      "primary": {"$value": "{color.palette.red.500}"}
     },
     "theme": {
       "neutral": {
         "background": {"$value": "{color.palette.white}"},
-        "foreground": {"$value": "{color.palette.black}"},
-        "accent": {"$value": "{color.palette.red.700}"},
-        "faded": {"$value": "color-mix(in srgb, {color.theme.neutral.foreground}, {color.theme.neutral.background} 98%)"},
-        "edge": {"$value": "color-mix(in srgb, {color.theme.neutral.foreground}, {color.theme.neutral.background} 85%)"},
-        "muted": {"$value": "color-mix(in srgb, {color.theme.neutral.foreground}, {color.theme.neutral.background} 40%)"}
+        "foreground": {"$value": "{color.palette.blue.800}"},
+        "accent": {"$value": "{color.brand.primary}"},
+        "faded": {"$value": "{color.palette.gray.50}"},
+        "edge": {"$value": "{color.palette.gray.100}"},
+        "muted": {"$value": "{color.palette.gray.500}"}
       },
       "cool": {
         "background": {"$value": "{color.palette.blue.50}"},
-        "foreground": {"$value": "{color.palette.blue.900}"},
-        "accent": {"$value": "{color.palette.red.700}"},
-        "faded": {"$value": "color-mix(in srgb, {color.theme.cool.foreground}, {color.theme.cool.background} 98%)"},
-        "edge": {"$value": "color-mix(in srgb, {color.theme.cool.foreground}, {color.theme.cool.background} 85%)"},
-        "muted": {"$value": "color-mix(in srgb, {color.theme.cool.foreground}, {color.theme.cool.background} 40%)"}
+        "foreground": {"$value": "{color.palette.blue.800}"},
+        "accent": {"$value": "{color.brand.primary}"},
+        "faded": {"$value": "color-mix(in oklab, {color.theme.cool.foreground}, {color.theme.cool.background} 98%)"},
+        "edge": {"$value": "color-mix(in oklab, {color.theme.cool.foreground}, {color.theme.cool.background} 85%)"},
+        "muted": {"$value": "color-mix(in oklab, {color.theme.cool.foreground}, {color.theme.cool.background} 40%)"}
       },
       "warm": {
         "background": {"$value": "{color.palette.red.50}"},
-        "foreground": {"$value": "{color.palette.gray.900}"},
-        "accent": {"$value": "{color.palette.red.700}"},
-        "faded": {"$value": "color-mix(in srgb, {color.theme.warm.accent}, {color.theme.warm.background} 98%)"},
-        "edge": {"$value": "color-mix(in srgb, {color.theme.warm.foreground}, {color.theme.warm.background} 85%)"},
-        "muted": {"$value": "color-mix(in srgb, {color.theme.warm.foreground}, {color.theme.warm.background} 40%)"}
+        "foreground": {"$value": "{color.palette.gray.800}"},
+        "accent": {"$value": "{color.brand.primary}"},
+        "faded": {"$value": "color-mix(in oklab, {color.theme.warm.accent}, {color.theme.warm.background} 96%)"},
+        "edge": {"$value": "color-mix(in oklab, {color.theme.warm.foreground}, {color.theme.warm.background} 85%)"},
+        "muted": {"$value": "color-mix(in oklab, {color.theme.warm.foreground}, {color.theme.warm.background} 40%)"}
       },
       "dark": {
-        "background": {"$value": "{color.palette.blue.900}"},
+        "background": {"$value": "{color.palette.blue.800}"},
         "foreground": {"$value": "{color.palette.white}"},
-        "accent": {"$value": "{color.palette.red.700}"},
-        "faded": {"$value": "color-mix(in srgb, {color.theme.dark.foreground}, {color.theme.dark.background} 98%)"},
-        "edge": {"$value": "color-mix(in srgb, {color.theme.dark.foreground}, {color.theme.dark.background} 85%)"},
-        "muted": {"$value": "color-mix(in srgb, {color.theme.dark.foreground}, {color.theme.dark.background} 40%)"}
+        "accent": {"$value": "{color.brand.primary}"},
+        "faded": {"$value": "color-mix(in oklab, {color.theme.dark.foreground}, {color.theme.dark.background} 98%)"},
+        "edge": {"$value": "color-mix(in oklab, {color.theme.dark.foreground}, {color.theme.dark.background} 85%)"},
+        "muted": {"$value": "color-mix(in oklab, {color.theme.dark.foreground}, {color.theme.dark.background} 40%)"}
       }
     }
   }

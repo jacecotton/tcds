@@ -1,16 +1,16 @@
 @use "../../../scss/abstracts/mixins" as *;
 
 @mixin dark-header {
-  --tcds-site-header-toggle-color: var(--tcds-color-palette-white);
+  --tcds-site-header-toggle-color: var(--tcds-color-theme-dark-foreground);
 
   // Replaced with &::before-based box-shadow below.
   // background: linear-gradient(0deg, rgb(0 0 0 / 0%) 0%, rgb(0 0 0) 100%);
 
   @include breakpoint("lg") {
-    --tcds-site-header-link-color: var(--tcds-color-palette-white);
-    --tcds-site-header-link-color-hover: var(--tcds-color-palette-white);
-    --tcds-site-header-utility-link-color: var(--tcds-color-palette-white);
-    --tcds-site-header-highlight-background: var(--tcds-color-brand);
+    --tcds-site-header-link-color: var(--tcds-color-theme-dark-foreground);
+    --tcds-site-header-link-color-hover: var(--tcds-color-theme-dark-foreground);
+    --tcds-site-header-utility-link-color: var(--tcds-color-theme-dark-foreground);
+    --tcds-site-header-highlight-background: var(--tcds-color-theme-dark-accent);
   }
 
   &::before {
