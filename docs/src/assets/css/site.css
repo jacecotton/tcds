@@ -1,0 +1,16 @@
+.key-points {
+  font-family: var(--tcds-font-family-ui);
+  font-size: var(--tcds-font-size-sm);
+
+  ul {
+    list-style-type: "❖  ";
+  }
+}
+
+:is(p, li) code {
+  background: var(--tcds-color-palette-gray-50);
+  border: 1px solid rgb(0 0 0 / 5%);
+  border-radius: var(--tcds-border-radius-xs);
+  font-size: 95%;
+  padding: 0 .25em;
+}
