@@ -48,7 +48,7 @@ export class Accordion extends LitElement {
 
   // #region Public API methods
   /**
-   * Open all sections belonging to this section.
+   * Open all sections belonging to this accordion.
    *
    * @param {Boolean} filter - An optional filter to exclude sections from
    * opening given custom criteria.

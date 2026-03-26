@@ -4,6 +4,7 @@ import {customElement, property, state} from "lit/decorators.js";
 import slugify from "@/js/utilities/slugify.js";
 import sharedStyles from "@/components/_shared/styles";
 import {AccordionAnimationController} from "../_shared/controllers/AccordionAnimationController";
+import {MotionDurationProductive} from "@/js/_gen/tokens.js";
 import accordionSectionStyles from "./accordion-section.styles.js";
 
 @customElement("tcds-accordion-section")
@@ -132,16 +133,18 @@ export class AccordionSection extends LitElement {
     await this.updateComplete;
 
     if (!this.accordion?.multiple) {
-      const headingTop = this._parts.heading.getBoundingClientRect().top;
-      const threshold = parseInt(
-        getComputedStyle(document.documentElement)
-          .getPropertyValue("--tcds-site-header-height")
-        ) || 0;
+      setTimeout(() => {
+        const headingTop = this._parts.heading.getBoundingClientRect().top;
+        const threshold = (parseInt(
+          getComputedStyle(document.documentElement)
+            .getPropertyValue("--tcds-site-header-height")
+          ) || 0) + 25;
 
-      // Only scroll if the heading has been pushed off the top of the screen.
-      if (headingTop < threshold) {
-        this.scrollIntoView(true);
-      }
+        // Only scroll if the heading has been pushed off the top of the screen.
+        if (headingTop < threshold) {
+          this.scrollIntoView(true);
+        }
+      }, MotionDurationProductive);
     }
 
     // Return resolved value.
@@ -170,8 +173,8 @@ export class AccordionSection extends LitElement {
     if (!hash) return;
 
     // Derive an ID from section title if not already provided.
-    if (!this.id && !document.getElementById(slugify(this.title))) {
-      this.id = slugify(this.title);
+    if (!this.id && !document.getElementById(slugify(this._title))) {
+      this.id = slugify(this._title);
     }
 
     if (hash === this.id || this.querySelector(`[id=${hash}], [name=${hash}]`)) {

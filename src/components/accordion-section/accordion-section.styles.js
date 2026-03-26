@@ -32,6 +32,7 @@ export default css`
     padding: var(--tcds-space-component-md) 0;
     text-align: left;
     font-size: var(--tcds-accordion-heading-font-size, var(--tcds-font-size-ml));
+    line-height: var(--tcds-accordion-heading-line-height, var(--tcds-line-height-compact));
     font-family: var(--tcds-font-family-ui);
     font-weight: var(--tcds-accordion-heading-font-weight, var(--tcds-font-weight-semibold));
     width: 100%;
@@ -42,6 +43,7 @@ export default css`
     flex-shrink: 0;
     pointer-events: none;
     margin-left: auto;
+    color: var(--tcds-color-theme-muted);
   }
 
   [part="panel"] {

@@ -1,22 +1,20 @@
 <tcds-accordion {{ multiple ? "multiple" }}>
   {% if sections is defined and sections|length %}
     {% for section in sections %}
-      {% apply spaceless %}
-        {% if section.content is defined %}
-          {% if block(section.content) is defined %}
-            {% set content = block(section.content) %}
-          {% else %}
-            {% set content = section.content %}
-          {% endif %}
+      {% if section.content is defined %}
+        {% if block(section.content) is defined %}
+          {% set content = block(section.content) %}
+        {% else %}
+          {% set content = section.content %}
         {% endif %}
+      {% endif %}
 
-        {{ include("tcds:accordion-section", {
-          title: section.title,
-          content: content,
-          open: section.open == true,
-          heading_level: heading_level ?: null,
-        }) }}
-      {% endapply %}
+      {{ include("tcds:accordion-section", {
+        title: section.title,
+        content: content,
+        open: section.open == true,
+        heading_level: heading_level ?: null,
+      }) }}
     {% endfor %}
   {% else %}
     {% block sections %}{% endblock %}
