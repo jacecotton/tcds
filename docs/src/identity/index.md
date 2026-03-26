@@ -25,7 +25,7 @@ Our design tokens are defined in JSON files at [`/src/tokens`](https://github.co
 During transformation, token names adapt to each language's syntax and conventions. For instance, `color.palette.red.50` becomes `--tcds-color-palette-red-50` in CSS (*custom property*), and `ColorPaletteRed50` in JavaScript (*constant*). Platform nuances are documented in the relevant areas of the codebase rather than here.
 
 ## Fonts
-Licensing issues, etc.
+* *See the open GitHub issue related to this section: [#22: Fill out font file access and licensing information](https://github.com/jacecotton/tcds/issues/22)*
 
 ## Graphics
-Icons and logos
+* *See the open GitHub issue related to this section: [#25: Fill out graphic asset access](https://github.com/jacecotton/tcds/issues/25)*

@@ -120,9 +120,7 @@ Keyframe animation names for use in the `animation-name` CSS property or the Web
     tcds-animation-fade-in var(--tcds-motion-duration-expressive) var(--tcds-motion-easing-enter) both,
     tcds-animation-slide-in-up var(--tcds-motion-duration-expressive) var(--tcds-motion-easing-enter) both;
 }{% endset %}
-<pre class="example__code">
-{{ css_snippet|highlight }}
-</pre>
+<pre class="example__code"><code>{{ css_snippet|highlight }}</code></pre>
 
 #### JavaScript usage
 {% set js_snippet %}
@@ -131,9 +129,7 @@ element.animate([AnimationFadeIn, AnimationSlideInUp], {
   easing: MotionEasingEnter,
   fill: "both",
 });{% endset %}
-<pre class="example__code">
-{{ js_snippet|highlight }}
-</pre>
+<pre class="example__code"><code>{{ js_snippet|highlight }}</code></pre>
 
 #### Tips
 **Always set `animation-fill-mode: both` (or `forwards`).** Without a fill mode, the element snaps back to its pre-animation state when the animation completes. Setting `both` ensures the element retains the final keyframe's styles.
@@ -142,9 +138,7 @@ element.animate([AnimationFadeIn, AnimationSlideInUp], {
 
 {% set reduced_motion_snippet %}
 const prefersReducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;{% endset %}
-<pre class="example__code">
-{{ reduced_motion_snippet|highlight }}
-</pre>
+<pre class="example__code"><code>{{ reduced_motion_snippet|highlight }}</code></pre>
 
 {% endblock %}
 {% endembed %}
