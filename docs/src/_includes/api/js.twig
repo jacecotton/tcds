@@ -1,0 +1,41 @@
+{{ attach_library("tcds:table") }}
+{% if methods %}
+<h6>Methods</h6>
+<dl>
+{% for method in methods %}
+<div>
+<dt><code>{% for modifier in method.modifiers %}<span>{{ modifier }}</span> {% endfor %}{{ method.name }}</code> <code>{ {{ method.returns }} }</code></dt>
+<dd>
+  <p>
+    {{ method.description }}
+  </p>
+  {% if method.parameters %}
+    <tcds-table>
+      <table>
+        <caption id="js-method-params-{{ method.name|clean_class }}"><code>{{ method.name }}</code> parameters</caption>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Returns</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for parameter in method.parameters %}
+            <tr>
+              <td><code>{{ parameter.name }}</code></td>
+              <td><code>{{ parameter.type }}</code></td>
+              <td><code>{{ parameter.returns }}</code></td>
+              <td>{{ parameter.description }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </tcds-table>
+  {% endif %}
+</dd>
+</div>
+{% endfor %}
+</dl>
+{% endif %}

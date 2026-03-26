@@ -1,0 +1,73 @@
+{{ attach_library("tcds:table") }}
+{% if attributes %}
+<tcds-table>
+  <table>
+    <caption id="html-props-api">HTML attributes</caption>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Options</th>
+        <th>Default</th>
+        <th>Required?</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for attribute in attributes %}
+        <tr>
+          <td><code>{{ attribute.name }}</code></td>
+          <td><code>{{ attribute.type }}</code></td>
+          <td>
+            {% if prop.options %}
+              {{ prop.options|map((option) => "<code>#{option}</code>")|join(" | ") }}
+            {% else %}
+              <span class="visually-hidden">Not applicable</span>
+            {% endif %}
+          </td>
+          <td>
+            {% if attribute.default %}
+              <code>{{ attribute.default }}</code>
+            {% else %}
+              <center>—</center>
+            {% endif %}
+          </td>
+          <td><center>{{ attribute.required ? "Y" : "N" }}</center></td>
+          <td>{{ attribute.notes }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</tcds-table>
+{% endif %}
+{% if slots %}
+<tcds-table>
+  <table>
+    <caption id="html-slots-api">HTML slots</caption>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Allowed elements</th>
+        <th>Required?</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for slot in slots %}
+        <tr>
+          <td>
+            {% if slot.name == "default" %}
+              (default)
+            {% else %}
+              <code>{{ slot.name }}</code>
+            {% endif %}
+          </td>
+          <td>{{ slot.allowed|map((element) => "<code>#{element}</code>")|join(" | ") }}</td>
+          <td><center>{{ slot.required ? "Y" : "N" }}</center></td>
+          <td>{{ slot.notes }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</tcds-table>
+{% endif %}

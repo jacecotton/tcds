@@ -1,0 +1,65 @@
+{{ attach_library("tcds:table") }}
+{% if props %}
+<tcds-table>
+  <table>
+    <caption id="twig-props-api">Twig properties</caption>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Options</th>
+        <th>Default</th>
+        <th>Required?</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for prop in props %}
+        <tr>
+          <td><code>{{ prop.name }}</code></td>
+          <td><code>{{ prop.type }}</code></td>
+          <td>
+            {% if prop.options %}
+              {{ prop.options|map((option) => "<code>#{option}</code>")|join(" | ") }}
+            {% else %}
+              <span class="visually-hidden">Not applicable</span>
+            {% endif %}
+          </td>
+          <td>
+            {% if prop.default %}
+              <code>{{ prop.default }}</code>
+            {% else %}
+              <center>—</center>
+            {% endif %}
+          </td>
+          <td><center>{{ prop.required ? "Y" : "N" }}</center></td>
+          <td>{{ prop.notes }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</tcds-table>
+{% endif %}
+{% if slots %}
+<tcds-table>
+  <table>
+    <caption id="twig-slots-api">Twig slots (blocks)</caption>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Required?</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for slot in slots %}
+        <tr>
+          <td><code>{{ slot.name }}</code></td>
+          <td><center>{{ slot.required ? "Y" : "N" }}</center></td>
+          <td>{{ slot.notes }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</tcds-table>
+{% endif %}
