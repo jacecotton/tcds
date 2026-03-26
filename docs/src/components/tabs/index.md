@@ -1,10 +1,11 @@
 ---
 title: Tabs
-description: Tabs allow users to switch between panels of content from a horizontal list of buttons. They enable convenient comparisons and selections between content within the same context and information type.
+description: Tabs organize content under a horizontal list of labels, enabling comparison between different content within the same context.
+image: /dist/images/component-illustration-tabs.png
 eleventyNavigation:
   key: Tabs
   parent: Components
-  order: 7
+  order: 6
 ---
 
 {{ attach_library("tcds:tabs") }}
