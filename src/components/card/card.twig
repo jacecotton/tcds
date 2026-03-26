@@ -1,3 +1,27 @@
-<tcds-card>
+{% set _classes = []|merge(classes|default([])) %}
 
+{% set attributes = attributes|default(create_attribute()) %}
+{% set attributes = attributes.addClass(_classes) %}
+
+{% if variant %}
+  {% set attributes = attributes.setAttribute("variant", variant) %}
+{% endif %}
+
+<tcds-card {{ attributes }}>
+  {% if image or block("figure") %}
+    <figure slot="image">
+      {% block figure %}{% endblock %}
+      {%- if image.src -%}
+        <img {{ create_attribute(image) }}>
+      {%- endif -%}
+    </figure>
+  {% endif %}
+  {% if link %}
+    <a slot="title" href="{{ link }}">{{ title }}</a>
+  {% else %}
+    <p slot="title">{{ title }}</p>
+  {% endif %}
+  {% if description %}
+    <p slot="description">{{ description }}</p>
+  {% endif %}
 </tcds-card>
