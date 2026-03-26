@@ -3,6 +3,8 @@ details {
 
   &[open] {
     --tcds-details-icon-rotate: 90deg;
+
+    padding-block-end: var(--tcds-space-component-md);
   }
 
   > summary {

@@ -33,19 +33,13 @@
 
       // These shouldn't get `!important` because they're implicit and only
       // intended as reasonable defaults.
-      @if list.index(("4xl", "3xl", "2xl", "xl", "lg"), $size) {
+      @if list.index(("5xl", "4xl", "3xl", "2xl", "xl", "lg"), $size) {
         line-height: var(--tcds-line-height-compact);
       }
 
       @if list.index(("ml", "md", "sm", "xs"), $size) {
         line-height: var(--tcds-line-height-comfortable);
       }
-    }
-  }
-
-  @each $line-height, $value in tokens("line-height") {
-    .#{$breakpoint}line-height-#{$line-height} {
-      line-height: var(--tcds-line-height-#{$line-height}) !important;
     }
   }
 
@@ -78,32 +72,32 @@
 
 .h1 {
   @include h1("!important");
-  margin: 0;
+  margin: .5em 0;
 }
 
 .h2 {
   @include h2("!important");
-  margin: 0;
+  margin: .5em 0;
 }
 
 .h3 {
   @include h3("!important");
-  margin: 0;
+  margin: .5em 0;
 }
 
 .h4 {
   @include h4("!important");
-  margin: 0;
+  margin: .5em 0;
 }
 
 .h5 {
   @include h5("!important");
-  margin: 0;
+  margin: .5em 0;
 }
 
 .h6 {
   @include h6("!important");
-  margin: 0;
+  margin: .5em 0;
 }
 
 /**
