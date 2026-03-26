@@ -1,0 +1,46 @@
+// https://piccalil.li/blog/styling-tables-the-modern-css-way/
+
+tcds-table {
+  display: block;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+
+  &[sticky-header="column"] {
+    background:
+      linear-gradient(white 30%, rgba(255,255,255,0)),
+      linear-gradient(rgba(255,255,255,0), white 70%) 0 100%,
+      radial-gradient(farthest-side at 50% 0, rgba(0,0,0,.2), rgba(0,0,0,0)),
+      radial-gradient(farthest-side at 50% 100%, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
+    background-repeat: no-repeat;
+    background-color: #fff;
+    background-size: 100% 4em, 100% 4em, 100% 1.4em, 100% 1.4em;
+    background-attachment: local, local, scroll, scroll;
+
+    th:first-child {
+      position: sticky;
+      left: 0;
+    }
+  }
+
+  &[sticky-header="row"] {
+    background:
+      linear-gradient(to right, transparent 30%, rgba(255,255,255,0)),
+      linear-gradient(to right, rgba(255,255,255,0), white 70%) 0 100%,
+      radial-gradient(farthest-side at 0% 50%, rgba(0,0,0,0.2), rgba(0,0,0,0)),
+      radial-gradient(farthest-side at 100% 50%, rgba(0,0,0,0.2), rgba(0,0,0,0)) 0 100%;
+    background-repeat: no-repeat;
+    background-color: #fff;
+    background-size: 4em 100%, 4em 100%, 1.4em 100%, 1.4em 100%;
+    background-position: 0 0, 100%, 0 0, 100%;
+    background-attachment: local, local, scroll, scroll;
+
+    thead {
+      position: sticky;
+      top: 0;
+    }
+  }
+
+  table {
+    width: 100%;
+  }
+}
