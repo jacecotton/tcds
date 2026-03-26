@@ -89,8 +89,10 @@ Website text uses *half-leading*, so we measure line spacing with *line-height* 
 {% endblock %}
 {% endembed %}
 
-<h3>Font variants</h3>
+### Headings and copy
+For element styles, see [Theming / Headings](/theming/headings) and [Theming / Copy](/theming/copy).
 
+### Font variants
 **Use lining numerals in most cases (0, 1, 2, 3, 4, ...)** Calluna uses oldstyle numerals by default (<span style="font-variant-numeric: oldstyle-nums">0, 1, 2, 3, 4</span>, ...), which are disabled by the Design System's stylesheet.
 
 **Use tabular numbers for presenting data (<span style="font-variant-numeric: tabular-nums; font-family: var(--tcds-font-stack-sans-serif);">0, 1, 2, 3, 4</span>, ...)** Tabular numbers have identical horizontal widths (monospacing), which works best when numbers may horizontally align with or substitute each other, like with list markers, table cells, or counters (number fields, countdown timers, etc.)
@@ -103,10 +105,12 @@ Website text uses *half-leading*, so we measure line spacing with *line-height* 
 {% endblock %}
 {% block editors %}
 
-### Text styles
-TBD
+### Style customization
+**Avoid trying to customize text styles.** Basic HTML elements and components handle their text styles automatically, only sometimes exposing configuration options. Never use [heading elements](/theming/headings) simply to change the font size — only to properly structure your text according to the document outline. If you have further needs, contact a developer or see if an existing component fits your use case.
 
-### Text justification
+### Formatting
+Formatting options include bold and italic text, as well as text justification options.
+
 **Avoid right-justifying text in left-to-right languages.** Exceptions may include data inside tables.
 
 **Avoid center-justifying lengthy paragraphs and multiple lines of large text.** Centered paragraphs may be used but should be minimized. Multiple lines of large text should be generally avoided regardless of alignment.
@@ -125,12 +129,32 @@ Prefer semantic *font family* tokens (see below) to raw font stack tokens, where
 {% endif %}
 {% endfor %}
 
+Available utility classes:
+
+| Utility class | Properties |
+| ------------- | ---------- |
+{% for stack, value in tokens.font.stack %}
+{% if stack != "$type" %}
+| `.font-family-{{ stack }}` | `font-family: var(--tcds-font-family-{{ stack }})` |
+{% endif %}
+{% endfor %}
+
 ### Font families
 | Token | CSS custom property | JavaScript constant | Value |
 | ----- | ------------------- | ------------------- | ----- |
 {% for family, value in tokens.font.family %}
 {% if family != "$type" %}
 | <code>font.family.{{ family }}</code> | <code>--tcds-font-family-{{ family }}</code> | <code>FontFamily{{ family|split("-")|map(v => v|capitalize)|join("") }}</code> | <code>{{ value["$value"] }}</code> |
+{% endif %}
+{% endfor %}
+
+Available utility classes:
+
+| Utility class | Properties |
+| ------------- | ---------- |
+{% for family, value in tokens.font.family %}
+{% if family != "$type" %}
+| `.font-family-{{ family }}` | `font-family: var(--tcds-font-family-{{ family }})` |
 {% endif %}
 {% endfor %}
 
@@ -143,8 +167,18 @@ Prefer semantic *font family* tokens (see below) to raw font stack tokens, where
 {% endif %}
 {% endfor %}
 
+Available utility classes:
+
+| Utility class | Properties |
+| ------------- | ---------- |
+{% for weight, value in tokens.font.weight %}
+{% if weight != "$type" %}
+| `.font-weight-{{ weight }}` | `font-weight: var(--tcds-font-weight-{{ weight }})` |
+{% endif %}
+{% endfor %}
+
 ### Font sizes
-Use the following to set font sizes directly. To ensure the proper use of `line-height`, consider using [text styles](#text-styles).
+Use the following to set font sizes directly.
 
 | Token | CSS custom property | JavaScript constant | Value |
 | ----- | ------------------- | ------------------- | ----- |
@@ -153,6 +187,8 @@ Use the following to set font sizes directly. To ensure the proper use of `line-
 | <code>font.size.{{ size }}</code> | <code>--tcds-font-size-{{ size }}</code> | <code>FontSize{{ size|capitalize }}</code> | <code>{{ value["$value"] }}</code> |
 {% endif %}
 {% endfor %}
+
+Utility classes are not available for font sizes. Instead, see [text styles](#text-styles).
 
 ### Line heights
 | Token | CSS custom property | JavaScript constant | Value |
@@ -163,12 +199,13 @@ Use the following to set font sizes directly. To ensure the proper use of `line-
 {% endif %}
 {% endfor %}
 
+Utility classes are not available for line heights. Instead, see [text styles](#text-styles).
+
 ### Text styles
 Text styles ensure a proper combination of <code>font-size</code> and <code>line-height</code>.
 
 <table>
 <tr>
-<th>Style</th>
 <th>Utility class</th>
 <th>SCSS mixin</th>
 <th>Properties</th>
@@ -176,19 +213,7 @@ Text styles ensure a proper combination of <code>font-size</code> and <code>line
 {% for size, value in tokens.font.size %}
 {% if size != "$type" %}
 <tr>
-<td>{{ {
-  "xs": "Extra small",
-  "sm": "Small",
-  "md": "Medium",
-  "ml": "Medium-large",
-  "lg": "Large",
-  "xl": "Extra large",
-  "2xl": "2-extra large",
-  "3xl": "3-extra large",
-  "4xl": "4-extra large",
-  "5xl": "5-extra large",
-}[size] ?: size }}</td>
-<td><code>.text-{{ size }}</code></td>
+<td><code>.<span style="color: var(--tcds-color-theme-muted)"><i>breakpoint</i>:</span>text-{{ size }}</code></td>
 <td><code>text("{{ size }}")</code></td>
 <td><pre>font-size: var(--tcds-font-size-{{ size }});
 line-height: var(--tcds-line-height-{{ size in ["5xl", "4xl", "3xl", "2xl", "xl", "lg"] ? "compact" : "comfortable" }});</pre></td>
@@ -196,6 +221,17 @@ line-height: var(--tcds-line-height-{{ size in ["5xl", "4xl", "3xl", "2xl", "xl"
 {% endif %}
 {% endfor %}
 </table>
+
+{{ include("_includes/breakpoint-utils.twig") }}
+
+### Text alignment
+| Utility class | Properties |
+| ------------- | ---------- |
+{% for align in ["center", "inline-start"] %}
+| <code>.<span style="color: var(--tcds-color-theme-muted)"><i>breakpoint</i>:</span>text-align-{{ align }}</code> | `text-align: {{ align }}` |
+{% endfor %}
+
+{{ include("_includes/breakpoint-utils.twig") }}
 
 {% endblock %}
 {% endembed %}

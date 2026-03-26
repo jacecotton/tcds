@@ -2,12 +2,14 @@
   color: var(--tcds-color-theme-foreground);
   font-family: var(--tcds-font-family-headings) #{$flag};
   line-height: var(--tcds-line-height-compact) #{$flag};
+  text-box: trim-both cap alphabetic;
 }
 
 @mixin subheadings($flag: "") {
   color: var(--tcds-color-theme-foreground);
   font-family: var(--tcds-font-family-subheadings) #{$flag};
   line-height: var(--tcds-line-height-compact) #{$flag};
+  text-box: trim-both cap alphabetic;
 }
 
 @mixin h1($flag: "") {

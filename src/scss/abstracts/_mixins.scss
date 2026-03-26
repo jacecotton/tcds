@@ -105,3 +105,20 @@
     }
   }
 }
+
+/**
+ * Theme props.
+ */
+
+@mixin color-theme($theme) {
+  // Loop through properties in a given theme, for example if $theme == cool,
+  // then color.theme.cool.background, color.theme.cool.foreground, etc.
+  @each $property, $value in tokens("color", "theme", $theme) {
+    // For example, if $property == foreground, $theme == neutral:
+    // --tcds-color-theme-foreground: var(--tcds-color-theme-neutral-foreground)
+    --tcds-color-theme-#{$property}: var(--tcds-color-theme-#{$theme}-#{$property});
+  }
+
+  --tcds-link-color: #{if(sass($theme == "dark"): var(--tcds-color-theme-muted); else: var(--tcds-color-theme-accent))};
+  --tcds-link-color-hover: #{if(sass($theme == "dark"): var(--tcds-color-theme-foreground); else: var(--tcds-color-theme-accent))};
+}

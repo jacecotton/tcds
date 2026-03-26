@@ -1,7 +1,7 @@
 {
   "line-height": {
     "$type": "number",
-    "compact": {"$value": 1.2},
+    "compact": {"$value": 1.25},
     "comfortable": {"$value": 1.75}
   }
 }

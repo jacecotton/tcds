@@ -62,8 +62,12 @@ p {
     margin-top: 1.5em;
   }
 
-  :where(&:not(:last-child)) {
+  :where(&:not(:last-child, :has(+ :is(ul, ol)))) {
     margin-bottom: 1.5em;
+  }
+
+  :where(&:not(:last-child):has(+ :is(ul, ol))) {
+    margin-bottom: 1em;
   }
 }
 
@@ -80,12 +84,17 @@ p {
 ul,
 ol {
   :where(&) {
-    margin: 0 0 0 4ch;
+    margin-top: 0;
+    margin-left: 4ch;
     padding: 0;
   }
 
+  :where(& &) {
+    margin-left: 2ch;
+  }
+
   :where(:not(li) > :is(&):not(:last-child)) {
-    margin-bottom: 1rem; // 1
+    margin-bottom: 1em; // 1
   }
 
   &:where([role="list"]) {
@@ -103,25 +112,21 @@ ol {
     list-style: upper-roman;
   }
 
+  /**
+   * 1. List markers do not inherit `font-variant-numeric`, which is already
+   *    declared in the `body`.
+   */
   ::marker {
     font-family: var(--tcds-font-family-ui);
     font-weight: var(--tcds-font-weight-semibold);
     color: rgb(0 0 0 / 50%);
+    font-variant-numeric: lining-nums tabular-nums; // 1
   }
 }
 
-/**
- * 1. List markers do not inherit `font-variant-numeric`, which is already
- *    declared in the `body`.
- */
-
-::marker {
-  font-variant-numeric: lining-nums tabular-nums; // 1
-}
-
-:where(p, li) {
+:where(p, ol, ul, dl) {
   line-height: var(--tcds-line-height-comfortable);
-  color: var(--tcds-color-theme-foreground);
+  color: inherit;
 }
 
 [title],
