@@ -1,6 +1,6 @@
 @use "abstracts/mixins" as *;
 
-:root {
+:root, [data-theme] {
   --tcds-button-background: transparent;
   --tcds-button-background-hover: var(--tcds-color-theme-warm-background);
   --tcds-button-background-active: var(--tcds-color-theme-warm-faded);
