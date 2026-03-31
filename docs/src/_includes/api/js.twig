@@ -1,41 +1,103 @@
 {{ attach_library("tcds:table") }}
+{% if props %}
+<h6>Properties</h6>
+<tcds-table>
+  <table>
+    <caption id="js-props">Properties</caption>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for prop in props %}
+        <tr>
+          <td><code>{{ prop.name }}</code></td>
+          <td><code>{{ prop.type }}</code></td>
+          <td><code>{{ prop.default }}</code></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</tcds-table>
+{% endif %}
 {% if methods %}
 <h6>Methods</h6>
-<dl>
 {% for method in methods %}
-<div>
-<dt><code>{% for modifier in method.modifiers %}<span>{{ modifier }}</span> {% endfor %}{{ method.name }}</code> <code>{ {{ method.returns }} }</code></dt>
-<dd>
-  <p>
-    {{ method.description }}
-  </p>
-  {% if method.parameters %}
-    <tcds-table>
-      <table>
-        <caption id="js-method-params-{{ method.name|clean_class }}"><code>{{ method.name }}</code> parameters</caption>
-        <thead>
+<p>
+  <strong><code>{% for modifier in method.modifiers %}<span>{{ modifier }}</span> {% endfor %}{{ method.name }}</code> <code>{ {{ method.returns }} }</code></strong>
+</p>
+<p>
+  {{ method.description }}
+</p>
+{% if method.parameters %}
+  <tcds-table>
+    <table>
+      <caption id="js-method-params-{{ method.name|clean_class }}"><code>{{ method.name }}</code> parameters</caption>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for parameter in method.parameters %}
           <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Returns</th>
-            <th>Description</th>
+            <td><code>{{ parameter.name }}</code></td>
+            <td><code>{{ parameter.type }}</code></td>
+            <td>{{ parameter.description }}</td>
           </tr>
-        </thead>
-        <tbody>
-          {% for parameter in method.parameters %}
-            <tr>
-              <td><code>{{ parameter.name }}</code></td>
-              <td><code>{{ parameter.type }}</code></td>
-              <td><code>{{ parameter.returns }}</code></td>
-              <td>{{ parameter.description }}</td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </tcds-table>
-  {% endif %}
-</dd>
-</div>
+        {% endfor %}
+      </tbody>
+    </table>
+  </tcds-table>
+{% endif %}
 {% endfor %}
+{% endif %}
+
+{% if events %}
+<h6>Events</h6>
+{% for event in events %}
+<p>
+  <strong><code>{{ event.name }}</code></strong>
+</p>
+{% if event.bubbles or event.composed %}
+<dl>
+  {% if event.bubbles %}
+    <dt>Bubbles?</dt>
+    <dd>{{ event.bubbles }}</dd>
+  {% endif %}
+  {% if event.composed %}
+    <dt>Composed?</dt>
+    <dd>{{ event.composed }}</dd>
+  {% endif %}
 </dl>
+{% endif %}
+{% if event.details %}
+  <tcds-table>
+    <table>
+      <caption id="js-event-details-{{ event.name|clean_class }}"><code>{{ event.name }}</code> details</caption>
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for detail in event.details %}
+          <tr>
+            <td><code>{{ detail.property }}</code></td>
+            <td><code>{{ detail.type }}</code></td>
+            <td>{{ detail.description }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </tcds-table>
+{% endif %}
+{% endfor %}
 {% endif %}

@@ -19,8 +19,8 @@
           <td><code>{{ attribute.name }}</code></td>
           <td><code>{{ attribute.type }}</code></td>
           <td>
-            {% if prop.options %}
-              {{ prop.options|map((option) => "<code>#{option}</code>")|join(" | ") }}
+            {% if attribute.options %}
+              {{ attribute.options|map((option) => "<code>#{option}</code>")|join(" | ") }}
             {% else %}
               <span class="visually-hidden">Not applicable</span>
             {% endif %}

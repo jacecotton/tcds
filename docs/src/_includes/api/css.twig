@@ -1,0 +1,30 @@
+{{ attach_library("tcds:table") }}
+{% if custom_properties %}
+<tcds-table>
+  <table>
+    <caption id="css-props-api">CSS custom properties</caption>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Syntax</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for prop in custom_properties %}
+        <tr>
+          <td><code>{{ prop.name }}</code></td>
+          <td><code>&lt;{{ prop.syntax }}&gt;</code></td>
+          <td>
+            {% if prop.default %}
+              <code>{{ prop.default }}</code>
+            {% else %}
+              <center>—</center>
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</tcds-table>
+{% endif %}
