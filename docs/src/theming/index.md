@@ -8,7 +8,7 @@ eleventyNavigation:
 
 *This section is primarily intended for developers and content management experts. Designers should refer to the [Site Style Guide](https://texaschildrens.sharepoint.com/sites/MPRPSharedFiles/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FMPRPSharedFiles%2FShared%20Documents%2FWeb%2FProjects%2FRazorfish1%2FDesign%20Files%2FWebsite%20Style%20Guide%2FTC%5FSiteStyleGuide%2Epdf&parent=%2Fsites%2FMPRPSharedFiles%2FShared%20Documents%2FWeb%2FProjects%2FRazorfish1%2FDesign%20Files%2FWebsite%20Style%20Guide) as the authoritative reference.*
 
-This section documents default styles applied to bare HTML elements, as well as the CSS tokens (*custom properties*) that can be configured to adjust the theme for different Texas Children's properties. [Components](/components) and [templates](/templates) also provide CSS tokens for subtheming. See [Identity &sect; Design tokens](/identity#design-tokens) for an overview of how design tokens work.
+This section documents default styles applied to bare HTML elements, as well as the corresponding CSS tokens (*custom properties*) that can be configured to adjust the theme for different Texas Children's properties. [Components](/components) and [templates](/templates) also document their own CSS tokens for subtheming. See [Identity &sect; Design tokens](/identity#design-tokens) for an overview of how design tokens work.
 
 ## Guidance
 **Only create subthemes for distinct properties**, *not* sub-entities within a single property.
@@ -18,8 +18,14 @@ This section documents default styles applied to bare HTML elements, as well as 
 ## Usage
 There are two approaches to modifying the theme: writing CSS custom properties directly (overrides), or modifying the token files and rebuilding the Design System (forking).
 
+We do not recommend adding your own CSS overrides except through custom properties due to likely issues with specificity, scope, and our use of the shadow DOM. Using custom properties ensures maintainability and scalability over time, especially as the Design System receives updates to the rest of the codebase.
+
+It is possible custom properties and tokens change with updates, but these breaking changes will be indicated within the release notes and migration guidance will be given.
+
 ### CSS overrides
-This is the easiest and simplest way to subtheme. Simply create a `:root` block somewhere in your CSS and override variables as needed, based on what the documentation indicates is available. (We advise that you do this inside a `@layer` that takes precedence over the existing Design System CSS.)
+This is the easiest and simplest way to subtheme. Simply create a `:root` block somewhere in your CSS and override variables as needed, based on what the documentation indicates is available. We advise that you do this inside a `@layer` that takes precedence over the existing Design System CSS.
+
+In this example, we're overriding tokens documented in the [Identity](/identity) section:
 
 {% set subtheme_ex %}
 @layer my-subtheme {
@@ -36,15 +42,17 @@ This is the easiest and simplest way to subtheme. Simply create a `:root` block 
 {% endset %}
 <pre class="example__code"><code>{{ subtheme_ex|highlight }}</code></pre>
 
-From here, native HTML element styles will reflect your configurations, as well as any utility classes and components styled using tokens.
+From here, native HTML element styles will reflect your configurations, as well as any utility classes, components, templates, or other elements styled using tokens.
 
 ### Token forking
-Alternatively, you can modify JSON token files directly and build the Design System yourself as a fork. The benefit to doing this is:
+For Identity-level tokens, if your subtheme is significantly different from the default theme, we recommend forking the Design System and modifying the JSON token files directly. The benefit to doing this is:
 
 1. Token consumption in JavaScript, Sass, and any other formats than CSS will reflect your subtheme.
 2. There will be no redundant, unused code from the default token values. The bundle sizes will be optimized to your website's exact needs.
 
-All tokens live at `/src/tokens`.
+For element-, component-, and template-level tokens, you will still override CSS custom properties for modifications.
+
+All Identity tokens live at `/src/tokens`.
 
 Example changes to `/src/tokens/color/color.json`:
 
