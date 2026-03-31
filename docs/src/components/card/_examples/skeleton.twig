@@ -1,0 +1,10 @@
+<tcds-card>
+  <figure slot="image"></figure>
+  <small slot="tag"></small>
+  <small slot="meta"></small>
+  <a slot="title" href="#card-example">Lorem ipsum dolor sit amet, consectetur</a>
+  <p slot="description">Ut enim ad minim veniam, quis nostrud exercitation</p>
+  {% if block("footer") is defined %}
+    <footer slot="footer">{% block footer %}{% endblock %}</footer>
+  {% endif %}
+</tcds-card>
