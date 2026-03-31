@@ -16,4 +16,6 @@
 
 .playground__controls {
   padding: var(--tcds-space-component-md);
+  height: 100%;
+  overflow-y: auto;
 }
