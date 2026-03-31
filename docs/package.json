@@ -4,9 +4,8 @@
   "description": "Documentation for TCDS",
   "type": "module",
   "scripts": {
-    "build:css": "sass src/assets/scss:_site/dist/css",
-    "start": "npm run build:css && eleventy --serve",
-    "build": "npm run build:css && eleventy"
+    "start": "eleventy --serve --port 8080",
+    "build": "eleventy"
   },
   "keywords": [],
   "author": "",

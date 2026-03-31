@@ -64,6 +64,10 @@ export default function (eleventyConfig) {
   eleventyConfig.addWatchTarget("./src/**/*.md");
   // Watch custom scripts
   eleventyConfig.addWatchTarget("./scripts/**/*.js");
+  eleventyConfig.setServerOptions({
+    host: "0.0.0.0",
+    port: 8080,
+  });
 
   return {
     dir: {
