@@ -7,6 +7,8 @@
   {% set attributes = attributes.setAttribute("variant", variant) %}
 {% endif %}
 
+{% set title_element = heading_level|default(link ? "a" : "p") %}
+
 <tcds-card {{ attributes }}>
   {% if image or block("figure") %}
     <figure slot="image">
@@ -16,11 +18,24 @@
       {%- endif -%}
     </figure>
   {% endif %}
-  {% if link %}
-    <a slot="title" href="{{ link }}">{{ title }}</a>
-  {% else %}
-    <p slot="title">{{ title }}</p>
+  {% if meta %}
+    <p slot="meta">
+      {% if meta is iterable %}
+        {% for item in meta %}
+          <small>{{ meta }}</small>
+        {% endfor %}
+      {% else %}
+        <small>{{ meta }}</small>
+      {% endif %}
+    </p>
   {% endif %}
+  <{{ title_element }} slot="title" {{ title_element == "a" ? "href=\"#{link}\"" }}>
+    {% if link and title_element != "a" %}
+      <a href="{{ link }}">{{ title }}</a>
+    {% else %}
+      {{ title }}
+    {% endif %}
+  </{{ title_element }}>
   {% if description %}
     <p slot="description">{{ description }}</p>
   {% endif %}

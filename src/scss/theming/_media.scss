@@ -11,3 +11,9 @@
     height: auto;
   }
 }
+
+:where(img, picture, svg, video) {
+  border: var(--tcds-media-border, 0);
+  border-radius: var(--tcds-media-border-radius, 0);
+  overflow: hidden;
+}

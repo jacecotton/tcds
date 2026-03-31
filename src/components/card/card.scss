@@ -1,4 +1,23 @@
 @use "../../scss/abstracts/mixins" as *;
+@use "../../scss/abstracts/functions" as *;
+
+@mixin card-props() {
+  --tcds-card-background-color: var(--tcds-color-theme-neutral-background);
+  --tcds-card-foreground-color: var(--tcds-color-theme-neutral-foreground);
+  --tcds-card-border-radius: var(--tcds-border-radius-sm);
+  --tcds-card-box-shadow: var(--tcds-box-shadow-sm);
+  --tcds-card-content-padding-block: 1em;
+  --tcds-card-content-padding-inline: 1em;
+  --tcds-card-content-padding:
+    var(--tcds-card-content-padding-block)
+    var(--tcds-card-content-padding-inline);
+  --tcds-card-content-gap: 1em;
+  --tcds-card-content-font-family: var(--tcds-font-family-copy);
+  --tcds-card-title-font-size: var(--tcds-font-size-lg);
+  --tcds-card-title-line-height: var(--tcds-line-height-compact);
+  --tcds-card-description-font-size: var(--tcds-font-size-md);
+  --tcds-card-description-line-height: var(--tcds-line-height-comfortable);
+}
 
 @mixin horizontal-card() {
   --tcds-card-width: 100%;
@@ -14,9 +33,13 @@
       0
       calc(var(--tcds-card-content-padding-block) * -1)
       calc(var(--tcds-card-content-padding-inline) * -1);
-    width: 100%;
-    height: 100%;
+    width: calc(100% + var(--tcds-card-content-padding-inline));
+    height: calc(100% + (var(--tcds-card-content-padding-inline) * 2));
     object-fit: cover;
+
+    &:is(figure:empty) {
+      --tcds-card-image-aspect-ratio: none;
+    }
   }
 
   > :not([slot=image]) {
@@ -50,22 +73,12 @@
   }
 }
 
+:root {
+  @include card-props();
+}
+
 tcds-card {
-  --tcds-card-background-color: var(--tcds-color-theme-neutral-background);
-  --tcds-card-foreground-color: var(--tcds-color-theme-neutral-foreground);
-  --tcds-card-border-radius: var(--tcds-border-radius-sm);
-  --tcds-card-box-shadow: var(--tcds-box-shadow-sm);
-  --tcds-card-content-padding-block: var(--tcds-space-component-md);
-  --tcds-card-content-padding-inline: var(--tcds-space-component-md);
-  --tcds-card-content-padding:
-    var(--tcds-card-content-padding-block)
-    var(--tcds-card-content-padding-inline);
-  --tcds-card-content-gap: var(--tcds-space-component-xs);
-  --tcds-card-content-font-family: var(--tcds-font-family-copy);
-  --tcds-card-title-font-size: var(--tcds-font-size-lg);
-  --tcds-card-title-line-height: var(--tcds-line-height-compact);
-  --tcds-card-description-font-size: var(--tcds-font-size-md);
-  --tcds-card-description-line-height: var(--tcds-line-height-comfortable);
+  @include vertical-card();
 
   display: inline-grid;
   padding: var(--tcds-card-content-padding);
@@ -89,12 +102,19 @@ tcds-card {
     container-type: inline-size;
   }
 
-  &:not([orientation=horizontal]) {
-    @include vertical-card();
+  // Go back to horizontal if the screen is below `size.breakpoint.md` but the
+  // container is above 320px.
+  @include breakpoint("", "md") {
+    @container (inline-size > #{token("size", "breakpoint", "xs")}) {
+      &:not([orientation="vertical"]) {
+        @include horizontal-card();
+      }
+    }
   }
 
-  &[orientation=horizontal] {
-    @container (min-width: 450px) {
+  // Orientation lock not allowed below size.breakpoint.sm containers.
+  &[orientation="horizontal"] {
+    @container (inline-size > #{token("size", "breakpoint", "xs")}) {
       @include horizontal-card();
     }
   }
@@ -104,11 +124,28 @@ tcds-card {
     --tcds-card-foreground-color: var(--tcds-color-theme-foreground);
     --tcds-card-box-shadow: none;
     --tcds-card-content-padding-inline: 0px;
+    --tcds-card-content-padding: var(--tcds-card-content-padding-block) var(--tcds-card-content-padding-inline);
   }
 
   > [slot="image"] {
     aspect-ratio: var(--tcds-card-image-aspect-ratio, initial);
     position: relative;
+    height: auto;
+
+    &:is(figure:not(:empty)),
+    &:not(:is(figure)) {
+      &::after {
+        content: "";
+        visibility: var(--tcds-card-image-gradient, hidden);
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        background-image: linear-gradient(to bottom left, rgb(0 0 0 / 75%), rgb(0 0 0 / 50%) 33%, rgb(0 0 0 / 0%) 66%);
+        opacity: .5;
+      }
+    }
 
     &:is(figure:empty) {
       background-color: var(--tcds-color-theme-faded);
@@ -116,7 +153,7 @@ tcds-card {
       justify-content: center;
       align-items: center;
 
-      &::after {
+      &::before {
         content: "";
         height: 45%;
         aspect-ratio: var(--tcds-aspect-ratio-square);
@@ -127,7 +164,9 @@ tcds-card {
   }
 
   > :not([slot=image]) {
-    &:not(:last-child) {
+    text-box: trim-both cap alphabetic;
+
+    &:not(:last-child, :has(+ :empty)) {
       margin-bottom: var(--tcds-card-content-gap);
     }
   }
@@ -137,26 +176,20 @@ tcds-card {
     font-size: var(--tcds-card-title-font-size);
     line-height: var(--tcds-card-title-line-height);
     font-weight: var(--tcds-font-weight-semibold);
-    text-decoration: none;
+    letter-spacing: normal;
 
-    &:not(:hover) {
-      color: var(--tcds-card-foreground-color);
-    }
+    &:is(a), a {
+      text-decoration: none;
 
-    &::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-    }
-  }
+      &:not(:hover) {
+        color: var(--tcds-card-foreground-color);
+      }
 
-  > [slot="meta"] {
-    font-family: var(--tcds-font-family-ui);
-    font-size: var(--tcds-font-size-sm);
-    color: var(--tcds-color-theme-neutral-muted);
-
-    > *:not(:last-child, :only-child)::after {
-      content: " - ";
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+      }
     }
   }
 
@@ -167,6 +200,40 @@ tcds-card {
     line-height: inherit;
   }
 
+  > [slot="meta"] {
+    font-family: var(--tcds-font-family-ui);
+    color: var(--tcds-color-theme-neutral-muted);
+
+    &, small {
+      font-size: var(--tcds-font-size-sm);
+    }
+
+    > *:not(:last-child, :only-child)::after {
+      content: " - ";
+    }
+  }
+
+  > [slot="tag"] {
+    position: absolute;
+    top: var(--tcds-card-content-gap);
+    right: var(--tcds-card-content-gap);
+    font-family: var(--tcds-font-family-ui);
+    font-weight: var(--tcds-font-weight-semibold);
+    color: var(--tcds-color-theme-dark-foreground);
+    text-shadow: 0 0 10px rgb(0 0 0 / 60%), 0 0 2px rgb(0 0 0 / 30%);
+    z-index: 1;
+  }
+
+  &:not([image-gradient="false"]):has(> [slot="tag"]) {
+    --tcds-card-image-gradient: visible;
+  }
+
+  > [slot="footer"] {
+    --tcds-cta-font-size: var(--tcds-font-size-md);
+
+    margin-block-start: auto;
+  }
+
   p {
     margin-top: 0;
   }
@@ -175,5 +242,9 @@ tcds-card {
   button {
     position: relative;
     z-index: 1;
+  }
+
+  > [slot]:empty {
+    display: none;
   }
 }
