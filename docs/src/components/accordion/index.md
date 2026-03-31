@@ -154,76 +154,6 @@ Control the heading level of an accordion section with the `[slot=title]` elemen
 **Note:** This does not cause any visual change.
 
 ### API reference
-#### Twig
-##### `tcds-accordion`
-{% set twig_props = [
-  {
-    name: "multiple",
-    type: "boolean",
-    default: "false",
-    required: false,
-  },
-  {
-    name: "sections",
-    type: "array",
-    required: false,
-    notes: "Collection of objects for <code>tcds:accordion-section</code> data (see below for schema).",
-  },
-] %}
-
-{% set twig_slots = [
-  {
-    name: "sections",
-    required: false,
-    notes: "Arbitrary slot for <code>tcds:accordion-section</code> children.",
-  },
-] %}
-
-{{ include("_includes/api/twig.twig", {
-  props: twig_props,
-  slots: twig_slots,
-}) }}
-
-##### `tcds-accordion-section`
-{% set twig_props_section = [
-  {
-    name: "heading_level",
-    type: "enum",
-    options: ["h2", "h3", "h4", "h5", "h6"],
-    default: "h3",
-    required: false,
-  },
-  {
-    name: "open",
-    type: "boolean",
-    default: "false",
-    required: false,
-  },
-  {
-    name: "title",
-    type: "string",
-    required: true,
-  },
-  {
-    name: "content",
-    type: "any",
-    required: false,
-    notes: "Required only if <code>content</code> block is not defined. Must be string or render result.",
-  },
-] %}
-{% set twig_slots_section = [
-  {
-    name: "content",
-    required: false,
-    notes: "Required only if <code>content</code> prop is not defined. Must be render result.",
-  },
-] %}
-
-{{ include("_includes/api/twig.twig", {
-  props: twig_props_section,
-  slots: twig_slots_section,
-}) }}
-
 #### HTML
 ##### `tcds-accordion`
 {% set html_attrs = [
@@ -295,22 +225,120 @@ Control the heading level of an accordion section with the `[slot=title]` elemen
     parameters: [
       {
         name: "filter",
-        type: "function(HTMLElement)",
-        returns: "boolean",
+        type: "function(HTMLElement) { Boolean }",
         description: "An optional filter to exclude sections from closing given custom criteria.",
       },
     ],
     returns: "Promise&lt;Array&lt;Boolean>>",
   },
 ] %}
+{% set js_props = [
+  {
+    name: "multiple",
+    type: "Boolean",
+    default: "false",
+  },
+  {
+    name: "sections",
+    type: "NodeList",
+    default: "[]",
+  },
+] %}
 {{ include("_includes/api/js.twig", {
   methods: js_methods,
+  props: js_props,
 }) }}
 
 ##### `TCDSAccordionSection`
+{% set js_methods_section = [
+  {
+    name: "toggle",
+    modifiers: ["async"],
+    description: "Show or close the accordion section, based on either its current state or an optional <code>test</code>.",
+    parameters: [
+      {
+        name: "test",
+        type: "Boolean | Function",
+        description: "Optional forced state or evaluator function.",
+      },
+    ],
+    returns: "Promise&lt;Boolean>",
+  },
+  {
+    name: "show",
+    modifiers: ["async"],
+    description: "Opens the accordion section. If the parent accordion only allows one open section at a time, it will automatically scroll the heading into view if pushed off-screen.",
+    returns: "Promise&lt;Boolean>",
+  },
+  {
+    name: "close",
+    modifiers: ["async"],
+    description: "Closes the accordion section.",
+    returns: "Promise&lt;Boolean>",
+  }
+] %}
+{% set js_props_section = [
+  {
+    name: "open",
+    type: "Boolean",
+    default: "false",
+  },
+  {
+    name: "accordion",
+    type: "HTMLElement",
+  },
+] %}
+{% set js_events_section = [
+  {
+    name: "tcds-accordion-section:toggle",
+    bubbles: "true",
+    composed: "true",
+    details: [
+      {
+        property: "open",
+        type: "boolean",
+        description: "The accordion section's new <code>open</code> value.",
+      },
+      {
+        property: "previous",
+        type: "boolean",
+        description: "The accordion section's previous <code>open</code> value.",
+      },
+    ],
+  },
+] %}
+{{ include("_includes/api/js.twig", {
+  methods: js_methods_section,
+  props: js_props_section,
+  events: js_events_section,
+}) }}
 
 #### CSS
-* custom properties
+{% set css_props = [
+  {
+    name: "--tcds-accordion-section-heading-position",
+    syntax: "string",
+    default: "sticky",
+  },
+  {
+    name: "--tcds-accordion-heading-font-size",
+    syntax: "length",
+    default: "var(--tcds-font-size-ml)",
+  },
+  {
+    name: "--tcds-accordion-heading-line-height",
+    syntax: "number",
+    default: "var(--tcds-line-height-compact)",
+  },
+  {
+    name: "--tcds-accordion-heading-font-weight",
+    syntax: "string | number",
+    default: "var(--tcds-font-weight-semibold)",
+  },
+] %}
+{{ include("_includes/api/css.twig", {
+  custom_properties: css_props,
+}) }}
 
 {% endblock %}
 {% endembed %}
