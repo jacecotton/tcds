@@ -18,7 +18,7 @@ Each page will provide live examples with code snippets for how to implement com
 ## Component library
 {% set nav = collections.all|eleventyNavigation("Components") %}
 
-<div class="grid gap-lg">
+<div class="grid gap-sm">
 {% for item in nav %}
 {{ include("tcds:card", {
   image: {

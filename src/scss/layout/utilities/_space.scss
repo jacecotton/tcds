@@ -8,24 +8,24 @@
 /**
  * Gap utilities for flex box and grid.
  *
- * Based on space.component tokens (xs, sm, md, lg, xl, e.g. `.gap-xl`).
+ * Based on space.layout tokens (xs, sm, md, lg, xl, e.g. `.gap-xl`).
  *
  * Breakpoint-based prefixes (xs, sm, md, lg, xl) can be applied to the classes
  * (e.g. `.md:gap-xl`).
  */
 
 @include responsive-utils() using ($breakpoint) {
-  @each $name, $value in tokens("space", "component") {
+  @each $name, $value in tokens("space", "layout") {
     .#{$breakpoint}gap-#{$name} {
-      gap: var(--tcds-space-component-#{$name}) !important;
+      gap: var(--tcds-space-layout-#{$name}) !important;
     }
 
     .#{$breakpoint}row-gap-#{$name} {
-      row-gap: var(--tcds-space-component-#{$name}) !important;
+      row-gap: var(--tcds-space-layout-#{$name}) !important;
     }
 
     .#{$breakpoint}column-gap-#{$name} {
-      column-gap: var(--tcds-space-component-#{$name}) !important;
+      column-gap: var(--tcds-space-layout-#{$name}) !important;
     }
   }
 }
@@ -33,10 +33,10 @@
 /**
  * Vertical rhythm utilities (margin and padding).
  *
- * Vertical (margin/padding-y), top (margin/padding-top), and bottom
- * (margin/padding-bottom) utilities are available, based on layout sizing
+ * Vertical (margin/padding-block), top (margin/padding-block-start), and bottom
+ * (margin/padding-block-end) utilities are available, based on layout sizing
  * tokens (xs, sm, md, lg, xl). Example: `.padding-block-sm` or
- * `.margin-top-xl`.
+ * `.margin-block-start-xl`.
  *
  * Breakpoint-based prefixes can be applied to the classes (xs, sm, md, lg, xl),
  * e.g. `.xs:padding-block-xs`
@@ -45,29 +45,27 @@
 @include responsive-utils() using ($breakpoint) {
   @each $name, $value in tokens("space", "layout") {
     .#{$breakpoint}padding-block-#{$name} {
-      padding-top: var(--tcds-space-layout-#{$name}) !important;
-      padding-bottom: var(--tcds-space-layout-#{$name}) !important;
+      padding-block: var(--tcds-space-layout-#{$name}) !important;
     }
 
-    .#{$breakpoint}padding-top-#{$name} {
-      padding-top: var(--tcds-space-layout-#{$name}) !important;
+    .#{$breakpoint}padding-block-start-#{$name} {
+      padding-block-start: var(--tcds-space-layout-#{$name}) !important;
     }
 
-    .#{$breakpoint}padding-bottom-#{$name} {
-      padding-bottom: var(--tcds-space-layout-#{$name}) !important;
+    .#{$breakpoint}padding-block-end-#{$name} {
+      padding-block-end: var(--tcds-space-layout-#{$name}) !important;
     }
 
     .#{$breakpoint}margin-block-#{$name} {
-      margin-top: var(--tcds-space-layout-#{$name}) !important;
-      margin-bottom: var(--tcds-space-layout-#{$name}) !important;
+      margin-block: var(--tcds-space-layout-#{$name}) !important;
     }
 
-    .#{$breakpoint}margin-top-#{$name} {
-      margin-top: var(--tcds-space-layout-#{$name}) !important;
+    .#{$breakpoint}margin-block-start-#{$name} {
+      margin-block-start: var(--tcds-space-layout-#{$name}) !important;
     }
 
-    .#{$breakpoint}margin-bottom-#{$name} {
-      margin-bottom: var(--tcds-space-layout-#{$name}) !important;
+    .#{$breakpoint}margin-block-end-#{$name} {
+      margin-block-end: var(--tcds-space-layout-#{$name}) !important;
     }
   }
 }
@@ -78,9 +76,9 @@
  * `.margin-inline-auto` centers the element by applying auto-margin to both
  * left and right.
  *
- * `.margin-left-auto` pushes the element all the way to the right if inside a
- * flex container, and vice versa, `.margin-right-auto` pushes the element all
- * the way to the left.
+ * `.margin-inline-start-auto` pushes the element all the way to the right if
+ * inside a flex container, and vice versa, `.margin-inline-end-auto` pushes the
+ * element all the way to the left.
  */
 
 @include responsive-utils() using ($breakpoint) {
@@ -88,11 +86,11 @@
     margin-inline: auto !important;
   }
 
-  .#{$breakpoint}margin-left-auto {
-    margin-left: auto !important;
+  .#{$breakpoint}margin-inline-start-auto {
+    margin-inline-start: auto !important;
   }
 
-  .#{$breakpoint}margin-right-auto {
-    margin-right: auto !important;
+  .#{$breakpoint}margin-inline-end-auto {
+    margin-inline-end: auto !important;
   }
 }

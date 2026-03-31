@@ -58,7 +58,7 @@
       {% endblock %}
     {% endembed %}
 
-    <div class="container-lg flex flex--no-wrap gap-xl padding-block-sm lg:padding-block-md">
+    <div class="container-lg flex flex--no-wrap gap-md padding-block-sm lg:padding-block-md">
       {% set parent_key = eleventyNavigation.parent|default(eleventyNavigation.key) %}
       {% set nav_tree = collections.all|eleventyNavigation|filter(item => item.key == parent_key)|first %}
       {% set submenu = nav_tree is not empty ? [nav_tree] %}

@@ -116,5 +116,5 @@ Vertical rhythm is implemented in CSS via *block margin* (top and bottom space),
 
 Block margin is applied contextually, based on where the element sits relative to its container and siblings:
 
-* **Paragraph elements** have a `1.5em` block-start (top) margin (unless they are the first element in their container, preceded by a slotted element, or are themselves slotted elements), and a `1.5em` block-end (bottom) margin (unless they are the last child in their container, or unless they are followed by list elements, in which case the margin is reduced to `1em`).
+* **Paragraph elements** have a `1em` block-start (top) margin (unless they are the first element in their container, preceded by a slotted element, or are themselves slotted elements), and a `1em` block-end (bottom) margin (unless they are the last contentful child in their container).
 * **List elements** have a block-end margin of `1em` (unless they are nested inside a list item (`li`) element).

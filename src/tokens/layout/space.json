@@ -6,7 +6,9 @@
     "2": {"$value": "8px"},
     "3": {"$value": "12px"},
     "4": {"$value": "16px"},
+    "6": {"$value": "24px"},
     "8": {"$value": "32px"},
+    "12": {"$value": "48px"},
     "14": {"$value": "56px"},
     "20": {"$value": "80px"},
     "40": {"$value": "160px"},
@@ -16,7 +18,7 @@
       "sm": {"$value": "{space.3}"},
       "md": {"$value": "{space.4}"},
       "lg": {"$value": "{space.8}"},
-      "xl": {"$value": "{space.14}"}
+      "xl": {"$value": "{space.12}"}
     },
     "layout": {
       "$description": "Semantic spacing values for layout scales.",

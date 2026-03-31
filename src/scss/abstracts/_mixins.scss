@@ -9,8 +9,7 @@
  * null or an empty string for max-width queries.
  * @param {String | Null} $max [null] - The end token (e.g. `xl`). Leave
  * empty for min-width queries.
- * @param {String} $dim ["width"] - The dimension to query. Can be changed to
- * `inline-size` for logical property support.
+ * @param {String} $dim ["width"] - The dimension to query.
  */
 @mixin breakpoint($min: null, $max: null, $dim: "width") {
   $min-val: null;
@@ -42,19 +41,16 @@
     @media (#{$min-val} <= #{$dim} < #{$max-val}) {
       @content;
     }
-
   // Case: min-width (up) -> breakpoint("md")
   } @else if $min-val {
     @media (#{$dim} >= #{$min-val}) {
       @content;
     }
-
   // Case: max-width (down) -> breakpoint(null, "xl")
   } @else if $max-val {
     @media (#{$dim} < #{$max-val}) {
       @content;
     }
-
   // Case: no arguments provided
   } @else {
     @error "Mixin `breakpoint` requires at least one start or end token.";
