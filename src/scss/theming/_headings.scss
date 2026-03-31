@@ -36,18 +36,18 @@ h1 {
 }
 
 :is(h2, h3, h4, h5, h6) {
-  :where(&:not(:first-child)) {
+  :where(&:not(:first-child, [slot])) {
     margin-top: 1em;
   }
 
-  :where(&:not(:last-child)) {
+  :where(&:not(:last-child, [slot])) {
     margin-bottom: 1em;
   }
 }
 
-:where(:not(h1, hr) + h2),
-:where(:not(h2, hr) + h3),
-:where(:not(h3, hr) + h4),
-:where(:not(h4, hr) + h5) {
+:where(:not(h1, hr) + h2:not([slot])),
+:where(:not(h2, hr) + h3:not([slot])),
+:where(:not(h3, hr) + h4:not([slot])),
+:where(:not(h4, hr) + h5:not([slot])) {
   margin-top: 2em;
 }
