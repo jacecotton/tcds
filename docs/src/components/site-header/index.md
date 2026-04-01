@@ -4,5 +4,5 @@ description: The Site Header is the global header containing the site logo and t
 eleventyNavigation:
   key: Site Header
   parent: Components
-  order: 5
+  order: 6
 ---
