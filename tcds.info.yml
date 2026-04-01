@@ -1,8 +1,7 @@
 name: Texas Children's Design System
 type: theme
-description:
-base theme: stable10
-core: 10.x
-core_version_requirement: ^10
+description: A Drupal theme for using Texas Children's Design System.
+base theme: stable9
+core_version_requirement: ^11
 libraries:
   - tcds/global
