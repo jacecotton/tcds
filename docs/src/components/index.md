@@ -22,7 +22,7 @@ Each page will provide live examples with code snippets for how to implement com
 {% for item in nav %}
 {{ include("tcds:card", {
   image: {
-    src: item.data.image,
+    src: item.data.image ?: "",
     alt: "",
   },
   title: item.title,
