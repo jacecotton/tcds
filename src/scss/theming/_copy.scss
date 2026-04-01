@@ -1,9 +1,14 @@
-@use "../typography/abstracts/mixins" as *;
+@use "./abstracts/mixins/links" as *;
 
 /**
  * This file contains styles for elements used to mark up regular body copy
  * (paragraphs, lists, links, small text, etc.)
  */
+
+:root, [data-theme] {
+  --tcds-link-color: var(--tcds-color-theme-accent);
+  --tcds-link-color-hover: var(--tcds-color-theme-accent);
+}
 
 /**
  * Formatting elements.

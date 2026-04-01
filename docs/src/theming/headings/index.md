@@ -54,7 +54,7 @@ The Design System provides default styles for each heading element, but they can
       "size": "md",
       "weight": "bold",
     },
-    "line-height": "compact",
+    "line-height": "comfortable",
   },
   "h6": {
     "font": {
@@ -62,7 +62,7 @@ The Design System provides default styles for each heading element, but they can
       "size": "sm",
       "weight": "bold",
     },
-    "line-height": "compact",
+    "line-height": "comfortable",
   },
 } %}
 
@@ -88,7 +88,7 @@ Usage: `<{{ level }}>` / `.{{ level }}`
         {% if token is iterable %}
           {% for _style, _token in token %}
             {% set rule = [style, _style]|join("-") %}
-            {% set custom_prop = ["--tcds", style, _style, _token]|join("-") %}
+            {% set custom_prop = ["--tcds", level, style, _style]|join("-") %}
             {% set token = [style, _style, _token]|join(".") %}
             {% set value = tokens[style][_style][_token]["$value"] %}
             <tr>
@@ -100,7 +100,7 @@ Usage: `<{{ level }}>` / `.{{ level }}`
           {% endfor %}
         {% elseif style|split("")[0] != "#" %}
           {% set rule = style %}
-          {% set custom_prop = ["--tcds", style, token]|join("-") %}
+          {% set custom_prop = ["--tcds", level, style]|join("-") %}
           {% set _token = [style, token]|join(".") %}
           {% set value = tokens[style][token]["$value"] %}
           <tr>
@@ -112,9 +112,10 @@ Usage: `<{{ level }}>` / `.{{ level }}`
         {% else %}
           {% set style = style|slice(1) %}
           {% set rule = style %}
+          {% set custom_prop = ["--tcds", level, style]|join("-") %}
           <tr>
             <td><code>{{ rule }}</code></td>
-            <td></td>
+            <td><code>{{ custom_prop }}</code></td>
             <td></td>
             <td><code>{{ token }}</code></td>
           </tr>

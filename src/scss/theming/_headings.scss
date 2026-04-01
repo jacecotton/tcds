@@ -1,31 +1,69 @@
-@use "../typography/abstracts/mixins" as *;
+@use "./abstracts/mixins/headings" as *;
+
+:root {
+  --tcds-h1-font-family: var(--tcds-font-family-headings);
+  --tcds-h1-font-size: var(--tcds-font-size-2xl);
+  --tcds-h1-line-height: var(--tcds-line-height-compact);
+  --tcds-h1-font-weight: var(--tcds-font-weight-semibold);
+  --tcds-h1-letter-spacing: -0.05rem;
+
+  --tcds-h2-font-family: var(--tcds-font-family-headings);
+  --tcds-h2-font-size: var(--tcds-font-size-xl);
+  --tcds-h2-line-height: var(--tcds-line-height-compact);
+  --tcds-h2-font-weight: var(--tcds-font-weight-semibold);
+  --tcds-h2-letter-spacing: -0.0125rem;
+
+  --tcds-h3-font-family: var(--tcds-font-family-subheadings);
+  --tcds-h3-font-size: var(--tcds-font-size-lg);
+  --tcds-h3-line-height: var(--tcds-line-height-compact);
+  --tcds-h3-font-weight: var(--tcds-font-weight-bold);
+  --tcds-h3-letter-spacing: normal;
+
+  --tcds-h4-font-family: var(--tcds-font-family-subheadings);
+  --tcds-h4-font-size: var(--tcds-font-size-ml);
+  --tcds-h4-line-height: var(--tcds-line-height-compact);
+  --tcds-h4-font-weight: var(--tcds-font-weight-bold);
+  --tcds-h4-letter-spacing: normal;
+
+  --tcds-h5-font-family: var(--tcds-font-family-subheadings);
+  --tcds-h5-font-size: var(--tcds-font-size-md);
+  --tcds-h5-line-height: var(--tcds-line-height-comfortable);
+  --tcds-h5-font-weight: var(--tcds-font-weight-bold);
+  --tcds-h5-letter-spacing: normal;
+
+  --tcds-h6-font-family: var(--tcds-font-family-subheadings);
+  --tcds-h6-font-size: var(--tcds-font-size-sm);
+  --tcds-h6-line-height: var(--tcds-line-height-comfortable);
+  --tcds-h6-font-weight: var(--tcds-font-weight-bold);
+  --tcds-h6-letter-spacing: normal;
+}
 
 :where(h1) {
-  @include h1();
+  @include heading("h1");
 }
 
 :where(h2),
 :is(tcds-accordion, tcds-tabs) :where(h3) {
-  @include h2();
+  @include heading("h2");
 }
 
 :where(h3),
 :is(tcds-accordion, tcds-tabs) :where(h4) {
-  @include h3();
+  @include heading("h3");
 }
 
 :where(h4),
 :is(tcds-accordion, tcds-tabs) :where(h5) {
-  @include h4();
+  @include heading("h4");
 }
 
 :where(h5),
 :is(tcds-accordion, tcds-tabs) :where(h6) {
-  @include h5();
+  @include heading("h5");
 }
 
 :where(h6) {
-  @include h6();
+  @include heading("h6");
 }
 
 h1 {

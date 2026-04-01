@@ -1,0 +1,8 @@
+@mixin heading($level, $flag: "") {
+  font-family: var(--tcds-#{$level}-font-family) #{$flag};
+  font-size: var(--tcds-#{$level}-font-size) #{$flag};
+  line-height: var(--tcds-#{$level}-line-height) #{$flag};
+  font-weight: var(--tcds-#{$level}-font-weight) #{$flag};
+  letter-spacing: var(--tcds-#{$level}-letter-spacing) #{$flag};
+  text-box: trim-both cap alphabetic;
+}

@@ -1,4 +1,4 @@
-@use "abstracts/mixins" as *;
+@use "../abstracts/mixins/button" as *;
 
 :root, [data-theme] {
   --tcds-button-background: transparent;
@@ -19,5 +19,5 @@ input[type=button],
 input[type=submit],
 input[type=reset],
 .tcds-button {
-  @include tcds-button();
+  @include button();
 }
