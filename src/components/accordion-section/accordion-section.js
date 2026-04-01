@@ -12,7 +12,7 @@ export class AccordionSection extends LitElement {
   static styles = [sharedStyles, accordionSectionStyles];
 
   // #region Controllers
-  animations = new AccordionAnimationController(this, {
+  _animations = new AccordionAnimationController(this, {
     isOpen: () => this.open,
     getPanel: () => this._parts.panel,
     getContent: () => this._parts.content,

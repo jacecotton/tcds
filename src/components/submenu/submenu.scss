@@ -1,4 +1,4 @@
-@use "../../scss/theming/forms/abstracts/mixins" as *;
+@use "../../scss/theming/abstracts/mixins/button" as *;
 
 .tcds-submenu {
   --tcds-submenu-item-padding-inline: .75em;
@@ -28,7 +28,7 @@
   }
 
   a {
-    @include tcds-button();
+    @include button();
 
     display: flex;
     justify-content: start;
