@@ -9,7 +9,7 @@ import config from "../sd.config.js";
 
 /**
  * Animation tokens.
- * 
+ *
  * Animation tokens need to be handled differently. Rather than using the
  * default CSS format, we'll use a custom format that outputs keyframes for the
  * animations themselves. For timing, we'll create custom formats for cubic
@@ -73,8 +73,7 @@ StyleDictionary.registerTransform({
   filter: token => token.$type === "cubicBezier",
   transform: (token) => {
     if (!Array.isArray(token.$value)) return token.$value;
-    const [x1, y1, x2, y2] = token.$value;
-    return `cubic-bezier(${x1}, ${y1}, ${x2}, ${y2})`;
+    return `cubic-bezier(${token.$value.join(", ")})`;
   },
 });
 
@@ -91,7 +90,7 @@ StyleDictionary.registerTransform({
 
 /**
  * SVG tokens.
- * 
+ *
  * Custom transform for turning SVG icons into embedded CSS URLs, for use as
  * custom property values.
  */
