@@ -1,0 +1,18 @@
+services:
+  tcds:
+    build:
+      context: .
+    working_dir: /app
+    command: npm run dev
+    ports:
+      - "8080:8080"
+    environment:
+      NODE_ENV: development
+      CHOKIDAR_USEPOLLING: "true"
+      CHOKIDAR_INTERVAL: "300"
+    volumes:
+      - .:/app
+      - tcds_node_modules:/app/node_modules
+
+volumes:
+  tcds_node_modules:

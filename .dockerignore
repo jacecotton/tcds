@@ -1,0 +1,7 @@
+node_modules
+docs/node_modules
+dist
+components
+docs/_site
+.git
+.DS_Store

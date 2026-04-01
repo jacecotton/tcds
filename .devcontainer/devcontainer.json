@@ -1,0 +1,53 @@
+{
+  "name": "tcds",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "tcds",
+  "workspaceFolder": "/app",
+  "shutdownAction": "stopCompose",
+  "overrideCommand": false,
+  "forwardPorts": [8080],
+  "portsAttributes": {
+    "8080": {
+      "label": "TCDS Docs",
+      "onAutoForward": "openBrowserOnce"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "htmlhint.vscode-htmlhint",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "syler.sass-indented",
+        "styled-components.vscode-styled-components",
+        "mblode.twig-language-2"
+      ],
+      "settings": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": "explicit"
+        },
+        "html.autoClosingTags": false,
+        "html.format.wrapAttributes": "auto",
+        "html.format.wrapLineLength": 120,
+        "html.format.indentHandlebars": false,
+        "html.format.indentInnerHtml": false,
+        "html.format.maxPreserveNewLines": 2,
+        "html.format.preserveNewLines": true,
+        "html.format.extraLiners": "",
+        "html.format.templating": true,
+        "htmlhint.enable": true,
+        "htmlhint.options": {
+          "extends": ".htmlhintrc"
+        },
+        "files.watcherExclude": {
+          "**/dist/**": true,
+          "**/components/**": true,
+          "**/docs/_site/**": true,
+          "**/src/**/_gen/**": true
+        }
+      }
+    }
+  }
+}
