@@ -10,14 +10,14 @@
 {% set title_element = heading_level|default(link ? "a" : "p") %}
 
 <tcds-card {{ attributes }}>
-  {% if image or block("figure") %}
+  {%- if image or block("figure") -%}
     <figure slot="image">
-      {% block figure %}{% endblock %}
+      {%- block figure -%}{%- endblock -%}
       {%- if image.src -%}
         <img {{ create_attribute(image) }}>
       {%- endif -%}
     </figure>
-  {% endif %}
+  {%- endif -%}
   {% if meta %}
     <p slot="meta">
       {% if meta is iterable %}

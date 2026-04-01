@@ -165,8 +165,6 @@ Footers can be added with a `footer` element and a `[slot=footer]` attribute.
 {% endblock %}
 {% endembed %}
 
-Note in this example we're adding a [Call to Action](/components/call-to-action) as a `span`, because the link is already added by the `[slot=title]` element and applies to the entire card surface.
-
 ### API reference
 #### HTML
 {% set html_attrs = [

@@ -232,6 +232,7 @@ tcds-card {
     --tcds-cta-font-size: var(--tcds-font-size-md);
 
     margin-block-start: auto;
+    padding-block-start: var(--tcds-space-component-xs);
   }
 
   p {

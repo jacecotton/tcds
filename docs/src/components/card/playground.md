@@ -24,6 +24,21 @@ form:
             - " "
             - "vertical"
             - "horizontal"
+        variant:
+          type: select
+          label: Variant
+          default: " "
+          options:
+            - " "
+            - "lite"
+            - "featured"
+        size:
+          type: select
+          label: Size
+          default: " "
+          options:
+            - " "
+            - "large"
     - label: Content
       fields:
         title:
