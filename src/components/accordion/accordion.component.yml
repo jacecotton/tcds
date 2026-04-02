@@ -3,8 +3,11 @@ name: Accordion
 description: Accordion
 status: experimental
 group: Content
-js:
-  accordion.js: { attributes: { type: module } }
+libraryOverrides:
+  js:
+    accordion.js:
+      attributes:
+        type: module
 props:
   type: object
   properties:

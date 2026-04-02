@@ -10,10 +10,10 @@
 <tcds-accordion-section {{ attributes }}>
   <{{ heading_level }} slot="title">{{ title }}</{{ heading_level }}>
   {% if content is defined %}
-    {% if content is not iterable block(content) is defined %}
+    {% if content is not iterable and block(content) is defined %}
       {{ block(content) }}
     {% else %}
-      {{ content }}
+      {% block content %}{{ content }}{% endblock %}
     {% endif %}
   {% endif %}
 </tcds-accordion-section>
