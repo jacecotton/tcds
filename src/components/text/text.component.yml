@@ -1,0 +1,11 @@
+name: Text
+status: stable
+props:
+  type: object
+  properties:
+    content:
+      type: string
+      title: Content
+      description: Enter formatted text.
+      contentMediaType: text/html
+      x-formatting-context: block
