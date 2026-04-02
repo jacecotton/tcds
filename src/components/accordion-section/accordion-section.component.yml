@@ -8,6 +8,7 @@ libraryOverrides:
     accordion-section.js:
       attributes:
         type: module
+      preprocess: false
 props:
   type: object
   properties:
