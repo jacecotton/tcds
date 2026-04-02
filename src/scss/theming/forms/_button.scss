@@ -4,6 +4,9 @@
   --tcds-button-background: transparent;
   --tcds-button-background-hover: var(--tcds-color-theme-warm-background);
   --tcds-button-background-active: var(--tcds-color-theme-warm-faded);
+  --tcds-button-border: 0;
+  --tcds-button-border-hover: 0;
+  --tcds-button-border-active: 0;
   --tcds-button-foreground: var(--tcds-color-theme-foreground);
   --tcds-button-foreground-hover: var(--tcds-color-theme-warm-accent);
   --tcds-button-padding-block: var(--tcds-space-component-sm);
