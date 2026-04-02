@@ -5,8 +5,10 @@
 
 {% set attributes = attributes.setAttribute("open", open ? true : false) %}
 
+{% set heading_level = heading_level|default("h3") %}
+
 <tcds-accordion-section {{ attributes }}>
-  <{{ heading_level ?: "h3" }} slot="title">{{ title }}</{{ heading_level ?: "h3" }}>
+  <{{ heading_level }} slot="title">{{ title }}</{{ heading_level }}>
   {% if content is defined %}
     {% if block(content) is defined %}
       {{ block(content) }}
