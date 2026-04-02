@@ -7,19 +7,19 @@
 }
 </style>
 {% embed "tcds:callout" with {
-  custom_classes: ["typeface-callout"],
+  classes: ["typeface-callout"],
   theme: "neutral",
 } %}
 {% block content %}
 <div class="font-family-{{ class }} flex flex--column">
 <span class="text-4xl" contenteditable spellcheck="false">{{ typeface }}</span>
-<div class="flex gap-sm">
+<div class="flex gap-xs">
 {% for weight, font in weights %}
 <span class="text-md" style="font-weight: var(--tcds-font-weight-{{ weight }})" contenteditable spellcheck="false">{{ font }}</span>
 {% endfor %}
 </div>
 </div>
-<ul class="font-family-ui text-sm flex flex--column gap-sm" style="border-left: 1px solid var(--tcds-color-theme-edge); padding-left: var(--tcds-space-component-lg)" role="list">
+<ul class="font-family-ui text-sm flex flex--column gap-xs" style="border-left: 1px solid var(--tcds-color-theme-edge); padding-left: var(--tcds-space-component-lg)" role="list">
 {% for token, data in tokens.font.family|filter(token => token["$value"] == "{font.stack.#{class}}") %}
 <li>
 <code class="text-xs">font.family.{{ token }}</code><br>
