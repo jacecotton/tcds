@@ -6,10 +6,10 @@
 {% set attributes = attributes.setAttribute("multiple", multiple ? true : false) %}
 
 <tcds-accordion {{ attributes }}>
-  {% if sections is defined and sections is iterable and sections|length %}
+  {% if sections is defined and sections is iterable and sections[0] is defined %}
     {% for section in sections %}
       {% if section.content is defined %}
-        {% if block(section.content) is defined %}
+        {% if section.content is not iterable and block(section.content) is defined %}
           {% set content = block(section.content) %}
         {% else %}
           {% set content = section.content %}
@@ -24,6 +24,6 @@
       }) }}
     {% endfor %}
   {% else %}
-    {% block sections %}{% endblock %}
+    {% block sections %}{{ sections }}{% endblock %}
   {% endif %}
 </tcds-accordion>
