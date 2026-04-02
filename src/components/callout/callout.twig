@@ -1,17 +1,17 @@
-{% set theme = theme|default("cool") %}
-
 {% set base_class = "tcds-callout" %}
-{% set classes = [base_class] %}
 
-{% for modifier in modifiers %}
-  {% set classes = classes|merge(["#{base_class}--#{modifier}"]) %}
-{% endfor %}
+{% set _classes = [base_class]|merge(classes|default([])) %}
 
-{% for class in custom_classes %}
-  {% set classes = classes|merge([class]) %}
-{% endfor %}
+{% set _classes = _classes|merge(
+  modifiers|default([])|map(modifier => "#{base_class}--#{modifier}")
+) %}
 
-<div class="{{ classes|join(" ") }}" data-theme="{{ theme }}">
+{% set attributes = attributes|default(create_attribute()) %}
+{% set attributes = attributes.addClass(_classes) %}
+
+{% set attributes = attributes.setAttribute("theme", theme|default("cool")) %}
+
+<div {{ attributes }}>
   {% block content %}
     {{ content }}
   {% endblock %}

@@ -1,6 +1,86 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Card
 description: Card
-libraryOverrides:
-  dependencies:
-    - tcds/cta
+status: experimental
+group: Content
+props:
+  type: object
+  properties:
+    image:
+      type: object
+      title: Image
+      properties:
+        src:
+          type: string
+          format: uri
+          title: Image source
+        alt:
+          type: string
+          title: Alternative text
+        width:
+          type: number
+        height:
+          type: number
+    title:
+      type: string
+      title: Title
+    link:
+      type: object
+      title: Link
+      properties:
+        url:
+          type: string
+          title: URL
+        title:
+          type: string
+          title: Link text
+    description:
+      type: string
+      format: textarea
+      title: Description
+    meta:
+      type: string
+      title: Meta text
+    tag:
+      type: string
+      title: Content tag
+    heading_level:
+      type: string
+      title: Heading level
+      enum:
+        - ""
+        - h2
+        - h3
+        - h4
+        - h5
+        - h6
+      enumNames:
+        - "Default (none)"
+        - "H2"
+        - "H3"
+        - "H4"
+        - "H5"
+        - "H6"
+    variant:
+      type: string
+      title: Variant
+      enum:
+        - lite
+        - featured
+    size:
+      type: string
+      title: Size
+      enum:
+        - ""
+        - large
+      enumNames:
+        - 'Default (normal)'
+        - 'Large'
+    classes:
+      type: array
+      title: Custom classes
+      items:
+        type: string
+slots:
+  footer:
+    title: Footer

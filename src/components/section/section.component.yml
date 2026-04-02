@@ -1,23 +1,5 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Section
 description: Section
-props:
-  type: object
-  properties:
-    theme:
-      type: string
-      title: Theme
-    modifiers:
-      type: array
-      title: Modifiers
-    custom_classes:
-      type: array
-      title: Custom Classes
-    content:
-      type:
-        - string
-        - object
-      title: Content
-slots:
-  content:
-    title: Content
+status: experimental
+group: Content

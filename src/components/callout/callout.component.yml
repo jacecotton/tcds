@@ -1,23 +1,30 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Callout
 description: Callout
+status: experimental
+group: Content
 props:
   type: object
   properties:
     theme:
       type: string
       title: Theme
-    modifiers:
+      enum:
+        - neutral
+        - cool
+        - warm
+        - dark
+      enumNames:
+        - 'Neutral (white)'
+        - 'Cool (light blue)'
+        - 'Warm (pink)'
+        - 'Dark (navy)'
+      default: cool
+    classes:
       type: array
-      title: Modifiers
-    custom_classes:
-      type: array
-      title: Custom Classes
-    content:
-      type:
-        - string
-        - object
-      title: Content
+      title: Custom classes
+      items:
+        type: string
 slots:
   content:
     title: Content

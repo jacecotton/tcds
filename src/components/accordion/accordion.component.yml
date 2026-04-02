@@ -1,19 +1,35 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Accordion
 description: Accordion
+status: experimental
+group: Content
 props:
   type: object
   properties:
     multiple:
       type: boolean
       title: Multiple
-    sections:
-      type: array
-      title: Sections
     heading_level:
       type: string
       title: Heading Level
+      enum:
+        - h2
+        - h3
+        - h4
+        - h5
+        - h6
+      enumNames:
+        - "H2"
+        - "H3"
+        - "H4"
+        - "H5"
+        - "H6"
+      default: h3
+  classes:
+    type: array
+    title: Custom classes
+    items:
+      type: string
 slots:
   sections:
     title: Sections
-    description: Content of the accordion when 'sections' prop is not provided

@@ -1,23 +1,5 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Site Footer
 description: Site Footer
-props:
-  type: object
-  properties:
-    year:
-      type:
-        - string
-        - integer
-      title: Year
-    site_name:
-      type: string
-      title: Site Name
-    transparency_menu:
-      type: array
-      title: Transparency Menu
-    logo:
-      type: object
-      title: Logo
-    legal_disclaimer:
-      type: string
-      title: Legal Disclaimer
+status: experimental
+group: Navigation

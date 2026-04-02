@@ -7,7 +7,7 @@
   {% set attributes = attributes.setAttribute("variant", variant) %}
 {% endif %}
 
-{% set title_element = heading_level|default(link ? "a" : "p") %}
+{% set title_element = heading_level|default(link and link.url ? "a" : "p") %}
 
 <tcds-card {{ attributes }}>
   {%- if image or block("figure") -%}
@@ -18,25 +18,35 @@
       {%- endif -%}
     </figure>
   {%- endif -%}
+  {% if tag %}
+    <small slot="tag">
+      {{ tag }}
+    </small>
+  {% endif %}
   {% if meta %}
-    <p slot="meta">
+    <small slot="meta">
       {% if meta is iterable %}
         {% for item in meta %}
-          <small>{{ meta }}</small>
+          <span>{{ meta }}</span>
         {% endfor %}
       {% else %}
-        <small>{{ meta }}</small>
+        {{ meta }}
       {% endif %}
-    </p>
+    </small>
   {% endif %}
-  <{{ title_element }} slot="title" {{ title_element == "a" ? "href=\"#{link}\"" }}>
-    {% if link and title_element != "a" %}
-      <a href="{{ link }}">{{ title }}</a>
+  <{{ title_element }} slot="title" {{ title_element == "a" ? "href=\"#{link.url}\"" }}>
+    {% if link and link.url and title_element != "a" %}
+      <a href="{{ link.url }}">{{ title }}</a>
     {% else %}
       {{ title }}
     {% endif %}
   </{{ title_element }}>
   {% if description %}
     <p slot="description">{{ description }}</p>
+  {% endif %}
+  {% if block("footer") %}
+    <footer slot="footer">
+      {% block footer %}{% endblock %}
+    </footer>
   {% endif %}
 </tcds-card>

@@ -1,5 +1,12 @@
-<tcds-accordion {{ multiple ? "multiple" }}>
-  {% if sections is defined and sections|length %}
+{% set _classes = []|merge(classes|default([])) %}
+
+{% set attributes = attributes|default(create_attribute()) %}
+{% set attributes = attributes.addClass(_classes) %}
+
+{% set attributes = attributes.setAttribute("multiple", multiple ? true : false) %}
+
+<tcds-accordion {{ attributes }}>
+  {% if sections is defined and sections is iterable and sections|length %}
     {% for section in sections %}
       {% if section.content is defined %}
         {% if block(section.content) is defined %}

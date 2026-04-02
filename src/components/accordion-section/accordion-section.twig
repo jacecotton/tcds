@@ -1,4 +1,11 @@
-<tcds-accordion-section {{ open ? "open" }}>
+{% set _classes = []|merge(classes|default([])) %}
+
+{% set attributes = attributes|default(create_attribute()) %}
+{% set attributes = attributes.addClass(_classes) %}
+
+{% set attributes = attributes.setAttribute("open", open ? true : false) %}
+
+<tcds-accordion-section {{ attributes }}>
   <{{ heading_level ?: "h3" }} slot="title">{{ title }}</{{ heading_level ?: "h3" }}>
   {% if content is defined %}
     {% if block(content) is defined %}
