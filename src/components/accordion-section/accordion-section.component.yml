@@ -11,6 +11,8 @@ libraryOverrides:
       preprocess: false
 props:
   type: object
+  required:
+    - heading_level
   properties:
     open:
       type: boolean
@@ -18,7 +20,8 @@ props:
       default: false
     heading_level:
       type: string
-      title: Heading Level
+      title: Heading level
+      description: "The semantic heading level to use within the page outline (does not change visual appearance)."
       default: h3
       enum:
         - h2

@@ -11,6 +11,8 @@ libraryOverrides:
       preprocess: false
 props:
   type: object
+  required:
+    - heading_level
   properties:
     multiple:
       type: boolean
@@ -18,7 +20,7 @@ props:
       description: "Whether to allow users to open multiple accordion sections at a time."
     heading_level:
       type: string
-      title: Heading Level
+      title: Heading level
       description: "The semantic heading level to use within the page outline (does not change visual appearance)."
       default: h3
       enum:
@@ -33,9 +35,9 @@ props:
         h4: "H4"
         h5: "H5"
         h6: "H6"
-  classes:
-    type: string
-    title: Custom classes
+    classes:
+      type: string
+      title: Custom classes
 slots:
   sections:
     title: Sections
