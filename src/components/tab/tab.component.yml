@@ -3,6 +3,8 @@ name: Tab
 description: Tab
 status: experimental
 group: Content
+js:
+  tab.js: { attributes: { type: module } }
 props:
   type: object
   properties:

@@ -3,3 +3,5 @@ name: Table
 description: Table
 status: experimental
 group: Content
+js:
+  table.js: { attributes: { type: module } }

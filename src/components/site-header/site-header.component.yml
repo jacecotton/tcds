@@ -3,3 +3,5 @@ name: Site Header
 description: Site Header
 status: experimental
 group: Navigation
+js:
+  site-header.js: { attributes: { type: module } }

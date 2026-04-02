@@ -3,5 +3,5 @@ global:
     theme:
       dist/css/tcds.css: {}
   js:
-    dist/js/shared.js: {}
-    dist/js/vendor.js: {}
+    dist/js/shared.js: { attributes: { type: module } }
+    dist/js/vendor.js: { attributes: { type: module } }
