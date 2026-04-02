@@ -1,1 +1,3 @@
-@use "." as *;
+@layer tcds {
+  @import ".";
+}
