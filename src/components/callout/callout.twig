@@ -9,7 +9,7 @@
 {% set attributes = attributes|default(create_attribute()) %}
 {% set attributes = attributes.addClass(_classes) %}
 
-{% set attributes = attributes.setAttribute("theme", theme|default("cool")) %}
+{% set attributes = attributes.setAttribute("data-theme", theme|default("cool")) %}
 
 <div {{ attributes }}>
   {% block content %}

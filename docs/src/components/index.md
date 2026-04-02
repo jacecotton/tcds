@@ -26,7 +26,9 @@ Each page will provide live examples with code snippets for how to implement com
     alt: "",
   },
   title: item.title,
-  link: item.url,
+  link: {
+    url: item.url,
+  },
   description: item.data.description,
   classes: ["grid-item--1/3", "font-family-ui"],
   variant: "lite",
