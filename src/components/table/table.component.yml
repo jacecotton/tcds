@@ -3,5 +3,9 @@ name: Table
 description: Table
 status: experimental
 group: Content
-js:
-  table.js: { attributes: { type: module } }
+libraryOverrides:
+  js:
+    table.js:
+      attributes:
+        type: module
+      preprocess: false

@@ -3,8 +3,12 @@ name: Tabs
 description: Tabs
 status: experimental
 group: Content
-js:
-  tabs.js: { attributes: { type: module } }
+libraryOverrides:
+  js:
+    tabs.js:
+      attributes:
+        type: module
+      preprocess: false
 props:
   type: object
   properties:
