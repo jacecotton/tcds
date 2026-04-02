@@ -15,27 +15,27 @@ props:
     multiple:
       type: boolean
       title: Multiple
+      description: "Whether to allow users to open multiple accordion sections at a time."
     heading_level:
       type: string
       title: Heading Level
+      description: "The semantic heading level to use within the page outline (does not change visual appearance)."
+      default: h3
       enum:
         - h2
         - h3
         - h4
         - h5
         - h6
-      enumNames:
-        - "H2"
-        - "H3"
-        - "H4"
-        - "H5"
-        - "H6"
-      default: h3
+      "meta:enum":
+        h2: "H2"
+        h3: "H3"
+        h4: "H4"
+        h5: "H5"
+        h6: "H6"
   classes:
-    type: array
+    type: string
     title: Custom classes
-    items:
-      type: string
 slots:
   sections:
     title: Sections

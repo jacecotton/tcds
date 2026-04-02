@@ -1,9 +1,11 @@
-{% set _classes = []|merge(classes|default([])) %}
+{% set _classes = ["", classes]|join(" ") %}
 
 {% set attributes = attributes|default(create_attribute()) %}
 {% set attributes = attributes.addClass(_classes) %}
 
-{% set attributes = attributes.setAttribute("open", open ? true : false) %}
+{% if open %}
+  {% set attributes = attributes.setAttribute("open", true) %}
+{% endif %}
 
 {% set heading_level = heading_level|default("h3") %}
 

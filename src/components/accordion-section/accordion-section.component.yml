@@ -19,19 +19,19 @@ props:
     heading_level:
       type: string
       title: Heading Level
+      default: h3
       enum:
         - h2
         - h3
         - h4
         - h5
         - h6
-      enumNames:
-        - "H2"
-        - "H3"
-        - "H4"
-        - "H5"
-        - "H6"
-      default: h3
+      "meta:enum":
+        h2: "H2"
+        h3: "H3"
+        h4: "H4"
+        h5: "H5"
+        h6: "H6"
     title:
       type: string
       title: Title
