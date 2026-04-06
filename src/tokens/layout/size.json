@@ -4,7 +4,7 @@
     "$description": "Raw sizing values, graded in multiples of 160px.",
     "2": {"$value": "320px"},
     "4": {"$value": "640px"},
-    "6": {"$value": "690px"},
+    "6": {"$value": "960px"},
     "8": {"$value": "1280px"},
     "12": {"$value": "1920px"},
     "layout": {

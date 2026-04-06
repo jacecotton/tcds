@@ -40,32 +40,57 @@
  *
  * Breakpoint-based prefixes can be applied to the classes (xs, sm, md, lg, xl),
  * e.g. `.xs:padding-block-xs`
+ *
+ * NOTE: Do NOT change how these rules are expressed (i.e. collapsing `padding-
+ * block` properties, consolidating `--padding-block`, etc.) They are optimized
+ * for overriding ease (i.e. `padding-block` would override another component's
+ * `padding-block-start`, which may have special calculations based on
+ * `--padding-block-start`, etc. — see for example the section component with
+ * the "raised" modifier).
  */
 
 @include responsive-utils() using ($breakpoint) {
   @each $name, $value in tokens("space", "layout") {
     .#{$breakpoint}padding-block-#{$name} {
-      padding-block: var(--tcds-space-layout-#{$name}) !important;
+      --padding-block-start: var(--tcds-space-layout-#{$name});
+      --padding-block-end: var(--tcds-space-layout-#{$name});
+      --padding-block: var(--padding-block-start) var(--padding-block-end);
+
+      padding-block-start: var(--padding-block-start);
+      padding-block-end: var(--padding-block-end);
     }
 
     .#{$breakpoint}padding-block-start-#{$name} {
-      padding-block-start: var(--tcds-space-layout-#{$name}) !important;
+      --padding-block-start: var(--tcds-space-layout-#{$name});
+
+      padding-block-start: var(--padding-block-start);
     }
 
     .#{$breakpoint}padding-block-end-#{$name} {
-      padding-block-end: var(--tcds-space-layout-#{$name}) !important;
+      --padding-block-end: var(--tcds-space-layout-#{$name});
+
+      padding-block-end: var(--padding-block-end);
     }
 
     .#{$breakpoint}margin-block-#{$name} {
-      margin-block: var(--tcds-space-layout-#{$name}) !important;
+      --margin-block-start: var(--tcds-space-layout-#{$name});
+      --margin-block-end: var(--tcds-space-layout-#{$name});
+      --margin-block: var(--margin-block-start) var(--margin-block-end);
+
+      margin-block-start: var(--margin-block-start);
+      margin-block-end: var(--margin-block-end);
     }
 
     .#{$breakpoint}margin-block-start-#{$name} {
-      margin-block-start: var(--tcds-space-layout-#{$name}) !important;
+      --margin-block-start: var(--tcds-space-layout-#{$name});
+
+      margin-block-start: var(--margin-block-start);
     }
 
     .#{$breakpoint}margin-block-end-#{$name} {
-      margin-block-end: var(--tcds-space-layout-#{$name}) !important;
+      --margin-block-end: var(--tcds-space-layout-#{$name});
+
+      margin-block-end: var(--margin-block-end);
     }
   }
 }
