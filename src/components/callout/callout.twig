@@ -1,10 +1,7 @@
 {% set base_class = "tcds-callout" %}
+{% set _classes = [base_class, classes|default("")]|join(" ") %}
 
-{% set _classes = [base_class]|merge(classes|default([])) %}
-
-{% set _classes = _classes|merge(
-  modifiers|default([])|map(modifier => "#{base_class}--#{modifier}")
-) %}
+{% set _classes = _classes ~ " " ~ modifiers|default([])|map(modifier => "#{base_class}--#{modifier}")|join(" ") %}
 
 {% set attributes = attributes|default(create_attribute()) %}
 {% set attributes = attributes.addClass(_classes) %}

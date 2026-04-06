@@ -1,17 +1,14 @@
-{% set theme = theme|default("cool") %}
-
 {% set base_class = "tcds-section" %}
-{% set classes = [base_class] %}
+{% set _classes = [base_class, classes|default("")]|join(" ") %}
 
-{% for modifier in modifiers %}
-  {% set classes = classes|merge(["#{base_class}--#{modifier}"]) %}
-{% endfor %}
+{% set _classes = _classes ~ " " ~ modifiers|default([])|map(modifier => "#{base_class}--#{modifier}")|join(" ") %}
 
-{% for class in custom_classes %}
-  {% set classes = classes|merge([class]) %}
-{% endfor %}
+{% set attributes = attributes|default(create_attribute()) %}
+{% set attributes = attributes.addClass(_classes) %}
 
-<section class="{{ classes|join(" ") }}" data-theme="{{ theme }}">
+{% set attributes = attributes.setAttribute("data-theme", theme|default("neutral")) %}
+
+<section {{ attributes }}>
   <div class="container-lg">
     {% block content %}
       {{ content }}

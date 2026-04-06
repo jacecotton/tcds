@@ -3,3 +3,21 @@ name: Section
 description: Section
 status: experimental
 group: Content
+props:
+  type: object
+  properties:
+    theme:
+      type: string
+      title: Theme
+      enum:
+        - neutral
+        - cool
+        - warm
+        - dark
+      default: cool
+    classes:
+      type: string
+      title: Classes
+slots:
+  content:
+    title: Content

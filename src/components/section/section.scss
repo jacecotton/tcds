@@ -1,9 +1,9 @@
 @use "../../scss/abstracts/mixins" as *;
 
 .tcds-section {
-  --tcds-section-padding-block: var(--tcds-space-layout-lg);
-  --tcds-section-padding-block-start: var(--tcds-section-padding-block);
-  --tcds-section-padding-block-end: var(--tcds-section-padding-block);
+  --tcds-section-padding-block-start: var(--tcds-space-layout-lg);
+  --tcds-section-padding-block-end: var(--tcds-space-layout-lg);
+  --tcds-section-padding-block: var(--tcds-section-padding-block-start) var(--tcds-section-padding-block-end);
 
   --_tcds-section-padding-block-start: var(--tcds-section-padding-block-start);
   --_tcds-section-padding-block-end: var(--tcds-section-padding-block-end);

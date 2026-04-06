@@ -1,11 +1,9 @@
-{% set _classes = ["", classes]|join(" ") %}
+{% set _classes = ["", classes|default("")]|join(" ") %}
 
 {% set attributes = attributes|default(create_attribute()) %}
 {% set attributes = attributes.addClass(_classes) %}
 
-{% if multiple %}
-  {% set attributes = attributes.setAttribute("multiple", true) %}
-{% endif %}
+{% set attributes = attributes.setAttribute("multiple", multiple|default(false)) %} }
 
 <tcds-accordion {{ attributes }}>
   {% if sections is defined and sections is iterable and sections[0] is defined %}

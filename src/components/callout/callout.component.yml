@@ -14,11 +14,6 @@ props:
         - cool
         - warm
         - dark
-      enumNames:
-        - 'Neutral (white)'
-        - 'Cool (light blue)'
-        - 'Warm (pink)'
-        - 'Dark (navy)'
       default: cool
     classes:
       type: array
