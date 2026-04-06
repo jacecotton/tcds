@@ -6,55 +6,15 @@ group: Content
 props:
   type: object
   properties:
-    _responsive_spacing_defitions: &responsive_spacing
-      type: object
-      properties:
-        default:
-          type: string
-          title: Default
-          enum: ["", "xs", "sm", "md", "lg", "xl"]
-          default: "lg"
-        xs:
-          type: string
-          title: Extra-small screens (≥ 320px)
-          enum: ["", "xs", "sm", "md", "lg", "xl"]
-          default: "lg"
-        sm:
-          type: string
-          title: Small screens (≥ 640px)
-          enum: ["", "xs", "sm", "md", "lg", "xl"]
-          default: "lg"
-        md:
-          type: string
-          title: Medium screens (≥ 960px)
-          enum: ["", "xs", "sm", "md", "lg", "xl"]
-          default: "lg"
-        lg:
-          type: string
-          title: Large screens (≥ 1280px)
-          enum: ["", "xs", "sm", "md", "lg", "xl"]
-          default: "lg"
-        xl:
-          type: string
-          title: Extra-large screens (≥ 1920px)
-          enum: ["", "xs", "sm", "md", "lg", "xl"]
-          default: "lg"
-    padding_block_start:
-      <<: *responsive_spacing
-      title: Padding block-start
-      description: Set responsive top padding.
-    padding_block_end:
-      <<: *responsive_spacing
-      title: Padding block-end
-      description: Set responsive bottom padding.
     theme:
       type: string
       title: Theme
-      enum:
-        - neutral
-        - cool
-        - warm
-        - dark
+      enum: ["neutral", "cool", "warm", "dark"]
+      meta:enum:
+        neutral: Neutral (white)
+        cool: Cool (light blue)
+        warm: Warm (pink)
+        dark: Dark (navy)
       default: cool
     classes:
       type: string

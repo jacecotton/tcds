@@ -1,5 +1,6 @@
 name: Text
 status: stable
+group: Text
 props:
   type: object
   properties:
