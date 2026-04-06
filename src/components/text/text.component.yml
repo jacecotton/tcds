@@ -3,10 +3,12 @@ status: stable
 group: Text
 props:
   type: object
+  required: ["content"]
   properties:
     content:
       type: string
       title: Content
-      description: Enter formatted text.
+      description: "Enter formatted text."
       contentMediaType: text/html
       x-formatting-context: block
+      examples: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."]

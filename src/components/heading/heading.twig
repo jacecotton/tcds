@@ -1,5 +1,5 @@
 {% set _classes = ["", classes|default("")]|join(" ") %}
 {% set attributes = attributes|default(create_attribute()) %}
 {% set attributes = attributes.addClass(_classes) %}
-{% set heading_element = heading_element|default("h2") %}
-<{{ heading_element }} {{ attributes }}>{{ text }}</{{ heading_element }}>
+{% set heading_level = heading_level|default("h2") %}
+<{{ heading_level }} {{ attributes }}>{{ text }}</{{ heading_level }}>
