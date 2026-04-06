@@ -1,0 +1,30 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Grid container
+description: Settings for a grid layout.
+status: experimental
+group: Layout
+props:
+  type: object
+  properties:
+    max_width:
+      type: string
+      title: Container max width
+      enum: ["xs", "sm", "md", "lg", "full"]
+      meta:enum:
+        xs: "Extra small (320px)"
+        sm: "Small (640px)"
+        md: "Medium (960px)"
+        lg: "Large (1280px)"
+        full: "Full (100%)"
+      examples: ["full"]
+    align:
+      type: string
+      title: Container alignment
+      enum: ["start", "center"]
+      meta:enum:
+        start: "Start (left)"
+        center: "Center (center)"
+      examples: ["center"]
+slots:
+  content:
+    title: Content

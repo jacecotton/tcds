@@ -26,8 +26,8 @@
   grid-template-columns: repeat(12, 1fr);
 }
 
-[class*="grid-item--"] {
-  --grid-item-column-span: 1;
+:where(.grid > *) {
+  --grid-item-column-span: 12;
   grid-column: span var(--grid-item-column-span);
 }
 

@@ -3,7 +3,7 @@ status: stable
 group: Text
 props:
   type: object
-  required: ["text", "heading_level"]
+  required: ["heading_level"]
   properties:
     text:
       type: string

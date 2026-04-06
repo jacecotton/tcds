@@ -1,0 +1,25 @@
+{% set base_class = "grid" %}
+{% set _classes = [base_class, classes|default("")]|join(" ") %}
+
+{% set styles = styles|default({}) %}
+
+{% if max_width is defined and max_width != "full" %}
+  {% set _classes = _classes ~ " container-#{max_width}" %}
+{% endif %}
+
+{% if align is defined and align != "center" %}
+  {% set styles = styles|merge({
+    "--tcds-container-margin-inline": "0",
+  }) %}
+{% endif %}
+
+{% set attributes = attributes|default(create_attribute()) %}
+{% set attributes = attributes.addClass(_classes) %}
+
+{% if styles|length %}
+  {% set attributes = attributes.setAttribute("style", styles|map((value, property) => "#{property}: #{value};")|join(" ")) %}
+{% endif %}
+
+<div {{ attributes }}>
+  {% block content %}{{ content }}{% endblock %}
+</div>
