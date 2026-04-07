@@ -1,0 +1,14 @@
+{% set base_class = "grid-item" %}
+{% set _classes = [base_class, classes|default("")] %}
+
+{% set column_sizes = column_sizes|default({
+  default: column_size|default("1/1"),
+  sm: column_size_sm|default("inherit"),
+  md: column_size_md|default("inherit"),
+  lg: column_size_lg|default("inherit"),
+}) %}
+
+{% set _classes = _classes|merge(column_sizes|map((size, bp) => (bp == "default" ? "" : "#{bp}:") ~ "grid-item" ~ (size == "inherit" ? "" : "--#{size}"))) %}
+
+{% set attributes = attributes|default(create_attribute()) %}
+{% set attributes = attributes.addClass(_classes) %}

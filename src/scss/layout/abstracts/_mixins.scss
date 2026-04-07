@@ -8,7 +8,7 @@
 
   width: calc(100% - var(--_tcds-container-gutter) * 2) #{$flag};
   max-width: var(--_tcds-size-container) #{$flag};
-  margin-inline: auto #{$flag};
+  margin-inline: var(--tcds-container-margin-inline, auto) #{$flag};
 }
 
 // Experimental!

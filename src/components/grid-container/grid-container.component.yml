@@ -25,6 +25,9 @@ props:
         start: "Start (left)"
         center: "Center (center)"
       examples: ["center"]
+    classes:
+      type: string
+      title: Classes
 slots:
   content:
     title: Content
