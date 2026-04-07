@@ -12,3 +12,7 @@
 
 {% set attributes = attributes|default(create_attribute()) %}
 {% set attributes = attributes.addClass(_classes) %}
+
+<div {{ attributes }}>
+  {% block content %}{{ content }}{% endblock %}
+</div>

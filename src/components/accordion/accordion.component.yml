@@ -11,8 +11,6 @@ libraryOverrides:
       preprocess: false
 props:
   type: object
-  required:
-    - heading_level
   properties:
     multiple:
       type: boolean
@@ -29,7 +27,7 @@ props:
         h4: "Heading 4"
         h5: "Heading 5"
         h6: "Heading 6"
-      default: h3
+      examples: ["h3"]
     classes:
       type: string
       title: Custom classes

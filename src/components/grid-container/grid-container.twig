@@ -1,10 +1,10 @@
 {% set base_class = "grid" %}
-{% set _classes = [base_class, classes|default("")]|join(" ") %}
+{% set _classes = [base_class, classes|default("")] %}
 
 {% set styles = styles|default({}) %}
 
 {% if max_width is defined and max_width != "full" %}
-  {% set _classes = _classes ~ " container-#{max_width}" %}
+  {% set _classes = _classes|merge(["container-#{max_width}"]) %}
 {% endif %}
 
 {% if align is defined and align != "center" %}
