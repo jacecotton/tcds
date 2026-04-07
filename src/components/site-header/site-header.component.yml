@@ -3,5 +3,39 @@ name: Site Header
 description: Site Header
 status: experimental
 group: Navigation
-js:
-  site-header.js: { attributes: { type: module } }
+libraryOverrides:
+  js:
+    site-header.js:
+      attributes:
+        type: module
+      preprocess: false
+props:
+  type: object
+  properties:
+    logo_link_href:
+      type: string
+      title: Logo link URL
+      description: "Where to take the user when they click the logo."
+      examples: ["/"]
+    logo_link_title:
+      type: string
+      title: Logo link title
+      description: "The tooltip for when the user hovers over the logo."
+      examples: ["Go home"]
+    logo_image:
+      type: object
+      $ref: json-schema-definitions://canvas.module/image
+      title: Logo image
+      description: "Upload or select the site logo."
+    theme:
+      type: string
+      title: Theme
+      enum: ["auto", "dark"]
+      meta:enum:
+        auto: Auto
+        dark: Dark
+slots:
+  primary_menu:
+    title: Primary menu
+  utility_menu:
+    title: Utility menu
