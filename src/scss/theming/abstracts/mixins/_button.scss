@@ -1,34 +1,34 @@
-@mixin button() {
-  -webkit-appearance: none;
-  appearance: none;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: var(--tcds-button-gap);
-  background: var(--tcds-button-background);
-  border: var(--tcds-button-border);
-  color: var(--tcds-button-foreground);
-  border: 0;
-  border-radius: var(--tcds-button-border-radius);
-  padding: var(--tcds-button-padding);
-  font-family: var(--tcds-font-family-ui);
-  font-size: var(--tcds-button-font-size);
-  font-weight: var(--tcds-font-weight-semibold);
-  text-decoration: none;
-  user-select: none;
+@mixin button($flag: "") {
+  -webkit-appearance: none #{$flag};
+  appearance: none #{$flag};
+  display: inline-flex #{$flag};
+  justify-content: center #{$flag};
+  align-items: center #{$flag};
+  gap: var(--tcds-button-gap) #{$flag};
+  background: var(--tcds-button-background) #{$flag};
+  border: var(--tcds-button-border) #{$flag};
+  color: var(--tcds-button-foreground) #{$flag};
+  border: 0 #{$flag};
+  border-radius: var(--tcds-button-border-radius) #{$flag};
+  padding: var(--tcds-button-padding) #{$flag};
+  font-family: var(--tcds-font-family-ui) #{$flag};
+  font-size: var(--tcds-button-font-size) #{$flag};
+  font-weight: var(--tcds-font-weight-semibold) #{$flag};
+  text-decoration: none #{$flag};
+  user-select: none #{$flag};
   transition:
     background var(--tcds-motion-duration-productive) var(--tcds-motion-easing-enter),
-    color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-enter);
+    color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-enter) #{$flag};
 
   &:hover,
   &:focus {
-    background: var(--tcds-button-background-hover);
-    border: var(--tcds-button-border-hover);
-    color: var(--tcds-button-foreground-hover);
+    background: var(--tcds-button-background-hover) #{$flag};
+    border: var(--tcds-button-border-hover) #{$flag};
+    color: var(--tcds-button-foreground-hover) #{$flag};
   }
 
   &:active {
-    background: var(--tcds-button-background-active);
-    border: var(--tcds-button-border-active);
+    background: var(--tcds-button-background-active) #{$flag};
+    border: var(--tcds-button-border-active) #{$flag};
   }
 }

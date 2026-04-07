@@ -1,6 +1,20 @@
-<tcds-site-header {{ "dark" in variant ? "data-mode='dark'" }}>
-  <a href="/" rel="home" title="Go home" slot="logo">
-    <img src="{{ logo.url }}" alt="{{ logo.alt ?: "Texas Children's logo" }}" width="{{ logo.width ?: "250" }}" height="{{ logo.height ?: "33.16" }}">
+{% set attributes = attributes|default(create_attribute()) %}
+
+{% if theme == "dark" %}
+  {% set attributes = attributes.setAttribute("data-theme", "dark") %}
+{% endif %}
+
+{% set logo = logo|default({
+  link: {
+    href: logo_link_href|default("/"),
+    title: logo_link_title|default("Go home"),
+  },
+  image: logo_image|default({}),
+}) %}
+
+<tcds-site-header {{ attributes }}>
+  <a href="{{ logo.link.href }}" rel="home" title="{{ logo.link.title }}" slot="logo">
+    <img {{ create_attribute(logo.image) }}>
     {% if logo.entity %}
       <span>{{ logo.entity }}</span>
     {% endif %}
@@ -11,7 +25,7 @@
       <span class="visually-hidden">Toggle main navigation</span>
     </summary>
     <div>
-      {% if primary_menu is defined %}
+      {% if primary_menu is defined and primary_menu is iterable and primary_menu[0] is defined %}
         <nav data-part="primary-menu">
           <ul role="list">
             {% for item in primary_menu %}
@@ -34,9 +48,11 @@
             {% endfor %}
           </ul>
         </nav>
+      {% else %}
+        {% block primary_menu %}{{ primary_menu }}{% endblock %}
       {% endif %}
 
-      {% if utility_menu is defined %}
+      {% if utility_menu is defined and utility_menu is iterable and utility_menu[0] is defined %}
         <nav data-part="utility-menu">
           <ul role="list">
             {% for item in utility_menu %}
@@ -44,6 +60,8 @@
             {% endfor %}
           </ul>
         </nav>
+      {% else %}
+        {% block utility_menu %}{{ utility_menu }}{% endblock %}
       {% endif %}
     </div>
   </details>

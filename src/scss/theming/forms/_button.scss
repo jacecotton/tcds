@@ -20,7 +20,10 @@
 button:not([type=button]),
 input[type=button],
 input[type=submit],
-input[type=reset],
-.tcds-button {
+input[type=reset] {
   @include button();
+}
+
+.tcds-button {
+  @include button("!important");
 }
