@@ -27,6 +27,9 @@ export class AccordionSection extends LitElement {
     return this.closest("tcds-accordion");
   }
 
+  @property({type: Boolean, reflect: true})
+  accessor inactive = false;
+
   @state() accessor _headingLevel = "h3";
   @state() accessor _title = "";
 
@@ -62,17 +65,23 @@ export class AccordionSection extends LitElement {
     return html`
       <section aria-labelledby="heading">
         <${hx} part="heading" id="heading">
-          <button
-            part="button"
-            id="button"
-            type="button"
-            aria-controls="panel"
-            aria-expanded="${this.open}"
-            @click="${() => this.toggle()}"
-          >
-            ${this._title}
-            <tcds-icon part="icon" icon="${this.open ? "minus" : "plus"}"></tcds-icon>
-          </button>
+          ${this.inactive ? html`
+            <span part="button" id="button">
+              ${this._title}
+            </span>
+          ` : html`
+            <button
+              part="button"
+              id="button"
+              type="button"
+              aria-controls="panel"
+              aria-expanded="${this.open}"
+              @click="${() => this.toggle()}"
+            >
+              ${this._title}
+              <tcds-icon part="icon" icon="${this.open ? "minus" : "plus"}"></tcds-icon>
+            </button>
+          `}
         </${hx}>
 
         <div part="panel" id="panel">
@@ -121,6 +130,7 @@ export class AccordionSection extends LitElement {
    * @param {Boolean|Function} test - Optional forced state or evaluator.
    */
   async toggle(test) {
+    if (this.inactive) return false;
     const resolved = typeof test === "function" ? test() : test;
     const shouldOpen = typeof resolved === "boolean" ? resolved : !this.open;
     return await (shouldOpen ? this.show() : this.close());
@@ -132,7 +142,7 @@ export class AccordionSection extends LitElement {
     this.open = true;
     await this.updateComplete;
 
-    if (!this.accordion?.multiple) {
+    if (!this.accordion?.multiple && !this.inactive) {
       setTimeout(() => {
         const headingTop = this._parts.heading.getBoundingClientRect().top;
         const threshold = (parseInt(
@@ -153,7 +163,7 @@ export class AccordionSection extends LitElement {
 
   async close() {
     // Prevent the event from dispatching unnecessarily.
-    if (!this.open) return false;
+    if (this.inactive || !this.open) return false;
     this.open = false;
     await this.updateComplete;
     // Return resolved value.

@@ -5,6 +5,10 @@
 
 {% set attributes = attributes.setAttribute("multiple", multiple|default(false)) %}
 
+{% if media|default(false) %}
+  {% set attributes = attributes.setAttribute("media", media) %}
+{% endif %}
+
 <tcds-accordion {{ attributes }}>
   {% if sections is defined and sections is iterable and sections[0] is defined %}
     {# Not a render array (i.e. slot), sections are coming in as a flat object. #}

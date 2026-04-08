@@ -23,6 +23,9 @@ props:
       title: Variant
       enum: ["primary", "secondary"]
       meta:enum:
-        - primary: Primary (default)
-        - secondary: Secondary
+        - primary: "Primary (default)"
+        - secondary: "Secondary"
       examples: ["primary"]
+    classes:
+      type: string
+      title: Custom classes

@@ -2,6 +2,10 @@ import {css, unsafeCSS} from "lit";
 import {SizeBreakpointMd} from "@/js/_gen/tokens.js";
 
 export default css`
+  :host(:not([inactive])) {
+    --tcds-accordion-section-content-border-bottom: 1px solid var(--tcds-color-theme-edge);
+  }
+
   ::slotted([slot=title]) {
     display: none !important;
   }
@@ -25,7 +29,6 @@ export default css`
     background: none;
     border: none;
     border-bottom: 1px solid var(--tcds-color-theme-edge);
-    cursor: pointer;
     display: flex;
     align-items: center;
     gap: var(--tcds-space-component-md);
@@ -37,6 +40,10 @@ export default css`
     font-weight: var(--tcds-accordion-heading-font-weight, var(--tcds-font-weight-semibold));
     width: 100%;
     color: var(--tcds-color-theme-foreground);
+
+    &:is(button) {
+      cursor: pointer;
+    }
   }
 
   [part="icon"] {
@@ -52,6 +59,6 @@ export default css`
 
   [part="content"] {
     padding: 1.5rem 0;
-    border-bottom: 1px solid var(--tcds-color-theme-edge);
+    border-bottom: var(--tcds-accordion-section-content-border-bottom, none);
   }
 `;

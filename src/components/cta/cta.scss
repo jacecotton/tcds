@@ -1,6 +1,7 @@
 @mixin cta-props() {
   --tcds-cta-font-family: var(--tcds-font-family-ui);
   --tcds-cta-font-size: var(--tcds-font-size-ml);
+  --tcds-cta-font-weight: var(--tcds-font-weight-semibold);
 }
 
 @mixin cta-primary-props {
@@ -28,10 +29,14 @@
 
   .tcds-cta {
     display: inline-grid;
+    gap: var(--tcds-space-component-xs);
+    align-items: center;
     font-family: var(--tcds-cta-font-family);
     font-size: var(--tcds-cta-font-size);
+    font-weight: var(--tcds-cta-font-weight);
     background-color: var(--tcds-cta-background-color);
     color: var(--tcds-cta-foreground-color);
+    text-decoration: none;
     border: var(--tcds-cta-border, 0);
     cursor: pointer;
     position: relative;
@@ -54,10 +59,6 @@
       @include cta-secondary-props();
 
       grid-template-columns: max-content var(--tcds-cta-secondary-icon-size);
-      gap: var(--tcds-space-component-xs);
-      align-items: center;
-      text-decoration: none;
-      font-weight: var(--tcds-font-weight-semibold);
 
       &:hover,
       [data-hover-proxy="tcds-cta"]:hover & {

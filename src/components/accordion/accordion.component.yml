@@ -28,6 +28,10 @@ props:
         h5: "Heading 5"
         h6: "Heading 6"
       examples: ["h3"]
+    media:
+      type: string
+      title: Media query
+      description: "The media query at which to \"activate\" the accordion (collapse into toggleable sections)."
     classes:
       type: string
       title: Custom classes

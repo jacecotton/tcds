@@ -1,6 +1,6 @@
 import {LitElement} from "lit";
 import {html} from "lit/static-html.js";
-import {customElement, property, queryAssignedElements} from "lit/decorators.js";
+import {customElement, property, state, queryAssignedElements} from "lit/decorators.js";
 import sharedStyles from "@/components/_shared/styles";
 import accordionStyles from "./accordion.styles.js";
 
@@ -9,22 +9,32 @@ export class Accordion extends LitElement {
   static styles = [sharedStyles, accordionStyles];
 
   // #region Properties
+  @property({type: String})
+  accessor media;
+
   @property({type: Boolean, reflect: true})
   accessor multiple = false;
 
   @queryAssignedElements({selector: "tcds-accordion-section"})
   accessor sections;
+
+  @state()
+  accessor _active = true;
+
+  #mediaQueryList = null;
+  #wasInactive = false;
   // #endregion
 
   // #region Lifecycle
   connectedCallback() {
     super.connectedCallback();
+    console.log(this.media);
     this.addEventListener("tcds-accordion-section:toggle", this.#handleChildToggle);
   }
 
   render() {
     return html`
-      ${this.multiple
+      ${this.multiple && this._active
         ? html`
             <div part="controls">
               <button part="open-all" @click="${() => this.showAll()}">
@@ -41,8 +51,24 @@ export class Accordion extends LitElement {
           `
         : ``
       }
-      <slot></slot>
+      <slot @slotchange="${this.#handleSlotChange}"></slot>
     `;
+  }
+
+  updated(changedProperties) {
+    if (changedProperties.has("media")) {
+      this.#setupMediaQuery();
+    }
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+
+    this.removeEventListener("tcds-accordion-section:toggle", this.#handleChildToggle);
+
+    if (this.#mediaQueryList) {
+      this.#mediaQueryList.removeEventListener("change", this.#handleMediaChange);
+    }
   }
   // #endregion
 
@@ -87,6 +113,45 @@ export class Accordion extends LitElement {
         if (section !== target && section.open) {
           section.close();
         }
+      });
+    }
+  }
+
+  #setupMediaQuery() {
+    if (this.#mediaQueryList) {
+      this.#mediaQueryList.removeEventListener("change", this.#handleMediaChange);
+    }
+
+    if (this.media) {
+      this.#mediaQueryList = window.matchMedia(this.media);
+      this.#mediaQueryList.addEventListener("change", this.#handleMediaChange);
+      this.#handleMediaChange(this.#mediaQueryList);
+    } else {
+      this._active = true;
+    }
+  }
+
+  #handleMediaChange = (event) => {
+    this._active = event.matches;
+
+    this.sections.forEach((section) => {
+      section.inactive = !this._active;
+
+      if (!this._active) {
+        section.open = true;
+      } else if (this.#wasInactive) {
+        section.open = false;
+      }
+    });
+
+    this.#wasInactive = !this._active;
+  }
+
+  #handleSlotChange = () => {
+    if (!this._active) {
+      this.sections.forEach((section) => {
+        section.inactive = true;
+        section.open = true;
       });
     }
   }
