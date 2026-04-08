@@ -18,9 +18,9 @@ props:
       type: string
       title: Link Text
       examples: ["Call-to-Action Link"]
-    modifiers:
+    variant:
       type: string
-      title: Modifiers
+      title: Variant
       enum: ["primary", "secondary"]
       meta:enum:
         - primary: Primary (default)

@@ -43,14 +43,14 @@
       border: var(--tcds-cta-border-hover, 0);
     }
 
-    &:not(#{&}--secondary) {
+    &:not([data-variant="secondary"]) {
       @include cta-primary-props();
 
       padding: var(--tcds-space-component-md) var(--tcds-space-component-lg);
       border-radius: calc(var(--tcds-space-component-md) * 2 + 1ex);
     }
 
-    &--secondary {
+    &[data-variant="secondary"] {
       @include cta-secondary-props();
 
       grid-template-columns: max-content var(--tcds-cta-secondary-icon-size);
