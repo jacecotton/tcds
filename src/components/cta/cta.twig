@@ -1,0 +1,13 @@
+{%- apply spaceless -%}
+{% set base_class = "tcds-cta" %}
+{% set _classes = [base_class, classes|default("")] %}
+
+{% set modifiers = modifiers|default([]) %}
+{% set _classes = _classes|merge(modifiers|map(modifier => "#{base_class}--#{modifier}")) %}
+
+{% set attributes = attributes|default(create_attribute()) %}
+{% set attributes = attributes.addClass(_classes) %}
+
+{% set attributes = attributes.setAttribute("href", href) %}
+{%- endapply -%}
+<a {{ attributes|without("href") }}>{{ title }}</a>

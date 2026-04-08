@@ -1,5 +1,28 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
-name: CTA
-description: Call-to-Action Link
+name: CTA Link
+description: Call-to-action link
 status: experimental
 group: Content
+required:
+  - href
+props:
+  type: object
+  properties:
+    href:
+      type: string
+      title: Link Destination
+      format: uri-reference
+      description: "The destination URL to use as the link's [href] attribute."
+      examples: ["/"]
+    text:
+      type: string
+      title: Link Text
+      examples: ["Call-to-Action Link"]
+    modifiers:
+      type: string
+      title: Modifiers
+      enum: ["primary", "secondary"]
+      meta:enum:
+        - primary: Primary (default)
+        - secondary: Secondary
+      examples: ["primary"]
