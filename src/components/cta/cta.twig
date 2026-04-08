@@ -10,4 +10,4 @@
 
 {% set attributes = attributes.setAttribute("href", href) %}
 {%- endapply -%}
-<a {{ attributes|without("href") }}>{{ title }}</a>
+<a {{ attributes }}>{{ title }}</a>
