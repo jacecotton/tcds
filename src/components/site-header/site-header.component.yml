@@ -10,8 +10,8 @@ libraryOverrides:
         type: module
       preprocess: false
   dependencies:
-    - core/components--cta
-    - core/components--icon
+    - core/components.tcds--cta
+    - core/components.tcds--icon
 props:
   type: object
   properties:
