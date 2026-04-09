@@ -123,25 +123,27 @@
 @mixin text($size, $flag, $min-vw: 400, $max-vw: 1200) {
   $downscale-factor: 0.77;
 
+  $vw-range: $max-vw - $min-vw;
+  $diff-factor: (1 - $downscale-factor) * 1600 / $vw-range;
+  $min-vw-ratio: $min-vw / 1600;
+
   $max-size: var(--tcds-font-size-#{$size});
-  $min-size: calc(#{$downscale-factor} * #{$max-size});
+  $min-size: calc(#{$max-size} * #{$downscale-factor});
 
-  $slope: calc((1 - #{$downscale-factor}) * 100 / (#{$max-vw} - #{$min-vw}));
-  $vw: #{$slope}vw;
+  $base: calc(#{$max-size} / 1rem);
 
-  $intercept: calc(#{$downscale-factor} * #{$max-size} - (#{$slope} * #{$min-vw} * 1px));
+  $slope: calc(#{$diff-factor} * #{$base});
+  $intercept: calc((#{$downscale-factor} * #{$base}) - (#{$slope} * #{$min-vw-ratio}));
 
   font-size: clamp(
     #{$min-size},
-    calc(#{$intercept} + #{$vw}),
+    calc((#{$intercept} * 1rem) + (#{$slope} * 1vw)),
     #{$max-size}
   ) #{$flag};
 
   @if list.index(("5xl", "4xl", "3xl", "2xl", "xl", "lg"), $size) {
-    line-height: var(--tcds-line-height-compact);
-  }
-
-  @if list.index(("ml", "md", "sm", "xs"), $size) {
-    line-height: var(--tcds-line-height-comfortable);
+    line-height: var(--tcds-line-height-compact) #{$flag};
+  } @else if list.index(("ml", "md", "sm", "xs"), $size) {
+    line-height: var(--tcds-line-height-comfortable) #{$flag};
   }
 }
