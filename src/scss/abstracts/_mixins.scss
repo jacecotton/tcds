@@ -128,7 +128,7 @@
   $slope: calc((1 - #{$downscale-factor}) * 100 / (#{$max-vw} - #{$min-vw}));
   $vw: #{$slope}vw;
 
-  $intercept: calc(#{$downscale-factor} * #{$max-size} - (#{$slope} * #{$min-viewport} * 1px));
+  $intercept: calc(#{$downscale-factor} * #{$max-size} - (#{$slope} * #{$min-vw} * 1px));
 
   font-size: clamp(
     #{$min-size},
