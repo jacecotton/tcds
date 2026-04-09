@@ -14,10 +14,10 @@ document.addEventListener("DOMContentLoaded", () => {
       images[activeIndex].dataset.active = true;
 
       setInterval(() => {
-        images[activeIndex].dataset.active = false;
+        delete images[activeIndex].dataset.active;
         activeIndex = (activeIndex + 1) % images.length;
         images[activeIndex].dataset.active = true;
-      }, interval);
+      }, parseInt(interval) * 1000);
     });
   }
 });
