@@ -142,8 +142,8 @@
   ) #{$flag};
 
   @if list.index(("5xl", "4xl", "3xl", "2xl", "xl", "lg"), $size) {
-    line-height: var(--tcds-line-height-compact) #{$flag};
+    line-height: var(--tcds-line-height-compact);
   } @else if list.index(("ml", "md", "sm", "xs"), $size) {
-    line-height: var(--tcds-line-height-comfortable) #{$flag};
+    line-height: var(--tcds-line-height-comfortable);
   }
 }

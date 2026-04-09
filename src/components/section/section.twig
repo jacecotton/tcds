@@ -8,6 +8,10 @@
 
 {% set attributes = attributes.setAttribute("data-theme", theme|default("neutral")) %}
 
+{% if background_image_interval and background_images|length %}
+  {% set attributes = attributes.setAttribute("data-interval", background_image_interval) %}
+{% endif %}
+
 <section {{ attributes }}>
   {% if background_images %}
     {% for image in background_images %}

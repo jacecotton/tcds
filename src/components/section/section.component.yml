@@ -3,6 +3,12 @@ name: Section
 description: Section
 status: experimental
 group: Content
+libraryOverrides:
+  js:
+    section.js:
+      attributes:
+        type: module
+      preprocess: false
 props:
   type: object
   required: ["theme"]
@@ -12,6 +18,11 @@ props:
       title: Background images
       items:
         $ref: "json-schema-definitions://canvas.module/image"
+    background_image_interval:
+      type: number
+      title: Background image interval
+      description: "The time (in seconds) between background images crossfading."
+      examples: [5]
     theme:
       type: string
       title: Theme
