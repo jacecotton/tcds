@@ -118,3 +118,29 @@
   --tcds-link-color: #{if(sass($theme == "dark"): var(--tcds-color-theme-muted); else: var(--tcds-color-theme-accent))};
   --tcds-link-color-hover: #{if(sass($theme == "dark"): var(--tcds-color-theme-foreground); else: var(--tcds-color-theme-accent))};
 }
+
+@mixin text($size, $flag, $min-vw: 400, $max-vw: 1200) {
+  $downscale-factor: 0.77;
+
+  $max-size: var(--tcds-font-size-#{$size});
+  $min-size: calc(#{$downscale-factor} * #{$max-size});
+
+  $slope: calc((1 - #{$downscale-factor}) * 100 / (#{$max-vw} - #{$min-vw}));
+  $vw: #{$slope}vw;
+
+  $intercept: calc(#{$downscale-factor} * #{$max-size} - (#{$slope} * #{$min-viewport} * 1px));
+
+  font-size: clamp(
+    #{$min-size},
+    calc(#{$intercept} + #{$vw}),
+    #{$max-size}
+  ) #{$flag};
+
+  @if list.index(("5xl", "4xl", "3xl", "2xl", "xl", "lg"), $size) {
+    line-height: var(--tcds-line-height-compact);
+  }
+
+  @if list.index(("ml", "md", "sm", "xs"), $size) {
+    line-height: var(--tcds-line-height-comfortable);
+  }
+}

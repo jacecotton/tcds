@@ -30,17 +30,7 @@
 @include responsive-utils() using ($breakpoint) {
   @each $size, $value in tokens("font", "size") {
     .#{$breakpoint}text-#{$size} {
-      font-size: var(--tcds-font-size-#{$size}) !important;
-
-      // These shouldn't get `!important` because they're implicit and only
-      // intended as reasonable defaults.
-      @if list.index(("5xl", "4xl", "3xl", "2xl", "xl", "lg"), $size) {
-        line-height: var(--tcds-line-height-compact);
-      }
-
-      @if list.index(("ml", "md", "sm", "xs"), $size) {
-        line-height: var(--tcds-line-height-comfortable);
-      }
+      @include text($size, "!important");
     }
   }
 
