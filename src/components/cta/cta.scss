@@ -6,7 +6,7 @@
 
 @mixin cta-primary-props {
   --tcds-cta-background-color: var(--tcds-color-brand-primary);
-  --tcds-cta-background-color-hover: oklch(from var(--tcds-cta-background-color) calc(l * 0.75) c h);
+  --tcds-cta-background-color-hover: oklch(from var(--tcds-cta-background-color) calc(l * 0.95) c h);
   --tcds-cta-foreground-color: var(--tcds-color-theme-dark-foreground);
   --tcds-cta-foreground-color-hover: var(--tcds-color-theme-dark-foreground);
 }
@@ -34,10 +34,11 @@
     font-family: var(--tcds-cta-font-family);
     font-size: var(--tcds-cta-font-size);
     font-weight: var(--tcds-cta-font-weight);
+    line-height: 1;
+    border: var(--tcds-cta-border, 0);
     background-color: var(--tcds-cta-background-color);
     color: var(--tcds-cta-foreground-color);
     text-decoration: none;
-    border: var(--tcds-cta-border, 0);
     cursor: pointer;
     position: relative;
     z-index: 1;

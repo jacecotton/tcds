@@ -10,12 +10,12 @@ tcds-icon {
   align-items: center;
 
   &::after {
-    content: "";
-    display: inline-block;
-    height: 0.75em;
-    width: 0.75em;
-    background: currentcolor;
-    mask: var(--tcds-icon) no-repeat center;
+    content: "" !important;
+    display: inline-block !important;
+    height: 0.75em !important;
+    width: 0.75em !important;
+    background: currentcolor !important;
+    mask: var(--tcds-icon) no-repeat center !important;
   }
 }
 
