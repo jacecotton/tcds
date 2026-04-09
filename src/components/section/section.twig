@@ -9,6 +9,11 @@
 {% set attributes = attributes.setAttribute("data-theme", theme|default("neutral")) %}
 
 <section {{ attributes }}>
+  {% if background_images %}
+    {% for image in background_images %}
+      <img {{ create_attribute(image) }}>
+    {% endfor %}
+  {% endif %}
   <div class="container-lg">
     {% block content %}
       {{ content }}

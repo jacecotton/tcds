@@ -1,36 +1,45 @@
 @use "../../scss/abstracts/mixins" as *;
 
-.tcds-section {
-  --tcds-section-padding-block-start: var(--padding-block-start, var(--tcds-space-layout-lg));
-  --tcds-section-padding-block-end: var(--padding-block-end, var(--tcds-space-layout-lg));
-  --tcds-section-padding-block: var(--padding-block, var(--tcds-section-padding-block-start) var(--tcds-section-padding-block-end));
+@layer tcds {
+  .tcds-section {
+    --tcds-section-padding-block-start: var(--padding-block-start, var(--tcds-space-layout-lg));
+    --tcds-section-padding-block-end: var(--padding-block-end, var(--tcds-space-layout-lg));
+    --tcds-section-padding-block: var(--padding-block, var(--tcds-section-padding-block-start) var(--tcds-section-padding-block-end));
 
-  --_tcds-section-padding-block-start: var(--tcds-section-padding-block-start);
-  --_tcds-section-padding-block-end: var(--tcds-section-padding-block-end);
-  --_tcds-section-padding-block: var(--tcds-section-padding-block);
+    --_tcds-section-padding-block-start: var(--tcds-section-padding-block-start);
+    --_tcds-section-padding-block-end: var(--tcds-section-padding-block-end);
+    --_tcds-section-padding-block: var(--tcds-section-padding-block);
 
-  background-color: var(--tcds-color-theme-background);
-  color: var(--tcds-color-theme-foreground);
-  overflow: clip;
-  padding-block: var(--_tcds-section-padding-block) !important;
-  position: relative;
-  z-index: 1;
+    background-color: var(--tcds-color-theme-background);
+    color: var(--tcds-color-theme-foreground);
+    overflow: clip;
+    padding-block: var(--_tcds-section-padding-block) !important;
+    position: relative;
+    z-index: 1;
 
-  &--raised {
-    --_tcds-section-padding-block-start: calc(var(--tcds-section-padding-block-start) + var(--tcds-site-header-height));
+    &--raised {
+      --_tcds-section-padding-block-start: calc(var(--tcds-section-padding-block-start) + var(--tcds-site-header-height));
 
-    padding-block-start: var(--_tcds-section-padding-block-start) !important;
-    margin-block-start: calc(var(--tcds-site-header-height) * -1) !important;
-  }
-
-  p {
-    @include breakpoint("md") {
-      font-size: var(--tcds-font-size-ml);
+      padding-block-start: var(--_tcds-section-padding-block-start) !important;
+      margin-block-start: calc(var(--tcds-site-header-height) * -1) !important;
     }
-  }
 
-  :where(h1, h2, h3, h4, h5, h6) {
-    margin-block-start: 1.5rem;
-    margin-block-end: 1.5rem;
+    p {
+      @include breakpoint("md") {
+        font-size: var(--tcds-font-size-ml);
+      }
+    }
+
+    :where(h1, h2, h3, h4, h5, h6) {
+      margin-block-start: 1.5rem;
+      margin-block-end: 1.5rem;
+    }
+
+    > :is(picture, img) {
+      position: absolute;
+      inset: 0;
+      object-fit: cover;
+      z-index: -1;
+    }
   }
 }

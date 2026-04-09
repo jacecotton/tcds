@@ -73,179 +73,181 @@
   }
 }
 
-:root {
-  @include card-props();
-}
-
-tcds-card {
-  @include vertical-card();
-
-  display: inline-grid;
-  padding: var(--tcds-card-content-padding);
-  width: min(var(--tcds-card-width), 100%);
-
-  background-color: var(--tcds-card-background-color);
-  border-radius: var(--tcds-card-border-radius);
-  box-shadow: var(--tcds-card-box-shadow);
-  color: var(--tcds-card-foreground-color);
-
-  // Defining these here so that the description typography can be more easily
-  // overridden with utility classes applied to the card element itself.
-  font-family: var(--tcds-card-content-font-family);
-  font-size: var(--tcds-card-description-font-size);
-  line-height: var(--tcds-card-description-line-height);
-
-  position: relative;
-  overflow: hidden;
-
-  *:has(> &) {
-    container-type: inline-size;
+@layer tcds {
+  :root {
+    @include card-props();
   }
 
-  // Go back to horizontal if the screen is below `size.breakpoint.md` but the
-  // container is above 320px.
-  @include breakpoint("", "md") {
-    @container (inline-size > #{token("size", "breakpoint", "xs")}) {
-      &:not([orientation="vertical"]) {
+  tcds-card {
+    @include vertical-card();
+
+    display: inline-grid;
+    padding: var(--tcds-card-content-padding);
+    width: min(var(--tcds-card-width), 100%);
+
+    background-color: var(--tcds-card-background-color);
+    border-radius: var(--tcds-card-border-radius);
+    box-shadow: var(--tcds-card-box-shadow);
+    color: var(--tcds-card-foreground-color);
+
+    // Defining these here so that the description typography can be more easily
+    // overridden with utility classes applied to the card element itself.
+    font-family: var(--tcds-card-content-font-family);
+    font-size: var(--tcds-card-description-font-size);
+    line-height: var(--tcds-card-description-line-height);
+
+    position: relative;
+    overflow: hidden;
+
+    *:has(> &) {
+      container-type: inline-size;
+    }
+
+    // Go back to horizontal if the screen is below `size.breakpoint.md` but the
+    // container is above 320px.
+    @include breakpoint("", "md") {
+      @container (inline-size > #{token("size", "breakpoint", "xs")}) {
+        &:not([orientation="vertical"]) {
+          @include horizontal-card();
+        }
+      }
+    }
+
+    // Orientation lock not allowed below size.breakpoint.sm containers.
+    &[orientation="horizontal"] {
+      @container (inline-size > #{token("size", "breakpoint", "xs")}) {
         @include horizontal-card();
       }
     }
-  }
 
-  // Orientation lock not allowed below size.breakpoint.sm containers.
-  &[orientation="horizontal"] {
-    @container (inline-size > #{token("size", "breakpoint", "xs")}) {
-      @include horizontal-card();
+    &[variant*="lite"] {
+      --tcds-card-background-color: transparent;
+      --tcds-card-foreground-color: var(--tcds-color-theme-foreground);
+      --tcds-card-box-shadow: none;
+      --tcds-card-content-padding-inline: 0px;
+      --tcds-card-content-padding: var(--tcds-card-content-padding-block) var(--tcds-card-content-padding-inline);
     }
-  }
 
-  &[variant*="lite"] {
-    --tcds-card-background-color: transparent;
-    --tcds-card-foreground-color: var(--tcds-color-theme-foreground);
-    --tcds-card-box-shadow: none;
-    --tcds-card-content-padding-inline: 0px;
-    --tcds-card-content-padding: var(--tcds-card-content-padding-block) var(--tcds-card-content-padding-inline);
-  }
+    > [slot="image"] {
+      aspect-ratio: var(--tcds-card-image-aspect-ratio, initial);
+      position: relative;
+      height: auto;
 
-  > [slot="image"] {
-    aspect-ratio: var(--tcds-card-image-aspect-ratio, initial);
-    position: relative;
-    height: auto;
+      &:is(figure:not(:empty)),
+      &:not(:is(figure)) {
+        &::after {
+          content: "";
+          visibility: var(--tcds-card-image-gradient, hidden);
+          position: absolute;
+          top: 0;
+          right: 0;
+          height: 100%;
+          width: 100%;
+          background-image: linear-gradient(to bottom left, rgb(0 0 0 / 75%), rgb(0 0 0 / 50%) 33%, rgb(0 0 0 / 0%) 66%);
+          opacity: .5;
+        }
+      }
 
-    &:is(figure:not(:empty)),
-    &:not(:is(figure)) {
-      &::after {
-        content: "";
-        visibility: var(--tcds-card-image-gradient, hidden);
-        position: absolute;
-        top: 0;
-        right: 0;
-        height: 100%;
-        width: 100%;
-        background-image: linear-gradient(to bottom left, rgb(0 0 0 / 75%), rgb(0 0 0 / 50%) 33%, rgb(0 0 0 / 0%) 66%);
-        opacity: .5;
+      &:is(figure:empty) {
+        background-color: var(--tcds-color-theme-faded);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &::before {
+          content: "";
+          height: 45%;
+          aspect-ratio: var(--tcds-aspect-ratio-square);
+          background-color: var(--tcds-color-brand-primary);
+          mask-image: var(--tcds-icon-brand-texas-childrens);
+        }
       }
     }
 
-    &:is(figure:empty) {
-      background-color: var(--tcds-color-theme-faded);
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    > :not([slot=image]) {
+      text-box: trim-both cap alphabetic;
 
-      &::before {
-        content: "";
-        height: 45%;
-        aspect-ratio: var(--tcds-aspect-ratio-square);
-        background-color: var(--tcds-color-brand-primary);
-        mask-image: var(--tcds-icon-brand-texas-childrens);
+      &:not(:last-child, :has(+ :empty)) {
+        margin-bottom: var(--tcds-card-content-gap);
       }
     }
-  }
 
-  > :not([slot=image]) {
-    text-box: trim-both cap alphabetic;
+    > [slot="title"] {
+      font-family: inherit;
+      font-size: var(--tcds-card-title-font-size);
+      line-height: var(--tcds-card-title-line-height);
+      font-weight: var(--tcds-font-weight-semibold);
+      letter-spacing: normal;
 
-    &:not(:last-child, :has(+ :empty)) {
-      margin-bottom: var(--tcds-card-content-gap);
-    }
-  }
+      &:is(a), a {
+        text-decoration: none;
 
-  > [slot="title"] {
-    font-family: inherit;
-    font-size: var(--tcds-card-title-font-size);
-    line-height: var(--tcds-card-title-line-height);
-    font-weight: var(--tcds-font-weight-semibold);
-    letter-spacing: normal;
+        &:not(:hover) {
+          color: var(--tcds-card-foreground-color);
+        }
 
-    &:is(a), a {
-      text-decoration: none;
-
-      &:not(:hover) {
-        color: var(--tcds-card-foreground-color);
-      }
-
-      &::before {
-        content: "";
-        position: absolute;
-        inset: 0;
+        &::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+        }
       }
     }
-  }
 
-  > [slot="description"] {
-    color: var(--tcds-card-foreground-color);
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-  }
-
-  > [slot="meta"] {
-    font-family: var(--tcds-font-family-ui);
-    color: var(--tcds-color-theme-neutral-muted);
-
-    &, small {
-      font-size: var(--tcds-font-size-sm);
+    > [slot="description"] {
+      color: var(--tcds-card-foreground-color);
+      font-family: inherit;
+      font-size: inherit;
+      line-height: inherit;
     }
 
-    > *:not(:last-child, :only-child)::after {
-      content: " - ";
+    > [slot="meta"] {
+      font-family: var(--tcds-font-family-ui);
+      color: var(--tcds-color-theme-neutral-muted);
+
+      &, small {
+        font-size: var(--tcds-font-size-sm);
+      }
+
+      > *:not(:last-child, :only-child)::after {
+        content: " - ";
+      }
     }
-  }
 
-  > [slot="tag"] {
-    position: absolute;
-    top: var(--tcds-card-content-gap);
-    right: var(--tcds-card-content-gap);
-    font-family: var(--tcds-font-family-ui);
-    font-weight: var(--tcds-font-weight-semibold);
-    color: var(--tcds-color-theme-dark-foreground);
-    text-shadow: 0 0 10px rgb(0 0 0 / 60%), 0 0 2px rgb(0 0 0 / 30%);
-    z-index: 1;
-  }
+    > [slot="tag"] {
+      position: absolute;
+      top: var(--tcds-card-content-gap);
+      right: var(--tcds-card-content-gap);
+      font-family: var(--tcds-font-family-ui);
+      font-weight: var(--tcds-font-weight-semibold);
+      color: var(--tcds-color-theme-dark-foreground);
+      text-shadow: 0 0 10px rgb(0 0 0 / 60%), 0 0 2px rgb(0 0 0 / 30%);
+      z-index: 1;
+    }
 
-  &:not([image-gradient="false"]):has(> [slot="tag"]) {
-    --tcds-card-image-gradient: visible;
-  }
+    &:not([image-gradient="false"]):has(> [slot="tag"]) {
+      --tcds-card-image-gradient: visible;
+    }
 
-  > [slot="footer"] {
-    --tcds-cta-font-size: var(--tcds-font-size-md);
+    > [slot="footer"] {
+      --tcds-cta-font-size: var(--tcds-font-size-md);
 
-    margin-block-start: auto;
-    padding-block-start: var(--tcds-space-component-xs);
-  }
+      margin-block-start: auto;
+      padding-block-start: var(--tcds-space-component-xs);
+    }
 
-  p {
-    margin-top: 0;
-  }
+    p {
+      margin-top: 0;
+    }
 
-  a:not([slot=title]),
-  button {
-    position: relative;
-    z-index: 1;
-  }
+    a:not([slot=title]),
+    button {
+      position: relative;
+      z-index: 1;
+    }
 
-  > [slot]:empty {
-    display: none;
+    > [slot]:empty {
+      display: none;
+    }
   }
 }

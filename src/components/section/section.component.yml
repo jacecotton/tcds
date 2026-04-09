@@ -7,6 +7,11 @@ props:
   type: object
   required: ["theme"]
   properties:
+    background_images:
+      type: array
+      title: Background images
+      items:
+        $ref: "json-schema-definitions://canvas.module/image"
     theme:
       type: string
       title: Theme

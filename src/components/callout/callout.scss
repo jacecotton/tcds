@@ -1,8 +1,10 @@
-.tcds-callout {
-  background: var(--tcds-color-theme-background);
-  color: var(--tcds-color-theme-foreground);
-  padding: var(--tcds-space-component-lg);
-  margin: 1.5em 0;
-  border: 5px solid var(--tcds-color-theme-faded);
-  border-radius: var(--tcds-border-radius-lg);
+@layer tcds {
+  .tcds-callout {
+    background: var(--tcds-color-theme-background);
+    color: var(--tcds-color-theme-foreground);
+    padding: var(--tcds-space-component-lg);
+    margin: 1.5em 0;
+    border: 5px solid var(--tcds-color-theme-faded);
+    border-radius: var(--tcds-border-radius-lg);
+  }
 }
