@@ -24,7 +24,7 @@
       margin-block-start: calc(var(--tcds-site-header-height) * -1) !important;
     }
 
-    p {
+    p:not([slot]) {
       @include breakpoint("md") {
         font-size: var(--tcds-font-size-ml);
       }
@@ -38,10 +38,12 @@
     > :is(picture, img) {
       position: absolute;
       inset: 0;
+      inline-size: 100%;
+      size: 100%;
       object-fit: cover;
       z-index: -1;
       opacity: 0;
-      transition: opacity var(--tcds-motion-duration-expressive) var(--tcds-motion-easing-translate);
+      transition: opacity 2s var(--tcds-motion-easing-translate);
 
       &[data-active] {
         z-index: 0;

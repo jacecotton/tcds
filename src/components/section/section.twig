@@ -15,7 +15,10 @@
 <section {{ attributes }}>
   {% if background_images %}
     {% for image in background_images %}
-      <img {{ create_attribute(image) }}>
+      <img {{ create_attribute(image|merge({
+        alt: "",
+        role: "presentation",
+      })) }}>
     {% endfor %}
   {% endif %}
   <div class="container-lg">
