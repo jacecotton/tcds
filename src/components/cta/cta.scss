@@ -46,7 +46,7 @@
     &:hover {
       background-color: var(--tcds-cta-background-color-hover);
       color: var(--tcds-cta-foreground-color-hover);
-      border: var(--tcds-cta-border-hover, 0);
+      border: var(--tcds-cta-border-hover, var(--tcds-cta-border));
     }
 
     &:not([data-variant="secondary"]) {
