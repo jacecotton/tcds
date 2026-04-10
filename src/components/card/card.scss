@@ -73,6 +73,14 @@
   }
 }
 
+@mixin lite-card() {
+  --tcds-card-background-color: transparent;
+  --tcds-card-foreground-color: var(--tcds-color-theme-foreground);
+  --tcds-card-box-shadow: none;
+  --tcds-card-content-padding-inline: 0px;
+  --tcds-card-content-padding: var(--tcds-card-content-padding-block) var(--tcds-card-content-padding-inline);
+}
+
 @layer tcds {
   :root {
     @include card-props();
@@ -121,11 +129,7 @@
     }
 
     &[variant*="lite"] {
-      --tcds-card-background-color: transparent;
-      --tcds-card-foreground-color: var(--tcds-color-theme-foreground);
-      --tcds-card-box-shadow: none;
-      --tcds-card-content-padding-inline: 0px;
-      --tcds-card-content-padding: var(--tcds-card-content-padding-block) var(--tcds-card-content-padding-inline);
+      @include lite-card();
     }
 
     > [slot="image"] {
@@ -161,6 +165,12 @@
           background-color: var(--tcds-color-brand-primary);
           mask-image: var(--tcds-icon-brand-texas-childrens);
         }
+      }
+
+      &:is(img),
+      &:is(figure) img {
+        height: auto;
+        width: auto;
       }
     }
 

@@ -9,35 +9,27 @@ props:
     image:
       type: object
       title: Image
-      properties:
-        src:
-          type: string
-          format: uri
-          title: Image source
-        alt:
-          type: string
-          title: Alternative text
-        width:
-          type: number
-        height:
-          type: number
+      $ref: "json-schema-definitions://canvas.module/image"
     title:
       type: string
       title: Title
-    link:
-      type: object
-      title: Link
-      properties:
-        url:
-          type: string
-          title: URL
-        title:
-          type: string
-          title: Link text
+      examples: ["Card title"]
+    link_href:
+      type: string
+      title: Link Destination
+      format: uri-reference
+      description: "The destination URL to use as the link's [href] attribute."
+      examples: ["/"]
+    link_text:
+      type: string
+      title: Link Text
+      examples: ["Learn more"]
     description:
       type: string
-      format: textarea
       title: Description
+      contentMediaType: text/html
+      x-formatting-context: inline
+      examples: ["Card description"]
     meta:
       type: string
       title: Meta text
@@ -47,40 +39,38 @@ props:
     heading_level:
       type: string
       title: Heading level
-      enum:
-        - ""
-        - h2
-        - h3
-        - h4
-        - h5
-        - h6
-      enumNames:
-        - "Default (none)"
-        - "H2"
-        - "H3"
-        - "H4"
-        - "H5"
-        - "H6"
+      description: "The semantic heading level of the card title. Does not change visual appearance."
+      enum: ["none", "h2", "h3", "h4", "h5", "h6"]
+      meta:enum:
+        "none": "None"
+        h2: "Heading 2"
+        h3: "Heading 3"
+        h4: "Heading 4"
+        h5: "Heading 5"
+        h6: "Heading 6"
+      examples: ["none"]
     variant:
       type: string
       title: Variant
-      enum:
-        - lite
-        - featured
+      enum: ["none", "lite", "featured"]
+      meta:enum:
+        "none": "None"
+        lite: "Lite"
+        featured: "Featured"
+      examples: ["none"]
     size:
       type: string
       title: Size
-      enum:
-        - ""
-        - large
-      enumNames:
-        - 'Default (normal)'
-        - 'Large'
+      enum: ["none", "large"]
+      meta:enum:
+        "none": "Default"
+        large: "Large"
+      examples: ["none"]
     classes:
-      type: array
+      type: string
       title: Custom classes
-      items:
-        type: string
 slots:
+  figure:
+    title: Figure
   footer:
     title: Footer

@@ -1,42 +1,51 @@
-{% set _classes = []|merge(classes|default([])) %}
+{% set _classes = ["", classes|default("")] %}
 
 {% set attributes = attributes|default(create_attribute()) %}
 {% set attributes = attributes.addClass(_classes) %}
 
-{% if variant %}
+{% if variant is defined and variant and variant != "none" %}
   {% set attributes = attributes.setAttribute("variant", variant) %}
 {% endif %}
 
-{% set title_element = heading_level|default(link and link.url ? "a" : "p") %}
+{% if size is defined and size and size != "none" %}
+  {% set attributes = attributes.setAttribute("size", size) %}
+{% endif %}
+
+{% set link = {
+  href: link_href|default(false),
+  text: link_text|default(false),
+} %}
+
+{% set title_element = heading_level is defined and heading_level and heading_level != "none" ? heading_level : (link.href ? "a" : "p") %}
 
 <tcds-card {{ attributes }}>
-  {%- if image or block("figure") -%}
+  {%- if image is defined or block("figure") is defined -%}
     <figure slot="image">
-      {%- block figure -%}{%- endblock -%}
+      {%- block figure -%}{{ figure }}{%- endblock -%}
       {%- if image.src -%}
         <img {{ create_attribute(image) }}>
       {%- endif -%}
     </figure>
   {%- endif -%}
-  {% if tag %}
+  {% if tag is defined %}
     <small slot="tag">
       {{ tag }}
     </small>
   {% endif %}
-  {% if meta %}
+  {% if meta is defined %}
     <small slot="meta">
       {% if meta is iterable %}
         {% for item in meta %}
-          <span>{{ meta }}</span>
+          <span>{{ item }}</span>
         {% endfor %}
       {% else %}
         {{ meta }}
       {% endif %}
     </small>
   {% endif %}
-  <{{ title_element }} slot="title" {{ title_element == "a" ? "href=\"#{link.url}\"" }}>
-    {% if link and link.url and title_element != "a" %}
-      <a href="{{ link.url }}">{{ title }}</a>
+  <{{ title_element }} slot="title" {{ title_element == "a" ? "href=\"#{link.href}\"" }}>
+    {% if link.href and title_element != "a" %}
+      <a href="{{ link.href }}">{{ title }}</a>
     {% else %}
       {{ title }}
     {% endif %}
@@ -46,7 +55,7 @@
   {% endif %}
   {% if block("footer") %}
     <footer slot="footer">
-      {% block footer %}{% endblock %}
+      {% block footer %}{{ footer }}{% endblock %}
     </footer>
   {% endif %}
 </tcds-card>
