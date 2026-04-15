@@ -49,6 +49,15 @@ props:
         h5: "Heading 5"
         h6: "Heading 6"
       examples: ["none"]
+    orientation:
+      type: string
+      title: Orientation lock
+      enum: ["none", "horizontal", "vertical"]
+      meta:enum:
+        none: "None"
+        horizontal: "Horizontal"
+        vertical: "Vertical"
+      examples: ["none"]
     variant:
       type: string
       title: Variant

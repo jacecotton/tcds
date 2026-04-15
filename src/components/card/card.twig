@@ -11,6 +11,10 @@
   {% set attributes = attributes.setAttribute("size", size) %}
 {% endif %}
 
+{% if orientation is defined and orientation and orientation != "auto" %}
+  {% set attributes = attributes.setAttribute("orientation", orientation) %}
+{% endif %}
+
 {% set link = {
   href: link_href|default(false),
   text: link_text|default(false),
@@ -43,7 +47,7 @@
       {% endif %}
     </small>
   {% endif %}
-  <{{ title_element }} slot="title" {{ title_element == "a" ? "href=\"#{link.href}\"" }}>
+  <{{ title_element }} slot="title" {{ title_element == "a" ? "href=\"#{link.href}\""|raw }}>
     {% if link.href and title_element != "a" %}
       <a href="{{ link.href }}">{{ title }}</a>
     {% else %}
