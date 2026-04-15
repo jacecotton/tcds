@@ -6,7 +6,7 @@
  * an author stylesheet.
  */
 
-[hidden=""] {
+[hidden]:where(:not([hidden="until-found"])) {
   display: none !important;
 }
 
@@ -16,7 +16,7 @@
   }
 }
 
-.visually-hidden {
+.visually-hidden:not(:focus) {
   clip: rect(0, 0, 0, 0);
   clip-path: inset(50%);
   height: 1px;
@@ -25,7 +25,7 @@
 }
 
 @include responsive-utils() using ($breakpoint) {
-  .#{$breakpoint}visually-hidden {
+  .#{$breakpoint}visually-hidden:not(:focus) {
     clip: rect(0, 0, 0, 0);
     clip-path: inset(50%);
     height: 1px;
