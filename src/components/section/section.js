@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     sections.forEach((section) => {
       const images = section.querySelectorAll(":scope > :is(img, picture)");
 
-      if (images.length === 0) return;
+      if (images.length < 2) return;
 
       const {interval} = section.dataset;
 
