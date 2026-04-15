@@ -43,15 +43,15 @@ a {
    *
    * Also providing an `.a--no-icon` opt-out class.
    */
-  &[href]:not(.link--no-icon, :where(
-    [slot],
-    [href^="#"],
-    [href^="javascript:" i],
-    [href^="/"]:not([href^="//"]),
-    [href^="../"]
-  )) {
-    @include link-external();
-  }
+  // &[href]:not(.link--no-icon, .tcds-cta, :where(
+  //   [slot],
+  //   [href^="#"],
+  //   [href^="javascript:" i],
+  //   [href^="/"]:not([href^="//"]),
+  //   [href^="../"]
+  // )) {
+  //   @include link-external();
+  // }
 }
 
 /**
@@ -140,9 +140,4 @@ dl {
 
 dt {
   font-weight: var(--tcds-font-weight-bold);
-}
-
-[title],
-abbr {
-  text-decoration: underline dashed var(--tcds-color-theme-muted);
 }
