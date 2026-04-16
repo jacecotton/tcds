@@ -11,3 +11,9 @@ props:
       contentMediaType: text/html
       x-formatting-context: block
       examples: ["<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"]
+    max_length:
+      type: number
+      title: Max characters per line
+    classes:
+      type: string
+      title: Classes
