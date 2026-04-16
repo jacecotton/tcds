@@ -1,7 +1,10 @@
 {% set _classes = ["", classes|default("")] %}
 {% set attributes = attributes|default(create_attribute()) %}
 {% set attributes = attributes.addClass(_classes) %}
-{% set attributes = attributes.setAttribute(image) %}
+
+{% if image is defined and image is iterable %}
+  {% set attributes = attributes.merge(create_attribute(image)) %}
+{% endif %}
 
 {% if fit %}
   {% set attributes = attributes.setAttribute("style", "object-fit: #{fit};") %}
