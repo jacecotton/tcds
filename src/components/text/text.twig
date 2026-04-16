@@ -2,7 +2,7 @@
 {% set attributes = attributes|default(create_attribute()) %}
 {% set attributes = attributes.addClass(_classes) %}
 {%- if max_length -%}
-  {% set attributes = attributes.setAttribute("style", "max-width: #{max_length}ch") %)}
+  {% set attributes = attributes.setAttribute("style", "max-width: #{max_length}ch") %}
 {%- endif -%}
 <div {{ attributes }}>
   {% block content %}{{ content }}{% endblock %}
