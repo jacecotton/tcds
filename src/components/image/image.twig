@@ -1,0 +1,21 @@
+{% set _classes = ["", classes|default("")] %}
+{% set attributes = attributes|default(create_attribute()) %}
+{% set attributes = attributes.addClass(_classes) %}
+{% set attributes = attributes.setAttribute(image) %}
+
+{% if fit %}
+  {% set attributes = attributes.setAttribute("style", "object-fit: #{fit};") %}
+{% endif %}
+
+{% set content %}
+  <img {{ attributes }}>
+{% endset %}
+
+{% if caption %}
+  <figure>
+    {{ content }}
+    <figcaption>{{ caption|raw }}</figcaption>
+  </figure>
+{% else %}
+  {{ content }}
+{% endif %}
