@@ -17,3 +17,9 @@
   border-radius: var(--tcds-media-border-radius, 0);
   overflow: hidden;
 }
+
+figcaption {
+  font-family: var(--tcds-font-family-ui);
+  font-size: var(--tcds-font-size-sm);
+  color: var(--tcds-color-theme-muted);
+}
