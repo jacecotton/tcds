@@ -2,3 +2,26 @@
 {% set _classes = [base_class, classes|default("")] %}
 {% set attributes = attributes|default(create_attribute()) %}
 {% set attributes = attributes.addClass(_classes) %}
+
+{% set author = author|default({
+  image: author_image,
+  name: author_name,
+  title: author_title,
+}) %}
+
+<figure {{ attributes }}>
+  <blockquote>
+    <p>
+      {{ text }}
+    </p>
+  </blockquote>
+  <figcaption>
+    {% if author.image and author.image is iterable %}
+      <img {{ create_attribute(author.image) }}>
+    {% endif %}
+    <span class="{{ base_class }}__author">{{ author.name }}</span>
+    {% if author.title %}
+      <span class="{{ base_class }}__title">{{ author.title }}</span>
+    {% endif %}
+  </figcaption>
+</figure>

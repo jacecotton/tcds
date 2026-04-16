@@ -1,0 +1,29 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Blockquote
+description: Blockquote
+status: experimental
+group: Content
+props:
+  type: object
+  properties:
+    text:
+      type: string
+      title: Text
+      contentMediaType: text/html
+      x-formatting-context: inline
+      examples: ["Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi quisquam vel culpa iste non beatae, excepturi in commodi nihil voluptatum?"]
+    author_image:
+      type: object
+      title: Image
+      $ref: "json-schema-definitions://canvas.module/image"
+    author_name:
+      type: string
+      title: Author Name
+      examples: ["Author Name"]
+    author_title:
+      type: string
+      title: Author Title
+      examples: ["Author Title"]
+    classes:
+      type: string
+      title: Custom classes
