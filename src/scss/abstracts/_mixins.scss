@@ -158,8 +158,8 @@
     }
 
     @if map.get($custom-property, "use") {
-      font-size: var(#{$namespace}-font-size) #{$flag};
-      line-height: var(#{$namespace}-line-height);
+      font-size: var(#{map.get($custom-property, "prefix")}-font-size) #{$flag};
+      line-height: var(#{map.get($custom-property, "prefix")}-line-height);
     }
   } @else {
     font-size: #{$value} #{$flag};
