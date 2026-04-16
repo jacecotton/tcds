@@ -1,0 +1,4 @@
+{% set base_class = "tcds-blockquote" %}
+{% set _classes = [base_class, classes|default("")] %}
+{% set attributes = attributes|default(create_attribute()) %}
+{% set attributes = attributes.addClass(_classes) %}

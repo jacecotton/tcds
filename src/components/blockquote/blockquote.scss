@@ -1,0 +1,78 @@
+@use "../../scss/abstracts/mixins" as *;
+
+@layer tcds {
+  .tcds-blockquote {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "quote"
+      "text"
+      "attribution";
+    gap: var(--tcds-space-component-sm);
+
+    @include breakpoint("md") {
+      grid-template-columns: 2rem 1fr;
+      grid-template-areas:
+        "quote text"
+        ". attribution";
+      gap: var(--tcds-space-component-md) var(--tcds-space-component-sm);
+    }
+
+    &::before {
+      grid-area: quote;
+      content: "";
+      display: block;
+      width: 2rem;
+      height: 2rem;
+      background-color: var(--tcds-color-theme-accent);
+      mask-image: var(--tcds-blockquote-icon, var(--tcds-icon-utility-quotation));
+    }
+
+    blockquote {
+      grid-area: text;
+
+      p {
+        @include text("ml");
+        line-height: var(--tcds-line-height-comfortable);
+        font-weight: var(--tcds-font-weight-semibold);
+      }
+    }
+
+    figcaption {
+      grid-area: attribution;
+      display: grid;
+      grid-template-columns: min-content 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: var(--tcds-space-component-sm) 0;
+
+      img {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 3rem;
+        grid-row: 1 / 3;
+        margin-inline-end: var(--tcds-space-component-sm);
+      }
+
+      .tcds-blockquote__author,
+      .tcds-blockquote__title {
+        grid-column: 2;
+        text-box: trim-both cap alphabetic;
+      }
+
+      .tcds-blockquote__author {
+        @include text("md");
+
+        font-weight: var(--tcds-font-weight-bold);
+        font-family: var(--tcds-font-family-ui);
+        color: var(--tcds-color-theme-foreground);
+      }
+
+      .tcds-blockquote__title {
+        @include text("sm");
+
+        font-family: var(--tcds-font-family-copy);
+        color: var(--tcds-color-theme-muted);
+      }
+    }
+  }
+}
