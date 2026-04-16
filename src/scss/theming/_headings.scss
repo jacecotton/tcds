@@ -1,39 +1,34 @@
 @use "./abstracts/mixins/headings" as *;
+@use "../abstracts/mixins" as *;
 
 :root {
+  @include text("2xl", $custom-property: (prefix: "--tcds-h1", use: false));
   --tcds-h1-font-family: var(--tcds-font-family-headings);
-  --tcds-h1-font-size: var(--tcds-font-size-2xl);
-  --tcds-h1-line-height: var(--tcds-line-height-compact);
   --tcds-h1-font-weight: var(--tcds-font-weight-semibold);
   --tcds-h1-letter-spacing: -0.05rem;
 
+  @include text("xl", $custom-property: (prefix: "--tcds-h2", use: false));
   --tcds-h2-font-family: var(--tcds-font-family-headings);
-  --tcds-h2-font-size: var(--tcds-font-size-xl);
-  --tcds-h2-line-height: var(--tcds-line-height-compact);
   --tcds-h2-font-weight: var(--tcds-font-weight-semibold);
   --tcds-h2-letter-spacing: -0.0125rem;
 
+  @include text("lg", $custom-property: (prefix: "--tcds-h3", use: false));
   --tcds-h3-font-family: var(--tcds-font-family-subheadings);
-  --tcds-h3-font-size: var(--tcds-font-size-lg);
-  --tcds-h3-line-height: var(--tcds-line-height-compact);
   --tcds-h3-font-weight: var(--tcds-font-weight-bold);
   --tcds-h3-letter-spacing: normal;
 
+  @include text("ml", $custom-property: (prefix: "--tcds-h4", use: false));
   --tcds-h4-font-family: var(--tcds-font-family-subheadings);
-  --tcds-h4-font-size: var(--tcds-font-size-ml);
-  --tcds-h4-line-height: var(--tcds-line-height-compact);
   --tcds-h4-font-weight: var(--tcds-font-weight-bold);
   --tcds-h4-letter-spacing: normal;
 
+  @include text("md", $custom-property: (prefix: "--tcds-h5", use: false));
   --tcds-h5-font-family: var(--tcds-font-family-subheadings);
-  --tcds-h5-font-size: var(--tcds-font-size-md);
-  --tcds-h5-line-height: var(--tcds-line-height-comfortable);
   --tcds-h5-font-weight: var(--tcds-font-weight-bold);
   --tcds-h5-letter-spacing: normal;
 
+  @include text("sm", $custom-property: (prefix: "--tcds-h6", use: false));
   --tcds-h6-font-family: var(--tcds-font-family-subheadings);
-  --tcds-h6-font-size: var(--tcds-font-size-sm);
-  --tcds-h6-line-height: var(--tcds-line-height-comfortable);
   --tcds-h6-font-weight: var(--tcds-font-weight-bold);
   --tcds-h6-letter-spacing: normal;
 }

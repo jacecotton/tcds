@@ -1,4 +1,5 @@
 @use "sass:map";
+@use "sass:math";
 @use "sass:meta";
 @use "sass:list";
 @use "functions" as *;
@@ -120,7 +121,13 @@
   --tcds-link-color-hover: #{if(sass($theme == "dark"): var(--tcds-color-theme-foreground); else: var(--tcds-color-theme-accent))};
 }
 
-@mixin text($size, $flag, $min-vw: 400, $max-vw: 1200) {
+/**
+ * A mixin for creating responsive font sizes using clamp().
+ *
+ * Starts with a base value ($size) which is used as the maximum value.
+ */
+
+@mixin text($size, $flag: "", $custom-property: false, $min-vw: 400, $max-vw: 1200) {
   $downscale-factor: 0.77;
 
   $vw-range: $max-vw - $min-vw;
@@ -135,15 +142,32 @@
   $slope: calc(#{$diff-factor} * #{$base});
   $intercept: calc((#{$downscale-factor} * #{$base}) - (#{$slope} * #{$min-vw-ratio}));
 
-  font-size: clamp(
+  $value: clamp(
     #{$min-size},
-    calc((#{$intercept} * 1rem) + (#{$slope} * 1vw)),
+    unquote("calc((#{$intercept} * 1rem) + (#{$slope} * 1vw))"),
     #{$max-size}
-  ) #{$flag};
+  );
 
-  @if list.index(("5xl", "4xl", "3xl", "2xl", "xl", "lg"), $size) {
-    line-height: var(--tcds-line-height-compact);
-  } @else if list.index(("ml", "md", "sm", "xs"), $size) {
-    line-height: var(--tcds-line-height-comfortable);
+  @if $custom-property {
+    #{map.get($custom-property, "prefix")}-font-size: #{$value};
+
+    @if list.index(("5xl", "4xl", "3xl", "2xl", "xl", "lg"), $size) {
+      #{map.get($custom-property, "prefix")}-line-height: var(--tcds-line-height-compact);
+    } @else if list.index(("ml", "md", "sm", "xs"), $size) {
+      #{map.get($custom-property, "prefix")}-line-height: var(--tcds-line-height-comfortable);
+    }
+
+    @if map.get($custom-property, "use") {
+      font-size: var(#{$namespace}-font-size) #{$flag};
+      line-height: var(#{$namespace}-line-height);
+    }
+  } @else {
+    font-size: #{$value} #{$flag};
+
+    @if list.index(("5xl", "4xl", "3xl", "2xl", "xl", "lg"), $size) {
+      line-height: var(--tcds-line-height-compact);
+    } @else if list.index(("ml", "md", "sm", "xs"), $size) {
+      line-height: var(--tcds-line-height-comfortable);
+    }
   }
 }

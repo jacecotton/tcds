@@ -31,10 +31,12 @@
   {% block body %}
     {{ include("tcds:site-header", {
       logo: {
-        url: "/tcds/dist/images/logos/TC_Horz_CMYK_2K22.svg",
-        width: "250",
-        height: "33.16",
-        alt: "Texas Children's logo",
+        image: {
+          src: "/tcds/dist/images/logos/TC_Horz_CMYK_2K22.svg",
+          width: "250",
+          height: "33.16",
+          alt: "Texas Children's logo",
+        },
         entity: "Design System",
       },
       primary_menu: collections.all|eleventyNavigation,

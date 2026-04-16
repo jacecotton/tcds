@@ -28,7 +28,6 @@ export class Accordion extends LitElement {
   // #region Lifecycle
   connectedCallback() {
     super.connectedCallback();
-    console.log(this.media);
     this.addEventListener("tcds-accordion-section:toggle", this.#handleChildToggle);
   }
 

@@ -18,7 +18,7 @@
     z-index: 1;
 
     @include breakpoint("md") {
-      font-size: var(--tcds-font-size-ml);
+      @include text("ml");
     }
 
     &--raised {
