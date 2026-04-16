@@ -32,7 +32,7 @@
       grid-area: text;
 
       p {
-        @include text("ml", $custom-property: (prefix: "--tcds-blockquote-text", use: true));
+        @include text("ml", $custom-property: (prefix: "--tcds-blockquote-text", mode: "use"));
 
         line-height: var(--tcds-line-height-comfortable);
         font-weight: var(--tcds-blockquote-text-font-weight, var(--tcds-font-weight-semibold));

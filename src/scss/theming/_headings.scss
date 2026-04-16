@@ -2,32 +2,32 @@
 @use "../abstracts/mixins" as *;
 
 :root {
-  @include text("2xl", $custom-property: (prefix: "--tcds-h1", use: false));
+  @include text("2xl", $custom-property: (prefix: "--tcds-h1", mode: "define"));
   --tcds-h1-font-family: var(--tcds-font-family-headings);
   --tcds-h1-font-weight: var(--tcds-font-weight-semibold);
   --tcds-h1-letter-spacing: -0.05rem;
 
-  @include text("xl", $custom-property: (prefix: "--tcds-h2", use: false));
+  @include text("xl", $custom-property: (prefix: "--tcds-h2", mode: "define"));
   --tcds-h2-font-family: var(--tcds-font-family-headings);
   --tcds-h2-font-weight: var(--tcds-font-weight-semibold);
   --tcds-h2-letter-spacing: -0.0125rem;
 
-  @include text("lg", $custom-property: (prefix: "--tcds-h3", use: false));
+  @include text("lg", $custom-property: (prefix: "--tcds-h3", mode: "define"));
   --tcds-h3-font-family: var(--tcds-font-family-subheadings);
   --tcds-h3-font-weight: var(--tcds-font-weight-bold);
   --tcds-h3-letter-spacing: normal;
 
-  @include text("ml", $custom-property: (prefix: "--tcds-h4", use: false));
+  @include text("ml", $custom-property: (prefix: "--tcds-h4", mode: "define"));
   --tcds-h4-font-family: var(--tcds-font-family-subheadings);
   --tcds-h4-font-weight: var(--tcds-font-weight-bold);
   --tcds-h4-letter-spacing: normal;
 
-  @include text("md", $custom-property: (prefix: "--tcds-h5", use: false));
+  @include text("md", $custom-property: (prefix: "--tcds-h5", mode: "define"));
   --tcds-h5-font-family: var(--tcds-font-family-subheadings);
   --tcds-h5-font-weight: var(--tcds-font-weight-bold);
   --tcds-h5-letter-spacing: normal;
 
-  @include text("sm", $custom-property: (prefix: "--tcds-h6", use: false));
+  @include text("sm", $custom-property: (prefix: "--tcds-h6", mode: "define"));
   --tcds-h6-font-family: var(--tcds-font-family-subheadings);
   --tcds-h6-font-weight: var(--tcds-font-weight-bold);
   --tcds-h6-letter-spacing: normal;

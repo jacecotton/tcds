@@ -149,17 +149,17 @@
   );
 
   @if $custom-property {
-    #{map.get($custom-property, "prefix")}-font-size: #{$value};
+    @if map.get($custom-property, "mode") == "use" {
+      font-size: var(#{map.get($custom-property, "prefix")}-font-size, #{$value}) #{$flag};
+      line-height: var(#{map.get($custom-property, "prefix")}-line-height, #{$value});
+    } @else if map.get($custom-property, "mode") == "define" {
+      #{map.get($custom-property, "prefix")}-font-size: #{$value};
 
-    @if list.index(("5xl", "4xl", "3xl", "2xl", "xl", "lg"), $size) {
-      #{map.get($custom-property, "prefix")}-line-height: var(--tcds-line-height-compact);
-    } @else if list.index(("ml", "md", "sm", "xs"), $size) {
-      #{map.get($custom-property, "prefix")}-line-height: var(--tcds-line-height-comfortable);
-    }
-
-    @if map.get($custom-property, "use") {
-      font-size: var(#{map.get($custom-property, "prefix")}-font-size) #{$flag};
-      line-height: var(#{map.get($custom-property, "prefix")}-line-height);
+      @if list.index(("5xl", "4xl", "3xl", "2xl", "xl", "lg"), $size) {
+        #{map.get($custom-property, "prefix")}-line-height: var(--tcds-line-height-compact);
+      } @else if list.index(("ml", "md", "sm", "xs"), $size) {
+        #{map.get($custom-property, "prefix")}-line-height: var(--tcds-line-height-comfortable);
+      }
     }
   } @else {
     font-size: #{$value} #{$flag};
