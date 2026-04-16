@@ -1,3 +1,4 @@
+@use "sass:map";
 @use "../../abstracts/functions" as *;
 @use "../../abstracts/mixins" as *;
 
@@ -16,16 +17,24 @@
 
 @include responsive-utils() using ($breakpoint) {
   @each $name, $value in tokens("space", "layout") {
+    $pct: (
+      "xs": calc(100% / 72),
+      "sm": calc(100% / 48),
+      "md": calc(100% / 24),
+      "lg": calc(100% / 18),
+      "xl": calc(100% / 12),
+    );
+
     .#{$breakpoint}gap-#{$name} {
-      gap: var(--tcds-space-layout-#{$name}) !important;
+      gap: map.get($pct, $name) !important;
     }
 
     .#{$breakpoint}row-gap-#{$name} {
-      row-gap: var(--tcds-space-layout-#{$name}) !important;
+      row-gap: map.get($pct, $name) !important;
     }
 
     .#{$breakpoint}column-gap-#{$name} {
-      column-gap: var(--tcds-space-layout-#{$name}) !important;
+      column-gap: map.get($pct, $name) !important;
     }
   }
 }
