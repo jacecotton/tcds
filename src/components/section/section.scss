@@ -17,6 +17,10 @@
     position: relative;
     z-index: 1;
 
+    @include breakpoint("md") {
+      font-size: var(--tcds-font-size-ml);
+    }
+
     &--raised {
       --_tcds-section-padding-block-start: calc(var(--tcds-section-padding-block-start) + var(--tcds-site-header-height));
 
@@ -25,9 +29,7 @@
     }
 
     p:not([slot]) {
-      @include breakpoint("md") {
-        font-size: var(--tcds-font-size-ml);
-      }
+      font-size: inherit;
     }
 
     :where(h1, h2, h3, h4, h5, h6) {
