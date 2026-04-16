@@ -15,7 +15,7 @@
       grid-template-areas:
         "quote text"
         ". attribution";
-      gap: var(--tcds-space-component-md) var(--tcds-space-component-sm);
+      gap: var(--tcds-space-component-lg) var(--tcds-space-component-sm);
     }
 
     &::before {
@@ -56,21 +56,19 @@
 
       .tcds-blockquote__author,
       .tcds-blockquote__title {
+        @include text("md");
+
         grid-column: 2;
         text-box: trim-both cap alphabetic;
       }
 
       .tcds-blockquote__author {
-        @include text("md");
-
         font-weight: var(--tcds-font-weight-bold);
         font-family: var(--tcds-font-family-ui);
         color: var(--tcds-color-theme-foreground);
       }
 
       .tcds-blockquote__title {
-        @include text("sm");
-
         font-family: var(--tcds-font-family-copy);
         color: var(--tcds-color-theme-muted);
       }
