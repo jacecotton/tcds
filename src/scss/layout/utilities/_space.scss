@@ -26,14 +26,26 @@
     );
 
     .#{$breakpoint}gap-#{$name} {
+      gap: var(--tcds-space-layout-#{$name}) !important;
+    }
+
+    .#{$breakpoint}gap-#{$name}\% {
       gap: map.get($pct, $name) !important;
     }
 
     .#{$breakpoint}row-gap-#{$name} {
+      row-gap: var(--tcds-space-layout-#{$name}) !important;
+    }
+
+    .#{$breakpoint}row-gap-#{$name}\% {
       row-gap: map.get($pct, $name) !important;
     }
 
     .#{$breakpoint}column-gap-#{$name} {
+      column-gap: var(--tcds-space-layout-#{$name}) !important;
+    }
+
+    .#{$breakpoint}column-gap-#{$name}\% {
       column-gap: map.get($pct, $name) !important;
     }
   }
