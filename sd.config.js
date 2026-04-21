@@ -5,7 +5,7 @@ export default {
   platforms: {
     // Build for Drupal so tokens can be accessed in custom theme PHP code.
     drupal: {
-      buildPath: "src/_gen/ThemeTokens",
+      buildPath: "src/_gen",
       files: [
         {
           destination: "ThemeTokens.php",
