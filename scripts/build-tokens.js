@@ -123,7 +123,7 @@ class ThemeTokens {
    * found.
    */
   public static function get(string $path) {
-    $keys = explode(".", $path);
+    $keys = explode('.', $path);
     $current = self::$tokens;
 
     foreach ($keys as $key) {
@@ -153,15 +153,15 @@ class ThemeTokens {
     if (is_array($group)) {
       foreach ($group as $key => $data) {
         // Check if it's a resolved token leave (has a $value property)
-        if (is_array($data) && isset($data["$value"])) {
-          $raw_value = is_array($data["$value"])
-            ? implode(", ", $data["$value"])
-            : (string) $data["$value"];
+        if (is_array($data) && isset($data['$value'])) {
+          $raw_value = is_array($data['$value'])
+            ? implode(', ', $data['$value'])
+            : (string) $data['$value'];
 
-          if (isset($data["$description"])) {
-            $options[$key] = $data["$description"];
+          if (isset($data['$description'])) {
+            $options[$key] = $data['$description'];
           } else {
-            $options[$key] = $key . " (" . $raw_value . ")";
+            $options[$key] = $key . ' (' . $raw_value . ')';
           }
         }
       }

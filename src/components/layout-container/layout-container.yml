@@ -1,5 +1,5 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
-name: Grid container
+name: Layout container
 description: Settings for a grid layout.
 status: experimental
 group: Layout

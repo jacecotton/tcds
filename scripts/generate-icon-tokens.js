@@ -82,7 +82,7 @@ async function main() {
   console.log(`[@txch/tcds] Generated icon tokens in ${OUTPUT_DIR}/icon.json`);
 }
 
-main().catch(error => {
+main().catch((error) => {
   console.error(error);
   process.exit(1);
 });
