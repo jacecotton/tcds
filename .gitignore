@@ -10,5 +10,5 @@ src/**/_gen
 # /components
 /docs/_site
 
-scripts/server.js
-site/playground.js
+/scripts/server.js
+/site/
