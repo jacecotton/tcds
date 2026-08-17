@@ -4,27 +4,28 @@
 @use "../abstracts/functions" as *;
 @use "../abstracts/mixins" as *;
 
-/**
- * Define unthemed element properties (i.e.
- * --tcds-color-theme-[background|foreground|...]) as their corresponding theme
- * values (i.e. --tcds-color-theme-[theme]-[element]), based on `[data-theme]`.
- */
+@layer tcds {
+  /**
+   * Define unthemed element properties (i.e.
+   * --tcds-color-theme-[background|foreground|...]) as their corresponding theme
+   * values (i.e. --tcds-color-theme-[theme]-[element]), based on `[data-theme]`.
+   */
 
-@each $theme, $properties in tokens("color", "theme") {
-  $selector-list: ("[data-theme=#{$theme}]");
+  @each $theme, $properties in tokens("color", "theme") {
+    $selector: "[data-theme=#{$theme}]";
 
-  // Treat neutral as default.
-  @if $theme == "neutral" {
-    $selector-list: list.append($selector-list, ":root", comma);
-  }
+    @if $theme == "default" {
+      $selector: ":root";
+    }
 
-  #{$selector-list} {
-    // For example:
-    // [data-theme="cool"] {
-    //   --tcds-color-theme-background: var(--tcds-color-theme-cool-background);
-    //   etc...
-    // }
-    // etc...
-    @include color-theme($theme);
+    #{$selector} {
+      // For example:
+      // [data-theme="cool"] {
+      //   --tcds-color-theme-background: var(--tcds-color-theme-cool-background);
+      //   etc...
+      // }
+      // etc...
+      @include color-theme($theme);
+    }
   }
 }

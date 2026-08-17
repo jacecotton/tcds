@@ -1,158 +1,81 @@
-import {LitElement} from "lit";
+import {nothing} from "lit";
 import {html} from "lit/static-html.js";
-import {customElement, property, state, queryAssignedElements} from "lit/decorators.js";
-import sharedStyles from "@/components/_shared/styles";
-import accordionStyles from "./accordion.styles.js";
+import {customElement, property} from "lit/decorators.js";
+
+import {DisclosureGroup} from "@/components/_shared/base/DisclosureGroup";
+import localStyles from "./accordion.styles.js";
+
+import "@/components/accordion-section/accordion-section.js";
 
 @customElement("tcds-accordion")
-export class Accordion extends LitElement {
-  static styles = [sharedStyles, accordionStyles];
+export class Accordion extends DisclosureGroup {
+  static styles = [DisclosureGroup.styles, localStyles];
 
-  // #region Properties
-  @property({type: String})
-  accessor media;
-
+  // #region Properties and state
+  /**
+   * Allows any number of sections to be open at once, and renders expand-all
+   * and collapse-all controls. Without it, opening one section closes the rest.
+   */
   @property({type: Boolean, reflect: true})
   accessor multiple = false;
-
-  @queryAssignedElements({selector: "tcds-accordion-section"})
-  accessor sections;
-
-  @state()
-  accessor _active = true;
-
-  #mediaQueryList = null;
-  #wasInactive = false;
   // #endregion
 
-  // #region Lifecycle
-  connectedCallback() {
-    super.connectedCallback();
-    this.addEventListener("tcds-accordion-section:toggle", this.#handleChildToggle);
+  // #region Subclass contract
+  get defaultMode() {
+    return "accordion";
   }
 
-  render() {
+  get mediaMode() {
+    return "plain";
+  }
+
+  get allowsMultiple() {
+    return this.multiple;
+  }
+
+  get requiresSelection() {
+    return false;
+  }
+
+  renderHeader() {
+    // Nothing to expand or collapse once the accordion has taken itself apart.
+    if (this.mode !== "accordion" || !this.multiple) return nothing;
+
+    const items = this.items;
+    const expanded = this.expandedItems.length;
+
     return html`
-      ${this.multiple && this._active
-        ? html`
-            <div part="controls">
-              <button part="open-all" @click="${() => this.showAll()}">
-                <tcds-icon icon="plus"></tcds-icon>
-                <span class="visually-hidden">open</span>
-                all
-              </button>
-              <button part="close-all" @click="${() => this.closeAll()}">
-                <tcds-icon icon="minus"></tcds-icon>
-                <span class="visually-hidden">close</span>
-                all
-              </button>
-            </div>
-          `
-        : ``
-      }
-      <slot @slotchange="${this.#handleSlotChange}"></slot>
+      <div part="controls" role="group" aria-label=${this.label ?? nothing}>
+        <button
+          part="control expand"
+          type="button"
+          ?disabled=${items.length === 0 || expanded === items.length}
+          @click=${this.#onExpandAllClick}
+        >
+          <tcds-icon icon="plus"></tcds-icon>
+          Expand all
+        </button>
+        <button
+          part="control collapse"
+          type="button"
+          ?disabled=${expanded === 0}
+          @click=${this.#onCollapseAllClick}
+        >
+          <tcds-icon icon="minus"></tcds-icon>
+          Collapse all
+        </button>
+      </div>
     `;
   }
-
-  updated(changedProperties) {
-    if (changedProperties.has("media")) {
-      this.#setupMediaQuery();
-    }
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-
-    this.removeEventListener("tcds-accordion-section:toggle", this.#handleChildToggle);
-
-    if (this.#mediaQueryList) {
-      this.#mediaQueryList.removeEventListener("change", this.#handleMediaChange);
-    }
-  }
   // #endregion
 
-  // #region Public API methods
-  /**
-   * Open all sections belonging to this accordion.
-   *
-   * @param {Boolean} filter - An optional filter to exclude sections from
-   * opening given custom criteria.
-   */
-  async showAll(filter = () => true) {
-    const showToggles = this.sections
-      .filter(section => !section.open && filter(section))
-      .map(section => section.show());
-
-    return Promise.all(showToggles);
+  // #region Events
+  #onExpandAllClick() {
+    this.expandAll();
   }
 
-  /**
-   * Close all sections belonging to this section.
-   *
-   * @param {Boolean} filter - An optional filter to exclude sections from
-   * closing given custom criteria.
-   */
-  async closeAll(filter = () => true) {
-    const closeToggles = this.sections
-      .filter(section => section.open && filter(section))
-      .map(section => section.close());
-
-    return Promise.all(closeToggles);
-  }
-  // #endregion
-
-  // #region Utilities
-  #handleChildToggle = (event) => {
-    if (this.multiple) return;
-
-    const {target, detail} = event;
-
-    if (detail.open) {
-      this.sections.forEach((section) => {
-        if (section !== target && section.open) {
-          section.close();
-        }
-      });
-    }
-  }
-
-  #setupMediaQuery() {
-    if (this.#mediaQueryList) {
-      this.#mediaQueryList.removeEventListener("change", this.#handleMediaChange);
-    }
-
-    if (this.media) {
-      this.#mediaQueryList = window.matchMedia(this.media);
-      this.#mediaQueryList.addEventListener("change", this.#handleMediaChange);
-      this.#handleMediaChange(this.#mediaQueryList);
-    } else {
-      this._active = true;
-    }
-  }
-
-  #handleMediaChange = (event) => {
-    this._active = event.matches;
-
-    this.sections.forEach((section) => {
-      section.inactive = !this._active;
-
-      if (!this._active) {
-        section.open = true;
-      } else if (this.#wasInactive) {
-        section.open = false;
-      }
-    });
-
-    this.#wasInactive = !this._active;
-  }
-
-  #handleSlotChange = () => {
-    if (!this._active) {
-      this.sections.forEach((section) => {
-        section.inactive = true;
-        section.open = true;
-      });
-    }
+  #onCollapseAllClick() {
+    this.collapseAll();
   }
   // #endregion
 }

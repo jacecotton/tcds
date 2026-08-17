@@ -1,0 +1,19 @@
+{% set _classes = ["tcds-quick-links", classes|default("")] %}
+
+{% set attributes = attributes|default(create_attribute()) %}
+{% set attributes = attributes.addClass(_classes) %}
+
+<ul {{ attributes }} role="list">
+  {% for item in items %}
+    <li>
+      <a href="{{ item.url }}">
+        {% if item.icon %}
+          <tcds-icon icon="{{ item.icon }}" preserve-color></tcds-icon>
+        {% elseif item.image %}
+          <img {{ create_attribute(item.image|merge({role: "presentation"}))  }}>
+        {% endif %}
+        <span>{{ item.text }}</span>
+      </a>
+    </li>
+  {% endfor %}
+</ul>

@@ -1,0 +1,41 @@
+@use "../../scss/abstracts/mixins" as *;
+
+.tcds-icon-card {
+  --tcds-color-theme-accent: var(--tcds-color-theme-default-accent);
+  --tcds-color-theme-text-primary: var(--tcds-color-theme-default-text-primary);
+  --tcds-color-theme-text-secondary: var(--tcds-color-theme-default-text-secondary);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: var(--tcds-color-theme-surface);
+  border-radius: var(--tcds-border-radius-md);
+  padding: 40px;
+
+  > :is(h2, h3, h4, h5, h6) {
+    font-family: var(--tcds-font-family-ui);
+    font-weight: var(--tcds-font-weight-ui);
+    font-size: var(--tcds-font-size-xl);
+    color: var(--tcds-color-theme-text-primary);
+    margin: 1rem 0;
+
+    @include breakpoint("sm") {
+      font-size: var(--tcds-font-size-2xl);
+    }
+  }
+
+  > tcds-icon {
+    font-size: 3.33rem;
+  }
+
+  p {
+    font-size: var(--tcds-font-size-md);
+    color: var(--tcds-color-theme-text-secondary);
+    margin: 0 0 2rem;
+
+    @include breakpoint("sm") {
+      font-size: var(--tcds-font-size-lg);
+    }
+  }
+}

@@ -3,7 +3,7 @@
     "$type": "dimension",
     "xs": {"$value": "4px"},
     "sm": {"$value": "6px"},
-    "md": {"$value": "10px"},
+    "md": {"$value": "15px"},
     "lg": {"$value": "20px"}
   }
 }

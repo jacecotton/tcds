@@ -1,36 +1,28 @@
 {
   "box-shadow": {
     "$type": "shadow",
-    "xs": {
+    "soft": {
       "$value": {
         "offsetX": "0px",
-        "offsetY": "0px",
-        "blur": "3px",
-        "color": "rgb(0 0 0 / 5%)"
+        "offsetY": "4px",
+        "blur": "20px",
+        "color": "rgb(0 0 0 / 15%)"
       }
     },
-    "sm": {
+    "medium": {
       "$value": {
         "offsetX": "0px",
         "offsetY": "3px",
-        "blur": "6px",
-        "color": "rgb(0 0 0 / 10%)"
+        "blur": "12px",
+        "color": "rgb(0 0 0 / 15%)"
       }
     },
-    "md": {
+    "hard": {
       "$value": {
         "offsetX": "0px",
-        "offsetY": "7px",
-        "blur": "15px",
-        "color": "rgb(0 0 0 / 10%)"
-      }
-    },
-    "lg": {
-      "$value": {
-        "offsetX": "0px",
-        "offsetY": "16px",
-        "blur": "25px",
-        "color": "rgb(0 0 0 / 10%)"
+        "offsetY": "4px",
+        "blur": "4px",
+        "color": "rgb(0 0 0 / 25%)"
       }
     }
   }

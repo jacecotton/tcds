@@ -1,0 +1,7 @@
+tcds-slide:not(:defined) {
+  display: block;
+
+  & ~ & {
+    display: none;
+  }
+}

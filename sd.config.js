@@ -3,17 +3,6 @@ import StyleDictionary from "style-dictionary";
 export default {
   source: ["src/tokens/**/*.json"],
   platforms: {
-    // Build for Drupal so tokens can be accessed in custom theme PHP code.
-    drupal: {
-      buildPath: "src/_gen",
-      files: [
-        {
-          destination: "ThemeTokens.php",
-          format: "php/dynamic-tokens",
-          filter: token => token.$type !== "icon",
-        },
-      ],
-    },
     // Build for SCSS so tokens can be iterated through as a map to dynamically
     // generate helper classes, custom properties, etc.
     scss: {

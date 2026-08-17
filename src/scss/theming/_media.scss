@@ -1,25 +1,21 @@
-/**
- * 1. `display: block` invalidates `vertical-align: middle`, but we're still
- *    setting it in case `display` is overridden elsewhere.
- */
-:where(audio, canvas, iframe, img, picture, svg, video) {
-  display: block;
-  vertical-align: middle; // 1
-  max-width: 100%;
+@layer tcds {
+  /**
+   * 1. `display: block` invalidates `vertical-align: middle`, but we're still
+   *    setting it in case `display` is overridden elsewhere.
+   */
+  :where(audio, canvas, iframe, img, picture, svg, video) {
+    display: block;
+    vertical-align: middle; // 1
+    max-width: 100%;
 
-  :where(&:not([height])) {
-    height: auto;
+    :where(&:not([height])) {
+      height: auto;
+    }
   }
-}
 
-:where(img, picture, svg, video) {
-  border: var(--tcds-media-border, 0);
-  border-radius: var(--tcds-media-border-radius, 0);
-  overflow: hidden;
-}
-
-figcaption {
-  font-family: var(--tcds-font-family-ui);
-  font-size: var(--tcds-font-size-sm);
-  color: var(--tcds-color-theme-muted);
+  :where(img, picture, svg, video) {
+    border: var(--tcds-media-border, 0);
+    border-radius: var(--tcds-media-border-radius, 0);
+    overflow: hidden;
+  }
 }

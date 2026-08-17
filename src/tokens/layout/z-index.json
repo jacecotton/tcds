@@ -6,6 +6,6 @@
     "site-header": {"$value": "500"},
     "alert-bar": {"$value": "400"},
     "notification": {"$value": "300"},
-    "action-bar": {"$value": "200"}
+    "quick-links": {"$value": "200"}
   }
 }

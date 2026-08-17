@@ -1,0 +1,29 @@
+{% set _classes = ["tcds-video", classes|default("")] %}
+
+{% set attributes = attributes|default(create_attribute()) %}
+{% set attributes = attributes.addClass(_classes) %}
+
+{% set attributes = attributes.setAttribute("data-theme", theme|default("dark")) %}
+
+{% set styles = styles|default(attributes.getAttribute("style")|default("")) %}
+
+{% if width and height %}
+  {% set styles = styles ~ " --tcds-video-aspect-ratio-width: #{width}; --tcds-video-aspect-ratio-height: #{height};" %}
+{% endif %}
+
+{% if styles|length %}
+  {% set attributes = attributes.setAttribute("style", styles) %}
+{% endif %}
+
+<details {{ attributes }}>
+  <summary aria-label="Play video: {{ title }}">
+    <img {{ create_attribute(thumbnail|merge({
+      alt: "",
+      width: width|default("16"),
+      height: height|default("9")
+    })) }}>
+    <tcds-icon icon="play"></tcds-icon>
+  </summary>
+
+  <iframe width="{{ width|default("16") }}" height="{{ height|default("9") }}" src="{{ url }}" title="{{ title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" autoplay referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+</details>

@@ -5,10 +5,10 @@ node_modules
 .DS_Store
 
 # Build artifacts
-dist
+# dist
 src/**/_gen
-/components
+# /components
 /docs/_site
 
-# Proprietary files
-src/fonts/mont
+scripts/server.js
+site/playground.js

@@ -1,8 +1,0 @@
-global:
-  css:
-    theme:
-      dist/css/tcds.css: {}
-      dist/css/icons.css: {}
-  js:
-    dist/js/shared.js: { attributes: { type: module } }
-    dist/js/vendor.js: { attributes: { type: module } }

@@ -1,7 +1,41 @@
 @use "../abstracts/functions" as *;
 @use "../abstracts/mixins" as *;
-@use "../theming/abstracts/mixins/headings" as *;
-@use "../theming/abstracts/mixins/links" as *;
+
+/**
+ * `text` style utilities.
+ *
+ * Text styles are bundles of font family, weight, size, and line height choices
+ * that correspond to semantic roles (display, headings, body copy, UI, etc.)
+ */
+
+@each $style, $levels in tokens("text") {
+  @each $level, $value in $levels {
+    .text-#{$style}-#{$level} {
+      @include text($style, $level, $flag: "!important");
+    }
+  }
+}
+
+/**
+ * `font-family` utilities are strictly to override or complete `.text-`
+ * utilities. Some text styles don't specify a family (like `text.heading`
+ * tokens), while others do but in some cases may need to be overriden.
+ *
+ * `font.family` tokens contain semantic, role-based options which also map to
+ * `font.weight` tokens. As such, the family and weight styles are bundled for
+ * these utilities. (These role names also map to `text` style tokens.)
+ *
+ * Also included, however, are non-semantic utilities derived from the
+ * `font.stack` token set, which should be used as a last resort where there is
+ * no applicable semantic role to choose from.
+ */
+
+@each $role, $value in tokens("font", "family") {
+  .font-family-#{$role} {
+    font-family: var(--tcds-font-family-#{$role}) !important;
+    font-weight: var(--tcds-font-weight-#{$role});
+  }
+}
 
 @each $stack, $value in tokens("font", "stack") {
   .font-family-#{$stack} {
@@ -9,37 +43,18 @@
   }
 }
 
-@each $family, $value in tokens("font", "family") {
-  .font-family-#{$family} {
-    font-family: var(--tcds-font-family-#{$family}) !important;
-  }
-}
-
-@each $weight, $value in tokens("font", "weight") {
-  .font-weight-#{$weight} {
-    font-weight: var(--tcds-font-weight-#{$weight}) !important;
-  }
-}
-
 /**
- * Font size, line height, and text alignment are likely needed to be changed
- * responsively, so we'll enable breakpoint prefixes for each utility here.
+ * `text-align` utilities with breakpoint prefix support.
  */
 
 @include responsive-utils() using ($breakpoint) {
-  @each $size, $value in tokens("font", "size") {
-    .#{$breakpoint}text-#{$size} {
-      @include text($size, "!important");
-    }
-  }
-
-  .#{$breakpoint}text-center {
+  .#{$breakpoint}text-align-center {
     text-align: center !important;
   }
 
   // For center on mobile → back to default (left) on desktop scenarios.
-  .#{$breakpoint}text-left,
-  .#{$breakpoint}text-inline-start {
+  .#{$breakpoint}text-align-left,
+  .#{$breakpoint}text-align-inline-start {
     text-align: inline-start !important;
   }
 }
@@ -48,29 +63,6 @@
  * Tabular nums are useful for displaying data as they have a similar effect as
  * monospaced fonts.
  */
-
 .font-variant-tabular-nums {
   font-variant-numeric: lining-nums tabular-nums !important;
-}
-
-/**
- * Heading utilities.
- *
- * Useful for managing visual hierarchy while preserving the appropriate
- * semantic meaning and document outline.
- */
-
-@for $level from 1 through 6 {
-  .h#{$level} {
-    @include heading("h#{$level}", "!important");
-    margin: 1rem 0;
-  }
-}
-
-/**
- * Link utilities.
- */
-
-.link--ui {
-  @include link-ui("!important");
 }

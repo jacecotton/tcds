@@ -6,5 +6,7 @@
  * JavaScript.
  */
 
-@use "theming" as *;
-@use "utilities" as *;
+@layer tcds {
+  @import "theming";
+  @import "utilities";
+}

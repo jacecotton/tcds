@@ -1,60 +1,75 @@
 @use "../../scss/abstracts/mixins" as *;
 
-@layer tcds {
-  .tcds-section {
-    --tcds-section-padding-block-start: var(--padding-block-start, var(--tcds-space-layout-lg));
-    --tcds-section-padding-block-end: var(--padding-block-end, var(--tcds-space-layout-lg));
-    --tcds-section-padding-block: var(--padding-block, var(--tcds-section-padding-block-start) var(--tcds-section-padding-block-end));
+.tcds-section {
+  padding-block: var(--tcds-space-layout-md);
+  background-color: var(--tcds-color-theme-background);
+  font-family: var(--tcds-font-family-body);
+  color: var(--tcds-color-theme-text-secondary);
+  position: relative;
+  z-index: 1;
 
-    --_tcds-section-padding-block-start: var(--tcds-section-padding-block-start);
-    --_tcds-section-padding-block-end: var(--tcds-section-padding-block-end);
-    --_tcds-section-padding-block: var(--tcds-section-padding-block);
+  @include breakpoint("md") {
+    font-size: var(--tcds-font-size-lg);
+  }
 
-    background-color: var(--tcds-color-theme-background);
-    color: var(--tcds-color-theme-foreground);
-    overflow: clip;
-    padding-block: var(--_tcds-section-padding-block) !important;
-    position: relative;
-    z-index: 1;
+  picture, img {
+    border-radius: var(--tcds-border-radius-lg);
+  }
 
-    @include breakpoint("md") {
-      @include text("ml");
+  &:has(> :is(picture, img):nth-of-type(2)) {
+    --tcds-section-background-image-opacity-start: 0;
+  }
+
+  > :is(picture, img) {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+    z-index: -1;
+    border-radius: 0;
+    opacity: var(--tcds-section-background-image-opacity-start, 1);
+    transition: opacity 2s var(--tcds-motion-easing-translate);
+
+    &[data-active] {
+      z-index: 0;
+      opacity: 1;
+    }
+  }
+
+  :where(p) {
+    font: inherit;
+  }
+
+  :where(h1, h2, h3, .text-heading-1, .text-heading-2, .text-heading-3) {
+    color: var(--tcds-color-theme-text-primary);
+
+    :is(b, strong) {
+      display: block;
+      color: var(--tcds-color-theme-accent);
+    }
+  }
+
+  p a {
+    color: inherit;
+  }
+
+  hgroup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tcds-space-component-md);
+
+    p {
+      margin: 0;
     }
 
-    &--raised {
-      --_tcds-section-padding-block-start: calc(var(--tcds-section-padding-block-start) + var(--tcds-site-header-height));
+    h1:has(+ [class*="text-heading-"]),
+    p:has(+ :is(h1, h2, h3, [class*="text-heading-"])) {
+      @include text("ui", "md");
 
-      padding-block-start: var(--_tcds-section-padding-block-start) !important;
-      margin-block-start: calc(var(--tcds-site-header-height) * -1) !important;
-    }
-
-    p:not([slot]) {
-      font-size: inherit;
-    }
-
-    :where(h1, h2, h3, h4, h5, h6) {
-      margin-block-start: 1.5rem;
-      margin-block-end: 1.5rem;
-    }
-
-    &:has(img:nth-of-type(2)) {
-      --tcds-section-background-image-opacity-start: 0;
-    }
-
-    > :is(picture, img) {
-      position: absolute;
-      inset: 0;
-      inline-size: 100%;
-      block-size: 100%;
-      object-fit: cover;
-      z-index: -1;
-      opacity: var(--tcds-section-background-image-opacity-start, 1);
-      transition: opacity 2s var(--tcds-motion-easing-translate);
-
-      &[data-active] {
-        z-index: 0;
-        opacity: 1;
-      }
+      letter-spacing: 10%;
+      text-transform: uppercase;
+      color: var(--tcds-color-theme-text-muted);
     }
   }
 }

@@ -1,81 +1,24 @@
-import {LitElement} from "lit";
-import {html, unsafeStatic} from "lit/static-html.js";
-import {customElement, property, state, queryAssignedElements} from "lit/decorators.js";
-import sharedStyles from "@/components/_shared/styles";
-import tabStyles from "./tab.styles.js";
+import {customElement, property} from "lit/decorators.js";
+import {Disclosure} from "@/components/_shared/base/Disclosure";
 
 @customElement("tcds-tab")
-export class Tab extends LitElement {
-  static styles = [sharedStyles, tabStyles];
-
+export class Tab extends Disclosure {
+  // #region Properties and state
+  /**
+   * Whether this is the active tab. Authoring `<tcds-tab selected>` picks the
+   * initial one; a URL fragment pointing into this tab overrides it.
+   */
   @property({type: Boolean, reflect: true})
   accessor selected = false;
+  // #endregion
 
-  @property({type: String, reflect: false})
-  accessor title = "";
-
-  get tabs() {
-    return this.closest("tcds-tabs");
+  // #region Public API
+  get expanded() {
+    return this.selected;
   }
 
-  #observer = null;
-
-  connectedCallback() {
-    super.connectedCallback();
-
-    this.setAttribute("role", "tabpanel");
-
-    this.#syncTitle();
-
-    this.#observer = new MutationObserver(() => {
-      this.#syncTitle();
-    });
-
-    this.#observer.observe(this, {
-      childList: true,
-      subtree: true,
-      characterData: true,
-      attributes: true,
-      attributeFilter: ["slot"],
-    });
+  set expanded(value) {
+    this.selected = value;
   }
-
-  render() {
-    return html`
-      <div part="content">
-        <slot></slot>
-      </div>
-    `;
-  }
-
-  willUpdate(changedProperties) {
-    if (changedProperties.has("selected") && this.selected) {
-      this.dispatchEvent(
-        new CustomEvent("tcds-tab:select", {
-          bubbles: true,
-          composed: true,
-        }),
-      );
-    }
-  }
-
-  updated() {
-    this.hidden = !this.selected;
-  }
-
-  #syncTitle() {
-    const slottedTitle = this.querySelector(":scope > [slot=title]");
-    const newTitle = slottedTitle ? slottedTitle.innerHTML : "";
-
-    if (this.title !== newTitle) {
-      this.title = newTitle;
-
-      this.dispatchEvent(
-        new CustomEvent("tcds-tab:updated", {
-          bubbles: true,
-          composed: true,
-        }),
-      );
-    }
-  }
+  // #endregion
 }

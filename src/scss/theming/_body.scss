@@ -1,21 +1,20 @@
 /**
- * 1. Disables oldstyle figures in Calluna.
- * 2. Almost no modern device uses subpixel antialiasing, except for macOS and
+ * 1. Almost no modern device uses subpixel antialiasing, except for macOS and
  *    only in browsers. We should align macOS browsers with the norm (except for
  *    users with a high contrast preference set).
  */
 body {
   background-color: var(--tcds-color-theme-background);
-  color: var(--tcds-color-theme-foreground);
-  font-family: var(--tcds-font-family-copy);
+  color: var(--tcds-color-theme-text-primary);
+  font-family: var(--tcds-font-family-body);
   font-size: var(--tcds-font-size-md);
-  font-variant-numeric: lining-nums; // 1
+  font-variant-numeric: lining-nums;
   font-variant-ligatures: none;
   overflow-wrap: break-word;
   overflow-x: hidden;
 
   @media (prefers-contrast: no-preference), (prefers-contrast: less) {
-    -webkit-font-smoothing: antialiased; // 2
-    -moz-osx-font-smoothing: grayscale; // 2
+    -webkit-font-smoothing: antialiased; // 1
+    -moz-osx-font-smoothing: grayscale; // 1
   }
 }

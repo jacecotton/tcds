@@ -1,23 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
   const sections = document.querySelectorAll(".tcds-section");
 
-  if (sections) {
-    sections.forEach((section) => {
-      const images = section.querySelectorAll(":scope > :is(img, picture)");
+  if (!sections) return;
 
-      if (images.length < 2) return;
+  sections.forEach((section) => {
+    const images = section.querySelectorAll(":scope > :is(img, picture)");
 
-      const {interval} = section.dataset;
+    if (images.length < 2) return;
 
-      let activeIndex = 0;
+    const {timing} = section.dataset;
 
+    let activeIndex = 0;
+
+    images[activeIndex].dataset.active = true;
+
+    setInterval(() => {
+      delete images[activeIndex].dataset.active;
+      activeIndex = (activeIndex + 1) % images.length;
       images[activeIndex].dataset.active = true;
-
-      setInterval(() => {
-        delete images[activeIndex].dataset.active;
-        activeIndex = (activeIndex + 1) % images.length;
-        images[activeIndex].dataset.active = true;
-      }, parseInt(interval) * 1000);
-    });
-  }
+    }, parseInt(timing) * 1000);
+  });
 });

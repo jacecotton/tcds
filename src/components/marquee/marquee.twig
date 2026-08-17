@@ -1,0 +1,11 @@
+{% set _classes = ["", classes|default("")] %}
+
+{% set attributes = attributes|default(create_attribute()) %}
+{% set attributes = attributes.addClass(_classes) %}
+
+{% set attributes = attributes.setAttribute("data-theme", theme|default("accent")) %}
+{% set attributes = attributes.setAttribute("speed", speed|default(false)) %}
+
+<tcds-marquee {{ attributes }}>
+  {% block content %}{{ content }}{% endblock %}
+</tcds-marquee>

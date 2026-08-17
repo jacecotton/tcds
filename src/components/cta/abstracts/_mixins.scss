@@ -1,0 +1,54 @@
+@mixin cta-props-reverse() {
+  --tcds-cta-background-color: var(--tcds-color-palette-white);
+  --tcds-cta-text-color: var(--tcds-color-theme-accent);
+  --tcds-cta-background-color-hover: var(--tcds-color-theme-accent);
+  --tcds-cta-text-color-hover: var(--tcds-color-palette-white);
+}
+
+@mixin cta-props-large() {
+  --tcds-cta-padding: 1.25rem;
+  --tcds-cta-font-size: var(--tcds-font-size-lg);
+}
+
+@mixin cta-style($color: false, $size: false) {
+  @if $color == "reverse" {
+    @include cta-props-reverse();
+  } @else {
+    --tcds-cta-background-color: var(--tcds-color-theme-accent);
+    --tcds-cta-text-color: var(--tcds-color-palette-white);
+    --tcds-cta-background-color-hover: color-mix(in oklab, var(--tcds-color-theme-accent), rgb(0 0 0) 10%);
+    --tcds-cta-text-color-hover: var(--tcds-color-palette-white);
+  }
+
+  @if $size == "large" {
+    @include cta-props-large();
+  } @else {
+    --tcds-cta-padding: 1.125rem;
+    --tcds-cta-font-size: var(--tcds-font-size-md);
+  }
+
+  background-color: var(--tcds-cta-background-color);
+  color: var(--tcds-cta-text-color);
+  font-weight: var(--tcds-font-weight-ui);
+  padding: var(--tcds-cta-padding);
+  border-radius: 5rem;
+  display: inline-flex;
+  gap: var(--tcds-space-component-md);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+  line-height: 1;
+  transition:
+    background-color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-translate),
+    color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-translate);
+
+  &:hover {
+    background-color: var(--tcds-cta-background-color-hover);
+    color: var(--tcds-cta-text-color-hover);
+  }
+
+  &::after {
+    font-size: 1.8em;
+  }
+}

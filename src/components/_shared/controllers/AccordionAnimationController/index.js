@@ -10,6 +10,16 @@ export class AccordionAnimationController {
   #previousOpen = undefined;
 
   /**
+   * Discards the remembered state, so the next `hostUpdated` re-runs the
+   * initial-render branch and re-establishes `hidden` without animating. For
+   * hosts that disable the controller (by returning a null panel) and later
+   * re-enable it, during which time the DOM may have been changed underneath.
+   */
+  reset() {
+    this.#previousOpen = undefined;
+  }
+
+  /**
    * @param {ReactiveElement} host
    * @param {Object} config
    * @param {() => boolean} config.isOpen - Getter for current open state.

@@ -1,144 +1,136 @@
-import {LitElement} from "lit";
+import {nothing} from "lit";
 import {html} from "lit/static-html.js";
-import {unsafeHTML} from "lit/directives/unsafe-html.js";
-import {customElement, property, queryAssignedElements, queryAll} from "lit/decorators.js";
-import {SelectionController} from "../_shared/controllers/SelectionController";
-import sharedStyles from "@/components/_shared/styles";
-import tabsStyles from "./tabs.styles.js";
+import {customElement} from "lit/decorators.js";
+
+import {DisclosureGroup} from "@/components/_shared/base/DisclosureGroup";
+import localStyles from "./tabs.styles.js";
+
+// Importing the item guarantees it is defined before this element is, so the
+// `instanceof` filter in `items` never runs against an un-upgraded child.
+import "@/components/tab/tab.js";
 
 @customElement("tcds-tabs")
-export class Tabs extends LitElement {
-  static styles = [sharedStyles, tabsStyles];
+export class Tabs extends DisclosureGroup {
+  static styles = [DisclosureGroup.styles, localStyles];
 
-  _selectionController = new SelectionController(this);
-
-  // #region Properties
-  @queryAssignedElements({selector: "tcds-tab"})
-  accessor tabs;
-
-  @queryAll("[part=button]")
-  accessor #buttons;
+  // #region Private variables
+  /**
+   * Cloned title content, one entry per tab. Cached because lit-html compares
+   * node values by identity: re-cloning on every render would replace every
+   * tab button's contents on every render.
+   */
+  #titles = new WeakMap();
   // #endregion
 
-  // #region Lifecycle
-  connectedCallback() {
-    super.connectedCallback();
-    window.addEventListener("hashchange", this.#deepLinkHandler.bind(this));
-    this.addEventListener("tcds-tab:updated", this.#handleTabUpdate.bind(this));
-    this.addEventListener("tcds-tab:select", this.#handleTabSelect.bind(this));
+  // #region Subclass contract
+  get defaultMode() {
+    return "tabs";
   }
 
-  render() {
+  get mediaMode() {
+    return "accordion";
+  }
+
+  get allowsMultiple() {
+    return false;
+  }
+
+  get requiresSelection() {
+    return true;
+  }
+
+  renderHeader() {
+    if (this.mode !== "tabs") return nothing;
+
     return html`
-      <div role="tablist">
-        ${(this.tabs || []).map((tab, index) => {
-          const panelId = tab.id || `tcds-tabpanel-${index}`;
-          const buttonId = `tcds-tab-${index}`;
-
-          tab.id = panelId;
-          tab.setAttribute("aria-labelledby", buttonId);
-
-          return html`
-            <button
-              id="${buttonId}"
-              role="tab"
-              part="button"
-              aria-controls="${panelId}"
-              aria-selected=${tab.selected ? "true" : "false"}
-              tabindex=${tab.selected ? "0" : "-1"}
-              @click=${() => this.select(tab)}
-              @keydown=${this.#handleKeydown}
-              class="tcds-button">
-              ${unsafeHTML(tab.title)}
-            </button>
-          `;
-        })}
+      <div
+        part="tablist"
+        role="tablist"
+        aria-label=${this.label ?? nothing}
+        @keydown=${this.#onTablistKeydown}
+      >
+        ${this.items.map((item, position) => html`
+          <button
+            part="tab"
+            type="button"
+            role="tab"
+            value=${position}
+            aria-selected=${item.expanded ? "true" : "false"}
+            tabindex=${item.expanded ? 0 : -1}
+            @click=${this.#onTabClick}
+          >${this.#titleFor(item)}</button>
+        `)}
       </div>
-      <slot @slotchange=${this.#handleSlotChange}></slot>
     `;
   }
+  // #endregion
 
-  firstUpdated() {
-    this.#deepLinkHandler();
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-    window.removeEventListener("hashchange", this.#deepLinkHandler.bind(this));
-    this.removeEventListener("tcds-tab:updated", this.#handleTabUpdate.bind(this));
-    this.removeEventListener("tcds-tab:select", this.#handleTabSelect.bind(this));
+  // #region Public API
+  select(position) {
+    const item = this.items[position];
+    if (item) this.expand(item);
   }
   // #endregion
 
-  // #region Public API methods
-  async select(tab) {
-    this._selectionController.select(tab);
-
-    this.dispatchEvent(
-      new CustomEvent("tcds-tabs:select", {
-        bubbles: true,
-        detail: {tab},
-      }),
-    );
-  }
-  // #endregion
-
-  // #region Utilities
-  #handleSlotChange() {
-    this._selectionController.sync(this.tabs);
-    this.requestUpdate();
+  // #region Events
+  #onTabClick(event) {
+    this.select(Number(event.currentTarget.value));
   }
 
-  #handleTabUpdate() {
-    this.requestUpdate();
-  }
+  async #onTablistKeydown(event) {
+    const items = this.items;
 
-  #handleTabSelect(event) {
-    const tab = event.target.closest("tcds-tab");
+    if (items.length === 0) return;
 
-    if (tab) {
-      this._selectionController.select(tab);
-    }
-  }
+    const forward = getComputedStyle(this).direction === "rtl" ? -1 : 1;
+    const current = items.findIndex((item) => item.expanded);
 
-  #handleKeydown(event) {
-    const handler = {
-      ArrowRight: () => this._selectionController.selectNext(),
-      ArrowLeft: () => this._selectionController.selectPrevious(),
-      Home: () => this._selectionController.selectFirst(),
-      End: () => this._selectionController.selectLast(),
-    }[event.key];
+    const positions = {
+      ArrowLeft: current - forward,
+      ArrowRight: current + forward,
+      Home: 0,
+      End: items.length - 1,
+    };
 
-    if (!handler) return;
+    if (!(event.key in positions)) return;
 
     event.preventDefault();
-    handler();
 
-    this.updateComplete.then(() => {
-      const index = this._selectionController.items.indexOf(this._selectionController.selected);
-      this.#buttons[index]?.focus();
-    });
-  }
+    this.select(((positions[event.key] % items.length) + items.length) % items.length);
 
-  async #deepLinkHandler() {
+    // Automatic activation: selection and focus move together, which is the
+    // expected behaviour for tab panels that are cheap to reveal.
     await this.updateComplete;
+    this.renderRoot.querySelector("[part~=tab][aria-selected=true]")?.focus();
+  }
+  // #endregion
 
-    // Get hash from URL. Exit early if no hash.
-    const hash = window.location.hash.substring(1);
-    if (!hash) return;
+  // #region Utility methods
+  /**
+   * A tab button and its source heading live in different tree scopes, so the
+   * heading cannot be slotted into the button and `aria-labelledby` cannot
+   * reach across. The heading's children are copied instead of the heading
+   * itself, because a button may only contain phrasing content.
+   */
+  #titleFor(item) {
+    if (this.#titles.has(item)) return this.#titles.get(item);
 
-    const target = document.getElementById(hash);
-    if (!target || (!this.contains(target) && this.id !== hash)) return;
+    const title = item.titleElement;
+    const nodes = title ? [...title.cloneNode(true).childNodes] : [];
 
-    const targetTab = target.closest("tcds-tab");
+    for (const node of nodes) {
+      if (node.nodeType !== Node.ELEMENT_NODE) continue;
 
-    if (targetTab && this._selectionController.items.includes(targetTab)) {
-      this.select(targetTab);
+      node.removeAttribute("id");
+
+      for (const descendant of node.querySelectorAll("[id]")) {
+        descendant.removeAttribute("id");
+      }
     }
 
-    requestAnimationFrame(() => {
-      target.scrollIntoView();
-    });
+    this.#titles.set(item, nodes);
+
+    return nodes;
   }
   // #endregion
 }

@@ -1,0 +1,37 @@
+{% set _classes = ["tcds-index", classes|default("")] %}
+{% set attributes = attributes|default(create_attribute()) %}
+{% set attributes = attributes.addClass(_classes) %}
+
+{% set attributes = attributes.setAttribute("role", "list") %}
+
+{% if items|length >= 18 %}
+  {% set _columns = 3 %}
+{% elseif items|length >= 9 %}
+  {% set _columns = 2 %}
+{% else %}
+  {% set _columns = 1 %}
+{% endif %}
+
+{% if columns %}
+  {% set _columns = columns %}
+{% endif %}
+
+{% set styles = styles|default(attributes.getAttribute("style")|default("")) %}
+{% set styles = styles ~ " --tcds-index-column-count: #{_columns};" %}
+
+{% set attributes = attributes.setAttribute("style", styles) %}
+
+<ul {{ attributes }}>
+  {% for item in items %}
+    <li>
+      {% if item.url %}
+        <a href="{{ item.url }}">
+          {{ item.text }}
+          <tcds-icon icon="caret-right-thin"></tcds-icon>
+        </a>
+      {% else %}
+        {{ item.text }}
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>

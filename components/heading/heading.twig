@@ -1,0 +1,9 @@
+{% set _classes = ["", classes|default("")]|join(" ") %}
+{% set attributes = attributes|default(create_attribute()) %}
+{% set attributes = attributes.addClass(_classes) %}
+{% set attributes = attributes.setAttribute("id", text|clean_id) %}
+{%- if max_length -%}
+  {% set attributes = attributes.setAttribute("style", "max-width: #{max_length}ch") %}
+{%- endif -%}
+{% set heading_level = heading_level|default("h2") %}
+<{{ heading_level }} {{ attributes }}>{{ text }}</{{ heading_level }}>

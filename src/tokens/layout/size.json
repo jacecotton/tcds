@@ -5,7 +5,7 @@
     "2": {"$value": "320px"},
     "4": {"$value": "640px"},
     "6": {"$value": "960px"},
-    "8": {"$value": "1280px"},
+    "8": {"$value": "1312px"},
     "12": {"$value": "1920px"},
     "layout": {
       "$description": "Semantic sizing values for layouts.",
