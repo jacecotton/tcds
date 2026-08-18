@@ -1,38 +1,36 @@
 @use "../abstracts/mixins" as *;
 
-@layer tcds {
-  @for $level from 1 through 4 {
-    $this: "h#{$level}";
-    $next: "h#{$level + 1}";
+@for $level from 1 through 4 {
+  $this: "h#{$level}";
+  $next: "h#{$level + 1}";
 
-    :where(#{$this}),
-    :is(tcds-accordion, tcds-tabs) :where(#{$next}) {
-      // Must convert number to string for map key.
-      @include text("heading", "#{$level}");
-    }
+  :where(#{$this}),
+  :is(tcds-accordion, tcds-tabs) :where(#{$next}) {
+    // Must convert number to string for map key.
+    @include text("heading", "#{$level}");
+  }
+}
+
+h1 {
+  // Never default top margin.
+  :where(&:not(:last-child)) {
+    margin-bottom: 1em;
+  }
+}
+
+:is(h2, h3, h4, h5, h6) {
+  &:where(:not(:first-child, [slot])) {
+    margin-top: 2rem;
   }
 
-  h1 {
-    // Never default top margin.
-    :where(&:not(:last-child)) {
-      margin-bottom: 1em;
-    }
+  &:where(:not(:last-child, [slot])) {
+    margin-bottom: 2rem;
   }
+}
 
-  :is(h2, h3, h4, h5, h6) {
-    &:where(:not(:first-child, [slot])) {
-      margin-top: 2rem;
-    }
-
-    &:where(:not(:last-child, [slot])) {
-      margin-bottom: 2rem;
-    }
-  }
-
-  :where(:not(h1, hr) + h2:not([slot])),
-  :where(:not(h2, hr) + h3:not([slot])),
-  :where(:not(h3, hr) + h4:not([slot])),
-  :where(:not(h4, hr) + h5:not([slot])) {
-    margin-top: 4rem;
-  }
+:where(:not(h1, hr) + h2:not([slot])),
+:where(:not(h2, hr) + h3:not([slot])),
+:where(:not(h3, hr) + h4:not([slot])),
+:where(:not(h4, hr) + h5:not([slot])) {
+  margin-top: 4rem;
 }

@@ -1,12 +1,10 @@
 @use "../abstracts/mixins" as *;
 
-@layer tcds {
-  :root {
-    --tcds-site-inner-gutter: var(--tcds-space-6);
-    --tcds-site-container-max-width: var(--tcds-size-layout-lg);
+:root {
+  --tcds-site-inner-gutter: var(--tcds-space-6);
+  --tcds-site-container-max-width: var(--tcds-size-layout-lg);
 
-    @include breakpoint("md") {
-      --tcds-site-inner-gutter: var(--tcds-space-8);
-    }
+  @include breakpoint("md") {
+    --tcds-site-inner-gutter: var(--tcds-space-8);
   }
 }

@@ -68,6 +68,7 @@
       @include text("ui", "md");
 
       letter-spacing: 10%;
+      margin: 0;
       text-transform: uppercase;
       color: var(--tcds-color-theme-text-muted);
     }

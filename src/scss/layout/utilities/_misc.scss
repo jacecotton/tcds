@@ -1,37 +1,35 @@
 @use "../../abstracts/mixins" as *;
 
-@layer tcds {
-  /**
-   * Reinforcing `[hidden]` attribute here, as the default user agent style can be
-   * unintentionally overridden by setting `display` to anything on an element in
-   * an author stylesheet.
-   */
+/**
+ * Reinforcing `[hidden]` attribute here, as the default user agent style can be
+ * unintentionally overridden by setting `display` to anything on an element in
+ * an author stylesheet.
+ */
 
-  [hidden]:where(:not([hidden="until-found"])) {
+[hidden]:where(:not([hidden="until-found"])) {
+  display: none !important;
+}
+
+@include responsive-utils() using ($breakpoint) {
+  .#{$breakpoint}hidden {
     display: none !important;
   }
+}
 
-  @include responsive-utils() using ($breakpoint) {
-    .#{$breakpoint}hidden {
-      display: none !important;
-    }
-  }
+.visually-hidden:not(:focus) {
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  position: absolute;
+}
 
-  .visually-hidden:not(:focus) {
+@include responsive-utils() using ($breakpoint) {
+  .#{$breakpoint}visually-hidden:not(:focus) {
     clip: rect(0, 0, 0, 0);
     clip-path: inset(50%);
     height: 1px;
     width: 1px;
     position: absolute;
-  }
-
-  @include responsive-utils() using ($breakpoint) {
-    .#{$breakpoint}visually-hidden:not(:focus) {
-      clip: rect(0, 0, 0, 0);
-      clip-path: inset(50%);
-      height: 1px;
-      width: 1px;
-      position: absolute;
-    }
   }
 }

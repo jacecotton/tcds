@@ -23,7 +23,7 @@
   @if $size == "large" {
     @include cta-props-large();
   } @else {
-    --tcds-cta-padding: 1.125rem;
+    --tcds-cta-padding: 1.125rem 2rem;
     --tcds-cta-font-size: var(--tcds-font-size-md);
   }
 

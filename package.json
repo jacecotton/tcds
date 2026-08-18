@@ -13,7 +13,7 @@
     "build:images": "cpx \"src/images/**/*.{svg,jpg,png}\" dist/images && node scripts/generate-icon-tokens.js",
     "build:tokens": "node scripts/build-tokens.js",
     "build:fonts": "cpx \"src/fonts/**/*.woff2\" dist/fonts",
-    "build:css": "sass --load-path=node_modules --source-map src/scss:dist/css",
+    "build:css": "sass --load-path=node_modules --style=compressed --source-map src/scss:dist/css",
     "build:js": "rollup -c rollup.config.js",
     "build:components:assets": "cpx \"src/components/**/*.{twig,component.yml}\" components",
     "build:components:css": "sass --load-path=node_modules --style=compressed --source-map src/components:components",
