@@ -7,13 +7,7 @@
  */
 
 p {
-  :where(&:not(:first-child, :is(h1, h2, h3, h4, h5, h6) + *, [slot] + *:not([slot]))) {
-    margin-top: 1.5rem;
-  }
-
-  :where(&:not(:last-child, :has(+ :empty))) {
-    margin-bottom: 1.5rem;
-  }
+  margin: 1.5em 0;
 }
 
 /**

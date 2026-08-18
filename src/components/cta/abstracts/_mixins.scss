@@ -1,5 +1,5 @@
 @mixin cta-props-reverse() {
-  --tcds-cta-background-color: var(--tcds-color-palette-white);
+  --tcds-cta-background-color: var(--tcds-color-theme-accent-text-primary);
   --tcds-cta-text-color: var(--tcds-color-theme-accent);
   --tcds-cta-background-color-hover: var(--tcds-color-theme-accent);
   --tcds-cta-text-color-hover: var(--tcds-color-palette-white);
@@ -15,9 +15,9 @@
     @include cta-props-reverse();
   } @else {
     --tcds-cta-background-color: var(--tcds-color-theme-accent);
-    --tcds-cta-text-color: var(--tcds-color-palette-white);
+    --tcds-cta-text-color: var(--tcds-color-theme-accent-text-primary);
     --tcds-cta-background-color-hover: color-mix(in oklab, var(--tcds-color-theme-accent), rgb(0 0 0) 10%);
-    --tcds-cta-text-color-hover: var(--tcds-color-palette-white);
+    --tcds-cta-text-color-hover: var(--tcds-color-theme-accent-text-primary);
   }
 
   @if $size == "large" {

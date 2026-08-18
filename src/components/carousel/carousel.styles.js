@@ -118,7 +118,13 @@ export default css`
     width: var(--tcds-carousel-dot-width);
     height: var(--tcds-carousel-dot-width);
     border-radius: var(--tcds-carousel-dot-width);
-    transition: width var(--tcds-motion-duration-expressive) var(--tcds-motion-easing-enter);
+    padding: 0;
+    transition:
+      width var(--tcds-motion-duration-expressive) var(--tcds-motion-easing-translate);
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
 
     &[aria-current=true] {
       width: var(--tcds-carousel-dot-width-current);
@@ -133,10 +139,6 @@ export default css`
         border-radius: var(--tcds-carousel-dot-width);
         width: 0%;
       }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      transition: none;
     }
   }
 `;

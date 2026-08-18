@@ -1,0 +1,35 @@
+{% set _classes = ["", classes|default("")]|join(" ") %}
+{% set attributes = attributes|default(create_attribute()) %}
+{% set attributes = attributes.addClass(_classes) %}
+
+{% if playing %}
+  {% set attributes = attributes.setAttribute("playing", "") %}
+{% endif %}
+
+{% if interval %}
+  {% set attributes = attributes.setAttribute("interval", interval) %}
+{% endif %}
+
+{% if controls %}
+  {% set attributes = attributes.setAttribute("controls", controls) %}
+{% endif %}
+
+<tcds-carousel {{ attributes }}>
+  {% if slides is defined and slides is iterable and slides[0] is defined %}
+    {% for slide in slides %}
+      {% if slide.content is defined %}
+        {% if slide.content is not iterable and block(slide.content) is defined %}
+          {% set content = block(slide.content) %}
+        {% else %}
+          {% set content = slide.content %}
+        {% endif %}
+      {% endif %}
+
+      {{ include("@tcds/slide/slide.twig", {
+        content: content,
+      }) }}
+    {% endfor %}
+  {% else %}
+    {% block slides %}{{ slides }}{% endblock %}
+  {% endif %}
+</tcds-carousel>

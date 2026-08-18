@@ -4,15 +4,15 @@
 {% set attributes = attributes.addClass(_classes) %}
 
 <ul {{ attributes }} role="list">
-  {% for item in items %}
+  {% for link in links %}
     <li>
-      <a href="{{ item.url }}">
-        {% if item.icon %}
-          <tcds-icon icon="{{ item.icon }}" preserve-color></tcds-icon>
-        {% elseif item.image %}
-          <img {{ create_attribute(item.image|merge({role: "presentation"}))  }}>
+      <a href="{{ link.url }}">
+        {% if link.icon %}
+          <tcds-icon icon="{{ link.icon }}" preserve-color></tcds-icon>
+        {% elseif link.image %}
+          <img {{ create_attribute(link.image|merge({role: "presentation"}))  }}>
         {% endif %}
-        <span>{{ item.text }}</span>
+        <span>{{ link.text }}</span>
       </a>
     </li>
   {% endfor %}

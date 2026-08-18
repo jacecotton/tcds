@@ -1,0 +1,17 @@
+{% set _classes = ["", classes|default("")]|join(" ") %}
+{% set attributes = attributes|default(create_attribute()) %}
+{% set attributes = attributes.addClass(_classes) %}
+
+{% if selected is defined and selected %}
+  {% set attributes = attributes.setAttribute("selected", "") %}
+{% endif %}
+
+<tcds-slide {{ attributes }}>
+  {% if content is defined %}
+    {% if content is not iterable and block(content) is defined %}
+      {{ block(content) }}
+    {% else %}
+      {% block content %}{{ content }}{% endblock %}
+    {% endif %}
+  {% endif %}
+</tcds-slide>
