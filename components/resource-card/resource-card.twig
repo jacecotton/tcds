@@ -8,8 +8,6 @@
 
 {% set attributes = attributes.setAttribute("data-theme", "dark") %}
 
-{% set heading_level = heading_level|default("h3") %}
-
 <article {{ attributes }}>
   <a href="{{ link.url }}">
     <span>{{ link.text }} <tcds-icon icon="caret-right-thin"></tcds-icon></span>
