@@ -17,13 +17,13 @@
       "xs": {"$value": "{space.2}"},
       "sm": {"$value": "{space.3}"},
       "md": {"$value": "{space.4}"},
-      "lg": {"$value": "{space.8}"},
+      "lg": {"$value": "{space.6}"},
       "xl": {"$value": "{space.12}"}
     },
     "layout": {
       "$description": "Semantic spacing values for layout scales.",
       "xs": {"$value": "{space.4}"},
-      "sm": {"$value": "{space.8}"},
+      "sm": {"$value": "{space.6}"},
       "md": {"$value": "{space.14}"},
       "lg": {"$value": "{space.20}"},
       "xl": {"$value": "{space.40}"}
