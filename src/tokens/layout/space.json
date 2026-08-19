@@ -9,9 +9,8 @@
     "6": {"$value": "24px"},
     "8": {"$value": "32px"},
     "12": {"$value": "48px"},
-    "14": {"$value": "56px"},
-    "20": {"$value": "80px"},
-    "40": {"$value": "160px"},
+    "18": {"$value": "72px"},
+    "36": {"$value": "144px"},
     "component": {
       "$description": "Semantic spacing values for component scales.",
       "xs": {"$value": "{space.2}"},
@@ -24,9 +23,9 @@
       "$description": "Semantic spacing values for layout scales.",
       "xs": {"$value": "{space.4}"},
       "sm": {"$value": "{space.6}"},
-      "md": {"$value": "{space.14}"},
-      "lg": {"$value": "{space.20}"},
-      "xl": {"$value": "{space.40}"}
+      "md": {"$value": "{space.12}"},
+      "lg": {"$value": "{space.18}"},
+      "xl": {"$value": "{space.36}"}
     }
   }
 }

@@ -6,6 +6,7 @@
   --tcds-color-theme-text-secondary: var(--tcds-color-theme-default-text-secondary);
 
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: center;
   text-align: center;
@@ -18,7 +19,7 @@
     font-weight: var(--tcds-font-weight-ui);
     font-size: var(--tcds-font-size-xl);
     color: var(--tcds-color-theme-text-primary);
-    margin: 1rem 0;
+    margin: 1.75rem 0 1rem;
 
     @include breakpoint("sm") {
       font-size: var(--tcds-font-size-2xl);

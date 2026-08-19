@@ -1,0 +1,17 @@
+{% set _classes = ["tcds-resource-card", classes|default("")]|join(" ") %}
+{% set attributes = attributes|default(create_attribute()) %}
+{% set attributes = attributes.addClass(_classes) %}
+
+{% if image %}
+  {% set attributes = attributes.setAttribute("style", "background-image: url(#{image.src})") %}
+{% endif %}
+
+{% set attributes = attributes.setAttribute("data-theme", "dark") %}
+
+{% set heading_level = heading_level|default("h3") %}
+
+<article {{ attributes }}>
+  <a href="{{ link.url }}">
+    <span>{{ link.text }} <tcds-icon icon="caret-right-thin"></tcds-icon></span>
+  </a>
+</article>

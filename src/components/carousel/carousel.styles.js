@@ -103,6 +103,7 @@ export default css`
     border-radius: 1.5rem;
     border: 1.5px solid currentcolor;
     font-size: .7rem;
+    padding: 0;
   }
 
   [part=dots] {
