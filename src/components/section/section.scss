@@ -56,13 +56,14 @@
 
   hgroup {
     display: flex;
-    flex-wrap: row;
+    flex-direction: column;
+    flex-wrap: wrap;
     gap: var(--tcds-space-component-md);
     justify-content: space-between;
     align-items: start;
 
     @include breakpoint("md") {
-      flex-direction: column;
+      flex-direction: row;
     }
 
     p,
