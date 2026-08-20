@@ -56,8 +56,14 @@
 
   hgroup {
     display: flex;
-    flex-direction: column;
+    flex-wrap: row;
     gap: var(--tcds-space-component-md);
+    justify-content: space-between;
+    align-items: start;
+
+    @include breakpoint("md") {
+      flex-direction: column;
+    }
 
     p,
     h1, h2, h3, [class*="text-heading-"] {
@@ -72,6 +78,7 @@
       margin: 0;
       text-transform: uppercase;
       color: var(--tcds-color-theme-text-muted);
+      flex: 1 0 100%;
     }
   }
 }

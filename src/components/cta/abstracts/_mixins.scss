@@ -10,6 +10,15 @@
   --tcds-cta-font-size: var(--tcds-font-size-lg);
 }
 
+@mixin cta-props-outline {
+  --tcds-cta-background-color: transparent;
+  --tcds-cta-text-color: var(--tcds-color-theme-accent);
+
+  &:not(:hover) {
+    --tcds-cta-border-color: currentcolor;
+  }
+}
+
 @mixin cta-style($color: false, $size: false) {
   @if $color == "reverse" {
     @include cta-props-reverse();
@@ -28,6 +37,7 @@
   }
 
   background-color: var(--tcds-cta-background-color);
+  border: 2px solid var(--tcds-cta-border-color, var(--tcds-cta-background-color));
   color: var(--tcds-cta-text-color);
   font-weight: var(--tcds-font-weight-ui);
   padding: var(--tcds-cta-padding);
@@ -37,16 +47,16 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  align-self: center;
   text-decoration: none;
   line-height: 1;
   transition:
     background-color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-translate),
+    border-color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-translate),
     color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-translate);
 
   &:hover {
-    background-color: var(--tcds-cta-background-color-hover);
-    color: var(--tcds-cta-text-color-hover);
+    --tcds-cta-background-color: var(--tcds-cta-background-color-hover);
+    --tcds-cta-text-color: var(--tcds-cta-text-color-hover);
   }
 
   &::after {

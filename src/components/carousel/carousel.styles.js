@@ -121,7 +121,7 @@ export default css`
     border-radius: var(--tcds-carousel-dot-width);
     padding: 0;
     transition:
-      width var(--tcds-motion-duration-expressive) var(--tcds-motion-easing-translate);
+      width var(--tcds-motion-duration-expressive) var(--tcds-motion-easing-enter);
 
     @media (prefers-reduced-motion: reduce) {
       transition: none;

@@ -6,4 +6,8 @@
   &--large {
     @include cta-props-large;
   }
+
+  &--outline {
+    @include cta-props-outline;
+  }
 }
