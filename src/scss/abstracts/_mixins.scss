@@ -128,23 +128,17 @@
  */
 
 @mixin text($size, $flag: "", $custom-property: false, $min-vw: 400, $max-vw: 1200) {
-  $downscale-factor: 0.77;
+  $max-size: token("font", "size", $size);
+  $base: math.div($max-size, 1rem);
+  $downscale: 0.77;
 
-  $vw-range: $max-vw - $min-vw;
-  $diff-factor: (1 - $downscale-factor) * 1600 / $vw-range;
-  $min-vw-ratio: $min-vw / 1600;
-
-  $max-size: var(--tcds-font-size-#{$size});
-  $min-size: calc(#{$max-size} * #{$downscale-factor});
-
-  $base: calc(#{$max-size} / 1rem);
-
-  $slope: calc(#{$diff-factor} * #{$base});
-  $intercept: calc((#{$downscale-factor} * #{$base}) - (#{$slope} * #{$min-vw-ratio}));
+  $diff-factor: math.div((1 - $downscale) * 1600, $max-vw - $min-vw);
+  $slope: $diff-factor * $base;
+  $intercept: ($downscale * $base) - ($slope * math.div($min-vw, 1600));
 
   $value: clamp(
-    #{$min-size},
-    unquote("calc((#{$intercept} * 1rem) + (#{$slope} * 1vw))"),
+    #{$base * $downscale}rem,
+    #{$intercept}rem + #{$slope}vw,
     #{$max-size}
   );
 
