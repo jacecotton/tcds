@@ -1,3 +1,5 @@
+@use "../../scss/abstracts/mixins" as *;
+
 .tcds-resource-card {
   display: flex;
   width: 100%;
@@ -6,8 +8,13 @@
   overflow: hidden;
   position: relative;
   z-index: 1;
-  background-size: cover;
+  background-size: 100% auto;
   background-position: center;
+  transition: background-size 500ms var(--tcds-motion-easing-enter);
+
+  &:hover {
+    background-size: 105%;
+  }
 
   a {
     position: absolute;
@@ -23,12 +30,16 @@
     text-decoration: none;
     line-height: var(--tcds-line-height-normal);
 
+    @include breakpoint("lg") {
+      padding: 40px;
+    }
+
     &:hover {
       --tcds-resource-card-caret-left: 2%;
     }
 
     span {
-      max-width: 73%;
+      max-width: 74%;
     }
 
     tcds-icon {
@@ -36,7 +47,7 @@
       top: -8.5%;
       left: var(--tcds-resource-card-caret-left, 0);
       font-size: 55%;
-      transition: left .3s var(--tcds-motion-easing-translate);
+      transition: left 500ms var(--tcds-motion-easing-enter);
     }
   }
 
@@ -45,7 +56,7 @@
     position: absolute;
     z-index: -1;
     mask: linear-gradient(0, rgb(0, 0, 0) 25%, rgba(0, 0, 0, 0) 100%);
-    backdrop-filter: blur(18px);
+    backdrop-filter: blur(3px);
     bottom: 0;
     left: 0;
     right: 0;

@@ -1,7 +1,7 @@
 @use "../../scss/abstracts/mixins" as *;
 
 .tcds-section {
-  padding-block: var(--tcds-space-layout-md);
+  padding-block: 40px;
   background-color: var(--tcds-color-theme-background);
   font-family: var(--tcds-font-family-body);
   color: var(--tcds-color-theme-text-secondary);
@@ -9,6 +9,7 @@
   z-index: 1;
 
   @include breakpoint("md") {
+    padding-block: var(--tcds-space-layout-lg);
     font-size: var(--tcds-font-size-lg);
   }
 
@@ -58,7 +59,7 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    gap: var(--tcds-space-component-md);
+    gap: 40px;
     justify-content: space-between;
     align-items: start;
 

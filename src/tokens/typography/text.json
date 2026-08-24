@@ -61,7 +61,7 @@
           "$value": {
             "fontFamily": "{font.stack.serif}",
             "fontSize": "{font.size.4xl}",
-            "lineHeight": "{line-height.normal}"
+            "lineHeight": "{line-height.compact}"
           }
         },
         "desktop": {
