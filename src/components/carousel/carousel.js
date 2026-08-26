@@ -77,8 +77,6 @@ export class Carousel extends LitElement {
 
     this.addEventListener("pointerenter", this.#onInteractionChange);
     this.addEventListener("pointerleave", this.#onInteractionChange);
-    this.addEventListener("focusin", this.#onInteractionChange);
-    this.addEventListener("focusout", this.#onInteractionChange);
 
     document.addEventListener("visibilitychange", this.#onDocumentVisibilityChange);
     this.#reducedMotion.addEventListener("change", this.#onReducedMotionChange);
@@ -92,8 +90,7 @@ export class Carousel extends LitElement {
     // Keep `index` inside the slide range no matter how it was set, including
     // when slides are added or removed underneath it.
     if (this.#count > 0) {
-      const requested = Number.isFinite(this.index) ? Math.trunc(this.index) : 0;
-      this.index = ((requested % this.#count) + this.#count) % this.#count;
+      this.index = this.#clamp(this.index);
     }
   }
 
@@ -105,6 +102,8 @@ export class Carousel extends LitElement {
         part="slides"
         aria-atomic="false"
         aria-live=${this.playing ? "off" : "polite"}
+        @focusin=${this.#onInteractionChange}
+        @focusout=${this.#onInteractionChange}
       >
         <slot @slotchange=${this.#onSlotChange}></slot>
       </div>
@@ -210,9 +209,7 @@ export class Carousel extends LitElement {
    */
   select(position) {
     if (this.#count === 0) return;
-
-    const requested = Number.isFinite(position) ? Math.trunc(position) : 0;
-    this.index = ((requested % this.#count) + this.#count) % this.#count;
+    this.index = this.#clamp(position);
   }
 
   next() {
@@ -295,6 +292,18 @@ export class Carousel extends LitElement {
       && !this.#offscreen;
   }
 
+  /**
+   * Wrap `position` into the slide range. Shared by `willUpdate`, `select` and
+   * `#syncSlides` so all three agree on which slide is current, including
+   * during a slot change, before `index` itself has been clamped.
+   */
+  #clamp(position) {
+    if (this.#count === 0) return 0;
+
+    const requested = Number.isFinite(position) ? Math.trunc(position) : 0;
+    return ((requested % this.#count) + this.#count) % this.#count;
+  }
+
   get #interval() {
     return Math.max(Number.isFinite(this.interval) ? this.interval * 1000 : 0, 1000);
   }
@@ -340,11 +349,12 @@ export class Carousel extends LitElement {
 
   #syncSlides() {
     const slides = this.#slides;
+    const index = this.#clamp(this.index);
 
     slides.forEach((slide, position) => {
       slide.position = position;
       slide.total = slides.length;
-      slide.toggleAttribute("selected", position === this.index);
+      slide.toggleAttribute("selected", position === index);
     });
   }
 
