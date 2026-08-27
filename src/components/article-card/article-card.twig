@@ -18,7 +18,7 @@
   {% endif %}
   {% if description %}
     <p class="{{ base_class }}__description">
-      {{ description }}
+      {{ description|raw }}
     </p>
   {% endif %}
   {% if links and links is iterable and links|length %}
