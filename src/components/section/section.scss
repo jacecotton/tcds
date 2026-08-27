@@ -33,16 +33,22 @@
     --tcds-section-background-image-opacity-start: 0;
   }
 
-  > :is(picture, picture > img, img, video) {
+  > :is(picture, img, video),
+  > picture > img {
     position: absolute;
     inset: 0;
     inline-size: 100%;
     block-size: 100%;
     object-fit: cover;
+    object-position: center top;
     z-index: -1;
     border-radius: 0;
     opacity: var(--tcds-section-background-image-opacity-start, 1);
     transition: opacity 2s var(--tcds-motion-easing-translate);
+
+    @include breakpoint("md") {
+      object-position: right center;
+    }
 
     &[data-active] {
       z-index: 0;

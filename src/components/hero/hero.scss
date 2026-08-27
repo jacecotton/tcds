@@ -2,7 +2,7 @@
 
 .tcds-hero {
   height: 100%;
-  padding-block: var(--tcds-space-layout-xl) var(--tcds-space-layout-lg);
+  padding-block: 20rem var(--tcds-space-layout-lg);
 
   @include breakpoint("lg") {
     padding-block: var(--tcds-space-layout-xl);
