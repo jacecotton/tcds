@@ -1,0 +1,21 @@
+{% set base_class = "tcds-stats" %}
+{% set _classes = [base_class, classes|default("")] %}
+
+{% set attributes = attributes|default(create_attribute()) %}
+{% set attributes = attributes.addClass(_classes) %}
+
+{% set attributes = attributes.setAttribute("data-theme", theme|default(false)) %}
+
+<ul {{ attributes }}>
+  {% for stat in stats %}
+    <li>
+      <div class="tcds-stats__header">
+        {% if stat.icon %}
+          <tcds-icon icon="{{ stat.icon }}"></tcds-icon>
+        {% endif %}
+        <span class="tcds-stats__value">{{ stat.value }}</span>
+      </div>
+      <p class="tcds-stats__label">{{ stat.label }}</p>
+    </li>
+  {% endfor %}
+</ul>

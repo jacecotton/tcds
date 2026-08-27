@@ -49,9 +49,6 @@
 
       &::after {
         --tcds-quick-links-caret-icon-size: .1em;
-
-        content: "\00a0";
-        display: inline-block;
         vertical-align: middle;
         background-color: var(--tcds-color-theme-accent);
         mask: var(--tcds-icon-utility-caret-right-thin) no-repeat var(--tcds-quick-links-caret-icon-size);

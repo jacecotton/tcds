@@ -7,7 +7,7 @@
  */
 
 p {
-  margin: 1.5em 0;
+  margin: 1.5rem 0;
 }
 
 /**
@@ -33,7 +33,7 @@ ol {
   }
 
   :where(:not(li) > :is(&):not(:last-child)) {
-    margin-bottom: 1em; // 1
+    margin-bottom: 1rem; // 1
   }
 
   &:where([role="list"]) {

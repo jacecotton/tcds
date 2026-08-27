@@ -14,7 +14,7 @@
   $selector: "[data-theme=#{$theme}]";
 
   @if $theme == "default" {
-    $selector: ":root";
+    $selector: ':root, [data-theme="default"]';
   }
 
   #{$selector} {

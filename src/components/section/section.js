@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
   const sections = document.querySelectorAll(".tcds-section");
-
   if (!sections) return;
 
   sections.forEach((section) => {
@@ -9,9 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (images.length < 2) return;
 
     const {timing} = section.dataset;
-
     let activeIndex = 0;
-
     images[activeIndex].dataset.active = true;
 
     setInterval(() => {

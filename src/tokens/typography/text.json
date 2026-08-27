@@ -76,7 +76,7 @@
         "base": {
           "$value": {
             "fontFamily": "{font.stack.serif}",
-            "fontSize": "{font.size.2xl}",
+            "fontSize": "{font.size.3xl}",
             "lineHeight": "{line-height.normal}"
           }
         },
@@ -145,7 +145,7 @@
           "fontFamily": "{font.family.ui}",
           "fontWeight": "{font.weight.ui}",
           "fontSize": "{font.size.lg}",
-          "lineHeight": "{line-height.comfortable}"
+          "lineHeight": "{line-height.normal}"
         }
       },
       "md": {
@@ -153,7 +153,7 @@
           "fontFamily": "{font.family.ui}",
           "fontWeight": "{font.weight.ui}",
           "fontSize": "{font.size.md}",
-          "lineHeight": "{line-height.comfortable}"
+          "lineHeight": "{line-height.normal}"
         }
       },
       "sm": {
@@ -161,7 +161,7 @@
           "fontFamily": "{font.family.ui}",
           "fontWeight": "{font.weight.ui}",
           "fontSize": "{font.size.sm}",
-          "lineHeight": "{line-height.comfortable}"
+          "lineHeight": "{line-height.normal}"
         }
       }
     }

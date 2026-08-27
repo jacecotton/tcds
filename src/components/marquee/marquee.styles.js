@@ -67,7 +67,8 @@ export default css`
     height: 1.5rem;
     border-radius: 1.5rem;
     font-size: .7rem;
-    margin: var(--tcds-space-component-sm) auto;
+    margin-block: var(--tcds-space-component-sm);
+    margin-inline: auto var(--tcds-site-inner-gutter);
     padding: 0;
     cursor: pointer;
   }

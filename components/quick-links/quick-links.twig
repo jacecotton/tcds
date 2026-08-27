@@ -12,7 +12,7 @@
         {% elseif link.image %}
           <img {{ create_attribute(link.image|merge({role: "presentation"}))  }}>
         {% endif %}
-        <span>{{ link.text }}</span>
+        <span>{{ link.text }} <tcds-icon icon="caret-right-thin"></tcds-icon></span>
       </a>
     </li>
   {% endfor %}

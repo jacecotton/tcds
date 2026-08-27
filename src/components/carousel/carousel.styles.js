@@ -1,5 +1,5 @@
 import {css, unsafeCSS} from "lit";
-import {SizeBreakpointMd} from "@/js/_gen/tokens.js";
+import {SizeBreakpointMd} from "@/components/_shared/_gen/tokens.js";
 
 export default css`
   :host {

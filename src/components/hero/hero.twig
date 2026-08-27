@@ -1,0 +1,32 @@
+{% embed "@tcds/section/section.twig" with {
+  classes: "tcds-hero",
+  background_video: background_video,
+  background_images: background_images,
+  theme: theme|default("dark"),
+  modifiers: modifiers|default(null),
+  heading: heading,
+  lead: lead,
+  links: links,
+} only %}
+  {% block content %}
+    <div class="tcds-hero__content" data-theme="default">
+      {% if heading %}
+        <p class="text-heading-3">{{ heading }}</p>
+      {% endif %}
+
+      <div style="max-width: 51ch">
+        {{ lead }}
+      </div>
+
+      <div class="flex" style="gap: 1rem">
+        {% if links and links|length %}
+          {% for link in links %}
+            {{ include("@tcds/cta/cta.twig", link|merge({
+              modifiers: loop.index == 2 ? ["outline"] : null,
+            }), with_context=false)  }}
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  {% endblock %}
+{% endembed %}

@@ -1,0 +1,36 @@
+@use "../../scss/abstracts/mixins" as *;
+
+.tcds-stats {
+  display: grid;
+  gap: 2.33rem;
+  list-style: none;
+  margin: 0;
+
+  @include breakpoint("md") {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.33rem 4.5rem;
+  }
+
+  &__header {
+    @include text("heading", "1");
+
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    border-bottom: 2px solid currentcolor;
+    line-height: 0;
+    padding-bottom: 1.4rem;
+    margin-bottom: .6rem;
+
+    tcds-icon {
+      vertical-align: baseline;
+      font-size: .8em;
+    }
+  }
+
+  &__label {
+    @include text("ui", "md");
+
+    margin: 0;
+  }
+}

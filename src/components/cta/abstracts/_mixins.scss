@@ -13,9 +13,10 @@
 @mixin cta-props-outline {
   --tcds-cta-background-color: transparent;
   --tcds-cta-text-color: var(--tcds-color-theme-accent);
+  --tcds-cta-border-color: var(--tcds-color-theme-accent);
 
-  &:not(:hover) {
-    --tcds-cta-border-color: currentcolor;
+  &:hover {
+    --tcds-cta-border-color-hover: var(--tcds-cta-background-color);
   }
 }
 
@@ -43,7 +44,7 @@
   padding: var(--tcds-cta-padding);
   border-radius: 5rem;
   display: inline-flex;
-  gap: var(--tcds-space-component-md);
+  gap: .75rem;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -54,12 +55,18 @@
     border-color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-translate),
     color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-translate);
 
-  &:hover {
+  &:hover,
+  [data-pointer-event-proxy=".tcds-cta"]:hover & {
     --tcds-cta-background-color: var(--tcds-cta-background-color-hover);
     --tcds-cta-text-color: var(--tcds-cta-text-color-hover);
+    --tcds-cta-border-color: var(--tcds-cta-border-color-hover);
   }
 
   &::after {
     font-size: 1.8em;
+  }
+
+  tcds-icon {
+    font-size: .8em;
   }
 }

@@ -1,5 +1,5 @@
 {% set base_class = "tcds-section" %}
-{% set _classes = [base_class, classes|default("")] %}
+{% set _classes = [base_class, modifiers|default([])|map(modifier => "#{base_class}--#{modifier}")|join(" "), classes|default("")]|join(" ") %}
 
 {% set attributes = attributes|default(create_attribute()) %}
 {% set attributes = attributes.addClass(_classes) %}
@@ -14,6 +14,13 @@
         role: "presentation",
       })) }}>
     {% endfor %}
+  {% endif %}
+  {% if background_video %}
+    <video {{ create_attribute(background_video|merge({
+      loop: true,
+      autoplay: true,
+      muted: true,
+    })) }}></video>
   {% endif %}
   <div class="container-lg">
     {% block content %}

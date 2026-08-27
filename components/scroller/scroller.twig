@@ -1,0 +1,17 @@
+{% set _classes = [classes|default(null)]|join(" ") %}
+
+{% set attributes = attributes|default(create_attribute()) %}
+{% set attributes = attributes.addClass(_classes) %}
+
+<tcds-scroller {{ attributes }}>
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+  {% if links and links is iterable and links|length %}
+    {% for link in links %}
+      {{ include("@tcds/cta/cta.twig", link|merge({
+        attributes: create_attribute({"slot": "controls"}),
+      })) }}
+    {% endfor %}
+  {% endif %}
+</section>

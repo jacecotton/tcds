@@ -54,7 +54,7 @@ export default {
     },
     // Build for JS so tokens can be imported and read by other modules.
     js: {
-      buildPath: "src/js/_gen",
+      buildPath: "src/components/_shared/_gen",
       transforms: [
         ...StyleDictionary.hooks.transformGroups["js"],
         "value/cubic-bezier",

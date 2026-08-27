@@ -33,6 +33,14 @@ export class Carousel extends LitElement {
 
   @state()
   accessor #offscreen = false;
+
+  /**
+   * Whether the reader has asked for motion to stop. Distinct from `playing`,
+   * which also goes false when navigation surrenders autoplay — that is not a
+   * request to stop video.
+   */
+  @state()
+  accessor #mediaSuspended = false;
   // #endregion
 
   // #region Private variables
@@ -150,11 +158,11 @@ export class Carousel extends LitElement {
           <button
             part="control toggle"
             type="button"
-            title="${this.playing ? "Pause" : "Play"} automatic slide rotation"
+            title="${this.playing ? "Pause" : "Play"} autoplay"
             @click=${this.#onToggleClick}
           >
             <span class="visually-hidden">
-              ${this.playing ? "Pause" : "Play"} automatic slide rotation
+              ${this.playing ? "Pause" : "Play"} autoplay
             </span>
             <tcds-icon icon=${this.playing ? "pause" : "play"}></tcds-icon>
           </button>
@@ -220,12 +228,22 @@ export class Carousel extends LitElement {
     this.select(this.index - 1);
   }
 
+  /**
+   * Starts everything the carousel moves on its own: slide rotation, and any
+   * background video in the selected slide that this component stopped.
+   */
   play() {
     this.playing = true;
+    this.#mediaSuspended = false;
   }
 
+  /**
+   * Stops everything the carousel moves on its own. Slides that aren't selected
+   * keep their media paused when this is lifted, until they're revealed.
+   */
   pause() {
     this.playing = false;
+    this.#mediaSuspended = true;
   }
   // #endregion
 
@@ -311,10 +329,11 @@ export class Carousel extends LitElement {
   /**
    * Manual navigation surrenders autoplay, per the ARIA authoring practices for
    * carousels: once the reader takes the wheel, the carousel stops moving out
-   * from under them.
+   * from under them. It sets `playing` rather than calling `pause()`, because
+   * asking for the next slide is not a request to stop that slide's video.
    */
   #navigate(position) {
-    this.pause();
+    this.playing = false;
     this.select(position);
   }
 
@@ -355,6 +374,7 @@ export class Carousel extends LitElement {
       slide.position = position;
       slide.total = slides.length;
       slide.toggleAttribute("selected", position === index);
+      slide.toggleAttribute("suspended", this.#mediaSuspended);
     });
   }
 

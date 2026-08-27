@@ -1,0 +1,37 @@
+{% set base_class = "tcds-article-card" %}
+{% set modifiers = modifiers|default([]) %}
+{% set _classes = [base_class, modifiers|map(modifier => "#{base_class}--#{modifier}")|join(" "), classes|default("")]|join(" ") %}
+{% set attributes = attributes|default(create_attribute()) %}
+{% set attributes = attributes.addClass(_classes) %}
+{% set attributes = attributes.setAttribute("data-pointer-event-proxy", ".tcds-cta") %}
+
+{% set heading_level = heading_level|default("h3") %}
+
+<article {{ attributes }}>
+  {% if image %}
+    <figure class="{{ base_class }}__image">
+      <img {{ create_attribute(image) }}>
+    </figure>
+  {% endif %}
+  {% if title %}
+    <{{ heading_level }} class="{{ base_class }}__title">{{ title }}</{{ heading_level }}>
+  {% endif %}
+  {% if description %}
+    <p class="{{ base_class }}__description">
+      {{ description }}
+    </p>
+  {% endif %}
+  {% if links and links is iterable and links|length %}
+    {% for link in links %}
+      <a href="{{ link.url }}" class="{{ base_class }}__cta">
+        {% if "video" in modifiers %}
+          <tcds-icon icon="play" class="tcds-cta tcds-cta--outline"></tcds-icon>
+        {% endif %}
+        {{ link.text }}
+        {% if "video" not in modifiers %}
+          <tcds-icon icon="caret-right-thin"></tcds-icon>
+        {% endif %}
+      </a>
+    {% endfor %}
+  {% endif %}
+</article>

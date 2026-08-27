@@ -25,6 +25,14 @@ export class Slide extends LitElement {
   accessor selected = false;
 
   /**
+   * Set by the parent carousel while its playback toggle is off. Holds this
+   * slide's media paused even when the slide is selected, and is checked again
+   * on reveal, so a slide surfaced during a suspension stays quiet.
+   */
+  @property({type: Boolean, reflect: true})
+  accessor suspended = false;
+
+  /**
    * Zero-based position among sibling slides, assigned by the parent carousel
    * as a property so the light DOM markup stays clean.
    */
@@ -78,10 +86,10 @@ export class Slide extends LitElement {
   }
 
   updated(changedProperties) {
-    // Only real transitions. On the first update `selected` is present with an
-    // undefined old value, which `firstUpdated` handles instead.
-    if (!changedProperties.has("selected")) return;
-    if (changedProperties.get("selected") === undefined) return;
+    // The first update is not a transition; `firstUpdated` handles it once the
+    // parent has had a chance to assign both of these.
+    if (!this.#settled) return;
+    if (!changedProperties.has("selected") && !changedProperties.has("suspended")) return;
 
     this.#syncMedia();
   }
@@ -102,13 +110,15 @@ export class Slide extends LitElement {
   }
 
   #syncMedia() {
-    if (this.selected) {
+    if (this.selected && !this.suspended) {
       // Background video restarts itself. Anything with a soundtrack stays
       // paused: a slide can become selected from autorotation, not a click.
+      // Pass `resume: true` here to restart that too.
       restoreMedia(this, {owner: this.#owner});
     } else {
       // display:none does not stop playback, and detaching an embed that never
-      // loaded defers the request until the slide is actually shown.
+      // loaded defers the request until the slide is actually shown. Media
+      // already paused by a nested scope keeps that scope's bookkeeping.
       pauseMedia(this, {owner: this.#owner});
     }
   }

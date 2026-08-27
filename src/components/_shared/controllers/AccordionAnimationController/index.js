@@ -3,7 +3,7 @@ import {
   MotionEasingEnter,
   MotionEasingExit,
   MotionDurationProductive,
-} from "@/js/_gen/tokens.js";
+} from "@/components/_shared/_gen/tokens.js";
 
 export class AccordionAnimationController {
   #config;
