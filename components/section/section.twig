@@ -9,10 +9,17 @@
 <section {{ attributes }}>
   {% if background_images %}
     {% for image in background_images %}
-      <img {{ create_attribute(image|merge({
-        alt: "",
-        role: "presentation",
-      })) }}>
+      <picture>
+        {% if image.desktop and image.desktop.src %}
+          <source {{ create_attribute(image.desktop|merge({
+            media: "(min-width: 960px)",
+          })) }}>
+        {% endif %}
+        <img {{ create_attribute(image.default|merge({
+          alt: "",
+          role: "presentation",
+        })) }}>
+      </picture>
     {% endfor %}
   {% endif %}
   {% if background_video %}
