@@ -55,10 +55,10 @@ export default css`
     z-index: 2;
 
     ::slotted(*) {
-      margin-top: var(--tcds-space-layout-md);
+      margin-top: var(--tcds-space-layout-md) !important;
 
       @media (min-width: ${unsafeCSS(SizeBreakpointMd)}) {
-        margin-top: var(--tcds-space-layout-lg);
+        margin-top: var(--tcds-space-layout-lg) !important;
       }
     }
   }
