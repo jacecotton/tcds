@@ -5,14 +5,39 @@ window.addEventListener("DOMContentLoaded", () => {
   quickLinks.forEach((quickLink) => {
     const textElement = quickLink.querySelector(":scope > a > span");
     if (!textElement) return;
-    const textContent = textElement.textContent.trim();
-    if (!textContent) return;
 
-    const words = textContent.split(/\s+/);
-    const lastWord = words.pop();
+    const childNodes = Array.from(textElement.childNodes);
+    let lastTextNode = null;
+    let lastTextNodeIndex = -1;
 
-    textElement.innerHTML = words.length > 0
-      ? `${words.join(" ")} <span class="nowrap">${lastWord}</span>`
-      : `<span class="white-space-nowrap">${lastWord}</span>`;
+    for (let i = childNodes.length - 1; i >= 0; i--) {
+      const node = childNodes[i];
+      if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== "") {
+        lastTextNode = node;
+        lastTextNodeIndex = i;
+        break;
+      }
+    }
+
+    if (!lastTextNode) return;
+
+    const text = lastTextNode.textContent;
+
+    const match = text.match(/(\S+)(\s*)$/);
+    if (!match) return;
+
+    const lastWordWithSpace = match[0];
+    const remainingText = text.substring(0, text.length - lastWordWithSpace.length);
+
+    lastTextNode.textContent = remainingText;
+
+    const wrapper = document.createElement("span");
+    wrapper.className = "white-space-nowrap";
+    wrapper.textContent = lastWordWithSpace;
+
+    const tailNodes = childNodes.slice(lastTextNodeIndex + 1);
+    tailNodes.forEach((node) => wrapper.appendChild(node));
+
+    textElement.insertBefore(wrapper, lastTextNode.nextSibling);
   });
 });

@@ -1,7 +1,6 @@
 import {customElement, property} from "lit/decorators.js";
 import {Disclosure} from "@/components/_shared/base/Disclosure";
 
-@customElement("tcds-tab")
 export class Tab extends Disclosure {
   // #region Properties and state
   /**
@@ -21,4 +20,8 @@ export class Tab extends Disclosure {
     this.selected = value;
   }
   // #endregion
+}
+
+if (!customElements.get("tcds-tab")) {
+  customElements.define("tcds-tab", Tab);
 }

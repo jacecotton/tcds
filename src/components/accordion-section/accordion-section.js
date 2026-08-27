@@ -1,7 +1,6 @@
 import {customElement, property} from "lit/decorators.js";
 import {Disclosure} from "@/components/_shared/base/Disclosure";
 
-@customElement("tcds-accordion-section")
 export class AccordionSection extends Disclosure {
   // #region Properties and state
   /**
@@ -22,4 +21,8 @@ export class AccordionSection extends Disclosure {
     this.open = value;
   }
   // #endregion
+}
+
+if (!customElements.get("tcds-accordion-section")) {
+  customElements.define("tcds-accordion-section", AccordionSection);
 }
