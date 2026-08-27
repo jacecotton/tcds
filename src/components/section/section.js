@@ -7,7 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (images.length < 2) return;
 
-    const {timing} = section.dataset;
+    const timing = Number.parseFloat(section.dataset.timing);
+    if (!Number.isFinite(timing) || timing <= 0) return;
+
     let activeIndex = 0;
     images[activeIndex].dataset.active = true;
 

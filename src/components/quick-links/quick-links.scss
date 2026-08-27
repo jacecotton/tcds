@@ -47,16 +47,14 @@
     span {
       margin-block-start: auto;
 
-      &::after {
-        --tcds-quick-links-caret-icon-size: .1em;
-        vertical-align: middle;
-        background-color: var(--tcds-color-theme-accent);
-        mask: var(--tcds-icon-utility-caret-right-thin) no-repeat var(--tcds-quick-links-caret-icon-size);
-        mask-position: center;
-        padding-left: var(--tcds-quick-links-caret-icon-size);
+      tcds-icon {
+        color: var(--tcds-color-theme-accent);
+        mask: var(--tcds-icon-utility-caret-right-thin) no-repeat center;
         position: relative;
         left: var(--tcds-quick-links-caret-icon-left, .66em);
+        top: -1px;
         transition: left .33s var(--tcds-motion-easing-translate);
+        font-size: .8em;
       }
     }
   }

@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
   sections.forEach(function (section) {
     var images = section.querySelectorAll(":scope > :is(img, picture)");
     if (images.length < 2) return;
-    var timing = section.dataset.timing;
+    var timing = Number.parseFloat(section.dataset.timing);
+    if (!Number.isFinite(timing) || timing <= 0) return;
     var activeIndex = 0;
     images[activeIndex].dataset.active = true;
     setInterval(function () {

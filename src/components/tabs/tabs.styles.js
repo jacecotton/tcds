@@ -6,7 +6,7 @@ export default css`
 
   [part=tablist] {
     display: flex;
-    gap: var(--tcds-space-component-lg);
+    gap: 2rem;
     border-bottom: 1px solid var(--tcds-color-theme-edge);
   }
 
