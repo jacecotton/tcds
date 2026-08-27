@@ -41,6 +41,9 @@
 
   &__description {
     margin: 0;
+    font-size: var(--tcds-font-size-md);
+    font-weight: var(--tcds-font-weight-body);
+    line-height: var(--tcds-line-height-normal);
 
     small {
       display: block;
