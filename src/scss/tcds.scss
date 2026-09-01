@@ -1,3 +1,15 @@
-@layer tcds {
-  @import ".";
+@use "sass:meta";
+
+@layer tcds-props, tcds-side-effects, tcds-utilities;
+
+@layer tcds-props {
+  @include meta.load-css("props");
+}
+
+@layer tcds-side-effects {
+  @include meta.load-css("theming");
+}
+
+@layer tcds-utilities {
+  @include meta.load-css("utilities");
 }

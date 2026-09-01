@@ -9,7 +9,7 @@
     "duration": {
       "$type": "duration",
       "productive": {"$value": "100ms"},
-      "expressive": {"$value": "800ms"}
+      "expressive": {"$value": "300ms"}
     }
   }
 }
