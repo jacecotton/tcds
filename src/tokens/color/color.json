@@ -54,7 +54,7 @@
         "surface": {"$value": "{color.palette.white}"},
         "text": {
           "primary": {"$value": "{color.palette.white}"},
-          "secondary": {"$value": "{color.palette.blue.150}"},
+          "secondary": {"$value": "{color.palette.white}"},
           "muted": {"$value": "{color.palette.blue.150}"}
         },
         "accent": {"$value": "{color.palette.red.500}"},

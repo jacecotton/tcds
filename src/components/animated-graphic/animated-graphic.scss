@@ -4,13 +4,9 @@
   border-radius: var(--tcds-border-radius-lg);
   overflow: hidden;
 
-  .tcds-cta {
+  .tcds-button {
     position: absolute;
     right: var(--tcds-space-component-lg);
     bottom: var(--tcds-space-component-lg);
-    width: 1.5rem;
-    height: 1.5rem;
-    border-width: 1.5px;
-    padding: 0;
   }
 }

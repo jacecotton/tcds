@@ -58,19 +58,16 @@ export default css`
   }
 
   [part=toggle] {
-    appearance: none;
-    display: block;
-    background: transparent;
-    color: var(--tcds-color-theme-default-accent);
-    border: 1.5px solid currentcolor;
-    width: 1.5rem;
-    height: 1.5rem;
-    border-radius: 1.5rem;
-    font-size: .7rem;
+    display: flex;
     margin-block: var(--tcds-space-component-sm);
     margin-inline: auto var(--tcds-site-inner-gutter);
-    padding: 0;
-    cursor: pointer;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: -12px;
+    }
   }
 
   @keyframes tcds-marquee-scroll {

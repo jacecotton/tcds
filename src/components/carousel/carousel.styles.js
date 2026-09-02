@@ -102,7 +102,7 @@ export default css`
     }
 
     &:active {
-      color: var(--tcds-carousel-control-color-active);
+      color: var(--tcds-button-text-color-active, var(--tcds-carousel-control-color-active));
     }
 
     &::before {

@@ -55,6 +55,7 @@ export class Marquee extends LitElement {
       </div>
       <button
         part="toggle"
+        class="tcds-button tcds-button--media"
         type="button"
         aria-pressed=${this.paused}
         @click=${this.#togglePause}

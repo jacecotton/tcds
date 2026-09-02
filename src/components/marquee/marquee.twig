@@ -5,7 +5,7 @@
 
 {% set attributes = attributes.setAttribute("data-theme", theme|default("accent")) %}
 {% set attributes = attributes.setAttribute("speed", speed|default(false)) %}
-
+{% set attributes = attributes.setAttribute("style", "--tcds-marquee-gap: var(--tcds-space-layout-#{gap|default('lg')});") %}
 <tcds-marquee {{ attributes }}>
   {% block content %}{{ content }}{% endblock %}
 </tcds-marquee>

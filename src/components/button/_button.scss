@@ -1,17 +1,19 @@
 @use "abstracts/mixins" as *;
 
-.tcds-button {
-  @include button-style;
+@layer tcds-components {
+  .tcds-button {
+    @include button-style;
 
-  &--reverse {
-    @include button-props-reverse;
-  }
+    &--reverse {
+      @include button-props-reverse;
+    }
 
-  &--large {
-    @include button-props-large;
-  }
+    &--large {
+      @include button-props-large;
+    }
 
-  &--media {
-    @include button-props-media;
+    &--media {
+      @include button-props-media;
+    }
   }
 }
