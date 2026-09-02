@@ -1,4 +1,4 @@
-{% set base_class = "tcds-cta" %}
+{% set base_class = "tcds-cta-link" %}
 {% set _classes = [base_class, modifiers|default([])|map(modifier => "#{base_class}--#{modifier}")|join(" "), classes|default("")]|join(" ") %}
 {% set attributes = attributes|default(create_attribute()) %}
 {% set attributes = attributes.addClass(_classes) %}

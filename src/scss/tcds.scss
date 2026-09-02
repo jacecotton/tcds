@@ -1,6 +1,6 @@
 @use "sass:meta";
 
-@layer tcds-props, tcds-side-effects, tcds-utilities;
+@layer tcds-props, tcds-side-effects, tcds-components, tcds-utilities;
 
 @layer tcds-props {
   @include meta.load-css("props");

@@ -2,14 +2,15 @@
 
 .tcds-hero {
   height: 100%;
-  padding-block: 20rem var(--tcds-space-layout-xl);
+  padding-block: 237px 96px;
 
   @include breakpoint("lg") {
-    padding-block: var(--tcds-space-layout-xl);
+    padding-block: 157px 173px;
   }
 
   > .container-lg {
     display: flex;
+    flex-direction: row;
     align-items: center;
     height: 100%;
   }

@@ -1,0 +1,95 @@
+@mixin button-props-reverse() {
+  --tcds-button-background-color: var(--tcds-color-theme-accent-text-primary);
+  --tcds-button-text-color: var(--tcds-color-theme-accent);
+  --tcds-button-background-color-hover: var(--tcds-color-theme-accent);
+  --tcds-button-text-color-hover: var(--tcds-color-palette-white);
+}
+
+@mixin button-props-large() {
+  --tcds-button-padding: 0 2.5rem;
+  --tcds-button-height: var(--tcds-size-component-xl);
+  --tcds-button-font-size: var(--tcds-font-size-lg);
+  --tcds-button-icon-size: 1.85em;
+}
+
+@mixin button-props-outline {
+  --tcds-button-background-color: transparent;
+  --tcds-button-text-color: var(--tcds-color-theme-accent);
+  --tcds-button-border-color: var(--tcds-color-theme-accent);
+  --tcds-button-border-color-hover: var(--tcds-button-background-color);
+}
+
+@mixin button-props-media {
+  --tcds-button-background-color: transparent;
+  --tcds-button-background-color-hover: transparent;
+  --tcds-button-text-color: var(--tcds-color-theme-default-accent);
+  --tcds-button-text-color-hover: color-mix(in oklab, var(--tcds-color-theme-default-accent), rgb(0 0 0) 10%);
+  --tcds-button-border-color: var(--tcds-color-theme-default-accent);
+  --tcds-button-border-color-hover: color-mix(in oklab, var(--tcds-color-theme-default-accent), rgb(0 0 0) 10%);
+  --tcds-button-border-width: 1.5px;
+  --tcds-button-height: var(--tcds-size-component-sm);
+  --tcds-button-width: var(--tcds-button-height);
+  --tcds-button-padding: 0;
+}
+
+@mixin button-style($color: false, $size: false, $flag: "") {
+  @if $color == "reverse" {
+    @include button-props-reverse();
+  } @else {
+    --tcds-button-background-color: var(--tcds-color-theme-accent);
+    --tcds-button-text-color: var(--tcds-color-theme-accent-text-primary);
+    --tcds-button-background-color-hover: color-mix(in oklab, var(--tcds-color-theme-accent), rgb(0 0 0) 10%);
+    --tcds-button-text-color-hover: var(--tcds-color-theme-accent-text-primary);
+  }
+
+  @if $size == "large" {
+    @include button-props-large();
+  } @else {
+    --tcds-button-padding: 0 2rem;
+    --tcds-button-font-size: var(--tcds-font-size-md);
+  }
+
+  --tcds-button-height: var(--tcds-size-component-lg);
+  --tcds-button-width: auto;
+
+  background-color: var(--tcds-button-background-color) #{$flag};
+  border: var(--tcds-button-border-width, 2px) solid var(--tcds-button-border-color, var(--tcds-button-background-color)) #{$flag};
+  color: var(--tcds-button-text-color) #{$flag};
+  font-weight: var(--tcds-font-weight-ui) #{$flag};
+  font-size: var(--tcds-button-font-size) #{$flag};
+  padding: var(--tcds-button-padding) #{$flag};
+  height: var(--tcds-button-height) #{$flag};
+  width: var(--tcds-button-width) #{$flag};
+  border-radius: var(--tcds-button-height) #{$flag};
+  display: inline-flex #{$flag};
+  gap: .75rem #{$flag};
+  align-items: center #{$flag};
+  justify-content: center #{$flag};
+  text-align: center #{$flag};
+  text-decoration: none #{$flag};
+  line-height: 1 #{$flag};
+  transition:
+    background-color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-translate),
+    border-color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-translate),
+    color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-translate) #{$flag};
+
+  // @todo Need to figure out a better way to do this selector. Maybe handle
+  // [data-pointer-event-proxy] on the respective cta and button stylesheets.
+  &:hover,
+  [data-pointer-event-proxy=".tcds-cta-link"]:hover &,
+  [data-pointer-event-proxy=".tcds-button"]:hover & {
+    --tcds-button-background-color: var(--tcds-button-background-color-hover);
+    --tcds-button-text-color: var(--tcds-button-text-color-hover);
+    --tcds-button-border-color: var(--tcds-button-border-color-hover);
+  }
+
+  tcds-icon,
+  &:is(tcds-icon) {
+    font-size: var(--tcds-button-icon-size, .7em) #{$flag};
+  }
+
+  &:is(tcds-icon) {
+    --tcds-button-padding: 0 #{$flag};
+    --tcds-button-width: var(--tcds-button-height) #{$flag};
+  }
+}

@@ -1,5 +1,3 @@
-@use "../cta/abstracts/mixins" as *;
-
 .tcds-video {
   --_tcds-video-aspect-ratio-width: var(--tcds-video-aspect-ratio-width, 16);
   --_tcds-video-aspect-ratio-height: var(--tcds-video-aspect-ratio-height, 9);
@@ -37,8 +35,6 @@
     }
 
     tcds-icon {
-      @include cta-style($color: "reverse", $size: "large");
-
       position: relative;
     }
 

@@ -16,7 +16,7 @@
   {% endif %}
   {% if links and links|length %}
     {% for link in links %}
-      {{ include("@tcds/cta/cta.twig", link, with_context=false)  }}
+      {{ include("@tcds/cta-link/cta-link.twig", link, with_context=false)  }}
     {% endfor %}
   {% endif %}
 </article>

@@ -124,7 +124,7 @@ export class Carousel extends LitElement {
             @click=${this.#onPreviousClick}
           >
             <span class="visually-hidden">Previous slide</span>
-            <tcds-icon icon="caret-left"></tcds-icon>
+            <tcds-icon icon="caret-left-small"></tcds-icon>
           </button>
           <button
             part="control next"
@@ -133,7 +133,7 @@ export class Carousel extends LitElement {
             @click=${this.#onNextClick}
           >
             <span class="visually-hidden">Next slide</span>
-            <tcds-icon icon="caret-right"></tcds-icon>
+            <tcds-icon icon="caret-right-small"></tcds-icon>
           </button>
           <div
             part="dots"
@@ -158,11 +158,12 @@ export class Carousel extends LitElement {
           <button
             part="control toggle"
             type="button"
-            title="${this.playing ? "Pause" : "Play"} autoplay"
+            class="tcds-button tcds-button--media"
+            title="${this.playing ? "Pause" : "Start"} autoplay"
             @click=${this.#onToggleClick}
           >
             <span class="visually-hidden">
-              ${this.playing ? "Pause" : "Play"} autoplay
+              ${this.playing ? "Pause" : "Start"} autoplay
             </span>
             <tcds-icon icon=${this.playing ? "pause" : "play"}></tcds-icon>
           </button>

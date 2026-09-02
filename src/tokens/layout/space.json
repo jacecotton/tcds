@@ -8,24 +8,25 @@
     "4": {"$value": "16px"},
     "6": {"$value": "24px"},
     "8": {"$value": "32px"},
-    "12": {"$value": "48px"},
+    "14": {"$value": "56px"},
     "18": {"$value": "72px"},
-    "36": {"$value": "144px"},
+    "26": {"$value": "104px"},
+    "35": {"$value": "140px"},
     "component": {
       "$description": "Semantic spacing values for component scales.",
       "xs": {"$value": "{space.2}"},
       "sm": {"$value": "{space.3}"},
       "md": {"$value": "{space.4}"},
       "lg": {"$value": "{space.6}"},
-      "xl": {"$value": "{space.12}"}
+      "xl": {"$value": "{space.14}"}
     },
     "layout": {
       "$description": "Semantic spacing values for layout scales.",
       "xs": {"$value": "{space.4}"},
       "sm": {"$value": "{space.6}"},
-      "md": {"$value": "{space.12}"},
+      "md": {"$value": "{space.14}"},
       "lg": {"$value": "{space.18}"},
-      "xl": {"$value": "{space.36}"}
+      "xl": {"$value": "{space.26}"}
     }
   }
 }

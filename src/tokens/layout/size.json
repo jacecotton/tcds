@@ -1,56 +1,68 @@
 {
   "size": {
     "$type": "dimension",
-    "$description": "Raw sizing values, graded in multiples of 160px.",
-    "2": {"$value": "320px"},
-    "4": {"$value": "640px"},
-    "6": {"$value": "960px"},
-    "8": {"$value": "1312px"},
-    "12": {"$value": "1920px"},
+    "$description": "Raw sizing values, graded in multiples of 4px.",
+    "3": {"$value": "12px"},
+    "6": {"$value": "24px"},
+    "10": {"$value": "40px"},
+    "14": {"$value": "56px"},
+    "20": {"$value": "80px"},
+    "80": {"$value": "320px"},
+    "160": {"$value": "640px"},
+    "240": {"$value": "960px"},
+    "328": {"$value": "1312px"},
+    "480": {"$value": "1920px"},
+    "component": {
+      "xs": {"$value": "{size.3}"},
+      "sm": {"$value": "{size.6}"},
+      "md": {"$value": "{size.10}"},
+      "lg": {"$value": "{size.14}"},
+      "xl": {"$value": "{size.20}"}
+    },
     "layout": {
       "$description": "Semantic sizing values for layouts.",
       "xs": {
-        "$description": "Extra-small ({size.2})",
-        "$value": "{size.2}"
+        "$description": "Extra-small ({size.80})",
+        "$value": "{size.80}"
       },
       "sm": {
-        "$description": "Small ({size.4})",
-        "$value": "{size.4}"
+        "$description": "Small ({size.160})",
+        "$value": "{size.160}"
       },
       "md": {
-        "$description": "Medium ({size.6})",
-        "$value": "{size.6}"
+        "$description": "Medium ({size.240})",
+        "$value": "{size.240}"
       },
       "lg": {
-        "$description": "Large ({size.8})",
-        "$value": "{size.8}"
+        "$description": "Large ({size.328})",
+        "$value": "{size.328}"
       },
       "xl": {
-        "$description": "Extra-large ({size.12})",
-        "$value": "{size.12}"
+        "$description": "Extra-large ({size.480})",
+        "$value": "{size.480}"
       }
     },
     "breakpoint": {
       "$description": "Semantic sizing values for breakpoints.",
       "xs": {
-        "$description": "Extra-small ({size.2})",
-        "$value": "{size.2}"
+        "$description": "Extra-small ({size.80})",
+        "$value": "{size.80}"
       },
       "sm": {
-        "$description": "Small ({size.4})",
-        "$value": "{size.4}"
+        "$description": "Small ({size.160})",
+        "$value": "{size.160}"
       },
       "md": {
-        "$description": "Medium ({size.6})",
-        "$value": "{size.6}"
+        "$description": "Medium ({size.240})",
+        "$value": "{size.240}"
       },
       "lg": {
-        "$description": "Large ({size.8})",
-        "$value": "{size.8}"
+        "$description": "Large ({size.328})",
+        "$value": "{size.328}"
       },
       "xl": {
-        "$description": "Extra-large ({size.12})",
-        "$value": "{size.12}"
+        "$description": "Extra-large ({size.480})",
+        "$value": "{size.480}"
       }
     }
   }

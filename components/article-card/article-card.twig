@@ -25,11 +25,11 @@
     {% for link in links %}
       <a href="{{ link.url }}" class="{{ base_class }}__cta">
         {% if "video" in modifiers %}
-          <tcds-icon icon="play" class="tcds-cta tcds-cta--outline"></tcds-icon>
+          <tcds-icon icon="play" class="tcds-button tcds-button--media"></tcds-icon>
         {% endif %}
         {{ link.text }}
         {% if "video" not in modifiers %}
-          <tcds-icon icon="caret-right-thin"></tcds-icon>
+          <tcds-icon icon="caret-right"></tcds-icon>
         {% endif %}
       </a>
     {% endfor %}

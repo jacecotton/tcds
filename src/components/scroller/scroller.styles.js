@@ -48,19 +48,15 @@ export default css`
   }
 
   [part=controls] {
+    --tcds-scroller-controls-gap: var(--tcds-space-8);
+
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
-    gap: var(--tcds-space-component-md);
+    gap: var(--tcds-scroller-controls-gap);
     padding-right: var(--tcds-site-inner-gutter);
+    margin-top: var(--tcds-space-layout-md);
     z-index: 2;
-
-    ::slotted(*) {
-      margin-top: var(--tcds-space-layout-md) !important;
-
-      @media (min-width: ${unsafeCSS(SizeBreakpointMd)}) {
-        margin-top: var(--tcds-space-layout-lg) !important;
-      }
-    }
   }
 
   [part~=control] {
@@ -69,7 +65,7 @@ export default css`
     background-color: transparent;
     color: var(--tcds-scroller-control-color);
     cursor: pointer;
-    margin-top: var(--tcds-space-layout-md);
+    position: relative;
 
     &:hover {
       color: var(--tcds-scroller-control-color-hover);
@@ -83,6 +79,12 @@ export default css`
       color: var(--tcds-scroller-control-color);
       opacity: .4;
       cursor: default;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: calc(var(--tcds-scroller-controls-gap) / -2);
     }
   }
 

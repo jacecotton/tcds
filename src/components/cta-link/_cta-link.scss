@@ -1,0 +1,9 @@
+@use "../button/abstracts/mixins" as *;
+
+.tcds-cta-link {
+  @include button-style($flag: "!important");
+
+  &--outline {
+    @include button-props-outline;
+  }
+}

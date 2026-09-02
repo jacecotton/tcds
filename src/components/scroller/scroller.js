@@ -83,7 +83,7 @@ export class Scroller extends LitElement {
             @click=${this.#onPreviousClick}
           >
             <span class="visually-hidden">Previous</span>
-            <tcds-icon icon="caret-left"></tcds-icon>
+            <tcds-icon icon="caret-left-small"></tcds-icon>
           </button>
           <button
             part="control next"
@@ -93,7 +93,7 @@ export class Scroller extends LitElement {
             @click=${this.#onNextClick}
           >
             <span class="visually-hidden">Next</span>
-            <tcds-icon icon="caret-right"></tcds-icon>
+            <tcds-icon icon="caret-right-small"></tcds-icon>
           </button>
         ` : nothing}
       </div>

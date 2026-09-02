@@ -1,7 +1,13 @@
-tcds-slide:not(:defined) {
-  display: block;
+tcds-slide {
+  > * {
+    height: 100%;
+  }
 
-  & ~ & {
-    display: none;
+  &:not(:defined) {
+    display: block;
+
+    & ~ & {
+      display: none;
+    }
   }
 }

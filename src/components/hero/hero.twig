@@ -21,7 +21,7 @@
       <div class="flex" style="gap: 1rem">
         {% if links and links|length %}
           {% for link in links %}
-            {{ include("@tcds/cta/cta.twig", link|merge({
+            {{ include("@tcds/cta-link/cta-link.twig", link|merge({
               modifiers: loop.index == 2 ? ["outline"] : null,
             }), with_context=false)  }}
           {% endfor %}
