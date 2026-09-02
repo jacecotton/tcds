@@ -1,0 +1,9 @@
+{% set base_class = "tcds-site-header" %}
+{% set _classes = [base_class, modifiers|default([])|map(modifier => "#{base_class}--#{modifier}")|join(" "), classes|default("")|join(" ")] %}
+
+{% set attributes = attributes|default(create_attribute()) %}
+{% set attributes = attributes.addClass(_classes) %}
+
+<header {{ attributes }}>
+
+</header>

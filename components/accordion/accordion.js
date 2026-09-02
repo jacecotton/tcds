@@ -1,5 +1,5 @@
 import { i, A, u, n, t } from '../../dist/js/vendor.js';
-import { D as DisclosureGroup } from '../../dist/js/shared.js';
+import { a as DisclosureGroup } from '../../dist/js/shared.js';
 import '../accordion-section/accordion-section.js';
 
 var _templateObject$1;

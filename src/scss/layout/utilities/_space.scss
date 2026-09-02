@@ -1,4 +1,5 @@
 @use "sass:map";
+@use "sass:meta";
 @use "../../abstracts/functions" as *;
 @use "../../abstracts/mixins" as *;
 
@@ -16,25 +17,29 @@
  */
 
 @include responsive-utils() using ($breakpoint) {
-  @each $name, $value in tokens("space", "layout") {
-    $pct: (
-      "xs": calc(100% / 72),
-      "sm": calc(100% / 48),
-      "md": calc(100% / 24),
-      "lg": calc(100% / 18),
-      "xl": calc(100% / 12),
-    );
+  @each $scale, $spaces in tokens("space") {
+    @if meta.type-of($spaces) == "map" {
+      @each $name, $value in $spaces {
+        $pct: (
+          "xs": calc(100% / 72),
+          "sm": calc(100% / 48),
+          "md": calc(100% / 24),
+          "lg": calc(100% / 18),
+          "xl": calc(100% / 12),
+        );
 
-    .#{$breakpoint}gap-#{$name} {
-      gap: min(var(--tcds-space-layout-#{$name}), map.get($pct, $name)) !important;
-    }
+        .#{$breakpoint}#{$scale}-gap-#{$name} {
+          gap: min(var(--tcds-space-layout-#{$name}), map.get($pct, $name)) !important;
+        }
 
-    .#{$breakpoint}row-gap-#{$name} {
-      row-gap: min(var(--tcds-space-layout-#{$name}), map.get($pct, $name)) !important;
-    }
+        .#{$breakpoint}#{$scale}-row-gap-#{$name} {
+          row-gap: min(var(--tcds-space-layout-#{$name}), map.get($pct, $name)) !important;
+        }
 
-    .#{$breakpoint}column-gap-#{$name} {
-      column-gap: var(--tcds-space-layout-#{$name}) !important;
+        .#{$breakpoint}#{$scale}-column-gap-#{$name} {
+          column-gap: var(--tcds-space-layout-#{$name}) !important;
+        }
+      }
     }
   }
 }
@@ -59,47 +64,51 @@
  */
 
 @include responsive-utils() using ($breakpoint) {
-  @each $name, $value in tokens("space", "layout") {
-    .#{$breakpoint}padding-block-#{$name} {
-      --padding-block-start: var(--tcds-space-layout-#{$name});
-      --padding-block-end: var(--tcds-space-layout-#{$name});
-      --padding-block: var(--padding-block-start) var(--padding-block-end);
+  @each $scale, $spaces in tokens("space") {
+    @if meta.type-of($spaces) == "map" {
+      @each $name, $value in $spaces {
+        .#{$breakpoint}#{$scale}-padding-block-#{$name} {
+          --padding-block-start: var(--tcds-space-layout-#{$name});
+          --padding-block-end: var(--tcds-space-layout-#{$name});
+          --padding-block: var(--padding-block-start) var(--padding-block-end);
 
-      padding-block-start: var(--padding-block-start);
-      padding-block-end: var(--padding-block-end);
-    }
+          padding-block-start: var(--padding-block-start);
+          padding-block-end: var(--padding-block-end);
+        }
 
-    .#{$breakpoint}padding-block-start-#{$name} {
-      --padding-block-start: var(--tcds-space-layout-#{$name});
+        .#{$breakpoint}#{$scale}-padding-block-start-#{$name} {
+          --padding-block-start: var(--tcds-space-layout-#{$name});
 
-      padding-block-start: var(--padding-block-start);
-    }
+          padding-block-start: var(--padding-block-start);
+        }
 
-    .#{$breakpoint}padding-block-end-#{$name} {
-      --padding-block-end: var(--tcds-space-layout-#{$name});
+        .#{$breakpoint}#{$scale}-padding-block-end-#{$name} {
+          --padding-block-end: var(--tcds-space-layout-#{$name});
 
-      padding-block-end: var(--padding-block-end);
-    }
+          padding-block-end: var(--padding-block-end);
+        }
 
-    .#{$breakpoint}margin-block-#{$name} {
-      --margin-block-start: var(--tcds-space-layout-#{$name});
-      --margin-block-end: var(--tcds-space-layout-#{$name});
-      --margin-block: var(--margin-block-start) var(--margin-block-end);
+        .#{$breakpoint}#{$scale}-margin-block-#{$name} {
+          --margin-block-start: var(--tcds-space-layout-#{$name});
+          --margin-block-end: var(--tcds-space-layout-#{$name});
+          --margin-block: var(--margin-block-start) var(--margin-block-end);
 
-      margin-block-start: var(--margin-block-start);
-      margin-block-end: var(--margin-block-end);
-    }
+          margin-block-start: var(--margin-block-start);
+          margin-block-end: var(--margin-block-end);
+        }
 
-    .#{$breakpoint}margin-block-start-#{$name} {
-      --margin-block-start: var(--tcds-space-layout-#{$name});
+        .#{$breakpoint}#{$scale}-margin-block-start-#{$name} {
+          --margin-block-start: var(--tcds-space-layout-#{$name});
 
-      margin-block-start: var(--margin-block-start);
-    }
+          margin-block-start: var(--margin-block-start);
+        }
 
-    .#{$breakpoint}margin-block-end-#{$name} {
-      --margin-block-end: var(--tcds-space-layout-#{$name});
+        .#{$breakpoint}#{$scale}-margin-block-end-#{$name} {
+          --margin-block-end: var(--tcds-space-layout-#{$name});
 
-      margin-block-end: var(--margin-block-end);
+          margin-block-end: var(--margin-block-end);
+        }
+      }
     }
   }
 }
