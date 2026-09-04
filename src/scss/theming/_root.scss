@@ -13,10 +13,11 @@
  * 1. Prevents text size from zooming in on mobile devices when orientation is
  *    switched from portrait to landscape.
  */
-html {
+:root {
   text-size-adjust: 100%; // 1
 
   @media (prefers-reduced-motion: no-preference) {
     scroll-behavior: smooth;
+    interpolate-size: allow-keywords;
   }
 }

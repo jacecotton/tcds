@@ -1,5 +1,5 @@
 import { i, u, a as i$1, n, t } from '../../dist/js/vendor.js';
-import { s as styles, r as restoreMedia, p as pauseMedia, b as prepareMedia } from '../../dist/js/shared.js';
+import { s as styles, r as restoreMedia, p as pauseMedia, c as prepareMedia } from '../../dist/js/shared.js';
 
 var _templateObject$1;
 function _taggedTemplateLiteral$1(e, t) { return t || (t = e.slice(0)), Object.freeze(Object.defineProperties(e, { raw: { value: Object.freeze(t) } })); }

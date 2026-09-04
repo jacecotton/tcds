@@ -69,4 +69,4 @@ const e$1=(e,t,c)=>(c.configurable=true,c.enumerable=true,Reflect.decorate&&"obj
  * SPDX-License-Identifier: BSD-3-Clause
  */function o(o){return (e,n)=>{const{slot:r,selector:s}=o??{},c="slot"+(r?`[name=${r}]`:":not([name])");return e$1(e,n,{get(){const t=this.renderRoot?.querySelector(c),e=t?.assignedElements(o)??[];return void 0===s?e:e.filter(t=>t.matches(s))}})}}
 
-export { A, i as a, r$4 as b, e, i$3 as i, n, o, r, t, u };
+export { A, E, i as a, r$4 as b, e, i$3 as i, n, o, r, t, u };

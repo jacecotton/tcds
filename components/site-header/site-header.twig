@@ -1,9 +1,94 @@
-{% set base_class = "tcds-site-header" %}
-{% set _classes = [base_class, modifiers|default([])|map(modifier => "#{base_class}--#{modifier}")|join(" "), classes|default("")|join(" ")] %}
-
+{% set _classes = [classes|default("")]|join(" ") %}
 {% set attributes = attributes|default(create_attribute()) %}
 {% set attributes = attributes.addClass(_classes) %}
 
-<header {{ attributes }}>
+<tcds-site-header {{ attributes }}>
+  <a href="{{ logo.link.url }}" rel="home" title="{{ logo.link.text }}" data-tcds-site-header="logo">
+    <img {{ create_attribute(logo.image) }}>
+    {% if logo.entity %}
+      <span>{{ logo.entity }}</span>
+    {% endif %}
+  </a>
 
-</header>
+  <details data-tcds-site-header="menus">
+    <summary>
+      <span class="visually-hidden">Toggle main navigation</span>
+    </summary>
+    <div>
+      {% if primary_menu is defined and primary_menu is iterable and primary_menu[0] is defined %}
+        <nav data-tcds-site-header="primary-menu">
+          <ul role="list">
+            {% for item in primary_menu %}
+              <li {{ create_attribute(item.attributes|default({})) }}>
+                {% if item.url is defined %}
+                  <a href="{{ item.url }}">{{ item.title }}</a>
+                {% elseif item.content is defined %}
+                  <details name="primary-menu">
+                    <summary>{{ item.title }}</summary>
+                    <div>
+                      {% if block(item.content) is defined %}
+                        {{ block(item.content) }}
+                      {% else %}
+                        {{ item.content }}
+                      {% endif %}
+                    </div>
+                  </details>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        </nav>
+      {% else %}
+        {% block primary_menu %}{{ primary_menu }}{% endblock %}
+      {% endif %}
+
+      {% if utility_menu is defined and utility_menu is iterable and utility_menu[0] is defined %}
+        <nav data-tcds-site-header="utility-menu">
+          <ul role="list">
+            {% for item in utility_menu %}
+              <li {{ create_attribute(item.attributes|default({})) }}>
+                {% if item.below and item.below|length > 0 %}
+                  <details>
+                    <summary>
+                      {{ item.title }}
+                      <tcds-icon icon="caret-down-small"></tcds-icon>
+                    </summary>
+                    <ul class="tcds-submenu tcds-submenu--small">
+                      {% for _item in item.below %}
+                        <li><a href="{{ _item.url }}">{{ _item.title }}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </details>
+                {% else %}
+                  <a href="{{ item.url }}">
+                    {% if item.icon %}
+                      <tcds-icon icon="{{ item.icon }}"></tcds-icon>
+                    {% endif %}
+                    {{ item.title }}
+                  </a>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        </nav>
+      {% else %}
+        {% block utility_menu %}{{ utility_menu }}{% endblock %}
+      {% endif %}
+    </div>
+  </details>
+
+  {% if search_menu is defined %}
+    <details data-tcds-site-header="search" name="primary-menu">
+      <summary>
+        <span class="visually-hidden">Toggle main search</span>
+      </summary>
+      <div>
+        {% if block(search_menu) is defined %}
+          {{ block(search_menu) }}
+        {% else %}
+          {{ search_menu }}
+        {% endif %}
+      </div>
+    </details>
+  {% endif %}
+</tcds-site-header>

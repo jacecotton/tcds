@@ -59,10 +59,6 @@
       "lg": {
         "$description": "Large ({size.328})",
         "$value": "{size.328}"
-      },
-      "xl": {
-        "$description": "Extra-large ({size.480})",
-        "$value": "{size.480}"
       }
     }
   }

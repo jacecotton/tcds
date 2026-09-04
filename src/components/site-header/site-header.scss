@@ -1,0 +1,598 @@
+@use "../../scss/abstracts/mixins" as *;
+
+@mixin -mobile {
+  @include breakpoint("", "lg") {
+    @content;
+  }
+}
+
+@mixin -desktop {
+  @include breakpoint("lg") {
+    @content;
+  }
+}
+
+/**
+ * A menu item's clickable thing, which is a bare link when the item is a leaf
+ * and a `<summary>` when it opens a submenu. This pair recurs at every level of
+ * both menus.
+ */
+@mixin -trigger {
+  > a,
+  > details > summary {
+    @content;
+  }
+}
+
+@mixin -trigger-active {
+  > a:hover,
+  > details > summary:hover,
+  > [open] > summary {
+    @content;
+  }
+}
+
+@mixin -pill-style {
+  --tcds-site-header-details-background-color-hover: color-mix(in oklab, var(--tcds-color-theme-default-accent), #000 10%);
+
+  justify-content: space-between;
+  gap: .5rem !important;
+  padding: .5rem 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 1.25px 3.13px 0 rgb(0 0 0 / 25.1%);
+  color: var(--tcds-color-theme-dark-text-primary) !important;
+  transition: background-color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-enter);
+
+  tcds-icon {
+    font-size: 9px;
+  }
+
+  &:hover {
+    background-color: var(--tcds-site-header-details-background-color-hover);
+  }
+}
+
+@layer tcds-components {
+  :root {
+    --tcds-site-header-height: 78px;
+    --tcds-site-header-logo-width: 220px;
+
+    scroll-padding-top: calc(var(--tcds-site-header-height) + 1rem);
+
+    @include breakpoint("sm") {
+      --tcds-site-header-height: 110px;
+      --tcds-site-header-logo-width: 281px;
+    }
+  }
+
+  tcds-site-header {
+    --tcds-site-header-toggle-color: var(--tcds-color-theme-default-text-primary);
+    --tcds-site-header-link-color: var(--tcds-color-theme-default-text-primary);
+    --tcds-site-header-link-color-hover: var(--tcds-color-theme-default-accent);
+
+    box-sizing: content-box;
+    display: grid;
+    grid-template-columns: var(--tcds-site-header-logo-width) 1fr repeat(2, min-content);
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas:
+      "logo utility utility ."
+      "logo primary search .";
+    align-items: center;
+    background-color: var(--tcds-color-theme-default-background);
+    font-family: var(--tcds-font-family-ui);
+    height: var(--tcds-site-header-height);
+    position: absolute;
+    /**
+     * Not a scroll offset: the point in the document where the header was
+     * released from docking, so it scrolls away from where it was last painted
+     * rather than snapping to the top of the page.
+     */
+    top: var(--tcds-site-header-release, 0px);
+    inset-inline: 0;
+    z-index: var(--tcds-z-index-site-header);
+    padding-inline: max(var(--tcds-site-inner-gutter), (100vw / 2 - var(--tcds-site-container-max-width) / 2));
+    border-top: 8px solid var(--tcds-color-brand-primary);
+
+    @include -desktop {
+      --tcds-site-header-menu-gap: var(--tcds-space-component-lg);
+    }
+
+    // #region Scroll states
+    &[compact] {
+      --tcds-site-header-height: 78px;
+
+      box-shadow: var(--tcds-box-shadow-medium);
+      border-top: 0;
+
+      @include -desktop {
+        grid-template-rows: 0fr 1fr;
+
+        [data-tcds-site-header=utility-menu] {
+          display: none;
+        }
+      }
+    }
+
+    &[open],
+    &[docked] {
+      position: fixed;
+      top: 0;
+    }
+
+    &[docked] {
+      @media (prefers-reduced-motion: no-preference) {
+        animation: tcds-site-header-dock var(--tcds-motion-duration-productive) var(--tcds-motion-easing-enter);
+      }
+    }
+    // #endregion
+
+    // #region Top-level toggles
+    details summary::before {
+      display: none;
+    }
+
+    /**
+     * On desktop every toggle takes the header's own colour. On mobile an open
+     * toggle sits over the panel surface instead, so it is left to inherit.
+     */
+    @include -desktop {
+      > details > summary {
+        color: var(--tcds-site-header-toggle-color);
+      }
+    }
+
+    @include -mobile {
+      > details:not([open]) > summary {
+        color: var(--tcds-site-header-toggle-color);
+      }
+    }
+    // #endregion
+
+    // #region Logo
+    [data-tcds-site-header=logo] {
+      grid-area: logo;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: end;
+      height: 100%;
+      text-decoration: none;
+      color: inherit;
+
+      span {
+        text-align: right;
+        font-weight: var(--tcds-font-weight-ui);
+        font-size: var(--tcds-font-size-md);
+      }
+    }
+    // #endregion
+
+    // #region Full-screen panels, shared by the hamburger and search
+    details:is([data-tcds-site-header=menus], [data-tcds-site-header=search]) {
+      > summary {
+        width: 1.5rem;
+        height: 1.5rem;
+        background-color: currentcolor;
+        mask: var(--tcds-site-header-menu-toggle-icon) no-repeat center;
+        cursor: pointer;
+
+        @include -desktop {
+          width: 1rem;
+          height: 1rem;
+        }
+      }
+
+      @include -mobile {
+        grid-row: 1 / -1;
+
+        &[open] {
+          position: fixed;
+          inset: 8px 0 0 0;
+          z-index: 2;
+          overscroll-behavior-block: none;
+
+          // Fade masking the panel's scrolled content behind the close button.
+          &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: var(--tcds-site-inner-gutter);
+            height: 6rem;
+            z-index: 2;
+            pointer-events: none;
+            background-image: linear-gradient(to bottom, var(--tcds-color-theme-default-background) 50%, rgb(0 0 0 / 0%) 100%);
+          }
+
+          > summary {
+            position: absolute;
+            top: 2.5rem;
+            right: 1.75rem;
+            z-index: 3;
+            width: 1.25rem;
+          }
+
+          > div {
+            position: absolute;
+            inset: 0;
+            background-color: var(--tcds-color-theme-default-surface);
+            overscroll-behavior-block: none;
+            overflow-block: auto;
+          }
+        }
+      }
+
+      /**
+       * The scrim. It is a pseudo-element of the `<details>`, which is why the
+       * component's outside-click handler treats a click whose target *is* a
+       * disclosure as a click on the scrim.
+       */
+      &[open],
+      [open][name="primary-menu"] {
+        &::before {
+          content: "";
+          background: rgb(0 0 0 / 50%);
+          position: fixed;
+          left: 0;
+          right: 0;
+          height: calc(100% - 4rem);
+          margin-top: 4rem;
+        }
+
+        @include -mobile {
+          --tcds-site-header-menu-toggle-icon: var(--tcds-icon-utility-close);
+
+          // Only the hamburger itself gets a scrim on mobile; nested mega menus
+          // open inside it rather than over it.
+          [open]::before {
+            display: none;
+          }
+        }
+
+        @include -desktop {
+          &:is([data-tcds-site-header=menus])::before {
+            display: none;
+          }
+        }
+      }
+    }
+    // #endregion
+
+    // #region Menus wrapper
+    [data-tcds-site-header=menus] {
+      --tcds-site-header-menu-toggle-icon: var(--tcds-icon-utility-menu);
+
+      /**
+       * Above the breakpoint the wrapper is not a disclosure at all: it and its
+       * scaffolding dissolve so the menus become grid items of the header.
+       *
+       * `::details-content` is Chrome's shadow element for the panel. Combining
+       * it into a selector list with the rules above breaks Firefox and Safari,
+       * even wrapped in `:is()`, so it stays on its own.
+       */
+      @include -desktop {
+        & {
+          display: contents;
+        }
+
+        &::details-content {
+          display: contents;
+        }
+
+        > summary {
+          display: none;
+        }
+
+        > div {
+          display: contents;
+        }
+      }
+
+      @include -mobile {
+        grid-column: 3 / 4;
+
+        &:not([open]) {
+          margin-left: 1rem;
+        }
+      }
+
+      > div > nav {
+        grid-row: 1 / -1;
+        margin-left: auto;
+
+        > ul {
+          display: flex;
+          align-items: center;
+
+          @include -desktop {
+            gap: var(--tcds-site-header-menu-gap);
+          }
+
+          > li {
+            @include -trigger {
+              @include text("ui", "md");
+
+              display: flex;
+              align-items: center;
+              gap: .5ch;
+              cursor: pointer;
+              color: var(--tcds-site-header-link-color);
+              line-height: 1;
+              text-decoration: none;
+              user-select: none;
+              transition:
+                color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-enter),
+                box-shadow var(--tcds-motion-duration-productive) var(--tcds-motion-easing-enter);
+            }
+
+            @include -trigger-active {
+              color: var(--tcds-site-header-link-color-hover);
+            }
+
+            > a > tcds-icon {
+              font-size: 1.5em;
+              transform: translateY(-5%);
+            }
+          }
+        }
+      }
+
+      /**
+       * `:not(:only-child)` so that a header with just one of the two menus
+       * lets it fill the grid rather than pinning it to half of it.
+       */
+      [data-tcds-site-header=primary-menu]:not(:only-child) {
+        grid-area: primary;
+        align-self: center;
+
+        @include -mobile {
+          background: var(--tcds-color-theme-default-background);
+        }
+      }
+    }
+    // #endregion
+
+    // #region Utility menu
+    [data-tcds-site-header=utility-menu] {
+      &:not(:only-child) {
+        grid-area: utility;
+        align-self: end;
+      }
+
+      @include -mobile {
+        padding: 3rem 0;
+      }
+
+      > ul {
+        @include -mobile {
+          gap: 1rem 0;
+          flex-wrap: wrap;
+          align-items: start;
+          width: min(100vw - var(--tcds-site-inner-gutter) * 2, var(--tcds-size-breakpoint-sm));
+          margin: 0 auto;
+        }
+
+        > li {
+          display: flex;
+
+          @include -mobile {
+            flex: 1 0 33%;
+          }
+
+          @include -trigger {
+            font-weight: 500 !important;
+            font-size: var(--tcds-font-size-xs) !important;
+
+            &:not(:hover) {
+              color: var(--tcds-color-theme-default-text-muted);
+            }
+          }
+
+          > details {
+            position: relative;
+            width: 100%;
+            z-index: 1;
+
+            &::details-content {
+              transition: all 75ms var(--tcds-motion-easing-enter);
+              transition-behavior: allow-discrete;
+              opacity: 0;
+              transform: perspective(800px) rotateY(-10deg) rotateX(-25deg);
+              filter: blur(30px);
+            }
+
+            &[open] {
+              --tcds-site-header-utility-summary-icon-rotate: -180deg;
+
+              &::details-content {
+                opacity: 1;
+                transform: perspective(800px) rotateY(0deg) rotateX(0deg);
+                filter: blur(0px);
+              }
+
+              > summary {
+                background: var(--tcds-site-header-details-background-color-hover);
+              }
+            }
+
+            > summary {
+              @include -pill-style;
+
+              background-color: var(--tcds-color-theme-default-accent);
+
+              tcds-icon {
+                transform: rotateZ(var(--tcds-site-header-utility-summary-icon-rotate, 0deg));
+                transition: transform var(--tcds-motion-duration-productive) var(--tcds-motion-easing-translate);
+              }
+            }
+
+            // A floating popover on desktop; inline in the flow on mobile.
+            > ul {
+              --tcds-submenu-link-background-inset: .4em;
+
+              position: absolute;
+              right: 0;
+              top: calc(100% + 5px);
+              border-radius: 1rem;
+              background-color: var(--tcds-color-theme-default-background);
+              box-shadow: var(--tcds-box-shadow-medium);
+              padding-block: calc(var(--tcds-space-component-sm) - var(--tcds-submenu-link-background-inset));
+              padding-inline: calc(var(--tcds-space-component-sm) + var(--tcds-submenu-link-background-inset) / 2);
+              white-space: nowrap;
+
+              @include -mobile {
+                position: relative;
+                top: 5px;
+                width: 100%;
+                box-shadow: none;
+                padding-inline: 0;
+                background-color: transparent;
+              }
+            }
+          }
+        }
+      }
+    }
+    // #endregion
+
+    // #region Search
+    [data-tcds-site-header=search] {
+      --tcds-site-header-menu-toggle-icon: var(--tcds-icon-utility-search);
+
+      margin-left: var(--tcds-site-header-menu-gap);
+      align-self: center;
+      grid-row: 1 / -1;
+
+      @include -mobile {
+        grid-column: 2 / 3;
+        margin-left: auto;
+      }
+    }
+
+    /**
+     * Search moves into its own grid area only when the header carries both
+     * menus, which is what the second child of the menus wrapper indicates.
+     */
+    [data-tcds-site-header=menus]:has(div > :nth-child(2)) + [data-tcds-site-header=search] {
+      @include -desktop {
+        grid-area: search;
+      }
+    }
+    // #endregion
+
+    // #region Primary menu and its mega menus
+    nav:not([data-tcds-site-header=utility-menu]) {
+      > ul > li > details[open] {
+        --tcds-site-header-details-icon: var(--tcds-icon-utility-minus);
+      }
+
+      @include -desktop {
+        > ul > li {
+          @include -trigger {
+            padding-block: .5rem;
+          }
+
+          @include -trigger-active {
+            box-shadow: 0 4px 0 var(--tcds-color-theme-default-accent);
+          }
+        }
+      }
+
+      /**
+       * Everything below is the mobile accordion form, split out at the top
+       * rather than repeated as a media query on each of a dozen rules.
+       */
+      @include -mobile {
+        padding: 5rem 0 2rem;
+
+        > ul {
+          flex-direction: column;
+          align-items: start;
+          justify-content: center;
+          margin: 0;
+
+          > li {
+            width: 100%;
+
+            @include -trigger {
+              font-size: var(--tcds-font-size-md);
+              padding: 1rem 0;
+
+              &::after {
+                content: "";
+                background-color: var(--tcds-color-brand-primary);
+                mask: var(--tcds-site-header-details-icon, var(--tcds-icon-utility-plus)) no-repeat center;
+                width: 1em;
+                height: 1em;
+                margin-left: auto;
+              }
+            }
+
+            // The panel is full-bleed, so its contents are centred separately.
+            > a,
+            > details > summary,
+            > details > div {
+              width: min(100vw - var(--tcds-site-inner-gutter) * 2, var(--tcds-size-breakpoint-sm));
+              margin: 0 auto;
+            }
+
+            > details {
+              position: relative;
+              z-index: 1;
+
+              > div {
+                padding: 2rem 0;
+              }
+
+              // Shading tucked behind the open panel's leading edge.
+              &[open]::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 3rem;
+                height: 2.5rem;
+                background-image: linear-gradient(0deg, var(--tcds-color-theme-default-background) 0%, rgb(246, 246, 246) 100%);
+                z-index: -1;
+              }
+            }
+          }
+
+          li:not(:last-of-type) *:not([open]) > summary,
+          li:not(:last-of-type) a {
+            border-bottom: 1px solid var(--tcds-color-theme-default-edge);
+          }
+        }
+      }
+    }
+    // #endregion
+
+    // #region Dropped panels
+    [data-tcds-site-header=search] > div,
+    [data-tcds-site-header=primary-menu] details > div {
+      @include -desktop {
+        position: absolute;
+        top: var(--tcds-site-header-height);
+        left: 0;
+        width: 100%;
+        padding: 2rem max(var(--tcds-site-inner-gutter), 100vw / 2 - var(--tcds-size-breakpoint-lg) / 2);
+        background: var(--tcds-color-theme-default-background);
+      }
+    }
+    // #endregion
+  }
+
+  .tcds-site-header-highlight a {
+    @include -desktop {
+      @include -pill-style;
+
+      background-color: var(--tcds-color-theme-dark-background);
+    }
+  }
+
+  @keyframes tcds-site-header-dock {
+    from {
+      translate: 0 -100%;
+    }
+  }
+}

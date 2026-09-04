@@ -34,7 +34,7 @@
     },
     "size": {
       "$type": "dimension",
-      "xs": {"$value": "0.75rem"},
+      "xs": {"$value": "0.8125rem"},
       "sm": {"$value": "0.875rem"},
       "md": {"$value": "1rem"},
       "lg": {"$value": "1.125rem"},
