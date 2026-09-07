@@ -222,11 +222,6 @@
         }
       }
 
-      /**
-       * The scrim. It is a pseudo-element of the `<details>`, which is why the
-       * component's outside-click handler treats a click whose target *is* a
-       * disclosure as a click on the scrim.
-       */
       &[open],
       [open][name="primary-menu"] {
         &::before {
@@ -394,11 +389,11 @@
             z-index: 1;
 
             &::details-content {
-              transition: all 75ms var(--tcds-motion-easing-enter);
+              transition: all 50ms linear;
               transition-behavior: allow-discrete;
               opacity: 0;
               transform: perspective(800px) rotateY(-10deg) rotateX(-25deg);
-              filter: blur(30px);
+              filter: blur(15px);
             }
 
             &[open] {
@@ -422,7 +417,6 @@
 
               tcds-icon {
                 transform: rotateZ(var(--tcds-site-header-utility-summary-icon-rotate, 0deg));
-                transition: transform var(--tcds-motion-duration-productive) var(--tcds-motion-easing-translate);
               }
             }
 
