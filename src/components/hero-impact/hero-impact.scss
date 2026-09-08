@@ -1,6 +1,6 @@
 @use "../../scss/abstracts/mixins" as *;
 
-.tcds-hero {
+.tcds-hero-impact {
   height: 100%;
   padding-block: 237px 96px;
 
@@ -41,12 +41,12 @@
     }
 
     @include breakpoint("lg") {
-      --_tcds-hero-slack-space: calc(50vw - var(--tcds-size-container) / 2);
+      --_tcds-hero-impact-slack-space: calc(50vw - var(--tcds-size-container) / 2);
 
       gap: 2rem;
       padding: var(--tcds-space-layout-md);
-      margin-left: min(var(--tcds-site-inner-gutter) * -1, var(--_tcds-hero-slack-space) * -1);
-      padding-left: max(var(--tcds-site-inner-gutter), var(--_tcds-hero-slack-space));
+      margin-left: min(var(--tcds-site-inner-gutter) * -1, var(--_tcds-hero-impact-slack-space) * -1);
+      padding-left: max(var(--tcds-site-inner-gutter), var(--_tcds-hero-impact-slack-space));
     }
   }
 

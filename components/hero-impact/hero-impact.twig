@@ -1,5 +1,5 @@
 {% embed "@tcds/section/section.twig" with {
-  classes: "tcds-hero",
+  classes: "tcds-hero-impact",
   background_video: background_video,
   background_images: background_images,
   theme: theme|default("dark"),
@@ -9,7 +9,7 @@
   links: links,
 } only %}
   {% block content %}
-    <div class="tcds-hero__content" data-theme="default">
+    <div class="tcds-hero-impact__content" data-theme="default">
       {% if heading %}
         <p class="text-heading-3">{{ heading }}</p>
       {% endif %}

@@ -1,0 +1,41 @@
+{% embed "@tcds/section/section.twig" with {
+  classes: "tcds-hero-immersive",
+  background_images: background_images,
+  theme: theme|default("dark"),
+  modifiers: modifiers|default(null),
+  heading: heading,
+  eyebrow: eyebrow,
+  lead: lead,
+  links: links,
+} only %}
+  {% block content %}
+    <div class="tcds-hero-immersive__content" data-theme="default">
+      {% set display_element %}
+        <p class="display-1">{{ heading }}</p>
+      {% endset %}
+
+      {% if eyebrow and heading %}
+        <hgroup>
+          <h1>{{ eyebrow }}</h1>
+          {{ display_element }}
+        </hgroup>
+      {% elseif heading %}
+        {{ display_element }}
+      {% endif %}
+
+      <div style="max-width: 51ch">
+        {{ lead }}
+      </div>
+
+      <div class="flex" style="gap: 1rem">
+        {% if links and links|length %}
+          {% for link in links %}
+            {{ include("@tcds/cta-link/cta-link.twig", link|merge({
+              modifiers: loop.index == 2 ? ["outline"] : null,
+            }), with_context=false)  }}
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  {% endblock %}
+{% endembed %}
