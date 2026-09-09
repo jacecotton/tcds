@@ -7,6 +7,10 @@
     @include button-props-outline;
   }
 
+  &--tertiary {
+    @include button-props-tertiary;
+  }
+
   &:hover {
     --tcds-cta-link-icon-translate-x: 20%;
   }

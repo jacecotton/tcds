@@ -20,6 +20,16 @@
   --tcds-button-border-color-hover: var(--tcds-button-background-color);
 }
 
+@mixin button-props-tertiary {
+  --tcds-button-padding: 0;
+  --tcds-button-height: auto;
+  --tcds-button-background-color: transparent;
+  --tcds-button-background-color-hover: transparent;
+  --tcds-button-text-color: inherit;
+  --tcds-button-text-color-hover: var(--tcds-color-theme-accent);
+  --tcds-button-icon-color: var(--tcds-color-theme-accent);
+}
+
 @mixin button-props-media {
   --tcds-button-background-color: transparent;
   --tcds-button-background-color-hover: transparent;
@@ -99,6 +109,7 @@
   tcds-icon,
   &:is(tcds-icon) {
     font-size: var(--tcds-button-icon-size, .8em) #{$flag};
+    color: var(--tcds-button-icon-color, inherit) #{$flag};
   }
 
   &:is(tcds-icon) {
