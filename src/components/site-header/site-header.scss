@@ -555,7 +555,7 @@
           }
 
           li:not(:last-of-type) *:not([open]) > summary,
-          li:not(:last-of-type) a {
+          li:not(:last-of-type) > a {
             border-bottom: 1px solid var(--tcds-color-theme-default-edge);
           }
         }

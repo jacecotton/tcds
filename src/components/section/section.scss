@@ -87,21 +87,22 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    gap: var(--tcds-space-layout-sm);
+    gap: var(--tcds-space-layout-xs);
     justify-content: space-between;
     align-items: start;
 
     @include breakpoint("md") {
       flex-direction: row;
+      gap: var(--tcds-space-layout-sm);
     }
 
     p,
-    h1, h2, h3, [class*="text-heading-"] {
+    h1, h2, h3, [class*="text-heading-"], [class*="text-display-"] {
       margin: 0;
     }
 
-    h1:has(+ [class*="text-heading-"]),
-    p:has(+ :is(h1, h2, h3, [class*="text-heading-"])) {
+    h1:has(+ :is([class*="text-heading-"], [class*="text-display-"])),
+    p:has(+ :is(h1, h2, h3, [class*="text-heading-"], [class*="text-display-"])) {
       @include text("ui", "md");
 
       letter-spacing: 10%;

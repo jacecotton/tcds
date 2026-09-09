@@ -11,7 +11,7 @@
   {% block content %}
     <div class="tcds-hero-immersive__content" data-theme="default">
       {% set display_element %}
-        <p class="display-1">{{ heading }}</p>
+        <p class="text-display-2">{{ heading }}</p>
       {% endset %}
 
       {% if eyebrow and heading %}
@@ -23,18 +23,8 @@
         {{ display_element }}
       {% endif %}
 
-      <div style="max-width: 51ch">
+      <div style="max-width: 70ch">
         {{ lead }}
-      </div>
-
-      <div class="flex" style="gap: 1rem">
-        {% if links and links|length %}
-          {% for link in links %}
-            {{ include("@tcds/cta-link/cta-link.twig", link|merge({
-              modifiers: loop.index == 2 ? ["outline"] : null,
-            }), with_context=false)  }}
-          {% endfor %}
-        {% endif %}
       </div>
     </div>
   {% endblock %}

@@ -1,0 +1,51 @@
+@use "../../scss/abstracts/mixins" as *;
+
+details[name=primary-menu] div {
+  display: grid;
+
+  @include breakpoint("lg") {
+    grid-template-columns: auto 1fr;
+  }
+}
+
+.tcds-mega-menu {
+  &__ungrouped {
+    @include breakpoint("", "lg") {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      background-color: var(--tcds-color-theme-default-surface);
+      padding: var(--tcds-space-component-lg);
+      margin-bottom: var(--tcds-space-layout-sm);
+      border-radius: var(--tcds-border-radius-md);
+    }
+
+    @include breakpoint("lg") {
+      margin-inline-end: var(--tcds-space-layout-md);
+      padding-inline-end: var(--tcds-space-layout-md);
+      border-right: 1px solid var(--tcds-color-theme-edge);
+      align-self: start;
+    }
+  }
+
+  &__grouped {
+    display: grid;
+    gap: var(--tcds-space-layout-md);
+
+    @include breakpoint("", "lg") {
+      grid-template-columns: repeat(2, 1fr);
+
+      .tcds-cta-link {
+        margin-bottom: var(--tcds-space-layout-xs);
+      }
+    }
+
+    @include breakpoint("lg") {
+      grid-template-columns: repeat(4, 1fr);
+
+      .tcds-cta-link {
+        padding-left: .4em !important;
+        margin-bottom: var(--tcds-space-layout-sm);
+      }
+    }
+  }
+}

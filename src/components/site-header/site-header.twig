@@ -42,7 +42,7 @@
         {% block primary_menu %}{{ primary_menu }}{% endblock %}
       {% endif %}
 
-      {% if utility_menu is defined and utility_menu is iterable and utility_menu[0] is defined %}
+      {% if utility_menu is defined and utility_menu is iterable and utility_menu|first is not empty %}
         <nav data-tcds-site-header="utility-menu">
           <ul role="list">
             {% for item in utility_menu %}

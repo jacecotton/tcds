@@ -4,6 +4,7 @@
   --tcds-button-background-color-hover: var(--tcds-color-theme-accent);
   --tcds-button-text-color-hover: var(--tcds-color-palette-white);
   --tcds-button-border-color-hover: var(--tcds-color-theme-accent);
+  --tcds-button-icon-color: var(--tcds-color-theme-accent);
 }
 
 @mixin button-props-large() {
@@ -53,8 +54,8 @@
   } @else {
     --tcds-button-background-color: var(--tcds-color-theme-accent);
     --tcds-button-background-color-hover: color-mix(in oklab, var(--tcds-color-theme-accent), rgb(0 0 0) 10%);
-    --tcds-button-border-color: var(--tcds-color-theme-accent);
-    --tcds-button-border-color-hover: color-mix(in oklab, var(--tcds-color-theme-accent), rgb(0 0 0) 10%);
+    --tcds-button-border-color: var(--tcds-button-background-color);
+    --tcds-button-border-color-hover: var(--tcds-button-background-color-hover);
     --tcds-button-text-color: var(--tcds-color-theme-accent-text-primary);
     --tcds-button-text-color-hover: var(--tcds-color-theme-accent-text-primary);
   }
