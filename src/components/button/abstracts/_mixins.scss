@@ -28,6 +28,8 @@
   --tcds-button-text-color: inherit;
   --tcds-button-text-color-hover: var(--tcds-color-theme-accent);
   --tcds-button-icon-color: var(--tcds-color-theme-accent);
+  --tcds-button-border-width: 0;
+  --tcds-button-border-color: transparent;
 }
 
 @mixin button-props-media {
