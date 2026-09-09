@@ -5,6 +5,7 @@
   padding-top: 1px;
   column-count: 1;
   column-gap: 4%;
+  width: 100%;
 
   @include breakpoint("sm") {
     column-count: calc(var(--tcds-index-column-count, 1) - 1);
