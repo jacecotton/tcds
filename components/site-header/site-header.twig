@@ -26,10 +26,10 @@
                   <details name="primary-menu">
                     <summary>{{ item.title }}</summary>
                     <div>
-                      {% if block(item.content) is defined %}
+                      {% if item.content is not iterable and block(item.content) is defined %}
                         {{ block(item.content) }}
                       {% else %}
-                        {{ item.content }}
+                        {{ item.content|raw }}
                       {% endif %}
                     </div>
                   </details>

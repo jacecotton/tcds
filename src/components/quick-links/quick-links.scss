@@ -10,6 +10,10 @@
   gap: var(--tcds-space-layout-sm);
   list-style: none;
 
+  tcds-tab > & {
+    margin-block-start: var(--tcds-space-layout-sm);
+  }
+
   @include breakpoint("md") {
     --tcds-quick-links-column-min-width: 100px;
   }

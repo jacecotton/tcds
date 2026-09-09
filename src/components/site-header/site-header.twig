@@ -26,10 +26,10 @@
                   <details name="primary-menu">
                     <summary>{{ item.title }}</summary>
                     <div>
-                      {% if block(item.content) is defined %}
+                      {% if item.content is not iterable and block(item.content) is defined %}
                         {{ block(item.content) }}
                       {% else %}
-                        {{ item.content }}
+                        {{ item.content|raw }}
                       {% endif %}
                     </div>
                   </details>
@@ -83,10 +83,10 @@
         <span class="visually-hidden">Toggle main search</span>
       </summary>
       <div>
-        {% if block(search_menu) is defined %}
+        {% if search_menu is not iterable and block(search_menu) is defined %}
           {{ block(search_menu) }}
         {% else %}
-          {{ search_menu }}
+          {{ search_menu|raw }}
         {% endif %}
       </div>
     </details>

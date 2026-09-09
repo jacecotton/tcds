@@ -32,6 +32,7 @@
   --tcds-button-height: var(--tcds-size-component-sm);
   --tcds-button-width: var(--tcds-button-height);
   --tcds-button-padding: 0;
+  --tcds-button-icon-size: .66em;
 }
 
 @mixin button-style($color: false, $size: false, $flag: "") {
@@ -40,6 +41,8 @@
   } @else {
     --tcds-button-background-color: var(--tcds-color-theme-accent);
     --tcds-button-background-color-hover: color-mix(in oklab, var(--tcds-color-theme-accent), rgb(0 0 0) 10%);
+    --tcds-button-border-color: var(--tcds-color-theme-accent);
+    --tcds-button-border-color-hover: color-mix(in oklab, var(--tcds-color-theme-accent), rgb(0 0 0) 10%);
     --tcds-button-text-color: var(--tcds-color-theme-accent-text-primary);
     --tcds-button-text-color-hover: var(--tcds-color-theme-accent-text-primary);
   }
@@ -82,20 +85,20 @@
   &:active,
   [data-pointer-event-proxy=".tcds-cta-link"]:hover &,
   [data-pointer-event-proxy=".tcds-button"]:hover & {
-    background-color: var(--tcds-button-background-color-hover);
-    color: var(--tcds-button-text-color-hover);
-    border-color: var(--tcds-button-border-color-hover);
+    background-color: var(--tcds-button-background-color-hover) #{$flag};
+    color: var(--tcds-button-text-color-hover) #{$flag};
+    border-color: var(--tcds-button-border-color-hover) #{$flag};
   }
 
   &:active {
-    background-color: var(--tcds-button-background-color-active, var(--tcds-button-background-color-hover));
-    color: var(--tcds-button-text-color-active, var(--tcds-button-text-color-hover));
-    border-color: var(--tcds-button-border-color-active, var(--tcds-button-border-color-hover));
+    background-color: var(--tcds-button-background-color-active, var(--tcds-button-background-color-hover)) #{$flag};
+    color: var(--tcds-button-text-color-active, var(--tcds-button-text-color-hover)) #{$flag};
+    border-color: var(--tcds-button-border-color-active, var(--tcds-button-border-color-hover)) #{$flag};
   }
 
   tcds-icon,
   &:is(tcds-icon) {
-    font-size: var(--tcds-button-icon-size, .66em) #{$flag};
+    font-size: var(--tcds-button-icon-size, .8em) #{$flag};
   }
 
   &:is(tcds-icon) {

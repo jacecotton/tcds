@@ -6,4 +6,13 @@
   &--outline {
     @include button-props-outline;
   }
+
+  &:hover {
+    --tcds-cta-link-icon-translate-x: 20%;
+  }
+
+  tcds-icon[icon*=caret-right] {
+    transition: translate var(--tcds-motion-duration-expressive) var(--tcds-motion-easing-enter);
+    translate: var(--tcds-cta-link-icon-translate-x) 0%;
+  }
 }

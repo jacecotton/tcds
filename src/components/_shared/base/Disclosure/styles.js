@@ -67,10 +67,14 @@ export default css`
   }
 
   [part=content] {
-    padding-block: var(--tcds-space-component-md);
+    padding-block-start: var(--tcds-space-layout-sm);
   }
 
   :host(:state(plain)) [part=content] {
     padding-block-start: 0;
+  }
+
+  :host(:state(accordion)) [part=content] {
+    padding-block-end: var(--tcds-space-layout-sm);
   }
 `;

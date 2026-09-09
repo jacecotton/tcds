@@ -20,7 +20,7 @@
       --_tcds-submenu-link-background-inset: var(--tcds-submenu-link-background-inset, .4em);
 
       display: block;
-      padding: 1em calc(1em - var(--tcds-submenu-link-background-inset));
+      padding: 1em calc(1em - var(--_tcds-submenu-link-background-inset));
       color: var(--tcds-color-theme-default-text-secondary);
       text-decoration: none;
       position: relative;
@@ -36,7 +36,7 @@
       &::before {
         content: "";
         position: absolute;
-        inset: var(--tcds-submenu-link-background-inset) calc(var(--tcds-border-radius-sm) / -2);
+        inset: var(--_tcds-submenu-link-background-inset) calc(var(--tcds-border-radius-sm) / -2);
         z-index: -1;
         background-color: var(--tcds-submenu-link-background-color, transparent);
         border-radius: var(--tcds-border-radius-sm);

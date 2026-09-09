@@ -16,11 +16,11 @@ tcds-icon {
     width: 1em !important;
   }
 
-  &[preserve-color]::after {
+  &[category=duotone]::after {
     background-image: var(--tcds-icon) !important;
   }
 
-  &:not([preserve-color])::after {
+  &:not([category=duotone])::after {
     background: currentcolor !important;
     mask: var(--tcds-icon) no-repeat center !important;
   }

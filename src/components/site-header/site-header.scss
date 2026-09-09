@@ -388,22 +388,24 @@
             width: 100%;
             z-index: 1;
 
-            &::details-content {
-              transition: all 50ms linear;
-              transition-behavior: allow-discrete;
-              opacity: 0;
-              transform: perspective(800px) rotateY(-5deg) rotateX(-15deg);
-              filter: blur(15px);
-            }
-
-            &[open] {
-              --tcds-site-header-utility-summary-icon-rotate: -180deg;
-
+            @media (update: fast) and (prefers-reduced-motion: no-preference) {
               &::details-content {
+                transition: all 50ms linear;
+                transition-behavior: allow-discrete;
+                opacity: 0;
+                transform: perspective(800px) rotateY(-5deg) rotateX(-15deg);
+                filter: blur(15px);
+              }
+
+              &[open]::details-content {
                 opacity: 1;
                 transform: perspective(800px) rotateY(0deg) rotateX(0deg);
                 filter: blur(0px);
               }
+            }
+
+            &[open] {
+              --tcds-site-header-utility-summary-icon-rotate: -180deg;
 
               > summary {
                 background: var(--tcds-site-header-details-background-color-hover);
