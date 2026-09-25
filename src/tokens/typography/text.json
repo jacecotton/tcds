@@ -145,7 +145,7 @@
           "fontFamily": "{font.family.ui}",
           "fontWeight": "{font.weight.ui}",
           "fontSize": "{font.size.lg}",
-          "lineHeight": "{line-height.normal}"
+          "lineHeight": "{line-height.compact}"
         }
       },
       "md": {
@@ -153,7 +153,7 @@
           "fontFamily": "{font.family.ui}",
           "fontWeight": "{font.weight.ui}",
           "fontSize": "{font.size.md}",
-          "lineHeight": "{line-height.normal}"
+          "lineHeight": "{line-height.compact}"
         }
       },
       "sm": {
@@ -161,7 +161,15 @@
           "fontFamily": "{font.family.ui}",
           "fontWeight": "{font.weight.ui}",
           "fontSize": "{font.size.sm}",
-          "lineHeight": "{line-height.normal}"
+          "lineHeight": "{line-height.compact}"
+        }
+      },
+      "xs": {
+        "$value": {
+          "fontFamily": "{font.family.ui}",
+          "fontWeight": "500",
+          "fontSize": "{font.size.xs}",
+          "lineHeight": "{line-height.compact}"
         }
       }
     }

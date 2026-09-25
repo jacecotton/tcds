@@ -8,8 +8,8 @@ var insetControls = r(_templateObject2$1 || (_templateObject2$1 = _taggedTemplat
 var localStyles = i(_templateObject3$1 || (_templateObject3$1 = _taggedTemplateLiteral$1(["\n  :host {\n    --tcds-carousel-controls-position: relative;\n    --tcds-carousel-control-color: var(--tcds-color-palette-gray-400);\n    --tcds-carousel-control-color-hover: var(--tcds-color-palette-gray-500);\n    --tcds-carousel-control-color-active: var(--tcds-color-palette-black);\n    --tcds-carousel-dot-width: .625rem;\n    --tcds-carousel-dot-width-current: var(--tcds-carousel-dot-width);\n\n    flex-direction: column;\n    position: relative;\n\n    @media (prefers-reduced-motion: reduce) {\n      transition: none;\n    }\n  }\n\n  :host(:not([hidden])) {\n    display: flex;\n  }\n\n  :host([playing]) {\n    --tcds-carousel-control-color-active: var(--tcds-carousel-control-color);\n    --tcds-carousel-dot-progress-opacity: 1;\n    --tcds-carousel-dot-width-current: 2.625rem;\n  }\n\n  :host([controls=\"inset\"]) {\n    @media (min-width: ", ") {\n      ", "\n    }\n\n    @media (max-width: ", ") {\n      ", "\n    }\n  }\n\n  :host(:not([controls=\"inset\"])) {\n    ", "\n  }\n\n  [part=slides] {\n    display: grid;\n    position: relative;\n  }\n\n  [part=controls] {\n    --tcds-carousel-controls-padding: var(--tcds-space-component-sm);\n    --tcds-carousel-controls-gap: calc(var(--tcds-carousel-controls-padding) * 2);\n\n    display: inline-grid;\n    grid-template-areas: \"previous dots next toggle\";\n    align-items: center;\n    justify-content: center;\n    gap: var(--tcds-carousel-controls-gap);\n    position: var(--tcds-carousel-controls-position);\n    bottom: var(--tcds-carousel-controls-bottom);\n    left: 50%;\n    transform: translateX(-50%);\n    margin-top: var(--tcds-carousel-controls-margin-top);\n    height: var(--tcds-size-component-md);\n    padding: 0 var(--tcds-space-component-sm);\n    width: fit-content;\n    background-color: var(--tcds-carousel-controls-background, transparent);\n    backdrop-filter: var(--tcds-carousel-controls-backdrop-filter, none);\n    border-radius: 3rem;\n    z-index: 2;\n  }\n\n  [part~=control] {\n    display: inline-flex;\n    justify-content: center;\n    align-items: center;\n    appearance: none;\n    border: var(--tcds-button-border-width, 0) solid var(--tcds-button-border-color, transparent);\n    background-color: var(--tcds-button-background-color, transparent);\n    color: var(--tcds-button-text-color, var(--tcds-carousel-control-color));\n    cursor: pointer;\n    position: relative;\n    transition:\n      color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-enter),\n      background-color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-enter);\n\n    &:hover {\n      background-color: var(--tcds-button-background-color-hover, transparent);\n      border-color: var(--tcds-button-border-color-hover, transparent);\n      color: var(--tcds-button-text-color-hover, var(--tcds-carousel-control-color-hover));\n    }\n\n    &:active {\n      color: var(--tcds-button-text-color-active, var(--tcds-carousel-control-color-active));\n    }\n\n    &::before {\n      content: \"\";\n      position: absolute;\n      inset: calc(var(--tcds-carousel-controls-gap) / -2);\n    }\n  }\n\n  [part~=next] {\n    grid-area: next;\n  }\n\n  [part~=previous] {\n    grid-area: previous;\n  }\n\n  [part~=toggle] {\n    grid-area: toggle;\n  }\n\n  [part=dots] {\n    grid-area: dots;\n    display: flex;\n    gap: var(--tcds-carousel-controls-gap);\n  }\n\n  [part~=dot] {\n    position: relative;\n    background-color: var(--tcds-carousel-control-color);\n    width: var(--tcds-carousel-dot-width);\n    height: var(--tcds-carousel-dot-width);\n    border-radius: var(--tcds-carousel-dot-width);\n    padding: 0;\n    transition:\n      width var(--tcds-motion-duration-expressive) var(--tcds-motion-easing-enter);\n\n    @media (prefers-reduced-motion: reduce) {\n      transition: none;\n    }\n\n    &:hover {\n      background-color: var(--tcds-carousel-control-color-hover);\n    }\n\n    &[aria-current=true] {\n      overflow: hidden;\n      width: var(--tcds-carousel-dot-width-current);\n      background-color: var(--tcds-carousel-control-color-active);\n\n      &::after {\n        content: \"\";\n        opacity: var(--tcds-carousel-dot-progress-opacity, 0);\n        position: absolute;\n        inset: 0;\n        background-color: var(--tcds-color-palette-black);\n        border-radius: var(--tcds-carousel-dot-width);\n        width: 0%;\n      }\n    }\n  }\n"])), r(SizeBreakpointMd), insetControls, r(SizeBreakpointMd), outsideControls, outsideControls);
 
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-var _Class, _Carousel3, _A, _B, _C, _D, _E, _Carousel3_brand, _F, _G, _H, _I, _J, _internals, _reducedMotion, _intersectionObserver, _progress, _onDocumentVisibilityChange, _onReducedMotionChange, _onIntersectionChange, _templateObject, _templateObject2, _templateObject3, _applyDecs2, _applyDecs2$e, _applyDecs2$c;
-var _initClass, _init_playing, _init_extra_playing, _init_interval, _init_extra_interval, _init_index, _init_extra_index, _init_label, _init_extra_label, _init_count, _get_count, _set_count, _init_extra_count, _init_interacting, _get_interacting, _set_interacting, _init_extra_interacting, _init_documentHidden, _get_documentHidden, _set_documentHidden, _init_extra_documentHidden, _init_offscreen, _get_offscreen, _set_offscreen, _init_extra_offscreen, _init_mediaSuspended, _get_mediaSuspended, _set_mediaSuspended, _init_extra_mediaSuspended, _init_slides, _get_slides, _init_extra_slides, _Carousel2;
+var _Class, _Carousel3, _A, _B, _C, _D, _E, _F, _Carousel3_brand, _G, _H, _I, _J, _K, _internals, _reducedMotion, _intersectionObserver, _progress, _onDocumentVisibilityChange, _onReducedMotionChange, _onIntersectionChange, _templateObject, _templateObject2, _templateObject3, _applyDecs2, _applyDecs2$e, _applyDecs2$c;
+var _initClass, _init_playing, _init_extra_playing, _init_noPauseOnHover, _init_extra_noPauseOnHover, _init_interval, _init_extra_interval, _init_index, _init_extra_index, _init_label, _init_extra_label, _init_count, _get_count, _set_count, _init_extra_count, _init_interacting, _get_interacting, _set_interacting, _init_extra_interacting, _init_documentHidden, _get_documentHidden, _set_documentHidden, _init_extra_documentHidden, _init_offscreen, _get_offscreen, _set_offscreen, _init_extra_offscreen, _init_mediaSuspended, _get_mediaSuspended, _set_mediaSuspended, _init_extra_mediaSuspended, _init_slides, _get_slides, _init_extra_slides, _Carousel2;
 function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = false, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = true, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), true), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
 function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
@@ -50,7 +50,7 @@ function _setFunctionName(e, t, n) { "symbol" == _typeof(t) && (t = (t = t.descr
 function _checkInRHS(e) { if (Object(e) !== e) throw TypeError("right-hand side of 'in' should be an object, got " + (null !== e ? _typeof(e) : "null")); return e; }
 function _identity(t) { return t; }
 var _Carousel;
-new (_Carousel2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMap(), _C = /*#__PURE__*/new WeakMap(), _D = /*#__PURE__*/new WeakMap(), _E = /*#__PURE__*/new WeakMap(), _Carousel3_brand = /*#__PURE__*/new WeakSet(), _F = /*#__PURE__*/new WeakMap(), _G = /*#__PURE__*/new WeakMap(), _H = /*#__PURE__*/new WeakMap(), _I = /*#__PURE__*/new WeakMap(), _J = /*#__PURE__*/new WeakMap(), _internals = /*#__PURE__*/new WeakMap(), _reducedMotion = /*#__PURE__*/new WeakMap(), _intersectionObserver = /*#__PURE__*/new WeakMap(), _progress = /*#__PURE__*/new WeakMap(), _onDocumentVisibilityChange = /*#__PURE__*/new WeakMap(), _onReducedMotionChange = /*#__PURE__*/new WeakMap(), _onIntersectionChange = /*#__PURE__*/new WeakMap(), _Carousel3 = /*#__PURE__*/function (_LitElement) {
+new (_Carousel2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMap(), _C = /*#__PURE__*/new WeakMap(), _D = /*#__PURE__*/new WeakMap(), _E = /*#__PURE__*/new WeakMap(), _F = /*#__PURE__*/new WeakMap(), _Carousel3_brand = /*#__PURE__*/new WeakSet(), _G = /*#__PURE__*/new WeakMap(), _H = /*#__PURE__*/new WeakMap(), _I = /*#__PURE__*/new WeakMap(), _J = /*#__PURE__*/new WeakMap(), _K = /*#__PURE__*/new WeakMap(), _internals = /*#__PURE__*/new WeakMap(), _reducedMotion = /*#__PURE__*/new WeakMap(), _intersectionObserver = /*#__PURE__*/new WeakMap(), _progress = /*#__PURE__*/new WeakMap(), _onDocumentVisibilityChange = /*#__PURE__*/new WeakMap(), _onReducedMotionChange = /*#__PURE__*/new WeakMap(), _onIntersectionChange = /*#__PURE__*/new WeakMap(), _Carousel3 = /*#__PURE__*/function (_LitElement) {
   // #endregion
 
   // #region Lifecycle
@@ -61,22 +61,23 @@ new (_Carousel2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMa
     _classPrivateMethodInitSpec(_this3, _Carousel3_brand);
     // #region Properties and state
     _classPrivateFieldInitSpec(_this3, _A, _init_playing(_this3, false));
-    _classPrivateFieldInitSpec(_this3, _B, (_init_extra_playing(_this3), _init_interval(_this3)));
-    _classPrivateFieldInitSpec(_this3, _C, (_init_extra_interval(_this3), _init_index(_this3)));
-    _classPrivateFieldInitSpec(_this3, _D, (_init_extra_index(_this3), _init_label(_this3)));
-    _classPrivateFieldInitSpec(_this3, _E, (_init_extra_label(_this3), _init_count(_this3, 0)));
-    _classPrivateFieldInitSpec(_this3, _F, (_init_extra_count(_this3), _init_interacting(_this3, false)));
-    _classPrivateFieldInitSpec(_this3, _G, (_init_extra_interacting(_this3), _init_documentHidden(_this3, false)));
-    _classPrivateFieldInitSpec(_this3, _H, (_init_extra_documentHidden(_this3), _init_offscreen(_this3, false)));
+    _classPrivateFieldInitSpec(_this3, _B, (_init_extra_playing(_this3), _init_noPauseOnHover(_this3, false)));
+    _classPrivateFieldInitSpec(_this3, _C, (_init_extra_noPauseOnHover(_this3), _init_interval(_this3)));
+    _classPrivateFieldInitSpec(_this3, _D, (_init_extra_interval(_this3), _init_index(_this3)));
+    _classPrivateFieldInitSpec(_this3, _E, (_init_extra_index(_this3), _init_label(_this3)));
+    _classPrivateFieldInitSpec(_this3, _F, (_init_extra_label(_this3), _init_count(_this3, 0)));
+    _classPrivateFieldInitSpec(_this3, _G, (_init_extra_count(_this3), _init_interacting(_this3, false)));
+    _classPrivateFieldInitSpec(_this3, _H, (_init_extra_interacting(_this3), _init_documentHidden(_this3, false)));
+    _classPrivateFieldInitSpec(_this3, _I, (_init_extra_documentHidden(_this3), _init_offscreen(_this3, false)));
     /**
      * Whether the reader has asked for motion to stop. Distinct from `playing`,
      * which also goes false when navigation surrenders autoplay — that is not a
      * request to stop video.
      */
-    _classPrivateFieldInitSpec(_this3, _I, (_init_extra_offscreen(_this3), _init_mediaSuspended(_this3, false)));
+    _classPrivateFieldInitSpec(_this3, _J, (_init_extra_offscreen(_this3), _init_mediaSuspended(_this3, false)));
     // #endregion
     // #region Private variables
-    _classPrivateFieldInitSpec(_this3, _J, (_init_extra_mediaSuspended(_this3), _init_slides(_this3)));
+    _classPrivateFieldInitSpec(_this3, _K, (_init_extra_mediaSuspended(_this3), _init_slides(_this3)));
     _classPrivateFieldInitSpec(_this3, _internals, void _init_extra_slides(_this3));
     _classPrivateFieldInitSpec(_this3, _reducedMotion, void 0);
     _classPrivateFieldInitSpec(_this3, _intersectionObserver, void 0);
@@ -109,7 +110,7 @@ new (_Carousel2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMa
       _classPrivateFieldSet(_A, this, v);
     }
   }, {
-    key: "interval",
+    key: "noPauseOnHover",
     get: function get() {
       return _classPrivateFieldGet(_B, this);
     },
@@ -117,7 +118,7 @@ new (_Carousel2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMa
       _classPrivateFieldSet(_B, this, v);
     }
   }, {
-    key: "index",
+    key: "interval",
     get: function get() {
       return _classPrivateFieldGet(_C, this);
     },
@@ -125,12 +126,20 @@ new (_Carousel2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMa
       _classPrivateFieldSet(_C, this, v);
     }
   }, {
-    key: "label",
+    key: "index",
     get: function get() {
       return _classPrivateFieldGet(_D, this);
     },
     set: function set(v) {
       _classPrivateFieldSet(_D, this, v);
+    }
+  }, {
+    key: "label",
+    get: function get() {
+      return _classPrivateFieldGet(_E, this);
+    },
+    set: function set(v) {
+      _classPrivateFieldSet(_E, this, v);
     }
   }, {
     key: "connectedCallback",
@@ -259,41 +268,44 @@ new (_Carousel2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMa
   type: Boolean,
   reflect: true
 }), 1, "playing"], [n({
+  type: Boolean,
+  attribute: "no-pause-on-hover"
+}), 1, "noPauseOnHover"], [n({
   type: Number
 }), 1, "interval"], [n({
   type: Number
 }), 1, "index"], [n({
   type: String
 }), 1, "label"], [r$1(), 1, "count", function (o) {
-  return _classPrivateFieldGet(_E, o);
-}, function (o, v) {
-  return _classPrivateFieldSet(_E, o, v);
-}], [r$1(), 1, "interacting", function (o) {
   return _classPrivateFieldGet(_F, o);
 }, function (o, v) {
   return _classPrivateFieldSet(_F, o, v);
-}], [r$1(), 1, "documentHidden", function (o) {
+}], [r$1(), 1, "interacting", function (o) {
   return _classPrivateFieldGet(_G, o);
 }, function (o, v) {
   return _classPrivateFieldSet(_G, o, v);
-}], [r$1(), 1, "offscreen", function (o) {
+}], [r$1(), 1, "documentHidden", function (o) {
   return _classPrivateFieldGet(_H, o);
 }, function (o, v) {
   return _classPrivateFieldSet(_H, o, v);
-}], [r$1(), 1, "mediaSuspended", function (o) {
+}], [r$1(), 1, "offscreen", function (o) {
   return _classPrivateFieldGet(_I, o);
 }, function (o, v) {
   return _classPrivateFieldSet(_I, o, v);
+}], [r$1(), 1, "mediaSuspended", function (o) {
+  return _classPrivateFieldGet(_J, o);
+}, function (o, v) {
+  return _classPrivateFieldSet(_J, o, v);
 }], [o({
   flatten: true,
   selector: "tcds-slide"
 }), 1, "slides", function (o) {
-  return _classPrivateFieldGet(_J, o);
+  return _classPrivateFieldGet(_K, o);
 }, function (o, v) {
-  return _classPrivateFieldSet(_J, o, v);
+  return _classPrivateFieldSet(_K, o, v);
 }]], 0, function (_) {
   return _onIntersectionChange.has(_checkInRHS(_));
-}, i$1), _applyDecs2$e = _slicedToArray(_applyDecs2.e, 32), _init_playing = _applyDecs2$e[0], _init_extra_playing = _applyDecs2$e[1], _init_interval = _applyDecs2$e[2], _init_extra_interval = _applyDecs2$e[3], _init_index = _applyDecs2$e[4], _init_extra_index = _applyDecs2$e[5], _init_label = _applyDecs2$e[6], _init_extra_label = _applyDecs2$e[7], _init_count = _applyDecs2$e[8], _get_count = _applyDecs2$e[9], _set_count = _applyDecs2$e[10], _init_extra_count = _applyDecs2$e[11], _init_interacting = _applyDecs2$e[12], _get_interacting = _applyDecs2$e[13], _set_interacting = _applyDecs2$e[14], _init_extra_interacting = _applyDecs2$e[15], _init_documentHidden = _applyDecs2$e[16], _get_documentHidden = _applyDecs2$e[17], _set_documentHidden = _applyDecs2$e[18], _init_extra_documentHidden = _applyDecs2$e[19], _init_offscreen = _applyDecs2$e[20], _get_offscreen = _applyDecs2$e[21], _set_offscreen = _applyDecs2$e[22], _init_extra_offscreen = _applyDecs2$e[23], _init_mediaSuspended = _applyDecs2$e[24], _get_mediaSuspended = _applyDecs2$e[25], _set_mediaSuspended = _applyDecs2$e[26], _init_extra_mediaSuspended = _applyDecs2$e[27], _init_slides = _applyDecs2$e[28], _get_slides = _applyDecs2$e[29], _applyDecs2$e[30], _init_extra_slides = _applyDecs2$e[31], _applyDecs2$c = _slicedToArray(_applyDecs2.c, 2), _Carousel = _applyDecs2$c[0], _initClass = _applyDecs2$c[1], _Carousel3), _Class = /*#__PURE__*/function (_identity2) {
+}, i$1), _applyDecs2$e = _slicedToArray(_applyDecs2.e, 34), _init_playing = _applyDecs2$e[0], _init_extra_playing = _applyDecs2$e[1], _init_noPauseOnHover = _applyDecs2$e[2], _init_extra_noPauseOnHover = _applyDecs2$e[3], _init_interval = _applyDecs2$e[4], _init_extra_interval = _applyDecs2$e[5], _init_index = _applyDecs2$e[6], _init_extra_index = _applyDecs2$e[7], _init_label = _applyDecs2$e[8], _init_extra_label = _applyDecs2$e[9], _init_count = _applyDecs2$e[10], _get_count = _applyDecs2$e[11], _set_count = _applyDecs2$e[12], _init_extra_count = _applyDecs2$e[13], _init_interacting = _applyDecs2$e[14], _get_interacting = _applyDecs2$e[15], _set_interacting = _applyDecs2$e[16], _init_extra_interacting = _applyDecs2$e[17], _init_documentHidden = _applyDecs2$e[18], _get_documentHidden = _applyDecs2$e[19], _set_documentHidden = _applyDecs2$e[20], _init_extra_documentHidden = _applyDecs2$e[21], _init_offscreen = _applyDecs2$e[22], _get_offscreen = _applyDecs2$e[23], _set_offscreen = _applyDecs2$e[24], _init_extra_offscreen = _applyDecs2$e[25], _init_mediaSuspended = _applyDecs2$e[26], _get_mediaSuspended = _applyDecs2$e[27], _set_mediaSuspended = _applyDecs2$e[28], _init_extra_mediaSuspended = _applyDecs2$e[29], _init_slides = _applyDecs2$e[30], _get_slides = _applyDecs2$e[31], _applyDecs2$e[32], _init_extra_slides = _applyDecs2$e[33], _applyDecs2$c = _slicedToArray(_applyDecs2.c, 2), _Carousel = _applyDecs2$c[0], _initClass = _applyDecs2$c[1], _Carousel3), _Class = /*#__PURE__*/function (_identity2) {
   function _Class() {
     var _this5;
     _classCallCheck(this, _Class);
@@ -308,8 +320,8 @@ function _onSlotChange() {
   _assertClassBrand(_Carousel3_brand, this, _syncSlides).call(this);
 }
 function _onInteractionChange(event) {
-  // Scoped to the slides region rather than the host, so focusing the play
-  // button doesn't count as interaction and leave it unable to resume.
+  var isPointer = event.type === "pointerenter" || event.type === "pointerleave";
+  if (isPointer && this.noPauseOnHover) return;
   _classPrivateSetter(_Carousel3_brand, _set_interacting, this, event.type === "pointerenter" || event.type === "focusin");
 }
 function _onPreviousClick() {
@@ -442,7 +454,7 @@ function _syncSlides() {
   });
 }
 function _emit(name, detail) {
-  this.dispatchEvent(new CustomEvent("tcds-carousel-".concat(name), {
+  this.dispatchEvent(new CustomEvent("tcds-carousel:".concat(name), {
     detail: detail,
     bubbles: true,
     composed: true

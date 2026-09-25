@@ -9,7 +9,7 @@
     position: relative;
     max-width: 310px;
 
-    &:hover {
+    &:has(> a):hover {
       --tcds-article-card-image-scale: 1.05;
     }
 
@@ -49,6 +49,7 @@
       small {
         display: block;
         color: var(--tcds-color-theme-text-secondary);
+        font-size: var(--tcds-font-size-sm);
       }
     }
 
@@ -56,6 +57,7 @@
       @include text("ui", "md");
 
       display: flex;
+      align-items: center;
       gap: .5rem;
       text-decoration: none;
       color: var(--tcds-color-theme-accent);

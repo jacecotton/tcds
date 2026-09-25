@@ -1,0 +1,25 @@
+{% set attributes = attributes|default(create_attribute()) %}
+
+{% set attributes = attributes
+  .addClass("tcds-pullout-menu")
+  .addClass(classes|default([]))
+%}
+
+<details {{ attributes }}>
+  <summary class="tcds-pullout-menu__toggle">{{ title }}</summary>
+  <ul class="tcds-pullout-menu__list">
+    {% for link in links %}
+      <li class="tcds-pullout-menu__item">
+        <a href="{{ link.url }}" class="tcds-pullout-menu__link">
+          {% if link.before_text %}
+            <span class="tcds-pullout-menu__before-text">{{ link.before_text }}</span>
+          {% endif %}
+          <span class="tcds-pullout-menu__text">{{ link.text }}</span>
+          {% if link.after_text %}
+            <span class="tcds-pullout-menu__after-text">{{ link.after_text }}</span>
+          {% endif %}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</details>

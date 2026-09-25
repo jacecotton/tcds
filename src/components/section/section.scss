@@ -1,115 +1,117 @@
 @use "../../scss/abstracts/mixins" as *;
 
-.tcds-section {
-  padding-block: var(--tcds-space-layout-md);
-  background-color: var(--tcds-color-theme-background);
-  font-family: var(--tcds-font-family-body);
-  color: var(--tcds-color-theme-text-secondary);
-  position: relative;
-  z-index: 1;
-
-  @include breakpoint("md") {
-    padding-block: var(--tcds-space-layout-lg);
-    font-size: var(--tcds-font-size-lg);
-  }
-
-  &--darken-background {
-    --tcds-section-overlay-background-color: rgb(0 0 0 / 65%);
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background-color: var(--tcds-section-overlay-background-color, transparent);
-  }
-
-  picture, img {
-    border-radius: var(--tcds-border-radius-lg);
-  }
-
-  &:has(> :is(picture, img):nth-of-type(2)) {
-    --tcds-section-background-image-opacity-start: 0;
-  }
-
-  > :is(picture, img, video),
-  > picture > img {
-    position: absolute;
-    inset: 0;
-    inline-size: 100%;
-    block-size: 100%;
-    object-fit: cover;
-    object-position: center top;
-    z-index: -1;
-    border-radius: 0;
-    opacity: var(--tcds-section-background-image-opacity-start, 1);
-    transition: opacity 2s var(--tcds-motion-easing-translate);
+@layer tcds-components {
+  .tcds-section {
+    padding-block: var(--tcds-space-layout-md);
+    background-color: var(--tcds-color-theme-background);
+    font-family: var(--tcds-font-family-body);
+    color: var(--tcds-color-theme-text-secondary);
+    position: relative;
+    z-index: 1;
 
     @include breakpoint("md") {
-      object-position: right center;
+      padding-block: var(--tcds-space-layout-lg);
+      font-size: var(--tcds-font-size-lg);
     }
 
-    &[data-active] {
-      z-index: 0;
-      opacity: 1;
-    }
-  }
-
-  > .container-lg {
-    display: flex;
-    flex-direction: column;
-    gap: var(--tcds-space-layout-xs);
-
-    @include breakpoint("lg") {
-      gap: var(--tcds-space-layout-md);
-    }
-  }
-
-  :where(p) {
-    font: inherit;
-  }
-
-  :where(h1, h2, h3, .text-heading-1, .text-heading-2, .text-heading-3) {
-    color: var(--tcds-color-theme-text-primary);
-
-    :is(b, strong) {
-      display: block;
-      color: var(--tcds-color-theme-accent);
-    }
-  }
-
-  p a {
-    color: inherit;
-  }
-
-  hgroup {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    gap: var(--tcds-space-layout-xs);
-    justify-content: space-between;
-    align-items: start;
-
-    @include breakpoint("md") {
-      flex-direction: row;
-      gap: var(--tcds-space-layout-sm);
+    &--darken-background {
+      --tcds-section-overlay-background-color: rgb(0 0 0 / 65%);
     }
 
-    p,
-    h1, h2, h3, [class*="text-heading-"], [class*="text-display-"] {
-      margin: 0;
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-color: var(--tcds-section-overlay-background-color, transparent);
     }
 
-    h1:has(+ :is([class*="text-heading-"], [class*="text-display-"])),
-    p:has(+ :is(h1, h2, h3, [class*="text-heading-"], [class*="text-display-"])) {
-      @include text("ui", "md");
+    picture, img {
+      border-radius: var(--tcds-border-radius-lg);
+    }
 
-      letter-spacing: 10%;
-      margin: 0;
-      text-transform: uppercase;
-      color: var(--tcds-color-theme-text-muted);
-      flex: 1 0 100%;
+    &:has(> :is(picture, img):nth-of-type(2)) {
+      --tcds-section-background-image-opacity-start: 0;
+    }
+
+    > :is(picture, img, video),
+    > picture > img {
+      position: absolute;
+      inset: 0;
+      inline-size: 100%;
+      block-size: 100%;
+      object-fit: cover;
+      object-position: center top;
+      z-index: -1;
+      border-radius: 0;
+      opacity: var(--tcds-section-background-image-opacity-start, 1);
+      transition: opacity 2s var(--tcds-motion-easing-translate);
+
+      @include breakpoint("md") {
+        object-position: right center;
+      }
+
+      &[data-active] {
+        z-index: 0;
+        opacity: 1;
+      }
+    }
+
+    > .container-lg {
+      display: flex;
+      flex-direction: column;
+      gap: var(--tcds-space-layout-xs);
+
+      @include breakpoint("lg") {
+        gap: var(--tcds-space-layout-md);
+      }
+    }
+
+    :where(& p) {
+      font: inherit;
+    }
+
+    :where(& p a) {
+      color: inherit;
+    }
+
+    :where(& :is(h1, h2, h3, .text-heading-1, .text-heading-2, .text-heading-3)) {
+      color: var(--tcds-color-theme-text-primary);
+
+      :is(b, strong) {
+        display: block;
+        color: var(--tcds-color-theme-accent);
+      }
+    }
+
+    hgroup {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      gap: var(--tcds-space-layout-xs);
+      justify-content: space-between;
+      align-items: start;
+
+      @include breakpoint("md") {
+        flex-direction: row;
+        gap: var(--tcds-space-layout-sm);
+      }
+
+      p,
+      h1, h2, h3, [class*="text-heading-"], [class*="text-display-"] {
+        margin: 0;
+      }
+
+      h1:has(+ :is([class*="text-heading-"], [class*="text-display-"])),
+      p:has(+ :is(h1, h2, h3, [class*="text-heading-"], [class*="text-display-"])) {
+        @include text("ui", "md");
+
+        letter-spacing: 10%;
+        margin: 0;
+        text-transform: uppercase;
+        color: var(--tcds-color-theme-text-muted);
+        flex: 1 0 100%;
+      }
     }
   }
 }

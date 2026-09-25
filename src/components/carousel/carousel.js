@@ -13,6 +13,9 @@ export class Carousel extends LitElement {
   @property({type: Boolean, reflect: true})
   accessor playing = false;
 
+  @property({type: Boolean, attribute: "no-pause-on-hover"})
+  accessor noPauseOnHover = false;
+
   @property({type: Number})
   accessor interval;
 
@@ -255,8 +258,8 @@ export class Carousel extends LitElement {
   }
 
   #onInteractionChange(event) {
-    // Scoped to the slides region rather than the host, so focusing the play
-    // button doesn't count as interaction and leave it unable to resume.
+    const isPointer = event.type === "pointerenter" || event.type === "pointerleave";
+    if (isPointer && this.noPauseOnHover) return;
     this.#interacting = event.type === "pointerenter" || event.type === "focusin";
   }
 
@@ -380,7 +383,7 @@ export class Carousel extends LitElement {
   }
 
   #emit(name, detail) {
-    this.dispatchEvent(new CustomEvent(`tcds-carousel-${name}`, {
+    this.dispatchEvent(new CustomEvent(`tcds-carousel:${name}`, {
       detail,
       bubbles: true,
       composed: true,

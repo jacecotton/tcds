@@ -128,7 +128,13 @@
 }
 
 /**
- *
+ * 1. This is used to force Fraunces to use its 70pt-equivalent optical sizing
+ *    settings at sizes as big as our "display" styles. At around 5rem (60pt),
+ *    Fraunces uses higher contrast shapes (thinner bars and segments) by
+ *    default, which we don't want. For the most part we can cover all our use
+ *    cases by just targeting `display`, however this conditional may need to be
+ *    adjusted depending on future use cases, and this property may need to be
+ *    manually added to other rulesets that don't directly consume text styles.
  */
 
 @mixin text($keys...) {
@@ -139,8 +145,16 @@
   @if meta.type-of($token) == "map" and map.has-key($token, "base") and map.has-key($token, "desktop") {
     font: map.get($token, "base") #{$flag};
 
+    @if list.nth($positional, 1) == "display" {
+      font-variation-settings: "opsz" 70 #{$flag}; // 1
+    }
+
     @include breakpoint("md") {
       font: map.get($token, "desktop") #{$flag};
+
+      @if list.nth($positional, 1) == "display" {
+        font-variation-settings: "opsz" 70 #{$flag}; // 1
+      }
     }
   } @else {
     font: $token #{$flag};

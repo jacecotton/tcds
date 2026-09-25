@@ -3,6 +3,7 @@
     "$type": "string",
     "$description": "Z-index tokens for managing layers.",
     "dialog": {"$value": "600"},
+    "pullout-menu": {"$value": "550"},
     "site-header": {"$value": "500"},
     "alert-bar": {"$value": "400"},
     "notification": {"$value": "300"},

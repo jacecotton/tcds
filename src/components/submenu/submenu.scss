@@ -33,13 +33,13 @@
       }
 
       @include breakpoint("", "lg") {
-        padding: 1em 0;
+        padding: var(--tcds-space-component-md) 0;
       }
 
       @include breakpoint("lg") {
         --_tcds-submenu-link-background-inset: var(--tcds-submenu-link-background-inset, .4em);
 
-        padding: 1em calc(1em - var(--_tcds-submenu-link-background-inset));
+        padding: var(--tcds-space-component-md) calc(var(--tcds-space-component-md) - var(--_tcds-submenu-link-background-inset));
 
         &::before {
           content: "";

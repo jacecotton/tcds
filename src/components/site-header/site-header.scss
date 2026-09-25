@@ -390,10 +390,10 @@
 
             @media (update: fast) and (prefers-reduced-motion: no-preference) {
               &::details-content {
-                transition: all 50ms linear;
+                transition: all 75ms var(--tcds-motion-easing-enter);
                 transition-behavior: allow-discrete;
                 opacity: 0;
-                transform: perspective(800px) rotateY(-5deg) rotateX(-15deg);
+                transform: perspective(800px) rotateY(-2.5deg) rotateX(-7deg);
                 filter: blur(15px);
               }
 
