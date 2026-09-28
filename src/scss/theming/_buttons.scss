@@ -6,5 +6,7 @@ button, input {
 
   &[type=submit] {
     @include button-style();
+
+    --tcds-button-height: 50px;
   }
 }

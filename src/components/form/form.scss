@@ -26,7 +26,8 @@
         appearance: none;
         position: absolute;
 
-        + label {
+        + label,
+        ~ input[type=text] {
           @include text("ui", "md");
 
           display: flex;
@@ -36,11 +37,22 @@
           border: 2px solid var(--tcds-color-theme-accent);
           border-radius: 10px;
           height: 50px;
+          width: 100%;
           color: var(--tcds-color-theme-accent);
           transition:
             color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-enter),
             background-color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-enter),
             border-color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-enter);
+        }
+
+        + label {
+          cursor: pointer;
+        }
+
+        ~ input[type=text] {
+          &::placeholder {
+            color: var(--tcds-color-theme-default-text-muted);
+          }
         }
 
         &:checked + label {
