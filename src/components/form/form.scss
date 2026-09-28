@@ -71,6 +71,12 @@
 
       > label {
         @include text("ui", "md");
+
+        flex: 1 0 100%;
+      }
+
+      > :is(select, input) {
+        flex: 1 0;
       }
     }
 
