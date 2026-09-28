@@ -63,5 +63,37 @@
         }
       }
     }
+
+    > div {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--tcds-space-component-md) var(--tcds-space-component-sm);
+
+      > label {
+        @include text("ui", "md");
+      }
+    }
+
+    select {
+      @include text("ui", "md");
+
+      display: flex;
+      align-items: center;
+      border: 2px solid var(--tcds-color-theme-accent);
+      border-radius: 10px;
+      height: 50px;
+      width: 100%;
+      color: var(--tcds-color-theme-accent);
+      padding-inline: var(--tcds-space-component-md);
+      appearance: none;
+      background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.6382999 8.8181801'><path d='M13.1382999,1.5l-5.84517,5.8181801L1.5,1.5' fill='none' stroke='%23da2530' stroke-linecap='round' stroke-linejoin='round' stroke-width='3'/></svg>");
+      background-repeat: no-repeat;
+      background-position: calc(100% - var(--tcds-space-component-md)) center;
+      background-size: 1rem;
+      transition:
+        color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-enter),
+        background-color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-enter),
+        border-color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-enter);
+    }
   }
 }
