@@ -1,0 +1,54 @@
+@use "../../scss/abstracts/mixins" as *;
+
+.tcds-form {
+  &--display {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tcds-space-component-xl);
+
+    fieldset {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--tcds-space-component-sm);
+
+      > legend {
+        @include text("ui", "md");
+
+        margin-bottom: var(--tcds-space-component-md);
+      }
+
+      > div {
+        flex: 1 0;
+        min-width: 146px;
+      }
+
+      input[type=radio] {
+        appearance: none;
+        position: absolute;
+
+        + label {
+          @include text("ui", "md");
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          border: 2px solid var(--tcds-color-theme-accent);
+          border-radius: 10px;
+          height: 50px;
+          color: var(--tcds-color-theme-accent);
+          transition:
+            color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-enter),
+            background-color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-enter),
+            border-color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-enter);
+        }
+
+        &:checked + label {
+          background-color: color-mix(in oklab, var(--tcds-color-theme-accent), #000 65%);
+          border-color: color-mix(in oklab, var(--tcds-color-theme-accent), #000 65%);
+          color: var(--tcds-color-theme-dark-text-primary);
+        }
+      }
+    }
+  }
+}

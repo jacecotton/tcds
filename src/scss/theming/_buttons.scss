@@ -1,4 +1,10 @@
+@use "../../components/button/abstracts/mixins" as *;
+
 button, input {
   touch-action: manipulation;
   -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
+
+  &[type=submit] {
+    @include button-style();
+  }
 }
