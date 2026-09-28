@@ -56,7 +56,7 @@
         }
 
         &:checked + label,
-        ~ input[type=text]:not(:placeholder-shown, :focus) {
+        &:checked ~ input[type=text]:not(:placeholder-shown, :focus) {
           background-color: color-mix(in oklab, var(--tcds-color-theme-accent), #000 65%);
           border-color: color-mix(in oklab, var(--tcds-color-theme-accent), #000 65%);
           color: var(--tcds-color-theme-dark-text-primary);
