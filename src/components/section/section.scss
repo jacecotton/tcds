@@ -60,7 +60,7 @@
     > .container-lg {
       display: flex;
       flex-direction: column;
-      gap: var(--tcds-space-layout-xs);
+      gap: 3rem;
 
       @include breakpoint("lg") {
         gap: var(--tcds-space-layout-md);

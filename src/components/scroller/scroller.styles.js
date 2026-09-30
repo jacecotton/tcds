@@ -53,7 +53,6 @@ export default css`
 
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
     gap: var(--tcds-scroller-controls-gap);
     padding-right: var(--tcds-site-inner-gutter);
     margin-top: var(--tcds-space-layout-md);

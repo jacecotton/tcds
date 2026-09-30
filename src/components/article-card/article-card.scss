@@ -23,8 +23,13 @@
       flex-wrap: wrap;
       gap: var(--tcds-space-component-xs);
       padding: var(--tcds-space-component-sm);
+      width: 100%;
       position: absolute;
       z-index: 2;
+    }
+
+    &:not(:has(#{&}__image)) &__tags {
+      justify-content: end;
     }
 
     &__tag {
@@ -89,6 +94,7 @@
 
       small {
         display: block;
+        padding-top: .25rem;
         color: var(--tcds-color-theme-text-secondary);
         font-size: var(--tcds-font-size-sm);
       }

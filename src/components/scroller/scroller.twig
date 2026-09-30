@@ -7,7 +7,7 @@
   {% block content %}
     {{ content }}
   {% endblock %}
-  {% if links and links is iterable and links|length %}
+  {% if links and links is not empty %}
     {% for link in links %}
       {{ include("@tcds/cta-link/cta-link.twig", link|merge({
         attributes: create_attribute({"slot": "controls"}),
