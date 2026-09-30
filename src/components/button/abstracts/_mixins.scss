@@ -88,17 +88,14 @@
   text-align: center #{$flag};
   text-decoration: none #{$flag};
   line-height: 1 #{$flag};
-  transition:
-    background-color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-translate),
-    border-color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-translate),
-    color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-translate) #{$flag};
+  transition-property: background-color, border-color, color #{$flag};
+  transition-duration: var(--tcds-motion-duration-productive) #{$flag};
+  transition-timing-function: var(--tcds-motion-easing-translate) #{$flag};
 
   // @todo Need to figure out a better way to do this selector. Maybe handle
   // [data-pointer-event-proxy] on the respective cta and button stylesheets.
   &:hover,
-  &:active,
-  [data-pointer-event-proxy=".tcds-cta-link"]:hover &,
-  [data-pointer-event-proxy=".tcds-button"]:hover & {
+  &:active {
     background-color: var(--tcds-button-background-color-hover) #{$flag};
     color: var(--tcds-button-text-color-hover) #{$flag};
     border-color: var(--tcds-button-border-color-hover) #{$flag};

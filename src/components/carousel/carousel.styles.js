@@ -91,9 +91,9 @@ export default css`
     color: var(--tcds-button-text-color, var(--tcds-carousel-control-color));
     cursor: pointer;
     position: relative;
-    transition:
-      color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-enter),
-      background-color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-enter);
+    transition-property: background-color, color;
+    transition-duration: var(--tcds-motion-duration-productive);
+    transition-timing-function: var(--tcds-motion-easing-enter);
 
     &:hover {
       background-color: var(--tcds-button-background-color-hover, transparent);

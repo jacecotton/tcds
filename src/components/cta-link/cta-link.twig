@@ -1,13 +1,17 @@
-{% set base_class = "tcds-cta-link" %}
-{% set _classes = [base_class, modifiers|default([])|map(modifier => "#{base_class}--#{modifier}")|join(" "), classes|default("")]|join(" ") %}
+{%- apply spaceless -%}
 {% set attributes = attributes|default(create_attribute()) %}
-{% set attributes = attributes.addClass(_classes) %}
-{%- if url -%}
-{%- set attributes = attributes.setAttribute("href", url) -%}
+{% set base_class = "tcds-cta-link" %}
+
+{% set attributes = attributes
+  .addClass(classes|default([]))
+  .addClass([base_class]|merge(modifiers|default([])|map(modifier => "#{base_class}--#{modifier}")))
+  .setAttribute("href", url|default(false))
+%}
+
 {%- set icon_element -%}
   {%- if icon -%}
-    <tcds-icon icon="{{ icon }}"></tcds-icon>
+    <tcds-icon icon="{{ icon }}" aria-hidden="true"></tcds-icon>
   {%- endif -%}
 {%- endset -%}
-<a {{ attributes }}>{{ text }} {{ icon_element }}</a>
-{%- endif -%}
+{%- endapply -%}
+<a {{ attributes }}>{{ text }}{{ icon_element }}</a>

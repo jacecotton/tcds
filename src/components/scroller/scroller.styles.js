@@ -20,6 +20,7 @@ export default css`
     display: flex;
     gap: var(--tcds-scroller-gap);
     overflow-x: auto;
+    overflow-y: hidden;
     overscroll-behavior-x: contain;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
