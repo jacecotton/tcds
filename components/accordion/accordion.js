@@ -39,6 +39,22 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 function _setFunctionName(e, t, n) { "symbol" == _typeof(t) && (t = (t = t.description) ? "[" + t + "]" : ""); try { Object.defineProperty(e, "name", { configurable: !0, value: n ? n + " " + t : t }); } catch (e) {} return e; }
 function _checkInRHS(e) { if (Object(e) !== e) throw TypeError("right-hand side of 'in' should be an object, got " + (null !== e ? _typeof(e) : "null")); return e; }
 function _identity(t) { return t; }
+
+/** @import {DisclosureMode} from "@/components/_shared/base/Disclosure" */
+
+/**
+ * Groups accordion sections into an optionally exclusive accordion interface.
+ *
+ * @slot - Accordion sections.
+ *
+ * @csspart items    - Container for the accordion sections.
+ * @csspart controls - Container for expand all/collapse all controls.
+ * @csspart control  - Expand/collapse control buttons.
+ * @csspart expand   - Expand control button.
+ * @csspart collapse - Collapse control button.
+ *
+ * @fires {CustomEvent<{expandedItems: Disclosure[], mode: DisclosureMode}>} tcds-tabs:change
+ */
 var _Accordion;
 new (_Accordion2 = (_A = /*#__PURE__*/new WeakMap(), _Accordion3_brand = /*#__PURE__*/new WeakSet(), _Accordion3 = /*#__PURE__*/function (_DisclosureGroup) {
   function Accordion() {
@@ -49,12 +65,14 @@ new (_Accordion2 = (_A = /*#__PURE__*/new WeakMap(), _Accordion3_brand = /*#__PU
     }
     _this = _callSuper(this, Accordion, [].concat(args));
     // #endregion
-    // #region Events
+    // #region Event handlers
     _classPrivateMethodInitSpec(_this, _Accordion3_brand);
     // #region Properties and state
     /**
      * Allows any number of sections to be open at once, and renders expand-all
      * and collapse-all controls. Without it, opening one section closes the rest.
+     *
+     * @see renderHeader
      */
     _classPrivateFieldInitSpec(_this, _A, _init_multiple(_this, false));
     _init_extra_multiple(_this);
@@ -65,6 +83,7 @@ new (_Accordion2 = (_A = /*#__PURE__*/new WeakMap(), _Accordion3_brand = /*#__PU
     key: "multiple",
     get: // #endregion
     // #region Subclass contract
+    /** @override @protected @internal */
     function get() {
       return _classPrivateFieldGet(_A, this);
     },
@@ -76,21 +95,37 @@ new (_Accordion2 = (_A = /*#__PURE__*/new WeakMap(), _Accordion3_brand = /*#__PU
     get: function get() {
       return "accordion";
     }
+
+    /** @override @protected @internal */
   }, {
     key: "mediaMode",
     get: function get() {
       return "plain";
     }
+
+    /** @override @protected @internal */
   }, {
     key: "allowsMultiple",
     get: function get() {
       return this.multiple;
     }
+
+    /** @override @protected @internal */
   }, {
     key: "requiresSelection",
     get: function get() {
       return false;
     }
+
+    /**
+     * A UX affordance for accordions with `[multiple]` to provide toggle buttons
+     * for opening and closing all sections at once.
+     *
+     * @override
+     * @protected
+     * @internal
+     * @see multiple
+     */
   }, {
     key: "renderHeader",
     value: function renderHeader() {

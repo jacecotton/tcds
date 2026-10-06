@@ -12,7 +12,7 @@
   text-align: center;
   background-color: var(--tcds-color-theme-surface);
   border-radius: var(--tcds-border-radius-md);
-  padding: 40px;
+  padding: var(--tcds-space-component-xl) var(--tcds-space-layout-md);
 
   > :is(h2, h3, h4, h5, h6) {
     font-family: var(--tcds-font-family-ui);

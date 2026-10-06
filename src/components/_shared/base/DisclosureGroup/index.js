@@ -9,6 +9,8 @@ import {DeepLinkController} from "@/components/_shared/controllers/DeepLinkContr
 import sharedStyles from "@/components/_shared/styles";
 import groupStyles from "./styles.js";
 
+/** @import {DisclosureMode} from "@/components/_shared/base/Disclosure" */
+
 export class DisclosureGroup extends LitElement {
   static styles = [sharedStyles, groupStyles];
 
@@ -21,8 +23,7 @@ export class DisclosureGroup extends LitElement {
   accessor media;
 
   /**
-   * Accessible name for the group's own controls. Optional; omitted rather
-   * than defaulted, since a generic name is worse than none.
+   * Accessible name for the group's own controls. Optional.
    */
   @property({type: String})
   accessor label;
@@ -36,6 +37,7 @@ export class DisclosureGroup extends LitElement {
   // #endregion
 
   // #region Private variables
+  /** @type {HTMLElement[]} */
   @queryAssignedElements({flatten: true})
   accessor #assigned;
 
@@ -46,8 +48,9 @@ export class DisclosureGroup extends LitElement {
    * The item whose state changed most recently. When an exclusive group finds
    * more than one item expanded, this is the one that wins.
    */
+  /** @type {Disclosure|null} */
   #preferred = null;
-
+  /** @type {string|null} */
   #signature = null;
   // #endregion
 
@@ -58,8 +61,8 @@ export class DisclosureGroup extends LitElement {
     this.#mediaQuery = new MediaQueryController(this);
     this.#deepLink = new DeepLinkController(this, this.#onDeepLink);
 
-    this.addEventListener("tcds-disclosure-change", this.#onItemChange);
-    this.addEventListener("tcds-disclosure-title-change", this.#onItemTitleChange);
+    this.addEventListener("tcds-disclosure:change", this.#onItemChange);
+    this.addEventListener("tcds-disclosure:title-change", this.#onItemTitleChange);
   }
 
   willUpdate(changedProperties) {
@@ -90,13 +93,21 @@ export class DisclosureGroup extends LitElement {
   // #region Subclass contract
   /**
    * The pattern presented when `media` is absent or not matching.
+   *
+   * @type {DisclosureMode}
+   * @protected
+   * @internal
    */
   get defaultMode() {
     return "accordion";
   }
 
   /**
-   * The pattern presented while `media` matches.
+   * The alternate pattern presented when `media` does not match.
+   *
+   * @type {DisclosureMode}
+   * @protected
+   * @internal
    */
   get mediaMode() {
     return "plain";
@@ -104,6 +115,10 @@ export class DisclosureGroup extends LitElement {
 
   /**
    * Whether more than one item may be expanded at once.
+   *
+   * @type {boolean}
+   * @protected
+   * @internal
    */
   get allowsMultiple() {
     return false;
@@ -112,6 +127,10 @@ export class DisclosureGroup extends LitElement {
   /**
    * Whether exactly one item must always be expanded. True for tabs, where
    * there is no such thing as no tab being selected.
+   *
+   * @type {boolean}
+   * @protected
+   * @internal
    */
   get requiresSelection() {
     return false;
@@ -119,6 +138,9 @@ export class DisclosureGroup extends LitElement {
 
   /**
    * Chrome rendered above the items — a tablist, expand/collapse buttons.
+   *
+   * @protected
+   * @internal
    */
   renderHeader() {
     return nothing;
@@ -126,6 +148,7 @@ export class DisclosureGroup extends LitElement {
   // #endregion
 
   // #region Public API
+  /** @type {DisclosureMode} */
   get mode() {
     if (!this.#mediaQuery.query) return this.defaultMode;
     return this.#mediaQuery.matches ? this.defaultMode : this.mediaMode;
@@ -136,45 +159,66 @@ export class DisclosureGroup extends LitElement {
    * than a tag name means a group never adopts a stray element, and the
    * subclass modules import their item modules, so upgrades have always
    * happened by the time this is read.
+   *
+   * @type {Disclosure[]}
    */
   get items() {
     return this.#assigned?.filter((element) => element instanceof Disclosure) ?? [];
   }
 
+  /** @type {Disclosure[]} */
   get expandedItems() {
     return this.items.filter((item) => item.expanded);
   }
 
+  /**
+   * Expands a specific disclosure item.
+   *
+   * @param {Disclosure} item - Must be a disclosure item.
+   */
   expand(item) {
     this.#setExpanded(item, true);
   }
 
+  /**
+   * Collapses a specific disclosure item.
+   *
+   * @param {Disclosure} item - Must be a disclosure item.
+   */
   collapse(item) {
     this.#setExpanded(item, false);
   }
 
+  /**
+   * Toggles an item based on whether it's currently expanded.
+   *
+   * @param {Disclosure} item - Must be a disclosure item.
+   */
   toggle(item) {
-    this.#setExpanded(item, !item?.expanded);
+    this.#setExpanded(item, !item.expanded);
   }
 
+  /**
+   * Expands all disclosure items in a disclosure group.
+   */
   expandAll() {
     if (!this.allowsMultiple) return;
-
     for (const item of this.items) item.expanded = true;
-
     this.requestUpdate();
   }
 
+  /**
+   * Collapses all disclosure items in a disclosure group.
+   */
   collapseAll() {
     for (const item of this.items) item.expanded = false;
-
     // `requiresSelection` groups get one item re-expanded on the way through.
     this.#preferred = null;
     this.requestUpdate();
   }
   // #endregion
 
-  // #region Events
+  // #region Event handlers
   #onSlotChange() {
     this.#revision++;
 
@@ -183,25 +227,38 @@ export class DisclosureGroup extends LitElement {
     this.#deepLink.resolve();
   }
 
+  /**
+   * @param {CustomEvent<{expanded: boolean}>} event
+   */
   #onItemChange = (event) => {
     const item = event.target;
 
+    if (!(item instanceof Disclosure)) return;
     if (!this.items.includes(item)) return;
 
+    event.stopPropagation();
     this.#setExpanded(item, event.detail.expanded);
   };
 
+  /**
+   * @param {CustomEvent} event
+   */
   #onItemTitleChange = (event) => {
-    if (!this.items.includes(event.target)) return;
+    const item = event.target;
 
+    if (!(item instanceof Disclosure)) return;
+    if (!this.items.includes(item)) return;
+
+    event.stopPropagation();
     this.requestUpdate();
   };
 
+  /**
+   * @param {Element} target
+   */
   #onDeepLink = (target) => {
     const item = this.items.find((item) => item === target || item.contains(target));
-
     if (!item) return;
-
     this.expand(item);
 
     // The browser already tried to scroll here and found nothing laid out,
@@ -213,6 +270,10 @@ export class DisclosureGroup extends LitElement {
   // #endregion
 
   // #region Utility methods
+  /**
+   * @param {Disclosure} item
+   * @param {boolean} expanded
+   */
   #setExpanded(item, expanded) {
     if (!this.items.includes(item)) return;
     if (!expanded && this.requiresSelection && this.expandedItems.length <= 1) return;
@@ -229,6 +290,11 @@ export class DisclosureGroup extends LitElement {
     this.requestUpdate();
   }
 
+  /**
+   * Synchronizes each disclosure item with the group's current presentation
+   * mode, position, and item count, then enforces expansion/selection
+   * invariants.
+   */
   #syncItems() {
     const items = this.items;
 
@@ -244,6 +310,8 @@ export class DisclosureGroup extends LitElement {
   /**
    * Runs in `willUpdate`, so the group's own chrome renders against settled
    * state rather than trailing it by a frame.
+   *
+   * @param {Disclosure[]} items
    */
   #enforce(items) {
     if (items.length === 0) return;
@@ -280,7 +348,7 @@ export class DisclosureGroup extends LitElement {
     if (previous === null || previous.length !== signature.length) return;
     if (previous === signature) return;
 
-    this.dispatchEvent(new CustomEvent(`${this.localName}-change`, {
+    this.dispatchEvent(new CustomEvent(`${this.localName}:change`, {
       detail: {
         expandedItems: items.filter((item) => item.expanded),
         mode: this.mode,

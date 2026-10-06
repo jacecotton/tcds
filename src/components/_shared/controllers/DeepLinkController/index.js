@@ -4,21 +4,21 @@
  *
  * The host decides what a match means. This controller only answers the
  * question "what element is the URL pointing at right now?"
+ *
+ * @implements {import("lit").ReactiveController}
+ * @internal
  */
 export class DeepLinkController {
-  #host;
   #onResolve;
 
   /**
-   * @param {ReactiveElement} host
-   * @param {(target: Element) => void} onResolve - Called with the matched
+   * @param {import("lit").ReactiveControllerHost} host
+   * @param {(target: HTMLElement) => void} onResolve - Called with the matched
    *   element. Not called at all when the URL has no fragment, or when the
    *   fragment matches nothing in the document.
    */
   constructor(host, onResolve) {
-    this.#host = host;
     this.#onResolve = onResolve;
-
     host.addController(this);
   }
 

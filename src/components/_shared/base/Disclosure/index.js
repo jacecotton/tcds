@@ -5,18 +5,19 @@ import {property} from "lit/decorators.js";
 import sharedStyles from "@/components/_shared/styles";
 import disclosureStyles from "./styles.js";
 
-// NOTE: adjust to wherever `AccordionAnimationController` actually lives.
 import {AccordionAnimationController} from "@/components/_shared/controllers/AccordionAnimationController";
 
 /**
- * The presentations an item can take. Assigned by the parent group, mirrored to
- * a custom state so the stylesheet can key off it.
- *   tabs      - Title suppressed (the group's tablist owns it), panel is a
- *               tabpanel, whole host hidden unless expanded.
- *   accordion - Heading wraps a trigger button, panel animates open and shut.
- *   plain     - No affordances at all. Real heading, always-visible content.
+ * The display mode of the disclosure. Assigned by the parent group, mirrored to
+ * a custom state for styling.
+ *
+ * tabs      - Title suppressed (the group's tablist owns it), panel is a
+ *             tabpanel, whole host hidden unless expanded.
+ * accordion - Heading wraps a trigger button, panel animates open and shut.
+ * plain     - No affordances at all. Real heading, always-visible content.
  */
-export const MODES = ["tabs", "accordion", "plain"];
+export const MODES = /** @type {const} */ (["tabs", "accordion", "plain"]);
+/** @typedef {(typeof MODES)[number]} DisclosureMode */
 
 export const DEFAULT_HEADING_LEVEL = 3;
 
@@ -24,19 +25,29 @@ export class Disclosure extends LitElement {
   static styles = [sharedStyles, disclosureStyles];
 
   // #region Properties and state
-  @property({type: String})
+  /**
+   * @type {DisclosureMode}
+   * @internal
+   */
+  @property({type: String, attribute: false})
   accessor mode;
 
-  @property({type: Number})
+  /** @internal */
+  @property({type: Number, attribute: false})
   accessor position;
 
-  @property({type: Number})
+  /** @internal */
+  @property({type: Number, attribute: false})
   accessor total;
   // #endregion
 
   // #region Private variables
+  /** @type {ElementInternals} */
   #internals;
+  /** @type {AccordionAnimationController} */
   #animation;
+  /** @type {Node[]|null} */
+  #titleContent = null;
   // #endregion
 
   // #region Lifecycle
@@ -61,13 +72,23 @@ export class Disclosure extends LitElement {
   willUpdate(changedProperties) {
     super.willUpdate();
 
-    if (changedProperties.has("mode")) this.#animation.reset();
+    if (changedProperties.has("mode")) {
+      this.#animation.reset();
 
-    for (const mode of MODES) {
-      this.#internals.states[mode === this.mode ? "add" : "delete"](mode);
+      for (const mode of MODES) {
+        if (mode === this.mode) {
+          this.#internals.states.add(mode);
+        } else {
+          this.#internals.states.delete(mode);
+        }
+      }
     }
 
-    this.#internals.states[this.visible ? "add" : "delete"]("expanded");
+    if (this.visible) {
+      this.#internals.states.add("expanded");
+    } else {
+      this.#internals.states.delete("expanded");
+    }
   }
 
   render() {
@@ -75,7 +96,11 @@ export class Disclosure extends LitElement {
 
     return html`
       ${this.mode === "accordion" ? html`
-        <div part="heading" role="heading" aria-level=${this.headingLevel}>
+        <div
+          part="heading"
+          role="heading"
+          aria-level=${this.headingLevel}
+        >
           <button
             part="trigger"
             type="button"
@@ -84,13 +109,21 @@ export class Disclosure extends LitElement {
             aria-controls="panel"
             @click=${this.#onTriggerClick}
           >
-            <slot name="title"></slot>
-            <tcds-icon part="marker" icon="${this.expanded ? "minus" : "plus"}"></tcds-icon>
+            ${this.titleContent}
+            <tcds-icon
+              part="marker"
+              icon="${this.expanded ? "caret-up" : "caret-down"}"
+            ></tcds-icon>
           </button>
         </div>
-      ` : html`
-        <slot name="title" @slotchange=${this.#onTitleSlotChange}></slot>
-      `}
+      ` : nothing}
+
+      <slot
+        name="title"
+        ?hidden=${this.mode !== "plain"}
+        @slotchange=${this.#onTitleSlotChange}
+      ></slot>
+
       <div
         part="panel"
         id="panel"
@@ -128,11 +161,14 @@ export class Disclosure extends LitElement {
   }
   // #endregion
 
-  // #region Public API
+  // #region Subclass API
   /**
    * Subclasses map this onto their own reflected property — `selected` on tabs,
    * `open` on accordion sections — so each pattern keeps the attribute name
    * that reads naturally in markup.
+   *
+   * @type {boolean}
+   * @internal
    */
   get expanded() {
     throw new Error(`<${this.localName}> must implement an \`expanded\` accessor.`);
@@ -146,6 +182,9 @@ export class Disclosure extends LitElement {
    * Whether the content is actually on screen. Plain mode ignores `expanded`
    * entirely rather than overwriting it, so the author's state survives a trip
    * through a matching media query and back.
+   *
+   * @type {boolean}
+   * @internal
    */
   get visible() {
     return this.mode === "plain" || this.expanded;
@@ -154,18 +193,60 @@ export class Disclosure extends LitElement {
   /**
    * The author's `[slot=title]` element. Scoped to direct children so a nested
    * group's titles are never mistaken for this one's.
+   *
+   * @type {Element|null}
+   * @internal
    */
   get titleElement() {
     return this.querySelector(":scope > [slot=title]");
   }
 
+  /**
+   * @type {string}
+   * @internal
+   */
   get titleText() {
     return this.titleElement?.textContent.trim() ?? "";
   }
 
   /**
+   * A stable clone of the author's title contents, suitable for rendering
+   * inside controls such as accordion triggers and tabs.
+   *
+   * IDs are stripped because the clone may coexist with the source title in the
+   * document.
+   *
+   * @type {Node[]}
+   * @internal
+   */
+  get titleContent() {
+    if (this.#titleContent !== null) return this.#titleContent;
+
+    const title = this.titleElement;
+    const nodes = title ? [...title.cloneNode(true).childNodes] : [];
+
+    for (const node of nodes) {
+      if (!(node instanceof Element)) continue;
+
+      node.removeAttribute("id");
+
+      for (const descendant of node.querySelectorAll("[id]")) {
+        descendant.removeAttribute("id");
+      }
+    }
+
+    this.#titleContent = nodes;
+
+    return nodes;
+  }
+
+  /**
    * Taken from the author's heading tag, so `<h2 slot="title">` and
    * `<h4 slot="title">` both survive being wrapped in a trigger button.
+   *
+   * @type {number}
+   * @protected
+   * @internal
    */
   get headingLevel() {
     const title = this.titleElement;
@@ -178,28 +259,38 @@ export class Disclosure extends LitElement {
     return Number.isInteger(level) ? level : DEFAULT_HEADING_LEVEL;
   }
 
+  /**
+   * @type {HTMLElement|null}
+   * @protected
+   * @internal
+   */
   get panel() {
     return this.renderRoot?.querySelector("[part=panel]") ?? null;
   }
 
+  /**
+   * @type {HTMLElement|null}
+   * @protected
+   * @internal
+   */
   get content() {
     return this.renderRoot?.querySelector("[part=content]") ?? null;
   }
   // #endregion
 
-  // #region Events
+  // #region Event handlers
   #onTriggerClick() {
-    this.requestChange(!this.expanded);
+    this.#requestChange(!this.expanded);
   }
 
   #onBeforeMatch = () => {
-    this.requestChange(true);
+    this.#requestChange(true);
   };
 
   #onTitleSlotChange() {
-    // The group may be rendering a copy of this title (a tablist button), so it
-    // needs to know when the source text changes.
-    this.dispatchEvent(new CustomEvent("tcds-disclosure-title-change", {
+    this.#titleContent = null;
+
+    this.dispatchEvent(new CustomEvent("tcds-disclosure:title-change", {
       bubbles: true,
       composed: true,
     }));
@@ -216,8 +307,8 @@ export class Disclosure extends LitElement {
     return null;
   }
 
-  requestChange(expanded) {
-    this.dispatchEvent(new CustomEvent("tcds-disclosure-change", {
+  #requestChange(expanded) {
+    this.dispatchEvent(new CustomEvent("tcds-disclosure:change", {
       detail: {expanded},
       bubbles: true,
       composed: true,

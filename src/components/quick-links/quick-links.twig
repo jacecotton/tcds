@@ -1,16 +1,17 @@
-{% set _classes = ["tcds-quick-links", classes|default("")] %}
+{% set attributes = create_attribute(attributes|default({}))
+  .addClass("tcds-quick-links")
+  .setAttribute("role", "list")
+%}
 
-{% set attributes = attributes|default(create_attribute()) %}
-{% set attributes = attributes.addClass(_classes) %}
-
-<ul {{ attributes }} role="list">
+<ul {{ attributes }}>
   {% for link in links %}
     <li>
-      <a href="{{ link.url }}">
+      {% set link_attributes = create_attribute(link_attributes|default({})|merge(link.attributes|default({}))) %}
+      <a {{ link_attributes.setAttribute("href", link.url) }}>
         {% if link.icon %}
           <tcds-icon icon="{{ link.icon }}" category="duotone"></tcds-icon>
-        {% elseif link.image %}
-          <img {{ create_attribute(link.image|merge({role: "presentation"}))  }}>
+        {% elseif link.image|default(false) %}
+          <img {{ create_attribute(link.image|merge({alt: ""}))  }}>
         {% endif %}
         <span>{{ link.text }} <tcds-icon icon="caret-right"></tcds-icon></span>
       </a>

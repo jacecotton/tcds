@@ -2,15 +2,21 @@
  * Tracks a media query and requests a host update whenever it starts or stops
  * matching. The query itself is reassignable, so a host can expose it as a
  * reactive property without managing listeners.
+ *
+ * @implements {import("lit").ReactiveController}
+ * @internal
  */
 export class MediaQueryController {
+  /** @type {import("lit").ReactiveElement} */
   #host;
+  /** @type {string|null} */
   #query = null;
+  /** @type {MediaQueryList|null} */
   #list = null;
 
   /**
-   * @param {ReactiveElement} host
-   * @param {String | null} query - A media query, e.g. `(max-width: 1000px)`.
+   * @param {import("lit").ReactiveElement} host
+   * @param {string|null} query - A media query, e.g. `(max-width: 1000px)`.
    */
   constructor(host, query = null) {
     this.#host = host;
@@ -23,6 +29,9 @@ export class MediaQueryController {
     return this.#query;
   }
 
+  /**
+   * @param {string|null} query
+   */
   set query(query) {
     const next = query || null;
 

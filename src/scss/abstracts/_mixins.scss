@@ -142,21 +142,27 @@
   $positional: list.join((), $keys);
   $token: token("text", $positional...);
 
+  $is-display: list.nth($positional, 1) == "display";
+
   @if meta.type-of($token) == "map" and map.has-key($token, "base") and map.has-key($token, "desktop") {
     font: map.get($token, "base") #{$flag};
 
-    @if list.nth($positional, 1) == "display" {
+    @if $is-display {
       font-variation-settings: "opsz" 70 #{$flag}; // 1
     }
 
     @include breakpoint("md") {
       font: map.get($token, "desktop") #{$flag};
 
-      @if list.nth($positional, 1) == "display" {
+      @if $is-display {
         font-variation-settings: "opsz" 70 #{$flag}; // 1
       }
     }
   } @else {
     font: $token #{$flag};
+  }
+
+  @if $is-display {
+    color: var(--tcds-color-theme-text-primary);
   }
 }

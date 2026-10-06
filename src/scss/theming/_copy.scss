@@ -1,3 +1,7 @@
+[data-theme] {
+  color: var(--tcds-color-theme-text-primary);
+}
+
 /**
  * Paragraphs and lists.
  *
@@ -7,7 +11,7 @@
  */
 
 p {
-  &:not(:first-child) {
+  :not([slot]) + & {
     margin-block-start: 1.5rem;
   }
 

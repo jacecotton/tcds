@@ -14,6 +14,32 @@ Each component generally has the following files:
 
 We use the [Lit](https://lit.dev/) library for authoring components as custom elements (where applicable).
 
+#### Twig
+Each component's Twig template should use the following boilerplate. Comments are included below to explain once, but do not need to be pasted in each template:
+
+```twig
+{# Optional - define base class for reusability. #}
+{% set base_class = "some-component" %}
+
+{#
+  Allow template consumers to define arbitrary attributes, like custom classes
+  or data hooks. Then add base class, then component-specific attributes.
+
+  Note that, per SDC, the `.component.yml` files should own prop required and
+  default value information. So all props should be serialized with
+  `|default(false)` regardless of type, requirement, or actual default.
+#}
+{% set attributes = create_attribute(attributes|default({}))
+  .addClass(base_class)
+  .setAttribute("some-attr", some_attr|default(false))
+  ...
+%}
+
+{# Whatever root element... #}
+<div {{ attributes }}>
+...
+```
+
 ### Build process
 Rollup handles building component JS files, via the `build:js` script.
 

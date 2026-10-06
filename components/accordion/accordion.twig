@@ -1,0 +1,33 @@
+{% set attributes = create_attribute(attributes|default({}))
+  .setAttribute("multiple", multiple|default(false))
+  .setAttribute("media", media|default(false))
+%}
+
+<tcds-accordion {{ attributes }}>
+  {# Check if `sections` is a plain array and not a render array (slot). #}
+  {% if sections is defined %}
+    {% if sections is iterable and sections["#markup"] is not defined %}
+      {% for section in sections %}
+        {% if section.content is not iterable and block(section.content) is defined %}
+          {# `content` is an embedded block. #}
+          {% set content = block(section.content) %}
+        {% else %}
+          {# `content` is passed content. #}
+          {% set content = section.content %}
+        {% endif %}
+
+        {{ include("tcds:accordion-section", {
+          title: section.title,
+          content: content,
+          open: section.open,
+          heading_level: heading_level|default(null),
+        }) }}
+      {% endfor %}
+    {% else %}
+      {# Dump render array/slot here. #}
+      {% block sections %}
+        {{ sections }}
+      {% endblock %}
+    {% endif %}
+  {% endif %}
+</tcds-accordion>

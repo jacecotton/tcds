@@ -4,41 +4,46 @@ import {customElement} from "lit/decorators.js";
 
 import {DisclosureGroup} from "@/components/_shared/base/DisclosureGroup";
 import localStyles from "./tabs.styles.js";
-
-// Importing the item guarantees it is defined before this element is, so the
-// `instanceof` filter in `items` never runs against an un-upgraded child.
 import "@/components/tab/tab.js";
 
+/** @import {DisclosureMode, Disclosure} from "@/components/_shared/base/Disclosure" */
+/**
+ * A collection of toggleable tab panels.
+ *
+ * @slot - Tab items.
+ *
+ * @csspart items - The container for all tab items.
+ * @csspart tablist - The container for the tab buttons.
+ * @csspart tab - The tab button for the corresponding tab.
+ *
+ * @fires {CustomEvent<{expandedItems: Disclosure[], mode: DisclosureMode}>} tcds-tabs:change
+ */
 @customElement("tcds-tabs")
 export class Tabs extends DisclosureGroup {
   static styles = [DisclosureGroup.styles, localStyles];
 
-  // #region Private variables
-  /**
-   * Cloned title content, one entry per tab. Cached because lit-html compares
-   * node values by identity: re-cloning on every render would replace every
-   * tab button's contents on every render.
-   */
-  #titles = new WeakMap();
-  // #endregion
-
   // #region Subclass contract
+  /** @override @protected @internal */
   get defaultMode() {
     return "tabs";
   }
 
+  /** @override @protected @internal */
   get mediaMode() {
     return "accordion";
   }
 
+  /** @override @protected @internal */
   get allowsMultiple() {
     return false;
   }
 
+  /** @override @protected @internal */
   get requiresSelection() {
     return true;
   }
 
+  /** @override @protected @internal */
   renderHeader() {
     if (this.mode !== "tabs") return nothing;
 
@@ -58,7 +63,7 @@ export class Tabs extends DisclosureGroup {
             aria-selected=${item.expanded ? "true" : "false"}
             tabindex=${item.expanded ? 0 : -1}
             @click=${this.#onTabClick}
-          >${this.#titleFor(item)}</button>
+          >${item.titleContent}</button>
         `)}
       </div>
     `;
@@ -66,17 +71,26 @@ export class Tabs extends DisclosureGroup {
   // #endregion
 
   // #region Public API
+  /**
+   * @param {number} position - The index of the item to select.
+   */
   select(position) {
     const item = this.items[position];
     if (item) this.expand(item);
   }
   // #endregion
 
-  // #region Events
+  // #region Event handlers
+  /**
+   * @param {MouseEvent} event
+   */
   #onTabClick(event) {
     this.select(Number(event.currentTarget.value));
   }
 
+  /**
+   * @param {KeyboardEvent} event
+   */
   async #onTablistKeydown(event) {
     const items = this.items;
 
@@ -102,35 +116,6 @@ export class Tabs extends DisclosureGroup {
     // expected behaviour for tab panels that are cheap to reveal.
     await this.updateComplete;
     this.renderRoot.querySelector("[part~=tab][aria-selected=true]")?.focus();
-  }
-  // #endregion
-
-  // #region Utility methods
-  /**
-   * A tab button and its source heading live in different tree scopes, so the
-   * heading cannot be slotted into the button and `aria-labelledby` cannot
-   * reach across. The heading's children are copied instead of the heading
-   * itself, because a button may only contain phrasing content.
-   */
-  #titleFor(item) {
-    if (this.#titles.has(item)) return this.#titles.get(item);
-
-    const title = item.titleElement;
-    const nodes = title ? [...title.cloneNode(true).childNodes] : [];
-
-    for (const node of nodes) {
-      if (node.nodeType !== Node.ELEMENT_NODE) continue;
-
-      node.removeAttribute("id");
-
-      for (const descendant of node.querySelectorAll("[id]")) {
-        descendant.removeAttribute("id");
-      }
-    }
-
-    this.#titles.set(item, nodes);
-
-    return nodes;
   }
   // #endregion
 }

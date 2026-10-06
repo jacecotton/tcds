@@ -1,12 +1,28 @@
 import {
-  MotionEasingTranslate,
   MotionEasingEnter,
   MotionEasingExit,
   MotionDurationProductive,
+  MotionDurationExpressive,
 } from "@/components/_shared/_gen/tokens.js";
 
+/**
+ * @typedef {object} AccordionAnimationConfig
+ * @property {() => boolean} isOpen
+ * @property {() => HTMLElement|null} getPanel
+ * @property {() => HTMLElement|null} getContent
+ */
+
+/**
+ * Reactive controller that synchronizes a disclosure panel's hidden state and
+ * animates transitions between its expanded and collapsed states.
+ *
+ * @implements {import("lit").ReactiveController}
+ * @internal
+ */
 export class AccordionAnimationController {
+  /** @type {AccordionAnimationConfig} */
   #config;
+  /** @type {boolean|undefined} */
   #previousOpen = undefined;
 
   /**
@@ -20,11 +36,8 @@ export class AccordionAnimationController {
   }
 
   /**
-   * @param {ReactiveElement} host
-   * @param {Object} config
-   * @param {() => boolean} config.isOpen - Getter for current open state.
-   * @param {() => HTMLElement} config.getPanel - Getter for panel element.
-   * @param {() => HTMLElement} config.getContent - Getter for content element.
+   * @param {import("lit").ReactiveControllerHost} host
+   * @param {AccordionAnimationConfig} config
    */
   constructor(host, config) {
     this.#config = config;
@@ -54,39 +67,46 @@ export class AccordionAnimationController {
     this.#previousOpen = isOpen;
   }
 
+  /**
+   * @param {boolean} isOpen
+   * @param {HTMLElement} panel
+   * @param {HTMLElement} content
+   */
   #animate(isOpen, panel, content) {
     // If user has reduced-motion preference, disable animations by setting
     // duration to 1ms.
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const duration = reducedMotion ? 1 : MotionDurationProductive;
+    const durationExpressive = reducedMotion ? 1 : MotionDurationExpressive;
 
     if (isOpen) {
       panel.hidden = false;
+      content.style.opacity = 0;
 
       // After animation, we set panel height to auto so it can respond to new
       // elements that add/grow after opening (like nested accordions).
       panel.animate(
         {height: ["0", `${panel.scrollHeight}px`]},
-        {duration, easing: MotionEasingTranslate},
+        {duration, easing: MotionEasingEnter},
       ).onfinish = () => panel.style.height = "auto";
 
       // Small tertiary animation for the content to add smoothness.
       content.animate(
-        {opacity: [0, 1], translate: ["0 -15%", "0 0"]},
-        {duration, easing: MotionEasingEnter},
-      );
+        {opacity: [0, 1]},
+        {duration: durationExpressive, easing: MotionEasingEnter, delay: 50},
+      ).onfinish = () => content.style.opacity = null;
     } else {
       // Reverse animation, reset DOM.
       panel.animate(
         {height: [`${panel.scrollHeight}px`, "0"]},
-        {duration, easing: MotionEasingTranslate},
+        {duration, easing: MotionEasingEnter},
       ).onfinish = () => {
         panel.hidden = "until-found";
         panel.style.height = null;
       };
 
       content.animate(
-        {opacity: [1, 0], translate: ["0 0", "0 -15%"]},
+        {opacity: [1, 0]},
         {duration, easing: MotionEasingExit},
       );
     }
