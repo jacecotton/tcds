@@ -1,6 +1,8 @@
 import {css, unsafeCSS} from "lit";
 import {SizeBreakpointMd} from "@/components/_shared/_gen/tokens.js";
 
+const breakpoint = unsafeCSS(SizeBreakpointMd);
+
 const outsideControls = unsafeCSS`
   --tcds-carousel-controls-margin-top: var(--tcds-space-layout-xs);
 `;
@@ -18,8 +20,12 @@ export default css`
     --tcds-carousel-control-color: var(--tcds-color-palette-gray-400);
     --tcds-carousel-control-color-hover: var(--tcds-color-palette-gray-500);
     --tcds-carousel-control-color-active: var(--tcds-color-palette-black);
-    --tcds-carousel-dot-width: .625rem;
+    --tcds-carousel-dot-width: .8125rem;
     --tcds-carousel-dot-width-current: var(--tcds-carousel-dot-width);
+
+    @media (min-width: ${breakpoint}) {
+      --tcds-carousel-dot-width: .625rem;
+    }
 
     flex-direction: column;
     position: relative;
@@ -40,11 +46,11 @@ export default css`
   }
 
   :host([controls="inset"]) {
-    @media (min-width: ${unsafeCSS(SizeBreakpointMd)}) {
+    @media (min-width: ${breakpoint}) {
       ${insetControls}
     }
 
-    @media (max-width: ${unsafeCSS(SizeBreakpointMd)}) {
+    @media (max-width: ${breakpoint}) {
       ${outsideControls}
     }
   }
@@ -59,7 +65,7 @@ export default css`
   }
 
   [part=controls] {
-    --tcds-carousel-controls-padding: var(--tcds-space-component-sm);
+    --tcds-carousel-controls-padding: var(--tcds-space-component-md);
     --tcds-carousel-controls-gap: calc(var(--tcds-carousel-controls-padding) * 2);
 
     display: inline-grid;
@@ -72,13 +78,17 @@ export default css`
     left: 50%;
     transform: translateX(-50%);
     margin-top: var(--tcds-carousel-controls-margin-top);
+    padding: 0 var(--tcds-carousel-controls-padding);
     height: var(--tcds-size-component-md);
-    padding: 0 var(--tcds-space-component-sm);
     width: fit-content;
     background-color: var(--tcds-carousel-controls-background, transparent);
     backdrop-filter: var(--tcds-carousel-controls-backdrop-filter, none);
     border-radius: 3rem;
     z-index: 2;
+
+    @media (min-width: ${breakpoint}) {
+      --tcds-carousel-controls-padding: var(--tcds-space-component-sm);
+    }
   }
 
   [part~=control] {
@@ -94,6 +104,10 @@ export default css`
     transition-property: background-color, color;
     transition-duration: var(--tcds-motion-duration-productive);
     transition-timing-function: var(--tcds-motion-easing-enter);
+
+    @media (max-width: ${breakpoint}) {
+      font-size: var(--tcds-font-size-md);
+    }
 
     &:hover {
       background-color: var(--tcds-button-background-color-hover, transparent);
