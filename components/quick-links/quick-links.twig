@@ -11,7 +11,7 @@
         {% if link.icon %}
           <tcds-icon icon="{{ link.icon }}" category="duotone"></tcds-icon>
         {% elseif link.image|default(false) %}
-          <img {{ create_attribute(link.image|merge({alt: ""}))  }}>
+          <img {{ create_attribute(link.image|merge({alt: ""})) }}>
         {% endif %}
         <span>{{ link.text }} <tcds-icon icon="caret-right"></tcds-icon></span>
       </a>

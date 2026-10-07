@@ -3,7 +3,7 @@
 
 .tcds-quick-links {
   --tcds-color-theme-text-primary: var(--tcds-color-theme-default-text-primary);
-  --tcds-quick-links-column-min-width: 294px;
+  --tcds-quick-links-column-min-width: 215px;
 
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(var(--tcds-quick-links-column-min-width), 1fr));
@@ -30,11 +30,15 @@
     min-height: 5lh;
     padding: var(--tcds-space-component-lg);
     text-decoration: none;
-    font-size: var(--tcds-font-size-2xl);
+    font-size: var(--tcds-font-size-xl);
     font-family: var(--tcds-font-family-ui);
     font-weight: var(--tcds-font-weight-ui);
     line-height: var(--tcds-line-height-normal);
     transition: color var(--tcds-motion-duration-productive) var(--tcds-motion-easing-enter);
+
+    @include breakpoint("lg") {
+      font-size: var(--tcds-font-size-2xl);
+    }
 
     &:hover {
       --tcds-quick-links-caret-icon-left: 1em;
