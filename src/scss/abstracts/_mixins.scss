@@ -143,6 +143,7 @@
   $token: token("text", $positional...);
 
   $is-display: list.nth($positional, 1) == "display";
+  $is-heading: list.nth($positional, 1) == "heading";
 
   @if meta.type-of($token) == "map" and map.has-key($token, "base") and map.has-key($token, "desktop") {
     font: map.get($token, "base") #{$flag};
@@ -162,7 +163,7 @@
     font: $token #{$flag};
   }
 
-  @if $is-display {
+  @if $is-display or $is-heading {
     color: var(--tcds-color-theme-text-primary);
   }
 }

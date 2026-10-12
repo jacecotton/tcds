@@ -1,6 +1,8 @@
 import {customElement, property} from "lit/decorators.js";
 import {Disclosure} from "@/components/_shared/base/Disclosure";
 
+import styles from "./tab.styles.js";
+
 /**
  * A tab panel of content selectable from a tabs group.
  *
@@ -17,6 +19,8 @@ import {Disclosure} from "@/components/_shared/base/Disclosure";
  */
 @customElement("tcds-tab")
 export class Tab extends Disclosure {
+  static styles = [Disclosure.styles, styles];
+
   // #region Properties and state
   /**
    * Whether this is the active tab. Authoring `<tcds-tab selected>` picks the

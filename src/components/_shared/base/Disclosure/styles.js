@@ -1,5 +1,15 @@
 import {css} from "lit";
 
+/**
+ * A Disclosure is either an accordion section or tab component, indicated by
+ * custom states.
+ *
+ * This stylesheet contains global styles, plain styles, and accordion styles
+ * because tabs can become accordions responsively, so accordion styles apply to
+ * both `<tcds-accordion-section>` and `<tcds-tab>` when the `mode` is
+ * `accordion`.
+ */
+
 export default css`
   :host {
   }
@@ -24,17 +34,14 @@ export default css`
     display: none;
   }
 
-  :host(:state(expanded)) {
-  }
-
-  [part=heading] {
+  :host(:state(accordion)) [part=heading] {
     border-bottom: 1px solid var(--tcds-color-theme-edge);
     transition-property: background-color, border-color;
     transition-duration: var(--tcds-motion-duration-productive);
     transition-timing-function: var(--tcds-motion-easing-enter);
   }
 
-  :host(:state(expanded)) [part=heading] {
+  :host(:state(accordion):state(expanded)) [part=heading] {
     border-color: transparent;
     background-color: var(--tcds-color-theme-surface);
   }
@@ -43,6 +50,9 @@ export default css`
     appearance: none;
     background-color: transparent;
     border: 0;
+  }
+
+  :host(:state(accordion)) [part=trigger] {
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -50,38 +60,19 @@ export default css`
     font-family: var(--tcds-font-family-ui);
     font-weight: var(--tcds-font-weight-ui);
     font-size: var(--tcds-font-size-2xl);
+    line-height: var(--tcds-line-height-normal);
+    text-align: left;
     color: var(--tcds-color-theme-text-primary);
     cursor: pointer;
   }
 
-  [part=marker] {
-    flex-shrink: 0;
+  :host(:state(accordion)) [part=marker] {
+    flex: none;
     font-size: var(--tcds-font-size-md);
   }
 
-  :host(:state(expanded)) [part=marker] {
+  :host(:state(accordion):state(expanded)) [part=marker] {
     color: var(--tcds-color-theme-accent);
-  }
-
-  [part=marker] {
-    flex: none;
-  }
-
-  /**
-   * Required for the height animation to clip. The panel is set back to
-   * 'height: auto' once open, so this only bites during the transition.
-   */
-  [part=panel] {
-    overflow: hidden;
-    box-shadow: 0;
-    transition-property: background-color, box-shadow;
-    transition-duration: var(--tcds-motion-duration-productive);
-    transition-timing-function: var(--tcds-motion-easing-enter);
-  }
-
-  :host(:state(expanded)) [part=panel] {
-    background-color: var(--tcds-color-theme-surface);
-    box-shadow: inset 0 -4px 0 var(--tcds-color-theme-accent);
   }
 
   [part=panel]:focus-visible {
@@ -89,8 +80,17 @@ export default css`
     outline-offset: 2px;
   }
 
-  [part=content] {
-    padding-inline: var(--tcds-space-component-xl);
+  :host(:state(accordion)) [part=panel] {
+    overflow: hidden;
+    box-shadow: 0;
+    transition-property: background-color, box-shadow;
+    transition-duration: var(--tcds-motion-duration-productive);
+    transition-timing-function: var(--tcds-motion-easing-enter);
+  }
+
+  :host(:state(accordion):state(expanded)) [part=panel] {
+    background-color: var(--tcds-color-theme-surface);
+    box-shadow: inset 0 -4px 0 var(--tcds-color-theme-accent);
   }
 
   :host(:state(plain)) [part=content] {
@@ -98,6 +98,7 @@ export default css`
   }
 
   :host(:state(accordion)) [part=content] {
+    padding-inline: var(--tcds-space-component-xl);
     padding-block-end: var(--tcds-space-layout-sm);
   }
 `;

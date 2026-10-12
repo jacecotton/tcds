@@ -31,7 +31,7 @@ props:
     media:
       type: string
       title: Media query
-      description: "The media query at which to \"activate\" the accordion (collapse into toggleable sections)."
+      description: "The media query at which to activate accordion mode (collapse into toggleable sections)."
 slots:
   sections:
     title: Sections
