@@ -17,7 +17,6 @@ import styles from "./tab.styles.js";
  * @cssState tabs      - The tab is presented as a tab panel.
  * @cssState plain     - The section is presented as plain content.
  */
-@customElement("tcds-tab")
 export class Tab extends Disclosure {
   static styles = [Disclosure.styles, styles];
 
@@ -41,4 +40,8 @@ export class Tab extends Disclosure {
     this.selected = value;
   }
   // #endregion
+}
+
+if (!customElements.get("tcds-tab")) {
+  customElements.define("tcds-tab", Tab);
 }
