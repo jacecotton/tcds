@@ -40,6 +40,96 @@ Each component's Twig template should use the following boilerplate. Comments ar
 ...
 ```
 
+#### JavaScript
+Most components are custom elements. All custom element names should be prefixed with `tcds-`. We use Lit where helpful.
+
+```js
+import {LitElement} from "lit";
+import {html} from "lit/static-html.js";
+import {customElement} from "lit/decorators.js";
+
+@customElement("tcds-example")
+export default class Example extends LitElement {
+  // ...
+}
+```
+
+Shadow root styles exported from a `.styles.js` file and adopted:
+
+```js
+/* example.styles.js */
+import {css} from "lit/static-html.js";
+
+export default css`
+  :host {
+    /* ... */
+  }
+`;
+```
+```js
+/* example.js */
+import styles from "./example.styles.js";
+
+class Example extends LitElement {
+  static styles = [styles];
+}
+```
+
+Some components may need light DOM styles, which can be written in `.scss` files. They will be built to `.css` by the [build process](#build-process).
+
+For non-Lit components that use JavaScript, we follow the pattern of exporting initializer and cleanup functions from the main script and consuming them appropriately in both Drupal-specific and generic entrypoints. In these cases the `.component.yml` file should point to the Drupal-specific entrypoint.
+
+```js
+/* example.js */
+export initExample(context = document) {
+  // ...
+}
+
+export destroyExample(context = document) {
+  // ...
+}
+```
+```js
+/* example.browser.js */
+import {initExample, destroyExample} from "./example.js";
+
+const initialize = () => initExample(document);
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initialize, {once: true});
+} else {
+  initialize();
+}
+```
+```js
+/* example.drupal.js */
+import {initExample, destroyExample} from "./example.js";
+
+window.Drupal.behaviors.tcdsExample = {
+  attach(context) {
+    initExample(context);
+  },
+
+  detach(context, settings, trigger) {
+    if (trigger === "unload") {
+      destroyInit(context);
+    }
+  },
+};
+```
+```yml
+# example.component.yml
+libraryOverrides:
+  js:
+    example.drupal.js:
+      attributes: { type: "module" }
+      preprocess: false
+  dependences:
+    - core/drupal
+```
+
+This is not needed for custom elements because the behavior is initialized in the element's `constructor`/`connectedCallback` and cleaned up in the `disconnectedCallback` (which is usually a good reason on its own to use a custom element).
+
 ### Build process
 Rollup handles building component JS files, via the `build:js` script.
 

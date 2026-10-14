@@ -39,6 +39,8 @@ function _checkInRHS(e) { if (Object(e) !== e) throw TypeError("right-hand side 
 /**
  * A tab panel of content selectable from a tabs group.
  *
+ * @tag tcds-tab
+ *
  * @slot - Content.
  * @slot title - The title of the section to use for the trigger label.
  *

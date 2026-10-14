@@ -4,6 +4,8 @@ import {Disclosure} from "@/components/_shared/base/Disclosure";
 /**
  * A section of content expandable and collapsible via a trigger.
  *
+ * @tag tcds-accordion-section
+ *
  * @slot - Content.
  * @slot title - The title of the section to use for the trigger label.
  *

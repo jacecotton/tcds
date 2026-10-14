@@ -28,7 +28,7 @@ export default css`
     width: max-content;
     background-color: var(--tcds-color-theme-background);
     color: var(--tcds-color-theme-text-primary);
-    padding: var(--tcds-space-component-md) 0;
+    padding: var(--tcds-space-component-xl) 0;
     will-change: transform;
     animation: tcds-marquee-scroll var(--tcds-marquee-duration) linear infinite;
     animation-play-state: var(--tcds-marquee-play-state, running);
