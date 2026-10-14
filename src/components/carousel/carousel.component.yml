@@ -1,0 +1,44 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Carousel
+description: A rotating set of slides with navigation and optional autoplay.
+status: experimental
+group: Content
+libraryOverrides:
+  js:
+    carousel.js:
+      attributes:
+        type: module
+      preprocess: false
+props:
+  type: object
+  properties:
+    label:
+      type: string
+      title: Label
+      description: An accessible name for the carousel.
+      default: Carousel
+    playing:
+      type: boolean
+      title: Autoplay
+      description: Rotate slides automatically. Reduced motion preferences disable initial autoplay.
+      default: false
+    interval:
+      type: number
+      title: Interval
+      description: Seconds to show each slide during autoplay. Values below one are treated as one.
+      default: 6
+    controls:
+      type: string
+      title: Control placement
+      description: Place controls below the slides or inset over them on wider viewports.
+      enum: [outside, inset]
+      default: outside
+    no_pause_on_hover:
+      type: boolean
+      title: Continue on hover
+      description: Continue autoplay while hovered. Focus within the carousel still pauses rotation.
+      default: false
+slots:
+  slides:
+    title: Slides
+    description: Slide components, or a list of objects with content, optional selected state, and optional attributes. Content may reference an embedded Twig block.

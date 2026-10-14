@@ -9,8 +9,8 @@ var insetControls = r(_templateObject2$1 || (_templateObject2$1 = _taggedTemplat
 var localStyles = i(_templateObject3$1 || (_templateObject3$1 = _taggedTemplateLiteral$1(["\n  :host {\n    --tcds-carousel-controls-position: relative;\n    --tcds-carousel-control-color: var(--tcds-color-palette-gray-400);\n    --tcds-carousel-control-color-hover: var(--tcds-color-palette-gray-500);\n    --tcds-carousel-control-color-active: var(--tcds-color-palette-black);\n    --tcds-carousel-dot-width: .8125rem;\n    --tcds-carousel-dot-width-current: var(--tcds-carousel-dot-width);\n\n    @media (min-width: ", ") {\n      --tcds-carousel-dot-width: .625rem;\n    }\n\n    flex-direction: column;\n    position: relative;\n\n    @media (prefers-reduced-motion: reduce) {\n      transition: none;\n    }\n  }\n\n  :host(:not([hidden])) {\n    display: flex;\n  }\n\n  :host([playing]) {\n    --tcds-carousel-control-color-active: var(--tcds-carousel-control-color);\n    --tcds-carousel-dot-progress-opacity: 1;\n    --tcds-carousel-dot-width-current: 2.625rem;\n  }\n\n  :host([controls=\"inset\"]) {\n    @media (min-width: ", ") {\n      ", "\n    }\n\n    @media (max-width: ", ") {\n      ", "\n    }\n  }\n\n  :host(:not([controls=\"inset\"])) {\n    ", "\n  }\n\n  [part=slides] {\n    display: grid;\n    position: relative;\n  }\n\n  [part=controls] {\n    --tcds-carousel-controls-padding: var(--tcds-space-component-md);\n    --tcds-carousel-controls-gap: calc(var(--tcds-carousel-controls-padding) * 2);\n\n    display: inline-grid;\n    grid-template-areas: \"previous dots next toggle\";\n    align-items: center;\n    justify-content: center;\n    gap: var(--tcds-carousel-controls-gap);\n    position: var(--tcds-carousel-controls-position);\n    bottom: var(--tcds-carousel-controls-bottom);\n    left: 50%;\n    transform: translateX(-50%);\n    margin-top: var(--tcds-carousel-controls-margin-top);\n    padding: 0 var(--tcds-carousel-controls-padding);\n    height: var(--tcds-size-component-md);\n    width: fit-content;\n    background-color: var(--tcds-carousel-controls-background, transparent);\n    backdrop-filter: var(--tcds-carousel-controls-backdrop-filter, none);\n    border-radius: 3rem;\n    z-index: 2;\n\n    @media (min-width: ", ") {\n      --tcds-carousel-controls-padding: var(--tcds-space-component-sm);\n    }\n  }\n\n  [part~=control] {\n    display: inline-flex;\n    justify-content: center;\n    align-items: center;\n    appearance: none;\n    border: var(--tcds-button-border-width, 0) solid var(--tcds-button-border-color, transparent);\n    background-color: var(--tcds-button-background-color, transparent);\n    color: var(--tcds-button-text-color, var(--tcds-carousel-control-color));\n    cursor: pointer;\n    position: relative;\n    transition-property: background-color, color;\n    transition-duration: var(--tcds-motion-duration-productive);\n    transition-timing-function: var(--tcds-motion-easing-enter);\n\n    @media (max-width: ", ") {\n      font-size: var(--tcds-font-size-md);\n    }\n\n    &:hover {\n      background-color: var(--tcds-button-background-color-hover, transparent);\n      border-color: var(--tcds-button-border-color-hover, transparent);\n      color: var(--tcds-button-text-color-hover, var(--tcds-carousel-control-color-hover));\n    }\n\n    &:active {\n      color: var(--tcds-button-text-color-active, var(--tcds-carousel-control-color-active));\n    }\n\n    &::before {\n      content: \"\";\n      position: absolute;\n      inset: calc(var(--tcds-carousel-controls-gap) / -2);\n    }\n  }\n\n  [part~=next] {\n    grid-area: next;\n  }\n\n  [part~=previous] {\n    grid-area: previous;\n  }\n\n  [part~=toggle] {\n    grid-area: toggle;\n  }\n\n  [part=dots] {\n    grid-area: dots;\n    display: flex;\n    gap: var(--tcds-carousel-controls-gap);\n  }\n\n  [part~=dot] {\n    position: relative;\n    background-color: var(--tcds-carousel-control-color);\n    width: var(--tcds-carousel-dot-width);\n    height: var(--tcds-carousel-dot-width);\n    border-radius: var(--tcds-carousel-dot-width);\n    padding: 0;\n    transition:\n      width var(--tcds-motion-duration-expressive) var(--tcds-motion-easing-enter);\n\n    @media (prefers-reduced-motion: reduce) {\n      transition: none;\n    }\n\n    &:hover {\n      background-color: var(--tcds-carousel-control-color-hover);\n    }\n\n    &[aria-current=true] {\n      overflow: hidden;\n      width: var(--tcds-carousel-dot-width-current);\n      background-color: var(--tcds-carousel-control-color-active);\n\n      &::after {\n        content: \"\";\n        opacity: var(--tcds-carousel-dot-progress-opacity, 0);\n        position: absolute;\n        inset: 0;\n        background-color: var(--tcds-color-palette-black);\n        border-radius: var(--tcds-carousel-dot-width);\n        width: 0%;\n      }\n    }\n  }\n"])), breakpoint, breakpoint, insetControls, breakpoint, outsideControls, outsideControls, breakpoint, breakpoint);
 
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-var _Class, _Carousel3, _A, _B, _C, _D, _E, _F, _Carousel3_brand, _G, _H, _I, _J, _K, _internals, _reducedMotion, _intersectionObserver, _progress, _onDocumentVisibilityChange, _onReducedMotionChange, _onIntersectionChange, _templateObject, _templateObject2, _templateObject3, _applyDecs2, _applyDecs2$e, _applyDecs2$c;
-var _initClass, _init_playing, _init_extra_playing, _init_noPauseOnHover, _init_extra_noPauseOnHover, _init_interval, _init_extra_interval, _init_index, _init_extra_index, _init_label, _init_extra_label, _init_count, _get_count, _set_count, _init_extra_count, _init_interacting, _get_interacting, _set_interacting, _init_extra_interacting, _init_documentHidden, _get_documentHidden, _set_documentHidden, _init_extra_documentHidden, _init_offscreen, _get_offscreen, _set_offscreen, _init_extra_offscreen, _init_mediaSuspended, _get_mediaSuspended, _set_mediaSuspended, _init_extra_mediaSuspended, _init_slides, _get_slides, _init_extra_slides, _Carousel2;
+var _Class, _Carousel3, _A, _B, _C, _D, _E, _F, _G, _Carousel3_brand, _H, _I, _J, _K, _L, _M, _internals, _reducedMotion, _intersectionObserver, _progress, _selectionInitialized, _onDocumentVisibilityChange, _onReducedMotionChange, _onIntersectionChange, _templateObject, _templateObject2, _templateObject3, _applyDecs2, _applyDecs2$e, _applyDecs2$c;
+var _initClass, _init_playing, _init_extra_playing, _init_noPauseOnHover, _init_extra_noPauseOnHover, _init_interval, _init_extra_interval, _init_index, _init_extra_index, _init_label, _init_extra_label, _init_controls, _init_extra_controls, _init_count, _get_count, _set_count, _init_extra_count, _init_hovered, _get_hovered, _set_hovered, _init_extra_hovered, _init_focused, _get_focused, _set_focused, _init_extra_focused, _init_documentHidden, _get_documentHidden, _set_documentHidden, _init_extra_documentHidden, _init_offscreen, _get_offscreen, _set_offscreen, _init_extra_offscreen, _init_mediaSuspended, _get_mediaSuspended, _set_mediaSuspended, _init_extra_mediaSuspended, _init_slides, _get_slides, _init_extra_slides, _Carousel2;
 function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = false, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = true, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), true), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
 function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
@@ -50,8 +50,38 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 function _setFunctionName(e, t, n) { "symbol" == _typeof(t) && (t = (t = t.description) ? "[" + t + "]" : ""); try { Object.defineProperty(e, "name", { configurable: !0, value: n ? n + " " + t : t }); } catch (e) {} return e; }
 function _checkInRHS(e) { if (Object(e) !== e) throw TypeError("right-hand side of 'in' should be an object, got " + (null !== e ? _typeof(e) : "null")); return e; }
 function _identity(t) { return t; }
+
+/** @import {PropertyValues} from "lit" */
+/** @import {Slide} from "@/components/slide/slide.js" */
+
+/**
+ * A rotating set of slides with previous/next, slide picker, and autoplay
+ * controls. Autoplay pauses on hover, focus, when the document is hidden, and
+ * when scrolled off screen, and stops entirely on manual navigation or when the
+ * reader prefers reduced motion.
+ *
+ * @tag tcds-carousel
+ *
+ * @slot - Slides (`<tcds-slide>` elements).
+ *
+ * @csspart slides   - The container for the slides.
+ * @csspart controls - The container for all controls (rendered only with more than one slide).
+ * @csspart control  - Every control button.
+ * @csspart previous - The previous slide button.
+ * @csspart next     - The next slide button.
+ * @csspart dots     - The container for the slide picker buttons.
+ * @csspart dot      - A slide picker button.
+ * @csspart toggle   - The autoplay play/pause button.
+ *
+ * @cssprop [--tcds-carousel-transition-duration=500ms] - Duration of the
+ *   cross-fade between slides.
+ *
+ * @fires {CustomEvent<{index: number, previousIndex: number, slide: Slide|null}>} tcds-carousel:change - Fired when the selected slide changes.
+ * @fires {CustomEvent<null>} tcds-carousel:play - Fired when autoplay starts.
+ * @fires {CustomEvent<null>} tcds-carousel:pause - Fired when autoplay stops.
+ */
 var _Carousel;
-new (_Carousel2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMap(), _C = /*#__PURE__*/new WeakMap(), _D = /*#__PURE__*/new WeakMap(), _E = /*#__PURE__*/new WeakMap(), _F = /*#__PURE__*/new WeakMap(), _Carousel3_brand = /*#__PURE__*/new WeakSet(), _G = /*#__PURE__*/new WeakMap(), _H = /*#__PURE__*/new WeakMap(), _I = /*#__PURE__*/new WeakMap(), _J = /*#__PURE__*/new WeakMap(), _K = /*#__PURE__*/new WeakMap(), _internals = /*#__PURE__*/new WeakMap(), _reducedMotion = /*#__PURE__*/new WeakMap(), _intersectionObserver = /*#__PURE__*/new WeakMap(), _progress = /*#__PURE__*/new WeakMap(), _onDocumentVisibilityChange = /*#__PURE__*/new WeakMap(), _onReducedMotionChange = /*#__PURE__*/new WeakMap(), _onIntersectionChange = /*#__PURE__*/new WeakMap(), _Carousel3 = /*#__PURE__*/function (_LitElement) {
+new (_Carousel2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMap(), _C = /*#__PURE__*/new WeakMap(), _D = /*#__PURE__*/new WeakMap(), _E = /*#__PURE__*/new WeakMap(), _F = /*#__PURE__*/new WeakMap(), _G = /*#__PURE__*/new WeakMap(), _Carousel3_brand = /*#__PURE__*/new WeakSet(), _H = /*#__PURE__*/new WeakMap(), _I = /*#__PURE__*/new WeakMap(), _J = /*#__PURE__*/new WeakMap(), _K = /*#__PURE__*/new WeakMap(), _L = /*#__PURE__*/new WeakMap(), _M = /*#__PURE__*/new WeakMap(), _internals = /*#__PURE__*/new WeakMap(), _reducedMotion = /*#__PURE__*/new WeakMap(), _intersectionObserver = /*#__PURE__*/new WeakMap(), _progress = /*#__PURE__*/new WeakMap(), _selectionInitialized = /*#__PURE__*/new WeakMap(), _onDocumentVisibilityChange = /*#__PURE__*/new WeakMap(), _onReducedMotionChange = /*#__PURE__*/new WeakMap(), _onIntersectionChange = /*#__PURE__*/new WeakMap(), _Carousel3 = /*#__PURE__*/function (_LitElement) {
   // #endregion
 
   // #region Lifecycle
@@ -61,34 +91,89 @@ new (_Carousel2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMa
     _this3 = _callSuper(this, Carousel);
     _classPrivateMethodInitSpec(_this3, _Carousel3_brand);
     // #region Properties and state
+    /**
+     * Whether slides rotate automatically. Authoring `<tcds-carousel playing>`
+     * starts autoplay; manual navigation turns it off.
+     *
+     * @type {boolean}
+     */
     _classPrivateFieldInitSpec(_this3, _A, _init_playing(_this3, false));
+    /**
+     * Keeps autoplay running while the pointer is over the carousel. Focus
+     * within the carousel still pauses it.
+     *
+     * @type {boolean}
+     */
     _classPrivateFieldInitSpec(_this3, _B, (_init_extra_playing(_this3), _init_noPauseOnHover(_this3, false)));
+    /**
+     * Seconds each slide is shown during autoplay. Values below 1 are treated
+     * as 1.
+     *
+     * @type {number}
+     */
     _classPrivateFieldInitSpec(_this3, _C, (_init_extra_noPauseOnHover(_this3), _init_interval(_this3)));
+    /**
+     * Zero-based index of the selected slide. Out of range values wrap around.
+     * On initialization, the first slide with a `selected` attribute takes
+     * precedence; otherwise the initial index is used (zero by default).
+     *
+     * @type {number}
+     */
     _classPrivateFieldInitSpec(_this3, _D, (_init_extra_interval(_this3), _init_index(_this3)));
+    /**
+     * Accessible name for the carousel.
+     *
+     * @type {string}
+     */
     _classPrivateFieldInitSpec(_this3, _E, (_init_extra_index(_this3), _init_label(_this3)));
-    _classPrivateFieldInitSpec(_this3, _F, (_init_extra_label(_this3), _init_count(_this3, 0)));
-    _classPrivateFieldInitSpec(_this3, _G, (_init_extra_count(_this3), _init_interacting(_this3, false)));
-    _classPrivateFieldInitSpec(_this3, _H, (_init_extra_interacting(_this3), _init_documentHidden(_this3, false)));
-    _classPrivateFieldInitSpec(_this3, _I, (_init_extra_documentHidden(_this3), _init_offscreen(_this3, false)));
+    /**
+     * Control placement. `inset` overlays the controls on the slides at wider
+     * viewports; otherwise they sit below the slides.
+     *
+     * @type {"outside"|"inset"|undefined}
+     */
+    _classPrivateFieldInitSpec(_this3, _F, (_init_extra_label(_this3), _init_controls(_this3)));
+    /** @type {number} */
+    _classPrivateFieldInitSpec(_this3, _G, (_init_extra_controls(_this3), _init_count(_this3, 0)));
+    /** @type {boolean} */
+    _classPrivateFieldInitSpec(_this3, _H, (_init_extra_count(_this3), _init_hovered(_this3, false)));
+    /** @type {boolean} */
+    _classPrivateFieldInitSpec(_this3, _I, (_init_extra_hovered(_this3), _init_focused(_this3, false)));
+    /** @type {boolean} */
+    _classPrivateFieldInitSpec(_this3, _J, (_init_extra_focused(_this3), _init_documentHidden(_this3, false)));
+    /** @type {boolean} */
+    _classPrivateFieldInitSpec(_this3, _K, (_init_extra_documentHidden(_this3), _init_offscreen(_this3, false)));
     /**
      * Whether the reader has asked for motion to stop. Distinct from `playing`,
      * which also goes false when navigation surrenders autoplay — that is not a
      * request to stop video.
+     *
+     * @type {boolean}
      */
-    _classPrivateFieldInitSpec(_this3, _J, (_init_extra_offscreen(_this3), _init_mediaSuspended(_this3, false)));
+    _classPrivateFieldInitSpec(_this3, _L, (_init_extra_offscreen(_this3), _init_mediaSuspended(_this3, false)));
     // #endregion
     // #region Private variables
-    _classPrivateFieldInitSpec(_this3, _K, (_init_extra_mediaSuspended(_this3), _init_slides(_this3)));
+    /** @type {Slide[]} */
+    _classPrivateFieldInitSpec(_this3, _M, (_init_extra_mediaSuspended(_this3), _init_slides(_this3)));
+    /** @type {ElementInternals} */
     _classPrivateFieldInitSpec(_this3, _internals, void _init_extra_slides(_this3));
+    /** @type {MediaQueryList} */
     _classPrivateFieldInitSpec(_this3, _reducedMotion, void 0);
+    /** @type {IntersectionObserver|undefined} */
     _classPrivateFieldInitSpec(_this3, _intersectionObserver, void 0);
+    /** @type {Animation|null} */
     _classPrivateFieldInitSpec(_this3, _progress, null);
+    /** @type {boolean} */
+    _classPrivateFieldInitSpec(_this3, _selectionInitialized, false);
     _classPrivateFieldInitSpec(_this3, _onDocumentVisibilityChange, function () {
       _classPrivateSetter(_Carousel3_brand, _set_documentHidden, _this3, document.visibilityState === "hidden");
     });
     _classPrivateFieldInitSpec(_this3, _onReducedMotionChange, function () {
       if (_classPrivateFieldGet(_reducedMotion, _this3).matches) _this3.pause();
     });
+    /**
+     * @param {IntersectionObserverEntry[]} entries
+     */
     _classPrivateFieldInitSpec(_this3, _onIntersectionChange, function (entries) {
       _classPrivateSetter(_Carousel3_brand, _set_offscreen, _this3, !entries[entries.length - 1].isIntersecting);
     });
@@ -143,14 +228,30 @@ new (_Carousel2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMa
       _classPrivateFieldSet(_E, this, v);
     }
   }, {
+    key: "controls",
+    get: function get() {
+      return _classPrivateFieldGet(_F, this);
+    },
+    set: function set(v) {
+      _classPrivateFieldSet(_F, this, v);
+    }
+  }, {
     key: "connectedCallback",
     value: function connectedCallback() {
+      var _classPrivateFieldGet2;
       _superPropGet(Carousel, "connectedCallback", this)([]);
       this.addEventListener("pointerenter", _assertClassBrand(_Carousel3_brand, this, _onInteractionChange));
       this.addEventListener("pointerleave", _assertClassBrand(_Carousel3_brand, this, _onInteractionChange));
       document.addEventListener("visibilitychange", _classPrivateFieldGet(_onDocumentVisibilityChange, this));
       _classPrivateFieldGet(_reducedMotion, this).addEventListener("change", _classPrivateFieldGet(_onReducedMotionChange, this));
       _classPrivateFieldGet(_onDocumentVisibilityChange, this).call(this);
+      _classPrivateFieldGet(_onReducedMotionChange, this).call(this);
+      this.addEventListener("focusin", _assertClassBrand(_Carousel3_brand, this, _onInteractionChange));
+      this.addEventListener("focusout", _assertClassBrand(_Carousel3_brand, this, _onInteractionChange));
+      (_classPrivateFieldGet2 = _classPrivateFieldGet(_intersectionObserver, this)) !== null && _classPrivateFieldGet2 !== void 0 ? _classPrivateFieldGet2 : _classPrivateFieldSet(_intersectionObserver, this, new IntersectionObserver(_classPrivateFieldGet(_onIntersectionChange, this)));
+      _classPrivateFieldGet(_intersectionObserver, this).observe(this);
+      // Reconnecting does not call firstUpdated again.
+      this.requestUpdate();
     }
   }, {
     key: "willUpdate",
@@ -172,17 +273,14 @@ new (_Carousel2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMa
       }, function (_, position) {
         return position;
       });
-      return u(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n      <div\n        part=\"slides\"\n        aria-atomic=\"false\"\n        aria-live=", "\n        @focusin=", "\n        @focusout=", "\n      >\n        <slot @slotchange=", "></slot>\n      </div>\n      ", "\n    "])), this.playing ? "off" : "polite", _assertClassBrand(_Carousel3_brand, this, _onInteractionChange), _assertClassBrand(_Carousel3_brand, this, _onInteractionChange), _assertClassBrand(_Carousel3_brand, this, _onSlotChange), _classPrivateGetter(_Carousel3_brand, this, _get_count) > 1 ? u(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n        <div part=\"controls\">\n          <button\n            part=\"control previous\"\n            type=\"button\"\n            title=\"Previous slide\"\n            @click=", "\n          >\n            <span class=\"visually-hidden\">Previous slide</span>\n            <tcds-icon icon=\"caret-left-small\"></tcds-icon>\n          </button>\n          <button\n            part=\"control next\"\n            type=\"button\"\n            title=\"Next slide\"\n            @click=", "\n          >\n            <span class=\"visually-hidden\">Next slide</span>\n            <tcds-icon icon=\"caret-right-small\"></tcds-icon>\n          </button>\n          <div\n            part=\"dots\"\n            role=\"group\"\n            aria-label=\"Choose a slide to display\"\n            @keydown=", "\n          >\n            ", "\n          </div>\n          <button\n            part=\"control toggle\"\n            type=\"button\"\n            class=\"tcds-button tcds-button--media\"\n            title=\"", " autoplay\"\n            @click=", "\n          >\n            <span class=\"visually-hidden\">\n              ", " autoplay\n            </span>\n            <tcds-icon icon=", "></tcds-icon>\n          </button>\n        </div>\n      "])), _assertClassBrand(_Carousel3_brand, this, _onPreviousClick), _assertClassBrand(_Carousel3_brand, this, _onNextClick), _assertClassBrand(_Carousel3_brand, this, _onDotsKeydown), positions.map(function (position) {
+      return u(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n      <div\n        part=\"slides\"\n        aria-atomic=\"false\"\n        aria-live=", "\n      >\n        <slot @slotchange=", "></slot>\n      </div>\n      ", "\n    "])), this.playing ? "off" : "polite", _assertClassBrand(_Carousel3_brand, this, _onSlotChange), _classPrivateGetter(_Carousel3_brand, this, _get_count) > 1 ? u(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n        <div part=\"controls\">\n          <button\n            part=\"control previous\"\n            type=\"button\"\n            title=\"Previous slide\"\n            @click=", "\n          >\n            <span class=\"visually-hidden\">Previous slide</span>\n            <tcds-icon icon=\"caret-left-small\"></tcds-icon>\n          </button>\n          <button\n            part=\"control next\"\n            type=\"button\"\n            title=\"Next slide\"\n            @click=", "\n          >\n            <span class=\"visually-hidden\">Next slide</span>\n            <tcds-icon icon=\"caret-right-small\"></tcds-icon>\n          </button>\n          <div\n            part=\"dots\"\n            role=\"group\"\n            aria-label=\"Choose a slide to display\"\n            @keydown=", "\n          >\n            ", "\n          </div>\n          <button\n            part=\"control toggle\"\n            type=\"button\"\n            class=\"tcds-button tcds-button--media\"\n            title=\"", " autoplay\"\n            @click=", "\n          >\n            <span class=\"visually-hidden\">\n              ", " autoplay\n            </span>\n            <tcds-icon icon=", "></tcds-icon>\n          </button>\n        </div>\n      "])), _assertClassBrand(_Carousel3_brand, this, _onPreviousClick), _assertClassBrand(_Carousel3_brand, this, _onNextClick), _assertClassBrand(_Carousel3_brand, this, _onDotsKeydown), positions.map(function (position) {
         return u(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n              <button\n                part=\"control dot\"\n                type=\"button\"\n                value=", "\n                title=\"Slide ", " of ", "\"\n                aria-current=", "\n                tabindex=", "\n                @click=", "\n              >\n                <span class=\"visually-hidden\">Slide ", " of ", "</span>\n              </button>\n            "])), position, position + 1, _classPrivateGetter(_Carousel3_brand, _this4, _get_count), position === _this4.index ? "true" : "false", position === _this4.index ? 0 : -1, _assertClassBrand(_Carousel3_brand, _this4, _onDotClick), position + 1, _classPrivateGetter(_Carousel3_brand, _this4, _get_count));
       }), this.playing ? "Pause" : "Start", _assertClassBrand(_Carousel3_brand, this, _onToggleClick), this.playing ? "Pause" : "Start", this.playing ? "pause" : "play") : A);
     }
-  }, {
-    key: "firstUpdated",
-    value: function firstUpdated() {
-      _classPrivateFieldGet(_onReducedMotionChange, this).call(this);
-      _classPrivateFieldSet(_intersectionObserver, this, new IntersectionObserver(_classPrivateFieldGet(_onIntersectionChange, this)));
-      _classPrivateFieldGet(_intersectionObserver, this).observe(this);
-    }
+
+    /**
+     * @param {PropertyValues<this>} changedProperties
+     */
   }, {
     key: "updated",
     value: function updated(changedProperties) {
@@ -203,7 +301,7 @@ new (_Carousel2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMa
   }, {
     key: "disconnectedCallback",
     value: function disconnectedCallback() {
-      var _classPrivateFieldGet2, _classPrivateFieldGet3;
+      var _classPrivateFieldGet3, _classPrivateFieldGet4;
       _superPropGet(Carousel, "disconnectedCallback", this)([]);
       this.removeEventListener("pointerenter", _assertClassBrand(_Carousel3_brand, this, _onInteractionChange));
       this.removeEventListener("pointerleave", _assertClassBrand(_Carousel3_brand, this, _onInteractionChange));
@@ -211,8 +309,11 @@ new (_Carousel2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMa
       this.removeEventListener("focusout", _assertClassBrand(_Carousel3_brand, this, _onInteractionChange));
       document.removeEventListener("visibilitychange", _classPrivateFieldGet(_onDocumentVisibilityChange, this));
       _classPrivateFieldGet(_reducedMotion, this).removeEventListener("change", _classPrivateFieldGet(_onReducedMotionChange, this));
-      (_classPrivateFieldGet2 = _classPrivateFieldGet(_intersectionObserver, this)) === null || _classPrivateFieldGet2 === void 0 || _classPrivateFieldGet2.disconnect();
-      (_classPrivateFieldGet3 = _classPrivateFieldGet(_progress, this)) === null || _classPrivateFieldGet3 === void 0 || _classPrivateFieldGet3.cancel();
+      (_classPrivateFieldGet3 = _classPrivateFieldGet(_intersectionObserver, this)) === null || _classPrivateFieldGet3 === void 0 || _classPrivateFieldGet3.disconnect();
+      (_classPrivateFieldGet4 = _classPrivateFieldGet(_progress, this)) === null || _classPrivateFieldGet4 === void 0 || _classPrivateFieldGet4.cancel();
+      _classPrivateFieldSet(_progress, this, null);
+      _classPrivateSetter(_Carousel3_brand, _set_hovered, this, false);
+      _classPrivateSetter(_Carousel3_brand, _set_focused, this, false);
     }
     // #endregion
 
@@ -220,6 +321,9 @@ new (_Carousel2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMa
     /**
      * Show the slide at `position`, wrapping around either end. Does not affect
      * the playing state; use `pause()` alongside it for user-driven navigation.
+     *
+     * @param {number} position - The zero-based index of the slide to show.
+     * @returns {void}
      */
   }, {
     key: "select",
@@ -227,11 +331,23 @@ new (_Carousel2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMa
       if (_classPrivateGetter(_Carousel3_brand, this, _get_count) === 0) return;
       this.index = _assertClassBrand(_Carousel3_brand, this, _clamp).call(this, position);
     }
+
+    /**
+     * Show the next slide, wrapping to the first after the last.
+     *
+     * @returns {void}
+     */
   }, {
     key: "next",
     value: function next() {
       this.select(this.index + 1);
     }
+
+    /**
+     * Show the previous slide, wrapping to the last before the first.
+     *
+     * @returns {void}
+     */
   }, {
     key: "previous",
     value: function previous() {
@@ -241,6 +357,8 @@ new (_Carousel2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMa
     /**
      * Starts everything the carousel moves on its own: slide rotation, and any
      * background video in the selected slide that this component stopped.
+     *
+     * @returns {void}
      */
   }, {
     key: "play",
@@ -252,6 +370,8 @@ new (_Carousel2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMa
     /**
      * Stops everything the carousel moves on its own. Slides that aren't selected
      * keep their media paused when this is lifted, until they're revealed.
+     *
+     * @returns {void}
      */
   }, {
     key: "pause",
@@ -277,36 +397,43 @@ new (_Carousel2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMa
   type: Number
 }), 1, "index"], [n({
   type: String
-}), 1, "label"], [r$1(), 1, "count", function (o) {
-  return _classPrivateFieldGet(_F, o);
-}, function (o, v) {
-  return _classPrivateFieldSet(_F, o, v);
-}], [r$1(), 1, "interacting", function (o) {
+}), 1, "label"], [n({
+  type: String,
+  reflect: true
+}), 1, "controls"], [r$1(), 1, "count", function (o) {
   return _classPrivateFieldGet(_G, o);
 }, function (o, v) {
   return _classPrivateFieldSet(_G, o, v);
-}], [r$1(), 1, "documentHidden", function (o) {
+}], [r$1(), 1, "hovered", function (o) {
   return _classPrivateFieldGet(_H, o);
 }, function (o, v) {
   return _classPrivateFieldSet(_H, o, v);
-}], [r$1(), 1, "offscreen", function (o) {
+}], [r$1(), 1, "focused", function (o) {
   return _classPrivateFieldGet(_I, o);
 }, function (o, v) {
   return _classPrivateFieldSet(_I, o, v);
-}], [r$1(), 1, "mediaSuspended", function (o) {
+}], [r$1(), 1, "documentHidden", function (o) {
   return _classPrivateFieldGet(_J, o);
 }, function (o, v) {
   return _classPrivateFieldSet(_J, o, v);
+}], [r$1(), 1, "offscreen", function (o) {
+  return _classPrivateFieldGet(_K, o);
+}, function (o, v) {
+  return _classPrivateFieldSet(_K, o, v);
+}], [r$1(), 1, "mediaSuspended", function (o) {
+  return _classPrivateFieldGet(_L, o);
+}, function (o, v) {
+  return _classPrivateFieldSet(_L, o, v);
 }], [o({
   flatten: true,
   selector: "tcds-slide"
 }), 1, "slides", function (o) {
-  return _classPrivateFieldGet(_K, o);
+  return _classPrivateFieldGet(_M, o);
 }, function (o, v) {
-  return _classPrivateFieldSet(_K, o, v);
+  return _classPrivateFieldSet(_M, o, v);
 }]], 0, function (_) {
   return _onIntersectionChange.has(_checkInRHS(_));
-}, i$1), _applyDecs2$e = _slicedToArray(_applyDecs2.e, 34), _init_playing = _applyDecs2$e[0], _init_extra_playing = _applyDecs2$e[1], _init_noPauseOnHover = _applyDecs2$e[2], _init_extra_noPauseOnHover = _applyDecs2$e[3], _init_interval = _applyDecs2$e[4], _init_extra_interval = _applyDecs2$e[5], _init_index = _applyDecs2$e[6], _init_extra_index = _applyDecs2$e[7], _init_label = _applyDecs2$e[8], _init_extra_label = _applyDecs2$e[9], _init_count = _applyDecs2$e[10], _get_count = _applyDecs2$e[11], _set_count = _applyDecs2$e[12], _init_extra_count = _applyDecs2$e[13], _init_interacting = _applyDecs2$e[14], _get_interacting = _applyDecs2$e[15], _set_interacting = _applyDecs2$e[16], _init_extra_interacting = _applyDecs2$e[17], _init_documentHidden = _applyDecs2$e[18], _get_documentHidden = _applyDecs2$e[19], _set_documentHidden = _applyDecs2$e[20], _init_extra_documentHidden = _applyDecs2$e[21], _init_offscreen = _applyDecs2$e[22], _get_offscreen = _applyDecs2$e[23], _set_offscreen = _applyDecs2$e[24], _init_extra_offscreen = _applyDecs2$e[25], _init_mediaSuspended = _applyDecs2$e[26], _get_mediaSuspended = _applyDecs2$e[27], _set_mediaSuspended = _applyDecs2$e[28], _init_extra_mediaSuspended = _applyDecs2$e[29], _init_slides = _applyDecs2$e[30], _get_slides = _applyDecs2$e[31], _applyDecs2$e[32], _init_extra_slides = _applyDecs2$e[33], _applyDecs2$c = _slicedToArray(_applyDecs2.c, 2), _Carousel = _applyDecs2$c[0], _initClass = _applyDecs2$c[1], _Carousel3), _Class = /*#__PURE__*/function (_identity2) {
+}, i$1), _applyDecs2$e = _slicedToArray(_applyDecs2.e, 40), _init_playing = _applyDecs2$e[0], _init_extra_playing = _applyDecs2$e[1], _init_noPauseOnHover = _applyDecs2$e[2], _init_extra_noPauseOnHover = _applyDecs2$e[3], _init_interval = _applyDecs2$e[4], _init_extra_interval = _applyDecs2$e[5], _init_index = _applyDecs2$e[6], _init_extra_index = _applyDecs2$e[7], _init_label = _applyDecs2$e[8], _init_extra_label = _applyDecs2$e[9], _init_controls = _applyDecs2$e[10], _init_extra_controls = _applyDecs2$e[11], _init_count = _applyDecs2$e[12], _get_count = _applyDecs2$e[13], _set_count = _applyDecs2$e[14], _init_extra_count = _applyDecs2$e[15], _init_hovered = _applyDecs2$e[16], _get_hovered = _applyDecs2$e[17], _set_hovered = _applyDecs2$e[18], _init_extra_hovered = _applyDecs2$e[19], _init_focused = _applyDecs2$e[20], _get_focused = _applyDecs2$e[21], _set_focused = _applyDecs2$e[22], _init_extra_focused = _applyDecs2$e[23], _init_documentHidden = _applyDecs2$e[24], _get_documentHidden = _applyDecs2$e[25], _set_documentHidden = _applyDecs2$e[26], _init_extra_documentHidden = _applyDecs2$e[27], _init_offscreen = _applyDecs2$e[28], _get_offscreen = _applyDecs2$e[29], _set_offscreen = _applyDecs2$e[30], _init_extra_offscreen = _applyDecs2$e[31], _init_mediaSuspended = _applyDecs2$e[32], _get_mediaSuspended = _applyDecs2$e[33], _set_mediaSuspended = _applyDecs2$e[34], _init_extra_mediaSuspended = _applyDecs2$e[35], _init_slides = _applyDecs2$e[36], _get_slides = _applyDecs2$e[37], _applyDecs2$e[38], _init_extra_slides = _applyDecs2$e[39], _applyDecs2$c = _slicedToArray(_applyDecs2.c, 2), _Carousel = _applyDecs2$c[0], _initClass = _applyDecs2$c[1], _Carousel3), _Class = /*#__PURE__*/function (_identity2) {
   function _Class() {
     var _this5;
     _classCallCheck(this, _Class);
@@ -317,13 +444,33 @@ new (_Carousel2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMa
   return _createClass(_Class);
 }(_identity), _defineProperty(_Class, _Carousel2, void 0), _Class)();
 function _onSlotChange() {
-  _classPrivateSetter(_Carousel3_brand, _set_count, this, _classPrivateGetter(_Carousel3_brand, this, _get_slides).length);
+  var slides = _classPrivateGetter(_Carousel3_brand, this, _get_slides);
+  _classPrivateSetter(_Carousel3_brand, _set_count, this, slides.length);
+
+  // Read the authored selection once, before syncing attributes. Waiting
+  // for a nonempty slot also supports slides supplied after connection.
+  if (!_classPrivateFieldGet(_selectionInitialized, this) && slides.length > 0) {
+    var selected = slides.findIndex(function (slide) {
+      return slide.hasAttribute("selected");
+    });
+    this.index = _assertClassBrand(_Carousel3_brand, this, _clamp).call(this, selected === -1 ? this.index : selected);
+    _classPrivateFieldSet(_selectionInitialized, this, true);
+  }
   _assertClassBrand(_Carousel3_brand, this, _syncSlides).call(this);
+  // Replacing slides can leave the count unchanged. Still refresh controls and media.
+  this.requestUpdate();
 }
+/**
+ * @param {PointerEvent|FocusEvent} event
+ */
 function _onInteractionChange(event) {
   var isPointer = event.type === "pointerenter" || event.type === "pointerleave";
-  if (isPointer && this.noPauseOnHover) return;
-  _classPrivateSetter(_Carousel3_brand, _set_interacting, this, event.type === "pointerenter" || event.type === "focusin");
+  if (isPointer) {
+    _classPrivateSetter(_Carousel3_brand, _set_hovered, this, event.type === "pointerenter");
+  } else {
+    var relatedTarget = /** @type {FocusEvent} */event.relatedTarget;
+    _classPrivateSetter(_Carousel3_brand, _set_focused, this, event.type === "focusin" || relatedTarget instanceof Node && this.contains(relatedTarget));
+  }
 }
 function _onPreviousClick() {
   _assertClassBrand(_Carousel3_brand, this, _navigate).call(this, this.index - 1);
@@ -331,29 +478,37 @@ function _onPreviousClick() {
 function _onNextClick() {
   _assertClassBrand(_Carousel3_brand, this, _navigate).call(this, this.index + 1);
 }
+/**
+ * @param {MouseEvent} event
+ */
 function _onDotClick(event) {
-  _assertClassBrand(_Carousel3_brand, this, _navigate).call(this, Number(event.currentTarget.value));
+  var button = /** @type {HTMLButtonElement} */event.currentTarget;
+  _assertClassBrand(_Carousel3_brand, this, _navigate).call(this, Number(button.value));
 }
 function _onToggleClick() {
   this.playing ? this.pause() : this.play();
 }
+/**
+ * @param {KeyboardEvent} event
+ * @returns {Promise<void>}
+ */
 function _onDotsKeydown(_x) {
   return _onDotsKeydown2.apply(this, arguments);
 }
 function _onDotsKeydown2() {
   _onDotsKeydown2 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee(event) {
-    var _this$renderRoot$quer;
-    var positions;
+    var positions, current;
     return _regenerator().w(function (_context) {
       while (1) switch (_context.n) {
         case 0:
+          /** @type {Record<string, number>} */
           positions = {
             ArrowLeft: this.index - 1,
             ArrowRight: this.index + 1,
             Home: 0,
             End: _classPrivateGetter(_Carousel3_brand, this, _get_count) - 1
           };
-          if (event.key in positions) {
+          if (Object.hasOwn(positions, event.key)) {
             _context.n = 1;
             break;
           }
@@ -368,7 +523,9 @@ function _onDotsKeydown2() {
           _context.n = 2;
           return this.updateComplete;
         case 2:
-          (_this$renderRoot$quer = this.renderRoot.querySelector("[part~=dot][aria-current=true]")) === null || _this$renderRoot$quer === void 0 || _this$renderRoot$quer.focus();
+          /** @type {HTMLElement|null} */
+          current = this.renderRoot.querySelector("[part~=dot][aria-current=true]");
+          current === null || current === void 0 || current.focus();
         case 3:
           return _context.a(2);
       }
@@ -382,20 +539,30 @@ function _onDotsKeydown2() {
  * Whether the timer should currently be running. `playing` is the user's
  * standing intent; the rest are transient conditions that suspend rotation
  * without discarding that intent.
+ *
+ * @type {boolean}
  */
 function _get_advancing(_this) {
-  return _this.playing && _classPrivateGetter(_Carousel3_brand, _this, _get_count) > 1 && !_classPrivateGetter(_Carousel3_brand, _this, _get_interacting) && !_classPrivateGetter(_Carousel3_brand, _this, _get_documentHidden) && !_classPrivateGetter(_Carousel3_brand, _this, _get_offscreen);
+  return _this.playing && _classPrivateGetter(_Carousel3_brand, _this, _get_count) > 1 && !(_classPrivateGetter(_Carousel3_brand, _this, _get_hovered) && !_this.noPauseOnHover) && !_classPrivateGetter(_Carousel3_brand, _this, _get_focused) && !_classPrivateGetter(_Carousel3_brand, _this, _get_documentHidden) && !_classPrivateGetter(_Carousel3_brand, _this, _get_offscreen);
 }
 /**
  * Wrap `position` into the slide range. Shared by `willUpdate`, `select` and
  * `#syncSlides` so all three agree on which slide is current, including
  * during a slot change, before `index` itself has been clamped.
+ *
+ * @param {number} position
+ * @returns {number}
  */
 function _clamp(position) {
   if (_classPrivateGetter(_Carousel3_brand, this, _get_count) === 0) return 0;
   var requested = Number.isFinite(position) ? Math.trunc(position) : 0;
   return (requested % _classPrivateGetter(_Carousel3_brand, this, _get_count) + _classPrivateGetter(_Carousel3_brand, this, _get_count)) % _classPrivateGetter(_Carousel3_brand, this, _get_count);
 }
+/**
+ * The autoplay interval in milliseconds, never less than one second.
+ *
+ * @type {number}
+ */
 function _get_interval(_this2) {
   return Math.max(Number.isFinite(_this2.interval) ? _this2.interval * 1000 : 0, 1000);
 }
@@ -404,17 +571,20 @@ function _get_interval(_this2) {
  * carousels: once the reader takes the wheel, the carousel stops moving out
  * from under them. It sets `playing` rather than calling `pause()`, because
  * asking for the next slide is not a request to stop that slide's video.
+ *
+ * @param {number} position
  */
 function _navigate(position) {
   this.playing = false;
   this.select(position);
 }
 function _syncProgress() {
-  var _classPrivateFieldGet4,
-    _classPrivateFieldGet5,
+  var _classPrivateFieldGet5,
     _this6 = this;
+  /** @type {HTMLElement|null} */
   var target = this.renderRoot.querySelector("[part~=dot][aria-current=true]");
-  var stale = ((_classPrivateFieldGet4 = _classPrivateFieldGet(_progress, this)) === null || _classPrivateFieldGet4 === void 0 ? void 0 : _classPrivateFieldGet4.effect.target) !== target || ((_classPrivateFieldGet5 = _classPrivateFieldGet(_progress, this)) === null || _classPrivateFieldGet5 === void 0 ? void 0 : _classPrivateFieldGet5.effect.getTiming().duration) !== _classPrivateGetter(_Carousel3_brand, this, _get_interval);
+  var effect = /** @type {KeyframeEffect|null|undefined} */(_classPrivateFieldGet5 = _classPrivateFieldGet(_progress, this)) === null || _classPrivateFieldGet5 === void 0 ? void 0 : _classPrivateFieldGet5.effect;
+  var stale = (effect === null || effect === void 0 ? void 0 : effect.target) !== target || (effect === null || effect === void 0 ? void 0 : effect.getTiming().duration) !== _classPrivateGetter(_Carousel3_brand, this, _get_interval);
   if (stale) {
     var _classPrivateFieldGet6;
     (_classPrivateFieldGet6 = _classPrivateFieldGet(_progress, this)) === null || _classPrivateFieldGet6 === void 0 || _classPrivateFieldGet6.cancel();
@@ -445,6 +615,9 @@ function _syncProgress() {
 }
 function _syncSlides() {
   var _this7 = this;
+  // Lit's first update can precede slotchange. Preserve authored attributes
+  // until the slot handler has read the initial selection.
+  if (!_classPrivateFieldGet(_selectionInitialized, this)) return;
   var slides = _classPrivateGetter(_Carousel3_brand, this, _get_slides);
   var index = _assertClassBrand(_Carousel3_brand, this, _clamp).call(this, this.index);
   slides.forEach(function (slide, position) {
@@ -454,9 +627,13 @@ function _syncSlides() {
     slide.toggleAttribute("suspended", _classPrivateGetter(_Carousel3_brand, _this7, _get_mediaSuspended));
   });
 }
+/**
+ * @param {"change"|"play"|"pause"} name
+ * @param {{index: number, previousIndex: number, slide: Slide|null}} [detail]
+ */
 function _emit(name, detail) {
   this.dispatchEvent(new CustomEvent("tcds-carousel:".concat(name), {
-    detail: detail,
+    detail: detail !== null && detail !== void 0 ? detail : null,
     bubbles: true,
     composed: true
   }));

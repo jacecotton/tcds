@@ -1,10 +1,6 @@
-{% set _classes = ["", classes|default("")]|join(" ") %}
-{% set attributes = attributes|default(create_attribute()) %}
-{% set attributes = attributes.addClass(_classes) %}
-
-{% if selected is defined and selected %}
-  {% set attributes = attributes.setAttribute("selected", "") %}
-{% endif %}
+{% set attributes = create_attribute(attributes|default({}))
+  .setAttribute("selected", selected|default(false))
+%}
 
 <tcds-slide {{ attributes }}>
   {% if content is defined %}

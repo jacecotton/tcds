@@ -17,6 +17,10 @@ export default css`
     transition:
       opacity var(--tcds-carousel-transition-duration, 500ms) ease,
       visibility 0s linear var(--tcds-carousel-transition-duration, 500ms);
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
   }
 
   :host(:not([hidden])) {

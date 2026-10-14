@@ -1,33 +1,31 @@
-{% set attributes = attributes|default(create_attribute()) %}
-
-{% set attributes = attributes
-  .addClass(classes|default([]))
+{% set attributes = create_attribute(attributes|default({}))
   .setAttribute("playing", playing|default(false))
   .setAttribute("interval", interval|default(false))
   .setAttribute("controls", controls|default(false))
+  .setAttribute("label", label|default(false))
   .setAttribute("no-pause-on-hover", no_pause_on_hover|default(false))
 %}
 
 <tcds-carousel {{ attributes }}>
-  {% if slides is defined and slides is iterable and slides is not empty %}
-    {% for slide in slides %}
-      {% set content = null %}
-
-      {% if slide.content is defined %}
-        {% if slide.content is not iterable and block(slide.content) is defined %}
+  {% if slides is defined %}
+    {% if slides is iterable and slides["#markup"] is not defined %}
+      {% for slide in slides %}
+        {% if slide.content is defined and slide.content is not iterable and block(slide.content) is defined %}
           {% set content = block(slide.content) %}
         {% else %}
-          {% set content = slide.content %}
+          {% set content = slide.content|default(null) %}
         {% endif %}
-      {% endif %}
 
-      {{ include("@tcds/slide/slide.twig", {
-        content: content,
-        attributes: slide.attributes|default(create_attribute()),
-        classes: slide_classes|default([]),
-      }, with_context=false) }}
-    {% endfor %}
-  {% else %}
-    {% block slides %}{{ slides }}{% endblock %}
+        {{ include("tcds:slide", {
+          content: content,
+          selected: slide.selected|default(false),
+          attributes: create_attribute(slide_attributes|default({})|merge(slide.attributes|default({}))),
+        }, with_context=false) }}
+      {% endfor %}
+    {% else %}
+      {% block slides %}
+        {{ slides }}
+      {% endblock %}
+    {% endif %}
   {% endif %}
 </tcds-carousel>

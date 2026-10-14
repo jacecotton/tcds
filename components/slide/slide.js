@@ -3,7 +3,7 @@ import { s as styles, r as restoreMedia, p as pauseMedia, c as prepareMedia } fr
 
 var _templateObject$1;
 function _taggedTemplateLiteral$1(e, t) { return t || (t = e.slice(0)), Object.freeze(Object.defineProperties(e, { raw: { value: Object.freeze(t) } })); }
-var localStyles = i(_templateObject$1 || (_templateObject$1 = _taggedTemplateLiteral$1(["\n  :host {\n    grid-area: 1 / 1;\n    opacity: 0;\n    visibility: hidden;\n    z-index: 1;\n    pointer-events: none;\n\n    @media (prefers-reduced-motion: reduce) {\n      transition: none;\n    }\n  }\n\n  :host(:state(ready)) {\n    transition:\n      opacity var(--tcds-carousel-transition-duration, 500ms) ease,\n      visibility 0s linear var(--tcds-carousel-transition-duration, 500ms);\n  }\n\n  :host(:not([hidden])) {\n    display: block;\n  }\n\n  :host([selected]) {\n    opacity: 1;\n    visibility: visible;\n    z-index: 0;\n    transition: none;\n    pointer-events: auto;\n\n    @media (prefers-reduced-motion: reduce) {\n      transition: none;\n    }\n  }\n"])));
+var localStyles = i(_templateObject$1 || (_templateObject$1 = _taggedTemplateLiteral$1(["\n  :host {\n    grid-area: 1 / 1;\n    opacity: 0;\n    visibility: hidden;\n    z-index: 1;\n    pointer-events: none;\n\n    @media (prefers-reduced-motion: reduce) {\n      transition: none;\n    }\n  }\n\n  :host(:state(ready)) {\n    transition:\n      opacity var(--tcds-carousel-transition-duration, 500ms) ease,\n      visibility 0s linear var(--tcds-carousel-transition-duration, 500ms);\n\n    @media (prefers-reduced-motion: reduce) {\n      transition: none;\n    }\n  }\n\n  :host(:not([hidden])) {\n    display: block;\n  }\n\n  :host([selected]) {\n    opacity: 1;\n    visibility: visible;\n    z-index: 0;\n    transition: none;\n    pointer-events: auto;\n\n    @media (prefers-reduced-motion: reduce) {\n      transition: none;\n    }\n  }\n"])));
 
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 var _Class, _Slide3, _A, _B, _C, _D, _internals, _owner, _settled, _Slide3_brand, _templateObject, _applyDecs2, _applyDecs2$e, _applyDecs2$c;
@@ -43,11 +43,28 @@ function _setFunctionName(e, t, n) { "symbol" == _typeof(t) && (t = (t = t.descr
 function _checkInRHS(e) { if (Object(e) !== e) throw TypeError("right-hand side of 'in' should be an object, got " + (null !== e ? _typeof(e) : "null")); return e; }
 function _identity(t) { return t; }
 
+/** @import {PropertyValues} from "lit" */
+
 /**
  * Distinguishes each slide's paused media from a nested carousel's, so an outer
  * slide reactivating doesn't restart embeds an inner slide deliberately stopped.
  */
 var owners = 0;
+
+/**
+ * A single slide within a carousel. Media inside unselected slides is paused
+ * automatically.
+ *
+ * @tag tcds-slide
+ *
+ * @slot - Slide content.
+ *
+ * @cssState ready - The slide has upgraded and resolved its initial styles;
+ *   transitions between slides are enabled.
+ *
+ * @cssprop [--tcds-carousel-transition-duration=500ms] - Duration of the
+ *   cross-fade between slides. Usually set on the parent carousel.
+ */
 var _Slide;
 new (_Slide2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMap(), _C = /*#__PURE__*/new WeakMap(), _D = /*#__PURE__*/new WeakMap(), _internals = /*#__PURE__*/new WeakMap(), _owner = /*#__PURE__*/new WeakMap(), _settled = /*#__PURE__*/new WeakMap(), _Slide3_brand = /*#__PURE__*/new WeakSet(), _Slide3 = /*#__PURE__*/function (_LitElement) {
   // #endregion
@@ -62,30 +79,45 @@ new (_Slide2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMap()
     _classPrivateMethodInitSpec(_this, _Slide3_brand);
     // #region Properties and state
     /**
-     * Set by the parent carousel. Drives visibility, which in turn removes
-     * unselected slides from the tab order and the accessibility tree.
+     * Whether this slide is selected. Author `selected` to choose the initial
+     * slide; the first selected slide wins if several are marked. The parent
+     * carousel manages this state after initialization. Drives visibility,
+     * removing unselected slides from the tab order and accessibility tree.
+     *
+     * @type {boolean}
      */
     _classPrivateFieldInitSpec(_this, _A, _init_selected(_this, false));
     /**
      * Set by the parent carousel while its playback toggle is off. Holds this
      * slide's media paused even when the slide is selected, and is checked again
      * on reveal, so a slide surfaced during a suspension stays quiet.
+     *
+     * @type {boolean}
      */
     _classPrivateFieldInitSpec(_this, _B, (_init_extra_selected(_this), _init_suspended(_this, false)));
     /**
      * Zero-based position among sibling slides, assigned by the parent carousel
      * as a property so the light DOM markup stays clean.
+     *
+     * @type {number}
+     * @internal
      */
     _classPrivateFieldInitSpec(_this, _C, (_init_extra_suspended(_this), _init_position(_this)));
     /**
      * Total sibling slide count, assigned by the parent carousel.
+     *
+     * @type {number}
+     * @internal
      */
     _classPrivateFieldInitSpec(_this, _D, (_init_extra_position(_this), _init_total(_this)));
     // #endregion
 
     // #region Private variables
+    /** @type {ElementInternals} */
     _classPrivateFieldInitSpec(_this, _internals, void _init_extra_total(_this));
+    /** @type {string} */
     _classPrivateFieldInitSpec(_this, _owner, "tcds-slide-".concat(++owners));
+    /** @type {boolean} */
     _classPrivateFieldInitSpec(_this, _settled, false);
     _this.position = 0;
     _this.total = 1;
@@ -94,6 +126,8 @@ new (_Slide2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMap()
     _classPrivateFieldGet(_internals, _this).ariaRoleDescription = "slide";
     return _this;
   }
+
+  /** @returns {Promise<void>} */
   _inherits(Slide, _LitElement);
   return _createClass(Slide, [{
     key: "selected",
@@ -129,7 +163,7 @@ new (_Slide2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMap()
     }
   }, {
     key: "firstUpdated",
-    value: function () {
+    value: (function () {
       var _firstUpdated = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
         return _regenerator().w(function (_context) {
           while (1) switch (_context.n) {
@@ -146,7 +180,11 @@ new (_Slide2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMap()
               // from its own update, which may not have run yet. A frame is enough for
               // that to settle, and still lands before the first paint.
               _context.n = 1;
-              return new Promise(requestAnimationFrame);
+              return new Promise(function (resolve) {
+                return requestAnimationFrame(function () {
+                  return resolve();
+                });
+              });
             case 1:
               _classPrivateFieldSet(_settled, this, true);
               _assertClassBrand(_Slide3_brand, this, _syncMedia).call(this);
@@ -159,12 +197,16 @@ new (_Slide2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMap()
         return _firstUpdated.apply(this, arguments);
       }
       return firstUpdated;
-    }()
+    }())
   }, {
     key: "willUpdate",
     value: function willUpdate() {
       _classPrivateFieldGet(_internals, this).ariaLabel = "".concat(this.position + 1, " of ").concat(this.total);
     }
+
+    /**
+     * @param {PropertyValues<this>} changedProperties
+     */
   }, {
     key: "updated",
     value: function updated(changedProperties) {

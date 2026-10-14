@@ -1,0 +1,23 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Slide
+description: Content within a carousel.
+status: experimental
+group: Content
+libraryOverrides:
+  js:
+    slide.js:
+      attributes:
+        type: module
+      preprocess: false
+props:
+  type: object
+  properties:
+    selected:
+      type: boolean
+      title: Selected
+      description: Whether the slide is selected by default. The first selected slide wins if several are marked; otherwise the carousel starts with the first slide.
+      default: false
+slots:
+  content:
+    title: Content
+    description: The content of the slide.
