@@ -112,7 +112,7 @@ window.Drupal.behaviors.tcdsExample = {
 
   detach(context, settings, trigger) {
     if (trigger === "unload") {
-      destroyInit(context);
+      destroyExample(context);
     }
   },
 };

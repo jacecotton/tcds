@@ -253,7 +253,7 @@ var Disclosure = /*#__PURE__*/function (_LitElement) {
     /** @type {Node[]|null} */
     _classPrivateFieldInitSpec$3(_this2, _titleContent, null);
     _classPrivateFieldInitSpec$3(_this2, _onBeforeMatch, function () {
-      _assertClassBrand$3(_Disclosure_brand, _this2, _requestChange).call(_this2, true);
+      _assertClassBrand$3(_Disclosure_brand, _this2, _requestChange).call(_this2, true, "find");
     });
     _this2.mode = "accordion";
     _this2.position = 0;
@@ -473,6 +473,20 @@ var Disclosure = /*#__PURE__*/function (_LitElement) {
     }
 
     /**
+     * Only rendered in accordion mode.
+     *
+     * @type {HTMLElement|null}
+     * @protected
+     * @internal
+     */
+  }, {
+    key: "trigger",
+    get: function get() {
+      var _this$renderRoot$quer, _this$renderRoot;
+      return (_this$renderRoot$quer = (_this$renderRoot = this.renderRoot) === null || _this$renderRoot === void 0 ? void 0 : _this$renderRoot.querySelector("[part=trigger]")) !== null && _this$renderRoot$quer !== void 0 ? _this$renderRoot$quer : null;
+    }
+
+    /**
      * @type {HTMLElement|null}
      * @protected
      * @internal
@@ -480,8 +494,8 @@ var Disclosure = /*#__PURE__*/function (_LitElement) {
   }, {
     key: "panel",
     get: function get() {
-      var _this$renderRoot$quer, _this$renderRoot;
-      return (_this$renderRoot$quer = (_this$renderRoot = this.renderRoot) === null || _this$renderRoot === void 0 ? void 0 : _this$renderRoot.querySelector("[part=panel]")) !== null && _this$renderRoot$quer !== void 0 ? _this$renderRoot$quer : null;
+      var _this$renderRoot$quer2, _this$renderRoot2;
+      return (_this$renderRoot$quer2 = (_this$renderRoot2 = this.renderRoot) === null || _this$renderRoot2 === void 0 ? void 0 : _this$renderRoot2.querySelector("[part=panel]")) !== null && _this$renderRoot$quer2 !== void 0 ? _this$renderRoot$quer2 : null;
     }
 
     /**
@@ -492,14 +506,14 @@ var Disclosure = /*#__PURE__*/function (_LitElement) {
   }, {
     key: "content",
     get: function get() {
-      var _this$renderRoot$quer2, _this$renderRoot2;
-      return (_this$renderRoot$quer2 = (_this$renderRoot2 = this.renderRoot) === null || _this$renderRoot2 === void 0 ? void 0 : _this$renderRoot2.querySelector("[part=content]")) !== null && _this$renderRoot$quer2 !== void 0 ? _this$renderRoot$quer2 : null;
+      var _this$renderRoot$quer3, _this$renderRoot3;
+      return (_this$renderRoot$quer3 = (_this$renderRoot3 = this.renderRoot) === null || _this$renderRoot3 === void 0 ? void 0 : _this$renderRoot3.querySelector("[part=content]")) !== null && _this$renderRoot$quer3 !== void 0 ? _this$renderRoot$quer3 : null;
     } // #endregion
   }]);
 }(i$1);
 _Disclosure = Disclosure;
 function _onTriggerClick() {
-  _assertClassBrand$3(_Disclosure_brand, this, _requestChange).call(this, !this.expanded);
+  _assertClassBrand$3(_Disclosure_brand, this, _requestChange).call(this, !this.expanded, "trigger");
 }
 function _onTitleSlotChange() {
   _classPrivateFieldSet$3(_titleContent, this, null);
@@ -516,10 +530,16 @@ function _get_panelRole(_this) {
   if (_this.mode === "accordion") return "region";
   return null;
 }
-function _requestChange(expanded) {
+/**
+ * @param {boolean} expanded
+ * @param {"trigger"|"find"} source - What prompted the request. Lets the
+ *   group decide whether to keep the trigger on screen afterwards.
+ */
+function _requestChange(expanded, source) {
   this.dispatchEvent(new CustomEvent("tcds-disclosure:change", {
     detail: {
-      expanded: expanded
+      expanded: expanded,
+      source: source
     },
     bubbles: true,
     composed: true
@@ -719,6 +739,10 @@ var groupStyles = i(_templateObject$1 || (_templateObject$1 = _taggedTemplateLit
 function _typeof$1(o) { "@babel/helpers - typeof"; return _typeof$1 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof$1(o); }
 var _DisclosureGroup, _templateObject;
 var _init_media, _init_extra_media, _init_label, _init_extra_label, _init_revision, _get_revision, _set_revision, _init_extra_revision, _init_assigned, _get_assigned, _init_extra_assigned;
+function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = false, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = true, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), true), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
+function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray$1(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = true, o = false; try { if (i = (t = t.call(r)).next, 0 === l) ; else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = true, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
@@ -765,6 +789,7 @@ var _mediaQuery = /*#__PURE__*/new WeakMap();
 var _deepLink = /*#__PURE__*/new WeakMap();
 var _preferred = /*#__PURE__*/new WeakMap();
 var _signature = /*#__PURE__*/new WeakMap();
+var _revealRequest = /*#__PURE__*/new WeakMap();
 var _onItemChange = /*#__PURE__*/new WeakMap();
 var _onItemTitleChange = /*#__PURE__*/new WeakMap();
 var _onDeepLink = /*#__PURE__*/new WeakMap();
@@ -807,7 +832,12 @@ var DisclosureGroup = /*#__PURE__*/function (_LitElement) {
     /** @type {string|null} */
     _classPrivateFieldInitSpec(_this, _signature, null);
     /**
-     * @param {CustomEvent<{expanded: boolean}>} event
+     * Incremented per reveal request, so that only the most recent one acts once
+     * its animations settle.
+     */
+    _classPrivateFieldInitSpec(_this, _revealRequest, 0);
+    /**
+     * @param {CustomEvent<{expanded: boolean, source: "trigger"|"find"}>} event
      */
     _classPrivateFieldInitSpec(_this, _onItemChange, function (event) {
       var item = event.target;
@@ -815,6 +845,12 @@ var DisclosureGroup = /*#__PURE__*/function (_LitElement) {
       if (!_this.items.includes(item)) return;
       event.stopPropagation();
       _assertClassBrand(_DisclosureGroup_brand, _this, _setExpanded).call(_this, item, event.detail.expanded);
+
+      // Find-in-page has its own scroll target (the match), which may sit well
+      // below the trigger, so only clicks on the trigger itself are revealed.
+      if (event.detail.expanded && event.detail.source === "trigger") {
+        _assertClassBrand(_DisclosureGroup_brand, _this, _revealTrigger).call(_this, item);
+      }
     });
     /**
      * @param {CustomEvent} event
@@ -1113,6 +1149,84 @@ function _setExpanded(item, expanded) {
   _classPrivateFieldSet(_preferred, this, expanded ? item : null);
   item.expanded = expanded;
   this.requestUpdate();
+}
+/**
+ * Brings an item's trigger back on screen once the group has finished
+ * animating, if it ended up off screen. In an exclusive group, a taller
+ * section above collapsing while this one opens drags the trigger upward,
+ * often past the top of the viewport.
+ *
+ * @param {Disclosure} item
+ */
+function _revealTrigger(_x) {
+  return _revealTrigger2.apply(this, arguments);
+}
+function _revealTrigger2() {
+  _revealTrigger2 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee(item) {
+    var _this$revealRequest;
+    var request, animations, trigger, offset, _trigger$getBoundingC, top, bottom, reducedMotion;
+    return _regenerator().w(function (_context) {
+      while (1) switch (_context.n) {
+        case 0:
+          request = _classPrivateFieldSet(_revealRequest, this, (_this$revealRequest = _classPrivateFieldGet(_revealRequest, this), ++_this$revealRequest)); // Items render asynchronously, and their height animations only start once
+          // they have, so there is nothing to wait on until then.
+          _context.n = 1;
+          return this.updateComplete;
+        case 1:
+          _context.n = 2;
+          return Promise.all(this.items.map(function (other) {
+            return other.updateComplete;
+          }));
+        case 2:
+          animations = this.items.flatMap(function (other) {
+            var _other$panel$getAnima, _other$panel;
+            return (_other$panel$getAnima = (_other$panel = other.panel) === null || _other$panel === void 0 ? void 0 : _other$panel.getAnimations()) !== null && _other$panel$getAnima !== void 0 ? _other$panel$getAnima : [];
+          });
+          _context.n = 3;
+          return Promise.allSettled(animations.map(function (animation) {
+            return animation.finished;
+          }));
+        case 3:
+          if (!(request !== _classPrivateFieldGet(_revealRequest, this))) {
+            _context.n = 4;
+            break;
+          }
+          return _context.a(2);
+        case 4:
+          if (!(this.mode !== "accordion" || !item.expanded)) {
+            _context.n = 5;
+            break;
+          }
+          return _context.a(2);
+        case 5:
+          trigger = item.trigger;
+          if (trigger) {
+            _context.n = 6;
+            break;
+          }
+          return _context.a(2);
+        case 6:
+          // `scrollIntoView` honors scroll-margin and scroll-padding (e.g. clearance
+          // for a sticky header), so the visibility check should too.
+          offset = (parseFloat(getComputedStyle(trigger).scrollMarginTop) || 0) + (parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0);
+          _trigger$getBoundingC = trigger.getBoundingClientRect(), top = _trigger$getBoundingC.top, bottom = _trigger$getBoundingC.bottom;
+          if (!(top >= offset && bottom <= window.innerHeight)) {
+            _context.n = 7;
+            break;
+          }
+          return _context.a(2);
+        case 7:
+          reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          trigger.scrollIntoView({
+            block: "nearest",
+            behavior: reducedMotion ? "instant" : "smooth"
+          });
+        case 8:
+          return _context.a(2);
+      }
+    }, _callee, this);
+  }));
+  return _revealTrigger2.apply(this, arguments);
 }
 /**
  * Synchronizes each disclosure item with the group's current presentation

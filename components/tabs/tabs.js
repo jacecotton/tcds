@@ -41,17 +41,22 @@ function _setFunctionName(e, t, n) { "symbol" == _typeof(t) && (t = (t = t.descr
 function _checkInRHS(e) { if (Object(e) !== e) throw TypeError("right-hand side of 'in' should be an object, got " + (null !== e ? _typeof(e) : "null")); return e; }
 function _identity(t) { return t; }
 
+/** @import {TemplateResult} from "lit" */
 /** @import {DisclosureMode, Disclosure} from "@/components/_shared/base/Disclosure" */
+
 /**
- * A collection of toggleable tab panels.
+ * A collection of toggleable tab panels. When `media` is set and does not
+ * match, the tabs collapse into an accordion.
  *
- * @slot - Tab items.
+ * @tag tcds-tabs
  *
- * @csspart items - The container for all tab items.
- * @csspart tablist - The container for the tab buttons.
- * @csspart tab - The tab button for the corresponding tab.
+ * @slot - Tab items (`<tcds-tab>` elements).
  *
- * @fires {CustomEvent<{expandedItems: Disclosure[], mode: DisclosureMode}>} tcds-tabs:change
+ * @csspart items   - The container for all tab items.
+ * @csspart tablist - The container for the tab buttons (tabs mode only).
+ * @csspart tab     - The tab button for the corresponding tab (tabs mode only).
+ *
+ * @fires {CustomEvent<{expandedItems: Disclosure[], mode: DisclosureMode}>} tcds-tabs:change - Fired when the selected tab changes.
  */
 var _Tabs;
 new (_Tabs2 = (_Tabs3_brand = /*#__PURE__*/new WeakSet(), _Tabs3 = /*#__PURE__*/function (_DisclosureGroup) {
@@ -75,33 +80,61 @@ new (_Tabs2 = (_Tabs3_brand = /*#__PURE__*/new WeakSet(), _Tabs3 = /*#__PURE__*/
     key: "defaultMode",
     get:
     // #region Subclass contract
-    /** @override @protected @internal */
+    /**
+     * @type {DisclosureMode}
+     * @override
+     * @protected
+     * @internal
+     */
     function get() {
       return "tabs";
     }
 
-    /** @override @protected @internal */
+    /**
+     * @type {DisclosureMode}
+     * @override
+     * @protected
+     * @internal
+     */
   }, {
     key: "mediaMode",
     get: function get() {
       return "accordion";
     }
 
-    /** @override @protected @internal */
+    /**
+     * @type {boolean}
+     * @override
+     * @protected
+     * @internal
+     */
   }, {
     key: "allowsMultiple",
     get: function get() {
       return false;
     }
 
-    /** @override @protected @internal */
+    /**
+     * @type {boolean}
+     * @override
+     * @protected
+     * @internal
+     */
   }, {
     key: "requiresSelection",
     get: function get() {
       return true;
     }
 
-    /** @override @protected @internal */
+    /**
+     * Renders the tablist in tabs mode. In accordion mode each tab renders its
+     * own trigger instead.
+     *
+     * @returns {TemplateResult|typeof nothing}
+     * @override
+     * @protected
+     * @internal
+     */
   }, {
     key: "renderHeader",
     value: function renderHeader() {
@@ -116,7 +149,11 @@ new (_Tabs2 = (_Tabs3_brand = /*#__PURE__*/new WeakSet(), _Tabs3 = /*#__PURE__*/
 
     // #region Public API
     /**
-     * @param {number} position - The index of the item to select.
+     * Selects the tab at the given position, deselecting the others. Out of
+     * range positions are ignored.
+     *
+     * @param {number} position - The zero-based index of the tab to select.
+     * @returns {void}
      */
   }, {
     key: "select",
@@ -136,9 +173,13 @@ new (_Tabs2 = (_Tabs3_brand = /*#__PURE__*/new WeakSet(), _Tabs3 = /*#__PURE__*/
   return _createClass(_Class);
 }(_identity), _defineProperty(_Class, _Tabs2, void 0), _Class)();
 function _onTabClick(event) {
-  this.select(Number(event.currentTarget.value));
+  var button = /** @type {HTMLButtonElement} */event.currentTarget;
+  this.select(Number(button.value));
 }
 /**
+ * Arrow keys, Home and End move the selection (and focus) along the tablist,
+ * wrapping at either end. Arrow directions are mirrored in RTL.
+ *
  * @param {KeyboardEvent} event
  */
 function _onTablistKeydown(_x) {
@@ -146,8 +187,7 @@ function _onTablistKeydown(_x) {
 }
 function _onTablistKeydown2() {
   _onTablistKeydown2 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee(event) {
-    var _this$renderRoot$quer;
-    var items, forward, current, positions;
+    var items, forward, current, positions, selected;
     return _regenerator().w(function (_context) {
       while (1) switch (_context.n) {
         case 0:
@@ -162,6 +202,7 @@ function _onTablistKeydown2() {
           current = items.findIndex(function (item) {
             return item.expanded;
           });
+          /** @type {Record<string, number>} */
           positions = {
             ArrowLeft: current - forward,
             ArrowRight: current + forward,
@@ -182,7 +223,9 @@ function _onTablistKeydown2() {
           _context.n = 3;
           return this.updateComplete;
         case 3:
-          (_this$renderRoot$quer = this.renderRoot.querySelector("[part~=tab][aria-selected=true]")) === null || _this$renderRoot$quer === void 0 || _this$renderRoot$quer.focus();
+          /** @type {HTMLElement|null} */
+          selected = this.renderRoot.querySelector("[part~=tab][aria-selected=true]");
+          selected === null || selected === void 0 || selected.focus();
         case 4:
           return _context.a(2);
       }

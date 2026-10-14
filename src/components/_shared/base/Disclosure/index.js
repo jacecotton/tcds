@@ -260,6 +260,17 @@ export class Disclosure extends LitElement {
   }
 
   /**
+   * Only rendered in accordion mode.
+   *
+   * @type {HTMLElement|null}
+   * @protected
+   * @internal
+   */
+  get trigger() {
+    return this.renderRoot?.querySelector("[part=trigger]") ?? null;
+  }
+
+  /**
    * @type {HTMLElement|null}
    * @protected
    * @internal
@@ -280,11 +291,11 @@ export class Disclosure extends LitElement {
 
   // #region Event handlers
   #onTriggerClick() {
-    this.#requestChange(!this.expanded);
+    this.#requestChange(!this.expanded, "trigger");
   }
 
   #onBeforeMatch = () => {
-    this.#requestChange(true);
+    this.#requestChange(true, "find");
   };
 
   #onTitleSlotChange() {
@@ -307,9 +318,14 @@ export class Disclosure extends LitElement {
     return null;
   }
 
-  #requestChange(expanded) {
+  /**
+   * @param {boolean} expanded
+   * @param {"trigger"|"find"} source - What prompted the request. Lets the
+   *   group decide whether to keep the trigger on screen afterwards.
+   */
+  #requestChange(expanded, source) {
     this.dispatchEvent(new CustomEvent("tcds-disclosure:change", {
-      detail: {expanded},
+      detail: {expanded, source},
       bubbles: true,
       composed: true,
     }));

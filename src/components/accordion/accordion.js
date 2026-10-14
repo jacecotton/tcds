@@ -20,7 +20,7 @@ import "@/components/accordion-section/accordion-section.js";
  * @csspart expand   - Expand control button.
  * @csspart collapse - Collapse control button.
  *
- * @fires {CustomEvent<{expandedItems: Disclosure[], mode: DisclosureMode}>} tcds-tabs:change
+ * @fires {CustomEvent<{expandedItems: Disclosure[], mode: DisclosureMode}>} tcds-accordion:change
  */
 @customElement("tcds-accordion")
 export class Accordion extends DisclosureGroup {

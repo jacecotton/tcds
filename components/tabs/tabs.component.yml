@@ -1,0 +1,37 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Tabs
+description: Tabs
+status: experimental
+group: Content
+libraryOverrides:
+  js:
+    tabs.js:
+      attributes:
+        type: module
+      preprocess: false
+props:
+  type: object
+  properties:
+    label:
+      type: string
+      title: Label
+      description: "An accessible name for the tab list."
+    heading_level:
+      type: string
+      title: Heading level
+      description: "The semantic heading level to use within the page outline when collapsed into an accordion (does not change visual appearance)."
+      enum: ["h2", "h3", "h4", "h5", "h6"]
+      meta:enum:
+        h2: "Heading 2"
+        h3: "Heading 3"
+        h4: "Heading 4"
+        h5: "Heading 5"
+        h6: "Heading 6"
+      examples: ["h3"]
+    media:
+      type: string
+      title: Media query
+      description: "The media query at which to present tabs. Outside of it, the tabs collapse into an accordion. If omitted, tabs are always presented."
+slots:
+  tabs:
+    title: Tabs

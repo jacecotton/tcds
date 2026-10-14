@@ -53,7 +53,7 @@ function _identity(t) { return t; }
  * @csspart expand   - Expand control button.
  * @csspart collapse - Collapse control button.
  *
- * @fires {CustomEvent<{expandedItems: Disclosure[], mode: DisclosureMode}>} tcds-tabs:change
+ * @fires {CustomEvent<{expandedItems: Disclosure[], mode: DisclosureMode}>} tcds-accordion:change
  */
 var _Accordion;
 new (_Accordion2 = (_A = /*#__PURE__*/new WeakMap(), _Accordion3_brand = /*#__PURE__*/new WeakSet(), _Accordion3 = /*#__PURE__*/function (_DisclosureGroup) {

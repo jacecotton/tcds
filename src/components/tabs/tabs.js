@@ -6,44 +6,77 @@ import {DisclosureGroup} from "@/components/_shared/base/DisclosureGroup";
 import localStyles from "./tabs.styles.js";
 import "@/components/tab/tab.js";
 
+/** @import {TemplateResult} from "lit" */
 /** @import {DisclosureMode, Disclosure} from "@/components/_shared/base/Disclosure" */
+
 /**
- * A collection of toggleable tab panels.
+ * A collection of toggleable tab panels. When `media` is set and does not
+ * match, the tabs collapse into an accordion.
  *
- * @slot - Tab items.
+ * @tag tcds-tabs
  *
- * @csspart items - The container for all tab items.
- * @csspart tablist - The container for the tab buttons.
- * @csspart tab - The tab button for the corresponding tab.
+ * @slot - Tab items (`<tcds-tab>` elements).
  *
- * @fires {CustomEvent<{expandedItems: Disclosure[], mode: DisclosureMode}>} tcds-tabs:change
+ * @csspart items   - The container for all tab items.
+ * @csspart tablist - The container for the tab buttons (tabs mode only).
+ * @csspart tab     - The tab button for the corresponding tab (tabs mode only).
+ *
+ * @fires {CustomEvent<{expandedItems: Disclosure[], mode: DisclosureMode}>} tcds-tabs:change - Fired when the selected tab changes.
  */
 @customElement("tcds-tabs")
 export class Tabs extends DisclosureGroup {
   static styles = [DisclosureGroup.styles, localStyles];
 
   // #region Subclass contract
-  /** @override @protected @internal */
+  /**
+   * @type {DisclosureMode}
+   * @override
+   * @protected
+   * @internal
+   */
   get defaultMode() {
     return "tabs";
   }
 
-  /** @override @protected @internal */
+  /**
+   * @type {DisclosureMode}
+   * @override
+   * @protected
+   * @internal
+   */
   get mediaMode() {
     return "accordion";
   }
 
-  /** @override @protected @internal */
+  /**
+   * @type {boolean}
+   * @override
+   * @protected
+   * @internal
+   */
   get allowsMultiple() {
     return false;
   }
 
-  /** @override @protected @internal */
+  /**
+   * @type {boolean}
+   * @override
+   * @protected
+   * @internal
+   */
   get requiresSelection() {
     return true;
   }
 
-  /** @override @protected @internal */
+  /**
+   * Renders the tablist in tabs mode. In accordion mode each tab renders its
+   * own trigger instead.
+   *
+   * @returns {TemplateResult|typeof nothing}
+   * @override
+   * @protected
+   * @internal
+   */
   renderHeader() {
     if (this.mode !== "tabs") return nothing;
 
@@ -72,7 +105,11 @@ export class Tabs extends DisclosureGroup {
 
   // #region Public API
   /**
-   * @param {number} position - The index of the item to select.
+   * Selects the tab at the given position, deselecting the others. Out of
+   * range positions are ignored.
+   *
+   * @param {number} position - The zero-based index of the tab to select.
+   * @returns {void}
    */
   select(position) {
     const item = this.items[position];
@@ -85,10 +122,14 @@ export class Tabs extends DisclosureGroup {
    * @param {MouseEvent} event
    */
   #onTabClick(event) {
-    this.select(Number(event.currentTarget.value));
+    const button = /** @type {HTMLButtonElement} */ (event.currentTarget);
+    this.select(Number(button.value));
   }
 
   /**
+   * Arrow keys, Home and End move the selection (and focus) along the tablist,
+   * wrapping at either end. Arrow directions are mirrored in RTL.
+   *
    * @param {KeyboardEvent} event
    */
   async #onTablistKeydown(event) {
@@ -99,6 +140,7 @@ export class Tabs extends DisclosureGroup {
     const forward = getComputedStyle(this).direction === "rtl" ? -1 : 1;
     const current = items.findIndex((item) => item.expanded);
 
+    /** @type {Record<string, number>} */
     const positions = {
       ArrowLeft: current - forward,
       ArrowRight: current + forward,
@@ -115,7 +157,10 @@ export class Tabs extends DisclosureGroup {
     // Automatic activation: selection and focus move together, which is the
     // expected behaviour for tab panels that are cheap to reveal.
     await this.updateComplete;
-    this.renderRoot.querySelector("[part~=tab][aria-selected=true]")?.focus();
+
+    /** @type {HTMLElement|null} */
+    const selected = this.renderRoot.querySelector("[part~=tab][aria-selected=true]");
+    selected?.focus();
   }
   // #endregion
 }

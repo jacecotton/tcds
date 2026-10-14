@@ -21,7 +21,7 @@
           content: content,
           open: section.open,
           heading_level: heading_level|default(null),
-          attributes: create_attribute(item_attributes|default({})|merge(item.attributes|default({}))),
+          attributes: create_attribute(section_attributes|default({})|merge(section.attributes|default({}))),
         }) }}
       {% endfor %}
     {% else %}

@@ -52,6 +52,12 @@ export class DisclosureGroup extends LitElement {
   #preferred = null;
   /** @type {string|null} */
   #signature = null;
+
+  /**
+   * Incremented per reveal request, so that only the most recent one acts once
+   * its animations settle.
+   */
+  #revealRequest = 0;
   // #endregion
 
   // #region Lifecycle
@@ -228,7 +234,7 @@ export class DisclosureGroup extends LitElement {
   }
 
   /**
-   * @param {CustomEvent<{expanded: boolean}>} event
+   * @param {CustomEvent<{expanded: boolean, source: "trigger"|"find"}>} event
    */
   #onItemChange = (event) => {
     const item = event.target;
@@ -238,6 +244,12 @@ export class DisclosureGroup extends LitElement {
 
     event.stopPropagation();
     this.#setExpanded(item, event.detail.expanded);
+
+    // Find-in-page has its own scroll target (the match), which may sit well
+    // below the trigger, so only clicks on the trigger itself are revealed.
+    if (event.detail.expanded && event.detail.source === "trigger") {
+      this.#revealTrigger(item);
+    }
   };
 
   /**
@@ -288,6 +300,49 @@ export class DisclosureGroup extends LitElement {
     item.expanded = expanded;
 
     this.requestUpdate();
+  }
+
+  /**
+   * Brings an item's trigger back on screen once the group has finished
+   * animating, if it ended up off screen. In an exclusive group, a taller
+   * section above collapsing while this one opens drags the trigger upward,
+   * often past the top of the viewport.
+   *
+   * @param {Disclosure} item
+   */
+  async #revealTrigger(item) {
+    const request = ++this.#revealRequest;
+
+    // Items render asynchronously, and their height animations only start once
+    // they have, so there is nothing to wait on until then.
+    await this.updateComplete;
+    await Promise.all(this.items.map((other) => other.updateComplete));
+
+    const animations = this.items.flatMap((other) => other.panel?.getAnimations() ?? []);
+    await Promise.allSettled(animations.map((animation) => animation.finished));
+
+    // A newer click, a media query flip, or a quick re-collapse all supersede
+    // this request.
+    if (request !== this.#revealRequest) return;
+    if (this.mode !== "accordion" || !item.expanded) return;
+
+    const trigger = item.trigger;
+    if (!trigger) return;
+
+    // `scrollIntoView` honors scroll-margin and scroll-padding (e.g. clearance
+    // for a sticky header), so the visibility check should too.
+    const offset = (parseFloat(getComputedStyle(trigger).scrollMarginTop) || 0)
+      + (parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0);
+    const {top, bottom} = trigger.getBoundingClientRect();
+
+    if (top >= offset && bottom <= window.innerHeight) return;
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    trigger.scrollIntoView({
+      block: "nearest",
+      behavior: reducedMotion ? "instant" : "smooth",
+    });
   }
 
   /**

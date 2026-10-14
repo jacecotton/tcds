@@ -34,6 +34,8 @@ function _checkInRHS(e) { if (Object(e) !== e) throw TypeError("right-hand side 
 /**
  * A section of content expandable and collapsible via a trigger.
  *
+ * @tag tcds-accordion-section
+ *
  * @slot - Content.
  * @slot title - The title of the section to use for the trigger label.
  *
