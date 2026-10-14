@@ -140,18 +140,29 @@ function isBackgroundEmbed(url) {
 }
 
 /**
- * Whether an earlier pauseMedia() already recorded this element. Bailing out on
- * it keeps the first scope to pause something as its owner, which is what makes
- * nested scopes restore correctly.
+ * Whether an earlier pauseMedia() already recorded this element.
  */
 function isHandled(el) {
   return el.dataset.autopauseResume !== undefined
     || el.dataset.autopauseOwner !== undefined;
 }
 
+function ownersOf(el) {
+  if (el.dataset.autopauseOwners) return JSON.parse(el.dataset.autopauseOwners);
+  return el.dataset.autopauseOwner ? [el.dataset.autopauseOwner] : [];
+}
+
+function claim(el, owner) {
+  if (!owner) return;
+  const owners = ownersOf(el);
+  if (!owners.includes(owner)) owners.push(owner);
+  el.dataset.autopauseOwners = JSON.stringify(owners);
+  el.dataset.autopauseOwner = owners[0];
+}
+
 function mark(el, {remember, owner}, background) {
   if (remember) el.dataset.autopauseResume = background ? "auto" : "true";
-  if (owner) el.dataset.autopauseOwner = owner;
+  claim(el, owner);
 }
 
 function playEmbed(el) {
@@ -175,13 +186,22 @@ function pauseHtmlMedia(el, opts) {
     return "skipped:fullscreen";
   }
 
-  if (isHandled(el)) return "noop:already-paused";
+  if (isHandled(el)) {
+    claim(el, opts.owner);
+    if (!el.paused) el.pause();
+    return "noop:already-paused";
+  }
 
   const background = isBackgroundMedia(el);
 
   // Background video a frame into page load has often not started yet, and
   // returning here would leave it free to start once we've walked away.
-  if (el.paused && !background) return "noop:already-paused";
+  if (el.paused && !background) {
+    // An outer scope must not restore this media while this scope is hidden,
+    // even when playback had not started at the time it became hidden.
+    claim(el, opts.owner);
+    return "noop:already-paused";
+  }
 
   mark(el, opts, background);
   el.pause();
@@ -190,10 +210,14 @@ function pauseHtmlMedia(el, opts) {
 }
 
 function pauseIframe(el, opts) {
+  if (isHandled(el)) {
+    claim(el, opts.owner);
+    return "noop:already-paused";
+  }
+
   const url = iframeUrl(el);
 
   if (!url) return "noop:no-src";
-  if (isHandled(el)) return "noop:already-paused";
 
   const background = isBackgroundEmbed(url);
   const youtube = YOUTUBE_HOSTS.has(url.hostname);
@@ -233,8 +257,8 @@ function pauseIframe(el, opts) {
  * @param {boolean} [options.deep=true]     descend into open shadow roots
  * @param {boolean} [options.remember=true] mark elements so restoreMedia() can
  *   resume them
- * @param {string} [options.owner=null]     tag whatever this call pauses, so a
- *   matching restoreMedia() leaves media paused by a nested scope alone
+ * @param {string} [options.owner=null]     hold media paused until all owning
+ *   scopes have restored it, including overlapping/nested scopes
  * @param {boolean} [options.respectPictureInPicture=true]
  * @param {boolean} [options.respectFullscreen=true]
  * @returns {Array<{element: Element, result: string}>} for logging/tests
@@ -285,17 +309,26 @@ export function restoreMedia(root = document, options = {}) {
   const results = [];
 
   for (const el of collectMedia(root, deep)) {
-    // Media paused by a nested scope belongs to that scope; it stays paused
-    // until the scope that owns it decides otherwise.
-    if (owner && el.dataset.autopauseOwner !== owner) {
-      results.push({element: el, result: "skipped:other-owner"});
-      continue;
+    if (owner) {
+      const owners = ownersOf(el);
+      if (!owners.includes(owner)) {
+        results.push({element: el, result: "skipped:other-owner"});
+        continue;
+      }
+      const remaining = owners.filter((value) => value !== owner);
+      if (remaining.length) {
+        el.dataset.autopauseOwners = JSON.stringify(remaining);
+        el.dataset.autopauseOwner = remaining[0];
+        results.push({element: el, result: "skipped:other-owner"});
+        continue;
+      }
     }
 
     const flag = el.dataset.autopauseResume;
     const shouldResume = flag === "auto" || (resume && flag === "true");
 
     delete el.dataset.autopauseOwner;
+    delete el.dataset.autopauseOwners;
     delete el.dataset.autopauseResume;
 
     if (el.tagName.toLowerCase() === "iframe") {

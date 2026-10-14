@@ -24,6 +24,8 @@ export class AccordionAnimationController {
   #config;
   /** @type {boolean|undefined} */
   #previousOpen = undefined;
+  /** @type {Animation[]} */
+  #animations = [];
 
   /**
    * Discards the remembered state, so the next `hostUpdated` re-runs the
@@ -32,7 +34,13 @@ export class AccordionAnimationController {
    * re-enable it, during which time the DOM may have been changed underneath.
    */
   reset() {
+    for (const animation of this.#animations) animation.cancel();
+    this.#animations = [];
     this.#previousOpen = undefined;
+  }
+
+  hostDisconnected() {
+    this.reset();
   }
 
   /**
@@ -55,13 +63,20 @@ export class AccordionAnimationController {
     if (this.#previousOpen === undefined) {
       // `[hidden=until-found]` keeps the content discoverable by browser text
       // search (cmd/ctrl+F).
-      if (!isOpen) panel.hidden = "until-found";
+      panel.hidden = isOpen ? false : "until-found";
+      panel.style.height = null;
+      content.style.opacity = null;
       this.#previousOpen = isOpen;
       return;
     }
 
     if (isOpen === this.#previousOpen) return;
 
+    // A stale collapse callback must not re-hide a panel revealed by search,
+    // a fragment, or another click while its animation was still running.
+    for (const animation of this.#animations) animation.cancel();
+    this.#animations = [];
+    content.style.opacity = null;
     this.#animate(isOpen, panel, content);
 
     this.#previousOpen = isOpen;
@@ -85,30 +100,35 @@ export class AccordionAnimationController {
 
       // After animation, we set panel height to auto so it can respond to new
       // elements that add/grow after opening (like nested accordions).
-      panel.animate(
+      const height = panel.animate(
         {height: ["0", `${panel.scrollHeight}px`]},
         {duration, easing: MotionEasingEnter},
-      ).onfinish = () => panel.style.height = "auto";
+      );
+      height.onfinish = () => panel.style.height = "auto";
 
       // Small tertiary animation for the content to add smoothness.
-      content.animate(
+      const opacity = content.animate(
         {opacity: [0, 1]},
         {duration: durationExpressive, easing: MotionEasingEnter, delay: 50},
-      ).onfinish = () => content.style.opacity = null;
+      );
+      opacity.onfinish = () => content.style.opacity = null;
+      this.#animations = [height, opacity];
     } else {
       // Reverse animation, reset DOM.
-      panel.animate(
+      const height = panel.animate(
         {height: [`${panel.scrollHeight}px`, "0"]},
         {duration, easing: MotionEasingEnter},
-      ).onfinish = () => {
+      );
+      height.onfinish = () => {
         panel.hidden = "until-found";
         panel.style.height = null;
       };
 
-      content.animate(
+      const opacity = content.animate(
         {opacity: [1, 0]},
         {duration, easing: MotionEasingExit},
       );
+      this.#animations = [height, opacity];
     }
   }
 }

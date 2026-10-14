@@ -1,18 +1,10 @@
 import {LitElement} from "lit";
 import {html} from "lit/static-html.js";
 import {customElement, property} from "lit/decorators.js";
-import {pauseMedia, restoreMedia, prepareMedia} from "@/components/_shared/utilities/pauseMedia.js";
+import {MediaController} from "@/components/_shared/controllers/MediaController";
 
 import sharedStyles from "@/components/_shared/styles";
 import localStyles from "./slide.styles.js";
-
-/** @import {PropertyValues} from "lit" */
-
-/**
- * Distinguishes each slide's paused media from a nested carousel's, so an outer
- * slide reactivating doesn't restart embeds an inner slide deliberately stopped.
- */
-let owners = 0;
 
 /**
  * A single slide within a carousel. Media inside unselected slides is paused
@@ -77,10 +69,8 @@ export class Slide extends LitElement {
   // #region Private variables
   /** @type {ElementInternals} */
   #internals;
-  /** @type {string} */
-  #owner = `tcds-slide-${++owners}`;
-  /** @type {boolean} */
-  #settled = false;
+  /** @type {MediaController} */
+  #media;
   // #endregion
 
   // #region Lifecycle
@@ -93,40 +83,26 @@ export class Slide extends LitElement {
     this.#internals = this.attachInternals();
     this.#internals.role = "group";
     this.#internals.ariaRoleDescription = "slide";
+    this.#media = new MediaController(this, () => this.selected && !this.suspended);
+    this.addEventListener("beforematch", this.#onBeforeMatch);
   }
 
-  /** @returns {Promise<void>} */
-  async firstUpdated() {
+  firstUpdated() {
     // Reading a layout value forces the browser to resolve the component's own
     // styles while `transition` is still `none`, so the jump from the
     // pre-upgrade defaults lands instantly instead of animating. Transitions
     // are enabled only afterward, for real slide changes.
     this.offsetHeight;
     this.#internals.states.add("ready");
-
-    // The initial state is not a transition, so `updated` won't catch it, and
-    // it can't be read here either: the parent carousel assigns `selected`
-    // from its own update, which may not have run yet. A frame is enough for
-    // that to settle, and still lands before the first paint.
-    await new Promise((resolve) => requestAnimationFrame(() => resolve()));
-    this.#settled = true;
-    this.#syncMedia();
   }
 
   willUpdate() {
     this.#internals.ariaLabel = `${this.position + 1} of ${this.total}`;
-  }
-
-  /**
-   * @param {PropertyValues<this>} changedProperties
-   */
-  updated(changedProperties) {
-    // The first update is not a transition; `firstUpdated` handles it once the
-    // parent has had a chance to assign both of these.
-    if (!this.#settled) return;
-    if (!changedProperties.has("selected") && !changedProperties.has("suspended")) return;
-
-    this.#syncMedia();
+    // Unlike visibility:hidden, until-found permits find-in-page to reveal
+    // inactive slides. Keep an explicit author-supplied hidden state intact.
+    if (!this.hasAttribute("hidden") || this.hidden === "until-found") {
+      this.hidden = this.selected ? false : "until-found";
+    }
   }
 
   render() {
@@ -136,26 +112,14 @@ export class Slide extends LitElement {
 
   // #region Media
   #onSlotChange() {
-    // Rewrites src, so it has to run before the embed loads rather than on a
-    // later transition. Authoring enablejsapi=1 in the markup skips the rewrite.
-    prepareMedia(this);
-
-    // Content can arrive long after the slide settles.
-    if (this.#settled) this.#syncMedia();
+    this.#media.contentChanged();
   }
 
-  #syncMedia() {
-    if (this.selected && !this.suspended) {
-      // Background video restarts itself. Anything with a soundtrack stays
-      // paused: a slide can become selected from autorotation, not a click.
-      // Pass `resume: true` here to restart that too.
-      restoreMedia(this, {owner: this.#owner});
-    } else {
-      // display:none does not stop playback, and detaching an embed that never
-      // loaded defers the request until the slide is actually shown. Media
-      // already paused by a nested scope keeps that scope's bookkeeping.
-      pauseMedia(this, {owner: this.#owner});
-    }
-  }
+  #onBeforeMatch = () => {
+    this.dispatchEvent(new CustomEvent("tcds-slide:reveal", {
+      bubbles: true,
+      composed: true,
+    }));
+  };
   // #endregion
 }

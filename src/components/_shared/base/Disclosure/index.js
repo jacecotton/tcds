@@ -6,6 +6,7 @@ import sharedStyles from "@/components/_shared/styles";
 import disclosureStyles from "./styles.js";
 
 import {AccordionAnimationController} from "@/components/_shared/controllers/AccordionAnimationController";
+import {MediaController} from "@/components/_shared/controllers/MediaController";
 
 /**
  * The display mode of the disclosure. Assigned by the parent group, mirrored to
@@ -46,6 +47,8 @@ export class Disclosure extends LitElement {
   #internals;
   /** @type {AccordionAnimationController} */
   #animation;
+  /** @type {MediaController} */
+  #media;
   /** @type {Node[]|null} */
   #titleContent = null;
   // #endregion
@@ -59,6 +62,7 @@ export class Disclosure extends LitElement {
     this.total = 1;
 
     this.#internals = this.attachInternals();
+    this.#media = new MediaController(this, () => this.visible);
 
     // Both getters return null outside accordion mode, which makes the
     // controller a no-op where there is nothing to expand or collapse.
@@ -131,19 +135,13 @@ export class Disclosure extends LitElement {
         tabindex=${this.mode === "tabs" ? "0" : nothing}
         aria-label=${this.mode === "tabs" && label ? label : nothing}
         aria-labelledby=${this.mode === "accordion" ? "trigger" : nothing}
+        @beforematch=${this.#onBeforeMatch}
       >
         <div part="content">
-          <slot></slot>
+          <slot @slotchange=${this.#onContentSlotChange}></slot>
         </div>
       </div>
     `;
-  }
-
-  firstUpdated() {
-    // `hidden="until-found"` (set by the animation controller when collapsed)
-    // lets the browser's find-in-page reveal the panel. The UA removes the
-    // attribute itself; this keeps our own state in step with it.
-    this.panel?.addEventListener("beforematch", this.#onBeforeMatch);
   }
 
   updated() {
@@ -156,7 +154,7 @@ export class Disclosure extends LitElement {
 
     if (!panel) return;
 
-    panel.hidden = false;
+    panel.hidden = this.visible ? false : "until-found";
     panel.style.height = null;
   }
   // #endregion
@@ -297,6 +295,10 @@ export class Disclosure extends LitElement {
   #onBeforeMatch = () => {
     this.#requestChange(true, "find");
   };
+
+  #onContentSlotChange() {
+    this.#media.contentChanged();
+  }
 
   #onTitleSlotChange() {
     this.#titleContent = null;

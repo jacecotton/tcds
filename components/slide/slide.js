@@ -1,12 +1,12 @@
 import { i, u, a as i$1, n, t } from '../../dist/js/vendor.js';
-import { s as styles, r as restoreMedia, p as pauseMedia, c as prepareMedia } from '../../dist/js/shared.js';
+import { d as MediaController, s as styles } from '../../dist/js/shared.js';
 
 var _templateObject$1;
 function _taggedTemplateLiteral$1(e, t) { return t || (t = e.slice(0)), Object.freeze(Object.defineProperties(e, { raw: { value: Object.freeze(t) } })); }
-var localStyles = i(_templateObject$1 || (_templateObject$1 = _taggedTemplateLiteral$1(["\n  :host {\n    grid-area: 1 / 1;\n    opacity: 0;\n    visibility: hidden;\n    z-index: 1;\n    pointer-events: none;\n\n    @media (prefers-reduced-motion: reduce) {\n      transition: none;\n    }\n  }\n\n  :host(:state(ready)) {\n    transition:\n      opacity var(--tcds-carousel-transition-duration, 500ms) ease,\n      visibility 0s linear var(--tcds-carousel-transition-duration, 500ms);\n\n    @media (prefers-reduced-motion: reduce) {\n      transition: none;\n    }\n  }\n\n  :host(:not([hidden])) {\n    display: block;\n  }\n\n  :host([selected]) {\n    opacity: 1;\n    visibility: visible;\n    z-index: 0;\n    transition: none;\n    pointer-events: auto;\n\n    @media (prefers-reduced-motion: reduce) {\n      transition: none;\n    }\n  }\n"])));
+var localStyles = i(_templateObject$1 || (_templateObject$1 = _taggedTemplateLiteral$1(["\n  :host {\n    grid-area: 1 / 1;\n    opacity: 0;\n    z-index: 1;\n    pointer-events: none;\n\n    @media (prefers-reduced-motion: reduce) {\n      transition: none;\n    }\n  }\n\n  :host(:state(ready)) {\n    transition:\n      opacity var(--tcds-carousel-transition-duration, 500ms) ease,\n      content-visibility var(--tcds-carousel-transition-duration, 500ms) allow-discrete;\n\n    @media (prefers-reduced-motion: reduce) {\n      transition: none;\n    }\n  }\n\n  :host(:not([hidden])), :host([hidden=\"until-found\"]) {\n    display: block;\n  }\n\n  :host([selected]) {\n    opacity: 1;\n    z-index: 0;\n    transition: none;\n    pointer-events: auto;\n\n    @media (prefers-reduced-motion: reduce) {\n      transition: none;\n    }\n  }\n"])));
 
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-var _Class, _Slide3, _A, _B, _C, _D, _internals, _owner, _settled, _Slide3_brand, _templateObject, _applyDecs2, _applyDecs2$e, _applyDecs2$c;
+var _Class, _Slide3, _A, _B, _C, _D, _internals, _media, _Slide3_brand, _onBeforeMatch, _templateObject, _applyDecs2, _applyDecs2$e, _applyDecs2$c;
 var _initClass, _init_selected, _init_extra_selected, _init_suspended, _init_extra_suspended, _init_position, _init_extra_position, _init_total, _init_extra_total, _Slide2;
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -15,10 +15,6 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = true, o = false; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = true, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 function _taggedTemplateLiteral(e, t) { return t || (t = e.slice(0)), Object.freeze(Object.defineProperties(e, { raw: { value: Object.freeze(t) } })); }
-function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = false, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = true, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), true), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
-function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
-function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
-function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
 function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
 function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), Object.defineProperty(e, "prototype", { writable: false }), e; }
@@ -43,14 +39,6 @@ function _setFunctionName(e, t, n) { "symbol" == _typeof(t) && (t = (t = t.descr
 function _checkInRHS(e) { if (Object(e) !== e) throw TypeError("right-hand side of 'in' should be an object, got " + (null !== e ? _typeof(e) : "null")); return e; }
 function _identity(t) { return t; }
 
-/** @import {PropertyValues} from "lit" */
-
-/**
- * Distinguishes each slide's paused media from a nested carousel's, so an outer
- * slide reactivating doesn't restart embeds an inner slide deliberately stopped.
- */
-var owners = 0;
-
 /**
  * A single slide within a carousel. Media inside unselected slides is paused
  * automatically.
@@ -66,7 +54,7 @@ var owners = 0;
  *   cross-fade between slides. Usually set on the parent carousel.
  */
 var _Slide;
-new (_Slide2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMap(), _C = /*#__PURE__*/new WeakMap(), _D = /*#__PURE__*/new WeakMap(), _internals = /*#__PURE__*/new WeakMap(), _owner = /*#__PURE__*/new WeakMap(), _settled = /*#__PURE__*/new WeakMap(), _Slide3_brand = /*#__PURE__*/new WeakSet(), _Slide3 = /*#__PURE__*/function (_LitElement) {
+new (_Slide2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMap(), _C = /*#__PURE__*/new WeakMap(), _D = /*#__PURE__*/new WeakMap(), _internals = /*#__PURE__*/new WeakMap(), _media = /*#__PURE__*/new WeakMap(), _Slide3_brand = /*#__PURE__*/new WeakSet(), _onBeforeMatch = /*#__PURE__*/new WeakMap(), _Slide3 = /*#__PURE__*/function (_LitElement) {
   // #endregion
 
   // #region Lifecycle
@@ -115,19 +103,25 @@ new (_Slide2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMap()
     // #region Private variables
     /** @type {ElementInternals} */
     _classPrivateFieldInitSpec(_this, _internals, void _init_extra_total(_this));
-    /** @type {string} */
-    _classPrivateFieldInitSpec(_this, _owner, "tcds-slide-".concat(++owners));
-    /** @type {boolean} */
-    _classPrivateFieldInitSpec(_this, _settled, false);
+    /** @type {MediaController} */
+    _classPrivateFieldInitSpec(_this, _media, void 0);
+    _classPrivateFieldInitSpec(_this, _onBeforeMatch, function () {
+      _this.dispatchEvent(new CustomEvent("tcds-slide:reveal", {
+        bubbles: true,
+        composed: true
+      }));
+    });
     _this.position = 0;
     _this.total = 1;
     _classPrivateFieldSet(_internals, _this, _this.attachInternals());
     _classPrivateFieldGet(_internals, _this).role = "group";
     _classPrivateFieldGet(_internals, _this).ariaRoleDescription = "slide";
+    _classPrivateFieldSet(_media, _this, new MediaController(_this, function () {
+      return _this.selected && !_this.suspended;
+    }));
+    _this.addEventListener("beforematch", _classPrivateFieldGet(_onBeforeMatch, _this));
     return _this;
   }
-
-  /** @returns {Promise<void>} */
   _inherits(Slide, _LitElement);
   return _createClass(Slide, [{
     key: "selected",
@@ -163,58 +157,23 @@ new (_Slide2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMap()
     }
   }, {
     key: "firstUpdated",
-    value: (function () {
-      var _firstUpdated = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
-        return _regenerator().w(function (_context) {
-          while (1) switch (_context.n) {
-            case 0:
-              // Reading a layout value forces the browser to resolve the component's own
-              // styles while `transition` is still `none`, so the jump from the
-              // pre-upgrade defaults lands instantly instead of animating. Transitions
-              // are enabled only afterward, for real slide changes.
-              this.offsetHeight;
-              _classPrivateFieldGet(_internals, this).states.add("ready");
-
-              // The initial state is not a transition, so `updated` won't catch it, and
-              // it can't be read here either: the parent carousel assigns `selected`
-              // from its own update, which may not have run yet. A frame is enough for
-              // that to settle, and still lands before the first paint.
-              _context.n = 1;
-              return new Promise(function (resolve) {
-                return requestAnimationFrame(function () {
-                  return resolve();
-                });
-              });
-            case 1:
-              _classPrivateFieldSet(_settled, this, true);
-              _assertClassBrand(_Slide3_brand, this, _syncMedia).call(this);
-            case 2:
-              return _context.a(2);
-          }
-        }, _callee, this);
-      }));
-      function firstUpdated() {
-        return _firstUpdated.apply(this, arguments);
-      }
-      return firstUpdated;
-    }())
+    value: function firstUpdated() {
+      // Reading a layout value forces the browser to resolve the component's own
+      // styles while `transition` is still `none`, so the jump from the
+      // pre-upgrade defaults lands instantly instead of animating. Transitions
+      // are enabled only afterward, for real slide changes.
+      this.offsetHeight;
+      _classPrivateFieldGet(_internals, this).states.add("ready");
+    }
   }, {
     key: "willUpdate",
     value: function willUpdate() {
       _classPrivateFieldGet(_internals, this).ariaLabel = "".concat(this.position + 1, " of ").concat(this.total);
-    }
-
-    /**
-     * @param {PropertyValues<this>} changedProperties
-     */
-  }, {
-    key: "updated",
-    value: function updated(changedProperties) {
-      // The first update is not a transition; `firstUpdated` handles it once the
-      // parent has had a chance to assign both of these.
-      if (!_classPrivateFieldGet(_settled, this)) return;
-      if (!changedProperties.has("selected") && !changedProperties.has("suspended")) return;
-      _assertClassBrand(_Slide3_brand, this, _syncMedia).call(this);
+      // Unlike visibility:hidden, until-found permits find-in-page to reveal
+      // inactive slides. Keep an explicit author-supplied hidden state intact.
+      if (!this.hasAttribute("hidden") || this.hidden === "until-found") {
+        this.hidden = this.selected ? false : "until-found";
+      }
     }
   }, {
     key: "render",
@@ -243,29 +202,7 @@ new (_Slide2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMap()
   return _createClass(_Class);
 }(_identity), _defineProperty(_Class, _Slide2, void 0), _Class)();
 function _onSlotChange() {
-  // Rewrites src, so it has to run before the embed loads rather than on a
-  // later transition. Authoring enablejsapi=1 in the markup skips the rewrite.
-  prepareMedia(this);
-
-  // Content can arrive long after the slide settles.
-  if (_classPrivateFieldGet(_settled, this)) _assertClassBrand(_Slide3_brand, this, _syncMedia).call(this);
-}
-function _syncMedia() {
-  if (this.selected && !this.suspended) {
-    // Background video restarts itself. Anything with a soundtrack stays
-    // paused: a slide can become selected from autorotation, not a click.
-    // Pass `resume: true` here to restart that too.
-    restoreMedia(this, {
-      owner: _classPrivateFieldGet(_owner, this)
-    });
-  } else {
-    // display:none does not stop playback, and detaching an embed that never
-    // loaded defers the request until the slide is actually shown. Media
-    // already paused by a nested scope keeps that scope's bookkeeping.
-    pauseMedia(this, {
-      owner: _classPrivateFieldGet(_owner, this)
-    });
-  }
+  _classPrivateFieldGet(_media, this).contentChanged();
 }
 
 export { _Slide as Slide };

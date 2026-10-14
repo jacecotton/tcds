@@ -26,13 +26,8 @@ export default css`
     display: none;
   }
 
-  /**
-   * The panel is the tabpanel; hiding the host removes it from layout, the tab
-   * order, and the accessibility tree in one move.
-   */
-  :host(:state(tabs):not(:state(expanded))) {
-    display: none;
-  }
+  /* The panel uses hidden=until-found. Keep its host laid out so browser
+   * search can reveal the content of an inactive tab. */
 
   :host(:state(accordion)) [part=heading] {
     border-bottom: 1px solid var(--tcds-color-theme-edge);

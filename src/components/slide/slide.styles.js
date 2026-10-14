@@ -4,7 +4,6 @@ export default css`
   :host {
     grid-area: 1 / 1;
     opacity: 0;
-    visibility: hidden;
     z-index: 1;
     pointer-events: none;
 
@@ -16,20 +15,19 @@ export default css`
   :host(:state(ready)) {
     transition:
       opacity var(--tcds-carousel-transition-duration, 500ms) ease,
-      visibility 0s linear var(--tcds-carousel-transition-duration, 500ms);
+      content-visibility var(--tcds-carousel-transition-duration, 500ms) allow-discrete;
 
     @media (prefers-reduced-motion: reduce) {
       transition: none;
     }
   }
 
-  :host(:not([hidden])) {
+  :host(:not([hidden])), :host([hidden="until-found"]) {
     display: block;
   }
 
   :host([selected]) {
     opacity: 1;
-    visibility: visible;
     z-index: 0;
     transition: none;
     pointer-events: auto;

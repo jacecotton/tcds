@@ -4,6 +4,8 @@ import {customElement, property, state, queryAssignedElements} from "lit/decorat
 
 import sharedStyles from "@/components/_shared/styles";
 import localStyles from "./carousel.styles.js";
+import {DeepLinkController} from "@/components/_shared/controllers/DeepLinkController";
+import "@/components/slide/slide.js";
 
 /** @import {PropertyValues} from "lit" */
 /** @import {Slide} from "@/components/slide/slide.js" */
@@ -139,6 +141,8 @@ export class Carousel extends LitElement {
   #progress = null;
   /** @type {boolean} */
   #selectionInitialized = false;
+  /** @type {DeepLinkController} */
+  #deepLink;
 
   #onDocumentVisibilityChange = () => {
     this.#documentHidden = document.visibilityState === "hidden";
@@ -169,6 +173,8 @@ export class Carousel extends LitElement {
     this.#internals.ariaRoleDescription = "carousel";
 
     this.#reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+    this.#deepLink = new DeepLinkController(this, this.#onDeepLink);
+    this.addEventListener("tcds-slide:reveal", this.#onSlideReveal);
   }
 
   connectedCallback() {
@@ -373,6 +379,7 @@ export class Carousel extends LitElement {
       this.#selectionInitialized = true;
     }
 
+    this.#deepLink.resolve();
     this.#syncSlides();
     // Replacing slides can leave the count unchanged. Still refresh controls and media.
     this.requestUpdate();
@@ -391,6 +398,24 @@ export class Carousel extends LitElement {
         || (relatedTarget instanceof Node && this.contains(relatedTarget));
     }
   }
+
+  /** @param {Event} event */
+  #onSlideReveal = (event) => {
+    const position = this.#slides.indexOf(/** @type {Slide} */ (event.target));
+    if (position === -1) return;
+    this.pause();
+    this.select(position);
+  };
+
+  /** @param {HTMLElement} target */
+  #onDeepLink = (target) => {
+    if (!this.#selectionInitialized) return;
+    const position = this.#slides.findIndex((slide) => slide === target || slide.contains(target));
+    if (position === -1) return;
+    this.pause();
+    this.select(position);
+    return true;
+  };
 
   #onPreviousClick() {
     this.#navigate(this.index - 1);

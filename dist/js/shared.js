@@ -16,7 +16,7 @@ function _taggedTemplateLiteral$3(e, t) { return t || (t = e.slice(0)), Object.f
  * `accordion`.
  */
 
-var disclosureStyles = i(_templateObject$3 || (_templateObject$3 = _taggedTemplateLiteral$3(["\n  :host {\n  }\n\n  :host(:not([hidden])) {\n    display: block;\n  }\n\n  /**\n   * In tabs mode the group's tablist supplies the label, so the author's\n   * heading is suppressed here to keep it from being announced twice.\n   */\n  :host(:state(tabs)) slot[name=title] {\n    display: none;\n  }\n\n  /**\n   * The panel is the tabpanel; hiding the host removes it from layout, the tab\n   * order, and the accessibility tree in one move.\n   */\n  :host(:state(tabs):not(:state(expanded))) {\n    display: none;\n  }\n\n  :host(:state(accordion)) [part=heading] {\n    border-bottom: 1px solid var(--tcds-color-theme-edge);\n    transition-property: background-color, border-color;\n    transition-duration: var(--tcds-motion-duration-productive);\n    transition-timing-function: var(--tcds-motion-easing-enter);\n  }\n\n  :host(:state(accordion):state(expanded)) [part=heading] {\n    border-color: transparent;\n    background-color: var(--tcds-color-theme-surface);\n  }\n\n  [part=trigger] {\n    appearance: none;\n    background-color: transparent;\n    border: 0;\n  }\n\n  :host(:state(accordion)) [part=trigger] {\n    display: flex;\n    justify-content: space-between;\n    width: 100%;\n    padding: var(--tcds-space-8) var(--tcds-space-component-lg);\n    font-family: var(--tcds-font-family-ui);\n    font-weight: var(--tcds-font-weight-ui);\n    font-size: var(--tcds-font-size-2xl);\n    line-height: var(--tcds-line-height-normal);\n    text-align: left;\n    color: var(--tcds-color-theme-text-primary);\n    cursor: pointer;\n  }\n\n  :host(:state(accordion)) [part=marker] {\n    flex: none;\n    font-size: var(--tcds-font-size-md);\n  }\n\n  :host(:state(accordion):state(expanded)) [part=marker] {\n    color: var(--tcds-color-theme-accent);\n  }\n\n  [part=panel]:focus-visible {\n    outline: 2px solid currentcolor;\n    outline-offset: 2px;\n  }\n\n  :host(:state(accordion)) [part=panel] {\n    overflow: hidden;\n    box-shadow: 0;\n    transition-property: background-color, box-shadow;\n    transition-duration: var(--tcds-motion-duration-productive);\n    transition-timing-function: var(--tcds-motion-easing-enter);\n  }\n\n  :host(:state(accordion):state(expanded)) [part=panel] {\n    background-color: var(--tcds-color-theme-surface);\n    box-shadow: inset 0 -4px 0 var(--tcds-color-theme-accent);\n  }\n\n  :host(:state(plain)) [part=content] {\n    padding-block-start: 0;\n  }\n\n  :host(:state(accordion)) [part=content] {\n    padding-inline: var(--tcds-space-component-xl);\n    padding-block-end: var(--tcds-space-layout-sm);\n  }\n"])));
+var disclosureStyles = i(_templateObject$3 || (_templateObject$3 = _taggedTemplateLiteral$3(["\n  :host {\n  }\n\n  :host(:not([hidden])) {\n    display: block;\n  }\n\n  /**\n   * In tabs mode the group's tablist supplies the label, so the author's\n   * heading is suppressed here to keep it from being announced twice.\n   */\n  :host(:state(tabs)) slot[name=title] {\n    display: none;\n  }\n\n  /* The panel uses hidden=until-found. Keep its host laid out so browser\n   * search can reveal the content of an inactive tab. */\n\n  :host(:state(accordion)) [part=heading] {\n    border-bottom: 1px solid var(--tcds-color-theme-edge);\n    transition-property: background-color, border-color;\n    transition-duration: var(--tcds-motion-duration-productive);\n    transition-timing-function: var(--tcds-motion-easing-enter);\n  }\n\n  :host(:state(accordion):state(expanded)) [part=heading] {\n    border-color: transparent;\n    background-color: var(--tcds-color-theme-surface);\n  }\n\n  [part=trigger] {\n    appearance: none;\n    background-color: transparent;\n    border: 0;\n  }\n\n  :host(:state(accordion)) [part=trigger] {\n    display: flex;\n    justify-content: space-between;\n    width: 100%;\n    padding: var(--tcds-space-8) var(--tcds-space-component-lg);\n    font-family: var(--tcds-font-family-ui);\n    font-weight: var(--tcds-font-weight-ui);\n    font-size: var(--tcds-font-size-2xl);\n    line-height: var(--tcds-line-height-normal);\n    text-align: left;\n    color: var(--tcds-color-theme-text-primary);\n    cursor: pointer;\n  }\n\n  :host(:state(accordion)) [part=marker] {\n    flex: none;\n    font-size: var(--tcds-font-size-md);\n  }\n\n  :host(:state(accordion):state(expanded)) [part=marker] {\n    color: var(--tcds-color-theme-accent);\n  }\n\n  [part=panel]:focus-visible {\n    outline: 2px solid currentcolor;\n    outline-offset: 2px;\n  }\n\n  :host(:state(accordion)) [part=panel] {\n    overflow: hidden;\n    box-shadow: 0;\n    transition-property: background-color, box-shadow;\n    transition-duration: var(--tcds-motion-duration-productive);\n    transition-timing-function: var(--tcds-motion-easing-enter);\n  }\n\n  :host(:state(accordion):state(expanded)) [part=panel] {\n    background-color: var(--tcds-color-theme-surface);\n    box-shadow: inset 0 -4px 0 var(--tcds-color-theme-accent);\n  }\n\n  :host(:state(plain)) [part=content] {\n    padding-block-start: 0;\n  }\n\n  :host(:state(accordion)) [part=content] {\n    padding-inline: var(--tcds-space-component-xl);\n    padding-block-end: var(--tcds-space-layout-sm);\n  }\n"])));
 
 var SizeBreakpointMd="960px";// Medium (960px)
 var SizeBreakpointLg="1312px";// Large (1312px)
@@ -24,18 +24,21 @@ var MotionEasingEnter="cubic-bezier(0, 0.5, 0.5, 1)";// ease-out
 var MotionEasingExit="cubic-bezier(0.4, 0, 1, 1)";// ease-in
 var MotionDurationProductive=100;var MotionDurationExpressive=200;
 
-function _typeof$5(o) { "@babel/helpers - typeof"; return _typeof$5 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof$5(o); }
-function _classCallCheck$4(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
-function _defineProperties$4(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey$5(o.key), o); } }
-function _createClass$4(e, r, t) { return r && _defineProperties$4(e.prototype, r), Object.defineProperty(e, "prototype", { writable: false }), e; }
-function _toPropertyKey$5(t) { var i = _toPrimitive$5(t, "string"); return "symbol" == _typeof$5(i) ? i : i + ""; }
-function _toPrimitive$5(t, r) { if ("object" != _typeof$5(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof$5(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return (String )(t); }
-function _classPrivateMethodInitSpec$3(e, a) { _checkPrivateRedeclaration$4(e, a), a.add(e); }
-function _classPrivateFieldInitSpec$4(e, t, a) { _checkPrivateRedeclaration$4(e, t), t.set(e, a); }
-function _checkPrivateRedeclaration$4(e, t) { if (t.has(e)) throw new TypeError("Cannot initialize the same private elements twice on an object"); }
-function _classPrivateFieldGet$4(s, a) { return s.get(_assertClassBrand$4(s, a)); }
-function _classPrivateFieldSet$4(s, a, r) { return s.set(_assertClassBrand$4(s, a), r), r; }
-function _assertClassBrand$4(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
+function _typeof$6(o) { "@babel/helpers - typeof"; return _typeof$6 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof$6(o); }
+function _createForOfIteratorHelper$3(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray$3(r)) || e) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: true } : { done: false, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = true, u = false; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = true, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
+function _unsupportedIterableToArray$3(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray$3(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray$3(r, a) : void 0; } }
+function _arrayLikeToArray$3(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _classCallCheck$5(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties$5(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey$6(o.key), o); } }
+function _createClass$5(e, r, t) { return r && _defineProperties$5(e.prototype, r), Object.defineProperty(e, "prototype", { writable: false }), e; }
+function _toPropertyKey$6(t) { var i = _toPrimitive$6(t, "string"); return "symbol" == _typeof$6(i) ? i : i + ""; }
+function _toPrimitive$6(t, r) { if ("object" != _typeof$6(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof$6(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return (String )(t); }
+function _classPrivateMethodInitSpec$4(e, a) { _checkPrivateRedeclaration$5(e, a), a.add(e); }
+function _classPrivateFieldInitSpec$5(e, t, a) { _checkPrivateRedeclaration$5(e, t), t.set(e, a); }
+function _checkPrivateRedeclaration$5(e, t) { if (t.has(e)) throw new TypeError("Cannot initialize the same private elements twice on an object"); }
+function _classPrivateFieldSet$5(s, a, r) { return s.set(_assertClassBrand$5(s, a), r), r; }
+function _classPrivateFieldGet$5(s, a) { return s.get(_assertClassBrand$5(s, a)); }
+function _assertClassBrand$5(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
 
 /**
  * @typedef {object} AccordionAnimationConfig
@@ -53,6 +56,7 @@ function _assertClassBrand$4(e, t, n) { if ("function" == typeof e ? e === t : e
  */
 var _config = /*#__PURE__*/new WeakMap();
 var _previousOpen = /*#__PURE__*/new WeakMap();
+var _animations = /*#__PURE__*/new WeakMap();
 var _AccordionAnimationController_brand = /*#__PURE__*/new WeakSet();
 var AccordionAnimationController = /*#__PURE__*/function () {
   /**
@@ -60,21 +64,23 @@ var AccordionAnimationController = /*#__PURE__*/function () {
    * @param {AccordionAnimationConfig} config
    */
   function AccordionAnimationController(host, config) {
-    _classCallCheck$4(this, AccordionAnimationController);
+    _classCallCheck$5(this, AccordionAnimationController);
     /**
      * @param {boolean} isOpen
      * @param {HTMLElement} panel
      * @param {HTMLElement} content
      */
-    _classPrivateMethodInitSpec$3(this, _AccordionAnimationController_brand);
+    _classPrivateMethodInitSpec$4(this, _AccordionAnimationController_brand);
     /** @type {AccordionAnimationConfig} */
-    _classPrivateFieldInitSpec$4(this, _config, void 0);
+    _classPrivateFieldInitSpec$5(this, _config, void 0);
     /** @type {boolean|undefined} */
-    _classPrivateFieldInitSpec$4(this, _previousOpen, undefined);
-    _classPrivateFieldSet$4(_config, this, config);
+    _classPrivateFieldInitSpec$5(this, _previousOpen, undefined);
+    /** @type {Animation[]} */
+    _classPrivateFieldInitSpec$5(this, _animations, []);
+    _classPrivateFieldSet$5(_config, this, config);
     host.addController(this);
   }
-  return _createClass$4(AccordionAnimationController, [{
+  return _createClass$5(AccordionAnimationController, [{
     key: "reset",
     value:
     /**
@@ -84,27 +90,64 @@ var AccordionAnimationController = /*#__PURE__*/function () {
      * re-enable it, during which time the DOM may have been changed underneath.
      */
     function reset() {
-      _classPrivateFieldSet$4(_previousOpen, this, undefined);
+      var _iterator = _createForOfIteratorHelper$3(_classPrivateFieldGet$5(_animations, this)),
+        _step;
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var animation = _step.value;
+          animation.cancel();
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+      _classPrivateFieldSet$5(_animations, this, []);
+      _classPrivateFieldSet$5(_previousOpen, this, undefined);
+    }
+  }, {
+    key: "hostDisconnected",
+    value: function hostDisconnected() {
+      this.reset();
     }
   }, {
     key: "hostUpdated",
     value: function hostUpdated() {
-      var isOpen = _classPrivateFieldGet$4(_config, this).isOpen();
-      var panel = _classPrivateFieldGet$4(_config, this).getPanel();
-      var content = _classPrivateFieldGet$4(_config, this).getContent();
+      var isOpen = _classPrivateFieldGet$5(_config, this).isOpen();
+      var panel = _classPrivateFieldGet$5(_config, this).getPanel();
+      var content = _classPrivateFieldGet$5(_config, this).getContent();
       if (!panel || !content) return;
 
       // Initial render - no animation, just set state.
-      if (_classPrivateFieldGet$4(_previousOpen, this) === undefined) {
+      if (_classPrivateFieldGet$5(_previousOpen, this) === undefined) {
         // `[hidden=until-found]` keeps the content discoverable by browser text
         // search (cmd/ctrl+F).
-        if (!isOpen) panel.hidden = "until-found";
-        _classPrivateFieldSet$4(_previousOpen, this, isOpen);
+        panel.hidden = isOpen ? false : "until-found";
+        panel.style.height = null;
+        content.style.opacity = null;
+        _classPrivateFieldSet$5(_previousOpen, this, isOpen);
         return;
       }
-      if (isOpen === _classPrivateFieldGet$4(_previousOpen, this)) return;
-      _assertClassBrand$4(_AccordionAnimationController_brand, this, _animate).call(this, isOpen, panel, content);
-      _classPrivateFieldSet$4(_previousOpen, this, isOpen);
+      if (isOpen === _classPrivateFieldGet$5(_previousOpen, this)) return;
+
+      // A stale collapse callback must not re-hide a panel revealed by search,
+      // a fragment, or another click while its animation was still running.
+      var _iterator2 = _createForOfIteratorHelper$3(_classPrivateFieldGet$5(_animations, this)),
+        _step2;
+      try {
+        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+          var animation = _step2.value;
+          animation.cancel();
+        }
+      } catch (err) {
+        _iterator2.e(err);
+      } finally {
+        _iterator2.f();
+      }
+      _classPrivateFieldSet$5(_animations, this, []);
+      content.style.opacity = null;
+      _assertClassBrand$5(_AccordionAnimationController_brand, this, _animate).call(this, isOpen, panel, content);
+      _classPrivateFieldSet$5(_previousOpen, this, isOpen);
     }
   }]);
 }();
@@ -120,65 +163,609 @@ function _animate(isOpen, panel, content) {
 
     // After animation, we set panel height to auto so it can respond to new
     // elements that add/grow after opening (like nested accordions).
-    panel.animate({
+    var height = panel.animate({
       height: ["0", "".concat(panel.scrollHeight, "px")]
     }, {
       duration: duration,
       easing: MotionEasingEnter
-    }).onfinish = function () {
+    });
+    height.onfinish = function () {
       return panel.style.height = "auto";
     };
 
     // Small tertiary animation for the content to add smoothness.
-    content.animate({
+    var opacity = content.animate({
       opacity: [0, 1]
     }, {
       duration: durationExpressive,
       easing: MotionEasingEnter,
       delay: 50
-    }).onfinish = function () {
+    });
+    opacity.onfinish = function () {
       return content.style.opacity = null;
     };
+    _classPrivateFieldSet$5(_animations, this, [height, opacity]);
   } else {
     // Reverse animation, reset DOM.
-    panel.animate({
+    var _height = panel.animate({
       height: ["".concat(panel.scrollHeight, "px"), "0"]
     }, {
       duration: duration,
       easing: MotionEasingEnter
-    }).onfinish = function () {
+    });
+    _height.onfinish = function () {
       panel.hidden = "until-found";
       panel.style.height = null;
     };
-    content.animate({
+    var _opacity = content.animate({
       opacity: [1, 0]
     }, {
       duration: duration,
       easing: MotionEasingExit
     });
+    _classPrivateFieldSet$5(_animations, this, [_height, _opacity]);
+  }
+}
+
+function _typeof$5(o) { "@babel/helpers - typeof"; return _typeof$5 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof$5(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), true).forEach(function (r) { _defineProperty$2(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty$2(e, r, t) { return (r = _toPropertyKey$5(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: true, configurable: true, writable: true }) : e[r] = t, e; }
+function _toPropertyKey$5(t) { var i = _toPrimitive$5(t, "string"); return "symbol" == _typeof$5(i) ? i : i + ""; }
+function _toPrimitive$5(t, r) { if ("object" != _typeof$5(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof$5(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _createForOfIteratorHelper$2(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray$2(r)) || e) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: true } : { done: false, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = true, u = false; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = true, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
+function _unsupportedIterableToArray$2(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray$2(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray$2(r, a) : void 0; } }
+function _arrayLikeToArray$2(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+/**
+ * Pause any media inside a subtree that is about to be hidden (dialog closed,
+ * carousel slide deactivated, tab panel switched, etc.), and restore it when
+ * the subtree becomes visible again.
+ *
+ * Handles:
+ * - <video> / <audio> -> native pause()
+ * - YouTube iframes   -> postMessage (requires enablejsapi=1 in the src)
+ * - Vimeo iframes     -> postMessage (no extra params needed)
+ * - any other iframe  -> detach src to about:blank, restore later
+ *
+ * Autoplaying, looped, muted media is read as decorative background video and
+ * resumes on its own. Everything else stays paused unless `resume` is passed,
+ * so nothing with a soundtrack restarts without the caller asking for it.
+ *
+ * State is stored in data-* attributes rather than a WeakMap so it survives
+ * cloneNode()/innerHTML round-trips and is visible in devtools.
+ */
+
+var BLANK = "about:blank";
+var MEDIA_SELECTOR = "video, audio, iframe";
+var OPT_OUT_SELECTOR = "[data-autopause=\"off\"]";
+var YOUTUBE_HOSTS = new Set(["www.youtube.com", "youtube.com", "m.youtube.com", "www.youtube-nocookie.com", "youtube-nocookie.com"]);
+var VIMEO_HOSTS = new Set(["player.vimeo.com"]);
+var YOUTUBE_PAUSE = JSON.stringify({
+  event: "command",
+  func: "pauseVideo",
+  args: []
+});
+var YOUTUBE_PLAY = JSON.stringify({
+  event: "command",
+  func: "playVideo",
+  args: []
+});
+var VIMEO_PAUSE = JSON.stringify({
+  method: "pause"
+});
+var VIMEO_PLAY = JSON.stringify({
+  method: "play"
+});
+
+/**
+ * postMessage sent before a player has registered its own listener is dropped
+ * with no acknowledgement, so the iframe's load event stands in for readiness.
+ * A frame that finished loading before prepareMedia() saw it is never marked
+ * and takes the detach path instead: slower, but always correct.
+ */
+var trackedFrames = new WeakSet();
+var readyFrames = new WeakSet();
+function trackReadiness(iframe) {
+  if (trackedFrames.has(iframe)) return;
+  trackedFrames.add(iframe);
+  iframe.addEventListener("load", function () {
+    if (iframe.getAttribute("src") === BLANK) readyFrames["delete"](iframe);else readyFrames.add(iframe);
+  });
+}
+function collectMedia(root, deep) {
+  var found = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : new Set();
+  if (!root) return found;
+  if (typeof root.matches === "function" && root.matches(MEDIA_SELECTOR)) {
+    found.add(root);
+  }
+  if (typeof root.querySelectorAll !== "function") return found;
+  var _iterator = _createForOfIteratorHelper$2(root.querySelectorAll(MEDIA_SELECTOR)),
+    _step;
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var _el = _step.value;
+      found.add(_el);
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+  if (deep) {
+    var _iterator2 = _createForOfIteratorHelper$2(root.querySelectorAll("*")),
+      _step2;
+    try {
+      for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+        var el = _step2.value;
+        if (el.shadowRoot) collectMedia(el.shadowRoot, deep, found);
+      }
+    } catch (err) {
+      _iterator2.e(err);
+    } finally {
+      _iterator2.f();
+    }
+  }
+  return found;
+}
+
+/**
+ * closest() deliberately stops at the shadow boundary — an opt-out on a host
+ * element does not silently disable autopause for everything inside it.
+ */
+function isOptedOut(el) {
+  return typeof el.closest === "function" && el.closest(OPT_OUT_SELECTOR) !== null;
+}
+function iframeUrl(iframe) {
+  var raw = iframe.getAttribute("src");
+  if (!raw || raw === BLANK) return null;
+  try {
+    // Resolves protocol-relative and relative URLs.
+    return new URL(raw, document.baseURI);
+  } catch (_unused) {
+    return null;
+  }
+}
+function post(iframe, origin, payload) {
+  try {
+    if (!iframe.contentWindow) return false;
+    // Target the embed's own origin rather than "*" so the command isn't
+    // readable by an unrelated document that happens to be loaded there.
+    iframe.contentWindow.postMessage(payload, origin);
+    return true;
+  } catch (_unused2) {
+    return false;
+  }
+}
+function stripAutoplay(href) {
+  try {
+    var url = new URL(href, document.baseURI);
+    url.searchParams["delete"]("autoplay");
+    url.searchParams["delete"]("autostart"); // some third-party players
+    return url.href;
+  } catch (_unused3) {
+    return href;
+  }
+}
+
+/**
+ * Decorative background video: no soundtrack to interrupt and no end to reach,
+ * so restarting it can't surprise anyone. `muted` is read live rather than from
+ * the attribute, so anything unmuted at runtime loses the exemption.
+ */
+function isBackgroundMedia(el) {
+  return el.autoplay && el.loop && el.muted;
+}
+function isBackgroundEmbed(url) {
+  var params = url.searchParams;
+  if (params.get("background") === "1") return true; // Vimeo background mode
+
+  return params.get("autoplay") === "1" && params.get("loop") === "1" && (params.get("mute") === "1" || params.get("muted") === "1");
+}
+
+/**
+ * Whether an earlier pauseMedia() already recorded this element.
+ */
+function isHandled(el) {
+  return el.dataset.autopauseResume !== undefined || el.dataset.autopauseOwner !== undefined;
+}
+function ownersOf(el) {
+  if (el.dataset.autopauseOwners) return JSON.parse(el.dataset.autopauseOwners);
+  return el.dataset.autopauseOwner ? [el.dataset.autopauseOwner] : [];
+}
+function claim(el, owner) {
+  if (!owner) return;
+  var owners = ownersOf(el);
+  if (!owners.includes(owner)) owners.push(owner);
+  el.dataset.autopauseOwners = JSON.stringify(owners);
+  el.dataset.autopauseOwner = owners[0];
+}
+function mark(el, _ref, background) {
+  var remember = _ref.remember,
+    owner = _ref.owner;
+  if (remember) el.dataset.autopauseResume = background ? "auto" : "true";
+  claim(el, owner);
+}
+function playEmbed(el) {
+  var url = iframeUrl(el);
+  if (!url || !readyFrames.has(el)) return false;
+  if (YOUTUBE_HOSTS.has(url.hostname)) return post(el, url.origin, YOUTUBE_PLAY);
+  if (VIMEO_HOSTS.has(url.hostname)) return post(el, url.origin, VIMEO_PLAY);
+  return false;
+}
+function pauseHtmlMedia(el, opts) {
+  if (opts.respectPictureInPicture && document.pictureInPictureElement === el) {
+    // The user explicitly popped this out; it is no longer "inside" the
+    // component in any meaningful sense.
+    return "skipped:pip";
+  }
+  if (opts.respectFullscreen && document.fullscreenElement === el) {
+    return "skipped:fullscreen";
+  }
+  if (isHandled(el)) {
+    claim(el, opts.owner);
+    if (!el.paused) el.pause();
+    return "noop:already-paused";
+  }
+  var background = isBackgroundMedia(el);
+
+  // Background video a frame into page load has often not started yet, and
+  // returning here would leave it free to start once we've walked away.
+  if (el.paused && !background) {
+    // An outer scope must not restore this media while this scope is hidden,
+    // even when playback had not started at the time it became hidden.
+    claim(el, opts.owner);
+    return "noop:already-paused";
+  }
+  mark(el, opts, background);
+  el.pause();
+  return "paused:native";
+}
+function pauseIframe(el, opts) {
+  if (isHandled(el)) {
+    claim(el, opts.owner);
+    return "noop:already-paused";
+  }
+  var url = iframeUrl(el);
+  if (!url) return "noop:no-src";
+  var background = isBackgroundEmbed(url);
+  var youtube = YOUTUBE_HOSTS.has(url.hostname);
+
+  // Both APIs ignore commands sent before the player loads, and YouTube's also
+  // needs enablejsapi=1 to have been in the URL at load time. Neither reports
+  // failure, so anything unconfirmed falls through to detaching.
+  if (readyFrames.has(el)) {
+    if (youtube && url.searchParams.get("enablejsapi") === "1") {
+      if (post(el, url.origin, YOUTUBE_PAUSE)) {
+        mark(el, opts, background);
+        return "paused:youtube-api";
+      }
+    } else if (VIMEO_HOSTS.has(url.hostname)) {
+      if (post(el, url.origin, VIMEO_PAUSE)) {
+        mark(el, opts, background);
+        return "paused:vimeo-api";
+      }
+    }
+  }
+
+  // Fallback: release the embed entirely. Going to about:blank rather than
+  // reassigning the same URL means we don't pay for a reload while hidden.
+  readyFrames["delete"](el);
+  el.dataset.autopauseSrc = url.href;
+  mark(el, opts, background);
+  el.setAttribute("src", BLANK);
+  return "paused:detached";
+}
+
+/**
+ * Pause all media within `root`.
+ *
+ * @param {Element|Document|ShadowRoot} root
+ * @param {object} [options]
+ * @param {boolean} [options.deep=true]     descend into open shadow roots
+ * @param {boolean} [options.remember=true] mark elements so restoreMedia() can
+ *   resume them
+ * @param {string} [options.owner=null]     hold media paused until all owning
+ *   scopes have restored it, including overlapping/nested scopes
+ * @param {boolean} [options.respectPictureInPicture=true]
+ * @param {boolean} [options.respectFullscreen=true]
+ * @returns {Array<{element: Element, result: string}>} for logging/tests
+ */
+function pauseMedia() {
+  var root = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : document;
+  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var opts = _objectSpread({
+    deep: true,
+    remember: true,
+    owner: null,
+    respectPictureInPicture: true,
+    respectFullscreen: true
+  }, options);
+  var results = [];
+  var _iterator3 = _createForOfIteratorHelper$2(collectMedia(root, opts.deep)),
+    _step3;
+  try {
+    for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+      var el = _step3.value;
+      if (isOptedOut(el)) {
+        results.push({
+          element: el,
+          result: "skipped:opt-out"
+        });
+        continue;
+      }
+      var tag = el.tagName.toLowerCase();
+      var result = tag === "iframe" ? pauseIframe(el, opts) : pauseHtmlMedia(el, opts);
+      results.push({
+        element: el,
+        result: result
+      });
+    }
+  } catch (err) {
+    _iterator3.e(err);
+  } finally {
+    _iterator3.f();
+  }
+  return results;
+}
+
+/**
+ * Undo pauseMedia() for a subtree that is becoming visible again. Background
+ * video restarts either way; `resume` additionally restarts media that was
+ * playing under its own steam when it was paused.
+ *
+ * @param {Element|Document|ShadowRoot} root
+ * @param {object} [options]
+ * @param {boolean} [options.deep=true]
+ * @param {boolean} [options.resume=false]
+ * @param {string} [options.owner=null] only touch media tagged with this owner
+ */
+function restoreMedia() {
+  var root = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : document;
+  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var _options$deep = options.deep,
+    deep = _options$deep === void 0 ? true : _options$deep,
+    _options$resume = options.resume,
+    resume = _options$resume === void 0 ? false : _options$resume,
+    _options$owner = options.owner,
+    owner = _options$owner === void 0 ? null : _options$owner;
+  var results = [];
+  var _iterator4 = _createForOfIteratorHelper$2(collectMedia(root, deep)),
+    _step4;
+  try {
+    for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+      var el = _step4.value;
+      if (owner) {
+        var owners = ownersOf(el);
+        if (!owners.includes(owner)) {
+          results.push({
+            element: el,
+            result: "skipped:other-owner"
+          });
+          continue;
+        }
+        var remaining = owners.filter(function (value) {
+          return value !== owner;
+        });
+        if (remaining.length) {
+          el.dataset.autopauseOwners = JSON.stringify(remaining);
+          el.dataset.autopauseOwner = remaining[0];
+          results.push({
+            element: el,
+            result: "skipped:other-owner"
+          });
+          continue;
+        }
+      }
+      var flag = el.dataset.autopauseResume;
+      var shouldResume = flag === "auto" || resume && flag === "true";
+      delete el.dataset.autopauseOwner;
+      delete el.dataset.autopauseOwners;
+      delete el.dataset.autopauseResume;
+      if (el.tagName.toLowerCase() === "iframe") {
+        var src = el.dataset.autopauseSrc;
+
+        // No stored src means it was paused over postMessage and is still
+        // loaded, so it only needs telling to start again.
+        if (!src) {
+          var _played = shouldResume && playEmbed(el);
+          results.push({
+            element: el,
+            result: _played ? "restored:playing" : "noop:not-detached"
+          });
+          continue;
+        }
+        delete el.dataset.autopauseSrc;
+        el.setAttribute("src", shouldResume ? src : stripAutoplay(src));
+        results.push({
+          element: el,
+          result: "restored:reattached"
+        });
+        continue;
+      }
+      if (!shouldResume) {
+        results.push({
+          element: el,
+          result: "noop:left-paused"
+        });
+        continue;
+      }
+
+      // play() rejects with NotAllowedError when autoplay policy blocks it, and
+      // with AbortError if something pauses it again before the promise settles.
+      // Neither is actionable here, but an unhandled rejection is noisy.
+      var played = el.play();
+      if (played && typeof played["catch"] === "function") played["catch"](function () {});
+      results.push({
+        element: el,
+        result: "restored:playing"
+      });
+    }
+  } catch (err) {
+    _iterator4.e(err);
+  } finally {
+    _iterator4.f();
+  }
+  return results;
+}
+
+/**
+ * Add enablejsapi=1 to YouTube embeds so they can be paused without a teardown,
+ * and start watching provider iframes for readiness. Rewriting src reloads the
+ * iframe, so this has to run before anything can be playing.
+ */
+function prepareMedia() {
+  var root = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : document;
+  var _ref2 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+    _ref2$deep = _ref2.deep,
+    deep = _ref2$deep === void 0 ? true : _ref2$deep;
+  var _iterator5 = _createForOfIteratorHelper$2(collectMedia(root, deep)),
+    _step5;
+  try {
+    for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
+      var el = _step5.value;
+      if (el.tagName.toLowerCase() !== "iframe") continue;
+      var url = iframeUrl(el);
+      if (!url) continue;
+      var youtube = YOUTUBE_HOSTS.has(url.hostname);
+      if (!youtube && !VIMEO_HOSTS.has(url.hostname)) continue;
+      trackReadiness(el);
+      if (el.dataset.autopausePrepared === "true") continue;
+      el.dataset.autopausePrepared = "true";
+      if (!youtube) continue;
+      if (url.searchParams.get("enablejsapi") === "1") continue;
+      url.searchParams.set("enablejsapi", "1");
+      // YouTube uses this to validate the postMessage sender.
+      url.searchParams.set("origin", window.location.origin);
+      el.setAttribute("src", url.href);
+    }
+  } catch (err) {
+    _iterator5.e(err);
+  } finally {
+    _iterator5.f();
   }
 }
 
 function _typeof$4(o) { "@babel/helpers - typeof"; return _typeof$4 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof$4(o); }
+function _classCallCheck$4(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties$4(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey$4(o.key), o); } }
+function _createClass$4(e, r, t) { return r && _defineProperties$4(e.prototype, r), Object.defineProperty(e, "prototype", { writable: false }), e; }
+function _toPropertyKey$4(t) { var i = _toPrimitive$4(t, "string"); return "symbol" == _typeof$4(i) ? i : i + ""; }
+function _toPrimitive$4(t, r) { if ("object" != _typeof$4(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof$4(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return (String )(t); }
+function _classPrivateMethodInitSpec$3(e, a) { _checkPrivateRedeclaration$4(e, a), a.add(e); }
+function _classPrivateFieldInitSpec$4(e, t, a) { _checkPrivateRedeclaration$4(e, t), t.set(e, a); }
+function _checkPrivateRedeclaration$4(e, t) { if (t.has(e)) throw new TypeError("Cannot initialize the same private elements twice on an object"); }
+function _classPrivateFieldGet$4(s, a) { return s.get(_assertClassBrand$4(s, a)); }
+function _classPrivateFieldSet$4(s, a, r) { return s.set(_assertClassBrand$4(s, a), r), r; }
+function _assertClassBrand$4(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
+var owners = 0;
+
+/**
+ * Keeps disclosure/slide media in step with visibility, including newly slotted
+ * content. Each scope owns its pauses so nested hidden containers stay paused.
+ *
+ * @implements {import("lit").ReactiveController}
+ * @internal
+ */
+var _host$2 = /*#__PURE__*/new WeakMap();
+var _isActive = /*#__PURE__*/new WeakMap();
+var _owner = /*#__PURE__*/new WeakMap();
+var _settled = /*#__PURE__*/new WeakMap();
+var _frame = /*#__PURE__*/new WeakMap();
+var _onPlay = /*#__PURE__*/new WeakMap();
+var _MediaController_brand = /*#__PURE__*/new WeakSet();
+var MediaController = /*#__PURE__*/function () {
+  /**
+   * @param {import("lit").LitElement} host
+   * @param {() => boolean} isActive
+   */
+  function MediaController(host, isActive) {
+    var _this = this;
+    _classCallCheck$4(this, MediaController);
+    _classPrivateMethodInitSpec$3(this, _MediaController_brand);
+    /** @type {import("lit").LitElement} */
+    _classPrivateFieldInitSpec$4(this, _host$2, void 0);
+    /** @type {() => boolean} */
+    _classPrivateFieldInitSpec$4(this, _isActive, void 0);
+    _classPrivateFieldInitSpec$4(this, _owner, "tcds-media-".concat(++owners));
+    _classPrivateFieldInitSpec$4(this, _settled, false);
+    /** @type {number|undefined} */
+    _classPrivateFieldInitSpec$4(this, _frame, void 0);
+    _classPrivateFieldInitSpec$4(this, _onPlay, function () {
+      if (!_classPrivateFieldGet$4(_isActive, _this).call(_this)) _assertClassBrand$4(_MediaController_brand, _this, _sync).call(_this);
+    });
+    _classPrivateFieldSet$4(_host$2, this, host);
+    _classPrivateFieldSet$4(_isActive, this, isActive);
+    host.addController(this);
+  }
+  return _createClass$4(MediaController, [{
+    key: "hostConnected",
+    value: function hostConnected() {
+      _classPrivateFieldGet$4(_host$2, this).addEventListener("play", _classPrivateFieldGet$4(_onPlay, this), true);
+      _classPrivateFieldGet$4(_host$2, this).requestUpdate();
+    }
+  }, {
+    key: "hostDisconnected",
+    value: function hostDisconnected() {
+      _classPrivateFieldGet$4(_host$2, this).removeEventListener("play", _classPrivateFieldGet$4(_onPlay, this), true);
+      cancelAnimationFrame(_classPrivateFieldGet$4(_frame, this));
+      _classPrivateFieldSet$4(_frame, this, undefined);
+      _classPrivateFieldSet$4(_settled, this, false);
+    }
+  }, {
+    key: "hostUpdated",
+    value: function hostUpdated() {
+      var _this2 = this;
+      if (_classPrivateFieldGet$4(_settled, this)) {
+        _assertClassBrand$4(_MediaController_brand, this, _sync).call(this);
+      } else if (_classPrivateFieldGet$4(_frame, this) === undefined) {
+        // Let the parent assign the initial selection and responsive mode first.
+        _classPrivateFieldSet$4(_frame, this, requestAnimationFrame(function () {
+          _classPrivateFieldSet$4(_frame, _this2, undefined);
+          _classPrivateFieldSet$4(_settled, _this2, true);
+          _assertClassBrand$4(_MediaController_brand, _this2, _sync).call(_this2);
+        }));
+      }
+    }
+  }, {
+    key: "contentChanged",
+    value: function contentChanged() {
+      prepareMedia(_classPrivateFieldGet$4(_host$2, this));
+      if (_classPrivateFieldGet$4(_settled, this)) _assertClassBrand$4(_MediaController_brand, this, _sync).call(this);
+    }
+  }]);
+}();
+function _sync() {
+  if (_classPrivateFieldGet$4(_isActive, this).call(this)) {
+    restoreMedia(_classPrivateFieldGet$4(_host$2, this), {
+      owner: _classPrivateFieldGet$4(_owner, this)
+    });
+  } else {
+    pauseMedia(_classPrivateFieldGet$4(_host$2, this), {
+      owner: _classPrivateFieldGet$4(_owner, this)
+    });
+  }
+}
+
+function _typeof$3(o) { "@babel/helpers - typeof"; return _typeof$3 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof$3(o); }
 var _Disclosure, _templateObject$2, _templateObject2;
 var _init_mode, _init_extra_mode, _init_position, _init_extra_position, _init_total, _init_extra_total;
-function _slicedToArray$1(r, e) { return _arrayWithHoles$1(r) || _iterableToArrayLimit$1(r, e) || _unsupportedIterableToArray$2(r, e) || _nonIterableRest$1(); }
+function _slicedToArray$1(r, e) { return _arrayWithHoles$1(r) || _iterableToArrayLimit$1(r, e) || _unsupportedIterableToArray$1(r, e) || _nonIterableRest$1(); }
 function _nonIterableRest$1() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArrayLimit$1(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = true, o = false; try { if (i = (t = t.call(r)).next, 0 === l) ; else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = true, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles$1(r) { if (Array.isArray(r)) return r; }
-function _createForOfIteratorHelper$2(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray$2(r)) || e) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: true } : { done: false, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = true, u = false; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = true, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
-function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray$2(r) || _nonIterableSpread(); }
+function _createForOfIteratorHelper$1(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray$1(r)) || e) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: true } : { done: false, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = true, u = false; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = true, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
+function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray$1(r) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray$2(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray$2(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray$2(r, a) : void 0; } }
+function _unsupportedIterableToArray$1(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray$1(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray$1(r, a) : void 0; } }
 function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
-function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray$2(r); }
-function _arrayLikeToArray$2(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray$1(r); }
+function _arrayLikeToArray$1(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _taggedTemplateLiteral$2(e, t) { return t || (t = e.slice(0)), Object.freeze(Object.defineProperties(e, { raw: { value: Object.freeze(t) } })); }
 function _classCallCheck$3(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
-function _defineProperties$3(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey$4(o.key), o); } }
+function _defineProperties$3(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey$3(o.key), o); } }
 function _createClass$3(e, r, t) { return r && _defineProperties$3(e.prototype, r), Object.defineProperty(e, "prototype", { writable: false }), e; }
 function _callSuper$1(t, o, e) { return o = _getPrototypeOf$1(o), _possibleConstructorReturn$1(t, _isNativeReflectConstruct$1() ? Reflect.construct(o, [], _getPrototypeOf$1(t).constructor) : o.apply(t, e)); }
-function _possibleConstructorReturn$1(t, e) { if (e && ("object" == _typeof$4(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized$1(t); }
+function _possibleConstructorReturn$1(t, e) { if (e && ("object" == _typeof$3(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized$1(t); }
 function _assertThisInitialized$1(e) { if (void 0 === e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); return e; }
 function _isNativeReflectConstruct$1() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct$1 = function _isNativeReflectConstruct() { return !!t; })(); }
 function _superPropGet$1(t, o, e, r) { var p = _get$1(_getPrototypeOf$1(t.prototype ), o, e); return "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
@@ -190,16 +777,16 @@ function _setPrototypeOf$1(t, e) { return _setPrototypeOf$1 = Object.setPrototyp
 function _classPrivateMethodInitSpec$2(e, a) { _checkPrivateRedeclaration$3(e, a), a.add(e); }
 function _classPrivateFieldInitSpec$3(e, t, a) { _checkPrivateRedeclaration$3(e, t), t.set(e, a); }
 function _checkPrivateRedeclaration$3(e, t) { if (t.has(e)) throw new TypeError("Cannot initialize the same private elements twice on an object"); }
-function _defineProperty$2(e, r, t) { return (r = _toPropertyKey$4(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: true, configurable: true, writable: true }) : e[r] = t, e; }
+function _defineProperty$1(e, r, t) { return (r = _toPropertyKey$3(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: true, configurable: true, writable: true }) : e[r] = t, e; }
 function _classPrivateGetter$1(s, r, a) { return a(_assertClassBrand$3(s, r)); }
 function _classPrivateFieldSet$3(s, a, r) { return s.set(_assertClassBrand$3(s, a), r), r; }
 function _classPrivateFieldGet$3(s, a) { return s.get(_assertClassBrand$3(s, a)); }
 function _assertClassBrand$3(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
-function _applyDecs$1(e, t, n, r, o, i) { var a, c, u, s, f, l, p, d = Symbol.metadata || Symbol["for"]("Symbol.metadata"), m = Object.defineProperty, h = Object.create, y = [h(null), h(null)], v = t.length; function g(t, n, r) { return function (o, i) { n && (i = o, o = e); for (var a = 0; a < t.length; a++) i = t[a].apply(o, r ? [i] : []); return r ? i : o; }; } function b(e, t, n, r) { if ("function" != typeof e && (r || void 0 !== e)) throw new TypeError(t + " must " + (n || "be") + " a function" + (r ? "" : " or undefined")); return e; } function applyDec(e, t, n, r, o, i, u, s, f, l, p) { function d(e) { if (!p(e)) throw new TypeError("Attempted to access private element on non-instance"); } var h = [].concat(t[0]), v = t[3], w = !u, D = 1 === o, S = 3 === o, j = 4 === o, E = 2 === o; function I(t, n, r) { return function (o, i) { return n && (i = o, o = e), r && r(o), P[t].call(o, i); }; } if (!w) { var P = {}, k = [], F = S ? "get" : j || D ? "set" : "value"; if (f ? (l || D ? P = { get: _setFunctionName$1(function () { return v(this); }, r, "get"), set: function set(e) { t[4](this, e); } } : P[F] = v, l || _setFunctionName$1(P[F], r, E ? "" : F)) : l || (P = Object.getOwnPropertyDescriptor(e, r)), !l && !f) { if ((c = y[+s][r]) && 7 !== (c ^ o)) throw Error("Decorating two elements with the same name (" + P[F].name + ") is not supported yet"); y[+s][r] = o < 3 ? 1 : o; } } for (var N = e, O = h.length - 1; O >= 0; O -= n ? 2 : 1) { var T = b(h[O], "A decorator", "be", true), z = n ? h[O - 1] : void 0, A = {}, H = { kind: ["field", "accessor", "method", "getter", "setter", "class"][o], name: r, metadata: a, addInitializer: function (e, t) { if (e.v) throw new TypeError("attempted to call addInitializer after decoration was finished"); b(t, "An initializer", "be", true), i.push(t); }.bind(null, A) }; if (w) c = T.call(z, N, H), A.v = 1, b(c, "class decorators", "return") && (N = c);else if (H["static"] = s, H["private"] = f, c = H.access = { has: f ? p.bind() : function (e) { return r in e; } }, j || (c.get = f ? E ? function (e) { return d(e), P.value; } : I("get", 0, d) : function (e) { return e[r]; }), E || S || (c.set = f ? I("set", 0, d) : function (e, t) { e[r] = t; }), N = T.call(z, D ? { get: P.get, set: P.set } : P[F], H), A.v = 1, D) { if ("object" == _typeof$4(N) && N) (c = b(N.get, "accessor.get")) && (P.get = c), (c = b(N.set, "accessor.set")) && (P.set = c), (c = b(N.init, "accessor.init")) && k.unshift(c);else if (void 0 !== N) throw new TypeError("accessor decorators must return an object with get, set, or init properties or undefined"); } else b(N, (l ? "field" : "method") + " decorators", "return") && (l ? k.unshift(N) : P[F] = N); } return o < 2 && u.push(g(k, s, 1), g(i, s, 0)), l || w || (f ? D ? u.splice(-1, 0, I("get", s), I("set", s)) : u.push(E ? P[F] : b.call.bind(P[F])) : m(e, r, P)), N; } function w(e) { return m(e, d, { configurable: true, enumerable: true, value: a }); } return void 0 !== i && (a = i[d]), a = h(null == a ? null : a), f = [], l = function l(e) { e && f.push(g(e)); }, p = function p(t, r) { for (var i = 0; i < n.length; i++) { var a = n[i], c = a[1], l = 7 & c; if ((8 & c) == t && !l == r) { var p = a[2], d = !!a[3], m = 16 & c; applyDec(t ? e : e.prototype, a, m, d ? "#" + p : _toPropertyKey$4(p), l, l < 2 ? [] : t ? s = s || [] : u = u || [], f, !!t, d, r, t && d ? function (t) { return _checkInRHS$1(t) === e; } : o); } } }, p(8, 0), p(0, 0), p(8, 1), p(0, 1), l(u), l(s), c = f, v || w(e), { e: c, get c() { var n = []; return v && [w(e = applyDec(e, [t], r, e.name, 5, n)), g(n, 1)]; } }; }
-function _toPropertyKey$4(t) { var i = _toPrimitive$4(t, "string"); return "symbol" == _typeof$4(i) ? i : i + ""; }
-function _toPrimitive$4(t, r) { if ("object" != _typeof$4(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof$4(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function _setFunctionName$1(e, t, n) { "symbol" == _typeof$4(t) && (t = (t = t.description) ? "[" + t + "]" : ""); try { Object.defineProperty(e, "name", { configurable: !0, value: n ? n + " " + t : t }); } catch (e) {} return e; }
-function _checkInRHS$1(e) { if (Object(e) !== e) throw TypeError("right-hand side of 'in' should be an object, got " + (null !== e ? _typeof$4(e) : "null")); return e; }
+function _applyDecs$1(e, t, n, r, o, i) { var a, c, u, s, f, l, p, d = Symbol.metadata || Symbol["for"]("Symbol.metadata"), m = Object.defineProperty, h = Object.create, y = [h(null), h(null)], v = t.length; function g(t, n, r) { return function (o, i) { n && (i = o, o = e); for (var a = 0; a < t.length; a++) i = t[a].apply(o, r ? [i] : []); return r ? i : o; }; } function b(e, t, n, r) { if ("function" != typeof e && (r || void 0 !== e)) throw new TypeError(t + " must " + (n || "be") + " a function" + (r ? "" : " or undefined")); return e; } function applyDec(e, t, n, r, o, i, u, s, f, l, p) { function d(e) { if (!p(e)) throw new TypeError("Attempted to access private element on non-instance"); } var h = [].concat(t[0]), v = t[3], w = !u, D = 1 === o, S = 3 === o, j = 4 === o, E = 2 === o; function I(t, n, r) { return function (o, i) { return n && (i = o, o = e), r && r(o), P[t].call(o, i); }; } if (!w) { var P = {}, k = [], F = S ? "get" : j || D ? "set" : "value"; if (f ? (l || D ? P = { get: _setFunctionName$1(function () { return v(this); }, r, "get"), set: function set(e) { t[4](this, e); } } : P[F] = v, l || _setFunctionName$1(P[F], r, E ? "" : F)) : l || (P = Object.getOwnPropertyDescriptor(e, r)), !l && !f) { if ((c = y[+s][r]) && 7 !== (c ^ o)) throw Error("Decorating two elements with the same name (" + P[F].name + ") is not supported yet"); y[+s][r] = o < 3 ? 1 : o; } } for (var N = e, O = h.length - 1; O >= 0; O -= n ? 2 : 1) { var T = b(h[O], "A decorator", "be", true), z = n ? h[O - 1] : void 0, A = {}, H = { kind: ["field", "accessor", "method", "getter", "setter", "class"][o], name: r, metadata: a, addInitializer: function (e, t) { if (e.v) throw new TypeError("attempted to call addInitializer after decoration was finished"); b(t, "An initializer", "be", true), i.push(t); }.bind(null, A) }; if (w) c = T.call(z, N, H), A.v = 1, b(c, "class decorators", "return") && (N = c);else if (H["static"] = s, H["private"] = f, c = H.access = { has: f ? p.bind() : function (e) { return r in e; } }, j || (c.get = f ? E ? function (e) { return d(e), P.value; } : I("get", 0, d) : function (e) { return e[r]; }), E || S || (c.set = f ? I("set", 0, d) : function (e, t) { e[r] = t; }), N = T.call(z, D ? { get: P.get, set: P.set } : P[F], H), A.v = 1, D) { if ("object" == _typeof$3(N) && N) (c = b(N.get, "accessor.get")) && (P.get = c), (c = b(N.set, "accessor.set")) && (P.set = c), (c = b(N.init, "accessor.init")) && k.unshift(c);else if (void 0 !== N) throw new TypeError("accessor decorators must return an object with get, set, or init properties or undefined"); } else b(N, (l ? "field" : "method") + " decorators", "return") && (l ? k.unshift(N) : P[F] = N); } return o < 2 && u.push(g(k, s, 1), g(i, s, 0)), l || w || (f ? D ? u.splice(-1, 0, I("get", s), I("set", s)) : u.push(E ? P[F] : b.call.bind(P[F])) : m(e, r, P)), N; } function w(e) { return m(e, d, { configurable: true, enumerable: true, value: a }); } return void 0 !== i && (a = i[d]), a = h(null == a ? null : a), f = [], l = function l(e) { e && f.push(g(e)); }, p = function p(t, r) { for (var i = 0; i < n.length; i++) { var a = n[i], c = a[1], l = 7 & c; if ((8 & c) == t && !l == r) { var p = a[2], d = !!a[3], m = 16 & c; applyDec(t ? e : e.prototype, a, m, d ? "#" + p : _toPropertyKey$3(p), l, l < 2 ? [] : t ? s = s || [] : u = u || [], f, !!t, d, r, t && d ? function (t) { return _checkInRHS$1(t) === e; } : o); } } }, p(8, 0), p(0, 0), p(8, 1), p(0, 1), l(u), l(s), c = f, v || w(e), { e: c, get c() { var n = []; return v && [w(e = applyDec(e, [t], r, e.name, 5, n)), g(n, 1)]; } }; }
+function _toPropertyKey$3(t) { var i = _toPrimitive$3(t, "string"); return "symbol" == _typeof$3(i) ? i : i + ""; }
+function _toPrimitive$3(t, r) { if ("object" != _typeof$3(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof$3(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _setFunctionName$1(e, t, n) { "symbol" == _typeof$3(t) && (t = (t = t.description) ? "[" + t + "]" : ""); try { Object.defineProperty(e, "name", { configurable: !0, value: n ? n + " " + t : t }); } catch (e) {} return e; }
+function _checkInRHS$1(e) { if (Object(e) !== e) throw TypeError("right-hand side of 'in' should be an object, got " + (null !== e ? _typeof$3(e) : "null")); return e; }
 
 /**
  * The display mode of the disclosure. Assigned by the parent group, mirrored to
@@ -219,6 +806,7 @@ var _B$1 = /*#__PURE__*/new WeakMap();
 var _C$1 = /*#__PURE__*/new WeakMap();
 var _internals = /*#__PURE__*/new WeakMap();
 var _animation = /*#__PURE__*/new WeakMap();
+var _media = /*#__PURE__*/new WeakMap();
 var _titleContent = /*#__PURE__*/new WeakMap();
 var _Disclosure_brand = /*#__PURE__*/new WeakSet();
 var _onBeforeMatch = /*#__PURE__*/new WeakMap();
@@ -250,6 +838,8 @@ var Disclosure = /*#__PURE__*/function (_LitElement) {
     _classPrivateFieldInitSpec$3(_this2, _internals, void _init_extra_total(_this2));
     /** @type {AccordionAnimationController} */
     _classPrivateFieldInitSpec$3(_this2, _animation, void 0);
+    /** @type {MediaController} */
+    _classPrivateFieldInitSpec$3(_this2, _media, void 0);
     /** @type {Node[]|null} */
     _classPrivateFieldInitSpec$3(_this2, _titleContent, null);
     _classPrivateFieldInitSpec$3(_this2, _onBeforeMatch, function () {
@@ -259,6 +849,9 @@ var Disclosure = /*#__PURE__*/function (_LitElement) {
     _this2.position = 0;
     _this2.total = 1;
     _classPrivateFieldSet$3(_internals, _this2, _this2.attachInternals());
+    _classPrivateFieldSet$3(_media, _this2, new MediaController(_this2, function () {
+      return _this2.visible;
+    }));
 
     // Both getters return null outside accordion mode, which makes the
     // controller a no-op where there is nothing to expand or collapse.
@@ -326,16 +919,7 @@ var Disclosure = /*#__PURE__*/function (_LitElement) {
     value: function render() {
       var _classPrivateGetter2;
       var label = this.titleText;
-      return u(_templateObject$2 || (_templateObject$2 = _taggedTemplateLiteral$2(["\n      ", "\n\n      <slot\n        name=\"title\"\n        ?hidden=", "\n        @slotchange=", "\n      ></slot>\n\n      <div\n        part=\"panel\"\n        id=\"panel\"\n        role=", "\n        tabindex=", "\n        aria-label=", "\n        aria-labelledby=", "\n      >\n        <div part=\"content\">\n          <slot></slot>\n        </div>\n      </div>\n    "])), this.mode === "accordion" ? u(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral$2(["\n        <div\n          part=\"heading\"\n          role=\"heading\"\n          aria-level=", "\n        >\n          <button\n            part=\"trigger\"\n            type=\"button\"\n            id=\"trigger\"\n            aria-expanded=", "\n            aria-controls=\"panel\"\n            @click=", "\n          >\n            ", "\n            <tcds-icon\n              part=\"marker\"\n              icon=\"", "\"\n            ></tcds-icon>\n          </button>\n        </div>\n      "])), this.headingLevel, this.expanded ? "true" : "false", _assertClassBrand$3(_Disclosure_brand, this, _onTriggerClick), this.titleContent, this.expanded ? "caret-up" : "caret-down") : A, this.mode !== "plain", _assertClassBrand$3(_Disclosure_brand, this, _onTitleSlotChange), (_classPrivateGetter2 = _classPrivateGetter$1(_Disclosure_brand, this, _get_panelRole)) !== null && _classPrivateGetter2 !== void 0 ? _classPrivateGetter2 : A, this.mode === "tabs" ? "0" : A, this.mode === "tabs" && label ? label : A, this.mode === "accordion" ? "trigger" : A);
-    }
-  }, {
-    key: "firstUpdated",
-    value: function firstUpdated() {
-      var _this$panel;
-      // `hidden="until-found"` (set by the animation controller when collapsed)
-      // lets the browser's find-in-page reveal the panel. The UA removes the
-      // attribute itself; this keeps our own state in step with it.
-      (_this$panel = this.panel) === null || _this$panel === void 0 || _this$panel.addEventListener("beforematch", _classPrivateFieldGet$3(_onBeforeMatch, this));
+      return u(_templateObject$2 || (_templateObject$2 = _taggedTemplateLiteral$2(["\n      ", "\n\n      <slot\n        name=\"title\"\n        ?hidden=", "\n        @slotchange=", "\n      ></slot>\n\n      <div\n        part=\"panel\"\n        id=\"panel\"\n        role=", "\n        tabindex=", "\n        aria-label=", "\n        aria-labelledby=", "\n        @beforematch=", "\n      >\n        <div part=\"content\">\n          <slot @slotchange=", "></slot>\n        </div>\n      </div>\n    "])), this.mode === "accordion" ? u(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral$2(["\n        <div\n          part=\"heading\"\n          role=\"heading\"\n          aria-level=", "\n        >\n          <button\n            part=\"trigger\"\n            type=\"button\"\n            id=\"trigger\"\n            aria-expanded=", "\n            aria-controls=\"panel\"\n            @click=", "\n          >\n            ", "\n            <tcds-icon\n              part=\"marker\"\n              icon=\"", "\"\n            ></tcds-icon>\n          </button>\n        </div>\n      "])), this.headingLevel, this.expanded ? "true" : "false", _assertClassBrand$3(_Disclosure_brand, this, _onTriggerClick), this.titleContent, this.expanded ? "caret-up" : "caret-down") : A, this.mode !== "plain", _assertClassBrand$3(_Disclosure_brand, this, _onTitleSlotChange), (_classPrivateGetter2 = _classPrivateGetter$1(_Disclosure_brand, this, _get_panelRole)) !== null && _classPrivateGetter2 !== void 0 ? _classPrivateGetter2 : A, this.mode === "tabs" ? "0" : A, this.mode === "tabs" && label ? label : A, this.mode === "accordion" ? "trigger" : A, _classPrivateFieldGet$3(_onBeforeMatch, this), _assertClassBrand$3(_Disclosure_brand, this, _onContentSlotChange));
     }
   }, {
     key: "updated",
@@ -347,7 +931,7 @@ var Disclosure = /*#__PURE__*/function (_LitElement) {
       // media query flips the group into another mode.
       var panel = this.panel;
       if (!panel) return;
-      panel.hidden = false;
+      panel.hidden = this.visible ? false : "until-found";
       panel.style.height = null;
     }
     // #endregion
@@ -424,14 +1008,14 @@ var Disclosure = /*#__PURE__*/function (_LitElement) {
       if (_classPrivateFieldGet$3(_titleContent, this) !== null) return _classPrivateFieldGet$3(_titleContent, this);
       var title = this.titleElement;
       var nodes = title ? _toConsumableArray(title.cloneNode(true).childNodes) : [];
-      var _iterator = _createForOfIteratorHelper$2(nodes),
+      var _iterator = _createForOfIteratorHelper$1(nodes),
         _step;
       try {
         for (_iterator.s(); !(_step = _iterator.n()).done;) {
           var node = _step.value;
           if (!(node instanceof Element)) continue;
           node.removeAttribute("id");
-          var _iterator2 = _createForOfIteratorHelper$2(node.querySelectorAll("[id]")),
+          var _iterator2 = _createForOfIteratorHelper$1(node.querySelectorAll("[id]")),
             _step2;
           try {
             for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
@@ -515,6 +1099,9 @@ _Disclosure = Disclosure;
 function _onTriggerClick() {
   _assertClassBrand$3(_Disclosure_brand, this, _requestChange).call(this, !this.expanded, "trigger");
 }
+function _onContentSlotChange() {
+  _classPrivateFieldGet$3(_media, this).contentChanged();
+}
 function _onTitleSlotChange() {
   _classPrivateFieldSet$3(_titleContent, this, null);
   this.dispatchEvent(new CustomEvent("tcds-disclosure:title-change", {
@@ -561,21 +1148,21 @@ _init_position = _applyDecs$e$1[2];
 _init_extra_position = _applyDecs$e$1[3];
 _init_total = _applyDecs$e$1[4];
 _init_extra_total = _applyDecs$e$1[5];
-_defineProperty$2(Disclosure, "styles", [styles, disclosureStyles]);
+_defineProperty$1(Disclosure, "styles", [styles, disclosureStyles]);
 
-function _typeof$3(o) { "@babel/helpers - typeof"; return _typeof$3 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof$3(o); }
+function _typeof$2(o) { "@babel/helpers - typeof"; return _typeof$2 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof$2(o); }
 function _classCallCheck$2(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
-function _defineProperties$2(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey$3(o.key), o); } }
+function _defineProperties$2(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey$2(o.key), o); } }
 function _createClass$2(e, r, t) { return r && _defineProperties$2(e.prototype, r), Object.defineProperty(e, "prototype", { writable: false }), e; }
-function _toPropertyKey$3(t) { var i = _toPrimitive$3(t, "string"); return "symbol" == _typeof$3(i) ? i : i + ""; }
-function _toPrimitive$3(t, r) { if ("object" != _typeof$3(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof$3(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return (String )(t); }
+function _toPropertyKey$2(t) { var i = _toPrimitive$2(t, "string"); return "symbol" == _typeof$2(i) ? i : i + ""; }
+function _toPrimitive$2(t, r) { if ("object" != _typeof$2(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof$2(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return (String )(t); }
 function _classPrivateMethodInitSpec$1(e, a) { _checkPrivateRedeclaration$2(e, a), a.add(e); }
 function _classPrivateFieldInitSpec$2(e, t, a) { _checkPrivateRedeclaration$2(e, t), t.set(e, a); }
 function _checkPrivateRedeclaration$2(e, t) { if (t.has(e)) throw new TypeError("Cannot initialize the same private elements twice on an object"); }
 function _classPrivateFieldGet$2(s, a) { return s.get(_assertClassBrand$2(s, a)); }
 function _classPrivateFieldSet$2(s, a, r) { return s.set(_assertClassBrand$2(s, a), r), r; }
 function _assertClassBrand$2(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
-var _host = /*#__PURE__*/new WeakMap();
+var _host$1 = /*#__PURE__*/new WeakMap();
 var _query = /*#__PURE__*/new WeakMap();
 var _list = /*#__PURE__*/new WeakMap();
 var _onChange = /*#__PURE__*/new WeakMap();
@@ -599,15 +1186,15 @@ var MediaQueryController = /*#__PURE__*/function () {
     _classCallCheck$2(this, MediaQueryController);
     _classPrivateMethodInitSpec$1(this, _MediaQueryController_brand);
     /** @type {import("lit").ReactiveElement} */
-    _classPrivateFieldInitSpec$2(this, _host, void 0);
+    _classPrivateFieldInitSpec$2(this, _host$1, void 0);
     /** @type {string|null} */
     _classPrivateFieldInitSpec$2(this, _query, null);
     /** @type {MediaQueryList|null} */
     _classPrivateFieldInitSpec$2(this, _list, null);
     _classPrivateFieldInitSpec$2(this, _onChange, function () {
-      _classPrivateFieldGet$2(_host, _this).requestUpdate();
+      _classPrivateFieldGet$2(_host$1, _this).requestUpdate();
     });
-    _classPrivateFieldSet$2(_host, this, host);
+    _classPrivateFieldSet$2(_host$1, this, host);
     host.addController(this);
     this.query = query;
   }
@@ -627,7 +1214,7 @@ var MediaQueryController = /*#__PURE__*/function () {
       _classPrivateFieldSet$2(_query, this, next);
       _classPrivateFieldSet$2(_list, this, next ? matchMedia(next) : null);
       _assertClassBrand$2(_MediaQueryController_brand, this, _startListening).call(this);
-      _classPrivateFieldGet$2(_host, this).requestUpdate();
+      _classPrivateFieldGet$2(_host$1, this).requestUpdate();
     }
   }, {
     key: "matches",
@@ -648,7 +1235,7 @@ var MediaQueryController = /*#__PURE__*/function () {
   }]);
 }();
 function _startListening() {
-  if (!_classPrivateFieldGet$2(_list, this) || !_classPrivateFieldGet$2(_host, this).isConnected) return;
+  if (!_classPrivateFieldGet$2(_list, this) || !_classPrivateFieldGet$2(_host$1, this).isConnected) return;
   _classPrivateFieldGet$2(_list, this).addEventListener("change", _classPrivateFieldGet$2(_onChange, this));
 }
 function _stopListening() {
@@ -656,18 +1243,20 @@ function _stopListening() {
   (_classPrivateFieldGet4 = _classPrivateFieldGet$2(_list, this)) === null || _classPrivateFieldGet4 === void 0 || _classPrivateFieldGet4.removeEventListener("change", _classPrivateFieldGet$2(_onChange, this));
 }
 
-function _typeof$2(o) { "@babel/helpers - typeof"; return _typeof$2 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof$2(o); }
+function _typeof$1(o) { "@babel/helpers - typeof"; return _typeof$1 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof$1(o); }
 function _classCallCheck$1(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
-function _defineProperties$1(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey$2(o.key), o); } }
+function _defineProperties$1(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey$1(o.key), o); } }
 function _createClass$1(e, r, t) { return r && _defineProperties$1(e.prototype, r), Object.defineProperty(e, "prototype", { writable: false }), e; }
-function _toPropertyKey$2(t) { var i = _toPrimitive$2(t, "string"); return "symbol" == _typeof$2(i) ? i : i + ""; }
-function _toPrimitive$2(t, r) { if ("object" != _typeof$2(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof$2(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return (String )(t); }
+function _toPropertyKey$1(t) { var i = _toPrimitive$1(t, "string"); return "symbol" == _typeof$1(i) ? i : i + ""; }
+function _toPrimitive$1(t, r) { if ("object" != _typeof$1(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof$1(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return (String )(t); }
 function _classPrivateFieldInitSpec$1(e, t, a) { _checkPrivateRedeclaration$1(e, t), t.set(e, a); }
 function _checkPrivateRedeclaration$1(e, t) { if (t.has(e)) throw new TypeError("Cannot initialize the same private elements twice on an object"); }
 function _classPrivateFieldGet$1(s, a) { return s.get(_assertClassBrand$1(s, a)); }
 function _classPrivateFieldSet$1(s, a, r) { return s.set(_assertClassBrand$1(s, a), r), r; }
 function _assertClassBrand$1(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
+var _host = /*#__PURE__*/new WeakMap();
 var _onResolve = /*#__PURE__*/new WeakMap();
+var _request = /*#__PURE__*/new WeakMap();
 var _onHashChange = /*#__PURE__*/new WeakMap();
 /**
  * Resolves the document's fragment identifier to an element and hands it to the
@@ -681,19 +1270,24 @@ var _onHashChange = /*#__PURE__*/new WeakMap();
  */
 var DeepLinkController = /*#__PURE__*/function () {
   /**
-   * @param {import("lit").ReactiveControllerHost} host
-   * @param {(target: HTMLElement) => void} onResolve - Called with the matched
+   * @param {import("lit").ReactiveControllerHost & HTMLElement} host
+   * @param {(target: HTMLElement) => boolean|void} onResolve - Called with the matched
    *   element. Not called at all when the URL has no fragment, or when the
-   *   fragment matches nothing in the document.
+   *   fragment matches nothing in the document. Return true to scroll after
+   *   the host and any nested containers have had a chance to reveal it.
    */
   function DeepLinkController(host, onResolve) {
     var _this = this;
     _classCallCheck$1(this, DeepLinkController);
+    /** @type {import("lit").ReactiveControllerHost & HTMLElement} */
+    _classPrivateFieldInitSpec$1(this, _host, void 0);
     _classPrivateFieldInitSpec$1(this, _onResolve, void 0);
+    _classPrivateFieldInitSpec$1(this, _request, 0);
     _classPrivateFieldInitSpec$1(this, _onHashChange, function () {
       _this.resolve();
     });
     _classPrivateFieldSet$1(_onResolve, this, onResolve);
+    _classPrivateFieldSet$1(_host, this, host);
     host.addController(this);
   }
 
@@ -716,17 +1310,36 @@ var DeepLinkController = /*#__PURE__*/function () {
   }, {
     key: "resolve",
     value: function resolve() {
+      var _this$request,
+        _this2 = this;
       var target = this.target;
-      if (target) _classPrivateFieldGet$1(_onResolve, this).call(this, target);
+      var request = _classPrivateFieldSet$1(_request, this, (_this$request = _classPrivateFieldGet$1(_request, this), ++_this$request));
+      if (!target || !_classPrivateFieldGet$1(_onResolve, this).call(this, target)) return;
+
+      // All hash listeners run before this frame, and Lit updates flush before
+      // rendering. This lets nested groups reveal their panels before scrolling.
+      requestAnimationFrame(function () {
+        if (!_classPrivateFieldGet$1(_host, _this2).isConnected || request !== _classPrivateFieldGet$1(_request, _this2) || target !== _this2.target) return;
+        target.scrollIntoView({
+          block: "start",
+          behavior: "instant"
+        });
+      });
     }
   }, {
     key: "hostConnected",
     value: function hostConnected() {
+      var _this3 = this;
       window.addEventListener("hashchange", _classPrivateFieldGet$1(_onHashChange, this));
+      _classPrivateFieldGet$1(_host, this).updateComplete.then(function () {
+        if (_classPrivateFieldGet$1(_host, _this3).isConnected) _this3.resolve();
+      });
     }
   }, {
     key: "hostDisconnected",
     value: function hostDisconnected() {
+      var _this$request2;
+      _classPrivateFieldSet$1(_request, this, (_this$request2 = _classPrivateFieldGet$1(_request, this), _this$request2++, _this$request2));
       window.removeEventListener("hashchange", _classPrivateFieldGet$1(_onHashChange, this));
     }
   }]);
@@ -736,26 +1349,26 @@ var _templateObject$1;
 function _taggedTemplateLiteral$1(e, t) { return t || (t = e.slice(0)), Object.freeze(Object.defineProperties(e, { raw: { value: Object.freeze(t) } })); }
 var groupStyles = i(_templateObject$1 || (_templateObject$1 = _taggedTemplateLiteral$1(["\n  :host(:not([hidden])) {\n    display: block;\n  }\n\n  [part=items] {\n    display: block;\n  }\n"])));
 
-function _typeof$1(o) { "@babel/helpers - typeof"; return _typeof$1 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof$1(o); }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 var _DisclosureGroup, _templateObject;
 var _init_media, _init_extra_media, _init_label, _init_extra_label, _init_revision, _get_revision, _set_revision, _init_extra_revision, _init_assigned, _get_assigned, _init_extra_assigned;
 function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = false, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = true, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), true), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
 function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
-function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray$1(r, e) || _nonIterableRest(); }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = true, o = false; try { if (i = (t = t.call(r)).next, 0 === l) ; else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = true, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
-function _createForOfIteratorHelper$1(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray$1(r)) || e) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: true } : { done: false, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = true, u = false; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = true, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
-function _unsupportedIterableToArray$1(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray$1(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray$1(r, a) : void 0; } }
-function _arrayLikeToArray$1(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: true } : { done: false, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = true, u = false; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = true, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _taggedTemplateLiteral(e, t) { return t || (t = e.slice(0)), Object.freeze(Object.defineProperties(e, { raw: { value: Object.freeze(t) } })); }
 function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
-function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey$1(o.key), o); } }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
 function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), Object.defineProperty(e, "prototype", { writable: false }), e; }
 function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
-function _possibleConstructorReturn(t, e) { if (e && ("object" == _typeof$1(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized(t); }
+function _possibleConstructorReturn(t, e) { if (e && ("object" == _typeof(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized(t); }
 function _assertThisInitialized(e) { if (void 0 === e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); return e; }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
 function _superPropGet(t, o, e, r) { var p = _get(_getPrototypeOf(t.prototype ), o, e); return "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
@@ -767,17 +1380,17 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
 function _classPrivateMethodInitSpec(e, a) { _checkPrivateRedeclaration(e, a), a.add(e); }
 function _classPrivateFieldInitSpec(e, t, a) { _checkPrivateRedeclaration(e, t), t.set(e, a); }
 function _checkPrivateRedeclaration(e, t) { if (t.has(e)) throw new TypeError("Cannot initialize the same private elements twice on an object"); }
-function _defineProperty$1(e, r, t) { return (r = _toPropertyKey$1(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: true, configurable: true, writable: true }) : e[r] = t, e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: true, configurable: true, writable: true }) : e[r] = t, e; }
 function _classPrivateSetter(s, r, a, t) { return r(_assertClassBrand(s, a), t), t; }
 function _classPrivateGetter(s, r, a) { return a(_assertClassBrand(s, r)); }
 function _classPrivateFieldSet(s, a, r) { return s.set(_assertClassBrand(s, a), r), r; }
 function _classPrivateFieldGet(s, a) { return s.get(_assertClassBrand(s, a)); }
 function _assertClassBrand(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
-function _applyDecs(e, t, n, r, o, i) { var a, c, u, s, f, l, p, d = Symbol.metadata || Symbol["for"]("Symbol.metadata"), m = Object.defineProperty, h = Object.create, y = [h(null), h(null)], v = t.length; function g(t, n, r) { return function (o, i) { n && (i = o, o = e); for (var a = 0; a < t.length; a++) i = t[a].apply(o, r ? [i] : []); return r ? i : o; }; } function b(e, t, n, r) { if ("function" != typeof e && (r || void 0 !== e)) throw new TypeError(t + " must " + (n || "be") + " a function" + (r ? "" : " or undefined")); return e; } function applyDec(e, t, n, r, o, i, u, s, f, l, p) { function d(e) { if (!p(e)) throw new TypeError("Attempted to access private element on non-instance"); } var h = [].concat(t[0]), v = t[3], w = !u, D = 1 === o, S = 3 === o, j = 4 === o, E = 2 === o; function I(t, n, r) { return function (o, i) { return n && (i = o, o = e), r && r(o), P[t].call(o, i); }; } if (!w) { var P = {}, k = [], F = S ? "get" : j || D ? "set" : "value"; if (f ? (l || D ? P = { get: _setFunctionName(function () { return v(this); }, r, "get"), set: function set(e) { t[4](this, e); } } : P[F] = v, l || _setFunctionName(P[F], r, E ? "" : F)) : l || (P = Object.getOwnPropertyDescriptor(e, r)), !l && !f) { if ((c = y[+s][r]) && 7 !== (c ^ o)) throw Error("Decorating two elements with the same name (" + P[F].name + ") is not supported yet"); y[+s][r] = o < 3 ? 1 : o; } } for (var N = e, O = h.length - 1; O >= 0; O -= n ? 2 : 1) { var T = b(h[O], "A decorator", "be", true), z = n ? h[O - 1] : void 0, A = {}, H = { kind: ["field", "accessor", "method", "getter", "setter", "class"][o], name: r, metadata: a, addInitializer: function (e, t) { if (e.v) throw new TypeError("attempted to call addInitializer after decoration was finished"); b(t, "An initializer", "be", true), i.push(t); }.bind(null, A) }; if (w) c = T.call(z, N, H), A.v = 1, b(c, "class decorators", "return") && (N = c);else if (H["static"] = s, H["private"] = f, c = H.access = { has: f ? p.bind() : function (e) { return r in e; } }, j || (c.get = f ? E ? function (e) { return d(e), P.value; } : I("get", 0, d) : function (e) { return e[r]; }), E || S || (c.set = f ? I("set", 0, d) : function (e, t) { e[r] = t; }), N = T.call(z, D ? { get: P.get, set: P.set } : P[F], H), A.v = 1, D) { if ("object" == _typeof$1(N) && N) (c = b(N.get, "accessor.get")) && (P.get = c), (c = b(N.set, "accessor.set")) && (P.set = c), (c = b(N.init, "accessor.init")) && k.unshift(c);else if (void 0 !== N) throw new TypeError("accessor decorators must return an object with get, set, or init properties or undefined"); } else b(N, (l ? "field" : "method") + " decorators", "return") && (l ? k.unshift(N) : P[F] = N); } return o < 2 && u.push(g(k, s, 1), g(i, s, 0)), l || w || (f ? D ? u.splice(-1, 0, I("get", s), I("set", s)) : u.push(E ? P[F] : b.call.bind(P[F])) : m(e, r, P)), N; } function w(e) { return m(e, d, { configurable: true, enumerable: true, value: a }); } return void 0 !== i && (a = i[d]), a = h(null == a ? null : a), f = [], l = function l(e) { e && f.push(g(e)); }, p = function p(t, r) { for (var i = 0; i < n.length; i++) { var a = n[i], c = a[1], l = 7 & c; if ((8 & c) == t && !l == r) { var p = a[2], d = !!a[3], m = 16 & c; applyDec(t ? e : e.prototype, a, m, d ? "#" + p : _toPropertyKey$1(p), l, l < 2 ? [] : t ? s = s || [] : u = u || [], f, !!t, d, r, t && d ? function (t) { return _checkInRHS(t) === e; } : o); } } }, p(8, 0), p(0, 0), p(8, 1), p(0, 1), l(u), l(s), c = f, v || w(e), { e: c, get c() { var n = []; return v && [w(e = applyDec(e, [t], r, e.name, 5, n)), g(n, 1)]; } }; }
-function _toPropertyKey$1(t) { var i = _toPrimitive$1(t, "string"); return "symbol" == _typeof$1(i) ? i : i + ""; }
-function _toPrimitive$1(t, r) { if ("object" != _typeof$1(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof$1(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function _setFunctionName(e, t, n) { "symbol" == _typeof$1(t) && (t = (t = t.description) ? "[" + t + "]" : ""); try { Object.defineProperty(e, "name", { configurable: !0, value: n ? n + " " + t : t }); } catch (e) {} return e; }
-function _checkInRHS(e) { if (Object(e) !== e) throw TypeError("right-hand side of 'in' should be an object, got " + (null !== e ? _typeof$1(e) : "null")); return e; }
+function _applyDecs(e, t, n, r, o, i) { var a, c, u, s, f, l, p, d = Symbol.metadata || Symbol["for"]("Symbol.metadata"), m = Object.defineProperty, h = Object.create, y = [h(null), h(null)], v = t.length; function g(t, n, r) { return function (o, i) { n && (i = o, o = e); for (var a = 0; a < t.length; a++) i = t[a].apply(o, r ? [i] : []); return r ? i : o; }; } function b(e, t, n, r) { if ("function" != typeof e && (r || void 0 !== e)) throw new TypeError(t + " must " + (n || "be") + " a function" + (r ? "" : " or undefined")); return e; } function applyDec(e, t, n, r, o, i, u, s, f, l, p) { function d(e) { if (!p(e)) throw new TypeError("Attempted to access private element on non-instance"); } var h = [].concat(t[0]), v = t[3], w = !u, D = 1 === o, S = 3 === o, j = 4 === o, E = 2 === o; function I(t, n, r) { return function (o, i) { return n && (i = o, o = e), r && r(o), P[t].call(o, i); }; } if (!w) { var P = {}, k = [], F = S ? "get" : j || D ? "set" : "value"; if (f ? (l || D ? P = { get: _setFunctionName(function () { return v(this); }, r, "get"), set: function set(e) { t[4](this, e); } } : P[F] = v, l || _setFunctionName(P[F], r, E ? "" : F)) : l || (P = Object.getOwnPropertyDescriptor(e, r)), !l && !f) { if ((c = y[+s][r]) && 7 !== (c ^ o)) throw Error("Decorating two elements with the same name (" + P[F].name + ") is not supported yet"); y[+s][r] = o < 3 ? 1 : o; } } for (var N = e, O = h.length - 1; O >= 0; O -= n ? 2 : 1) { var T = b(h[O], "A decorator", "be", true), z = n ? h[O - 1] : void 0, A = {}, H = { kind: ["field", "accessor", "method", "getter", "setter", "class"][o], name: r, metadata: a, addInitializer: function (e, t) { if (e.v) throw new TypeError("attempted to call addInitializer after decoration was finished"); b(t, "An initializer", "be", true), i.push(t); }.bind(null, A) }; if (w) c = T.call(z, N, H), A.v = 1, b(c, "class decorators", "return") && (N = c);else if (H["static"] = s, H["private"] = f, c = H.access = { has: f ? p.bind() : function (e) { return r in e; } }, j || (c.get = f ? E ? function (e) { return d(e), P.value; } : I("get", 0, d) : function (e) { return e[r]; }), E || S || (c.set = f ? I("set", 0, d) : function (e, t) { e[r] = t; }), N = T.call(z, D ? { get: P.get, set: P.set } : P[F], H), A.v = 1, D) { if ("object" == _typeof(N) && N) (c = b(N.get, "accessor.get")) && (P.get = c), (c = b(N.set, "accessor.set")) && (P.set = c), (c = b(N.init, "accessor.init")) && k.unshift(c);else if (void 0 !== N) throw new TypeError("accessor decorators must return an object with get, set, or init properties or undefined"); } else b(N, (l ? "field" : "method") + " decorators", "return") && (l ? k.unshift(N) : P[F] = N); } return o < 2 && u.push(g(k, s, 1), g(i, s, 0)), l || w || (f ? D ? u.splice(-1, 0, I("get", s), I("set", s)) : u.push(E ? P[F] : b.call.bind(P[F])) : m(e, r, P)), N; } function w(e) { return m(e, d, { configurable: true, enumerable: true, value: a }); } return void 0 !== i && (a = i[d]), a = h(null == a ? null : a), f = [], l = function l(e) { e && f.push(g(e)); }, p = function p(t, r) { for (var i = 0; i < n.length; i++) { var a = n[i], c = a[1], l = 7 & c; if ((8 & c) == t && !l == r) { var p = a[2], d = !!a[3], m = 16 & c; applyDec(t ? e : e.prototype, a, m, d ? "#" + p : _toPropertyKey(p), l, l < 2 ? [] : t ? s = s || [] : u = u || [], f, !!t, d, r, t && d ? function (t) { return _checkInRHS(t) === e; } : o); } } }, p(8, 0), p(0, 0), p(8, 1), p(0, 1), l(u), l(s), c = f, v || w(e), { e: c, get c() { var n = []; return v && [w(e = applyDec(e, [t], r, e.name, 5, n)), g(n, 1)]; } }; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _setFunctionName(e, t, n) { "symbol" == _typeof(t) && (t = (t = t.description) ? "[" + t + "]" : ""); try { Object.defineProperty(e, "name", { configurable: !0, value: n ? n + " " + t : t }); } catch (e) {} return e; }
+function _checkInRHS(e) { if (Object(e) !== e) throw TypeError("right-hand side of 'in' should be an object, got " + (null !== e ? _typeof(e) : "null")); return e; }
 
 /** @import {DisclosureMode} from "@/components/_shared/base/Disclosure" */
 var _A = /*#__PURE__*/new WeakMap();
@@ -871,15 +1484,7 @@ var DisclosureGroup = /*#__PURE__*/function (_LitElement) {
       });
       if (!item) return;
       _this.expand(item);
-
-      // The browser already tried to scroll here and found nothing laid out,
-      // because the panel was hidden at the time.
-      _this.updateComplete.then(function () {
-        target.scrollIntoView({
-          block: "start",
-          behavior: "instant"
-        });
-      });
+      return true;
     });
     _classPrivateFieldSet(_mediaQuery, _this, new MediaQueryController(_this));
     _classPrivateFieldSet(_deepLink, _this, new DeepLinkController(_this, _classPrivateFieldGet(_onDeepLink, _this)));
@@ -1070,7 +1675,7 @@ var DisclosureGroup = /*#__PURE__*/function (_LitElement) {
     key: "expandAll",
     value: function expandAll() {
       if (!this.allowsMultiple) return;
-      var _iterator = _createForOfIteratorHelper$1(this.items),
+      var _iterator = _createForOfIteratorHelper(this.items),
         _step;
       try {
         for (_iterator.s(); !(_step = _iterator.n()).done;) {
@@ -1091,7 +1696,7 @@ var DisclosureGroup = /*#__PURE__*/function (_LitElement) {
   }, {
     key: "collapseAll",
     value: function collapseAll() {
-      var _iterator2 = _createForOfIteratorHelper$1(this.items),
+      var _iterator2 = _createForOfIteratorHelper(this.items),
         _step2;
       try {
         for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
@@ -1133,7 +1738,7 @@ function _setExpanded(item, expanded) {
   if (!this.items.includes(item)) return;
   if (!expanded && this.requiresSelection && this.expandedItems.length <= 1) return;
   if (expanded && !this.allowsMultiple) {
-    var _iterator3 = _createForOfIteratorHelper$1(this.expandedItems),
+    var _iterator3 = _createForOfIteratorHelper(this.expandedItems),
       _step3;
     try {
       for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
@@ -1256,7 +1861,7 @@ function _enforce(items) {
   });
   if (!this.allowsMultiple && expanded.length > 1) {
     var keep = expanded.includes(_classPrivateFieldGet(_preferred, this)) ? _classPrivateFieldGet(_preferred, this) : expanded[0];
-    var _iterator4 = _createForOfIteratorHelper$1(expanded),
+    var _iterator4 = _createForOfIteratorHelper(expanded),
       _step4;
     try {
       for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
@@ -1328,409 +1933,6 @@ _init_assigned = _applyDecs$e[8];
 _get_assigned = _applyDecs$e[9];
 _applyDecs$e[10];
 _init_extra_assigned = _applyDecs$e[11];
-_defineProperty$1(DisclosureGroup, "styles", [styles, groupStyles]);
+_defineProperty(DisclosureGroup, "styles", [styles, groupStyles]);
 
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), true).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
-function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: true, configurable: true, writable: true }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: true } : { done: false, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = true, u = false; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = true, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
-function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
-function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
-/**
- * Pause any media inside a subtree that is about to be hidden (dialog closed,
- * carousel slide deactivated, tab panel switched, etc.), and restore it when
- * the subtree becomes visible again.
- *
- * Handles:
- * - <video> / <audio> -> native pause()
- * - YouTube iframes   -> postMessage (requires enablejsapi=1 in the src)
- * - Vimeo iframes     -> postMessage (no extra params needed)
- * - any other iframe  -> detach src to about:blank, restore later
- *
- * Autoplaying, looped, muted media is read as decorative background video and
- * resumes on its own. Everything else stays paused unless `resume` is passed,
- * so nothing with a soundtrack restarts without the caller asking for it.
- *
- * State is stored in data-* attributes rather than a WeakMap so it survives
- * cloneNode()/innerHTML round-trips and is visible in devtools.
- */
-
-var BLANK = "about:blank";
-var MEDIA_SELECTOR = "video, audio, iframe";
-var OPT_OUT_SELECTOR = "[data-autopause=\"off\"]";
-var YOUTUBE_HOSTS = new Set(["www.youtube.com", "youtube.com", "m.youtube.com", "www.youtube-nocookie.com", "youtube-nocookie.com"]);
-var VIMEO_HOSTS = new Set(["player.vimeo.com"]);
-var YOUTUBE_PAUSE = JSON.stringify({
-  event: "command",
-  func: "pauseVideo",
-  args: []
-});
-var YOUTUBE_PLAY = JSON.stringify({
-  event: "command",
-  func: "playVideo",
-  args: []
-});
-var VIMEO_PAUSE = JSON.stringify({
-  method: "pause"
-});
-var VIMEO_PLAY = JSON.stringify({
-  method: "play"
-});
-
-/**
- * postMessage sent before a player has registered its own listener is dropped
- * with no acknowledgement, so the iframe's load event stands in for readiness.
- * A frame that finished loading before prepareMedia() saw it is never marked
- * and takes the detach path instead: slower, but always correct.
- */
-var trackedFrames = new WeakSet();
-var readyFrames = new WeakSet();
-function trackReadiness(iframe) {
-  if (trackedFrames.has(iframe)) return;
-  trackedFrames.add(iframe);
-  iframe.addEventListener("load", function () {
-    if (iframe.getAttribute("src") === BLANK) readyFrames["delete"](iframe);else readyFrames.add(iframe);
-  });
-}
-function collectMedia(root, deep) {
-  var found = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : new Set();
-  if (!root) return found;
-  if (typeof root.matches === "function" && root.matches(MEDIA_SELECTOR)) {
-    found.add(root);
-  }
-  if (typeof root.querySelectorAll !== "function") return found;
-  var _iterator = _createForOfIteratorHelper(root.querySelectorAll(MEDIA_SELECTOR)),
-    _step;
-  try {
-    for (_iterator.s(); !(_step = _iterator.n()).done;) {
-      var _el = _step.value;
-      found.add(_el);
-    }
-  } catch (err) {
-    _iterator.e(err);
-  } finally {
-    _iterator.f();
-  }
-  if (deep) {
-    var _iterator2 = _createForOfIteratorHelper(root.querySelectorAll("*")),
-      _step2;
-    try {
-      for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-        var el = _step2.value;
-        if (el.shadowRoot) collectMedia(el.shadowRoot, deep, found);
-      }
-    } catch (err) {
-      _iterator2.e(err);
-    } finally {
-      _iterator2.f();
-    }
-  }
-  return found;
-}
-
-/**
- * closest() deliberately stops at the shadow boundary — an opt-out on a host
- * element does not silently disable autopause for everything inside it.
- */
-function isOptedOut(el) {
-  return typeof el.closest === "function" && el.closest(OPT_OUT_SELECTOR) !== null;
-}
-function iframeUrl(iframe) {
-  var raw = iframe.getAttribute("src");
-  if (!raw || raw === BLANK) return null;
-  try {
-    // Resolves protocol-relative and relative URLs.
-    return new URL(raw, document.baseURI);
-  } catch (_unused) {
-    return null;
-  }
-}
-function post(iframe, origin, payload) {
-  try {
-    if (!iframe.contentWindow) return false;
-    // Target the embed's own origin rather than "*" so the command isn't
-    // readable by an unrelated document that happens to be loaded there.
-    iframe.contentWindow.postMessage(payload, origin);
-    return true;
-  } catch (_unused2) {
-    return false;
-  }
-}
-function stripAutoplay(href) {
-  try {
-    var url = new URL(href, document.baseURI);
-    url.searchParams["delete"]("autoplay");
-    url.searchParams["delete"]("autostart"); // some third-party players
-    return url.href;
-  } catch (_unused3) {
-    return href;
-  }
-}
-
-/**
- * Decorative background video: no soundtrack to interrupt and no end to reach,
- * so restarting it can't surprise anyone. `muted` is read live rather than from
- * the attribute, so anything unmuted at runtime loses the exemption.
- */
-function isBackgroundMedia(el) {
-  return el.autoplay && el.loop && el.muted;
-}
-function isBackgroundEmbed(url) {
-  var params = url.searchParams;
-  if (params.get("background") === "1") return true; // Vimeo background mode
-
-  return params.get("autoplay") === "1" && params.get("loop") === "1" && (params.get("mute") === "1" || params.get("muted") === "1");
-}
-
-/**
- * Whether an earlier pauseMedia() already recorded this element. Bailing out on
- * it keeps the first scope to pause something as its owner, which is what makes
- * nested scopes restore correctly.
- */
-function isHandled(el) {
-  return el.dataset.autopauseResume !== undefined || el.dataset.autopauseOwner !== undefined;
-}
-function mark(el, _ref, background) {
-  var remember = _ref.remember,
-    owner = _ref.owner;
-  if (remember) el.dataset.autopauseResume = background ? "auto" : "true";
-  if (owner) el.dataset.autopauseOwner = owner;
-}
-function playEmbed(el) {
-  var url = iframeUrl(el);
-  if (!url || !readyFrames.has(el)) return false;
-  if (YOUTUBE_HOSTS.has(url.hostname)) return post(el, url.origin, YOUTUBE_PLAY);
-  if (VIMEO_HOSTS.has(url.hostname)) return post(el, url.origin, VIMEO_PLAY);
-  return false;
-}
-function pauseHtmlMedia(el, opts) {
-  if (opts.respectPictureInPicture && document.pictureInPictureElement === el) {
-    // The user explicitly popped this out; it is no longer "inside" the
-    // component in any meaningful sense.
-    return "skipped:pip";
-  }
-  if (opts.respectFullscreen && document.fullscreenElement === el) {
-    return "skipped:fullscreen";
-  }
-  if (isHandled(el)) return "noop:already-paused";
-  var background = isBackgroundMedia(el);
-
-  // Background video a frame into page load has often not started yet, and
-  // returning here would leave it free to start once we've walked away.
-  if (el.paused && !background) return "noop:already-paused";
-  mark(el, opts, background);
-  el.pause();
-  return "paused:native";
-}
-function pauseIframe(el, opts) {
-  var url = iframeUrl(el);
-  if (!url) return "noop:no-src";
-  if (isHandled(el)) return "noop:already-paused";
-  var background = isBackgroundEmbed(url);
-  var youtube = YOUTUBE_HOSTS.has(url.hostname);
-
-  // Both APIs ignore commands sent before the player loads, and YouTube's also
-  // needs enablejsapi=1 to have been in the URL at load time. Neither reports
-  // failure, so anything unconfirmed falls through to detaching.
-  if (readyFrames.has(el)) {
-    if (youtube && url.searchParams.get("enablejsapi") === "1") {
-      if (post(el, url.origin, YOUTUBE_PAUSE)) {
-        mark(el, opts, background);
-        return "paused:youtube-api";
-      }
-    } else if (VIMEO_HOSTS.has(url.hostname)) {
-      if (post(el, url.origin, VIMEO_PAUSE)) {
-        mark(el, opts, background);
-        return "paused:vimeo-api";
-      }
-    }
-  }
-
-  // Fallback: release the embed entirely. Going to about:blank rather than
-  // reassigning the same URL means we don't pay for a reload while hidden.
-  readyFrames["delete"](el);
-  el.dataset.autopauseSrc = url.href;
-  mark(el, opts, background);
-  el.setAttribute("src", BLANK);
-  return "paused:detached";
-}
-
-/**
- * Pause all media within `root`.
- *
- * @param {Element|Document|ShadowRoot} root
- * @param {object} [options]
- * @param {boolean} [options.deep=true]     descend into open shadow roots
- * @param {boolean} [options.remember=true] mark elements so restoreMedia() can
- *   resume them
- * @param {string} [options.owner=null]     tag whatever this call pauses, so a
- *   matching restoreMedia() leaves media paused by a nested scope alone
- * @param {boolean} [options.respectPictureInPicture=true]
- * @param {boolean} [options.respectFullscreen=true]
- * @returns {Array<{element: Element, result: string}>} for logging/tests
- */
-function pauseMedia() {
-  var root = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : document;
-  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  var opts = _objectSpread({
-    deep: true,
-    remember: true,
-    owner: null,
-    respectPictureInPicture: true,
-    respectFullscreen: true
-  }, options);
-  var results = [];
-  var _iterator3 = _createForOfIteratorHelper(collectMedia(root, opts.deep)),
-    _step3;
-  try {
-    for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-      var el = _step3.value;
-      if (isOptedOut(el)) {
-        results.push({
-          element: el,
-          result: "skipped:opt-out"
-        });
-        continue;
-      }
-      var tag = el.tagName.toLowerCase();
-      var result = tag === "iframe" ? pauseIframe(el, opts) : pauseHtmlMedia(el, opts);
-      results.push({
-        element: el,
-        result: result
-      });
-    }
-  } catch (err) {
-    _iterator3.e(err);
-  } finally {
-    _iterator3.f();
-  }
-  return results;
-}
-
-/**
- * Undo pauseMedia() for a subtree that is becoming visible again. Background
- * video restarts either way; `resume` additionally restarts media that was
- * playing under its own steam when it was paused.
- *
- * @param {Element|Document|ShadowRoot} root
- * @param {object} [options]
- * @param {boolean} [options.deep=true]
- * @param {boolean} [options.resume=false]
- * @param {string} [options.owner=null] only touch media tagged with this owner
- */
-function restoreMedia() {
-  var root = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : document;
-  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  var _options$deep = options.deep,
-    deep = _options$deep === void 0 ? true : _options$deep,
-    _options$resume = options.resume,
-    resume = _options$resume === void 0 ? false : _options$resume,
-    _options$owner = options.owner,
-    owner = _options$owner === void 0 ? null : _options$owner;
-  var results = [];
-  var _iterator4 = _createForOfIteratorHelper(collectMedia(root, deep)),
-    _step4;
-  try {
-    for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-      var el = _step4.value;
-      // Media paused by a nested scope belongs to that scope; it stays paused
-      // until the scope that owns it decides otherwise.
-      if (owner && el.dataset.autopauseOwner !== owner) {
-        results.push({
-          element: el,
-          result: "skipped:other-owner"
-        });
-        continue;
-      }
-      var flag = el.dataset.autopauseResume;
-      var shouldResume = flag === "auto" || resume && flag === "true";
-      delete el.dataset.autopauseOwner;
-      delete el.dataset.autopauseResume;
-      if (el.tagName.toLowerCase() === "iframe") {
-        var src = el.dataset.autopauseSrc;
-
-        // No stored src means it was paused over postMessage and is still
-        // loaded, so it only needs telling to start again.
-        if (!src) {
-          var _played = shouldResume && playEmbed(el);
-          results.push({
-            element: el,
-            result: _played ? "restored:playing" : "noop:not-detached"
-          });
-          continue;
-        }
-        delete el.dataset.autopauseSrc;
-        el.setAttribute("src", shouldResume ? src : stripAutoplay(src));
-        results.push({
-          element: el,
-          result: "restored:reattached"
-        });
-        continue;
-      }
-      if (!shouldResume) {
-        results.push({
-          element: el,
-          result: "noop:left-paused"
-        });
-        continue;
-      }
-
-      // play() rejects with NotAllowedError when autoplay policy blocks it, and
-      // with AbortError if something pauses it again before the promise settles.
-      // Neither is actionable here, but an unhandled rejection is noisy.
-      var played = el.play();
-      if (played && typeof played["catch"] === "function") played["catch"](function () {});
-      results.push({
-        element: el,
-        result: "restored:playing"
-      });
-    }
-  } catch (err) {
-    _iterator4.e(err);
-  } finally {
-    _iterator4.f();
-  }
-  return results;
-}
-
-/**
- * Add enablejsapi=1 to YouTube embeds so they can be paused without a teardown,
- * and start watching provider iframes for readiness. Rewriting src reloads the
- * iframe, so this has to run before anything can be playing.
- */
-function prepareMedia() {
-  var root = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : document;
-  var _ref2 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
-    _ref2$deep = _ref2.deep,
-    deep = _ref2$deep === void 0 ? true : _ref2$deep;
-  var _iterator5 = _createForOfIteratorHelper(collectMedia(root, deep)),
-    _step5;
-  try {
-    for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
-      var el = _step5.value;
-      if (el.tagName.toLowerCase() !== "iframe") continue;
-      var url = iframeUrl(el);
-      if (!url) continue;
-      var youtube = YOUTUBE_HOSTS.has(url.hostname);
-      if (!youtube && !VIMEO_HOSTS.has(url.hostname)) continue;
-      trackReadiness(el);
-      if (el.dataset.autopausePrepared === "true") continue;
-      el.dataset.autopausePrepared = "true";
-      if (!youtube) continue;
-      if (url.searchParams.get("enablejsapi") === "1") continue;
-      url.searchParams.set("enablejsapi", "1");
-      // YouTube uses this to validate the postMessage sender.
-      url.searchParams.set("origin", window.location.origin);
-      el.setAttribute("src", url.href);
-    }
-  } catch (err) {
-    _iterator5.e(err);
-  } finally {
-    _iterator5.f();
-  }
-}
-
-export { DisclosureGroup as D, MediaQueryController as M, SizeBreakpointMd as S, Disclosure as a, SizeBreakpointLg as b, prepareMedia as c, pauseMedia as p, restoreMedia as r, styles as s };
+export { DisclosureGroup as D, MediaQueryController as M, SizeBreakpointMd as S, Disclosure as a, DeepLinkController as b, SizeBreakpointLg as c, MediaController as d, styles as s };

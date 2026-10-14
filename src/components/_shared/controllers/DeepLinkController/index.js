@@ -9,16 +9,21 @@
  * @internal
  */
 export class DeepLinkController {
+  /** @type {import("lit").ReactiveControllerHost & HTMLElement} */
+  #host;
   #onResolve;
+  #request = 0;
 
   /**
-   * @param {import("lit").ReactiveControllerHost} host
-   * @param {(target: HTMLElement) => void} onResolve - Called with the matched
+   * @param {import("lit").ReactiveControllerHost & HTMLElement} host
+   * @param {(target: HTMLElement) => boolean|void} onResolve - Called with the matched
    *   element. Not called at all when the URL has no fragment, or when the
-   *   fragment matches nothing in the document.
+   *   fragment matches nothing in the document. Return true to scroll after
+   *   the host and any nested containers have had a chance to reveal it.
    */
   constructor(host, onResolve) {
     this.#onResolve = onResolve;
+    this.#host = host;
     host.addController(this);
   }
 
@@ -41,14 +46,26 @@ export class DeepLinkController {
 
   resolve() {
     const target = this.target;
-    if (target) this.#onResolve(target);
+    const request = ++this.#request;
+    if (!target || !this.#onResolve(target)) return;
+
+    // All hash listeners run before this frame, and Lit updates flush before
+    // rendering. This lets nested groups reveal their panels before scrolling.
+    requestAnimationFrame(() => {
+      if (!this.#host.isConnected || request !== this.#request || target !== this.target) return;
+      target.scrollIntoView({block: "start", behavior: "instant"});
+    });
   }
 
   hostConnected() {
     window.addEventListener("hashchange", this.#onHashChange);
+    this.#host.updateComplete.then(() => {
+      if (this.#host.isConnected) this.resolve();
+    });
   }
 
   hostDisconnected() {
+    this.#request++;
     window.removeEventListener("hashchange", this.#onHashChange);
   }
 

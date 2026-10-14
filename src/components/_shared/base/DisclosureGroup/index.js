@@ -272,12 +272,7 @@ export class DisclosureGroup extends LitElement {
     const item = this.items.find((item) => item === target || item.contains(target));
     if (!item) return;
     this.expand(item);
-
-    // The browser already tried to scroll here and found nothing laid out,
-    // because the panel was hidden at the time.
-    this.updateComplete.then(() => {
-      target.scrollIntoView({block: "start", behavior: "instant"});
-    });
+    return true;
   };
   // #endregion
 
