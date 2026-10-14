@@ -1,16 +1,20 @@
-{% set attributes = attributes|default(create_attribute()) %}
-
-{% set attributes = attributes
-  .addClass("tcds-pullout-menu")
-  .addClass(classes|default([]))
+{% set base_class = "tcds-pullout-menu" %}
+{% set attributes = create_attribute(attributes|default({}))
+  .addClass(base_class)
+  .setAttribute("open", open|default(false))
 %}
 
 <details {{ attributes }}>
   <summary class="tcds-pullout-menu__toggle">{{ title }}</summary>
   <ul class="tcds-pullout-menu__list">
     {% for link in links %}
-      <li class="tcds-pullout-menu__item">
-        <a href="{{ link.url }}" class="tcds-pullout-menu__link">
+      <li {{ create_attribute(link_attributes|default({}))
+        .addClass("#{base_class}__item")
+      }}>
+        <a {{ create_attribute(link.attributes|default({}))
+          .setAttribute("href", link.url)
+          .addClass(["#{base_class}__link", link.is_active ? "#{base_class}__link--active"])
+        }}>
           {% if link.before_text %}
             <span class="tcds-pullout-menu__before-text">{{ link.before_text }}</span>
           {% endif %}

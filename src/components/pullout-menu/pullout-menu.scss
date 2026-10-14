@@ -119,6 +119,11 @@
       color: var(--tcds-color-theme-accent);
     }
 
+    &--active {
+      color: var(--tcds-color-theme-accent);
+      box-shadow: inset 4px 0 0 var(--tcds-color-theme-accent);
+    }
+
     &::before {
       content: "";
       display: block;
