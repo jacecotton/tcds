@@ -2,6 +2,7 @@ import {LitElement} from "lit";
 import {html} from "lit/static-html.js";
 import {customElement, property} from "lit/decorators.js";
 import {MediaController} from "@/components/_shared/controllers/MediaController";
+import {DeepLinkController} from "@/components/_shared/controllers/DeepLinkController";
 
 import sharedStyles from "@/components/_shared/styles";
 import localStyles from "./slide.styles.js";
@@ -13,6 +14,7 @@ import localStyles from "./slide.styles.js";
  * @tag tcds-slide
  *
  * @slot - Slide content.
+ * @fires {CustomEvent<null>} tcds-slide:reveal - Requests selection when browser search or a fragment reveals the slide.
  *
  * @cssState ready - The slide has upgraded and resolved its initial styles;
  *   transitions between slides are enabled.
@@ -71,6 +73,8 @@ export class Slide extends LitElement {
   #internals;
   /** @type {MediaController} */
   #media;
+  /** @type {DeepLinkController} */
+  #deepLink;
   // #endregion
 
   // #region Lifecycle
@@ -84,6 +88,11 @@ export class Slide extends LitElement {
     this.#internals.role = "group";
     this.#internals.ariaRoleDescription = "slide";
     this.#media = new MediaController(this, () => this.selected && !this.suspended);
+    this.#deepLink = new DeepLinkController(this, (target) => {
+      if (target !== this && !this.contains(target)) return;
+      this.#onBeforeMatch();
+      return true;
+    });
     this.addEventListener("beforematch", this.#onBeforeMatch);
   }
 
@@ -100,8 +109,12 @@ export class Slide extends LitElement {
     this.#internals.ariaLabel = `${this.position + 1} of ${this.total}`;
     // Unlike visibility:hidden, until-found permits find-in-page to reveal
     // inactive slides. Keep an explicit author-supplied hidden state intact.
-    if (!this.hasAttribute("hidden") || this.hidden === "until-found") {
-      this.hidden = this.selected ? false : "until-found";
+    // Some browsers expose `hidden` as a Boolean property, which would coerce
+    // "until-found" to hidden="". Read/write the attribute value directly.
+    const hidden = this.getAttribute("hidden");
+    if (hidden === null || hidden === "until-found") {
+      if (this.selected) this.removeAttribute("hidden");
+      else this.setAttribute("hidden", "until-found");
     }
   }
 
@@ -113,9 +126,11 @@ export class Slide extends LitElement {
   // #region Media
   #onSlotChange() {
     this.#media.contentChanged();
+    this.#deepLink.resolve();
   }
 
   #onBeforeMatch = () => {
+    this.selected = true;
     this.dispatchEvent(new CustomEvent("tcds-slide:reveal", {
       bubbles: true,
       composed: true,

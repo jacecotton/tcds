@@ -63,7 +63,8 @@ export class AccordionAnimationController {
     if (this.#previousOpen === undefined) {
       // `[hidden=until-found]` keeps the content discoverable by browser text
       // search (cmd/ctrl+F).
-      panel.hidden = isOpen ? false : "until-found";
+      if (isOpen) panel.removeAttribute("hidden");
+      else panel.setAttribute("hidden", "until-found");
       panel.style.height = null;
       content.style.opacity = null;
       this.#previousOpen = isOpen;
@@ -95,7 +96,7 @@ export class AccordionAnimationController {
     const durationExpressive = reducedMotion ? 1 : MotionDurationExpressive;
 
     if (isOpen) {
-      panel.hidden = false;
+      panel.removeAttribute("hidden");
       content.style.opacity = 0;
 
       // After animation, we set panel height to auto so it can respond to new
@@ -120,7 +121,7 @@ export class AccordionAnimationController {
         {duration, easing: MotionEasingEnter},
       );
       height.onfinish = () => {
-        panel.hidden = "until-found";
+        panel.setAttribute("hidden", "until-found");
         panel.style.height = null;
       };
 

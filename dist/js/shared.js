@@ -122,7 +122,7 @@ var AccordionAnimationController = /*#__PURE__*/function () {
       if (_classPrivateFieldGet$5(_previousOpen, this) === undefined) {
         // `[hidden=until-found]` keeps the content discoverable by browser text
         // search (cmd/ctrl+F).
-        panel.hidden = isOpen ? false : "until-found";
+        if (isOpen) panel.removeAttribute("hidden");else panel.setAttribute("hidden", "until-found");
         panel.style.height = null;
         content.style.opacity = null;
         _classPrivateFieldSet$5(_previousOpen, this, isOpen);
@@ -158,7 +158,7 @@ function _animate(isOpen, panel, content) {
   var duration = reducedMotion ? 1 : MotionDurationProductive;
   var durationExpressive = reducedMotion ? 1 : MotionDurationExpressive;
   if (isOpen) {
-    panel.hidden = false;
+    panel.removeAttribute("hidden");
     content.style.opacity = 0;
 
     // After animation, we set panel height to auto so it can respond to new
@@ -194,7 +194,7 @@ function _animate(isOpen, panel, content) {
       easing: MotionEasingEnter
     });
     _height.onfinish = function () {
-      panel.hidden = "until-found";
+      panel.setAttribute("hidden", "until-found");
       panel.style.height = null;
     };
     var _opacity = content.animate({
@@ -707,7 +707,7 @@ var MediaController = /*#__PURE__*/function () {
     key: "hostDisconnected",
     value: function hostDisconnected() {
       _classPrivateFieldGet$4(_host$2, this).removeEventListener("play", _classPrivateFieldGet$4(_onPlay, this), true);
-      cancelAnimationFrame(_classPrivateFieldGet$4(_frame, this));
+      if (_classPrivateFieldGet$4(_frame, this) !== undefined) cancelAnimationFrame(_classPrivateFieldGet$4(_frame, this));
       _classPrivateFieldSet$4(_frame, this, undefined);
       _classPrivateFieldSet$4(_settled, this, false);
     }
@@ -747,6 +747,108 @@ function _sync() {
 }
 
 function _typeof$3(o) { "@babel/helpers - typeof"; return _typeof$3 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof$3(o); }
+function _classCallCheck$3(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties$3(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey$3(o.key), o); } }
+function _createClass$3(e, r, t) { return r && _defineProperties$3(e.prototype, r), Object.defineProperty(e, "prototype", { writable: false }), e; }
+function _toPropertyKey$3(t) { var i = _toPrimitive$3(t, "string"); return "symbol" == _typeof$3(i) ? i : i + ""; }
+function _toPrimitive$3(t, r) { if ("object" != _typeof$3(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof$3(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return (String )(t); }
+function _classPrivateFieldInitSpec$3(e, t, a) { _checkPrivateRedeclaration$3(e, t), t.set(e, a); }
+function _checkPrivateRedeclaration$3(e, t) { if (t.has(e)) throw new TypeError("Cannot initialize the same private elements twice on an object"); }
+function _classPrivateFieldGet$3(s, a) { return s.get(_assertClassBrand$3(s, a)); }
+function _classPrivateFieldSet$3(s, a, r) { return s.set(_assertClassBrand$3(s, a), r), r; }
+function _assertClassBrand$3(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
+var _host$1 = /*#__PURE__*/new WeakMap();
+var _onResolve = /*#__PURE__*/new WeakMap();
+var _request = /*#__PURE__*/new WeakMap();
+var _onHashChange = /*#__PURE__*/new WeakMap();
+/**
+ * Resolves the document's fragment identifier to an element and hands it to the
+ * host, on connect, on `hashchange`, and on demand.
+ *
+ * The host decides what a match means. This controller only answers the
+ * question "what element is the URL pointing at right now?"
+ *
+ * @implements {import("lit").ReactiveController}
+ * @internal
+ */
+var DeepLinkController = /*#__PURE__*/function () {
+  /**
+   * @param {import("lit").ReactiveControllerHost & HTMLElement} host
+   * @param {(target: HTMLElement) => boolean|void} onResolve - Called with the matched
+   *   element. Not called at all when the URL has no fragment, or when the
+   *   fragment matches nothing in the document. Return true to scroll after
+   *   the host and any nested containers have had a chance to reveal it.
+   */
+  function DeepLinkController(host, onResolve) {
+    var _this = this;
+    _classCallCheck$3(this, DeepLinkController);
+    /** @type {import("lit").ReactiveControllerHost & HTMLElement} */
+    _classPrivateFieldInitSpec$3(this, _host$1, void 0);
+    _classPrivateFieldInitSpec$3(this, _onResolve, void 0);
+    _classPrivateFieldInitSpec$3(this, _request, 0);
+    _classPrivateFieldInitSpec$3(this, _onHashChange, function () {
+      _this.resolve();
+    });
+    _classPrivateFieldSet$3(_onResolve, this, onResolve);
+    _classPrivateFieldSet$3(_host$1, this, host);
+    host.addController(this);
+  }
+
+  /**
+   * The element the current URL points at, if any.
+   */
+  return _createClass$3(DeepLinkController, [{
+    key: "target",
+    get: function get() {
+      var fragment = location.hash.slice(1);
+      if (!fragment) return null;
+      try {
+        return document.getElementById(decodeURIComponent(fragment));
+      } catch (_unused) {
+        // Malformed percent-encoding throws. Fall back to the raw fragment,
+        // which is what an author who wrote a literal `%` in an id would expect.
+        return document.getElementById(fragment);
+      }
+    }
+  }, {
+    key: "resolve",
+    value: function resolve() {
+      var _this$request,
+        _this2 = this;
+      var target = this.target;
+      var request = _classPrivateFieldSet$3(_request, this, (_this$request = _classPrivateFieldGet$3(_request, this), ++_this$request));
+      if (!target || !_classPrivateFieldGet$3(_onResolve, this).call(this, target)) return;
+
+      // All hash listeners run before this frame, and Lit updates flush before
+      // rendering. This lets nested groups reveal their panels before scrolling.
+      requestAnimationFrame(function () {
+        if (!_classPrivateFieldGet$3(_host$1, _this2).isConnected || request !== _classPrivateFieldGet$3(_request, _this2) || target !== _this2.target) return;
+        target.scrollIntoView({
+          block: "start",
+          behavior: "instant"
+        });
+      });
+    }
+  }, {
+    key: "hostConnected",
+    value: function hostConnected() {
+      var _this3 = this;
+      window.addEventListener("hashchange", _classPrivateFieldGet$3(_onHashChange, this));
+      _classPrivateFieldGet$3(_host$1, this).updateComplete.then(function () {
+        if (_classPrivateFieldGet$3(_host$1, _this3).isConnected) _this3.resolve();
+      });
+    }
+  }, {
+    key: "hostDisconnected",
+    value: function hostDisconnected() {
+      var _this$request2;
+      _classPrivateFieldSet$3(_request, this, (_this$request2 = _classPrivateFieldGet$3(_request, this), _this$request2++, _this$request2));
+      window.removeEventListener("hashchange", _classPrivateFieldGet$3(_onHashChange, this));
+    }
+  }]);
+}();
+
+function _typeof$2(o) { "@babel/helpers - typeof"; return _typeof$2 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof$2(o); }
 var _Disclosure, _templateObject$2, _templateObject2;
 var _init_mode, _init_extra_mode, _init_position, _init_extra_position, _init_total, _init_extra_total;
 function _slicedToArray$1(r, e) { return _arrayWithHoles$1(r) || _iterableToArrayLimit$1(r, e) || _unsupportedIterableToArray$1(r, e) || _nonIterableRest$1(); }
@@ -761,11 +863,11 @@ function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Sym
 function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray$1(r); }
 function _arrayLikeToArray$1(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _taggedTemplateLiteral$2(e, t) { return t || (t = e.slice(0)), Object.freeze(Object.defineProperties(e, { raw: { value: Object.freeze(t) } })); }
-function _classCallCheck$3(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
-function _defineProperties$3(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey$3(o.key), o); } }
-function _createClass$3(e, r, t) { return r && _defineProperties$3(e.prototype, r), Object.defineProperty(e, "prototype", { writable: false }), e; }
+function _classCallCheck$2(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties$2(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey$2(o.key), o); } }
+function _createClass$2(e, r, t) { return r && _defineProperties$2(e.prototype, r), Object.defineProperty(e, "prototype", { writable: false }), e; }
 function _callSuper$1(t, o, e) { return o = _getPrototypeOf$1(o), _possibleConstructorReturn$1(t, _isNativeReflectConstruct$1() ? Reflect.construct(o, [], _getPrototypeOf$1(t).constructor) : o.apply(t, e)); }
-function _possibleConstructorReturn$1(t, e) { if (e && ("object" == _typeof$3(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized$1(t); }
+function _possibleConstructorReturn$1(t, e) { if (e && ("object" == _typeof$2(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized$1(t); }
 function _assertThisInitialized$1(e) { if (void 0 === e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); return e; }
 function _isNativeReflectConstruct$1() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct$1 = function _isNativeReflectConstruct() { return !!t; })(); }
 function _superPropGet$1(t, o, e, r) { var p = _get$1(_getPrototypeOf$1(t.prototype ), o, e); return "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
@@ -774,19 +876,19 @@ function _superPropBase$1(t, o) { for (; !{}.hasOwnProperty.call(t, o) && null !
 function _getPrototypeOf$1(t) { return _getPrototypeOf$1 = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function (t) { return t.__proto__ || Object.getPrototypeOf(t); }, _getPrototypeOf$1(t); }
 function _inherits$1(t, e) { if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function"); t.prototype = Object.create(e && e.prototype, { constructor: { value: t, writable: true, configurable: true } }), Object.defineProperty(t, "prototype", { writable: false }), e && _setPrototypeOf$1(t, e); }
 function _setPrototypeOf$1(t, e) { return _setPrototypeOf$1 = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function (t, e) { return t.__proto__ = e, t; }, _setPrototypeOf$1(t, e); }
-function _classPrivateMethodInitSpec$2(e, a) { _checkPrivateRedeclaration$3(e, a), a.add(e); }
-function _classPrivateFieldInitSpec$3(e, t, a) { _checkPrivateRedeclaration$3(e, t), t.set(e, a); }
-function _checkPrivateRedeclaration$3(e, t) { if (t.has(e)) throw new TypeError("Cannot initialize the same private elements twice on an object"); }
-function _defineProperty$1(e, r, t) { return (r = _toPropertyKey$3(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: true, configurable: true, writable: true }) : e[r] = t, e; }
-function _classPrivateGetter$1(s, r, a) { return a(_assertClassBrand$3(s, r)); }
-function _classPrivateFieldSet$3(s, a, r) { return s.set(_assertClassBrand$3(s, a), r), r; }
-function _classPrivateFieldGet$3(s, a) { return s.get(_assertClassBrand$3(s, a)); }
-function _assertClassBrand$3(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
-function _applyDecs$1(e, t, n, r, o, i) { var a, c, u, s, f, l, p, d = Symbol.metadata || Symbol["for"]("Symbol.metadata"), m = Object.defineProperty, h = Object.create, y = [h(null), h(null)], v = t.length; function g(t, n, r) { return function (o, i) { n && (i = o, o = e); for (var a = 0; a < t.length; a++) i = t[a].apply(o, r ? [i] : []); return r ? i : o; }; } function b(e, t, n, r) { if ("function" != typeof e && (r || void 0 !== e)) throw new TypeError(t + " must " + (n || "be") + " a function" + (r ? "" : " or undefined")); return e; } function applyDec(e, t, n, r, o, i, u, s, f, l, p) { function d(e) { if (!p(e)) throw new TypeError("Attempted to access private element on non-instance"); } var h = [].concat(t[0]), v = t[3], w = !u, D = 1 === o, S = 3 === o, j = 4 === o, E = 2 === o; function I(t, n, r) { return function (o, i) { return n && (i = o, o = e), r && r(o), P[t].call(o, i); }; } if (!w) { var P = {}, k = [], F = S ? "get" : j || D ? "set" : "value"; if (f ? (l || D ? P = { get: _setFunctionName$1(function () { return v(this); }, r, "get"), set: function set(e) { t[4](this, e); } } : P[F] = v, l || _setFunctionName$1(P[F], r, E ? "" : F)) : l || (P = Object.getOwnPropertyDescriptor(e, r)), !l && !f) { if ((c = y[+s][r]) && 7 !== (c ^ o)) throw Error("Decorating two elements with the same name (" + P[F].name + ") is not supported yet"); y[+s][r] = o < 3 ? 1 : o; } } for (var N = e, O = h.length - 1; O >= 0; O -= n ? 2 : 1) { var T = b(h[O], "A decorator", "be", true), z = n ? h[O - 1] : void 0, A = {}, H = { kind: ["field", "accessor", "method", "getter", "setter", "class"][o], name: r, metadata: a, addInitializer: function (e, t) { if (e.v) throw new TypeError("attempted to call addInitializer after decoration was finished"); b(t, "An initializer", "be", true), i.push(t); }.bind(null, A) }; if (w) c = T.call(z, N, H), A.v = 1, b(c, "class decorators", "return") && (N = c);else if (H["static"] = s, H["private"] = f, c = H.access = { has: f ? p.bind() : function (e) { return r in e; } }, j || (c.get = f ? E ? function (e) { return d(e), P.value; } : I("get", 0, d) : function (e) { return e[r]; }), E || S || (c.set = f ? I("set", 0, d) : function (e, t) { e[r] = t; }), N = T.call(z, D ? { get: P.get, set: P.set } : P[F], H), A.v = 1, D) { if ("object" == _typeof$3(N) && N) (c = b(N.get, "accessor.get")) && (P.get = c), (c = b(N.set, "accessor.set")) && (P.set = c), (c = b(N.init, "accessor.init")) && k.unshift(c);else if (void 0 !== N) throw new TypeError("accessor decorators must return an object with get, set, or init properties or undefined"); } else b(N, (l ? "field" : "method") + " decorators", "return") && (l ? k.unshift(N) : P[F] = N); } return o < 2 && u.push(g(k, s, 1), g(i, s, 0)), l || w || (f ? D ? u.splice(-1, 0, I("get", s), I("set", s)) : u.push(E ? P[F] : b.call.bind(P[F])) : m(e, r, P)), N; } function w(e) { return m(e, d, { configurable: true, enumerable: true, value: a }); } return void 0 !== i && (a = i[d]), a = h(null == a ? null : a), f = [], l = function l(e) { e && f.push(g(e)); }, p = function p(t, r) { for (var i = 0; i < n.length; i++) { var a = n[i], c = a[1], l = 7 & c; if ((8 & c) == t && !l == r) { var p = a[2], d = !!a[3], m = 16 & c; applyDec(t ? e : e.prototype, a, m, d ? "#" + p : _toPropertyKey$3(p), l, l < 2 ? [] : t ? s = s || [] : u = u || [], f, !!t, d, r, t && d ? function (t) { return _checkInRHS$1(t) === e; } : o); } } }, p(8, 0), p(0, 0), p(8, 1), p(0, 1), l(u), l(s), c = f, v || w(e), { e: c, get c() { var n = []; return v && [w(e = applyDec(e, [t], r, e.name, 5, n)), g(n, 1)]; } }; }
-function _toPropertyKey$3(t) { var i = _toPrimitive$3(t, "string"); return "symbol" == _typeof$3(i) ? i : i + ""; }
-function _toPrimitive$3(t, r) { if ("object" != _typeof$3(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof$3(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function _setFunctionName$1(e, t, n) { "symbol" == _typeof$3(t) && (t = (t = t.description) ? "[" + t + "]" : ""); try { Object.defineProperty(e, "name", { configurable: !0, value: n ? n + " " + t : t }); } catch (e) {} return e; }
-function _checkInRHS$1(e) { if (Object(e) !== e) throw TypeError("right-hand side of 'in' should be an object, got " + (null !== e ? _typeof$3(e) : "null")); return e; }
+function _classPrivateMethodInitSpec$2(e, a) { _checkPrivateRedeclaration$2(e, a), a.add(e); }
+function _classPrivateFieldInitSpec$2(e, t, a) { _checkPrivateRedeclaration$2(e, t), t.set(e, a); }
+function _checkPrivateRedeclaration$2(e, t) { if (t.has(e)) throw new TypeError("Cannot initialize the same private elements twice on an object"); }
+function _defineProperty$1(e, r, t) { return (r = _toPropertyKey$2(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: true, configurable: true, writable: true }) : e[r] = t, e; }
+function _classPrivateGetter$1(s, r, a) { return a(_assertClassBrand$2(s, r)); }
+function _classPrivateFieldSet$2(s, a, r) { return s.set(_assertClassBrand$2(s, a), r), r; }
+function _classPrivateFieldGet$2(s, a) { return s.get(_assertClassBrand$2(s, a)); }
+function _assertClassBrand$2(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
+function _applyDecs$1(e, t, n, r, o, i) { var a, c, u, s, f, l, p, d = Symbol.metadata || Symbol["for"]("Symbol.metadata"), m = Object.defineProperty, h = Object.create, y = [h(null), h(null)], v = t.length; function g(t, n, r) { return function (o, i) { n && (i = o, o = e); for (var a = 0; a < t.length; a++) i = t[a].apply(o, r ? [i] : []); return r ? i : o; }; } function b(e, t, n, r) { if ("function" != typeof e && (r || void 0 !== e)) throw new TypeError(t + " must " + (n || "be") + " a function" + (r ? "" : " or undefined")); return e; } function applyDec(e, t, n, r, o, i, u, s, f, l, p) { function d(e) { if (!p(e)) throw new TypeError("Attempted to access private element on non-instance"); } var h = [].concat(t[0]), v = t[3], w = !u, D = 1 === o, S = 3 === o, j = 4 === o, E = 2 === o; function I(t, n, r) { return function (o, i) { return n && (i = o, o = e), r && r(o), P[t].call(o, i); }; } if (!w) { var P = {}, k = [], F = S ? "get" : j || D ? "set" : "value"; if (f ? (l || D ? P = { get: _setFunctionName$1(function () { return v(this); }, r, "get"), set: function set(e) { t[4](this, e); } } : P[F] = v, l || _setFunctionName$1(P[F], r, E ? "" : F)) : l || (P = Object.getOwnPropertyDescriptor(e, r)), !l && !f) { if ((c = y[+s][r]) && 7 !== (c ^ o)) throw Error("Decorating two elements with the same name (" + P[F].name + ") is not supported yet"); y[+s][r] = o < 3 ? 1 : o; } } for (var N = e, O = h.length - 1; O >= 0; O -= n ? 2 : 1) { var T = b(h[O], "A decorator", "be", true), z = n ? h[O - 1] : void 0, A = {}, H = { kind: ["field", "accessor", "method", "getter", "setter", "class"][o], name: r, metadata: a, addInitializer: function (e, t) { if (e.v) throw new TypeError("attempted to call addInitializer after decoration was finished"); b(t, "An initializer", "be", true), i.push(t); }.bind(null, A) }; if (w) c = T.call(z, N, H), A.v = 1, b(c, "class decorators", "return") && (N = c);else if (H["static"] = s, H["private"] = f, c = H.access = { has: f ? p.bind() : function (e) { return r in e; } }, j || (c.get = f ? E ? function (e) { return d(e), P.value; } : I("get", 0, d) : function (e) { return e[r]; }), E || S || (c.set = f ? I("set", 0, d) : function (e, t) { e[r] = t; }), N = T.call(z, D ? { get: P.get, set: P.set } : P[F], H), A.v = 1, D) { if ("object" == _typeof$2(N) && N) (c = b(N.get, "accessor.get")) && (P.get = c), (c = b(N.set, "accessor.set")) && (P.set = c), (c = b(N.init, "accessor.init")) && k.unshift(c);else if (void 0 !== N) throw new TypeError("accessor decorators must return an object with get, set, or init properties or undefined"); } else b(N, (l ? "field" : "method") + " decorators", "return") && (l ? k.unshift(N) : P[F] = N); } return o < 2 && u.push(g(k, s, 1), g(i, s, 0)), l || w || (f ? D ? u.splice(-1, 0, I("get", s), I("set", s)) : u.push(E ? P[F] : b.call.bind(P[F])) : m(e, r, P)), N; } function w(e) { return m(e, d, { configurable: true, enumerable: true, value: a }); } return void 0 !== i && (a = i[d]), a = h(null == a ? null : a), f = [], l = function l(e) { e && f.push(g(e)); }, p = function p(t, r) { for (var i = 0; i < n.length; i++) { var a = n[i], c = a[1], l = 7 & c; if ((8 & c) == t && !l == r) { var p = a[2], d = !!a[3], m = 16 & c; applyDec(t ? e : e.prototype, a, m, d ? "#" + p : _toPropertyKey$2(p), l, l < 2 ? [] : t ? s = s || [] : u = u || [], f, !!t, d, r, t && d ? function (t) { return _checkInRHS$1(t) === e; } : o); } } }, p(8, 0), p(0, 0), p(8, 1), p(0, 1), l(u), l(s), c = f, v || w(e), { e: c, get c() { var n = []; return v && [w(e = applyDec(e, [t], r, e.name, 5, n)), g(n, 1)]; } }; }
+function _toPropertyKey$2(t) { var i = _toPrimitive$2(t, "string"); return "symbol" == _typeof$2(i) ? i : i + ""; }
+function _toPrimitive$2(t, r) { if ("object" != _typeof$2(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof$2(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _setFunctionName$1(e, t, n) { "symbol" == _typeof$2(t) && (t = (t = t.description) ? "[" + t + "]" : ""); try { Object.defineProperty(e, "name", { configurable: !0, value: n ? n + " " + t : t }); } catch (e) {} return e; }
+function _checkInRHS$1(e) { if (Object(e) !== e) throw TypeError("right-hand side of 'in' should be an object, got " + (null !== e ? _typeof$2(e) : "null")); return e; }
 
 /**
  * The display mode of the disclosure. Assigned by the parent group, mirrored to
@@ -807,6 +909,7 @@ var _C$1 = /*#__PURE__*/new WeakMap();
 var _internals = /*#__PURE__*/new WeakMap();
 var _animation = /*#__PURE__*/new WeakMap();
 var _media = /*#__PURE__*/new WeakMap();
+var _deepLink$1 = /*#__PURE__*/new WeakMap();
 var _titleContent = /*#__PURE__*/new WeakMap();
 var _Disclosure_brand = /*#__PURE__*/new WeakSet();
 var _onBeforeMatch = /*#__PURE__*/new WeakMap();
@@ -816,7 +919,7 @@ var Disclosure = /*#__PURE__*/function (_LitElement) {
   // #region Lifecycle
   function Disclosure() {
     var _this2;
-    _classCallCheck$3(this, Disclosure);
+    _classCallCheck$2(this, Disclosure);
     _this2 = _callSuper$1(this, Disclosure);
     // #endregion
     // #region Event handlers
@@ -826,36 +929,43 @@ var Disclosure = /*#__PURE__*/function (_LitElement) {
      * @type {DisclosureMode}
      * @internal
      */
-    _classPrivateFieldInitSpec$3(_this2, _A$1, _init_mode(_this2));
+    _classPrivateFieldInitSpec$2(_this2, _A$1, _init_mode(_this2));
     /** @internal */
-    _classPrivateFieldInitSpec$3(_this2, _B$1, (_init_extra_mode(_this2), _init_position(_this2)));
+    _classPrivateFieldInitSpec$2(_this2, _B$1, (_init_extra_mode(_this2), _init_position(_this2)));
     /** @internal */
-    _classPrivateFieldInitSpec$3(_this2, _C$1, (_init_extra_position(_this2), _init_total(_this2)));
+    _classPrivateFieldInitSpec$2(_this2, _C$1, (_init_extra_position(_this2), _init_total(_this2)));
     // #endregion
 
     // #region Private variables
     /** @type {ElementInternals} */
-    _classPrivateFieldInitSpec$3(_this2, _internals, void _init_extra_total(_this2));
+    _classPrivateFieldInitSpec$2(_this2, _internals, void _init_extra_total(_this2));
     /** @type {AccordionAnimationController} */
-    _classPrivateFieldInitSpec$3(_this2, _animation, void 0);
+    _classPrivateFieldInitSpec$2(_this2, _animation, void 0);
     /** @type {MediaController} */
-    _classPrivateFieldInitSpec$3(_this2, _media, void 0);
+    _classPrivateFieldInitSpec$2(_this2, _media, void 0);
+    /** @type {DeepLinkController} */
+    _classPrivateFieldInitSpec$2(_this2, _deepLink$1, void 0);
     /** @type {Node[]|null} */
-    _classPrivateFieldInitSpec$3(_this2, _titleContent, null);
-    _classPrivateFieldInitSpec$3(_this2, _onBeforeMatch, function () {
-      _assertClassBrand$3(_Disclosure_brand, _this2, _requestChange).call(_this2, true, "find");
+    _classPrivateFieldInitSpec$2(_this2, _titleContent, null);
+    _classPrivateFieldInitSpec$2(_this2, _onBeforeMatch, function () {
+      _assertClassBrand$2(_Disclosure_brand, _this2, _requestChange).call(_this2, true, "find");
     });
     _this2.mode = "accordion";
     _this2.position = 0;
     _this2.total = 1;
-    _classPrivateFieldSet$3(_internals, _this2, _this2.attachInternals());
-    _classPrivateFieldSet$3(_media, _this2, new MediaController(_this2, function () {
+    _classPrivateFieldSet$2(_internals, _this2, _this2.attachInternals());
+    _classPrivateFieldSet$2(_media, _this2, new MediaController(_this2, function () {
       return _this2.visible;
+    }));
+    _classPrivateFieldSet$2(_deepLink$1, _this2, new DeepLinkController(_this2, function (target) {
+      if (target !== _this2 && !_this2.contains(target)) return;
+      _assertClassBrand$2(_Disclosure_brand, _this2, _requestChange).call(_this2, true, "link");
+      return true;
     }));
 
     // Both getters return null outside accordion mode, which makes the
     // controller a no-op where there is nothing to expand or collapse.
-    _classPrivateFieldSet$3(_animation, _this2, new AccordionAnimationController(_this2, {
+    _classPrivateFieldSet$2(_animation, _this2, new AccordionAnimationController(_this2, {
       isOpen: function isOpen() {
         return _this2.expanded;
       },
@@ -869,49 +979,49 @@ var Disclosure = /*#__PURE__*/function (_LitElement) {
     return _this2;
   }
   _inherits$1(Disclosure, _LitElement);
-  return _createClass$3(Disclosure, [{
+  return _createClass$2(Disclosure, [{
     key: "mode",
     get: function get() {
-      return _classPrivateFieldGet$3(_A$1, this);
+      return _classPrivateFieldGet$2(_A$1, this);
     },
     set: function set(v) {
-      _classPrivateFieldSet$3(_A$1, this, v);
+      _classPrivateFieldSet$2(_A$1, this, v);
     }
   }, {
     key: "position",
     get: function get() {
-      return _classPrivateFieldGet$3(_B$1, this);
+      return _classPrivateFieldGet$2(_B$1, this);
     },
     set: function set(v) {
-      _classPrivateFieldSet$3(_B$1, this, v);
+      _classPrivateFieldSet$2(_B$1, this, v);
     }
   }, {
     key: "total",
     get: function get() {
-      return _classPrivateFieldGet$3(_C$1, this);
+      return _classPrivateFieldGet$2(_C$1, this);
     },
     set: function set(v) {
-      _classPrivateFieldSet$3(_C$1, this, v);
+      _classPrivateFieldSet$2(_C$1, this, v);
     }
   }, {
     key: "willUpdate",
     value: function willUpdate(changedProperties) {
       _superPropGet$1(Disclosure, "willUpdate", this)([]);
       if (changedProperties.has("mode")) {
-        _classPrivateFieldGet$3(_animation, this).reset();
+        _classPrivateFieldGet$2(_animation, this).reset();
         for (var _i = 0, _MODES = MODES; _i < _MODES.length; _i++) {
           var mode = _MODES[_i];
           if (mode === this.mode) {
-            _classPrivateFieldGet$3(_internals, this).states.add(mode);
+            _classPrivateFieldGet$2(_internals, this).states.add(mode);
           } else {
-            _classPrivateFieldGet$3(_internals, this).states["delete"](mode);
+            _classPrivateFieldGet$2(_internals, this).states["delete"](mode);
           }
         }
       }
       if (this.visible) {
-        _classPrivateFieldGet$3(_internals, this).states.add("expanded");
+        _classPrivateFieldGet$2(_internals, this).states.add("expanded");
       } else {
-        _classPrivateFieldGet$3(_internals, this).states["delete"]("expanded");
+        _classPrivateFieldGet$2(_internals, this).states["delete"]("expanded");
       }
     }
   }, {
@@ -919,7 +1029,7 @@ var Disclosure = /*#__PURE__*/function (_LitElement) {
     value: function render() {
       var _classPrivateGetter2;
       var label = this.titleText;
-      return u(_templateObject$2 || (_templateObject$2 = _taggedTemplateLiteral$2(["\n      ", "\n\n      <slot\n        name=\"title\"\n        ?hidden=", "\n        @slotchange=", "\n      ></slot>\n\n      <div\n        part=\"panel\"\n        id=\"panel\"\n        role=", "\n        tabindex=", "\n        aria-label=", "\n        aria-labelledby=", "\n        @beforematch=", "\n      >\n        <div part=\"content\">\n          <slot @slotchange=", "></slot>\n        </div>\n      </div>\n    "])), this.mode === "accordion" ? u(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral$2(["\n        <div\n          part=\"heading\"\n          role=\"heading\"\n          aria-level=", "\n        >\n          <button\n            part=\"trigger\"\n            type=\"button\"\n            id=\"trigger\"\n            aria-expanded=", "\n            aria-controls=\"panel\"\n            @click=", "\n          >\n            ", "\n            <tcds-icon\n              part=\"marker\"\n              icon=\"", "\"\n            ></tcds-icon>\n          </button>\n        </div>\n      "])), this.headingLevel, this.expanded ? "true" : "false", _assertClassBrand$3(_Disclosure_brand, this, _onTriggerClick), this.titleContent, this.expanded ? "caret-up" : "caret-down") : A, this.mode !== "plain", _assertClassBrand$3(_Disclosure_brand, this, _onTitleSlotChange), (_classPrivateGetter2 = _classPrivateGetter$1(_Disclosure_brand, this, _get_panelRole)) !== null && _classPrivateGetter2 !== void 0 ? _classPrivateGetter2 : A, this.mode === "tabs" ? "0" : A, this.mode === "tabs" && label ? label : A, this.mode === "accordion" ? "trigger" : A, _classPrivateFieldGet$3(_onBeforeMatch, this), _assertClassBrand$3(_Disclosure_brand, this, _onContentSlotChange));
+      return u(_templateObject$2 || (_templateObject$2 = _taggedTemplateLiteral$2(["\n      ", "\n\n      <slot\n        name=\"title\"\n        ?hidden=", "\n        @slotchange=", "\n      ></slot>\n\n      <div\n        part=\"panel\"\n        id=\"panel\"\n        role=", "\n        tabindex=", "\n        aria-label=", "\n        aria-labelledby=", "\n        @beforematch=", "\n      >\n        <div part=\"content\">\n          <slot @slotchange=", "></slot>\n        </div>\n      </div>\n    "])), this.mode === "accordion" ? u(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral$2(["\n        <div\n          part=\"heading\"\n          role=\"heading\"\n          aria-level=", "\n        >\n          <button\n            part=\"trigger\"\n            type=\"button\"\n            id=\"trigger\"\n            aria-expanded=", "\n            aria-controls=\"panel\"\n            @click=", "\n          >\n            ", "\n            <tcds-icon\n              part=\"marker\"\n              icon=\"", "\"\n            ></tcds-icon>\n          </button>\n        </div>\n      "])), this.headingLevel, this.expanded ? "true" : "false", _assertClassBrand$2(_Disclosure_brand, this, _onTriggerClick), this.titleContent, this.expanded ? "caret-up" : "caret-down") : A, this.mode !== "plain", _assertClassBrand$2(_Disclosure_brand, this, _onTitleSlotChange), (_classPrivateGetter2 = _classPrivateGetter$1(_Disclosure_brand, this, _get_panelRole)) !== null && _classPrivateGetter2 !== void 0 ? _classPrivateGetter2 : A, this.mode === "tabs" ? "0" : A, this.mode === "tabs" && label ? label : A, this.mode === "accordion" ? "trigger" : A, _classPrivateFieldGet$2(_onBeforeMatch, this), _assertClassBrand$2(_Disclosure_brand, this, _onContentSlotChange));
     }
   }, {
     key: "updated",
@@ -931,7 +1041,7 @@ var Disclosure = /*#__PURE__*/function (_LitElement) {
       // media query flips the group into another mode.
       var panel = this.panel;
       if (!panel) return;
-      panel.hidden = this.visible ? false : "until-found";
+      if (this.visible) panel.removeAttribute("hidden");else panel.setAttribute("hidden", "until-found");
       panel.style.height = null;
     }
     // #endregion
@@ -1005,7 +1115,7 @@ var Disclosure = /*#__PURE__*/function (_LitElement) {
   }, {
     key: "titleContent",
     get: function get() {
-      if (_classPrivateFieldGet$3(_titleContent, this) !== null) return _classPrivateFieldGet$3(_titleContent, this);
+      if (_classPrivateFieldGet$2(_titleContent, this) !== null) return _classPrivateFieldGet$2(_titleContent, this);
       var title = this.titleElement;
       var nodes = title ? _toConsumableArray(title.cloneNode(true).childNodes) : [];
       var _iterator = _createForOfIteratorHelper$1(nodes),
@@ -1033,7 +1143,7 @@ var Disclosure = /*#__PURE__*/function (_LitElement) {
       } finally {
         _iterator.f();
       }
-      _classPrivateFieldSet$3(_titleContent, this, nodes);
+      _classPrivateFieldSet$2(_titleContent, this, nodes);
       return nodes;
     }
 
@@ -1097,13 +1207,14 @@ var Disclosure = /*#__PURE__*/function (_LitElement) {
 }(i$1);
 _Disclosure = Disclosure;
 function _onTriggerClick() {
-  _assertClassBrand$3(_Disclosure_brand, this, _requestChange).call(this, !this.expanded, "trigger");
+  _assertClassBrand$2(_Disclosure_brand, this, _requestChange).call(this, !this.expanded, "trigger");
 }
 function _onContentSlotChange() {
-  _classPrivateFieldGet$3(_media, this).contentChanged();
+  _classPrivateFieldGet$2(_media, this).contentChanged();
+  _classPrivateFieldGet$2(_deepLink$1, this).resolve();
 }
 function _onTitleSlotChange() {
-  _classPrivateFieldSet$3(_titleContent, this, null);
+  _classPrivateFieldSet$2(_titleContent, this, null);
   this.dispatchEvent(new CustomEvent("tcds-disclosure:title-change", {
     bubbles: true,
     composed: true
@@ -1119,18 +1230,21 @@ function _get_panelRole(_this) {
 }
 /**
  * @param {boolean} expanded
- * @param {"trigger"|"find"} source - What prompted the request. Lets the
+ * @param {"trigger"|"find"|"link"} source - What prompted the request. Lets the
  *   group decide whether to keep the trigger on screen afterwards.
  */
 function _requestChange(expanded, source) {
-  this.dispatchEvent(new CustomEvent("tcds-disclosure:change", {
+  var handled = !this.dispatchEvent(new CustomEvent("tcds-disclosure:change", {
     detail: {
       expanded: expanded,
       source: source
     },
     bubbles: true,
-    composed: true
+    composed: true,
+    cancelable: true
   }));
+  // Standalone items have no group to apply the requested state.
+  if (!handled) this.expanded = expanded;
 }
 var _applyDecs$e$1 = _slicedToArray$1(_applyDecs$1(_Disclosure, [], [[n({
   type: String,
@@ -1150,19 +1264,19 @@ _init_total = _applyDecs$e$1[4];
 _init_extra_total = _applyDecs$e$1[5];
 _defineProperty$1(Disclosure, "styles", [styles, disclosureStyles]);
 
-function _typeof$2(o) { "@babel/helpers - typeof"; return _typeof$2 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof$2(o); }
-function _classCallCheck$2(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
-function _defineProperties$2(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey$2(o.key), o); } }
-function _createClass$2(e, r, t) { return r && _defineProperties$2(e.prototype, r), Object.defineProperty(e, "prototype", { writable: false }), e; }
-function _toPropertyKey$2(t) { var i = _toPrimitive$2(t, "string"); return "symbol" == _typeof$2(i) ? i : i + ""; }
-function _toPrimitive$2(t, r) { if ("object" != _typeof$2(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof$2(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return (String )(t); }
-function _classPrivateMethodInitSpec$1(e, a) { _checkPrivateRedeclaration$2(e, a), a.add(e); }
-function _classPrivateFieldInitSpec$2(e, t, a) { _checkPrivateRedeclaration$2(e, t), t.set(e, a); }
-function _checkPrivateRedeclaration$2(e, t) { if (t.has(e)) throw new TypeError("Cannot initialize the same private elements twice on an object"); }
-function _classPrivateFieldGet$2(s, a) { return s.get(_assertClassBrand$2(s, a)); }
-function _classPrivateFieldSet$2(s, a, r) { return s.set(_assertClassBrand$2(s, a), r), r; }
-function _assertClassBrand$2(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
-var _host$1 = /*#__PURE__*/new WeakMap();
+function _typeof$1(o) { "@babel/helpers - typeof"; return _typeof$1 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof$1(o); }
+function _classCallCheck$1(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties$1(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey$1(o.key), o); } }
+function _createClass$1(e, r, t) { return r && _defineProperties$1(e.prototype, r), Object.defineProperty(e, "prototype", { writable: false }), e; }
+function _toPropertyKey$1(t) { var i = _toPrimitive$1(t, "string"); return "symbol" == _typeof$1(i) ? i : i + ""; }
+function _toPrimitive$1(t, r) { if ("object" != _typeof$1(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof$1(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return (String )(t); }
+function _classPrivateMethodInitSpec$1(e, a) { _checkPrivateRedeclaration$1(e, a), a.add(e); }
+function _classPrivateFieldInitSpec$1(e, t, a) { _checkPrivateRedeclaration$1(e, t), t.set(e, a); }
+function _checkPrivateRedeclaration$1(e, t) { if (t.has(e)) throw new TypeError("Cannot initialize the same private elements twice on an object"); }
+function _classPrivateFieldGet$1(s, a) { return s.get(_assertClassBrand$1(s, a)); }
+function _classPrivateFieldSet$1(s, a, r) { return s.set(_assertClassBrand$1(s, a), r), r; }
+function _assertClassBrand$1(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
+var _host = /*#__PURE__*/new WeakMap();
 var _query = /*#__PURE__*/new WeakMap();
 var _list = /*#__PURE__*/new WeakMap();
 var _onChange = /*#__PURE__*/new WeakMap();
@@ -1183,25 +1297,25 @@ var MediaQueryController = /*#__PURE__*/function () {
   function MediaQueryController(host) {
     var _this = this;
     var query = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-    _classCallCheck$2(this, MediaQueryController);
+    _classCallCheck$1(this, MediaQueryController);
     _classPrivateMethodInitSpec$1(this, _MediaQueryController_brand);
     /** @type {import("lit").ReactiveElement} */
-    _classPrivateFieldInitSpec$2(this, _host$1, void 0);
+    _classPrivateFieldInitSpec$1(this, _host, void 0);
     /** @type {string|null} */
-    _classPrivateFieldInitSpec$2(this, _query, null);
+    _classPrivateFieldInitSpec$1(this, _query, null);
     /** @type {MediaQueryList|null} */
-    _classPrivateFieldInitSpec$2(this, _list, null);
-    _classPrivateFieldInitSpec$2(this, _onChange, function () {
-      _classPrivateFieldGet$2(_host$1, _this).requestUpdate();
+    _classPrivateFieldInitSpec$1(this, _list, null);
+    _classPrivateFieldInitSpec$1(this, _onChange, function () {
+      _classPrivateFieldGet$1(_host, _this).requestUpdate();
     });
-    _classPrivateFieldSet$2(_host$1, this, host);
+    _classPrivateFieldSet$1(_host, this, host);
     host.addController(this);
     this.query = query;
   }
-  return _createClass$2(MediaQueryController, [{
+  return _createClass$1(MediaQueryController, [{
     key: "query",
     get: function get() {
-      return _classPrivateFieldGet$2(_query, this);
+      return _classPrivateFieldGet$1(_query, this);
     }
 
     /**
@@ -1209,141 +1323,39 @@ var MediaQueryController = /*#__PURE__*/function () {
      */,
     set: function set(query) {
       var next = query || null;
-      if (next === _classPrivateFieldGet$2(_query, this)) return;
-      _assertClassBrand$2(_MediaQueryController_brand, this, _stopListening).call(this);
-      _classPrivateFieldSet$2(_query, this, next);
-      _classPrivateFieldSet$2(_list, this, next ? matchMedia(next) : null);
-      _assertClassBrand$2(_MediaQueryController_brand, this, _startListening).call(this);
-      _classPrivateFieldGet$2(_host$1, this).requestUpdate();
+      if (next === _classPrivateFieldGet$1(_query, this)) return;
+      _assertClassBrand$1(_MediaQueryController_brand, this, _stopListening).call(this);
+      _classPrivateFieldSet$1(_query, this, next);
+      _classPrivateFieldSet$1(_list, this, next ? matchMedia(next) : null);
+      _assertClassBrand$1(_MediaQueryController_brand, this, _startListening).call(this);
+      _classPrivateFieldGet$1(_host, this).requestUpdate();
     }
   }, {
     key: "matches",
     get: function get() {
       var _classPrivateFieldGet2, _classPrivateFieldGet3;
-      return (_classPrivateFieldGet2 = (_classPrivateFieldGet3 = _classPrivateFieldGet$2(_list, this)) === null || _classPrivateFieldGet3 === void 0 ? void 0 : _classPrivateFieldGet3.matches) !== null && _classPrivateFieldGet2 !== void 0 ? _classPrivateFieldGet2 : false;
+      return (_classPrivateFieldGet2 = (_classPrivateFieldGet3 = _classPrivateFieldGet$1(_list, this)) === null || _classPrivateFieldGet3 === void 0 ? void 0 : _classPrivateFieldGet3.matches) !== null && _classPrivateFieldGet2 !== void 0 ? _classPrivateFieldGet2 : false;
     }
   }, {
     key: "hostConnected",
     value: function hostConnected() {
-      _assertClassBrand$2(_MediaQueryController_brand, this, _startListening).call(this);
+      _assertClassBrand$1(_MediaQueryController_brand, this, _startListening).call(this);
     }
   }, {
     key: "hostDisconnected",
     value: function hostDisconnected() {
-      _assertClassBrand$2(_MediaQueryController_brand, this, _stopListening).call(this);
+      _assertClassBrand$1(_MediaQueryController_brand, this, _stopListening).call(this);
     }
   }]);
 }();
 function _startListening() {
-  if (!_classPrivateFieldGet$2(_list, this) || !_classPrivateFieldGet$2(_host$1, this).isConnected) return;
-  _classPrivateFieldGet$2(_list, this).addEventListener("change", _classPrivateFieldGet$2(_onChange, this));
+  if (!_classPrivateFieldGet$1(_list, this) || !_classPrivateFieldGet$1(_host, this).isConnected) return;
+  _classPrivateFieldGet$1(_list, this).addEventListener("change", _classPrivateFieldGet$1(_onChange, this));
 }
 function _stopListening() {
   var _classPrivateFieldGet4;
-  (_classPrivateFieldGet4 = _classPrivateFieldGet$2(_list, this)) === null || _classPrivateFieldGet4 === void 0 || _classPrivateFieldGet4.removeEventListener("change", _classPrivateFieldGet$2(_onChange, this));
+  (_classPrivateFieldGet4 = _classPrivateFieldGet$1(_list, this)) === null || _classPrivateFieldGet4 === void 0 || _classPrivateFieldGet4.removeEventListener("change", _classPrivateFieldGet$1(_onChange, this));
 }
-
-function _typeof$1(o) { "@babel/helpers - typeof"; return _typeof$1 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof$1(o); }
-function _classCallCheck$1(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
-function _defineProperties$1(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey$1(o.key), o); } }
-function _createClass$1(e, r, t) { return r && _defineProperties$1(e.prototype, r), Object.defineProperty(e, "prototype", { writable: false }), e; }
-function _toPropertyKey$1(t) { var i = _toPrimitive$1(t, "string"); return "symbol" == _typeof$1(i) ? i : i + ""; }
-function _toPrimitive$1(t, r) { if ("object" != _typeof$1(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof$1(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return (String )(t); }
-function _classPrivateFieldInitSpec$1(e, t, a) { _checkPrivateRedeclaration$1(e, t), t.set(e, a); }
-function _checkPrivateRedeclaration$1(e, t) { if (t.has(e)) throw new TypeError("Cannot initialize the same private elements twice on an object"); }
-function _classPrivateFieldGet$1(s, a) { return s.get(_assertClassBrand$1(s, a)); }
-function _classPrivateFieldSet$1(s, a, r) { return s.set(_assertClassBrand$1(s, a), r), r; }
-function _assertClassBrand$1(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
-var _host = /*#__PURE__*/new WeakMap();
-var _onResolve = /*#__PURE__*/new WeakMap();
-var _request = /*#__PURE__*/new WeakMap();
-var _onHashChange = /*#__PURE__*/new WeakMap();
-/**
- * Resolves the document's fragment identifier to an element and hands it to the
- * host, on connect, on `hashchange`, and on demand.
- *
- * The host decides what a match means. This controller only answers the
- * question "what element is the URL pointing at right now?"
- *
- * @implements {import("lit").ReactiveController}
- * @internal
- */
-var DeepLinkController = /*#__PURE__*/function () {
-  /**
-   * @param {import("lit").ReactiveControllerHost & HTMLElement} host
-   * @param {(target: HTMLElement) => boolean|void} onResolve - Called with the matched
-   *   element. Not called at all when the URL has no fragment, or when the
-   *   fragment matches nothing in the document. Return true to scroll after
-   *   the host and any nested containers have had a chance to reveal it.
-   */
-  function DeepLinkController(host, onResolve) {
-    var _this = this;
-    _classCallCheck$1(this, DeepLinkController);
-    /** @type {import("lit").ReactiveControllerHost & HTMLElement} */
-    _classPrivateFieldInitSpec$1(this, _host, void 0);
-    _classPrivateFieldInitSpec$1(this, _onResolve, void 0);
-    _classPrivateFieldInitSpec$1(this, _request, 0);
-    _classPrivateFieldInitSpec$1(this, _onHashChange, function () {
-      _this.resolve();
-    });
-    _classPrivateFieldSet$1(_onResolve, this, onResolve);
-    _classPrivateFieldSet$1(_host, this, host);
-    host.addController(this);
-  }
-
-  /**
-   * The element the current URL points at, if any.
-   */
-  return _createClass$1(DeepLinkController, [{
-    key: "target",
-    get: function get() {
-      var fragment = location.hash.slice(1);
-      if (!fragment) return null;
-      try {
-        return document.getElementById(decodeURIComponent(fragment));
-      } catch (_unused) {
-        // Malformed percent-encoding throws. Fall back to the raw fragment,
-        // which is what an author who wrote a literal `%` in an id would expect.
-        return document.getElementById(fragment);
-      }
-    }
-  }, {
-    key: "resolve",
-    value: function resolve() {
-      var _this$request,
-        _this2 = this;
-      var target = this.target;
-      var request = _classPrivateFieldSet$1(_request, this, (_this$request = _classPrivateFieldGet$1(_request, this), ++_this$request));
-      if (!target || !_classPrivateFieldGet$1(_onResolve, this).call(this, target)) return;
-
-      // All hash listeners run before this frame, and Lit updates flush before
-      // rendering. This lets nested groups reveal their panels before scrolling.
-      requestAnimationFrame(function () {
-        if (!_classPrivateFieldGet$1(_host, _this2).isConnected || request !== _classPrivateFieldGet$1(_request, _this2) || target !== _this2.target) return;
-        target.scrollIntoView({
-          block: "start",
-          behavior: "instant"
-        });
-      });
-    }
-  }, {
-    key: "hostConnected",
-    value: function hostConnected() {
-      var _this3 = this;
-      window.addEventListener("hashchange", _classPrivateFieldGet$1(_onHashChange, this));
-      _classPrivateFieldGet$1(_host, this).updateComplete.then(function () {
-        if (_classPrivateFieldGet$1(_host, _this3).isConnected) _this3.resolve();
-      });
-    }
-  }, {
-    key: "hostDisconnected",
-    value: function hostDisconnected() {
-      var _this$request2;
-      _classPrivateFieldSet$1(_request, this, (_this$request2 = _classPrivateFieldGet$1(_request, this), _this$request2++, _this$request2));
-      window.removeEventListener("hashchange", _classPrivateFieldGet$1(_onHashChange, this));
-    }
-  }]);
-}();
 
 var _templateObject$1;
 function _taggedTemplateLiteral$1(e, t) { return t || (t = e.slice(0)), Object.freeze(Object.defineProperties(e, { raw: { value: Object.freeze(t) } })); }
@@ -1450,13 +1462,14 @@ var DisclosureGroup = /*#__PURE__*/function (_LitElement) {
      */
     _classPrivateFieldInitSpec(_this, _revealRequest, 0);
     /**
-     * @param {CustomEvent<{expanded: boolean, source: "trigger"|"find"}>} event
+     * @param {CustomEvent<{expanded: boolean, source: "trigger"|"find"|"link"}>} event
      */
     _classPrivateFieldInitSpec(_this, _onItemChange, function (event) {
       var item = event.target;
       if (!(item instanceof Disclosure)) return;
       if (!_this.items.includes(item)) return;
       event.stopPropagation();
+      event.preventDefault();
       _assertClassBrand(_DisclosureGroup_brand, _this, _setExpanded).call(_this, item, event.detail.expanded);
 
       // Find-in-page has its own scroll target (the match), which may sit well

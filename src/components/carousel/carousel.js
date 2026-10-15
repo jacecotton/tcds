@@ -152,6 +152,13 @@ export class Carousel extends LitElement {
     if (this.#reducedMotion.matches) this.pause();
   };
 
+  /** @param {KeyboardEvent} event */
+  #onFindShortcut = (event) => {
+    // A match in the already-visible slide does not fire beforematch. Stop
+    // rotation as soon as the reader opens browser Find, without intercepting it.
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "f") this.pause();
+  };
+
   /**
    * @param {IntersectionObserverEntry[]} entries
    */
@@ -184,6 +191,7 @@ export class Carousel extends LitElement {
     this.addEventListener("pointerleave", this.#onInteractionChange);
 
     document.addEventListener("visibilitychange", this.#onDocumentVisibilityChange);
+    document.addEventListener("keydown", this.#onFindShortcut);
     this.#reducedMotion.addEventListener("change", this.#onReducedMotionChange);
 
     this.#onDocumentVisibilityChange();
@@ -303,6 +311,7 @@ export class Carousel extends LitElement {
     this.removeEventListener("focusout", this.#onInteractionChange);
 
     document.removeEventListener("visibilitychange", this.#onDocumentVisibilityChange);
+    document.removeEventListener("keydown", this.#onFindShortcut);
     this.#reducedMotion.removeEventListener("change", this.#onReducedMotionChange);
     this.#intersectionObserver?.disconnect();
     this.#progress?.cancel();

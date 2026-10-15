@@ -234,7 +234,7 @@ export class DisclosureGroup extends LitElement {
   }
 
   /**
-   * @param {CustomEvent<{expanded: boolean, source: "trigger"|"find"}>} event
+   * @param {CustomEvent<{expanded: boolean, source: "trigger"|"find"|"link"}>} event
    */
   #onItemChange = (event) => {
     const item = event.target;
@@ -243,6 +243,7 @@ export class DisclosureGroup extends LitElement {
     if (!this.items.includes(item)) return;
 
     event.stopPropagation();
+    event.preventDefault();
     this.#setExpanded(item, event.detail.expanded);
 
     // Find-in-page has its own scroll target (the match), which may sit well

@@ -7,6 +7,7 @@ import disclosureStyles from "./styles.js";
 
 import {AccordionAnimationController} from "@/components/_shared/controllers/AccordionAnimationController";
 import {MediaController} from "@/components/_shared/controllers/MediaController";
+import {DeepLinkController} from "@/components/_shared/controllers/DeepLinkController";
 
 /**
  * The display mode of the disclosure. Assigned by the parent group, mirrored to
@@ -49,6 +50,8 @@ export class Disclosure extends LitElement {
   #animation;
   /** @type {MediaController} */
   #media;
+  /** @type {DeepLinkController} */
+  #deepLink;
   /** @type {Node[]|null} */
   #titleContent = null;
   // #endregion
@@ -63,6 +66,11 @@ export class Disclosure extends LitElement {
 
     this.#internals = this.attachInternals();
     this.#media = new MediaController(this, () => this.visible);
+    this.#deepLink = new DeepLinkController(this, (target) => {
+      if (target !== this && !this.contains(target)) return;
+      this.#requestChange(true, "link");
+      return true;
+    });
 
     // Both getters return null outside accordion mode, which makes the
     // controller a no-op where there is nothing to expand or collapse.
@@ -154,7 +162,8 @@ export class Disclosure extends LitElement {
 
     if (!panel) return;
 
-    panel.hidden = this.visible ? false : "until-found";
+    if (this.visible) panel.removeAttribute("hidden");
+    else panel.setAttribute("hidden", "until-found");
     panel.style.height = null;
   }
   // #endregion
@@ -298,6 +307,7 @@ export class Disclosure extends LitElement {
 
   #onContentSlotChange() {
     this.#media.contentChanged();
+    this.#deepLink.resolve();
   }
 
   #onTitleSlotChange() {
@@ -322,15 +332,18 @@ export class Disclosure extends LitElement {
 
   /**
    * @param {boolean} expanded
-   * @param {"trigger"|"find"} source - What prompted the request. Lets the
+   * @param {"trigger"|"find"|"link"} source - What prompted the request. Lets the
    *   group decide whether to keep the trigger on screen afterwards.
    */
   #requestChange(expanded, source) {
-    this.dispatchEvent(new CustomEvent("tcds-disclosure:change", {
+    const handled = !this.dispatchEvent(new CustomEvent("tcds-disclosure:change", {
       detail: {expanded, source},
       bubbles: true,
       composed: true,
+      cancelable: true,
     }));
+    // Standalone items have no group to apply the requested state.
+    if (!handled) this.expanded = expanded;
   }
   // #endregion
 }

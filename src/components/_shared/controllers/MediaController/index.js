@@ -36,7 +36,7 @@ export class MediaController {
 
   hostDisconnected() {
     this.#host.removeEventListener("play", this.#onPlay, true);
-    cancelAnimationFrame(this.#frame);
+    if (this.#frame !== undefined) cancelAnimationFrame(this.#frame);
     this.#frame = undefined;
     this.#settled = false;
   }

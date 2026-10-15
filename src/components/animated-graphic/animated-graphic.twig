@@ -1,15 +1,7 @@
-{% set attributes = attributes|default(create_attribute()) %}
-
-{% set attributes = attributes
-  .addClass(classes|default([]))
-  .addClass("tcds-animated-graphic")
+{% set attributes = create_attribute(attributes|default({}))
   .setAttribute("data-theme", theme|default(false))
 %}
 
-<figure {{ attributes }}>
+<tcds-animated-graphic {{ attributes }}>
   <video autoplay muted loop playsinline src="{{ src }}"></video>
-  <button class="tcds-button tcds-button--media" title="Toggle play state">
-    <span class="visually-hidden">Toggle play state</span>
-    <tcds-icon icon="pause"></tcds-icon>
-  </button>
-</figure>
+</tcds-animated-graphic>

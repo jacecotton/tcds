@@ -1,0 +1,82 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Article card
+description: An article preview with optional image, tags, description, and calls to action.
+status: experimental
+group: Content
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: Title
+      description: Titles beginning with a quotation mark use smaller typography.
+    heading_level:
+      type: string
+      title: Heading level
+      description: The semantic heading level within the page outline.
+      enum: [h2, h3, h4, h5, h6]
+      default: h3
+    url:
+      type: string
+      title: Article URL
+      description: Links the title when no calls to action are provided.
+    eyebrow:
+      type: string
+      title: Eyebrow
+    description:
+      type: string
+      title: Description
+      description: Trusted HTML rendered inside a paragraph. Sanitize user-provided content before passing it to this prop.
+    image:
+      type: object
+      title: Image
+      description: HTML image attributes. Use an empty alt value for decorative images.
+      required: [src, alt]
+      properties:
+        src:
+          type: string
+          title: Source
+        alt:
+          type: string
+          title: Alternative text
+        width:
+          type: integer
+          title: Width
+        height:
+          type: integer
+          title: Height
+        loading:
+          type: string
+          title: Loading behavior
+          enum: [lazy, eager]
+    tags:
+      type: array
+      title: Tags
+      items:
+        type: string
+    links:
+      type: array
+      title: Calls to action
+      description: Replaces the title link. A single call to action makes the whole card clickable; multiple links remain separate targets.
+      items:
+        type: object
+        required: [url, text]
+        properties:
+          url:
+            type: string
+            title: URL
+          text:
+            type: string
+            title: Link text
+    modifiers:
+      type: array
+      title: Modifiers
+      description: BEM modifiers. The video modifier shows a play icon instead of a caret on calls to action.
+      items:
+        type: string
+    classes:
+      type: array
+      title: Additional classes
+      description: Additional root classes. Classes may also be supplied through attributes.
+      items:
+        type: string

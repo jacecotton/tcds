@@ -1,5 +1,18 @@
 @use "abstracts/mixins" as *;
 
+/**
+ * These styles are considered "global" and imported by our shared stylesheet,
+ * rather than being a specific asset included only with the button component.
+ * Hence, the stylesheet is prefixed with an `_` to prevent independent
+ * compilation.
+ *
+ * Button styles can be included as a mixin by other stylesheets so that other
+ * components, such as the CTA Link, can adopt them while using their own
+ * classes/template identity. This is to make it easy to decouple proper buttons
+ * (form and UI controls) from links that look like buttons down the road if
+ * needed.
+ */
+
 @layer tcds-components {
   .tcds-button {
     @include button-style;

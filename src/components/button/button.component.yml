@@ -1,0 +1,27 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Button
+description: A native button for form actions and interface controls, with an optional decorative icon.
+status: experimental
+group: Controls
+props:
+  type: object
+  required: [label]
+  properties:
+    label:
+      type: string
+      title: Label
+      description: Visible text describing the button action.
+    type:
+      type: string
+      title: Button type
+      description: Set to button for interface controls, submit to submit a form, or reset to reset a form. When omitted, native HTML behavior applies (submit).
+      enum: [button, submit, reset]
+    icon:
+      type: string
+      title: Icon
+      description: Decorative tcds-icon identifier. Set icon_position to display it alongside the label.
+    icon_position:
+      type: string
+      title: Icon position
+      description: Placement relative to the label. When omitted, no icon is displayed.
+      enum: [before, after]

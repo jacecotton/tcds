@@ -1,7 +1,6 @@
-{% set attributes = attributes|default(create_attribute()) %}
 {% set base_class = "tcds-article-card" %}
 
-{% set attributes = attributes
+{% set attributes = create_attribute(attributes|default({}))
   .addClass(classes|default([]))
   .addClass([base_class]|merge(modifiers|default([])|map(modifier => "#{base_class}--#{modifier}")))
 %}
@@ -18,7 +17,7 @@
   {% endif %}
   {% if image %}
     <figure class="{{ base_class }}__image">
-      <img {{ create_attribute(image) }}>
+      <img {{ create_attribute(image|default({})) }}>
     </figure>
   {% endif %}
   {% if eyebrow %}
@@ -29,7 +28,7 @@
     <{{ heading_level }} {{ create_attribute()
       .addClass(["#{base_class}__title", is_quote ? "text-ui-md"])
     }}>
-      {% if url and links is not defined or links is empty %}
+      {% if url and links|default([]) is empty %}
         <a href="{{ url }}">{{ title }}</a>
       {% else %}
         {{ title }}
@@ -45,11 +44,11 @@
     {% for link in links %}
       {% if link.url %}
         <a href="{{ link.url }}" class="{{ base_class }}__cta">
-          {% if "video" in modifiers %}
+          {% if "video" in modifiers|default([]) %}
             <tcds-icon icon="play" class="tcds-button tcds-button--media"></tcds-icon>
           {% endif %}
           {{ link.text }}
-          {% if "video" not in modifiers %}
+          {% if "video" not in modifiers|default([]) %}
             <tcds-icon icon="caret-right"></tcds-icon>
           {% endif %}
         </a>

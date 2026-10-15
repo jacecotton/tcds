@@ -1,0 +1,18 @@
+{%- set attributes = create_attribute(attributes|default({}))
+  .addClass("tcds-button")
+  .setAttribute("type", type|default(false))
+-%}
+{%- set icon_element -%}
+  {%- if icon|default(false) -%}
+    <tcds-icon icon="{{ icon }}" aria-hidden="true"></tcds-icon>
+  {%- endif -%}
+{%- endset -%}
+<button {{ attributes }}>
+  {%- if icon_position|default(false) == "before" -%}
+    {{ icon_element }}
+  {%- endif -%}
+  {{ label|default(false) }}
+  {%- if icon_position|default(false) == "after" -%}
+    {{ icon_element }}
+  {%- endif -%}
+</button>

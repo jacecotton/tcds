@@ -1,12 +1,12 @@
 import { i, u, a as i$1, n, t } from '../../dist/js/vendor.js';
-import { d as MediaController, s as styles } from '../../dist/js/shared.js';
+import { d as MediaController, b as DeepLinkController, s as styles } from '../../dist/js/shared.js';
 
 var _templateObject$1;
 function _taggedTemplateLiteral$1(e, t) { return t || (t = e.slice(0)), Object.freeze(Object.defineProperties(e, { raw: { value: Object.freeze(t) } })); }
 var localStyles = i(_templateObject$1 || (_templateObject$1 = _taggedTemplateLiteral$1(["\n  :host {\n    grid-area: 1 / 1;\n    opacity: 0;\n    z-index: 1;\n    pointer-events: none;\n\n    @media (prefers-reduced-motion: reduce) {\n      transition: none;\n    }\n  }\n\n  :host(:state(ready)) {\n    transition:\n      opacity var(--tcds-carousel-transition-duration, 500ms) ease,\n      content-visibility var(--tcds-carousel-transition-duration, 500ms) allow-discrete;\n\n    @media (prefers-reduced-motion: reduce) {\n      transition: none;\n    }\n  }\n\n  :host(:not([hidden])), :host([hidden=\"until-found\"]) {\n    display: block;\n  }\n\n  :host([selected]) {\n    opacity: 1;\n    z-index: 0;\n    transition: none;\n    pointer-events: auto;\n\n    @media (prefers-reduced-motion: reduce) {\n      transition: none;\n    }\n  }\n"])));
 
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-var _Class, _Slide3, _A, _B, _C, _D, _internals, _media, _Slide3_brand, _onBeforeMatch, _templateObject, _applyDecs2, _applyDecs2$e, _applyDecs2$c;
+var _Class, _Slide3, _A, _B, _C, _D, _internals, _media, _deepLink, _Slide3_brand, _onBeforeMatch, _templateObject, _applyDecs2, _applyDecs2$e, _applyDecs2$c;
 var _initClass, _init_selected, _init_extra_selected, _init_suspended, _init_extra_suspended, _init_position, _init_extra_position, _init_total, _init_extra_total, _Slide2;
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -46,6 +46,7 @@ function _identity(t) { return t; }
  * @tag tcds-slide
  *
  * @slot - Slide content.
+ * @fires {CustomEvent<null>} tcds-slide:reveal - Requests selection when browser search or a fragment reveals the slide.
  *
  * @cssState ready - The slide has upgraded and resolved its initial styles;
  *   transitions between slides are enabled.
@@ -54,7 +55,7 @@ function _identity(t) { return t; }
  *   cross-fade between slides. Usually set on the parent carousel.
  */
 var _Slide;
-new (_Slide2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMap(), _C = /*#__PURE__*/new WeakMap(), _D = /*#__PURE__*/new WeakMap(), _internals = /*#__PURE__*/new WeakMap(), _media = /*#__PURE__*/new WeakMap(), _Slide3_brand = /*#__PURE__*/new WeakSet(), _onBeforeMatch = /*#__PURE__*/new WeakMap(), _Slide3 = /*#__PURE__*/function (_LitElement) {
+new (_Slide2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMap(), _C = /*#__PURE__*/new WeakMap(), _D = /*#__PURE__*/new WeakMap(), _internals = /*#__PURE__*/new WeakMap(), _media = /*#__PURE__*/new WeakMap(), _deepLink = /*#__PURE__*/new WeakMap(), _Slide3_brand = /*#__PURE__*/new WeakSet(), _onBeforeMatch = /*#__PURE__*/new WeakMap(), _Slide3 = /*#__PURE__*/function (_LitElement) {
   // #endregion
 
   // #region Lifecycle
@@ -105,7 +106,10 @@ new (_Slide2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMap()
     _classPrivateFieldInitSpec(_this, _internals, void _init_extra_total(_this));
     /** @type {MediaController} */
     _classPrivateFieldInitSpec(_this, _media, void 0);
+    /** @type {DeepLinkController} */
+    _classPrivateFieldInitSpec(_this, _deepLink, void 0);
     _classPrivateFieldInitSpec(_this, _onBeforeMatch, function () {
+      _this.selected = true;
       _this.dispatchEvent(new CustomEvent("tcds-slide:reveal", {
         bubbles: true,
         composed: true
@@ -118,6 +122,11 @@ new (_Slide2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMap()
     _classPrivateFieldGet(_internals, _this).ariaRoleDescription = "slide";
     _classPrivateFieldSet(_media, _this, new MediaController(_this, function () {
       return _this.selected && !_this.suspended;
+    }));
+    _classPrivateFieldSet(_deepLink, _this, new DeepLinkController(_this, function (target) {
+      if (target !== _this && !_this.contains(target)) return;
+      _classPrivateFieldGet(_onBeforeMatch, _this).call(_this);
+      return true;
     }));
     _this.addEventListener("beforematch", _classPrivateFieldGet(_onBeforeMatch, _this));
     return _this;
@@ -171,8 +180,11 @@ new (_Slide2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMap()
       _classPrivateFieldGet(_internals, this).ariaLabel = "".concat(this.position + 1, " of ").concat(this.total);
       // Unlike visibility:hidden, until-found permits find-in-page to reveal
       // inactive slides. Keep an explicit author-supplied hidden state intact.
-      if (!this.hasAttribute("hidden") || this.hidden === "until-found") {
-        this.hidden = this.selected ? false : "until-found";
+      // Some browsers expose `hidden` as a Boolean property, which would coerce
+      // "until-found" to hidden="". Read/write the attribute value directly.
+      var hidden = this.getAttribute("hidden");
+      if (hidden === null || hidden === "until-found") {
+        if (this.selected) this.removeAttribute("hidden");else this.setAttribute("hidden", "until-found");
       }
     }
   }, {
@@ -203,6 +215,7 @@ new (_Slide2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMap()
 }(_identity), _defineProperty(_Class, _Slide2, void 0), _Class)();
 function _onSlotChange() {
   _classPrivateFieldGet(_media, this).contentChanged();
+  _classPrivateFieldGet(_deepLink, this).resolve();
 }
 
 export { _Slide as Slide };
