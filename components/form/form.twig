@@ -1,0 +1,9 @@
+{% set attributes = create_attribute(attributes|default({}))
+  .setAttribute("variant", variant|default(false))
+%}
+
+<tcds-form {{ attributes }}>
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+</tcds-form>

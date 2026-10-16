@@ -1,0 +1,33 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: CTA link
+description: A call-to-action link styled as a button, with an optional decorative icon.
+status: experimental
+group: Navigation
+props:
+  type: object
+  required: [url, text]
+  properties:
+    url:
+      type: string
+      title: URL
+      description: Link destination, including relative URLs and fragment identifiers.
+    text:
+      type: string
+      title: Link text
+      description: Visible text describing the link destination.
+    icon:
+      type: string
+      title: Icon
+      description: Decorative tcds-icon identifier. Set icon_position to display it alongside the text.
+    icon_position:
+      type: string
+      title: Icon position
+      description: Placement relative to the text. When omitted, no icon is displayed.
+      enum: [before, after]
+    modifiers:
+      type: array
+      title: Modifiers
+      description: Optional visual variants. Omit for the default filled appearance.
+      items:
+        type: string
+        enum: [outline, tertiary]

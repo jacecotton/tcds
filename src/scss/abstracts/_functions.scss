@@ -1,10 +1,8 @@
 @use "sass:map";
+@use "sass:string";
 @use "../_gen/tokens" as *;
 
-/**
- * Wrapper function for getting from token map.
- */
-
+/// Wrapper function for getting from token map.
 @function tokens($keys...) {
   $value: map.get($tokens, $keys...);
 
@@ -15,7 +13,44 @@
   @return $value;
 }
 
-// tokens alias
+/// tokens alias
 @function token($keys...) {
   @return tokens($keys...);
+}
+
+/// Returns an icon token as a CSS url(), optionally replacing currentcolor.
+/// `$color` must be a build-time color or color string, not a CSS variable.
+/// Hex color hashes are URI-encoded to keep the SVG data URL valid.
+///
+/// @param {String} $category - Icon category, such as utility or brand.
+/// @param {String} $name - Icon name within the category.
+/// @param {Color|String|Null} $color [null] - Optional SVG color override.
+///
+/// @return {String} The unquoted CSS url() token.
+@function icon($category, $name, $color: null) {
+  $value: "#{token("icon", $category, $name)}";
+
+  @if $color != null {
+    $replacement: "#{$color}";
+    $encoded: "";
+
+    @for $i from 1 through string.length($replacement) {
+      $char: string.slice($replacement, $i, $i);
+      @if $char == "#" { $char: "%23"; }
+      $encoded: $encoded + $char;
+    }
+
+    $result: "";
+    $position: string.index(string.to-lower-case($value), "currentcolor");
+
+    @while $position {
+      $result: $result + string.slice($value, 1, $position - 1) + $encoded;
+      $value: string.slice($value, $position + string.length("currentcolor"));
+      $position: string.index(string.to-lower-case($value), "currentcolor");
+    }
+
+    $value: $result + $value;
+  }
+
+  @return string.unquote($value);
 }

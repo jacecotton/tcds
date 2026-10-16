@@ -1,0 +1,23 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Form
+description: Enhances native forms with editable radio values.
+status: experimental
+group: Forms
+libraryOverrides:
+  js:
+    form.js:
+      attributes:
+        type: module
+      preprocess: false
+props:
+  type: object
+  properties:
+    variant:
+      type: string
+      title: Visual variant
+      description: Use display for large controls and radio choices styled as buttons. Omit for standard form styling.
+      enum: [display]
+slots:
+  content:
+    title: Form
+    description: Native form markup, including optional radio-other groups. See the component README for the markup contract.
