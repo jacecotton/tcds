@@ -7,25 +7,23 @@
 %}
 
 <tcds-carousel {{ attributes }}>
-  {% if slides is defined %}
-    {% if slides is iterable and slides["#markup"] is not defined %}
-      {% for slide in slides %}
-        {% if slide.content is defined and slide.content is not iterable and block(slide.content) is defined %}
-          {% set content = block(slide.content) %}
-        {% else %}
-          {% set content = slide.content|default(null) %}
-        {% endif %}
+  {% if slides is defined and slides is iterable %}
+    {% for slide in slides %}
+      {% set slide_content = slide.content|default("") %}
 
-        {{ include("tcds:slide", {
-          content: content,
-          selected: slide.selected|default(false),
-          attributes: create_attribute(slide_attributes|default({})|merge(slide.attributes|default({}))),
-        }, with_context=false) }}
-      {% endfor %}
-    {% else %}
-      {% block slides %}
-        {{ slides }}
-      {% endblock %}
-    {% endif %}
+      {% if (slide_content starts with "") and block(slide_content) is defined %}
+        {% set slide_content = block(slide_content) %}
+      {% endif %}
+
+      {{ include("tcds:slide", {
+        content: slide_content,
+        selected: slide.selected|default(false),
+        attributes: create_attribute(slide_attributes|default({})|merge(slide.attributes|default({}))),
+      }, with_context=false) }}
+    {% endfor %}
   {% endif %}
+
+  {% block content %}
+    {{ content|default("") }}
+  {% endblock %}
 </tcds-carousel>

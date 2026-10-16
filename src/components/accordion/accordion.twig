@@ -4,31 +4,26 @@
 %}
 
 <tcds-accordion {{ attributes }}>
-  {# Check if `sections` is a plain array and not a render array (slot). #}
-  {% if sections is defined %}
-    {% if sections is iterable and sections["#markup"] is not defined %}
-      {% for section in sections %}
-        {% if section.content is not iterable and block(section.content) is defined %}
-          {# `content` is an embedded block. #}
-          {% set content = block(section.content) %}
-        {% else %}
-          {# `content` is passed content. #}
-          {% set content = section.content %}
-        {% endif %}
+  {% if sections is defined and sections is iterable %}
+    {% for section in sections %}
+      {% set section_content = section.content|default("") %}
 
-        {{ include("tcds:accordion-section", {
-          title: section.title,
-          content: content,
-          open: section.open,
-          heading_level: heading_level|default(null),
-          attributes: create_attribute(section_attributes|default({})|merge(section.attributes|default({}))),
-        }) }}
-      {% endfor %}
-    {% else %}
-      {# Dump render array/slot here. #}
-      {% block sections %}
-        {{ sections }}
-      {% endblock %}
-    {% endif %}
+      {# `content` is an embedded block. #}
+      {% if (section_content starts with "") and block(section_content) is defined %}
+        {% set section_content = block(section_content) %}
+      {% endif %}
+
+      {{ include("@tcds/accordion-section/accordion-section.twig", {
+        title: section.title,
+        content: section_content,
+        open: section.open|default(false),
+        heading_level: heading_level|default(null),
+        attributes: create_attribute(section_attributes|default({})|merge(section.attributes|default({}))),
+      }) }}
+    {% endfor %}
   {% endif %}
+
+  {% block content %}
+    {{ content|default("") }}
+  {% endblock %}
 </tcds-accordion>

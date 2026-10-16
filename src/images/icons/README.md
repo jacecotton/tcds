@@ -6,12 +6,12 @@ This directory serves as our single source of truth for icons.
 
 ### Directory structure
 
-Each subfolder in `icons/` represents a category. This is used to differentiate identically named icons, such as the "x" `utility` icon and the "X" `brand` logo. There are also different variations of the same icon; e.g. `media` icons are mostly compact versions of `primary` icons.
+Each subfolder in `icons/` represents a category. This is used to differentiate identically named icons, such as the "x" `utility` icon and the "X" `brand` logo. There are also different variations of the same icon; e.g. `primary` icons are mostly simplified versions of `duotone` icons.
 
 ```
 icons/
 ├── brand/
-├── media/
+├── duotone/
 ├── primary/
 └── utility/
 ```
@@ -66,7 +66,34 @@ Custom properties are generated for each icon token (as `--tcds-icon-[category]-
 }
 ```
 
-You can use these custom properties anywhere you can use an image `url()`, such as `background-image` or `mask-image`.
+You can use these custom properties anywhere you can use an image `url()`, such as `background-image` or `mask-image`. Use the latter to control the color of the icon:
+
+```css
+.some-element {
+  background-color: currentcolor;
+  mask: var(--tcds-icon-utility-caret-right) center no-repeat 100%;
+  width: 1em;
+  height: 1em;
+}
+```
+
+To control the color of the icon while using `background-image`, you will need to use the [Sass utility](#sass-utility).
+
+#### Sass utility
+
+The `icon` Sass function expects `$category` and `$icon` arguments, with an optional `$color` argument:
+
+```scss
+@use "abstracts/functions" as *;
+
+.some-element {
+  // Creates a white icon
+  background-image: icon("utility", "caret-right", #fff);
+  ...
+}
+```
+
+Generally it is recommended to use CSS custom properties, but this utility can be useful if you need to use `background-image` to render the icon but need control over the color.
 
 #### HTML classes
 
@@ -82,18 +109,6 @@ Classes are generated for each icon in the form of `.tcds-icon--[icon]`, with op
 These classes create a `1x1em`, `currentcolor`-filled square, with the corresponding icon used as the `mask-image`. The icon itself is a pseudo-element (by default `::after`).
 
 To create the icon pseudo-element via `::before` (like if you want to prepend an icon to an existing element, without additional markup), you can use the `.tcds-icon--::before` modifier.
-
-#### Sass maps
-
-Sass maps are generated for each icon category and name. This can be helpful to iterate through the icon library, but the values should always be referenced via [custom properties](#css-custom-properties).
-
-```scss
-/* src/scss/some-stylesheet.scss */
-@use "sass:map";
-@use "_gen/tokens" as *;
-
-@debug map.get($tokens, "icon", "primary"); // => ("accessibility": url(...), "alert": ...)
-```
 
 #### JavaScript exports
 

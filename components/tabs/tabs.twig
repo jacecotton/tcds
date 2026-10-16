@@ -4,31 +4,24 @@
 %}
 
 <tcds-tabs {{ attributes }}>
-  {# Check if `tabs` is a plain array and not a render array (slot). #}
-  {% if tabs is defined %}
-    {% if tabs is iterable and tabs["#markup"] is not defined %}
-      {% for tab in tabs %}
-        {% if tab.content is not iterable and block(tab.content) is defined %}
-          {# `content` is an embedded block. #}
-          {% set content = block(tab.content) %}
-        {% else %}
-          {# `content` is passed content. #}
-          {% set content = tab.content %}
-        {% endif %}
+  {% if tabs is defined and tabs is iterable %}
+    {% for tab in tabs %}
+      {% set tab_content = tab.content|default("") %}
+      {% if (tab_content starts with "") and block(tab_content) is defined %}
+        {% set tab_content = block(tab_content) %}
+      {% endif %}
 
-        {{ include("tcds:tab", {
-          title: tab.title,
-          content: content,
-          selected: tab.selected,
-          heading_level: heading_level|default(null),
-          attributes: create_attribute(tab_attributes|default({})|merge(tab.attributes|default({}))),
-        }) }}
-      {% endfor %}
-    {% else %}
-      {# Dump render array/slot here. #}
-      {% block tabs %}
-        {{ tabs }}
-      {% endblock %}
-    {% endif %}
+      {{ include("tcds:tab", {
+        title: tab.title,
+        content: tab_content,
+        selected: tab.selected,
+        heading_level: heading_level|default(null),
+        attributes: create_attribute(tab_attributes|default({})|merge(tab.attributes|default({}))),
+      }) }}
+    {% endfor %}
   {% endif %}
+
+  {% block content %}
+    {{ content|default("") }}
+  {% endblock %}
 </tcds-tabs>
