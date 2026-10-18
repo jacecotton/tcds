@@ -41,4 +41,4 @@ props:
 slots:
   slides:
     title: Slides
-    description: Slide components, or a list of objects with content, optional selected state, and optional attributes. Content may reference an embedded Twig block.
+    expected: ["tcds:slide"]

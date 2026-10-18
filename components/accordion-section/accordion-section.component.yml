@@ -9,6 +9,10 @@ libraryOverrides:
       attributes:
         type: module
       preprocess: false
+thirdPartySettings:
+  tcds:
+    docs:
+      parent: "tcds:accordion"
 props:
   type: object
   required:

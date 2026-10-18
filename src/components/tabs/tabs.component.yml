@@ -35,3 +35,4 @@ props:
 slots:
   tabs:
     title: Tabs
+    expected: ["tcds:tab"]

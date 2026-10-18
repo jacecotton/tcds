@@ -9,6 +9,10 @@ libraryOverrides:
       attributes:
         type: module
       preprocess: false
+thirdPartySettings:
+  tcds:
+    docs:
+      parent: "tcds:carousel"
 props:
   type: object
   properties:
