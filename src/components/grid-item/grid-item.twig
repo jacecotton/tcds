@@ -1,5 +1,4 @@
 {% set base_class = "grid-item" %}
-{% set _classes = [base_class, classes|default("")] %}
 
 {% set column_sizes = column_sizes|default({
   default: column_size|default("1/1"),
@@ -8,11 +7,14 @@
   lg: column_size_lg|default("inherit"),
 }) %}
 
-{% set _classes = _classes|merge(column_sizes|map((size, bp) => (bp == "default" ? "" : "#{bp}:") ~ "grid-item" ~ (size == "inherit" ? "" : "--#{size}"))) %}
-
-{% set attributes = attributes|default(create_attribute()) %}
-{% set attributes = attributes.addClass(_classes) %}
+{% set attributes = create_attribute(attributes|default({}))
+  .addClass(base_class)
+  .addClass(column_sizes|map((size, breakpoint) => (breakpoint == "default" ? "" : "#{breakpoint}:") ~ "grid-item" ~ (size == "inherit" ? "" : "--#{size}")))
+  .setAttribute()
+%}
 
 <div {{ attributes }}>
-  {% block content %}{{ content }}{% endblock %}
+  {% block content %}
+    {{ content|default("") }}
+  {% endblock %}
 </div>

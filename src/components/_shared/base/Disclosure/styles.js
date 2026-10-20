@@ -51,7 +51,7 @@ export default css`
     display: flex;
     justify-content: space-between;
     width: 100%;
-    padding: var(--tcds-space-8) var(--tcds-space-component-lg);
+    padding: var(--tcds-space-component-lg);
     font-family: var(--tcds-font-family-ui);
     font-weight: var(--tcds-font-weight-ui);
     font-size: var(--tcds-font-size-2xl);
@@ -94,6 +94,6 @@ export default css`
 
   :host(:state(accordion)) [part=content] {
     padding-inline: var(--tcds-space-component-xl);
-    padding-block-end: var(--tcds-space-layout-sm);
+    padding-block: var(--tcds-space-component-md) var(--tcds-space-component-xl);
   }
 `;

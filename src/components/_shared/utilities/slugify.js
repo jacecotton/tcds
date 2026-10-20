@@ -1,55 +1,73 @@
 /**
- * A more opinionated slugify solution.
+ * Generate a consistent Unicode-preserving slug or camelCase name.
  *
- * Intended to generate CSS-friendly identifiers, but is not a validator and
- * will not avoid starting strings with numbers. It also doesn't exclusively
- * abide by CSS validity criteria, as we're still opting to drop things like
- * emojis which, while valid, are typically purely decorative.
+ * Keeps letters, numbers, and combining marks attached to them. Unicode
+ * compatibility normalization folds literal equivalents into text (e.g. Ａ → a,
+ * ① → 1, ™ → tm, № → no). Symbols without such a mapping, including © and ®,
+ * become word boundaries.
  *
- * Does not expose robust configuration, as this is intended to enforce internal
- * consistency. `separator` is only configurable for cases where hyphens are not
- * allowed, like in JavaScript identifiers (e.g. HTML attribute names → class
- * property names, for which there is also a camelCasing option).
+ * Strips straight and curly quotes/apostrophes, along with other Unicode
+ * quotation marks, without inserting a word boundary. Other punctuation,
+ * symbols, pictographic emoji, whitespace, underscores, and dashes separate
+ * words. Emoji presentation selectors and keycap marks are removed. Numeric
+ * keycaps retain their digits. Unattached combining marks are removed.
  *
- * Does not ensure uniqueness, so not suitable alone for IDs.
+ * Intended for CSS-friendly names, but does not validate CSS or JavaScript
+ * identifiers, prevent a leading number, ensure uniqueness, or provide a
+ * fallback for inputs containing no usable text.
  *
- * Test strings:
- * - ` Café—№ ① full-width：ＡＢＣ ` → `café-no-1-full-width-abc`
- * - `我要一杯咖啡` → `我要一杯咖啡`
- * - `Hello_world--x y` → `hello-world-x-y`
- * - `emoji 😅 & symbols ©™ drop` → `emoji-symbols-drop`
- * - `some-custom-attr` → `someCustomAttr` (with `{casing: "camel"}`).
- */
-
-/**
- * @param {string} [separator="-"] The separator/delimiter to use between words.
- * @param {string} [casing="lower"] Which casing strategy to use (either "lower"
- * or "camel").
+ * @param {string} string The text to convert.
+ * @param {object} [options={}] Conversion options.
+ * @param {string} [options.separator="-"] Literal separator between words;
+ * ignored when casing is "camel".
+ * @param {"lower"|"camel"} [options.casing="lower"] Casing strategy. Existing
+ * capitalization is normalized to lowercase before applying camelCase.
+ * @returns {string} The converted text, or an empty string if no words remain.
+ *
+ * @example
+ * slugify(" Café—№ ① full-width：ＡＢＣ ");
+ * // "café-no-1-full-width-abc"
+ *
+ * @example
+ * slugify("我要一杯咖啡");
+ * // "我要一杯咖啡"
+ *
+ * @example
+ * slugify("Hello_world--x y");
+ * // "hello-world-x-y"
+ *
+ * @example
+ * slugify("emoji 😅 & symbols ©™ drop");
+ * // "emoji-symbols-tm-drop"
+ *
+ * @example
+ * slugify("Texas Children’s Hospital");
+ * // "texas-childrens-hospital"
+ *
+ * @example
+ * slugify("some-custom-attr", {casing: "camel"});
+ * // "someCustomAttr"
  */
 export default (string, {separator = "-", casing = "lower"} = {}) => {
-  let result = string;
-
-  result = result
-    // Replace any dash-like character (including U+2212) with a whitespace.
-    .replace(/[\p{Pd}\u2212]+/gu, " ")
-    // Fold compatibility (e.g. ① → 1).
+  const words = string
+    // Remove quotes before normalization so newly adjacent text can compose.
+    .replace(/\p{Quotation_Mark}/gu, "")
     .normalize("NFKC")
-    // Replace disallowed characters (punctuation, symbols, emoji, etc.) with
-    // single whitespace. Only allows: letters, marks, numbers, whitespace,
-    // underscores, and hyphens.
-    .replace(/[^\p{L}\p{M}\p{N}\s_-]/gu, " ")
-    // Collapse whitespace, underscore, and hyphen runs to a single space.
-    .replace(/[\s_-]+/g, " ")
-    .trim()
-    .toLowerCase();
+    // Remove emoji-specific marks without stripping linguistic diacritics or
+    // other variation selectors used by scripts such as Mongolian and CJK.
+    .replace(/[\uFE0E\uFE0F\u20E3]/gu, "")
+    .toLowerCase()
+    // A word must start with a letter or number; combining marks may follow.
+    .match(/[\p{L}\p{N}][\p{L}\p{M}\p{N}]*/gu) ?? [];
 
   if (casing.toLowerCase() === "camel") {
-    // camelCase if specified.
-    result = result.replace(/ ([\p{L}\p{N}])/gu, (_, c) => c.toUpperCase());
-  } else {
-    // Replace spaces with separator otherwise.
-    result = result.replace(/\s+/g, separator);
+    return words.map((word, index) => index === 0
+      ? word
+      // Match a complete Unicode code point, including supplementary letters.
+      : word.replace(/^./u, character => character.toUpperCase())
+    ).join("");
   }
 
-  return result;
+  // Joining words inserts separators literally, including "$" sequences.
+  return words.join(separator);
 };

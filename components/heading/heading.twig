@@ -1,10 +1,8 @@
-{% set _classes = ["", classes|default("")]|join(" ") %}
-{% set attributes = attributes|default(create_attribute()) %}
-{% set attributes = attributes.addClass(_classes) %}
-{% set attributes = attributes.setAttribute("id", text|clean_id) %}
-{# need to rename this to "measure (line length)" #}
-{%- if max_length -%}
-  {% set attributes = attributes.setAttribute("style", "max-width: #{max_length}ch") %}
-{%- endif -%}
-{% set heading_level = heading_level|default("h2") %}
+{%- set attributes = create_attribute(attributes|default({}))
+  .setAttribute("id", text|default(false) ? text|clean_id : false)
+  .setAttribute("style", measure|default(false) ? "max-width: #{measure}ch" : false)
+-%}
+
+{%- set heading_level = heading_level|default("h2") -%}
+
 <{{ heading_level }} {{ attributes }}>{{ text }}</{{ heading_level }}>

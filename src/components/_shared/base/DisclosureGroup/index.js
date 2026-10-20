@@ -312,10 +312,15 @@ export class DisclosureGroup extends LitElement {
     // Items render asynchronously, and their height animations only start once
     // they have, so there is nothing to wait on until then.
     await this.updateComplete;
-    await Promise.all(this.items.map((other) => other.updateComplete));
+    await Promise.all(this.items.map(other => other.updateComplete));
 
-    const animations = this.items.flatMap((other) => other.panel?.getAnimations() ?? []);
-    await Promise.allSettled(animations.map((animation) => animation.finished));
+    const animations = this.items.flatMap(other => other.panel?.getAnimations() ?? []);
+    await Promise.allSettled(animations.map(animation => animation.finished));
+
+    // `finished` resolves before the animation's finish event hides the
+    // collapsed panel. Wait for the next frame so we measure and scroll using
+    // the final layout, especially when the closing panel is very tall.
+    await new Promise(resolve => requestAnimationFrame(resolve));
 
     // A newer click, a media query flip, or a quick re-collapse all supersede
     // this request.

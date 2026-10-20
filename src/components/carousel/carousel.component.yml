@@ -20,7 +20,7 @@ props:
     playing:
       type: boolean
       title: Autoplay
-      description: Rotate slides automatically. Reduced motion preferences disable initial autoplay.
+      description: Rotate slides automatically on desktop (960px and wider). Smaller screens and reduced motion preferences disable initial autoplay; users can still start playback manually.
       default: false
     interval:
       type: number

@@ -11,7 +11,7 @@
     "10": {"$value": "40px"},
     "14": {"$value": "56px"},
     "18": {"$value": "72px"},
-    "26": {"$value": "104px"},
+    "28": {"$value": "112px"},
     "35": {"$value": "140px"},
     "component": {
       "$description": "Semantic spacing values for component scales.",
@@ -27,7 +27,7 @@
       "sm": {"$value": "{space.6}"},
       "md": {"$value": "{space.14}"},
       "lg": {"$value": "{space.18}"},
-      "xl": {"$value": "{space.26}"}
+      "xl": {"$value": "{space.28}"}
     }
   }
 }

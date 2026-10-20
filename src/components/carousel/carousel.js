@@ -5,6 +5,8 @@ import {customElement, property, state, queryAssignedElements} from "lit/decorat
 import sharedStyles from "@/components/_shared/styles";
 import localStyles from "./carousel.styles.js";
 import {DeepLinkController} from "@/components/_shared/controllers/DeepLinkController";
+import {CarouselSizeController} from "@/components/_shared/controllers/CarouselSizeController";
+import {SizeBreakpointMd} from "@/components/_shared/_gen/tokens.js";
 import "@/components/slide/slide.js";
 
 /** @import {PropertyValues} from "lit" */
@@ -14,7 +16,7 @@ import "@/components/slide/slide.js";
  * A rotating set of slides with previous/next, slide picker, and autoplay
  * controls. Autoplay pauses on hover, focus, when the document is hidden, and
  * when scrolled off screen, and stops entirely on manual navigation or when the
- * reader prefers reduced motion.
+ * reader prefers reduced motion or the viewport is below the desktop breakpoint.
  *
  * @tag tcds-carousel
  *
@@ -31,6 +33,9 @@ import "@/components/slide/slide.js";
  *
  * @cssprop [--tcds-carousel-transition-duration=500ms] - Duration of the
  *   cross-fade between slides.
+ * @cssprop --tcds-carousel-slide-max-height - Measured maximum natural slide
+ *   border-box height in pixels. Published on the host for optional consumer
+ *   styling; no slide height is applied by default.
  *
  * @fires {CustomEvent<{index: number, previousIndex: number, slide: Slide|null}>} tcds-carousel:change - Fired when the selected slide changes.
  * @fires {CustomEvent<null>} tcds-carousel:play - Fired when autoplay starts.
@@ -43,7 +48,8 @@ export class Carousel extends LitElement {
   // #region Properties and state
   /**
    * Whether slides rotate automatically. Authoring `<tcds-carousel playing>`
-   * starts autoplay; manual navigation turns it off.
+   * starts autoplay on desktop unless reduced motion is requested; manual
+   * navigation turns it off. The play control can opt in on smaller screens.
    *
    * @type {boolean}
    */
@@ -135,6 +141,8 @@ export class Carousel extends LitElement {
   #internals;
   /** @type {MediaQueryList} */
   #reducedMotion;
+  /** @type {MediaQueryList} */
+  #desktop;
   /** @type {IntersectionObserver|undefined} */
   #intersectionObserver;
   /** @type {Animation|null} */
@@ -148,8 +156,8 @@ export class Carousel extends LitElement {
     this.#documentHidden = document.visibilityState === "hidden";
   };
 
-  #onReducedMotionChange = () => {
-    if (this.#reducedMotion.matches) this.pause();
+  #onAutoplayPreferenceChange = () => {
+    if (this.#reducedMotion.matches || !this.#desktop.matches) this.pause();
   };
 
   /** @param {KeyboardEvent} event */
@@ -180,7 +188,9 @@ export class Carousel extends LitElement {
     this.#internals.ariaRoleDescription = "carousel";
 
     this.#reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+    this.#desktop = matchMedia(`(min-width: ${SizeBreakpointMd})`);
     this.#deepLink = new DeepLinkController(this, this.#onDeepLink);
+    new CarouselSizeController(this, () => this.#slides ?? []);
     this.addEventListener("tcds-slide:reveal", this.#onSlideReveal);
   }
 
@@ -192,14 +202,19 @@ export class Carousel extends LitElement {
 
     document.addEventListener("visibilitychange", this.#onDocumentVisibilityChange);
     document.addEventListener("keydown", this.#onFindShortcut);
-    this.#reducedMotion.addEventListener("change", this.#onReducedMotionChange);
+
+    this.#reducedMotion.addEventListener("change", this.#onAutoplayPreferenceChange);
+    this.#desktop.addEventListener("change", this.#onAutoplayPreferenceChange);
 
     this.#onDocumentVisibilityChange();
-    this.#onReducedMotionChange();
+    this.#onAutoplayPreferenceChange();
+
     this.addEventListener("focusin", this.#onInteractionChange);
     this.addEventListener("focusout", this.#onInteractionChange);
+
     this.#intersectionObserver ??= new IntersectionObserver(this.#onIntersectionChange);
     this.#intersectionObserver.observe(this);
+
     // Reconnecting does not call firstUpdated again.
     this.requestUpdate();
   }
@@ -312,9 +327,13 @@ export class Carousel extends LitElement {
 
     document.removeEventListener("visibilitychange", this.#onDocumentVisibilityChange);
     document.removeEventListener("keydown", this.#onFindShortcut);
-    this.#reducedMotion.removeEventListener("change", this.#onReducedMotionChange);
+
+    this.#reducedMotion.removeEventListener("change", this.#onAutoplayPreferenceChange);
+    this.#desktop.removeEventListener("change", this.#onAutoplayPreferenceChange);
+
     this.#intersectionObserver?.disconnect();
     this.#progress?.cancel();
+
     this.#progress = null;
     this.#hovered = false;
     this.#focused = false;

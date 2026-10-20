@@ -1,5 +1,5 @@
 import { b as r, i, n, r as r$1, o, t, u, A, a as i$1 } from '../../dist/js/vendor.js';
-import { S as SizeBreakpointMd, b as DeepLinkController, s as styles } from '../../dist/js/shared.js';
+import { S as SizeBreakpointMd, b as DeepLinkController, C as CarouselSizeController, s as styles } from '../../dist/js/shared.js';
 import '../slide/slide.js';
 
 var _templateObject$1, _templateObject2$1, _templateObject3$1;
@@ -10,7 +10,7 @@ var insetControls = r(_templateObject2$1 || (_templateObject2$1 = _taggedTemplat
 var localStyles = i(_templateObject3$1 || (_templateObject3$1 = _taggedTemplateLiteral$1(["\n  :host {\n    --tcds-carousel-controls-position: relative;\n    --tcds-carousel-control-color: var(--tcds-color-palette-gray-400);\n    --tcds-carousel-control-color-hover: var(--tcds-color-palette-gray-500);\n    --tcds-carousel-control-color-active: var(--tcds-color-palette-black);\n    --tcds-carousel-dot-width: .8125rem;\n    --tcds-carousel-dot-width-current: var(--tcds-carousel-dot-width);\n\n    @media (min-width: ", ") {\n      --tcds-carousel-dot-width: .625rem;\n    }\n\n    flex-direction: column;\n    position: relative;\n\n    @media (prefers-reduced-motion: reduce) {\n      transition: none;\n    }\n  }\n\n  :host(:not([hidden])) {\n    display: flex;\n  }\n\n  :host([playing]) {\n    --tcds-carousel-control-color-active: var(--tcds-carousel-control-color);\n    --tcds-carousel-dot-progress-opacity: 1;\n    --tcds-carousel-dot-width-current: 2.625rem;\n  }\n\n  :host([controls=\"inset\"]) {\n    @media (min-width: ", ") {\n      ", "\n    }\n\n    @media (max-width: ", ") {\n      ", "\n    }\n  }\n\n  :host(:not([controls=\"inset\"])) {\n    ", "\n  }\n\n  [part=slides] {\n    display: grid;\n    position: relative;\n  }\n\n  [part=controls] {\n    --tcds-carousel-controls-padding: var(--tcds-space-component-md);\n    --tcds-carousel-controls-gap: calc(var(--tcds-carousel-controls-padding) * 2);\n\n    display: inline-grid;\n    grid-template-areas: \"previous dots next toggle\";\n    align-items: center;\n    justify-content: center;\n    gap: var(--tcds-carousel-controls-gap);\n    position: var(--tcds-carousel-controls-position);\n    bottom: var(--tcds-carousel-controls-bottom);\n    left: 50%;\n    transform: translateX(-50%);\n    margin-top: var(--tcds-carousel-controls-margin-top);\n    padding: 0 var(--tcds-carousel-controls-padding);\n    height: var(--tcds-size-component-md);\n    width: fit-content;\n    background-color: var(--tcds-carousel-controls-background, transparent);\n    backdrop-filter: var(--tcds-carousel-controls-backdrop-filter, none);\n    border-radius: 3rem;\n    z-index: 2;\n\n    @media (min-width: ", ") {\n      --tcds-carousel-controls-padding: var(--tcds-space-component-sm);\n    }\n  }\n\n  [part~=control] {\n    display: inline-flex;\n    justify-content: center;\n    align-items: center;\n    appearance: none;\n    border: var(--tcds-button-border-width, 0) solid var(--tcds-button-border-color, transparent);\n    background-color: var(--tcds-button-background-color, transparent);\n    color: var(--tcds-button-text-color, var(--tcds-carousel-control-color));\n    cursor: pointer;\n    position: relative;\n    transition-property: background-color, color;\n    transition-duration: var(--tcds-motion-duration-productive);\n    transition-timing-function: var(--tcds-motion-easing-enter);\n\n    @media (max-width: ", ") {\n      font-size: var(--tcds-font-size-md);\n    }\n\n    &:hover {\n      background-color: var(--tcds-button-background-color-hover, transparent);\n      border-color: var(--tcds-button-border-color-hover, transparent);\n      color: var(--tcds-button-text-color-hover, var(--tcds-carousel-control-color-hover));\n    }\n\n    &:active {\n      color: var(--tcds-button-text-color-active, var(--tcds-carousel-control-color-active));\n    }\n\n    &::before {\n      content: \"\";\n      position: absolute;\n      inset: calc(var(--tcds-carousel-controls-gap) / -2);\n    }\n  }\n\n  [part~=next] {\n    grid-area: next;\n  }\n\n  [part~=previous] {\n    grid-area: previous;\n  }\n\n  [part~=toggle] {\n    grid-area: toggle;\n  }\n\n  [part=dots] {\n    grid-area: dots;\n    display: flex;\n    gap: var(--tcds-carousel-controls-gap);\n  }\n\n  [part~=dot] {\n    position: relative;\n    background-color: var(--tcds-carousel-control-color);\n    width: var(--tcds-carousel-dot-width);\n    height: var(--tcds-carousel-dot-width);\n    border-radius: var(--tcds-carousel-dot-width);\n    padding: 0;\n    transition:\n      width var(--tcds-motion-duration-expressive) var(--tcds-motion-easing-enter);\n\n    @media (prefers-reduced-motion: reduce) {\n      transition: none;\n    }\n\n    &:hover {\n      background-color: var(--tcds-carousel-control-color-hover);\n    }\n\n    &[aria-current=true] {\n      overflow: hidden;\n      width: var(--tcds-carousel-dot-width-current);\n      background-color: var(--tcds-carousel-control-color-active);\n\n      &::after {\n        content: \"\";\n        opacity: var(--tcds-carousel-dot-progress-opacity, 0);\n        position: absolute;\n        inset: 0;\n        background-color: var(--tcds-color-palette-black);\n        border-radius: var(--tcds-carousel-dot-width);\n        width: 0%;\n      }\n    }\n  }\n"])), breakpoint, breakpoint, insetControls, breakpoint, outsideControls, outsideControls, breakpoint, breakpoint);
 
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-var _Class, _Carousel3, _A, _B, _C, _D, _E, _F, _G, _Carousel3_brand, _H, _I, _J, _K, _L, _M, _internals, _reducedMotion, _intersectionObserver, _progress, _selectionInitialized, _deepLink, _onDocumentVisibilityChange, _onReducedMotionChange, _onFindShortcut, _onIntersectionChange, _onSlideReveal, _onDeepLink, _templateObject, _templateObject2, _templateObject3, _applyDecs2, _applyDecs2$e, _applyDecs2$c;
+var _Class, _Carousel3, _A, _B, _C, _D, _E, _F, _G, _Carousel3_brand, _H, _I, _J, _K, _L, _M, _internals, _reducedMotion, _desktop, _intersectionObserver, _progress, _selectionInitialized, _deepLink, _onDocumentVisibilityChange, _onAutoplayPreferenceChange, _onFindShortcut, _onIntersectionChange, _onSlideReveal, _onDeepLink, _templateObject, _templateObject2, _templateObject3, _applyDecs2, _applyDecs2$e, _applyDecs2$c;
 var _initClass, _init_playing, _init_extra_playing, _init_noPauseOnHover, _init_extra_noPauseOnHover, _init_interval, _init_extra_interval, _init_index, _init_extra_index, _init_label, _init_extra_label, _init_controls, _init_extra_controls, _init_count, _get_count, _set_count, _init_extra_count, _init_hovered, _get_hovered, _set_hovered, _init_extra_hovered, _init_focused, _get_focused, _set_focused, _init_extra_focused, _init_documentHidden, _get_documentHidden, _set_documentHidden, _init_extra_documentHidden, _init_offscreen, _get_offscreen, _set_offscreen, _init_extra_offscreen, _init_mediaSuspended, _get_mediaSuspended, _set_mediaSuspended, _init_extra_mediaSuspended, _init_slides, _get_slides, _init_extra_slides, _Carousel2;
 function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = false, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = true, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), true), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
 function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
@@ -59,7 +59,7 @@ function _identity(t) { return t; }
  * A rotating set of slides with previous/next, slide picker, and autoplay
  * controls. Autoplay pauses on hover, focus, when the document is hidden, and
  * when scrolled off screen, and stops entirely on manual navigation or when the
- * reader prefers reduced motion.
+ * reader prefers reduced motion or the viewport is below the desktop breakpoint.
  *
  * @tag tcds-carousel
  *
@@ -76,13 +76,16 @@ function _identity(t) { return t; }
  *
  * @cssprop [--tcds-carousel-transition-duration=500ms] - Duration of the
  *   cross-fade between slides.
+ * @cssprop --tcds-carousel-slide-max-height - Measured maximum natural slide
+ *   border-box height in pixels. Published on the host for optional consumer
+ *   styling; no slide height is applied by default.
  *
  * @fires {CustomEvent<{index: number, previousIndex: number, slide: Slide|null}>} tcds-carousel:change - Fired when the selected slide changes.
  * @fires {CustomEvent<null>} tcds-carousel:play - Fired when autoplay starts.
  * @fires {CustomEvent<null>} tcds-carousel:pause - Fired when autoplay stops.
  */
 var _Carousel;
-new (_Carousel2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMap(), _C = /*#__PURE__*/new WeakMap(), _D = /*#__PURE__*/new WeakMap(), _E = /*#__PURE__*/new WeakMap(), _F = /*#__PURE__*/new WeakMap(), _G = /*#__PURE__*/new WeakMap(), _Carousel3_brand = /*#__PURE__*/new WeakSet(), _H = /*#__PURE__*/new WeakMap(), _I = /*#__PURE__*/new WeakMap(), _J = /*#__PURE__*/new WeakMap(), _K = /*#__PURE__*/new WeakMap(), _L = /*#__PURE__*/new WeakMap(), _M = /*#__PURE__*/new WeakMap(), _internals = /*#__PURE__*/new WeakMap(), _reducedMotion = /*#__PURE__*/new WeakMap(), _intersectionObserver = /*#__PURE__*/new WeakMap(), _progress = /*#__PURE__*/new WeakMap(), _selectionInitialized = /*#__PURE__*/new WeakMap(), _deepLink = /*#__PURE__*/new WeakMap(), _onDocumentVisibilityChange = /*#__PURE__*/new WeakMap(), _onReducedMotionChange = /*#__PURE__*/new WeakMap(), _onFindShortcut = /*#__PURE__*/new WeakMap(), _onIntersectionChange = /*#__PURE__*/new WeakMap(), _onSlideReveal = /*#__PURE__*/new WeakMap(), _onDeepLink = /*#__PURE__*/new WeakMap(), _Carousel3 = /*#__PURE__*/function (_LitElement) {
+new (_Carousel2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMap(), _C = /*#__PURE__*/new WeakMap(), _D = /*#__PURE__*/new WeakMap(), _E = /*#__PURE__*/new WeakMap(), _F = /*#__PURE__*/new WeakMap(), _G = /*#__PURE__*/new WeakMap(), _Carousel3_brand = /*#__PURE__*/new WeakSet(), _H = /*#__PURE__*/new WeakMap(), _I = /*#__PURE__*/new WeakMap(), _J = /*#__PURE__*/new WeakMap(), _K = /*#__PURE__*/new WeakMap(), _L = /*#__PURE__*/new WeakMap(), _M = /*#__PURE__*/new WeakMap(), _internals = /*#__PURE__*/new WeakMap(), _reducedMotion = /*#__PURE__*/new WeakMap(), _desktop = /*#__PURE__*/new WeakMap(), _intersectionObserver = /*#__PURE__*/new WeakMap(), _progress = /*#__PURE__*/new WeakMap(), _selectionInitialized = /*#__PURE__*/new WeakMap(), _deepLink = /*#__PURE__*/new WeakMap(), _onDocumentVisibilityChange = /*#__PURE__*/new WeakMap(), _onAutoplayPreferenceChange = /*#__PURE__*/new WeakMap(), _onFindShortcut = /*#__PURE__*/new WeakMap(), _onIntersectionChange = /*#__PURE__*/new WeakMap(), _onSlideReveal = /*#__PURE__*/new WeakMap(), _onDeepLink = /*#__PURE__*/new WeakMap(), _Carousel3 = /*#__PURE__*/function (_LitElement) {
   // #endregion
 
   // #region Lifecycle
@@ -94,7 +97,8 @@ new (_Carousel2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMa
     // #region Properties and state
     /**
      * Whether slides rotate automatically. Authoring `<tcds-carousel playing>`
-     * starts autoplay; manual navigation turns it off.
+     * starts autoplay on desktop unless reduced motion is requested; manual
+     * navigation turns it off. The play control can opt in on smaller screens.
      *
      * @type {boolean}
      */
@@ -160,6 +164,8 @@ new (_Carousel2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMa
     _classPrivateFieldInitSpec(_this3, _internals, void _init_extra_slides(_this3));
     /** @type {MediaQueryList} */
     _classPrivateFieldInitSpec(_this3, _reducedMotion, void 0);
+    /** @type {MediaQueryList} */
+    _classPrivateFieldInitSpec(_this3, _desktop, void 0);
     /** @type {IntersectionObserver|undefined} */
     _classPrivateFieldInitSpec(_this3, _intersectionObserver, void 0);
     /** @type {Animation|null} */
@@ -171,8 +177,8 @@ new (_Carousel2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMa
     _classPrivateFieldInitSpec(_this3, _onDocumentVisibilityChange, function () {
       _classPrivateSetter(_Carousel3_brand, _set_documentHidden, _this3, document.visibilityState === "hidden");
     });
-    _classPrivateFieldInitSpec(_this3, _onReducedMotionChange, function () {
-      if (_classPrivateFieldGet(_reducedMotion, _this3).matches) _this3.pause();
+    _classPrivateFieldInitSpec(_this3, _onAutoplayPreferenceChange, function () {
+      if (_classPrivateFieldGet(_reducedMotion, _this3).matches || !_classPrivateFieldGet(_desktop, _this3).matches) _this3.pause();
     });
     /** @param {KeyboardEvent} event */
     _classPrivateFieldInitSpec(_this3, _onFindShortcut, function (event) {
@@ -211,7 +217,12 @@ new (_Carousel2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMa
     _classPrivateFieldGet(_internals, _this3).role = "group";
     _classPrivateFieldGet(_internals, _this3).ariaRoleDescription = "carousel";
     _classPrivateFieldSet(_reducedMotion, _this3, matchMedia("(prefers-reduced-motion: reduce)"));
+    _classPrivateFieldSet(_desktop, _this3, matchMedia("(min-width: ".concat(SizeBreakpointMd, ")")));
     _classPrivateFieldSet(_deepLink, _this3, new DeepLinkController(_this3, _classPrivateFieldGet(_onDeepLink, _this3)));
+    new CarouselSizeController(_this3, function () {
+      var _classPrivateGetter2;
+      return (_classPrivateGetter2 = _classPrivateGetter(_Carousel3_brand, _this3, _get_slides)) !== null && _classPrivateGetter2 !== void 0 ? _classPrivateGetter2 : [];
+    });
     _this3.addEventListener("tcds-slide:reveal", _classPrivateFieldGet(_onSlideReveal, _this3));
     return _this3;
   }
@@ -273,13 +284,15 @@ new (_Carousel2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMa
       this.addEventListener("pointerleave", _assertClassBrand(_Carousel3_brand, this, _onInteractionChange));
       document.addEventListener("visibilitychange", _classPrivateFieldGet(_onDocumentVisibilityChange, this));
       document.addEventListener("keydown", _classPrivateFieldGet(_onFindShortcut, this));
-      _classPrivateFieldGet(_reducedMotion, this).addEventListener("change", _classPrivateFieldGet(_onReducedMotionChange, this));
+      _classPrivateFieldGet(_reducedMotion, this).addEventListener("change", _classPrivateFieldGet(_onAutoplayPreferenceChange, this));
+      _classPrivateFieldGet(_desktop, this).addEventListener("change", _classPrivateFieldGet(_onAutoplayPreferenceChange, this));
       _classPrivateFieldGet(_onDocumentVisibilityChange, this).call(this);
-      _classPrivateFieldGet(_onReducedMotionChange, this).call(this);
+      _classPrivateFieldGet(_onAutoplayPreferenceChange, this).call(this);
       this.addEventListener("focusin", _assertClassBrand(_Carousel3_brand, this, _onInteractionChange));
       this.addEventListener("focusout", _assertClassBrand(_Carousel3_brand, this, _onInteractionChange));
       (_classPrivateFieldGet2 = _classPrivateFieldGet(_intersectionObserver, this)) !== null && _classPrivateFieldGet2 !== void 0 ? _classPrivateFieldGet2 : _classPrivateFieldSet(_intersectionObserver, this, new IntersectionObserver(_classPrivateFieldGet(_onIntersectionChange, this)));
       _classPrivateFieldGet(_intersectionObserver, this).observe(this);
+
       // Reconnecting does not call firstUpdated again.
       this.requestUpdate();
     }
@@ -339,7 +352,8 @@ new (_Carousel2 = (_A = /*#__PURE__*/new WeakMap(), _B = /*#__PURE__*/new WeakMa
       this.removeEventListener("focusout", _assertClassBrand(_Carousel3_brand, this, _onInteractionChange));
       document.removeEventListener("visibilitychange", _classPrivateFieldGet(_onDocumentVisibilityChange, this));
       document.removeEventListener("keydown", _classPrivateFieldGet(_onFindShortcut, this));
-      _classPrivateFieldGet(_reducedMotion, this).removeEventListener("change", _classPrivateFieldGet(_onReducedMotionChange, this));
+      _classPrivateFieldGet(_reducedMotion, this).removeEventListener("change", _classPrivateFieldGet(_onAutoplayPreferenceChange, this));
+      _classPrivateFieldGet(_desktop, this).removeEventListener("change", _classPrivateFieldGet(_onAutoplayPreferenceChange, this));
       (_classPrivateFieldGet3 = _classPrivateFieldGet(_intersectionObserver, this)) === null || _classPrivateFieldGet3 === void 0 || _classPrivateFieldGet3.disconnect();
       (_classPrivateFieldGet4 = _classPrivateFieldGet(_progress, this)) === null || _classPrivateFieldGet4 === void 0 || _classPrivateFieldGet4.cancel();
       _classPrivateFieldSet(_progress, this, null);

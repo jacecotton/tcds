@@ -3,5 +3,12 @@
 %}
 
 <tcds-animated-graphic {{ attributes }}>
-  <video autoplay muted loop playsinline src="{{ src }}"></video>
+  {% set video_attributes = create_attribute(video_attributes|default({}))
+    .setAttribute("autoplay", true)
+    .setAttribute("muted", true)
+    .setAttribute("loop", true)
+    .setAttribute("playsinline", true)
+    .setAttribute("src", src)
+  %}
+  <video {{ video_attributes }}></video>
 </tcds-animated-graphic>

@@ -16,7 +16,7 @@ function _taggedTemplateLiteral$3(e, t) { return t || (t = e.slice(0)), Object.f
  * `accordion`.
  */
 
-var disclosureStyles = i(_templateObject$3 || (_templateObject$3 = _taggedTemplateLiteral$3(["\n  :host {\n  }\n\n  :host(:not([hidden])) {\n    display: block;\n  }\n\n  /**\n   * In tabs mode the group's tablist supplies the label, so the author's\n   * heading is suppressed here to keep it from being announced twice.\n   */\n  :host(:state(tabs)) slot[name=title] {\n    display: none;\n  }\n\n  /* The panel uses hidden=until-found. Keep its host laid out so browser\n   * search can reveal the content of an inactive tab. */\n\n  :host(:state(accordion)) [part=heading] {\n    border-bottom: 1px solid var(--tcds-color-theme-edge);\n    transition-property: background-color, border-color;\n    transition-duration: var(--tcds-motion-duration-productive);\n    transition-timing-function: var(--tcds-motion-easing-enter);\n  }\n\n  :host(:state(accordion):state(expanded)) [part=heading] {\n    border-color: transparent;\n    background-color: var(--tcds-color-theme-surface);\n  }\n\n  [part=trigger] {\n    appearance: none;\n    background-color: transparent;\n    border: 0;\n  }\n\n  :host(:state(accordion)) [part=trigger] {\n    display: flex;\n    justify-content: space-between;\n    width: 100%;\n    padding: var(--tcds-space-8) var(--tcds-space-component-lg);\n    font-family: var(--tcds-font-family-ui);\n    font-weight: var(--tcds-font-weight-ui);\n    font-size: var(--tcds-font-size-2xl);\n    line-height: var(--tcds-line-height-normal);\n    text-align: left;\n    color: var(--tcds-color-theme-text-primary);\n    cursor: pointer;\n  }\n\n  :host(:state(accordion)) [part=marker] {\n    flex: none;\n    font-size: var(--tcds-font-size-md);\n  }\n\n  :host(:state(accordion):state(expanded)) [part=marker] {\n    color: var(--tcds-color-theme-accent);\n  }\n\n  [part=panel]:focus-visible {\n    outline: 2px solid currentcolor;\n    outline-offset: 2px;\n  }\n\n  :host(:state(accordion)) [part=panel] {\n    overflow: hidden;\n    box-shadow: 0;\n    transition-property: background-color, box-shadow;\n    transition-duration: var(--tcds-motion-duration-productive);\n    transition-timing-function: var(--tcds-motion-easing-enter);\n  }\n\n  :host(:state(accordion):state(expanded)) [part=panel] {\n    background-color: var(--tcds-color-theme-surface);\n    box-shadow: inset 0 -4px 0 var(--tcds-color-theme-accent);\n  }\n\n  :host(:state(plain)) [part=content] {\n    padding-block-start: 0;\n  }\n\n  :host(:state(accordion)) [part=content] {\n    padding-inline: var(--tcds-space-component-xl);\n    padding-block-end: var(--tcds-space-layout-sm);\n  }\n"])));
+var disclosureStyles = i(_templateObject$3 || (_templateObject$3 = _taggedTemplateLiteral$3(["\n  :host {\n  }\n\n  :host(:not([hidden])) {\n    display: block;\n  }\n\n  /**\n   * In tabs mode the group's tablist supplies the label, so the author's\n   * heading is suppressed here to keep it from being announced twice.\n   */\n  :host(:state(tabs)) slot[name=title] {\n    display: none;\n  }\n\n  /* The panel uses hidden=until-found. Keep its host laid out so browser\n   * search can reveal the content of an inactive tab. */\n\n  :host(:state(accordion)) [part=heading] {\n    border-bottom: 1px solid var(--tcds-color-theme-edge);\n    transition-property: background-color, border-color;\n    transition-duration: var(--tcds-motion-duration-productive);\n    transition-timing-function: var(--tcds-motion-easing-enter);\n  }\n\n  :host(:state(accordion):state(expanded)) [part=heading] {\n    border-color: transparent;\n    background-color: var(--tcds-color-theme-surface);\n  }\n\n  [part=trigger] {\n    appearance: none;\n    background-color: transparent;\n    border: 0;\n  }\n\n  :host(:state(accordion)) [part=trigger] {\n    display: flex;\n    justify-content: space-between;\n    width: 100%;\n    padding: var(--tcds-space-component-lg);\n    font-family: var(--tcds-font-family-ui);\n    font-weight: var(--tcds-font-weight-ui);\n    font-size: var(--tcds-font-size-2xl);\n    line-height: var(--tcds-line-height-normal);\n    text-align: left;\n    color: var(--tcds-color-theme-text-primary);\n    cursor: pointer;\n  }\n\n  :host(:state(accordion)) [part=marker] {\n    flex: none;\n    font-size: var(--tcds-font-size-md);\n  }\n\n  :host(:state(accordion):state(expanded)) [part=marker] {\n    color: var(--tcds-color-theme-accent);\n  }\n\n  [part=panel]:focus-visible {\n    outline: 2px solid currentcolor;\n    outline-offset: 2px;\n  }\n\n  :host(:state(accordion)) [part=panel] {\n    overflow: hidden;\n    box-shadow: 0;\n    transition-property: background-color, box-shadow;\n    transition-duration: var(--tcds-motion-duration-productive);\n    transition-timing-function: var(--tcds-motion-easing-enter);\n  }\n\n  :host(:state(accordion):state(expanded)) [part=panel] {\n    background-color: var(--tcds-color-theme-surface);\n    box-shadow: inset 0 -4px 0 var(--tcds-color-theme-accent);\n  }\n\n  :host(:state(plain)) [part=content] {\n    padding-block-start: 0;\n  }\n\n  :host(:state(accordion)) [part=content] {\n    padding-inline: var(--tcds-space-component-xl);\n    padding-block: var(--tcds-space-component-md) var(--tcds-space-component-xl);\n  }\n"])));
 
 var SizeBreakpointMd="960px";// Medium (960px)
 var SizeBreakpointLg="1312px";// Large (1312px)
@@ -24,21 +24,21 @@ var MotionEasingEnter="cubic-bezier(0, 0.5, 0.5, 1)";// ease-out
 var MotionEasingExit="cubic-bezier(0.4, 0, 1, 1)";// ease-in
 var MotionDurationProductive=100;var MotionDurationExpressive=200;
 
-function _typeof$6(o) { "@babel/helpers - typeof"; return _typeof$6 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof$6(o); }
-function _createForOfIteratorHelper$3(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray$3(r)) || e) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: true } : { done: false, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = true, u = false; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = true, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
-function _unsupportedIterableToArray$3(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray$3(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray$3(r, a) : void 0; } }
-function _arrayLikeToArray$3(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
-function _classCallCheck$5(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
-function _defineProperties$5(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey$6(o.key), o); } }
-function _createClass$5(e, r, t) { return r && _defineProperties$5(e.prototype, r), Object.defineProperty(e, "prototype", { writable: false }), e; }
-function _toPropertyKey$6(t) { var i = _toPrimitive$6(t, "string"); return "symbol" == _typeof$6(i) ? i : i + ""; }
-function _toPrimitive$6(t, r) { if ("object" != _typeof$6(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof$6(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return (String )(t); }
-function _classPrivateMethodInitSpec$4(e, a) { _checkPrivateRedeclaration$5(e, a), a.add(e); }
-function _classPrivateFieldInitSpec$5(e, t, a) { _checkPrivateRedeclaration$5(e, t), t.set(e, a); }
-function _checkPrivateRedeclaration$5(e, t) { if (t.has(e)) throw new TypeError("Cannot initialize the same private elements twice on an object"); }
-function _classPrivateFieldSet$5(s, a, r) { return s.set(_assertClassBrand$5(s, a), r), r; }
-function _classPrivateFieldGet$5(s, a) { return s.get(_assertClassBrand$5(s, a)); }
-function _assertClassBrand$5(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
+function _typeof$7(o) { "@babel/helpers - typeof"; return _typeof$7 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof$7(o); }
+function _createForOfIteratorHelper$4(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray$4(r)) || e) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: true } : { done: false, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = true, u = false; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = true, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
+function _unsupportedIterableToArray$4(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray$4(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray$4(r, a) : void 0; } }
+function _arrayLikeToArray$4(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _classCallCheck$6(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties$6(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey$7(o.key), o); } }
+function _createClass$6(e, r, t) { return r && _defineProperties$6(e.prototype, r), Object.defineProperty(e, "prototype", { writable: false }), e; }
+function _toPropertyKey$7(t) { var i = _toPrimitive$7(t, "string"); return "symbol" == _typeof$7(i) ? i : i + ""; }
+function _toPrimitive$7(t, r) { if ("object" != _typeof$7(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof$7(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return (String )(t); }
+function _classPrivateMethodInitSpec$5(e, a) { _checkPrivateRedeclaration$6(e, a), a.add(e); }
+function _classPrivateFieldInitSpec$6(e, t, a) { _checkPrivateRedeclaration$6(e, t), t.set(e, a); }
+function _checkPrivateRedeclaration$6(e, t) { if (t.has(e)) throw new TypeError("Cannot initialize the same private elements twice on an object"); }
+function _classPrivateFieldSet$6(s, a, r) { return s.set(_assertClassBrand$6(s, a), r), r; }
+function _classPrivateFieldGet$6(s, a) { return s.get(_assertClassBrand$6(s, a)); }
+function _assertClassBrand$6(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
 
 /**
  * @typedef {object} AccordionAnimationConfig
@@ -64,23 +64,23 @@ var AccordionAnimationController = /*#__PURE__*/function () {
    * @param {AccordionAnimationConfig} config
    */
   function AccordionAnimationController(host, config) {
-    _classCallCheck$5(this, AccordionAnimationController);
+    _classCallCheck$6(this, AccordionAnimationController);
     /**
      * @param {boolean} isOpen
      * @param {HTMLElement} panel
      * @param {HTMLElement} content
      */
-    _classPrivateMethodInitSpec$4(this, _AccordionAnimationController_brand);
+    _classPrivateMethodInitSpec$5(this, _AccordionAnimationController_brand);
     /** @type {AccordionAnimationConfig} */
-    _classPrivateFieldInitSpec$5(this, _config, void 0);
+    _classPrivateFieldInitSpec$6(this, _config, void 0);
     /** @type {boolean|undefined} */
-    _classPrivateFieldInitSpec$5(this, _previousOpen, undefined);
+    _classPrivateFieldInitSpec$6(this, _previousOpen, undefined);
     /** @type {Animation[]} */
-    _classPrivateFieldInitSpec$5(this, _animations, []);
-    _classPrivateFieldSet$5(_config, this, config);
+    _classPrivateFieldInitSpec$6(this, _animations, []);
+    _classPrivateFieldSet$6(_config, this, config);
     host.addController(this);
   }
-  return _createClass$5(AccordionAnimationController, [{
+  return _createClass$6(AccordionAnimationController, [{
     key: "reset",
     value:
     /**
@@ -90,7 +90,7 @@ var AccordionAnimationController = /*#__PURE__*/function () {
      * re-enable it, during which time the DOM may have been changed underneath.
      */
     function reset() {
-      var _iterator = _createForOfIteratorHelper$3(_classPrivateFieldGet$5(_animations, this)),
+      var _iterator = _createForOfIteratorHelper$4(_classPrivateFieldGet$6(_animations, this)),
         _step;
       try {
         for (_iterator.s(); !(_step = _iterator.n()).done;) {
@@ -102,8 +102,8 @@ var AccordionAnimationController = /*#__PURE__*/function () {
       } finally {
         _iterator.f();
       }
-      _classPrivateFieldSet$5(_animations, this, []);
-      _classPrivateFieldSet$5(_previousOpen, this, undefined);
+      _classPrivateFieldSet$6(_animations, this, []);
+      _classPrivateFieldSet$6(_previousOpen, this, undefined);
     }
   }, {
     key: "hostDisconnected",
@@ -113,26 +113,26 @@ var AccordionAnimationController = /*#__PURE__*/function () {
   }, {
     key: "hostUpdated",
     value: function hostUpdated() {
-      var isOpen = _classPrivateFieldGet$5(_config, this).isOpen();
-      var panel = _classPrivateFieldGet$5(_config, this).getPanel();
-      var content = _classPrivateFieldGet$5(_config, this).getContent();
+      var isOpen = _classPrivateFieldGet$6(_config, this).isOpen();
+      var panel = _classPrivateFieldGet$6(_config, this).getPanel();
+      var content = _classPrivateFieldGet$6(_config, this).getContent();
       if (!panel || !content) return;
 
       // Initial render - no animation, just set state.
-      if (_classPrivateFieldGet$5(_previousOpen, this) === undefined) {
+      if (_classPrivateFieldGet$6(_previousOpen, this) === undefined) {
         // `[hidden=until-found]` keeps the content discoverable by browser text
         // search (cmd/ctrl+F).
         if (isOpen) panel.removeAttribute("hidden");else panel.setAttribute("hidden", "until-found");
         panel.style.height = null;
         content.style.opacity = null;
-        _classPrivateFieldSet$5(_previousOpen, this, isOpen);
+        _classPrivateFieldSet$6(_previousOpen, this, isOpen);
         return;
       }
-      if (isOpen === _classPrivateFieldGet$5(_previousOpen, this)) return;
+      if (isOpen === _classPrivateFieldGet$6(_previousOpen, this)) return;
 
       // A stale collapse callback must not re-hide a panel revealed by search,
       // a fragment, or another click while its animation was still running.
-      var _iterator2 = _createForOfIteratorHelper$3(_classPrivateFieldGet$5(_animations, this)),
+      var _iterator2 = _createForOfIteratorHelper$4(_classPrivateFieldGet$6(_animations, this)),
         _step2;
       try {
         for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
@@ -144,10 +144,10 @@ var AccordionAnimationController = /*#__PURE__*/function () {
       } finally {
         _iterator2.f();
       }
-      _classPrivateFieldSet$5(_animations, this, []);
+      _classPrivateFieldSet$6(_animations, this, []);
       content.style.opacity = null;
-      _assertClassBrand$5(_AccordionAnimationController_brand, this, _animate).call(this, isOpen, panel, content);
-      _classPrivateFieldSet$5(_previousOpen, this, isOpen);
+      _assertClassBrand$6(_AccordionAnimationController_brand, this, _animate).call(this, isOpen, panel, content);
+      _classPrivateFieldSet$6(_previousOpen, this, isOpen);
     }
   }]);
 }();
@@ -184,7 +184,7 @@ function _animate(isOpen, panel, content) {
     opacity.onfinish = function () {
       return content.style.opacity = null;
     };
-    _classPrivateFieldSet$5(_animations, this, [height, opacity]);
+    _classPrivateFieldSet$6(_animations, this, [height, opacity]);
   } else {
     // Reverse animation, reset DOM.
     var _height = panel.animate({
@@ -203,19 +203,19 @@ function _animate(isOpen, panel, content) {
       duration: duration,
       easing: MotionEasingExit
     });
-    _classPrivateFieldSet$5(_animations, this, [_height, _opacity]);
+    _classPrivateFieldSet$6(_animations, this, [_height, _opacity]);
   }
 }
 
-function _typeof$5(o) { "@babel/helpers - typeof"; return _typeof$5 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof$5(o); }
+function _typeof$6(o) { "@babel/helpers - typeof"; return _typeof$6 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof$6(o); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), true).forEach(function (r) { _defineProperty$2(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
-function _defineProperty$2(e, r, t) { return (r = _toPropertyKey$5(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: true, configurable: true, writable: true }) : e[r] = t, e; }
-function _toPropertyKey$5(t) { var i = _toPrimitive$5(t, "string"); return "symbol" == _typeof$5(i) ? i : i + ""; }
-function _toPrimitive$5(t, r) { if ("object" != _typeof$5(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof$5(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function _createForOfIteratorHelper$2(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray$2(r)) || e) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: true } : { done: false, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = true, u = false; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = true, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
-function _unsupportedIterableToArray$2(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray$2(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray$2(r, a) : void 0; } }
-function _arrayLikeToArray$2(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _defineProperty$2(e, r, t) { return (r = _toPropertyKey$6(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: true, configurable: true, writable: true }) : e[r] = t, e; }
+function _toPropertyKey$6(t) { var i = _toPrimitive$6(t, "string"); return "symbol" == _typeof$6(i) ? i : i + ""; }
+function _toPrimitive$6(t, r) { if ("object" != _typeof$6(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof$6(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _createForOfIteratorHelper$3(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray$3(r)) || e) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: true } : { done: false, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = true, u = false; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = true, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
+function _unsupportedIterableToArray$3(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray$3(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray$3(r, a) : void 0; } }
+function _arrayLikeToArray$3(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 /**
  * Pause any media inside a subtree that is about to be hidden (dialog closed,
  * carousel slide deactivated, tab panel switched, etc.), and restore it when
@@ -279,7 +279,7 @@ function collectMedia(root, deep) {
     found.add(root);
   }
   if (typeof root.querySelectorAll !== "function") return found;
-  var _iterator = _createForOfIteratorHelper$2(root.querySelectorAll(MEDIA_SELECTOR)),
+  var _iterator = _createForOfIteratorHelper$3(root.querySelectorAll(MEDIA_SELECTOR)),
     _step;
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done;) {
@@ -292,7 +292,7 @@ function collectMedia(root, deep) {
     _iterator.f();
   }
   if (deep) {
-    var _iterator2 = _createForOfIteratorHelper$2(root.querySelectorAll("*")),
+    var _iterator2 = _createForOfIteratorHelper$3(root.querySelectorAll("*")),
       _step2;
     try {
       for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
@@ -481,7 +481,7 @@ function pauseMedia() {
     respectFullscreen: true
   }, options);
   var results = [];
-  var _iterator3 = _createForOfIteratorHelper$2(collectMedia(root, opts.deep)),
+  var _iterator3 = _createForOfIteratorHelper$3(collectMedia(root, opts.deep)),
     _step3;
   try {
     for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
@@ -529,7 +529,7 @@ function restoreMedia() {
     _options$owner = options.owner,
     owner = _options$owner === void 0 ? null : _options$owner;
   var results = [];
-  var _iterator4 = _createForOfIteratorHelper$2(collectMedia(root, deep)),
+  var _iterator4 = _createForOfIteratorHelper$3(collectMedia(root, deep)),
     _step4;
   try {
     for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
@@ -618,7 +618,7 @@ function prepareMedia() {
   var _ref2 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
     _ref2$deep = _ref2.deep,
     deep = _ref2$deep === void 0 ? true : _ref2$deep;
-  var _iterator5 = _createForOfIteratorHelper$2(collectMedia(root, deep)),
+  var _iterator5 = _createForOfIteratorHelper$3(collectMedia(root, deep)),
     _step5;
   try {
     for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
@@ -645,18 +645,18 @@ function prepareMedia() {
   }
 }
 
-function _typeof$4(o) { "@babel/helpers - typeof"; return _typeof$4 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof$4(o); }
-function _classCallCheck$4(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
-function _defineProperties$4(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey$4(o.key), o); } }
-function _createClass$4(e, r, t) { return r && _defineProperties$4(e.prototype, r), Object.defineProperty(e, "prototype", { writable: false }), e; }
-function _toPropertyKey$4(t) { var i = _toPrimitive$4(t, "string"); return "symbol" == _typeof$4(i) ? i : i + ""; }
-function _toPrimitive$4(t, r) { if ("object" != _typeof$4(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof$4(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return (String )(t); }
-function _classPrivateMethodInitSpec$3(e, a) { _checkPrivateRedeclaration$4(e, a), a.add(e); }
-function _classPrivateFieldInitSpec$4(e, t, a) { _checkPrivateRedeclaration$4(e, t), t.set(e, a); }
-function _checkPrivateRedeclaration$4(e, t) { if (t.has(e)) throw new TypeError("Cannot initialize the same private elements twice on an object"); }
-function _classPrivateFieldGet$4(s, a) { return s.get(_assertClassBrand$4(s, a)); }
-function _classPrivateFieldSet$4(s, a, r) { return s.set(_assertClassBrand$4(s, a), r), r; }
-function _assertClassBrand$4(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
+function _typeof$5(o) { "@babel/helpers - typeof"; return _typeof$5 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof$5(o); }
+function _classCallCheck$5(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties$5(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey$5(o.key), o); } }
+function _createClass$5(e, r, t) { return r && _defineProperties$5(e.prototype, r), Object.defineProperty(e, "prototype", { writable: false }), e; }
+function _toPropertyKey$5(t) { var i = _toPrimitive$5(t, "string"); return "symbol" == _typeof$5(i) ? i : i + ""; }
+function _toPrimitive$5(t, r) { if ("object" != _typeof$5(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof$5(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return (String )(t); }
+function _classPrivateMethodInitSpec$4(e, a) { _checkPrivateRedeclaration$5(e, a), a.add(e); }
+function _classPrivateFieldInitSpec$5(e, t, a) { _checkPrivateRedeclaration$5(e, t), t.set(e, a); }
+function _checkPrivateRedeclaration$5(e, t) { if (t.has(e)) throw new TypeError("Cannot initialize the same private elements twice on an object"); }
+function _classPrivateFieldGet$5(s, a) { return s.get(_assertClassBrand$5(s, a)); }
+function _classPrivateFieldSet$5(s, a, r) { return s.set(_assertClassBrand$5(s, a), r), r; }
+function _assertClassBrand$5(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
 var owners = 0;
 
 /**
@@ -666,11 +666,11 @@ var owners = 0;
  * @implements {import("lit").ReactiveController}
  * @internal
  */
-var _host$2 = /*#__PURE__*/new WeakMap();
+var _host$3 = /*#__PURE__*/new WeakMap();
 var _isActive = /*#__PURE__*/new WeakMap();
 var _owner = /*#__PURE__*/new WeakMap();
 var _settled = /*#__PURE__*/new WeakMap();
-var _frame = /*#__PURE__*/new WeakMap();
+var _frame$1 = /*#__PURE__*/new WeakMap();
 var _onPlay = /*#__PURE__*/new WeakMap();
 var _MediaController_brand = /*#__PURE__*/new WeakSet();
 var MediaController = /*#__PURE__*/function () {
@@ -680,84 +680,84 @@ var MediaController = /*#__PURE__*/function () {
    */
   function MediaController(host, isActive) {
     var _this = this;
-    _classCallCheck$4(this, MediaController);
-    _classPrivateMethodInitSpec$3(this, _MediaController_brand);
+    _classCallCheck$5(this, MediaController);
+    _classPrivateMethodInitSpec$4(this, _MediaController_brand);
     /** @type {import("lit").LitElement} */
-    _classPrivateFieldInitSpec$4(this, _host$2, void 0);
+    _classPrivateFieldInitSpec$5(this, _host$3, void 0);
     /** @type {() => boolean} */
-    _classPrivateFieldInitSpec$4(this, _isActive, void 0);
-    _classPrivateFieldInitSpec$4(this, _owner, "tcds-media-".concat(++owners));
-    _classPrivateFieldInitSpec$4(this, _settled, false);
+    _classPrivateFieldInitSpec$5(this, _isActive, void 0);
+    _classPrivateFieldInitSpec$5(this, _owner, "tcds-media-".concat(++owners));
+    _classPrivateFieldInitSpec$5(this, _settled, false);
     /** @type {number|undefined} */
-    _classPrivateFieldInitSpec$4(this, _frame, void 0);
-    _classPrivateFieldInitSpec$4(this, _onPlay, function () {
-      if (!_classPrivateFieldGet$4(_isActive, _this).call(_this)) _assertClassBrand$4(_MediaController_brand, _this, _sync).call(_this);
+    _classPrivateFieldInitSpec$5(this, _frame$1, void 0);
+    _classPrivateFieldInitSpec$5(this, _onPlay, function () {
+      if (!_classPrivateFieldGet$5(_isActive, _this).call(_this)) _assertClassBrand$5(_MediaController_brand, _this, _sync).call(_this);
     });
-    _classPrivateFieldSet$4(_host$2, this, host);
-    _classPrivateFieldSet$4(_isActive, this, isActive);
+    _classPrivateFieldSet$5(_host$3, this, host);
+    _classPrivateFieldSet$5(_isActive, this, isActive);
     host.addController(this);
   }
-  return _createClass$4(MediaController, [{
+  return _createClass$5(MediaController, [{
     key: "hostConnected",
     value: function hostConnected() {
-      _classPrivateFieldGet$4(_host$2, this).addEventListener("play", _classPrivateFieldGet$4(_onPlay, this), true);
-      _classPrivateFieldGet$4(_host$2, this).requestUpdate();
+      _classPrivateFieldGet$5(_host$3, this).addEventListener("play", _classPrivateFieldGet$5(_onPlay, this), true);
+      _classPrivateFieldGet$5(_host$3, this).requestUpdate();
     }
   }, {
     key: "hostDisconnected",
     value: function hostDisconnected() {
-      _classPrivateFieldGet$4(_host$2, this).removeEventListener("play", _classPrivateFieldGet$4(_onPlay, this), true);
-      if (_classPrivateFieldGet$4(_frame, this) !== undefined) cancelAnimationFrame(_classPrivateFieldGet$4(_frame, this));
-      _classPrivateFieldSet$4(_frame, this, undefined);
-      _classPrivateFieldSet$4(_settled, this, false);
+      _classPrivateFieldGet$5(_host$3, this).removeEventListener("play", _classPrivateFieldGet$5(_onPlay, this), true);
+      if (_classPrivateFieldGet$5(_frame$1, this) !== undefined) cancelAnimationFrame(_classPrivateFieldGet$5(_frame$1, this));
+      _classPrivateFieldSet$5(_frame$1, this, undefined);
+      _classPrivateFieldSet$5(_settled, this, false);
     }
   }, {
     key: "hostUpdated",
     value: function hostUpdated() {
       var _this2 = this;
-      if (_classPrivateFieldGet$4(_settled, this)) {
-        _assertClassBrand$4(_MediaController_brand, this, _sync).call(this);
-      } else if (_classPrivateFieldGet$4(_frame, this) === undefined) {
+      if (_classPrivateFieldGet$5(_settled, this)) {
+        _assertClassBrand$5(_MediaController_brand, this, _sync).call(this);
+      } else if (_classPrivateFieldGet$5(_frame$1, this) === undefined) {
         // Let the parent assign the initial selection and responsive mode first.
-        _classPrivateFieldSet$4(_frame, this, requestAnimationFrame(function () {
-          _classPrivateFieldSet$4(_frame, _this2, undefined);
-          _classPrivateFieldSet$4(_settled, _this2, true);
-          _assertClassBrand$4(_MediaController_brand, _this2, _sync).call(_this2);
+        _classPrivateFieldSet$5(_frame$1, this, requestAnimationFrame(function () {
+          _classPrivateFieldSet$5(_frame$1, _this2, undefined);
+          _classPrivateFieldSet$5(_settled, _this2, true);
+          _assertClassBrand$5(_MediaController_brand, _this2, _sync).call(_this2);
         }));
       }
     }
   }, {
     key: "contentChanged",
     value: function contentChanged() {
-      prepareMedia(_classPrivateFieldGet$4(_host$2, this));
-      if (_classPrivateFieldGet$4(_settled, this)) _assertClassBrand$4(_MediaController_brand, this, _sync).call(this);
+      prepareMedia(_classPrivateFieldGet$5(_host$3, this));
+      if (_classPrivateFieldGet$5(_settled, this)) _assertClassBrand$5(_MediaController_brand, this, _sync).call(this);
     }
   }]);
 }();
 function _sync() {
-  if (_classPrivateFieldGet$4(_isActive, this).call(this)) {
-    restoreMedia(_classPrivateFieldGet$4(_host$2, this), {
-      owner: _classPrivateFieldGet$4(_owner, this)
+  if (_classPrivateFieldGet$5(_isActive, this).call(this)) {
+    restoreMedia(_classPrivateFieldGet$5(_host$3, this), {
+      owner: _classPrivateFieldGet$5(_owner, this)
     });
   } else {
-    pauseMedia(_classPrivateFieldGet$4(_host$2, this), {
-      owner: _classPrivateFieldGet$4(_owner, this)
+    pauseMedia(_classPrivateFieldGet$5(_host$3, this), {
+      owner: _classPrivateFieldGet$5(_owner, this)
     });
   }
 }
 
-function _typeof$3(o) { "@babel/helpers - typeof"; return _typeof$3 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof$3(o); }
-function _classCallCheck$3(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
-function _defineProperties$3(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey$3(o.key), o); } }
-function _createClass$3(e, r, t) { return r && _defineProperties$3(e.prototype, r), Object.defineProperty(e, "prototype", { writable: false }), e; }
-function _toPropertyKey$3(t) { var i = _toPrimitive$3(t, "string"); return "symbol" == _typeof$3(i) ? i : i + ""; }
-function _toPrimitive$3(t, r) { if ("object" != _typeof$3(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof$3(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return (String )(t); }
-function _classPrivateFieldInitSpec$3(e, t, a) { _checkPrivateRedeclaration$3(e, t), t.set(e, a); }
-function _checkPrivateRedeclaration$3(e, t) { if (t.has(e)) throw new TypeError("Cannot initialize the same private elements twice on an object"); }
-function _classPrivateFieldGet$3(s, a) { return s.get(_assertClassBrand$3(s, a)); }
-function _classPrivateFieldSet$3(s, a, r) { return s.set(_assertClassBrand$3(s, a), r), r; }
-function _assertClassBrand$3(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
-var _host$1 = /*#__PURE__*/new WeakMap();
+function _typeof$4(o) { "@babel/helpers - typeof"; return _typeof$4 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof$4(o); }
+function _classCallCheck$4(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties$4(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey$4(o.key), o); } }
+function _createClass$4(e, r, t) { return r && _defineProperties$4(e.prototype, r), Object.defineProperty(e, "prototype", { writable: false }), e; }
+function _toPropertyKey$4(t) { var i = _toPrimitive$4(t, "string"); return "symbol" == _typeof$4(i) ? i : i + ""; }
+function _toPrimitive$4(t, r) { if ("object" != _typeof$4(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof$4(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return (String )(t); }
+function _classPrivateFieldInitSpec$4(e, t, a) { _checkPrivateRedeclaration$4(e, t), t.set(e, a); }
+function _checkPrivateRedeclaration$4(e, t) { if (t.has(e)) throw new TypeError("Cannot initialize the same private elements twice on an object"); }
+function _classPrivateFieldGet$4(s, a) { return s.get(_assertClassBrand$4(s, a)); }
+function _classPrivateFieldSet$4(s, a, r) { return s.set(_assertClassBrand$4(s, a), r), r; }
+function _assertClassBrand$4(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
+var _host$2 = /*#__PURE__*/new WeakMap();
 var _onResolve = /*#__PURE__*/new WeakMap();
 var _request = /*#__PURE__*/new WeakMap();
 var _onHashChange = /*#__PURE__*/new WeakMap();
@@ -781,23 +781,23 @@ var DeepLinkController = /*#__PURE__*/function () {
    */
   function DeepLinkController(host, onResolve) {
     var _this = this;
-    _classCallCheck$3(this, DeepLinkController);
+    _classCallCheck$4(this, DeepLinkController);
     /** @type {import("lit").ReactiveControllerHost & HTMLElement} */
-    _classPrivateFieldInitSpec$3(this, _host$1, void 0);
-    _classPrivateFieldInitSpec$3(this, _onResolve, void 0);
-    _classPrivateFieldInitSpec$3(this, _request, 0);
-    _classPrivateFieldInitSpec$3(this, _onHashChange, function () {
+    _classPrivateFieldInitSpec$4(this, _host$2, void 0);
+    _classPrivateFieldInitSpec$4(this, _onResolve, void 0);
+    _classPrivateFieldInitSpec$4(this, _request, 0);
+    _classPrivateFieldInitSpec$4(this, _onHashChange, function () {
       _this.resolve();
     });
-    _classPrivateFieldSet$3(_onResolve, this, onResolve);
-    _classPrivateFieldSet$3(_host$1, this, host);
+    _classPrivateFieldSet$4(_onResolve, this, onResolve);
+    _classPrivateFieldSet$4(_host$2, this, host);
     host.addController(this);
   }
 
   /**
    * The element the current URL points at, if any.
    */
-  return _createClass$3(DeepLinkController, [{
+  return _createClass$4(DeepLinkController, [{
     key: "target",
     get: function get() {
       var fragment = location.hash.slice(1);
@@ -816,13 +816,13 @@ var DeepLinkController = /*#__PURE__*/function () {
       var _this$request,
         _this2 = this;
       var target = this.target;
-      var request = _classPrivateFieldSet$3(_request, this, (_this$request = _classPrivateFieldGet$3(_request, this), ++_this$request));
-      if (!target || !_classPrivateFieldGet$3(_onResolve, this).call(this, target)) return;
+      var request = _classPrivateFieldSet$4(_request, this, (_this$request = _classPrivateFieldGet$4(_request, this), ++_this$request));
+      if (!target || !_classPrivateFieldGet$4(_onResolve, this).call(this, target)) return;
 
       // All hash listeners run before this frame, and Lit updates flush before
       // rendering. This lets nested groups reveal their panels before scrolling.
       requestAnimationFrame(function () {
-        if (!_classPrivateFieldGet$3(_host$1, _this2).isConnected || request !== _classPrivateFieldGet$3(_request, _this2) || target !== _this2.target) return;
+        if (!_classPrivateFieldGet$4(_host$2, _this2).isConnected || request !== _classPrivateFieldGet$4(_request, _this2) || target !== _this2.target) return;
         target.scrollIntoView({
           block: "start",
           behavior: "instant"
@@ -833,41 +833,41 @@ var DeepLinkController = /*#__PURE__*/function () {
     key: "hostConnected",
     value: function hostConnected() {
       var _this3 = this;
-      window.addEventListener("hashchange", _classPrivateFieldGet$3(_onHashChange, this));
-      _classPrivateFieldGet$3(_host$1, this).updateComplete.then(function () {
-        if (_classPrivateFieldGet$3(_host$1, _this3).isConnected) _this3.resolve();
+      window.addEventListener("hashchange", _classPrivateFieldGet$4(_onHashChange, this));
+      _classPrivateFieldGet$4(_host$2, this).updateComplete.then(function () {
+        if (_classPrivateFieldGet$4(_host$2, _this3).isConnected) _this3.resolve();
       });
     }
   }, {
     key: "hostDisconnected",
     value: function hostDisconnected() {
       var _this$request2;
-      _classPrivateFieldSet$3(_request, this, (_this$request2 = _classPrivateFieldGet$3(_request, this), _this$request2++, _this$request2));
-      window.removeEventListener("hashchange", _classPrivateFieldGet$3(_onHashChange, this));
+      _classPrivateFieldSet$4(_request, this, (_this$request2 = _classPrivateFieldGet$4(_request, this), _this$request2++, _this$request2));
+      window.removeEventListener("hashchange", _classPrivateFieldGet$4(_onHashChange, this));
     }
   }]);
 }();
 
-function _typeof$2(o) { "@babel/helpers - typeof"; return _typeof$2 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof$2(o); }
+function _typeof$3(o) { "@babel/helpers - typeof"; return _typeof$3 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof$3(o); }
 var _Disclosure, _templateObject$2, _templateObject2;
 var _init_mode, _init_extra_mode, _init_position, _init_extra_position, _init_total, _init_extra_total;
-function _slicedToArray$1(r, e) { return _arrayWithHoles$1(r) || _iterableToArrayLimit$1(r, e) || _unsupportedIterableToArray$1(r, e) || _nonIterableRest$1(); }
-function _nonIterableRest$1() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _iterableToArrayLimit$1(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = true, o = false; try { if (i = (t = t.call(r)).next, 0 === l) ; else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = true, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
-function _arrayWithHoles$1(r) { if (Array.isArray(r)) return r; }
-function _createForOfIteratorHelper$1(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray$1(r)) || e) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: true } : { done: false, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = true, u = false; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = true, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
-function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray$1(r) || _nonIterableSpread(); }
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray$1(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray$1(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray$1(r, a) : void 0; } }
-function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
-function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray$1(r); }
-function _arrayLikeToArray$1(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _slicedToArray$2(r, e) { return _arrayWithHoles$2(r) || _iterableToArrayLimit$2(r, e) || _unsupportedIterableToArray$2(r, e) || _nonIterableRest$2(); }
+function _nonIterableRest$2() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArrayLimit$2(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = true, o = false; try { if (i = (t = t.call(r)).next, 0 === l) ; else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = true, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles$2(r) { if (Array.isArray(r)) return r; }
+function _createForOfIteratorHelper$2(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray$2(r)) || e) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: true } : { done: false, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = true, u = false; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = true, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
+function _toConsumableArray$1(r) { return _arrayWithoutHoles$1(r) || _iterableToArray$1(r) || _unsupportedIterableToArray$2(r) || _nonIterableSpread$1(); }
+function _nonIterableSpread$1() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray$2(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray$2(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray$2(r, a) : void 0; } }
+function _iterableToArray$1(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function _arrayWithoutHoles$1(r) { if (Array.isArray(r)) return _arrayLikeToArray$2(r); }
+function _arrayLikeToArray$2(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _taggedTemplateLiteral$2(e, t) { return t || (t = e.slice(0)), Object.freeze(Object.defineProperties(e, { raw: { value: Object.freeze(t) } })); }
-function _classCallCheck$2(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
-function _defineProperties$2(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey$2(o.key), o); } }
-function _createClass$2(e, r, t) { return r && _defineProperties$2(e.prototype, r), Object.defineProperty(e, "prototype", { writable: false }), e; }
+function _classCallCheck$3(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties$3(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey$3(o.key), o); } }
+function _createClass$3(e, r, t) { return r && _defineProperties$3(e.prototype, r), Object.defineProperty(e, "prototype", { writable: false }), e; }
 function _callSuper$1(t, o, e) { return o = _getPrototypeOf$1(o), _possibleConstructorReturn$1(t, _isNativeReflectConstruct$1() ? Reflect.construct(o, [], _getPrototypeOf$1(t).constructor) : o.apply(t, e)); }
-function _possibleConstructorReturn$1(t, e) { if (e && ("object" == _typeof$2(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized$1(t); }
+function _possibleConstructorReturn$1(t, e) { if (e && ("object" == _typeof$3(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized$1(t); }
 function _assertThisInitialized$1(e) { if (void 0 === e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); return e; }
 function _isNativeReflectConstruct$1() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct$1 = function _isNativeReflectConstruct() { return !!t; })(); }
 function _superPropGet$1(t, o, e, r) { var p = _get$1(_getPrototypeOf$1(t.prototype ), o, e); return "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
@@ -876,19 +876,19 @@ function _superPropBase$1(t, o) { for (; !{}.hasOwnProperty.call(t, o) && null !
 function _getPrototypeOf$1(t) { return _getPrototypeOf$1 = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function (t) { return t.__proto__ || Object.getPrototypeOf(t); }, _getPrototypeOf$1(t); }
 function _inherits$1(t, e) { if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function"); t.prototype = Object.create(e && e.prototype, { constructor: { value: t, writable: true, configurable: true } }), Object.defineProperty(t, "prototype", { writable: false }), e && _setPrototypeOf$1(t, e); }
 function _setPrototypeOf$1(t, e) { return _setPrototypeOf$1 = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function (t, e) { return t.__proto__ = e, t; }, _setPrototypeOf$1(t, e); }
-function _classPrivateMethodInitSpec$2(e, a) { _checkPrivateRedeclaration$2(e, a), a.add(e); }
-function _classPrivateFieldInitSpec$2(e, t, a) { _checkPrivateRedeclaration$2(e, t), t.set(e, a); }
-function _checkPrivateRedeclaration$2(e, t) { if (t.has(e)) throw new TypeError("Cannot initialize the same private elements twice on an object"); }
-function _defineProperty$1(e, r, t) { return (r = _toPropertyKey$2(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: true, configurable: true, writable: true }) : e[r] = t, e; }
-function _classPrivateGetter$1(s, r, a) { return a(_assertClassBrand$2(s, r)); }
-function _classPrivateFieldSet$2(s, a, r) { return s.set(_assertClassBrand$2(s, a), r), r; }
-function _classPrivateFieldGet$2(s, a) { return s.get(_assertClassBrand$2(s, a)); }
-function _assertClassBrand$2(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
-function _applyDecs$1(e, t, n, r, o, i) { var a, c, u, s, f, l, p, d = Symbol.metadata || Symbol["for"]("Symbol.metadata"), m = Object.defineProperty, h = Object.create, y = [h(null), h(null)], v = t.length; function g(t, n, r) { return function (o, i) { n && (i = o, o = e); for (var a = 0; a < t.length; a++) i = t[a].apply(o, r ? [i] : []); return r ? i : o; }; } function b(e, t, n, r) { if ("function" != typeof e && (r || void 0 !== e)) throw new TypeError(t + " must " + (n || "be") + " a function" + (r ? "" : " or undefined")); return e; } function applyDec(e, t, n, r, o, i, u, s, f, l, p) { function d(e) { if (!p(e)) throw new TypeError("Attempted to access private element on non-instance"); } var h = [].concat(t[0]), v = t[3], w = !u, D = 1 === o, S = 3 === o, j = 4 === o, E = 2 === o; function I(t, n, r) { return function (o, i) { return n && (i = o, o = e), r && r(o), P[t].call(o, i); }; } if (!w) { var P = {}, k = [], F = S ? "get" : j || D ? "set" : "value"; if (f ? (l || D ? P = { get: _setFunctionName$1(function () { return v(this); }, r, "get"), set: function set(e) { t[4](this, e); } } : P[F] = v, l || _setFunctionName$1(P[F], r, E ? "" : F)) : l || (P = Object.getOwnPropertyDescriptor(e, r)), !l && !f) { if ((c = y[+s][r]) && 7 !== (c ^ o)) throw Error("Decorating two elements with the same name (" + P[F].name + ") is not supported yet"); y[+s][r] = o < 3 ? 1 : o; } } for (var N = e, O = h.length - 1; O >= 0; O -= n ? 2 : 1) { var T = b(h[O], "A decorator", "be", true), z = n ? h[O - 1] : void 0, A = {}, H = { kind: ["field", "accessor", "method", "getter", "setter", "class"][o], name: r, metadata: a, addInitializer: function (e, t) { if (e.v) throw new TypeError("attempted to call addInitializer after decoration was finished"); b(t, "An initializer", "be", true), i.push(t); }.bind(null, A) }; if (w) c = T.call(z, N, H), A.v = 1, b(c, "class decorators", "return") && (N = c);else if (H["static"] = s, H["private"] = f, c = H.access = { has: f ? p.bind() : function (e) { return r in e; } }, j || (c.get = f ? E ? function (e) { return d(e), P.value; } : I("get", 0, d) : function (e) { return e[r]; }), E || S || (c.set = f ? I("set", 0, d) : function (e, t) { e[r] = t; }), N = T.call(z, D ? { get: P.get, set: P.set } : P[F], H), A.v = 1, D) { if ("object" == _typeof$2(N) && N) (c = b(N.get, "accessor.get")) && (P.get = c), (c = b(N.set, "accessor.set")) && (P.set = c), (c = b(N.init, "accessor.init")) && k.unshift(c);else if (void 0 !== N) throw new TypeError("accessor decorators must return an object with get, set, or init properties or undefined"); } else b(N, (l ? "field" : "method") + " decorators", "return") && (l ? k.unshift(N) : P[F] = N); } return o < 2 && u.push(g(k, s, 1), g(i, s, 0)), l || w || (f ? D ? u.splice(-1, 0, I("get", s), I("set", s)) : u.push(E ? P[F] : b.call.bind(P[F])) : m(e, r, P)), N; } function w(e) { return m(e, d, { configurable: true, enumerable: true, value: a }); } return void 0 !== i && (a = i[d]), a = h(null == a ? null : a), f = [], l = function l(e) { e && f.push(g(e)); }, p = function p(t, r) { for (var i = 0; i < n.length; i++) { var a = n[i], c = a[1], l = 7 & c; if ((8 & c) == t && !l == r) { var p = a[2], d = !!a[3], m = 16 & c; applyDec(t ? e : e.prototype, a, m, d ? "#" + p : _toPropertyKey$2(p), l, l < 2 ? [] : t ? s = s || [] : u = u || [], f, !!t, d, r, t && d ? function (t) { return _checkInRHS$1(t) === e; } : o); } } }, p(8, 0), p(0, 0), p(8, 1), p(0, 1), l(u), l(s), c = f, v || w(e), { e: c, get c() { var n = []; return v && [w(e = applyDec(e, [t], r, e.name, 5, n)), g(n, 1)]; } }; }
-function _toPropertyKey$2(t) { var i = _toPrimitive$2(t, "string"); return "symbol" == _typeof$2(i) ? i : i + ""; }
-function _toPrimitive$2(t, r) { if ("object" != _typeof$2(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof$2(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function _setFunctionName$1(e, t, n) { "symbol" == _typeof$2(t) && (t = (t = t.description) ? "[" + t + "]" : ""); try { Object.defineProperty(e, "name", { configurable: !0, value: n ? n + " " + t : t }); } catch (e) {} return e; }
-function _checkInRHS$1(e) { if (Object(e) !== e) throw TypeError("right-hand side of 'in' should be an object, got " + (null !== e ? _typeof$2(e) : "null")); return e; }
+function _classPrivateMethodInitSpec$3(e, a) { _checkPrivateRedeclaration$3(e, a), a.add(e); }
+function _classPrivateFieldInitSpec$3(e, t, a) { _checkPrivateRedeclaration$3(e, t), t.set(e, a); }
+function _checkPrivateRedeclaration$3(e, t) { if (t.has(e)) throw new TypeError("Cannot initialize the same private elements twice on an object"); }
+function _defineProperty$1(e, r, t) { return (r = _toPropertyKey$3(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: true, configurable: true, writable: true }) : e[r] = t, e; }
+function _classPrivateGetter$1(s, r, a) { return a(_assertClassBrand$3(s, r)); }
+function _classPrivateFieldSet$3(s, a, r) { return s.set(_assertClassBrand$3(s, a), r), r; }
+function _classPrivateFieldGet$3(s, a) { return s.get(_assertClassBrand$3(s, a)); }
+function _assertClassBrand$3(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
+function _applyDecs$1(e, t, n, r, o, i) { var a, c, u, s, f, l, p, d = Symbol.metadata || Symbol["for"]("Symbol.metadata"), m = Object.defineProperty, h = Object.create, y = [h(null), h(null)], v = t.length; function g(t, n, r) { return function (o, i) { n && (i = o, o = e); for (var a = 0; a < t.length; a++) i = t[a].apply(o, r ? [i] : []); return r ? i : o; }; } function b(e, t, n, r) { if ("function" != typeof e && (r || void 0 !== e)) throw new TypeError(t + " must " + (n || "be") + " a function" + (r ? "" : " or undefined")); return e; } function applyDec(e, t, n, r, o, i, u, s, f, l, p) { function d(e) { if (!p(e)) throw new TypeError("Attempted to access private element on non-instance"); } var h = [].concat(t[0]), v = t[3], w = !u, D = 1 === o, S = 3 === o, j = 4 === o, E = 2 === o; function I(t, n, r) { return function (o, i) { return n && (i = o, o = e), r && r(o), P[t].call(o, i); }; } if (!w) { var P = {}, k = [], F = S ? "get" : j || D ? "set" : "value"; if (f ? (l || D ? P = { get: _setFunctionName$1(function () { return v(this); }, r, "get"), set: function set(e) { t[4](this, e); } } : P[F] = v, l || _setFunctionName$1(P[F], r, E ? "" : F)) : l || (P = Object.getOwnPropertyDescriptor(e, r)), !l && !f) { if ((c = y[+s][r]) && 7 !== (c ^ o)) throw Error("Decorating two elements with the same name (" + P[F].name + ") is not supported yet"); y[+s][r] = o < 3 ? 1 : o; } } for (var N = e, O = h.length - 1; O >= 0; O -= n ? 2 : 1) { var T = b(h[O], "A decorator", "be", true), z = n ? h[O - 1] : void 0, A = {}, H = { kind: ["field", "accessor", "method", "getter", "setter", "class"][o], name: r, metadata: a, addInitializer: function (e, t) { if (e.v) throw new TypeError("attempted to call addInitializer after decoration was finished"); b(t, "An initializer", "be", true), i.push(t); }.bind(null, A) }; if (w) c = T.call(z, N, H), A.v = 1, b(c, "class decorators", "return") && (N = c);else if (H["static"] = s, H["private"] = f, c = H.access = { has: f ? p.bind() : function (e) { return r in e; } }, j || (c.get = f ? E ? function (e) { return d(e), P.value; } : I("get", 0, d) : function (e) { return e[r]; }), E || S || (c.set = f ? I("set", 0, d) : function (e, t) { e[r] = t; }), N = T.call(z, D ? { get: P.get, set: P.set } : P[F], H), A.v = 1, D) { if ("object" == _typeof$3(N) && N) (c = b(N.get, "accessor.get")) && (P.get = c), (c = b(N.set, "accessor.set")) && (P.set = c), (c = b(N.init, "accessor.init")) && k.unshift(c);else if (void 0 !== N) throw new TypeError("accessor decorators must return an object with get, set, or init properties or undefined"); } else b(N, (l ? "field" : "method") + " decorators", "return") && (l ? k.unshift(N) : P[F] = N); } return o < 2 && u.push(g(k, s, 1), g(i, s, 0)), l || w || (f ? D ? u.splice(-1, 0, I("get", s), I("set", s)) : u.push(E ? P[F] : b.call.bind(P[F])) : m(e, r, P)), N; } function w(e) { return m(e, d, { configurable: true, enumerable: true, value: a }); } return void 0 !== i && (a = i[d]), a = h(null == a ? null : a), f = [], l = function l(e) { e && f.push(g(e)); }, p = function p(t, r) { for (var i = 0; i < n.length; i++) { var a = n[i], c = a[1], l = 7 & c; if ((8 & c) == t && !l == r) { var p = a[2], d = !!a[3], m = 16 & c; applyDec(t ? e : e.prototype, a, m, d ? "#" + p : _toPropertyKey$3(p), l, l < 2 ? [] : t ? s = s || [] : u = u || [], f, !!t, d, r, t && d ? function (t) { return _checkInRHS$1(t) === e; } : o); } } }, p(8, 0), p(0, 0), p(8, 1), p(0, 1), l(u), l(s), c = f, v || w(e), { e: c, get c() { var n = []; return v && [w(e = applyDec(e, [t], r, e.name, 5, n)), g(n, 1)]; } }; }
+function _toPropertyKey$3(t) { var i = _toPrimitive$3(t, "string"); return "symbol" == _typeof$3(i) ? i : i + ""; }
+function _toPrimitive$3(t, r) { if ("object" != _typeof$3(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof$3(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _setFunctionName$1(e, t, n) { "symbol" == _typeof$3(t) && (t = (t = t.description) ? "[" + t + "]" : ""); try { Object.defineProperty(e, "name", { configurable: !0, value: n ? n + " " + t : t }); } catch (e) {} return e; }
+function _checkInRHS$1(e) { if (Object(e) !== e) throw TypeError("right-hand side of 'in' should be an object, got " + (null !== e ? _typeof$3(e) : "null")); return e; }
 
 /**
  * The display mode of the disclosure. Assigned by the parent group, mirrored to
@@ -919,53 +919,53 @@ var Disclosure = /*#__PURE__*/function (_LitElement) {
   // #region Lifecycle
   function Disclosure() {
     var _this2;
-    _classCallCheck$2(this, Disclosure);
+    _classCallCheck$3(this, Disclosure);
     _this2 = _callSuper$1(this, Disclosure);
     // #endregion
     // #region Event handlers
-    _classPrivateMethodInitSpec$2(_this2, _Disclosure_brand);
+    _classPrivateMethodInitSpec$3(_this2, _Disclosure_brand);
     // #region Properties and state
     /**
      * @type {DisclosureMode}
      * @internal
      */
-    _classPrivateFieldInitSpec$2(_this2, _A$1, _init_mode(_this2));
+    _classPrivateFieldInitSpec$3(_this2, _A$1, _init_mode(_this2));
     /** @internal */
-    _classPrivateFieldInitSpec$2(_this2, _B$1, (_init_extra_mode(_this2), _init_position(_this2)));
+    _classPrivateFieldInitSpec$3(_this2, _B$1, (_init_extra_mode(_this2), _init_position(_this2)));
     /** @internal */
-    _classPrivateFieldInitSpec$2(_this2, _C$1, (_init_extra_position(_this2), _init_total(_this2)));
+    _classPrivateFieldInitSpec$3(_this2, _C$1, (_init_extra_position(_this2), _init_total(_this2)));
     // #endregion
 
     // #region Private variables
     /** @type {ElementInternals} */
-    _classPrivateFieldInitSpec$2(_this2, _internals, void _init_extra_total(_this2));
+    _classPrivateFieldInitSpec$3(_this2, _internals, void _init_extra_total(_this2));
     /** @type {AccordionAnimationController} */
-    _classPrivateFieldInitSpec$2(_this2, _animation, void 0);
+    _classPrivateFieldInitSpec$3(_this2, _animation, void 0);
     /** @type {MediaController} */
-    _classPrivateFieldInitSpec$2(_this2, _media, void 0);
+    _classPrivateFieldInitSpec$3(_this2, _media, void 0);
     /** @type {DeepLinkController} */
-    _classPrivateFieldInitSpec$2(_this2, _deepLink$1, void 0);
+    _classPrivateFieldInitSpec$3(_this2, _deepLink$1, void 0);
     /** @type {Node[]|null} */
-    _classPrivateFieldInitSpec$2(_this2, _titleContent, null);
-    _classPrivateFieldInitSpec$2(_this2, _onBeforeMatch, function () {
-      _assertClassBrand$2(_Disclosure_brand, _this2, _requestChange).call(_this2, true, "find");
+    _classPrivateFieldInitSpec$3(_this2, _titleContent, null);
+    _classPrivateFieldInitSpec$3(_this2, _onBeforeMatch, function () {
+      _assertClassBrand$3(_Disclosure_brand, _this2, _requestChange).call(_this2, true, "find");
     });
     _this2.mode = "accordion";
     _this2.position = 0;
     _this2.total = 1;
-    _classPrivateFieldSet$2(_internals, _this2, _this2.attachInternals());
-    _classPrivateFieldSet$2(_media, _this2, new MediaController(_this2, function () {
+    _classPrivateFieldSet$3(_internals, _this2, _this2.attachInternals());
+    _classPrivateFieldSet$3(_media, _this2, new MediaController(_this2, function () {
       return _this2.visible;
     }));
-    _classPrivateFieldSet$2(_deepLink$1, _this2, new DeepLinkController(_this2, function (target) {
+    _classPrivateFieldSet$3(_deepLink$1, _this2, new DeepLinkController(_this2, function (target) {
       if (target !== _this2 && !_this2.contains(target)) return;
-      _assertClassBrand$2(_Disclosure_brand, _this2, _requestChange).call(_this2, true, "link");
+      _assertClassBrand$3(_Disclosure_brand, _this2, _requestChange).call(_this2, true, "link");
       return true;
     }));
 
     // Both getters return null outside accordion mode, which makes the
     // controller a no-op where there is nothing to expand or collapse.
-    _classPrivateFieldSet$2(_animation, _this2, new AccordionAnimationController(_this2, {
+    _classPrivateFieldSet$3(_animation, _this2, new AccordionAnimationController(_this2, {
       isOpen: function isOpen() {
         return _this2.expanded;
       },
@@ -979,49 +979,49 @@ var Disclosure = /*#__PURE__*/function (_LitElement) {
     return _this2;
   }
   _inherits$1(Disclosure, _LitElement);
-  return _createClass$2(Disclosure, [{
+  return _createClass$3(Disclosure, [{
     key: "mode",
     get: function get() {
-      return _classPrivateFieldGet$2(_A$1, this);
+      return _classPrivateFieldGet$3(_A$1, this);
     },
     set: function set(v) {
-      _classPrivateFieldSet$2(_A$1, this, v);
+      _classPrivateFieldSet$3(_A$1, this, v);
     }
   }, {
     key: "position",
     get: function get() {
-      return _classPrivateFieldGet$2(_B$1, this);
+      return _classPrivateFieldGet$3(_B$1, this);
     },
     set: function set(v) {
-      _classPrivateFieldSet$2(_B$1, this, v);
+      _classPrivateFieldSet$3(_B$1, this, v);
     }
   }, {
     key: "total",
     get: function get() {
-      return _classPrivateFieldGet$2(_C$1, this);
+      return _classPrivateFieldGet$3(_C$1, this);
     },
     set: function set(v) {
-      _classPrivateFieldSet$2(_C$1, this, v);
+      _classPrivateFieldSet$3(_C$1, this, v);
     }
   }, {
     key: "willUpdate",
     value: function willUpdate(changedProperties) {
       _superPropGet$1(Disclosure, "willUpdate", this)([]);
       if (changedProperties.has("mode")) {
-        _classPrivateFieldGet$2(_animation, this).reset();
+        _classPrivateFieldGet$3(_animation, this).reset();
         for (var _i = 0, _MODES = MODES; _i < _MODES.length; _i++) {
           var mode = _MODES[_i];
           if (mode === this.mode) {
-            _classPrivateFieldGet$2(_internals, this).states.add(mode);
+            _classPrivateFieldGet$3(_internals, this).states.add(mode);
           } else {
-            _classPrivateFieldGet$2(_internals, this).states["delete"](mode);
+            _classPrivateFieldGet$3(_internals, this).states["delete"](mode);
           }
         }
       }
       if (this.visible) {
-        _classPrivateFieldGet$2(_internals, this).states.add("expanded");
+        _classPrivateFieldGet$3(_internals, this).states.add("expanded");
       } else {
-        _classPrivateFieldGet$2(_internals, this).states["delete"]("expanded");
+        _classPrivateFieldGet$3(_internals, this).states["delete"]("expanded");
       }
     }
   }, {
@@ -1029,7 +1029,7 @@ var Disclosure = /*#__PURE__*/function (_LitElement) {
     value: function render() {
       var _classPrivateGetter2;
       var label = this.titleText;
-      return u(_templateObject$2 || (_templateObject$2 = _taggedTemplateLiteral$2(["\n      ", "\n\n      <slot\n        name=\"title\"\n        ?hidden=", "\n        @slotchange=", "\n      ></slot>\n\n      <div\n        part=\"panel\"\n        id=\"panel\"\n        role=", "\n        tabindex=", "\n        aria-label=", "\n        aria-labelledby=", "\n        @beforematch=", "\n      >\n        <div part=\"content\">\n          <slot @slotchange=", "></slot>\n        </div>\n      </div>\n    "])), this.mode === "accordion" ? u(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral$2(["\n        <div\n          part=\"heading\"\n          role=\"heading\"\n          aria-level=", "\n        >\n          <button\n            part=\"trigger\"\n            type=\"button\"\n            id=\"trigger\"\n            aria-expanded=", "\n            aria-controls=\"panel\"\n            @click=", "\n          >\n            ", "\n            <tcds-icon\n              part=\"marker\"\n              icon=\"", "\"\n            ></tcds-icon>\n          </button>\n        </div>\n      "])), this.headingLevel, this.expanded ? "true" : "false", _assertClassBrand$2(_Disclosure_brand, this, _onTriggerClick), this.titleContent, this.expanded ? "caret-up" : "caret-down") : A, this.mode !== "plain", _assertClassBrand$2(_Disclosure_brand, this, _onTitleSlotChange), (_classPrivateGetter2 = _classPrivateGetter$1(_Disclosure_brand, this, _get_panelRole)) !== null && _classPrivateGetter2 !== void 0 ? _classPrivateGetter2 : A, this.mode === "tabs" ? "0" : A, this.mode === "tabs" && label ? label : A, this.mode === "accordion" ? "trigger" : A, _classPrivateFieldGet$2(_onBeforeMatch, this), _assertClassBrand$2(_Disclosure_brand, this, _onContentSlotChange));
+      return u(_templateObject$2 || (_templateObject$2 = _taggedTemplateLiteral$2(["\n      ", "\n\n      <slot\n        name=\"title\"\n        ?hidden=", "\n        @slotchange=", "\n      ></slot>\n\n      <div\n        part=\"panel\"\n        id=\"panel\"\n        role=", "\n        tabindex=", "\n        aria-label=", "\n        aria-labelledby=", "\n        @beforematch=", "\n      >\n        <div part=\"content\">\n          <slot @slotchange=", "></slot>\n        </div>\n      </div>\n    "])), this.mode === "accordion" ? u(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral$2(["\n        <div\n          part=\"heading\"\n          role=\"heading\"\n          aria-level=", "\n        >\n          <button\n            part=\"trigger\"\n            type=\"button\"\n            id=\"trigger\"\n            aria-expanded=", "\n            aria-controls=\"panel\"\n            @click=", "\n          >\n            ", "\n            <tcds-icon\n              part=\"marker\"\n              icon=\"", "\"\n            ></tcds-icon>\n          </button>\n        </div>\n      "])), this.headingLevel, this.expanded ? "true" : "false", _assertClassBrand$3(_Disclosure_brand, this, _onTriggerClick), this.titleContent, this.expanded ? "caret-up" : "caret-down") : A, this.mode !== "plain", _assertClassBrand$3(_Disclosure_brand, this, _onTitleSlotChange), (_classPrivateGetter2 = _classPrivateGetter$1(_Disclosure_brand, this, _get_panelRole)) !== null && _classPrivateGetter2 !== void 0 ? _classPrivateGetter2 : A, this.mode === "tabs" ? "0" : A, this.mode === "tabs" && label ? label : A, this.mode === "accordion" ? "trigger" : A, _classPrivateFieldGet$3(_onBeforeMatch, this), _assertClassBrand$3(_Disclosure_brand, this, _onContentSlotChange));
     }
   }, {
     key: "updated",
@@ -1115,17 +1115,17 @@ var Disclosure = /*#__PURE__*/function (_LitElement) {
   }, {
     key: "titleContent",
     get: function get() {
-      if (_classPrivateFieldGet$2(_titleContent, this) !== null) return _classPrivateFieldGet$2(_titleContent, this);
+      if (_classPrivateFieldGet$3(_titleContent, this) !== null) return _classPrivateFieldGet$3(_titleContent, this);
       var title = this.titleElement;
-      var nodes = title ? _toConsumableArray(title.cloneNode(true).childNodes) : [];
-      var _iterator = _createForOfIteratorHelper$1(nodes),
+      var nodes = title ? _toConsumableArray$1(title.cloneNode(true).childNodes) : [];
+      var _iterator = _createForOfIteratorHelper$2(nodes),
         _step;
       try {
         for (_iterator.s(); !(_step = _iterator.n()).done;) {
           var node = _step.value;
           if (!(node instanceof Element)) continue;
           node.removeAttribute("id");
-          var _iterator2 = _createForOfIteratorHelper$1(node.querySelectorAll("[id]")),
+          var _iterator2 = _createForOfIteratorHelper$2(node.querySelectorAll("[id]")),
             _step2;
           try {
             for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
@@ -1143,7 +1143,7 @@ var Disclosure = /*#__PURE__*/function (_LitElement) {
       } finally {
         _iterator.f();
       }
-      _classPrivateFieldSet$2(_titleContent, this, nodes);
+      _classPrivateFieldSet$3(_titleContent, this, nodes);
       return nodes;
     }
 
@@ -1207,14 +1207,14 @@ var Disclosure = /*#__PURE__*/function (_LitElement) {
 }(i$1);
 _Disclosure = Disclosure;
 function _onTriggerClick() {
-  _assertClassBrand$2(_Disclosure_brand, this, _requestChange).call(this, !this.expanded, "trigger");
+  _assertClassBrand$3(_Disclosure_brand, this, _requestChange).call(this, !this.expanded, "trigger");
 }
 function _onContentSlotChange() {
-  _classPrivateFieldGet$2(_media, this).contentChanged();
-  _classPrivateFieldGet$2(_deepLink$1, this).resolve();
+  _classPrivateFieldGet$3(_media, this).contentChanged();
+  _classPrivateFieldGet$3(_deepLink$1, this).resolve();
 }
 function _onTitleSlotChange() {
-  _classPrivateFieldSet$2(_titleContent, this, null);
+  _classPrivateFieldSet$3(_titleContent, this, null);
   this.dispatchEvent(new CustomEvent("tcds-disclosure:title-change", {
     bubbles: true,
     composed: true
@@ -1246,7 +1246,7 @@ function _requestChange(expanded, source) {
   // Standalone items have no group to apply the requested state.
   if (!handled) this.expanded = expanded;
 }
-var _applyDecs$e$1 = _slicedToArray$1(_applyDecs$1(_Disclosure, [], [[n({
+var _applyDecs$e$1 = _slicedToArray$2(_applyDecs$1(_Disclosure, [], [[n({
   type: String,
   attribute: false
 }), 1, "mode"], [n({
@@ -1264,19 +1264,19 @@ _init_total = _applyDecs$e$1[4];
 _init_extra_total = _applyDecs$e$1[5];
 _defineProperty$1(Disclosure, "styles", [styles, disclosureStyles]);
 
-function _typeof$1(o) { "@babel/helpers - typeof"; return _typeof$1 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof$1(o); }
-function _classCallCheck$1(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
-function _defineProperties$1(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey$1(o.key), o); } }
-function _createClass$1(e, r, t) { return r && _defineProperties$1(e.prototype, r), Object.defineProperty(e, "prototype", { writable: false }), e; }
-function _toPropertyKey$1(t) { var i = _toPrimitive$1(t, "string"); return "symbol" == _typeof$1(i) ? i : i + ""; }
-function _toPrimitive$1(t, r) { if ("object" != _typeof$1(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof$1(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return (String )(t); }
-function _classPrivateMethodInitSpec$1(e, a) { _checkPrivateRedeclaration$1(e, a), a.add(e); }
-function _classPrivateFieldInitSpec$1(e, t, a) { _checkPrivateRedeclaration$1(e, t), t.set(e, a); }
-function _checkPrivateRedeclaration$1(e, t) { if (t.has(e)) throw new TypeError("Cannot initialize the same private elements twice on an object"); }
-function _classPrivateFieldGet$1(s, a) { return s.get(_assertClassBrand$1(s, a)); }
-function _classPrivateFieldSet$1(s, a, r) { return s.set(_assertClassBrand$1(s, a), r), r; }
-function _assertClassBrand$1(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
-var _host = /*#__PURE__*/new WeakMap();
+function _typeof$2(o) { "@babel/helpers - typeof"; return _typeof$2 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof$2(o); }
+function _classCallCheck$2(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties$2(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey$2(o.key), o); } }
+function _createClass$2(e, r, t) { return r && _defineProperties$2(e.prototype, r), Object.defineProperty(e, "prototype", { writable: false }), e; }
+function _toPropertyKey$2(t) { var i = _toPrimitive$2(t, "string"); return "symbol" == _typeof$2(i) ? i : i + ""; }
+function _toPrimitive$2(t, r) { if ("object" != _typeof$2(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof$2(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return (String )(t); }
+function _classPrivateMethodInitSpec$2(e, a) { _checkPrivateRedeclaration$2(e, a), a.add(e); }
+function _classPrivateFieldInitSpec$2(e, t, a) { _checkPrivateRedeclaration$2(e, t), t.set(e, a); }
+function _checkPrivateRedeclaration$2(e, t) { if (t.has(e)) throw new TypeError("Cannot initialize the same private elements twice on an object"); }
+function _classPrivateFieldGet$2(s, a) { return s.get(_assertClassBrand$2(s, a)); }
+function _classPrivateFieldSet$2(s, a, r) { return s.set(_assertClassBrand$2(s, a), r), r; }
+function _assertClassBrand$2(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
+var _host$1 = /*#__PURE__*/new WeakMap();
 var _query = /*#__PURE__*/new WeakMap();
 var _list = /*#__PURE__*/new WeakMap();
 var _onChange = /*#__PURE__*/new WeakMap();
@@ -1297,25 +1297,25 @@ var MediaQueryController = /*#__PURE__*/function () {
   function MediaQueryController(host) {
     var _this = this;
     var query = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-    _classCallCheck$1(this, MediaQueryController);
-    _classPrivateMethodInitSpec$1(this, _MediaQueryController_brand);
+    _classCallCheck$2(this, MediaQueryController);
+    _classPrivateMethodInitSpec$2(this, _MediaQueryController_brand);
     /** @type {import("lit").ReactiveElement} */
-    _classPrivateFieldInitSpec$1(this, _host, void 0);
+    _classPrivateFieldInitSpec$2(this, _host$1, void 0);
     /** @type {string|null} */
-    _classPrivateFieldInitSpec$1(this, _query, null);
+    _classPrivateFieldInitSpec$2(this, _query, null);
     /** @type {MediaQueryList|null} */
-    _classPrivateFieldInitSpec$1(this, _list, null);
-    _classPrivateFieldInitSpec$1(this, _onChange, function () {
-      _classPrivateFieldGet$1(_host, _this).requestUpdate();
+    _classPrivateFieldInitSpec$2(this, _list, null);
+    _classPrivateFieldInitSpec$2(this, _onChange, function () {
+      _classPrivateFieldGet$2(_host$1, _this).requestUpdate();
     });
-    _classPrivateFieldSet$1(_host, this, host);
+    _classPrivateFieldSet$2(_host$1, this, host);
     host.addController(this);
     this.query = query;
   }
-  return _createClass$1(MediaQueryController, [{
+  return _createClass$2(MediaQueryController, [{
     key: "query",
     get: function get() {
-      return _classPrivateFieldGet$1(_query, this);
+      return _classPrivateFieldGet$2(_query, this);
     }
 
     /**
@@ -1323,64 +1323,64 @@ var MediaQueryController = /*#__PURE__*/function () {
      */,
     set: function set(query) {
       var next = query || null;
-      if (next === _classPrivateFieldGet$1(_query, this)) return;
-      _assertClassBrand$1(_MediaQueryController_brand, this, _stopListening).call(this);
-      _classPrivateFieldSet$1(_query, this, next);
-      _classPrivateFieldSet$1(_list, this, next ? matchMedia(next) : null);
-      _assertClassBrand$1(_MediaQueryController_brand, this, _startListening).call(this);
-      _classPrivateFieldGet$1(_host, this).requestUpdate();
+      if (next === _classPrivateFieldGet$2(_query, this)) return;
+      _assertClassBrand$2(_MediaQueryController_brand, this, _stopListening).call(this);
+      _classPrivateFieldSet$2(_query, this, next);
+      _classPrivateFieldSet$2(_list, this, next ? matchMedia(next) : null);
+      _assertClassBrand$2(_MediaQueryController_brand, this, _startListening).call(this);
+      _classPrivateFieldGet$2(_host$1, this).requestUpdate();
     }
   }, {
     key: "matches",
     get: function get() {
       var _classPrivateFieldGet2, _classPrivateFieldGet3;
-      return (_classPrivateFieldGet2 = (_classPrivateFieldGet3 = _classPrivateFieldGet$1(_list, this)) === null || _classPrivateFieldGet3 === void 0 ? void 0 : _classPrivateFieldGet3.matches) !== null && _classPrivateFieldGet2 !== void 0 ? _classPrivateFieldGet2 : false;
+      return (_classPrivateFieldGet2 = (_classPrivateFieldGet3 = _classPrivateFieldGet$2(_list, this)) === null || _classPrivateFieldGet3 === void 0 ? void 0 : _classPrivateFieldGet3.matches) !== null && _classPrivateFieldGet2 !== void 0 ? _classPrivateFieldGet2 : false;
     }
   }, {
     key: "hostConnected",
     value: function hostConnected() {
-      _assertClassBrand$1(_MediaQueryController_brand, this, _startListening).call(this);
+      _assertClassBrand$2(_MediaQueryController_brand, this, _startListening).call(this);
     }
   }, {
     key: "hostDisconnected",
     value: function hostDisconnected() {
-      _assertClassBrand$1(_MediaQueryController_brand, this, _stopListening).call(this);
+      _assertClassBrand$2(_MediaQueryController_brand, this, _stopListening).call(this);
     }
   }]);
 }();
 function _startListening() {
-  if (!_classPrivateFieldGet$1(_list, this) || !_classPrivateFieldGet$1(_host, this).isConnected) return;
-  _classPrivateFieldGet$1(_list, this).addEventListener("change", _classPrivateFieldGet$1(_onChange, this));
+  if (!_classPrivateFieldGet$2(_list, this) || !_classPrivateFieldGet$2(_host$1, this).isConnected) return;
+  _classPrivateFieldGet$2(_list, this).addEventListener("change", _classPrivateFieldGet$2(_onChange, this));
 }
 function _stopListening() {
   var _classPrivateFieldGet4;
-  (_classPrivateFieldGet4 = _classPrivateFieldGet$1(_list, this)) === null || _classPrivateFieldGet4 === void 0 || _classPrivateFieldGet4.removeEventListener("change", _classPrivateFieldGet$1(_onChange, this));
+  (_classPrivateFieldGet4 = _classPrivateFieldGet$2(_list, this)) === null || _classPrivateFieldGet4 === void 0 || _classPrivateFieldGet4.removeEventListener("change", _classPrivateFieldGet$2(_onChange, this));
 }
 
 var _templateObject$1;
 function _taggedTemplateLiteral$1(e, t) { return t || (t = e.slice(0)), Object.freeze(Object.defineProperties(e, { raw: { value: Object.freeze(t) } })); }
 var groupStyles = i(_templateObject$1 || (_templateObject$1 = _taggedTemplateLiteral$1(["\n  :host(:not([hidden])) {\n    display: block;\n  }\n\n  [part=items] {\n    display: block;\n  }\n"])));
 
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _typeof$1(o) { "@babel/helpers - typeof"; return _typeof$1 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof$1(o); }
 var _DisclosureGroup, _templateObject;
 var _init_media, _init_extra_media, _init_label, _init_extra_label, _init_revision, _get_revision, _set_revision, _init_extra_revision, _init_assigned, _get_assigned, _init_extra_assigned;
 function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = false, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = true, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), true), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
 function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
-function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = true, o = false; try { if (i = (t = t.call(r)).next, 0 === l) ; else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = true, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
-function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
-function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: true } : { done: false, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = true, u = false; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = true, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
-function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
-function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _slicedToArray$1(r, e) { return _arrayWithHoles$1(r) || _iterableToArrayLimit$1(r, e) || _unsupportedIterableToArray$1(r, e) || _nonIterableRest$1(); }
+function _nonIterableRest$1() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArrayLimit$1(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = true, o = false; try { if (i = (t = t.call(r)).next, 0 === l) ; else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = true, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles$1(r) { if (Array.isArray(r)) return r; }
+function _createForOfIteratorHelper$1(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray$1(r)) || e) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: true } : { done: false, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = true, u = false; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = true, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
+function _unsupportedIterableToArray$1(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray$1(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray$1(r, a) : void 0; } }
+function _arrayLikeToArray$1(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _taggedTemplateLiteral(e, t) { return t || (t = e.slice(0)), Object.freeze(Object.defineProperties(e, { raw: { value: Object.freeze(t) } })); }
-function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
-function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
-function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), Object.defineProperty(e, "prototype", { writable: false }), e; }
+function _classCallCheck$1(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties$1(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey$1(o.key), o); } }
+function _createClass$1(e, r, t) { return r && _defineProperties$1(e.prototype, r), Object.defineProperty(e, "prototype", { writable: false }), e; }
 function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
-function _possibleConstructorReturn(t, e) { if (e && ("object" == _typeof(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized(t); }
+function _possibleConstructorReturn(t, e) { if (e && ("object" == _typeof$1(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized(t); }
 function _assertThisInitialized(e) { if (void 0 === e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); return e; }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
 function _superPropGet(t, o, e, r) { var p = _get(_getPrototypeOf(t.prototype ), o, e); return "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
@@ -1389,20 +1389,20 @@ function _superPropBase(t, o) { for (; !{}.hasOwnProperty.call(t, o) && null !==
 function _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function (t) { return t.__proto__ || Object.getPrototypeOf(t); }, _getPrototypeOf(t); }
 function _inherits(t, e) { if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function"); t.prototype = Object.create(e && e.prototype, { constructor: { value: t, writable: true, configurable: true } }), Object.defineProperty(t, "prototype", { writable: false }), e && _setPrototypeOf(t, e); }
 function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function (t, e) { return t.__proto__ = e, t; }, _setPrototypeOf(t, e); }
-function _classPrivateMethodInitSpec(e, a) { _checkPrivateRedeclaration(e, a), a.add(e); }
-function _classPrivateFieldInitSpec(e, t, a) { _checkPrivateRedeclaration(e, t), t.set(e, a); }
-function _checkPrivateRedeclaration(e, t) { if (t.has(e)) throw new TypeError("Cannot initialize the same private elements twice on an object"); }
-function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: true, configurable: true, writable: true }) : e[r] = t, e; }
-function _classPrivateSetter(s, r, a, t) { return r(_assertClassBrand(s, a), t), t; }
-function _classPrivateGetter(s, r, a) { return a(_assertClassBrand(s, r)); }
-function _classPrivateFieldSet(s, a, r) { return s.set(_assertClassBrand(s, a), r), r; }
-function _classPrivateFieldGet(s, a) { return s.get(_assertClassBrand(s, a)); }
-function _assertClassBrand(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
-function _applyDecs(e, t, n, r, o, i) { var a, c, u, s, f, l, p, d = Symbol.metadata || Symbol["for"]("Symbol.metadata"), m = Object.defineProperty, h = Object.create, y = [h(null), h(null)], v = t.length; function g(t, n, r) { return function (o, i) { n && (i = o, o = e); for (var a = 0; a < t.length; a++) i = t[a].apply(o, r ? [i] : []); return r ? i : o; }; } function b(e, t, n, r) { if ("function" != typeof e && (r || void 0 !== e)) throw new TypeError(t + " must " + (n || "be") + " a function" + (r ? "" : " or undefined")); return e; } function applyDec(e, t, n, r, o, i, u, s, f, l, p) { function d(e) { if (!p(e)) throw new TypeError("Attempted to access private element on non-instance"); } var h = [].concat(t[0]), v = t[3], w = !u, D = 1 === o, S = 3 === o, j = 4 === o, E = 2 === o; function I(t, n, r) { return function (o, i) { return n && (i = o, o = e), r && r(o), P[t].call(o, i); }; } if (!w) { var P = {}, k = [], F = S ? "get" : j || D ? "set" : "value"; if (f ? (l || D ? P = { get: _setFunctionName(function () { return v(this); }, r, "get"), set: function set(e) { t[4](this, e); } } : P[F] = v, l || _setFunctionName(P[F], r, E ? "" : F)) : l || (P = Object.getOwnPropertyDescriptor(e, r)), !l && !f) { if ((c = y[+s][r]) && 7 !== (c ^ o)) throw Error("Decorating two elements with the same name (" + P[F].name + ") is not supported yet"); y[+s][r] = o < 3 ? 1 : o; } } for (var N = e, O = h.length - 1; O >= 0; O -= n ? 2 : 1) { var T = b(h[O], "A decorator", "be", true), z = n ? h[O - 1] : void 0, A = {}, H = { kind: ["field", "accessor", "method", "getter", "setter", "class"][o], name: r, metadata: a, addInitializer: function (e, t) { if (e.v) throw new TypeError("attempted to call addInitializer after decoration was finished"); b(t, "An initializer", "be", true), i.push(t); }.bind(null, A) }; if (w) c = T.call(z, N, H), A.v = 1, b(c, "class decorators", "return") && (N = c);else if (H["static"] = s, H["private"] = f, c = H.access = { has: f ? p.bind() : function (e) { return r in e; } }, j || (c.get = f ? E ? function (e) { return d(e), P.value; } : I("get", 0, d) : function (e) { return e[r]; }), E || S || (c.set = f ? I("set", 0, d) : function (e, t) { e[r] = t; }), N = T.call(z, D ? { get: P.get, set: P.set } : P[F], H), A.v = 1, D) { if ("object" == _typeof(N) && N) (c = b(N.get, "accessor.get")) && (P.get = c), (c = b(N.set, "accessor.set")) && (P.set = c), (c = b(N.init, "accessor.init")) && k.unshift(c);else if (void 0 !== N) throw new TypeError("accessor decorators must return an object with get, set, or init properties or undefined"); } else b(N, (l ? "field" : "method") + " decorators", "return") && (l ? k.unshift(N) : P[F] = N); } return o < 2 && u.push(g(k, s, 1), g(i, s, 0)), l || w || (f ? D ? u.splice(-1, 0, I("get", s), I("set", s)) : u.push(E ? P[F] : b.call.bind(P[F])) : m(e, r, P)), N; } function w(e) { return m(e, d, { configurable: true, enumerable: true, value: a }); } return void 0 !== i && (a = i[d]), a = h(null == a ? null : a), f = [], l = function l(e) { e && f.push(g(e)); }, p = function p(t, r) { for (var i = 0; i < n.length; i++) { var a = n[i], c = a[1], l = 7 & c; if ((8 & c) == t && !l == r) { var p = a[2], d = !!a[3], m = 16 & c; applyDec(t ? e : e.prototype, a, m, d ? "#" + p : _toPropertyKey(p), l, l < 2 ? [] : t ? s = s || [] : u = u || [], f, !!t, d, r, t && d ? function (t) { return _checkInRHS(t) === e; } : o); } } }, p(8, 0), p(0, 0), p(8, 1), p(0, 1), l(u), l(s), c = f, v || w(e), { e: c, get c() { var n = []; return v && [w(e = applyDec(e, [t], r, e.name, 5, n)), g(n, 1)]; } }; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function _setFunctionName(e, t, n) { "symbol" == _typeof(t) && (t = (t = t.description) ? "[" + t + "]" : ""); try { Object.defineProperty(e, "name", { configurable: !0, value: n ? n + " " + t : t }); } catch (e) {} return e; }
-function _checkInRHS(e) { if (Object(e) !== e) throw TypeError("right-hand side of 'in' should be an object, got " + (null !== e ? _typeof(e) : "null")); return e; }
+function _classPrivateMethodInitSpec$1(e, a) { _checkPrivateRedeclaration$1(e, a), a.add(e); }
+function _classPrivateFieldInitSpec$1(e, t, a) { _checkPrivateRedeclaration$1(e, t), t.set(e, a); }
+function _checkPrivateRedeclaration$1(e, t) { if (t.has(e)) throw new TypeError("Cannot initialize the same private elements twice on an object"); }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey$1(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: true, configurable: true, writable: true }) : e[r] = t, e; }
+function _classPrivateSetter(s, r, a, t) { return r(_assertClassBrand$1(s, a), t), t; }
+function _classPrivateGetter(s, r, a) { return a(_assertClassBrand$1(s, r)); }
+function _classPrivateFieldSet$1(s, a, r) { return s.set(_assertClassBrand$1(s, a), r), r; }
+function _classPrivateFieldGet$1(s, a) { return s.get(_assertClassBrand$1(s, a)); }
+function _assertClassBrand$1(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
+function _applyDecs(e, t, n, r, o, i) { var a, c, u, s, f, l, p, d = Symbol.metadata || Symbol["for"]("Symbol.metadata"), m = Object.defineProperty, h = Object.create, y = [h(null), h(null)], v = t.length; function g(t, n, r) { return function (o, i) { n && (i = o, o = e); for (var a = 0; a < t.length; a++) i = t[a].apply(o, r ? [i] : []); return r ? i : o; }; } function b(e, t, n, r) { if ("function" != typeof e && (r || void 0 !== e)) throw new TypeError(t + " must " + (n || "be") + " a function" + (r ? "" : " or undefined")); return e; } function applyDec(e, t, n, r, o, i, u, s, f, l, p) { function d(e) { if (!p(e)) throw new TypeError("Attempted to access private element on non-instance"); } var h = [].concat(t[0]), v = t[3], w = !u, D = 1 === o, S = 3 === o, j = 4 === o, E = 2 === o; function I(t, n, r) { return function (o, i) { return n && (i = o, o = e), r && r(o), P[t].call(o, i); }; } if (!w) { var P = {}, k = [], F = S ? "get" : j || D ? "set" : "value"; if (f ? (l || D ? P = { get: _setFunctionName(function () { return v(this); }, r, "get"), set: function set(e) { t[4](this, e); } } : P[F] = v, l || _setFunctionName(P[F], r, E ? "" : F)) : l || (P = Object.getOwnPropertyDescriptor(e, r)), !l && !f) { if ((c = y[+s][r]) && 7 !== (c ^ o)) throw Error("Decorating two elements with the same name (" + P[F].name + ") is not supported yet"); y[+s][r] = o < 3 ? 1 : o; } } for (var N = e, O = h.length - 1; O >= 0; O -= n ? 2 : 1) { var T = b(h[O], "A decorator", "be", true), z = n ? h[O - 1] : void 0, A = {}, H = { kind: ["field", "accessor", "method", "getter", "setter", "class"][o], name: r, metadata: a, addInitializer: function (e, t) { if (e.v) throw new TypeError("attempted to call addInitializer after decoration was finished"); b(t, "An initializer", "be", true), i.push(t); }.bind(null, A) }; if (w) c = T.call(z, N, H), A.v = 1, b(c, "class decorators", "return") && (N = c);else if (H["static"] = s, H["private"] = f, c = H.access = { has: f ? p.bind() : function (e) { return r in e; } }, j || (c.get = f ? E ? function (e) { return d(e), P.value; } : I("get", 0, d) : function (e) { return e[r]; }), E || S || (c.set = f ? I("set", 0, d) : function (e, t) { e[r] = t; }), N = T.call(z, D ? { get: P.get, set: P.set } : P[F], H), A.v = 1, D) { if ("object" == _typeof$1(N) && N) (c = b(N.get, "accessor.get")) && (P.get = c), (c = b(N.set, "accessor.set")) && (P.set = c), (c = b(N.init, "accessor.init")) && k.unshift(c);else if (void 0 !== N) throw new TypeError("accessor decorators must return an object with get, set, or init properties or undefined"); } else b(N, (l ? "field" : "method") + " decorators", "return") && (l ? k.unshift(N) : P[F] = N); } return o < 2 && u.push(g(k, s, 1), g(i, s, 0)), l || w || (f ? D ? u.splice(-1, 0, I("get", s), I("set", s)) : u.push(E ? P[F] : b.call.bind(P[F])) : m(e, r, P)), N; } function w(e) { return m(e, d, { configurable: true, enumerable: true, value: a }); } return void 0 !== i && (a = i[d]), a = h(null == a ? null : a), f = [], l = function l(e) { e && f.push(g(e)); }, p = function p(t, r) { for (var i = 0; i < n.length; i++) { var a = n[i], c = a[1], l = 7 & c; if ((8 & c) == t && !l == r) { var p = a[2], d = !!a[3], m = 16 & c; applyDec(t ? e : e.prototype, a, m, d ? "#" + p : _toPropertyKey$1(p), l, l < 2 ? [] : t ? s = s || [] : u = u || [], f, !!t, d, r, t && d ? function (t) { return _checkInRHS(t) === e; } : o); } } }, p(8, 0), p(0, 0), p(8, 1), p(0, 1), l(u), l(s), c = f, v || w(e), { e: c, get c() { var n = []; return v && [w(e = applyDec(e, [t], r, e.name, 5, n)), g(n, 1)]; } }; }
+function _toPropertyKey$1(t) { var i = _toPrimitive$1(t, "string"); return "symbol" == _typeof$1(i) ? i : i + ""; }
+function _toPrimitive$1(t, r) { if ("object" != _typeof$1(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof$1(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _setFunctionName(e, t, n) { "symbol" == _typeof$1(t) && (t = (t = t.description) ? "[" + t + "]" : ""); try { Object.defineProperty(e, "name", { configurable: !0, value: n ? n + " " + t : t }); } catch (e) {} return e; }
+function _checkInRHS(e) { if (Object(e) !== e) throw TypeError("right-hand side of 'in' should be an object, got " + (null !== e ? _typeof$1(e) : "null")); return e; }
 
 /** @import {DisclosureMode} from "@/components/_shared/base/Disclosure" */
 var _A = /*#__PURE__*/new WeakMap();
@@ -1424,64 +1424,64 @@ var DisclosureGroup = /*#__PURE__*/function (_LitElement) {
   // #region Lifecycle
   function DisclosureGroup() {
     var _this;
-    _classCallCheck(this, DisclosureGroup);
+    _classCallCheck$1(this, DisclosureGroup);
     _this = _callSuper(this, DisclosureGroup);
-    _classPrivateMethodInitSpec(_this, _DisclosureGroup_brand);
+    _classPrivateMethodInitSpec$1(_this, _DisclosureGroup_brand);
     // #region Properties and state
     /**
      * A media query, e.g. `(max-width: 1000px)`. While it matches, the group
      * presents its default pattern, otherwise it presents the alternate.
      */
-    _classPrivateFieldInitSpec(_this, _A, _init_media(_this));
+    _classPrivateFieldInitSpec$1(_this, _A, _init_media(_this));
     /**
      * Accessible name for the group's own controls. Optional.
      */
-    _classPrivateFieldInitSpec(_this, _B, (_init_extra_media(_this), _init_label(_this)));
+    _classPrivateFieldInitSpec$1(_this, _B, (_init_extra_media(_this), _init_label(_this)));
     /**
      * Bumped whenever the assigned children change. `items` reads live DOM, so
      * something reactive has to stand in for it.
      */
-    _classPrivateFieldInitSpec(_this, _C, (_init_extra_label(_this), _init_revision(_this, 0)));
+    _classPrivateFieldInitSpec$1(_this, _C, (_init_extra_label(_this), _init_revision(_this, 0)));
     // #endregion
     // #region Private variables
     /** @type {HTMLElement[]} */
-    _classPrivateFieldInitSpec(_this, _D, (_init_extra_revision(_this), _init_assigned(_this)));
-    _classPrivateFieldInitSpec(_this, _mediaQuery, void _init_extra_assigned(_this));
-    _classPrivateFieldInitSpec(_this, _deepLink, void 0);
+    _classPrivateFieldInitSpec$1(_this, _D, (_init_extra_revision(_this), _init_assigned(_this)));
+    _classPrivateFieldInitSpec$1(_this, _mediaQuery, void _init_extra_assigned(_this));
+    _classPrivateFieldInitSpec$1(_this, _deepLink, void 0);
     /**
      * The item whose state changed most recently. When an exclusive group finds
      * more than one item expanded, this is the one that wins.
      */
     /** @type {Disclosure|null} */
-    _classPrivateFieldInitSpec(_this, _preferred, null);
+    _classPrivateFieldInitSpec$1(_this, _preferred, null);
     /** @type {string|null} */
-    _classPrivateFieldInitSpec(_this, _signature, null);
+    _classPrivateFieldInitSpec$1(_this, _signature, null);
     /**
      * Incremented per reveal request, so that only the most recent one acts once
      * its animations settle.
      */
-    _classPrivateFieldInitSpec(_this, _revealRequest, 0);
+    _classPrivateFieldInitSpec$1(_this, _revealRequest, 0);
     /**
      * @param {CustomEvent<{expanded: boolean, source: "trigger"|"find"|"link"}>} event
      */
-    _classPrivateFieldInitSpec(_this, _onItemChange, function (event) {
+    _classPrivateFieldInitSpec$1(_this, _onItemChange, function (event) {
       var item = event.target;
       if (!(item instanceof Disclosure)) return;
       if (!_this.items.includes(item)) return;
       event.stopPropagation();
       event.preventDefault();
-      _assertClassBrand(_DisclosureGroup_brand, _this, _setExpanded).call(_this, item, event.detail.expanded);
+      _assertClassBrand$1(_DisclosureGroup_brand, _this, _setExpanded).call(_this, item, event.detail.expanded);
 
       // Find-in-page has its own scroll target (the match), which may sit well
       // below the trigger, so only clicks on the trigger itself are revealed.
       if (event.detail.expanded && event.detail.source === "trigger") {
-        _assertClassBrand(_DisclosureGroup_brand, _this, _revealTrigger).call(_this, item);
+        _assertClassBrand$1(_DisclosureGroup_brand, _this, _revealTrigger).call(_this, item);
       }
     });
     /**
      * @param {CustomEvent} event
      */
-    _classPrivateFieldInitSpec(_this, _onItemTitleChange, function (event) {
+    _classPrivateFieldInitSpec$1(_this, _onItemTitleChange, function (event) {
       var item = event.target;
       if (!(item instanceof Disclosure)) return;
       if (!_this.items.includes(item)) return;
@@ -1491,7 +1491,7 @@ var DisclosureGroup = /*#__PURE__*/function (_LitElement) {
     /**
      * @param {Element} target
      */
-    _classPrivateFieldInitSpec(_this, _onDeepLink, function (target) {
+    _classPrivateFieldInitSpec$1(_this, _onDeepLink, function (target) {
       var item = _this.items.find(function (item) {
         return item === target || item.contains(target);
       });
@@ -1499,50 +1499,50 @@ var DisclosureGroup = /*#__PURE__*/function (_LitElement) {
       _this.expand(item);
       return true;
     });
-    _classPrivateFieldSet(_mediaQuery, _this, new MediaQueryController(_this));
-    _classPrivateFieldSet(_deepLink, _this, new DeepLinkController(_this, _classPrivateFieldGet(_onDeepLink, _this)));
-    _this.addEventListener("tcds-disclosure:change", _classPrivateFieldGet(_onItemChange, _this));
-    _this.addEventListener("tcds-disclosure:title-change", _classPrivateFieldGet(_onItemTitleChange, _this));
+    _classPrivateFieldSet$1(_mediaQuery, _this, new MediaQueryController(_this));
+    _classPrivateFieldSet$1(_deepLink, _this, new DeepLinkController(_this, _classPrivateFieldGet$1(_onDeepLink, _this)));
+    _this.addEventListener("tcds-disclosure:change", _classPrivateFieldGet$1(_onItemChange, _this));
+    _this.addEventListener("tcds-disclosure:title-change", _classPrivateFieldGet$1(_onItemTitleChange, _this));
     return _this;
   }
   _inherits(DisclosureGroup, _LitElement);
-  return _createClass(DisclosureGroup, [{
+  return _createClass$1(DisclosureGroup, [{
     key: "media",
     get: function get() {
-      return _classPrivateFieldGet(_A, this);
+      return _classPrivateFieldGet$1(_A, this);
     },
     set: function set(v) {
-      _classPrivateFieldSet(_A, this, v);
+      _classPrivateFieldSet$1(_A, this, v);
     }
   }, {
     key: "label",
     get: function get() {
-      return _classPrivateFieldGet(_B, this);
+      return _classPrivateFieldGet$1(_B, this);
     },
     set: function set(v) {
-      _classPrivateFieldSet(_B, this, v);
+      _classPrivateFieldSet$1(_B, this, v);
     }
   }, {
     key: "willUpdate",
     value: function willUpdate(changedProperties) {
       var _this$media;
       _superPropGet(DisclosureGroup, "willUpdate", this)([]);
-      _classPrivateFieldGet(_mediaQuery, this).query = (_this$media = this.media) !== null && _this$media !== void 0 ? _this$media : null;
+      _classPrivateFieldGet$1(_mediaQuery, this).query = (_this$media = this.media) !== null && _this$media !== void 0 ? _this$media : null;
 
       // Items live in the light DOM behind a slot, so there is nothing to read
       // until the first render has put that slot in place.
       if (!this.hasUpdated) return;
-      _assertClassBrand(_DisclosureGroup_brand, this, _syncItems).call(this);
+      _assertClassBrand$1(_DisclosureGroup_brand, this, _syncItems).call(this);
     }
   }, {
     key: "render",
     value: function render() {
-      return u(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n      ", "\n      <div part=\"items\">\n        <slot @slotchange=", "></slot>\n      </div>\n    "])), this.renderHeader(), _assertClassBrand(_DisclosureGroup_brand, this, _onSlotChange));
+      return u(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n      ", "\n      <div part=\"items\">\n        <slot @slotchange=", "></slot>\n      </div>\n    "])), this.renderHeader(), _assertClassBrand$1(_DisclosureGroup_brand, this, _onSlotChange));
     }
   }, {
     key: "updated",
     value: function updated() {
-      _assertClassBrand(_DisclosureGroup_brand, this, _announceChange).call(this);
+      _assertClassBrand$1(_DisclosureGroup_brand, this, _announceChange).call(this);
     }
     // #endregion
 
@@ -1618,8 +1618,8 @@ var DisclosureGroup = /*#__PURE__*/function (_LitElement) {
   }, {
     key: "mode",
     get: function get() {
-      if (!_classPrivateFieldGet(_mediaQuery, this).query) return this.defaultMode;
-      return _classPrivateFieldGet(_mediaQuery, this).matches ? this.defaultMode : this.mediaMode;
+      if (!_classPrivateFieldGet$1(_mediaQuery, this).query) return this.defaultMode;
+      return _classPrivateFieldGet$1(_mediaQuery, this).matches ? this.defaultMode : this.mediaMode;
     }
 
     /**
@@ -1656,7 +1656,7 @@ var DisclosureGroup = /*#__PURE__*/function (_LitElement) {
   }, {
     key: "expand",
     value: function expand(item) {
-      _assertClassBrand(_DisclosureGroup_brand, this, _setExpanded).call(this, item, true);
+      _assertClassBrand$1(_DisclosureGroup_brand, this, _setExpanded).call(this, item, true);
     }
 
     /**
@@ -1667,7 +1667,7 @@ var DisclosureGroup = /*#__PURE__*/function (_LitElement) {
   }, {
     key: "collapse",
     value: function collapse(item) {
-      _assertClassBrand(_DisclosureGroup_brand, this, _setExpanded).call(this, item, false);
+      _assertClassBrand$1(_DisclosureGroup_brand, this, _setExpanded).call(this, item, false);
     }
 
     /**
@@ -1678,7 +1678,7 @@ var DisclosureGroup = /*#__PURE__*/function (_LitElement) {
   }, {
     key: "toggle",
     value: function toggle(item) {
-      _assertClassBrand(_DisclosureGroup_brand, this, _setExpanded).call(this, item, !item.expanded);
+      _assertClassBrand$1(_DisclosureGroup_brand, this, _setExpanded).call(this, item, !item.expanded);
     }
 
     /**
@@ -1688,7 +1688,7 @@ var DisclosureGroup = /*#__PURE__*/function (_LitElement) {
     key: "expandAll",
     value: function expandAll() {
       if (!this.allowsMultiple) return;
-      var _iterator = _createForOfIteratorHelper(this.items),
+      var _iterator = _createForOfIteratorHelper$1(this.items),
         _step;
       try {
         for (_iterator.s(); !(_step = _iterator.n()).done;) {
@@ -1709,7 +1709,7 @@ var DisclosureGroup = /*#__PURE__*/function (_LitElement) {
   }, {
     key: "collapseAll",
     value: function collapseAll() {
-      var _iterator2 = _createForOfIteratorHelper(this.items),
+      var _iterator2 = _createForOfIteratorHelper$1(this.items),
         _step2;
       try {
         for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
@@ -1722,7 +1722,7 @@ var DisclosureGroup = /*#__PURE__*/function (_LitElement) {
       } finally {
         _iterator2.f();
       }
-      _classPrivateFieldSet(_preferred, this, null);
+      _classPrivateFieldSet$1(_preferred, this, null);
       this.requestUpdate();
     }
     // #endregion
@@ -1739,7 +1739,7 @@ function _onSlotChange() {
 
   // First moment the items are knowable, and therefore the first moment a
   // fragment in the URL can be acted on.
-  _classPrivateFieldGet(_deepLink, this).resolve();
+  _classPrivateFieldGet$1(_deepLink, this).resolve();
 }
 // #endregion
 // #region Utility methods
@@ -1751,7 +1751,7 @@ function _setExpanded(item, expanded) {
   if (!this.items.includes(item)) return;
   if (!expanded && this.requiresSelection && this.expandedItems.length <= 1) return;
   if (expanded && !this.allowsMultiple) {
-    var _iterator3 = _createForOfIteratorHelper(this.expandedItems),
+    var _iterator3 = _createForOfIteratorHelper$1(this.expandedItems),
       _step3;
     try {
       for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
@@ -1764,7 +1764,7 @@ function _setExpanded(item, expanded) {
       _iterator3.f();
     }
   }
-  _classPrivateFieldSet(_preferred, this, expanded ? item : null);
+  _classPrivateFieldSet$1(_preferred, this, expanded ? item : null);
   item.expanded = expanded;
   this.requestUpdate();
 }
@@ -1786,7 +1786,7 @@ function _revealTrigger2() {
     return _regenerator().w(function (_context) {
       while (1) switch (_context.n) {
         case 0:
-          request = _classPrivateFieldSet(_revealRequest, this, (_this$revealRequest = _classPrivateFieldGet(_revealRequest, this), ++_this$revealRequest)); // Items render asynchronously, and their height animations only start once
+          request = _classPrivateFieldSet$1(_revealRequest, this, (_this$revealRequest = _classPrivateFieldGet$1(_revealRequest, this), ++_this$revealRequest)); // Items render asynchronously, and their height animations only start once
           // they have, so there is nothing to wait on until then.
           _context.n = 1;
           return this.updateComplete;
@@ -1805,41 +1805,46 @@ function _revealTrigger2() {
             return animation.finished;
           }));
         case 3:
-          if (!(request !== _classPrivateFieldGet(_revealRequest, this))) {
-            _context.n = 4;
-            break;
-          }
-          return _context.a(2);
+          _context.n = 4;
+          return new Promise(function (resolve) {
+            return requestAnimationFrame(resolve);
+          });
         case 4:
-          if (!(this.mode !== "accordion" || !item.expanded)) {
+          if (!(request !== _classPrivateFieldGet$1(_revealRequest, this))) {
             _context.n = 5;
             break;
           }
           return _context.a(2);
         case 5:
-          trigger = item.trigger;
-          if (trigger) {
+          if (!(this.mode !== "accordion" || !item.expanded)) {
             _context.n = 6;
             break;
           }
           return _context.a(2);
         case 6:
-          // `scrollIntoView` honors scroll-margin and scroll-padding (e.g. clearance
-          // for a sticky header), so the visibility check should too.
-          offset = (parseFloat(getComputedStyle(trigger).scrollMarginTop) || 0) + (parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0);
-          _trigger$getBoundingC = trigger.getBoundingClientRect(), top = _trigger$getBoundingC.top, bottom = _trigger$getBoundingC.bottom;
-          if (!(top >= offset && bottom <= window.innerHeight)) {
+          trigger = item.trigger;
+          if (trigger) {
             _context.n = 7;
             break;
           }
           return _context.a(2);
         case 7:
+          // `scrollIntoView` honors scroll-margin and scroll-padding (e.g. clearance
+          // for a sticky header), so the visibility check should too.
+          offset = (parseFloat(getComputedStyle(trigger).scrollMarginTop) || 0) + (parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0);
+          _trigger$getBoundingC = trigger.getBoundingClientRect(), top = _trigger$getBoundingC.top, bottom = _trigger$getBoundingC.bottom;
+          if (!(top >= offset && bottom <= window.innerHeight)) {
+            _context.n = 8;
+            break;
+          }
+          return _context.a(2);
+        case 8:
           reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
           trigger.scrollIntoView({
             block: "nearest",
             behavior: reducedMotion ? "instant" : "smooth"
           });
-        case 8:
+        case 9:
           return _context.a(2);
       }
     }, _callee, this);
@@ -1859,7 +1864,7 @@ function _syncItems() {
     item.position = position;
     item.total = items.length;
   });
-  _assertClassBrand(_DisclosureGroup_brand, this, _enforce).call(this, items);
+  _assertClassBrand$1(_DisclosureGroup_brand, this, _enforce).call(this, items);
 }
 /**
  * Runs in `willUpdate`, so the group's own chrome renders against settled
@@ -1873,8 +1878,8 @@ function _enforce(items) {
     return item.expanded;
   });
   if (!this.allowsMultiple && expanded.length > 1) {
-    var keep = expanded.includes(_classPrivateFieldGet(_preferred, this)) ? _classPrivateFieldGet(_preferred, this) : expanded[0];
-    var _iterator4 = _createForOfIteratorHelper(expanded),
+    var keep = expanded.includes(_classPrivateFieldGet$1(_preferred, this)) ? _classPrivateFieldGet$1(_preferred, this) : expanded[0];
+    var _iterator4 = _createForOfIteratorHelper$1(expanded),
       _step4;
     try {
       for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
@@ -1902,8 +1907,8 @@ function _announceChange() {
   var signature = items.map(function (item) {
     return item.expanded ? "1" : "0";
   }).join("");
-  var previous = _classPrivateFieldGet(_signature, this);
-  _classPrivateFieldSet(_signature, this, signature);
+  var previous = _classPrivateFieldGet$1(_signature, this);
+  _classPrivateFieldSet$1(_signature, this, signature);
   if (previous === null || previous.length !== signature.length) return;
   if (previous === signature) return;
   this.dispatchEvent(new CustomEvent("".concat(this.localName, ":change"), {
@@ -1917,20 +1922,20 @@ function _announceChange() {
     composed: true
   }));
 }
-var _applyDecs$e = _slicedToArray(_applyDecs(_DisclosureGroup, [], [[n({
+var _applyDecs$e = _slicedToArray$1(_applyDecs(_DisclosureGroup, [], [[n({
   type: String
 }), 1, "media"], [n({
   type: String
 }), 1, "label"], [r(), 1, "revision", function (o) {
-  return _classPrivateFieldGet(_C, o);
+  return _classPrivateFieldGet$1(_C, o);
 }, function (o, v) {
-  return _classPrivateFieldSet(_C, o, v);
+  return _classPrivateFieldSet$1(_C, o, v);
 }], [o({
   flatten: true
 }), 1, "assigned", function (o) {
-  return _classPrivateFieldGet(_D, o);
+  return _classPrivateFieldGet$1(_D, o);
 }, function (o, v) {
-  return _classPrivateFieldSet(_D, o, v);
+  return _classPrivateFieldSet$1(_D, o, v);
 }]], 0, function (_) {
   return _onDeepLink.has(_checkInRHS(_));
 }, i$1).e, 12);
@@ -1948,4 +1953,217 @@ _applyDecs$e[10];
 _init_extra_assigned = _applyDecs$e[11];
 _defineProperty(DisclosureGroup, "styles", [styles, groupStyles]);
 
-export { DisclosureGroup as D, MediaQueryController as M, SizeBreakpointMd as S, Disclosure as a, DeepLinkController as b, SizeBreakpointLg as c, MediaController as d, styles as s };
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
+function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: true } : { done: false, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = true, u = false; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = true, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = true, o = false; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = true, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), Object.defineProperty(e, "prototype", { writable: false }), e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return (String )(t); }
+function _classPrivateMethodInitSpec(e, a) { _checkPrivateRedeclaration(e, a), a.add(e); }
+function _classPrivateFieldInitSpec(e, t, a) { _checkPrivateRedeclaration(e, t), t.set(e, a); }
+function _checkPrivateRedeclaration(e, t) { if (t.has(e)) throw new TypeError("Cannot initialize the same private elements twice on an object"); }
+function _classPrivateFieldGet(s, a) { return s.get(_assertClassBrand(s, a)); }
+function _classPrivateFieldSet(s, a, r) { return s.set(_assertClassBrand(s, a), r), r; }
+function _assertClassBrand(e, t, n) { if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n; throw new TypeError("Private element is not present on this object"); }
+var PROPERTY = "--tcds-carousel-slide-max-height";
+
+/**
+ * Publishes intrinsic slide height without imposing a height on the carousel.
+ * Hidden-until-found content must briefly participate in layout to measure it.
+ * All measurement overrides are restored synchronously, before the next paint.
+ *
+ * @implements {import("lit").ReactiveController}
+ * @internal
+ */
+var _host = /*#__PURE__*/new WeakMap();
+var _getSlides = /*#__PURE__*/new WeakMap();
+var _resize = /*#__PURE__*/new WeakMap();
+var _mutations = /*#__PURE__*/new WeakMap();
+var _frame = /*#__PURE__*/new WeakMap();
+var _width = /*#__PURE__*/new WeakMap();
+var _CarouselSizeController_brand = /*#__PURE__*/new WeakSet();
+var _schedule = /*#__PURE__*/new WeakMap();
+var CarouselSizeController = /*#__PURE__*/function () {
+  /**
+   * @param {import("lit").LitElement} host
+   * @param {() => HTMLElement[]} getSlides
+   */
+  function CarouselSizeController(host, getSlides) {
+    var _this = this;
+    _classCallCheck(this, CarouselSizeController);
+    _classPrivateMethodInitSpec(this, _CarouselSizeController_brand);
+    /** @type {import("lit").LitElement} */
+    _classPrivateFieldInitSpec(this, _host, void 0);
+    /** @type {() => HTMLElement[]} */
+    _classPrivateFieldInitSpec(this, _getSlides, void 0);
+    /** @type {ResizeObserver} */
+    _classPrivateFieldInitSpec(this, _resize, void 0);
+    /** @type {MutationObserver} */
+    _classPrivateFieldInitSpec(this, _mutations, void 0);
+    /** @type {number|undefined} */
+    _classPrivateFieldInitSpec(this, _frame, void 0);
+    _classPrivateFieldInitSpec(this, _width, -1);
+    _classPrivateFieldInitSpec(this, _schedule, function () {
+      if (!_classPrivateFieldGet(_host, _this).isConnected || _classPrivateFieldGet(_frame, _this) !== undefined) return;
+      _classPrivateFieldSet(_frame, _this, requestAnimationFrame(function () {
+        _classPrivateFieldSet(_frame, _this, undefined);
+        _assertClassBrand(_CarouselSizeController_brand, _this, _measure).call(_this);
+      }));
+    });
+    _classPrivateFieldSet(_host, this, host);
+    _classPrivateFieldSet(_getSlides, this, getSlides);
+    _classPrivateFieldSet(_mutations, this, new MutationObserver(_classPrivateFieldGet(_schedule, this)));
+    _classPrivateFieldSet(_resize, this, new ResizeObserver(function (_ref) {
+      var _ref2 = _slicedToArray(_ref, 1),
+        entry = _ref2[0];
+      // Publishing the height may resize the host. Only width affects wrapping;
+      // ignoring height here avoids a measurement/consumer-style feedback loop.
+      if (entry.contentRect.width === _classPrivateFieldGet(_width, _this)) return;
+      _classPrivateFieldSet(_width, _this, entry.contentRect.width);
+      _classPrivateFieldGet(_schedule, _this).call(_this);
+    }));
+    host.addController(this);
+  }
+  return _createClass(CarouselSizeController, [{
+    key: "hostConnected",
+    value: function hostConnected() {
+      var _document$fonts;
+      _assertClassBrand(_CarouselSizeController_brand, this, _observeContent).call(this);
+      _classPrivateFieldGet(_resize, this).observe(_classPrivateFieldGet(_host, this));
+      _classPrivateFieldGet(_host, this).addEventListener("load", _classPrivateFieldGet(_schedule, this), true);
+      _classPrivateFieldGet(_host, this).addEventListener("loadedmetadata", _classPrivateFieldGet(_schedule, this), true);
+      window.addEventListener("resize", _classPrivateFieldGet(_schedule, this));
+      (_document$fonts = document.fonts) === null || _document$fonts === void 0 || _document$fonts.addEventListener("loadingdone", _classPrivateFieldGet(_schedule, this));
+      _classPrivateFieldGet(_schedule, this).call(this);
+    }
+  }, {
+    key: "hostUpdated",
+    value: function hostUpdated() {
+      _classPrivateFieldGet(_schedule, this).call(this);
+    }
+  }, {
+    key: "hostDisconnected",
+    value: function hostDisconnected() {
+      var _document$fonts2;
+      _classPrivateFieldGet(_resize, this).disconnect();
+      _classPrivateFieldGet(_mutations, this).disconnect();
+      _classPrivateFieldGet(_host, this).removeEventListener("load", _classPrivateFieldGet(_schedule, this), true);
+      _classPrivateFieldGet(_host, this).removeEventListener("loadedmetadata", _classPrivateFieldGet(_schedule, this), true);
+      window.removeEventListener("resize", _classPrivateFieldGet(_schedule, this));
+      (_document$fonts2 = document.fonts) === null || _document$fonts2 === void 0 || _document$fonts2.removeEventListener("loadingdone", _classPrivateFieldGet(_schedule, this));
+      if (_classPrivateFieldGet(_frame, this) !== undefined) cancelAnimationFrame(_classPrivateFieldGet(_frame, this));
+      _classPrivateFieldSet(_frame, this, undefined);
+      _classPrivateFieldSet(_width, this, -1);
+    }
+  }]);
+}();
+function _observeContent() {
+  _classPrivateFieldGet(_mutations, this).observe(_classPrivateFieldGet(_host, this), {
+    subtree: true,
+    childList: true,
+    characterData: true,
+    attributes: true
+  });
+}
+function _measure() {
+  // Keep the previous value while an ancestor hides the entire carousel.
+  if (!_classPrivateFieldGet(_host, this).isConnected || _classPrivateFieldGet(_host, this).getClientRects().length === 0) return;
+  var slides = _classPrivateFieldGet(_getSlides, this).call(this).filter(function (slide) {
+    var hidden = slide.getAttribute("hidden");
+    return hidden === null || hidden === "until-found";
+  });
+  var originalStyles = slides.map(function (slide) {
+    return slide.getAttribute("style");
+  });
+  var needsReveal = slides.map(function (slide) {
+    return getComputedStyle(slide).contentVisibility === "hidden";
+  });
+  var height = 0;
+
+  // Do not observe our own temporary styles or the published CSS property.
+  _classPrivateFieldGet(_mutations, this).disconnect();
+  try {
+    var _iterator = _createForOfIteratorHelper(slides.entries()),
+      _step;
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var _step$value = _slicedToArray(_step.value, 2),
+          index = _step$value[0],
+          slide = _step$value[1];
+        // Leave currently visible slides (including outgoing fades) alone.
+        if (needsReveal[index]) {
+          slide.style.setProperty("transition-property", "opacity", "important");
+          slide.style.setProperty("content-visibility", "visible", "important");
+        }
+        var overrides = {
+          "visibility": "hidden",
+          "height": "auto",
+          "block-size": "auto",
+          "min-height": "0",
+          "min-block-size": "0",
+          "max-height": "none",
+          "max-block-size": "none",
+          "align-self": "start"
+        };
+        for (var _i = 0, _Object$entries = Object.entries(overrides); _i < _Object$entries.length; _i++) {
+          var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+            name = _Object$entries$_i[0],
+            value = _Object$entries$_i[1];
+          slide.style.setProperty(name, value, "important");
+        }
+      }
+
+      // Batch writes before reads. Clear consumer heights during measurement so
+      // the published maximum can shrink as well as grow.
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+    height = Math.max.apply(Math, [0].concat(_toConsumableArray(slides.map(function (slide) {
+      return slide.offsetHeight;
+    }))));
+  } finally {
+    slides.forEach(function (slide, index) {
+      var original = originalStyles[index];
+      if (original === null) slide.removeAttribute("style");else slide.setAttribute("style", original);
+      // Restore hidden layout before re-enabling content-visibility's
+      // discrete transition. Keep the existing opacity fade running.
+      if (needsReveal[index]) slide.style.setProperty("transition-property", "opacity", "important");
+    });
+    var _iterator2 = _createForOfIteratorHelper(slides),
+      _step2;
+    try {
+      for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+        var _slide = _step2.value;
+        void _slide.offsetHeight;
+      }
+    } catch (err) {
+      _iterator2.e(err);
+    } finally {
+      _iterator2.f();
+    }
+    slides.forEach(function (slide, index) {
+      var original = originalStyles[index];
+      if (original === null) slide.removeAttribute("style");else slide.setAttribute("style", original);
+    });
+    var _value = "".concat(height, "px");
+    if (_classPrivateFieldGet(_host, this).style.getPropertyValue(PROPERTY) !== _value) {
+      _classPrivateFieldGet(_host, this).style.setProperty(PROPERTY, _value);
+    }
+    _assertClassBrand(_CarouselSizeController_brand, this, _observeContent).call(this);
+  }
+}
+
+export { CarouselSizeController as C, DisclosureGroup as D, MediaQueryController as M, SizeBreakpointMd as S, Disclosure as a, DeepLinkController as b, SizeBreakpointLg as c, MediaController as d, styles as s };
