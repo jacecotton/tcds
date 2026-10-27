@@ -39,13 +39,13 @@ export default {
     dir: ".",
     format: "es",
     entryFileNames: "[name].js",
-    chunkFileNames: "[name].js",
+    chunkFileNames: "[name].[hash].js",
     manualChunks(id) {
       if (id.includes("node_modules")) {
         return "dist/js/vendor";
       }
 
-      if (id.includes("src/js/") || id.includes("src/components/_shared/")) {
+      if (id.includes("src/components/_shared/")) {
         return "dist/js/shared";
       }
     },

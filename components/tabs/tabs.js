@@ -1,5 +1,5 @@
-import { i, A, u, t } from '../../dist/js/vendor.js';
-import { D as DisclosureGroup } from '../../dist/js/shared.js';
+import { i, A, u, t } from '../../dist/js/vendor.CyjMR3IY.js';
+import { D as DisclosureGroup } from '../../dist/js/shared.CINwvnuL.js';
 import '../tab/tab.js';
 
 var _templateObject$1;
