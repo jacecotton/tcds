@@ -1,6 +1,5 @@
 import { b as r, i, n, r as r$1, o, t, u, A, a as i$1 } from '../../dist/js/vendor.CyjMR3IY.js';
 import { S as SizeBreakpointMd, b as DeepLinkController, C as CarouselSizeController, s as styles } from '../../dist/js/shared.CINwvnuL.js';
-import '../slide/slide.js';
 
 var _templateObject$1, _templateObject2$1, _templateObject3$1;
 function _taggedTemplateLiteral$1(e, t) { return t || (t = e.slice(0)), Object.freeze(Object.defineProperties(e, { raw: { value: Object.freeze(t) } })); }
@@ -60,8 +59,6 @@ function _identity(t) { return t; }
  * controls. Autoplay pauses on hover, focus, when the document is hidden, and
  * when scrolled off screen, and stops entirely on manual navigation or when the
  * reader prefers reduced motion or the viewport is below the desktop breakpoint.
- *
- * @tag tcds-carousel
  *
  * @slot - Slides (`<tcds-slide>` elements).
  *

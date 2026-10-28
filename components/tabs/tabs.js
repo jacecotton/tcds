@@ -1,6 +1,5 @@
 import { i, A, u, t } from '../../dist/js/vendor.CyjMR3IY.js';
 import { D as DisclosureGroup } from '../../dist/js/shared.CINwvnuL.js';
-import '../tab/tab.js';
 
 var _templateObject$1;
 function _taggedTemplateLiteral$1(e, t) { return t || (t = e.slice(0)), Object.freeze(Object.defineProperties(e, { raw: { value: Object.freeze(t) } })); }
@@ -47,8 +46,6 @@ function _identity(t) { return t; }
 /**
  * A collection of toggleable tab panels. When `media` is set and does not
  * match, the tabs collapse into an accordion.
- *
- * @tag tcds-tabs
  *
  * @slot - Tab items (`<tcds-tab>` elements).
  *

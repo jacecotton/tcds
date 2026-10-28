@@ -4,8 +4,6 @@ import {Disclosure} from "@/components/_shared/base/Disclosure";
 /**
  * A section of content expandable and collapsible via a trigger.
  *
- * @tag tcds-accordion-section
- *
  * @slot - Content.
  * @slot title - The title of the section to use for the trigger label.
  *
@@ -19,6 +17,7 @@ import {Disclosure} from "@/components/_shared/base/Disclosure";
  * @cssState accordion - The section is presented as an accordion disclosure.
  * @cssState plain     - The section is presented as plain content.
  */
+@customElement("tcds-accordion-section")
 export class AccordionSection extends Disclosure {
   // #region Properties and state
   /**
@@ -41,8 +40,4 @@ export class AccordionSection extends Disclosure {
     this.open = value;
   }
   // #endregion
-}
-
-if (!customElements.get("tcds-accordion-section")) {
-  customElements.define("tcds-accordion-section", AccordionSection);
 }

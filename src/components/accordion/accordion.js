@@ -5,8 +5,6 @@ import {customElement, property} from "lit/decorators.js";
 import {DisclosureGroup} from "@/components/_shared/base/DisclosureGroup";
 import localStyles from "./accordion.styles.js";
 
-import "@/components/accordion-section/accordion-section.js";
-
 /** @import {DisclosureMode} from "@/components/_shared/base/Disclosure" */
 
 /**

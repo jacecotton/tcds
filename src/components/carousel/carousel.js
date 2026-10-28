@@ -7,7 +7,6 @@ import localStyles from "./carousel.styles.js";
 import {DeepLinkController} from "@/components/_shared/controllers/DeepLinkController";
 import {CarouselSizeController} from "@/components/_shared/controllers/CarouselSizeController";
 import {SizeBreakpointMd} from "@/components/_shared/_gen/tokens.js";
-import "@/components/slide/slide.js";
 
 /** @import {PropertyValues} from "lit" */
 /** @import {Slide} from "@/components/slide/slide.js" */
@@ -17,8 +16,6 @@ import "@/components/slide/slide.js";
  * controls. Autoplay pauses on hover, focus, when the document is hidden, and
  * when scrolled off screen, and stops entirely on manual navigation or when the
  * reader prefers reduced motion or the viewport is below the desktop breakpoint.
- *
- * @tag tcds-carousel
  *
  * @slot - Slides (`<tcds-slide>` elements).
  *

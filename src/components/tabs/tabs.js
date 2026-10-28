@@ -4,7 +4,6 @@ import {customElement} from "lit/decorators.js";
 
 import {DisclosureGroup} from "@/components/_shared/base/DisclosureGroup";
 import localStyles from "./tabs.styles.js";
-import "@/components/tab/tab.js";
 
 /** @import {TemplateResult} from "lit" */
 /** @import {DisclosureMode, Disclosure} from "@/components/_shared/base/Disclosure" */
@@ -12,8 +11,6 @@ import "@/components/tab/tab.js";
 /**
  * A collection of toggleable tab panels. When `media` is set and does not
  * match, the tabs collapse into an accordion.
- *
- * @tag tcds-tabs
  *
  * @slot - Tab items (`<tcds-tab>` elements).
  *
