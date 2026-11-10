@@ -4,6 +4,8 @@ We follow the [Single Directory Components](https://www.drupal.org/docs/develop/
 
 Per Drupal theming requirements, the `components/` directory is output to root, rather than `dist/` (with the other assets).
 
+Grouping folders (i.e. folders that contain folders with `.component.yml` definitions) are omitted in the built output, so component names must be unique across categories.
+
 ### Authoring
 Each component generally has the following files:
 * `[component].twig`
@@ -15,6 +17,8 @@ Each component generally has the following files:
 We use the [Lit](https://lit.dev/) library for authoring components as custom elements (where applicable).
 
 #### Twig
+> See [SDC best practices](/jacecotton/tcds/wiki/SDC-best-practices)
+
 Each component's Twig template should use the following boilerplate. Comments are included below to explain once, but do not need to be pasted in each template:
 
 ```twig
@@ -58,7 +62,7 @@ Shadow root styles exported from a `.styles.js` file and adopted:
 
 ```js
 /* example.styles.js */
-import {css} from "lit/static-html.js";
+import {css} from "lit";
 
 export default css`
   :host {
@@ -77,15 +81,15 @@ class Example extends LitElement {
 
 Some components may need light DOM styles, which can be written in `.scss` files. They will be built to `.css` by the [build process](#build-process).
 
-For non-Lit components that use JavaScript, we follow the pattern of exporting initializer and cleanup functions from the main script and consuming them appropriately in both Drupal-specific and generic entrypoints. In these cases the `.component.yml` file should point to the Drupal-specific entrypoint.
+For non-Lit components that use JavaScript, we follow the pattern of exporting idempotent initializer and cleanup functions from the main script and consuming them appropriately in both Drupal-specific and generic entrypoints. In these cases the `.component.yml` file should point to the Drupal-specific entrypoint.
 
 ```js
 /* example.js */
-export initExample(context = document) {
+export function initExample(context = document) {
   // ...
 }
 
-export destroyExample(context = document) {
+export function destroyExample(context = document) {
   // ...
 }
 ```
@@ -124,7 +128,7 @@ libraryOverrides:
     example.drupal.js:
       attributes: { type: "module" }
       preprocess: false
-  dependences:
+  dependencies:
     - core/drupal
 ```
 

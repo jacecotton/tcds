@@ -1,6 +1,7 @@
 {% set attributes = create_attribute(attributes|default({}))
   .setAttribute("media", media|default(false))
   .setAttribute("label", label|default(false))
+  .setAttribute("size", size|default(false))
 %}
 
 <tcds-tabs {{ attributes }}>

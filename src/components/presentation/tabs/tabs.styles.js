@@ -4,6 +4,10 @@ export default css`
   :host {
   }
 
+  :host([size=small]) {
+    --tcds-tabs-tab-font-size: var(--tcds-font-size-lg);
+  }
+
   [part=tablist] {
     display: flex;
     overflow-x: auto;
@@ -18,7 +22,7 @@ export default css`
     padding-inline: var(--tcds-tabs-tab-padding-inline);
     font-family: var(--tcds-font-family-ui);
     font-weight: var(--tcds-font-weight-ui);
-    font-size: var(--tcds-font-size-2xl);
+    font-size: var(--tcds-tabs-tab-font-size, var(--tcds-font-size-2xl));
     color: var(--tcds-color-theme-text-muted);
     cursor: pointer;
     position: relative;

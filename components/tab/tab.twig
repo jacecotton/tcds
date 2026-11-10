@@ -3,7 +3,7 @@
 %}
 
 <tcds-tab {{ attributes }}>
-  <{{ heading_level }} slot="title">{{ title }}</{{ heading_level }}>
+  <{{ heading_level }} slot="title" id="{{ title|clean_unique_id }}">{{ title }}</{{ heading_level }}>
   {% if content is defined %}
     {% if content is not iterable and block(content) is defined %}
       {{ block(content) }}
