@@ -4,6 +4,7 @@
     "xs": {"$value": "4px"},
     "sm": {"$value": "6px"},
     "md": {"$value": "15px"},
-    "lg": {"$value": "20px"}
+    "lg": {"$value": "20px"},
+    "xl": {"$value": "40px"}
   }
 }

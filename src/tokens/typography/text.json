@@ -76,14 +76,14 @@
         "base": {
           "$value": {
             "fontFamily": "{font.stack.serif}",
-            "fontSize": "{font.size.3xl}",
+            "fontSize": "{font.size.2xl}",
             "lineHeight": "{line-height.normal}"
           }
         },
         "desktop": {
           "$value": {
             "fontFamily": "{font.stack.serif}",
-            "fontSize": "{font.size.5xl}",
+            "fontSize": "{font.size.3xl}",
             "lineHeight": "{line-height.compact}"
           }
         }
@@ -99,7 +99,7 @@
         "desktop": {
           "$value": {
             "fontFamily": "{font.stack.serif}",
-            "fontSize": "{font.size.4xl}",
+            "fontSize": "{font.size.2xl}",
             "lineHeight": "{line-height.normal}"
           }
         }

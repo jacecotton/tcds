@@ -1,20 +1,37 @@
+{% set base_class = "tcds-quick-links" %}
+
 {% set attributes = create_attribute(attributes|default({}))
-  .addClass("tcds-quick-links")
+  .addClass([base_class]|merge(modifiers ? modifiers|map(modifier => "#{base_class}--#{modifier}") : []))
   .setAttribute("role", "list")
 %}
 
 <ul {{ attributes }}>
-  {% for link in links %}
-    <li>
-      {% set link_attributes = create_attribute(link_attributes|default({})|merge(link.attributes|default({}))) %}
-      <a {{ link_attributes.setAttribute("href", link.url) }}>
-        {% if link.icon %}
-          <tcds-icon icon="{{ link.icon }}" category="duotone"></tcds-icon>
-        {% elseif link.image|default(false) %}
-          <img {{ create_attribute(link.image|merge({alt: ""})) }}>
+  {% for item in items %}
+    {% set item_id = item.text|clean_unique_id %}
+    <li {{ create_attribute().addClass("#{base_class}__item") }}>
+      {% if item.icon %}
+        <tcds-icon icon="{{ item.icon }}" category="duotone"></tcds-icon>
+      {% endif %}
+
+      {% set text_attributes = create_attribute(text_attributes|default({})|merge(item.attributes|default({})))
+        .addClass("#{base_class}__text")
+        .setAttribute("aria-describedby", item.description|default(false) ? "#{item_id}-description" : false)
+      %}
+
+      {% set text_element = item.url ? "a" : "span" %}
+
+      <{{ text_element }} {{ text_attributes.setAttribute("href", item.url) }}>
+        {{ item.text }}
+        {% if item.url %}
+          <tcds-icon icon="caret-right"></tcds-icon>
         {% endif %}
-        <span>{{ link.text }} <tcds-icon icon="caret-right"></tcds-icon></span>
-      </a>
+      </{{ text_element }}>
+
+      {% if item.description %}
+        <span {{ create_attribute().addClass("#{base_class}__description") }}>
+          {{ item.description }}
+        </span>
+      {% endif %}
     </li>
   {% endfor %}
 </ul>

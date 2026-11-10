@@ -1,0 +1,58 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Breadcrumb
+description: A hierarchical navigation trail with optional responsive contraction of intermediate ancestors.
+status: experimental
+group: Navigation
+libraryOverrides:
+  js:
+    breadcrumb.js:
+      attributes:
+        type: module
+      preprocess: false
+props:
+  type: object
+  required: [items]
+  properties:
+    items:
+      type: array
+      title: Breadcrumb items
+      description: Flat list in root-to-current order. The final item always represents the current page.
+      items:
+        type: object
+        required: [text]
+        properties:
+          text:
+            type: string
+            title: Text
+          url:
+            type: string
+            title: URL
+            description: Link destination. Supply for ancestor items; optional for the current page.
+          attributes:
+            type: object
+            title: Item attributes
+            description: Attributes for the item link or span, such as classes or data hooks. The component owns href and aria-current.
+    label:
+      type: string
+      title: Navigation label
+      description: Accessible name for the navigation landmark. Give multiple trails distinct labels.
+      default: Breadcrumb
+    link_current:
+      type: boolean
+      title: Link the current page
+      description: Render the final item as a self-link when it has a URL. Otherwise it is a span with aria-current set to page.
+      default: false
+    no_collapse:
+      type: boolean
+      title: Always show all ancestors
+      description: Disable responsive contraction and allow the complete trail to wrap at every width.
+      default: false
+    expanded:
+      type: boolean
+      title: Initially expanded
+      description: Show the complete trail initially without an expansion button, including at narrow widths.
+      default: false
+    expand_label:
+      type: string
+      title: Expand button label
+      default: Show all breadcrumbs

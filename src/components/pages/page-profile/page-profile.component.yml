@@ -1,0 +1,12 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Profile Page
+description: A page template for person profiles (doctors, researchers, etc.)
+status: experimental
+group: Pages
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: Title
+      description: The page title.

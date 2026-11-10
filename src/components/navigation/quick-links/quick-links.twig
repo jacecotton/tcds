@@ -1,0 +1,37 @@
+{% set base_class = "tcds-quick-links" %}
+
+{% set attributes = create_attribute(attributes|default({}))
+  .addClass([base_class]|merge(modifiers ? modifiers|map(modifier => "#{base_class}--#{modifier}") : []))
+  .setAttribute("role", "list")
+%}
+
+<ul {{ attributes }}>
+  {% for item in items %}
+    {% set item_id = item.text|clean_unique_id %}
+    <li {{ create_attribute().addClass("#{base_class}__item") }}>
+      {% if item.icon %}
+        <tcds-icon icon="{{ item.icon }}" category="duotone"></tcds-icon>
+      {% endif %}
+
+      {% set text_attributes = create_attribute(text_attributes|default({})|merge(item.attributes|default({})))
+        .addClass("#{base_class}__text")
+        .setAttribute("aria-describedby", item.description|default(false) ? "#{item_id}-description" : false)
+      %}
+
+      {% set text_element = item.url ? "a" : "span" %}
+
+      <{{ text_element }} {{ text_attributes.setAttribute("href", item.url) }}>
+        {{ item.text }}
+        {% if item.url %}
+          <tcds-icon icon="caret-right"></tcds-icon>
+        {% endif %}
+      </{{ text_element }}>
+
+      {% if item.description %}
+        <span {{ create_attribute().addClass("#{base_class}__description") }}>
+          {{ item.description }}
+        </span>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>

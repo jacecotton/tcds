@@ -1,0 +1,38 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Resource card
+description: An image-backed card with a single call-to-action link.
+status: experimental
+group: Cards
+libraryOverrides:
+  js:
+    card-resource.drupal.js:
+      attributes:
+        type: module
+      preprocess: false
+  dependencies:
+    - core/drupal
+props:
+  type: object
+  required: [link]
+  properties:
+    image:
+      type: object
+      title: Background image
+      description: Decorative background image. Convey essential information in the link text; image alternative text is not rendered.
+      $ref: "json-schema-definitions://canvas.module/image"
+    link:
+      type: object
+      title: Link
+      required: [url, text]
+      properties:
+        url:
+          type: string
+          title: URL
+        text:
+          type: string
+          title: Link text
+          description: Plain-text label describing the destination. The whole card is clickable.
+    classes:
+      type: string
+      title: Additional classes
+      description: Space-separated root classes. Classes may also be passed through attributes.

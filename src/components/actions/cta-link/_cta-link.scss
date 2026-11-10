@@ -1,0 +1,31 @@
+@use "src/components/actions/button/abstracts/mixins" as *;
+
+.tcds-cta-link {
+  @include button-style($flag: "!important");
+
+  &--outline {
+    @include button-props-outline;
+  }
+
+  &--small {
+    @include button-props-small;
+  }
+
+  &--tertiary {
+    @include button-props-tertiary;
+  }
+
+  &:is(:hover, :focus-visible) {
+    --tcds-cta-link-icon-translate-x: 20%;
+  }
+
+  > tcds-icon[icon*=caret-right] {
+    transition: translate var(--tcds-motion-duration-expressive) var(--tcds-motion-easing-enter);
+    translate: var(--tcds-cta-link-icon-translate-x, 0%) 0%;
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+      translate: none;
+    }
+  }
+}

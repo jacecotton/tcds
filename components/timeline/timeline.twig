@@ -1,0 +1,22 @@
+{% set base_class = "tcds-timeline" %}
+
+{% set attributes = create_attribute(attributes|default({}))
+  .addClass(base_class)
+  .setAttribute("role", "list")
+%}
+
+<ol {{ attributes }}>
+  {% for item in items %}
+    <li {{ create_attribute().addClass("#{base_class}__item") }}>
+      <time {{ create_attribute()
+        .addClass("#{base_class}__year")
+        .setAttribute("datetime", item.year)
+      }}>{{ item.year }}</time>
+
+      <div {{ create_attribute().addClass("#{base_class}__details") }}>
+        <p {{ create_attribute().addClass("#{base_class}__title") }}>{{ item.title }}</p>
+        <p>{{ item.description }}</p>
+      </div>
+    </li>
+  {% endfor %}
+</ol>

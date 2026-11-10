@@ -1,0 +1,24 @@
+dl {
+  &.tcds-table {
+    display: table;
+
+    > div {
+      display: table-row;
+
+      > :is(dt, dd) {
+        display: table-cell;
+        border-block-end: 1px solid var(--tcds-color-theme-edge);
+        padding-block: var(--tcds-space-component-sm);
+      }
+
+      > dt {
+        font: var(--tcds-text-ui-md);
+      }
+
+      > dd {
+        padding-inline-start: var(--tcds-space-component-md);
+        color: var(--tcds-color-theme-text-secondary);
+      }
+    }
+  }
+}

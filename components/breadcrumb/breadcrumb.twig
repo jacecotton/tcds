@@ -1,0 +1,26 @@
+{% set attributes = create_attribute(attributes|default({}))
+  .setAttribute("expanded", expanded|default(false))
+  .setAttribute("no-collapse", no_collapse|default(false))
+  .setAttribute("expand-label", expand_label|default(false))
+%}
+
+{% if items|default([]) is not empty %}
+  <tcds-breadcrumb {{ attributes }}>
+    <nav aria-label="{{ label|default("Breadcrumb") }}">
+      <ol role="list">
+        {% for item in items %}
+          {% set item_attributes = create_attribute(item.attributes|default({}))
+            .setAttribute("aria-current", loop.last ? "page" : false)
+          %}
+          <li>
+            {% if item.url|default(false) and (not loop.last or link_current|default(false)) %}
+              <a {{ item_attributes.setAttribute("href", item.url) }}>{{ item.text }}</a>
+            {% else %}
+              <span {{ item_attributes.removeAttribute("href") }}>{{ item.text }}</span>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ol>
+    </nav>
+  </tcds-breadcrumb>
+{% endif %}

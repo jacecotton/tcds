@@ -2,11 +2,8 @@
 
 @for $level from 1 through 4 {
   $this: "h#{$level}";
-  $next: "h#{$level + 1}";
 
-  :where(#{$this}),
-  :is(tcds-accordion, tcds-tabs) :where(#{$next}) {
-    // Must convert number to string for map key.
+  :where(#{$this}) {
     @include text("heading", "#{$level}");
   }
 }
@@ -23,14 +20,18 @@ h1 {
     margin-top: 2rem;
   }
 
+  [slot] + & {
+    margin-top: 0;
+  }
+
   &:where(:not(:last-child, [slot])) {
     margin-bottom: 2rem;
   }
 }
 
-:where(:not(h1, hr) + h2:not([slot])),
-:where(:not(h2, hr) + h3:not([slot])),
-:where(:not(h3, hr) + h4:not([slot])),
-:where(:not(h4, hr) + h5:not([slot])) {
+:is(:not(h1, hr) + h2:not([slot])),
+:is(:not(h2, hr) + h3:not([slot])),
+:is(:not(h3, hr) + h4:not([slot])),
+:is(:not(h4, hr) + h5:not([slot])) {
   margin-top: 4rem;
 }

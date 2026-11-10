@@ -1,0 +1,19 @@
+{% set base_class = "tcds-stats" %}
+
+{% set attributes = create_attribute(attributes|default({}))
+  .addClass(base_class)
+%}
+
+<ul {{ attributes }}>
+  {% for stat in stats %}
+    <li>
+      <div class="tcds-stats__header">
+        {% if stat.icon %}
+          <tcds-icon icon="{{ stat.icon }}"></tcds-icon>
+        {% endif %}
+        <span class="tcds-stats__value">{{ stat.value }}</span>
+      </div>
+      <p class="tcds-stats__label">{{ stat.label }}</p>
+    </li>
+  {% endfor %}
+</ul>

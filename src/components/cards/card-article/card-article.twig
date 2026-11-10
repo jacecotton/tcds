@@ -1,0 +1,54 @@
+{% set base_class = "tcds-article-card" %}
+
+{% set attributes = create_attribute(attributes|default({}))
+  .addClass([base_class]|merge(modifiers|default([])|map(modifier => "#{base_class}--#{modifier}")))
+%}
+
+{% set heading_level = heading_level|default("h3") %}
+
+<article {{ attributes }}>
+  {% if tags is defined and tags is not empty %}
+    <span class="{{ base_class }}__tags">
+      {% for tag in tags %}
+        <span class="{{ base_class }}__tag">{{ tag }}</span>
+      {% endfor %}
+    </span>
+  {% endif %}
+  {% if image %}
+    <figure class="{{ base_class }}__image">
+      <img {{ create_attribute(image|default({})) }}>
+    </figure>
+  {% endif %}
+  {% if icon %}
+    <tcds-icon class="{{ base_class }}__icon" icon="{{ icon }}"></tcds-icon>
+  {% endif %}
+  {% if eyebrow %}
+    <small class="{{ base_class }}__eyebrow">{{ eyebrow }}</small>
+  {% endif %}
+  {% if title %}
+    {% set is_quote = title|trim|first == "\"" or title|trim|first == "“" %}
+    <{{ heading_level }} {{ create_attribute()
+      .addClass(["#{base_class}__title", (is_quote or ("small" in modifiers)) ? "text-ui-md"])
+    }}>
+      {% if url and links|default([]) is empty %}
+        <a href="{{ url }}">{{ title }}</a>
+      {% else %}
+        {{ title }}
+      {% endif %}
+    </{{ heading_level }}>
+  {% endif %}
+  {% if description %}
+    <p class="{{ base_class }}__description">
+      {{ description|raw }}
+    </p>
+  {% endif %}
+  {% if links is defined and links is not empty %}
+    {% for link in links %}
+      {{ include("@tcds/cta-link/cta-link.twig", link|merge({
+        icon: ("video" in modifiers) ? "play" : "caret-right",
+        icon_position: ("video" in modifiers) ? "before" : "after",
+        modifiers: ["tertiary"]|merge("small" in modifiers ? ["small"] : []),
+      }), with_context=false) }}
+    {% endfor %}
+  {% endif %}
+</article>

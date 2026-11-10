@@ -1,0 +1,51 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Icon card
+description: A card with an optional decorative duotone icon, a heading, a description, and calls to action.
+status: experimental
+group: Cards
+props:
+  type: object
+  required: [heading]
+  properties:
+    heading:
+      type: string
+      title: Heading
+      description: Plain-text heading describing the card content.
+    heading_level:
+      type: string
+      title: Heading level
+      description: The semantic heading level within the page outline. Does not change the visual appearance.
+      enum: [h2, h3, h4, h5, h6]
+      meta:enum:
+        h2: Heading 2
+        h3: Heading 3
+        h4: Heading 4
+        h5: Heading 5
+        h6: Heading 6
+      default: h3
+    icon:
+      type: string
+      title: Icon
+      description: Icon identifier from the duotone category. Decorative; convey its meaning in the heading or description.
+    description:
+      type: string
+      title: Description
+      description: Plain text displayed below the heading.
+    links:
+      type: array
+      title: Calls to action
+      description: CTA link props. Each link remains a separate interactive target.
+      items:
+        type: object
+        required: [url, text]
+        properties:
+          url:
+            type: string
+            title: URL
+          text:
+            type: string
+            title: Link text
+          icon:
+            type: string
+            title: Icon
+            description: Optional decorative icon for the CTA link. Set icon_position to display it.

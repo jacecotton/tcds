@@ -1,4 +1,4 @@
-@use "../../components/button/abstracts/mixins" as *;
+@use "src/components/actions/button/abstracts/mixins" as *;
 
 button, input {
   touch-action: manipulation;

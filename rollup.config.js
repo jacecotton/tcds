@@ -9,44 +9,88 @@ import litCss from "rollup-plugin-lit-css";
 
 const DIRNAME = path.dirname(fileURLToPath(import.meta.url));
 const SRC_DIR = path.resolve(DIRNAME, "src");
+const COMPONENTS_DIR = path.join(SRC_DIR, "components");
 
 /**
- * Get an array of all component entries in `src/`, e.g.
- * [
- *   {"components/accordion/accordion": "./src/components/accordion/accordion.js"},
- *   ...
- * ]
+ * Discover component JavaScript entries recursively.
+ *
+ * Component directories are identified by <name>.component.yml.
+ * Matching <name>.js, <name>.browser.js, and <name>.drupal.js files become
+ * separate entries, allowing shared logic and environment-specific setup.
+ *
+ * Entry names omit organizational directories, for example:
+ * src/components/presentation/accordion/accordion.js
+ * -> components/accordion/accordion.js
+ *
+ * Component names must be unique across all categories.
  */
-const componentEntries = fs
-  .readdirSync(path.join(SRC_DIR, "components"), {withFileTypes: true})
-  .filter((dirent) => {
-    const {name} = dirent;
-    if (!dirent.isDirectory() || name === "_shared") return false;
-    const filePath = path.join(SRC_DIR, "components", name, `${name}.js`);
-    return fs.existsSync(filePath);
-  })
-  .reduce((entries, dirent) => {
-    const {name} = dirent;
-    entries[`components/${name}/${name}`] = path.join(SRC_DIR, "components", name, `${name}.js`);
-    return entries;
-  }, {});
+function getComponentEntries(directory = COMPONENTS_DIR) {
+  const entries = {};
+  const componentDirectories = new Map();
+
+  function visit(currentDirectory) {
+    for (const dirent of fs.readdirSync(currentDirectory, {withFileTypes: true})) {
+      const {name} = dirent;
+      if (!dirent.isDirectory() || name === "_shared") continue;
+
+      const componentDir = path.join(currentDirectory, name);
+      const componentBase = path.join(componentDir, name);
+      const metadataPath = componentBase + ".component.yml";
+
+      if (!fs.existsSync(metadataPath)) {
+        // Organizational directories may contain further groups.
+        visit(componentDir);
+        continue;
+      }
+
+      const existingDirectory = componentDirectories.get(name);
+
+      if (existingDirectory) {
+        throw new Error(
+          'Duplicate component name "' + name + '" in "' +
+          path.relative(SRC_DIR, existingDirectory) + '" and "' +
+          path.relative(SRC_DIR, componentDir) +
+          '". Component names must be unique across categories.'
+        );
+      }
+
+      componentDirectories.set(name, componentDir);
+
+      for (const suffix of ["", ".browser", ".drupal"]) {
+        const entryPath = componentBase + suffix + ".js";
+        if (fs.existsSync(entryPath)) {
+          entries["components/" + name + "/" + name + suffix] = entryPath;
+        }
+      }
+
+      // Component directories are leaves; do not scan their internal folders.
+    }
+  }
+
+  visit(directory);
+  return entries;
+}
+
+const componentEntries = getComponentEntries();
 
 export default {
   input: {
     ...componentEntries,
   },
   output: {
-    dir: ".",
+    dir: DIRNAME,
     format: "es",
     entryFileNames: "[name].js",
-    chunkFileNames: "[name].[hash].js",
+    chunkFileNames: "dist/[name].[hash].js",
     manualChunks(id) {
-      if (id.includes("node_modules")) {
-        return "dist/js/vendor";
+      const normalizedId = id.replaceAll("\\", "/");
+
+      if (normalizedId.includes("/node_modules/")) {
+        return "js/vendor";
       }
 
-      if (id.includes("src/components/_shared/")) {
-        return "dist/js/shared";
+      if (normalizedId.includes("/src/components/_shared/")) {
+        return "js/shared";
       }
     },
   },

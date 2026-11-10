@@ -1,0 +1,15 @@
+{% set base_class = "tcds-resource-card" %}
+{% set attributes = create_attribute(attributes|default({}))
+  .addClass(base_class)
+  .setAttribute("data-theme", "dark")
+%}
+
+{% if image.src|default(false) %}
+  {% set attributes = attributes.setAttribute("style", "background-image: url(#{image.src})") %}
+{% endif %}
+
+<article {{ attributes }}>
+  <a href="{{ link.url }}">
+    <span>{{ link.text }} <tcds-icon icon="caret-right" aria-hidden="true"></tcds-icon></span>
+  </a>
+</article>

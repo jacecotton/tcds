@@ -1,0 +1,23 @@
+{% set base_class = "tcds-icon-card" %}
+{% set attributes = create_attribute(attributes|default({}))
+  .addClass(base_class)
+%}
+
+{% set heading_level = heading_level|default("h3") %}
+
+<article {{ attributes }}>
+  {% if icon %}
+    <tcds-icon icon="{{ icon }}" category="duotone" aria-hidden="true"></tcds-icon>
+  {% endif %}
+  <{{ heading_level }}>{{ heading }}</{{ heading_level }}>
+  {% if description %}
+    <p>
+      {{ description }}
+    </p>
+  {% endif %}
+  {% if links is defined and links is not empty %}
+    {% for link in links %}
+      {{ include("@tcds/cta-link/cta-link.twig", link, with_context=false) }}
+    {% endfor %}
+  {% endif %}
+</article>

@@ -1,0 +1,107 @@
+{% set base_class = "tcds-page-profile" %}
+
+{% set hero_attributes = create_attribute(hero_attributes|default({}))
+  .addClass("#{base_class}__hero")
+%}
+
+{% set title_attributes = create_attribute(title_attributes|default({}))
+  .addClass("#{base_class}__title")
+%}
+
+{% set container_attributes = create_attribute(container_attributes|default({}))
+  .addClass("container-md")
+%}
+
+<section {{ hero_attributes }}>
+  <div {{ container_attributes }}>
+    <img {{ create_attribute(image).addClass("#{base_class}__portrait") }}>
+    <div {{ create_attribute().addClass("#{base_class}__lede") }}>
+      <h1 {{ title_attributes }}>{{ title }}</h1>
+      <p {{ create_attribute().addClass("#{base_class}__subheading") }}>
+        {{ specialties|join(" • ") }}
+      </p>
+      {% for occupation in occupations %}
+        <p {{ create_attribute().addClass("#{base_class}__description") }}>{{ occupation }}</p>
+      {% endfor %}
+
+      <div {{ create_attribute().addClass("#{base_class}__ctas") }}>
+        {% for link in cta_links %}
+          {{ include("@tcds/cta-link/cta-link.twig", link) }}
+        {% endfor %}
+
+        {% for badge in badges %}
+          <b {{ create_attribute().addClass("#{base_class}__badge") }}>
+            <tcds-icon icon="{{ badge.icon }}"></tcds-icon>
+            {{ badge.text }}
+          </b>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% if quick_info is defined and quick_info is not empty %}
+  <section {{ create_attribute().addClass("#{base_class}__quick-info") }}>
+    <div {{ container_attributes }}>
+      <dl>
+        {% for item in quick_info %}
+          <div>
+            {% if item.title is defined and item.title %}
+              <dt>
+                {% if item.icon %}
+                  <tcds-icon icon="{{ item.icon }}"></tcds-icon>
+                {% endif %}
+                {{ item.title }}{{ ":" }}
+              </dt>
+            {% endif %}
+            <dd>
+              {{ item.description }}
+              {% if item.items is defined and item.items is not empty %}
+                <ul role="list">
+                  {% for _item in item.items %}
+                    <li>
+                      {% if _item.url is defined and _item.url %}
+                        <a href="{{ _item.url }}">{{ _item.text }}</a>
+                      {% else %}
+                        {{ _item.text }}
+                      {% endif %}
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </dd>
+          </div>
+        {% endfor %}
+      </dl>
+    </div>
+  </section>
+  <section {{ create_attribute().addClass("#{base_class}__locations") }}>
+    <div {{ container_attributes }}>
+      {% if locations is defined and locations is not empty %}
+        <h2 class="text-ui-lg">Office locations</h2>
+        {% embed "@tcds/scroller/scroller.twig" %}
+          {% block content %}
+            {% for location in locations %}
+              {{ include("@tcds/card-article/card-article.twig", location|merge({
+                icon: "location-pin",
+                modifiers: ["small"],
+              }), with_context=false) }}
+            {% endfor %}
+          {% endblock %}
+        {% endembed %}
+      {% endif %}
+    </div>
+  </section>
+{% endif %}
+
+{% if tabs is defined and tabs is not empty %}
+  <section>
+    <div {{ container_attributes }}>
+      {{ include("@tcds/tabs/tabs.twig", {
+        tabs: tabs,
+        heading_level: "h2",
+        size: "small",
+      }) }}
+    </div>
+  </section>
+{% endif %}

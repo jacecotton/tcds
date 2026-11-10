@@ -1,0 +1,13 @@
+{% set attributes = create_attribute(attributes|default({})) %}
+<tcds-scroller {{ attributes }}>
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+  {% if links and links is not empty %}
+    {% for link in links %}
+      {{ include("@tcds/cta-link/cta-link.twig", link|merge({
+        attributes: {slot: "controls"},
+      })) }}
+    {% endfor %}
+  {% endif %}
+</tcds-scroller>

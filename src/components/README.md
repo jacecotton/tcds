@@ -132,6 +132,11 @@ This is not needed for custom elements because the behavior is initialized in th
 
 ### Build process
 Rollup handles building component JS files, via the `build:js` script.
+It emits matching `[component].js`, `[component].browser.js`, and
+`[component].drupal.js` files as separate entrypoints. For non-Lit components,
+standalone pages load the browser entrypoint; the SDC library loads the Drupal
+entrypoint. Import the main script when managing initialization and cleanup
+explicitly.
 
 `[component].twig` and `[component].component.yml` files are copied over to the [output directory](#directory-structure) as-is, via the `build:components:assets` script.
 
